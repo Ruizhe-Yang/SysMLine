@@ -1,0 +1,187 @@
+import "DSL2SysMini-util.eol";
+
+pre{
+	"------------------ ETL Start ------------------".println();
+	var eObjectSequence = new Sequence;
+	var KeyWords = Sequence{"default", "event", "value", "import", "language", "from", "to", "interface"};
+	init_psl();
+	main_psl();
+}
+
+post{
+	"------------------ ETL Over  ------------------".println();
+}
+
+operation main_psl(){
+	var rootEcore = DSL!EObject.all.first();
+	var rootSysMini = new SysMini!Namespace;
+	var rootPackage = new SysMini!Package;
+	rootPackage.declaredName = "psl_model";
+	rootSysMini.body.add(rootPackage);
+	var namespaceImport = new SysMini!NamespaceImport;
+	namespaceImport.declaredName = "psl";
+	rootPackage.body.add(namespaceImport);
+	rootEcore.addNodeTo(rootPackage);
+}
+
+operation init_psl(){
+	//Project -> Instantiation
+	var idProject = 0;
+	for (eProject in DSL!EObject.all.select(s|s.isTypeOf(DSL!Project))){
+		var eProjectTuple = Tuple{"key"=eProject.type().name.asString()+"_"+(idProject++).asString(),"value"= eProject};
+		eObjectSequence.add(eProjectTuple);
+	}
+	//Task -> Instantiation
+	var idTask = 0;
+	for (eTask in DSL!EObject.all.select(s|s.isTypeOf(DSL!Task))){
+		var eTaskTuple = Tuple{"key"=eTask.type().name.asString()+"_"+(idTask++).asString(),"value"= eTask};
+		eObjectSequence.add(eTaskTuple);
+	}
+	//Person -> Instantiation
+	var idPerson = 0;
+	for (ePerson in DSL!EObject.all.select(s|s.isTypeOf(DSL!Person))){
+		var ePersonTuple = Tuple{"key"=ePerson.type().name.asString()+"_"+(idPerson++).asString(),"value"= ePerson};
+		eObjectSequence.add(ePersonTuple);
+	}
+	//Effort -> Instantiation
+	var idEffort = 0;
+	for (eEffort in DSL!EObject.all.select(s|s.isTypeOf(DSL!Effort))){
+		var eEffortTuple = Tuple{"key"=eEffort.type().name.asString()+"_"+(idEffort++).asString(),"value"= eEffort};
+		eObjectSequence.add(eEffortTuple);
+	}
+}
+
+@abstract
+rule Base
+	transform s : DSL!EObject
+	to t : SysMini!PartUsage{
+	t.declaredName = s.getDeclaredName();
+	t.featureNote.add(":");
+	t.featureSpecialization.add(s.getfeatureSpecialization());
+	if (s.eContainingFeature != null and s.eContainingFeature.name != null){
+		t.featureNote.add(":>");
+		t.featureSpecialization.add(s.eContainingFeature().name);
+	}
+}
+	
+@lazy
+rule Project
+	transform s : DSL!Project
+	to t : SysMini!PartUsage
+	extends Base{
+	//Project -> EAttribute : title
+	if (s.title.getEAttribute() != null){
+		var title = new SysMini!AttributeUsage;
+		title.featureNote.add(":>>");
+		title.featureSpecialization.add("title");
+		title.valuePart = s.title.getEAttribute();
+		t.body.add(title);
+	}
+	//Project -> EAttribute : description
+	if (s.description.getEAttribute() != null){
+		var description = new SysMini!AttributeUsage;
+		description.featureNote.add(":>>");
+		description.featureSpecialization.add("description");
+		description.valuePart = s.description.getEAttribute();
+		t.body.add(description);
+	}
+	//Project -> EReference : tasks
+	if (s.tasks.getEReference() != null){
+		var tasks = new SysMini!PartUsage;
+		tasks.isReference = true;
+		tasks.featureNote.add(":>");
+		tasks.featureSpecialization.add("tasks");
+		tasks.valuePart = s.tasks.getEReference();
+		t.body.add(tasks);
+	}
+	//Project -> EReference : people
+	if (s.people.getEReference() != null){
+		var people = new SysMini!PartUsage;
+		people.isReference = true;
+		people.featureNote.add(":>");
+		people.featureSpecialization.add("people");
+		people.valuePart = s.people.getEReference();
+		t.body.add(people);
+	}
+}
+
+@lazy
+rule Task
+	transform s : DSL!Task
+	to t : SysMini!PartUsage
+	extends Base{
+	//Task -> EAttribute : title
+	if (s.title.getEAttribute() != null){
+		var title = new SysMini!AttributeUsage;
+		title.featureNote.add(":>>");
+		title.featureSpecialization.add("title");
+		title.valuePart = s.title.getEAttribute();
+		t.body.add(title);
+	}
+	//Task -> EAttribute : start
+	if (s.start.getEAttribute() != null){
+		var start = new SysMini!AttributeUsage;
+		start.featureNote.add(":>>");
+		start.featureSpecialization.add("start");
+		start.valuePart = s.start.getEAttribute();
+		t.body.add(start);
+	}
+	//Task -> EAttribute : duration
+	if (s.duration.getEAttribute() != null){
+		var duration = new SysMini!AttributeUsage;
+		duration.featureNote.add(":>>");
+		duration.featureSpecialization.add("duration");
+		duration.valuePart = s.duration.getEAttribute();
+		t.body.add(duration);
+	}
+	//Task -> EReference : effort
+	if (s.effort.getEReference() != null){
+		var effort = new SysMini!PartUsage;
+		effort.isReference = true;
+		effort.featureNote.add(":>");
+		effort.featureSpecialization.add("effort");
+		effort.valuePart = s.effort.getEReference();
+		t.body.add(effort);
+	}
+}
+
+@lazy
+rule Person
+	transform s : DSL!Person
+	to t : SysMini!PartUsage
+	extends Base{
+	//Person -> EAttribute : name
+	if (s.name.getEAttribute() != null){
+		var name = new SysMini!AttributeUsage;
+		name.featureNote.add(":>>");
+		name.featureSpecialization.add("name");
+		name.valuePart = s.name.getEAttribute();
+		t.body.add(name);
+	}
+}
+
+@lazy
+rule Effort
+	transform s : DSL!Effort
+	to t : SysMini!PartUsage
+	extends Base{
+	//Effort -> EAttribute : percentage
+	if (s.percentage.getEAttribute() != null){
+		var percentage = new SysMini!AttributeUsage;
+		percentage.featureNote.add(":>>");
+		percentage.featureSpecialization.add("percentage");
+		percentage.valuePart = s.percentage.getEAttribute();
+		t.body.add(percentage);
+	}
+	//Effort -> EReference : person
+	if (s.person.getEReference() != null){
+		var person = new SysMini!PartUsage;
+		person.isReference = true;
+		person.featureNote.add(":>");
+		person.featureSpecialization.add("person");
+		person.valuePart = s.person.getEReference();
+		t.body.add(person);
+	}
+}
+
+

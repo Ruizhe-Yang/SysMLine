@@ -1,0 +1,58 @@
+@namespace(uri="http://www.omg.org/spec/DD/20100524/DI-XMI", prefix="di")
+package di;
+
+import "platform:/resource/org.omg.sysmini/metamodel/BPMN/DC.ecore";
+
+abstract class DiagramElement {
+	!ordered readonly transient derived !resolve ref Diagram#rootElement owningDiagram;
+	!ordered readonly transient derived !resolve ref DiagramElement#ownedElement owningElement;
+	!ordered readonly transient derived !resolve ref DiagramElement[*]#owningElement ownedElement;
+	!ordered readonly transient derived ref EObject modelElement;
+	!ordered readonly transient derived ref Style style;
+}
+
+abstract class Diagram {
+	!ordered attr String name;
+	!ordered attr String documentation;
+	!ordered attr float resolution;
+	!ordered readonly transient derived ref Style[*] ownedStyle;
+	!ordered readonly transient derived !resolve ref DiagramElement[1]#owningDiagram rootElement;
+}
+
+abstract class Style {
+}
+
+abstract class Node extends DiagramElement {
+}
+
+abstract class Edge extends DiagramElement {
+	!ordered readonly transient derived ref DiagramElement source;
+	!ordered readonly transient derived ref DiagramElement target;
+	val dc.Point[2..*] waypoint;
+}
+
+abstract class Shape extends Node {
+	!ordered val dc.Bounds[1] bounds;
+}
+
+abstract class LabeledEdge extends Edge {
+	!ordered readonly transient derived ref Label[*] ownedLabel;
+}
+
+abstract class Label extends Node {
+	!ordered val dc.Bounds bounds;
+}
+
+abstract class LabeledShape extends Shape {
+	!ordered readonly transient derived ref Label[*] ownedLabel;
+}
+
+abstract class Plane extends Node {
+
+	@GenModel(documentation="planeElement->forAll(oclIsKindOf(Shape) or oclIsKindOf(Edge))")
+	op boolean plane_element_type(@GenModel(documentation="The chain of diagnostics to which problems are to be appended.")
+ecore.EDiagnosticChain diagnostics, @GenModel(documentation="The cache of context-specific information.")
+ecore.EMap<EJavaObject, EJavaObject> context);
+	val DiagramElement[*] planeElement;
+}
+

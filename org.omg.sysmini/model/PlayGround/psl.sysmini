@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="ASCII"?>
+<Namespace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="sysmini">
+  <body xsi:type="Package" declaredName="psl">
+    <body xsi:type="NamespaceImport" hasVisibility="true" declaredName="ecore"/>
+    <body xsi:type="PartDefinition" declaredName="Project">
+      <body xsi:type="AttributeUsage" declaredName="title" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="description" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="tasks" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Task</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="people" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Person</featureSpecialization>
+      </body>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="Task">
+      <body xsi:type="AttributeUsage" declaredName="title" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="start" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EInt</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="duration" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EInt</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="effort" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Effort</featureSpecialization>
+      </body>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="Person">
+      <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="Effort">
+      <body xsi:type="PartUsage" declaredName="person" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Person</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="percentage" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EInt</featureSpecialization>
+      </body>
+    </body>
+  </body>
+</Namespace>

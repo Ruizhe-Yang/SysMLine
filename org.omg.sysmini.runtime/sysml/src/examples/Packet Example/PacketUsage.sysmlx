@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="ASCII"?>
+<sysml:Namespace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sysml="https://www.omg.org/spec/SysML/20240201">
+  <ownedRelationship xsi:type="sysml:OwningMembership">
+    <ownedRelatedElement xsi:type="sysml:Package" declaredName="'Packet Usage'">
+      <ownedRelationship xsi:type="sysml:NamespaceImport" visibility="public">
+        <importedNamespace href="PacketUsage.sysml#|0"/>
+      </ownedRelationship>
+      <ownedRelationship xsi:type="sysml:MembershipImport">
+        <importedMembership href="PacketUsage.sysml#|1"/>
+      </ownedRelationship>
+      <ownedRelationship xsi:type="sysml:OwningMembership">
+        <ownedRelatedElement xsi:type="sysml:PartUsage" declaredName="packet1">
+          <ownedRelationship xsi:type="sysml:FeatureTyping">
+            <type href="PacketUsage.sysml#|2"/>
+          </ownedRelationship>
+        </ownedRelatedElement>
+      </ownedRelationship>
+      <ownedRelationship xsi:type="sysml:OwningMembership">
+        <ownedRelatedElement xsi:type="sysml:PartUsage" declaredName="packet2">
+          <ownedRelationship xsi:type="sysml:FeatureTyping">
+            <type href="PacketUsage.sysml#|3"/>
+          </ownedRelationship>
+        </ownedRelatedElement>
+      </ownedRelationship>
+      <ownedRelationship xsi:type="sysml:OwningMembership">
+        <ownedRelatedElement xsi:type="sysml:PartUsage" declaredName="packet3">
+          <ownedRelationship xsi:type="sysml:FeatureTyping">
+            <type href="PacketUsage.sysml#|4"/>
+          </ownedRelationship>
+          <ownedRelationship xsi:type="sysml:FeatureMembership">
+            <ownedRelatedElement xsi:type="sysml:AttributeUsage" declaredName="'special data field'">
+              <ownedRelationship xsi:type="sysml:Redefinition">
+                <redefinedFeature href="PacketUsage.sysml#|5"/>
+              </ownedRelationship>
+              <ownedRelationship xsi:type="sysml:FeatureMembership">
+                <ownedRelatedElement xsi:type="sysml:AttributeUsage">
+                  <ownedRelationship xsi:type="sysml:Redefinition">
+                    <redefinedFeature href="PacketUsage.sysml#|6"/>
+                  </ownedRelationship>
+                  <ownedRelationship xsi:type="sysml:FeatureMembership">
+                    <ownedRelatedElement xsi:type="sysml:AttributeUsage" declaredName="'special data'">
+                      <ownedRelationship xsi:type="sysml:FeatureTyping">
+                        <type href="PacketUsage.sysml#|7"/>
+                      </ownedRelationship>
+                    </ownedRelatedElement>
+                  </ownedRelationship>
+                </ownedRelatedElement>
+              </ownedRelationship>
+            </ownedRelatedElement>
+          </ownedRelationship>
+        </ownedRelatedElement>
+      </ownedRelationship>
+    </ownedRelatedElement>
+  </ownedRelationship>
+</sysml:Namespace>

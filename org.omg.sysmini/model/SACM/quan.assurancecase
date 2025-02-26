@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assuranceCase_:AssuranceCasePackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:artifact_="http://omg.sacm/2.2/artifact" xmlns:assuranceCase_="http://omg.sacm/2.2/assurancecase" xmlns:base_="http://omg.sacm/2.2/base" xmlns:gsn_="http://acwg.org/3.0/gsn">
+  <artifactPackage>
+    <name lang="lang" content="ArtifactPackage"/>
+    <description>
+      <content>
+        <value lang="language" content="Description"/>
+      </content>
+    </description>
+    <implementationConstraint>
+      <content>
+        <value lang="language" content="null"/>
+        <value lang="language" content="result"/>
+      </content>
+    </implementationConstraint>
+    <artifactElement xsi:type="artifact_:Artifact">
+      <name lang="lang" content="External reference files"/>
+      <description>
+        <content>
+          <value lang="language" content="This document contains the data volume and energy consumption collected by the experimental system's sensors."/>
+        </content>
+      </description>
+      <implementationConstraint>
+        <content>
+          <value lang="language" content="for(e in dataResult.all){&#xD;&#xA;&#x9;return e.R1.asDouble() > 500 and e.R2.asDouble() &lt;500 ;&#xD;&#xA;}"/>
+          <value lang="language" content="result"/>
+        </content>
+      </implementationConstraint>
+      <artifactProperty>
+        <name lang="lang" content="URI"/>
+        <description>
+          <content>
+            <value lang="language" content="\123.xlsx"/>
+          </content>
+        </description>
+        <implementationConstraint>
+          <content>
+            <value lang="language" content="null"/>
+          </content>
+        </implementationConstraint>
+        <implementationConstraint>
+          <content>
+            <value lang="language" content="Excel Spreadsheet"/>
+          </content>
+        </implementationConstraint>
+      </artifactProperty>
+    </artifactElement>
+  </artifactPackage>
+  <argumentPackage xsi:type="gsn_:Module">
+    <name lang="lang" content="GSN packet of autonomous systems"/>
+    <description>
+      <content>
+        <value lang="English" content="This GSN packet is for the autonomous system."/>
+      </content>
+    </description>
+    <implementationConstraint>
+      <content>
+        <value lang="language" content="null"/>
+        <value lang="language" content="null"/>
+      </content>
+    </implementationConstraint>
+    <argumentationElement xsi:type="gsn_:Goal">
+      <name lang="lang" content="G1 : To meet the requirements"/>
+      <description>
+        <content>
+          <value xsi:type="base_:ExpressionLangString" lang="English" content="The data volume collected by the sensors of the autonomous system and the energy consumption requirements of the sensors are met."/>
+        </content>
+      </description>
+      <implementationConstraint>
+        <content>
+          <value lang="language" content="null"/>
+          <value lang="language" content="result"/>
+        </content>
+      </implementationConstraint>
+    </argumentationElement>
+    <argumentationElement xsi:type="gsn_:Goal" uninstantiated="true">
+      <name lang="lang" content="G2 : Configuration that satisfies the requirements."/>
+      <description>
+        <content>
+          <value xsi:type="base_:ExpressionLangString" lang="English" content="Configuration that meets the requirements."/>
+        </content>
+      </description>
+      <implementationConstraint>
+        <content>
+          <value lang="language" content="null"/>
+          <value lang="language" content="result"/>
+        </content>
+      </implementationConstraint>
+    </argumentationElement>
+    <argumentationElement xsi:type="gsn_:Context" uninstantiated="true">
+      <name lang="lang" content="C1 : The definition of configuration."/>
+      <description>
+        <content>
+          <value lang="English" content="{Configuration n}"/>
+        </content>
+      </description>
+      <implementationConstraint>
+        <content>
+          <value lang="language"/>
+          <value lang="language" content="result"/>
+        </content>
+      </implementationConstraint>
+    </argumentationElement>
+    <argumentationElement xsi:type="gsn_:Strategy">
+      <name lang="lang" content="S1 : Configuration parameters"/>
+      <description>
+        <content>
+          <value lang="English" content="Argumentation of the parameters for the current configuration {Configuration n}."/>
+        </content>
+      </description>
+      <implementationConstraint>
+        <content>
+          <value lang="language"/>
+          <value lang="language" content="result"/>
+        </content>
+      </implementationConstraint>
+    </argumentationElement>
+    <argumentationElement xsi:type="gsn_:Context">
+      <name lang="lang" content="C2 : Parameters"/>
+      <description>
+        <content>
+          <value lang="English" content="Formalize the current requirements."/>
+        </content>
+      </description>
+      <implementationConstraint>
+        <content>
+          <value lang="language"/>
+          <value lang="language" content="result"/>
+        </content>
+      </implementationConstraint>
+    </argumentationElement>
+    <argumentationElement xsi:type="gsn_:Goal" uninstantiated="true" undeveloped="true">
+      <name lang="lang" content="G3 : Requirement 1 is satisfied."/>
+      <description>
+        <content>
+          <value xsi:type="base_:ExpressionLangString" lang="English" content="By executing {Configuration n}, the data volume collected by the sensors is satisfied."/>
+        </content>
+      </description>
+      <implementationConstraint>
+        <content>
+          <value lang="language" content="null"/>
+          <value lang="language" content="result"/>
+        </content>
+      </implementationConstraint>
+    </argumentationElement>
+    <argumentationElement xsi:type="gsn_:Goal" uninstantiated="true">
+      <name lang="lang" content="G4 : Requirement 2 is satisfied."/>
+      <description>
+        <content>
+          <value xsi:type="base_:ExpressionLangString" lang="English" content="By executing {Configuration n}, the energy consumption of the sensors does not exceed a certain value."/>
+        </content>
+      </description>
+      <implementationConstraint>
+        <content>
+          <value lang="language" content="null"/>
+          <value lang="language" content="result"/>
+        </content>
+      </implementationConstraint>
+    </argumentationElement>
+    <argumentationElement xsi:type="gsn_:Goal" uninstantiated="true" undeveloped="true">
+      <name lang="lang" content="G5 : Requirement 3 is satisfied."/>
+      <description>
+        <content>
+          <value xsi:type="base_:ExpressionLangString" lang="English" content="By executing {Configuration n}, the weighted overhead of the first two requirements is minimized."/>
+        </content>
+      </description>
+      <implementationConstraint>
+        <content>
+          <value lang="language" content="null"/>
+          <value lang="language" content="result"/>
+        </content>
+      </implementationConstraint>
+    </argumentationElement>
+    <argumentationElement xsi:type="gsn_:Goal" uninstantiated="true" undeveloped="true">
+      <name lang="lang" content="G6 : Requirement 4 is satisfied."/>
+      <description>
+        <content>
+          <value xsi:type="base_:ExpressionLangString" lang="English" content="By executing {Configuration n}, the speed of the autonomous system will automatically reduce to zero."/>
+        </content>
+      </description>
+      <implementationConstraint>
+        <content>
+          <value lang="language" content="null"/>
+          <value lang="language" content="result"/>
+        </content>
+      </implementationConstraint>
+    </argumentationElement>
+    <argumentationElement xsi:type="gsn_:Goal" uninstantiated="true">
+      <name lang="lang" content="G7 : Validate Requirement 2."/>
+      <description>
+        <content>
+          <value xsi:type="base_:ExpressionLangString" lang="English" content="Through {Configuration n}, Requirement 2 is validated."/>
+        </content>
+      </description>
+      <implementationConstraint>
+        <content>
+          <value lang="language" content="null"/>
+          <value lang="language" content="result"/>
+        </content>
+      </implementationConstraint>
+    </argumentationElement>
+    <argumentationElement xsi:type="gsn_:AwayGoal" uninstantiated="true">
+      <name lang="lang" content="AG1 : The parameters of Requirement 2 are saved through the virtual machine platform."/>
+      <description>
+        <content>
+          <value lang="language" content="Description"/>
+        </content>
+      </description>
+      <implementationConstraint>
+        <content>
+          <value lang="language"/>
+          <value lang="language" content="result"/>
+        </content>
+      </implementationConstraint>
+    </argumentationElement>
+    <argumentationElement xsi:type="gsn_:Solution" citedElement="//@artifactPackage.0/@artifactElement.0" uninstantiated="true">
+      <name lang="lang" content="So1 : The results during the execution of Requirement 2."/>
+      <description>
+        <content>
+          <value lang="English" content="The results after validating Requirement 2 (using a randomized model for verification)."/>
+        </content>
+      </description>
+      <implementationConstraint>
+        <content>
+          <value lang="language"/>
+          <value lang="language" content="result"/>
+        </content>
+      </implementationConstraint>
+    </argumentationElement>
+    <argumentationElement xsi:type="gsn_:SupportedBy" source="//@argumentPackage.0/@argumentationElement.0" target="//@argumentPackage.0/@argumentationElement.1">
+      <name lang="lang" content="name"/>
+      <description>
+        <content>
+          <value xsi:type="base_:ExpressionLangString" lang="language" content="Description"/>
+        </content>
+      </description>
+      <implementationConstraint>
+        <content>
+          <value lang="language" content="null"/>
+          <value lang="language" content="result"/>
+        </content>
+      </implementationConstraint>
+    </argumentationElement>
+    <argumentationElement xsi:type="gsn_:SupportedBy" source="//@argumentPackage.0/@argumentationElement.1" target="//@argumentPackage.0/@argumentationElement.3">
+      <name lang="lang" content="name"/>
+      <description>
+        <content>
+          <value xsi:type="base_:ExpressionLangString" lang="language" content="Description"/>
+        </content>
+      </description>
+      <implementationConstraint>
+        <content>
+          <value lang="language" content="null"/>
+          <value lang="language" content="result"/>
+        </content>
+      </implementationConstraint>
+    </argumentationElement>
+    <argumentationElement xsi:type="gsn_:SupportedBy" source="//@argumentPackage.0/@argumentationElement.3" target="//@argumentPackage.0/@argumentationElement.5">
+      <name lang="lang" content="name"/>
+      <description>
+        <content>
+          <value xsi:type="base_:ExpressionLangString" lang="language" content="Description"/>
+        </content>
+      </description>
+      <implementationConstraint>
+        <content>
+          <value lang="language" content="null"/>
+          <value lang="language" content="result"/>
+        </content>
+      </implementationConstraint>
+    </argumentationElement>
+    <argumentationElement xsi:type="gsn_:SupportedBy" source="//@argumentPackage.0/@argumentationElement.3" target="//@argumentPackage.0/@argumentationElement.6">
+      <name lang="lang" content="name"/>
+      <description>
+        <content>
+          <value xsi:type="base_:ExpressionLangString" lang="language" content="Description"/>
+        </content>
+      </description>
+      <implementationConstraint>
+        <content>
+          <value lang="language" content="null"/>
+          <value lang="language" content="result"/>
+        </content>
+      </implementationConstraint>
+    </argumentationElement>
+    <argumentationElement xsi:type="gsn_:SupportedBy" source="//@argumentPackage.0/@argumentationElement.3" target="//@argumentPackage.0/@argumentationElement.7">
+      <name lang="lang" content="name"/>
+      <description>
+        <content>
+          <value xsi:type="base_:ExpressionLangString" lang="language" content="Description"/>
+        </content>
+      </description>
+      <implementationConstraint>
+        <content>
+          <value lang="language" content="null"/>
+          <value lang="language" content="result"/>
+        </content>
+      </implementationConstraint>
+    </argumentationElement>
+    <argumentationElement xsi:type="gsn_:SupportedBy" source="//@argumentPackage.0/@argumentationElement.3" target="//@argumentPackage.0/@argumentationElement.8">
+      <name lang="lang" content="name"/>
+      <description>
+        <content>
+          <value xsi:type="base_:ExpressionLangString" lang="language" content="Description"/>
+        </content>
+      </description>
+      <implementationConstraint>
+        <content>
+          <value lang="language" content="null"/>
+          <value lang="language" content="result"/>
+        </content>
+      </implementationConstraint>
+    </argumentationElement>
+    <argumentationElement xsi:type="gsn_:SupportedBy" source="//@argumentPackage.0/@argumentationElement.6" target="//@argumentPackage.0/@argumentationElement.9">
+      <name lang="lang" content="name"/>
+      <description>
+        <content>
+          <value xsi:type="base_:ExpressionLangString" lang="language" content="Description"/>
+        </content>
+      </description>
+      <implementationConstraint>
+        <content>
+          <value lang="language" content="null"/>
+          <value lang="language" content="result"/>
+        </content>
+      </implementationConstraint>
+    </argumentationElement>
+    <argumentationElement xsi:type="gsn_:SupportedBy" source="//@argumentPackage.0/@argumentationElement.6" target="//@argumentPackage.0/@argumentationElement.10">
+      <name lang="lang" content="name"/>
+      <description>
+        <content>
+          <value xsi:type="base_:ExpressionLangString" lang="language" content="Description"/>
+        </content>
+      </description>
+      <implementationConstraint>
+        <content>
+          <value lang="language" content="null"/>
+          <value lang="language" content="result"/>
+        </content>
+      </implementationConstraint>
+    </argumentationElement>
+    <argumentationElement xsi:type="gsn_:SupportedBy" source="//@argumentPackage.0/@argumentationElement.9" target="//@argumentPackage.0/@argumentationElement.11">
+      <name lang="lang" content="name"/>
+      <description>
+        <content>
+          <value xsi:type="base_:ExpressionLangString" lang="language" content="Description"/>
+        </content>
+      </description>
+      <implementationConstraint>
+        <content>
+          <value lang="language" content="null"/>
+          <value lang="language" content="result"/>
+        </content>
+      </implementationConstraint>
+    </argumentationElement>
+    <argumentationElement xsi:type="gsn_:InContextOf" source="//@argumentPackage.0/@argumentationElement.1" target="//@argumentPackage.0/@argumentationElement.2"/>
+    <argumentationElement xsi:type="gsn_:InContextOf" source="//@argumentPackage.0/@argumentationElement.3" target="//@argumentPackage.0/@argumentationElement.4"/>
+  </argumentPackage>
+</assuranceCase_:AssuranceCasePackage>

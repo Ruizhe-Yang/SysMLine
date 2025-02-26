@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="ASCII"?>
+<Namespace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="sysmini">
+  <body xsi:type="Package" declaredName="dc">
+    <body xsi:type="NamespaceImport" declaredName="ecore"/>
+    <body xsi:type="PartDefinition" declaredName="Font">
+      <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="size" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EFloat</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="isBold" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="isItalic" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="isUnderline" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="isStrikeThrough" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="Point">
+      <body xsi:type="AttributeUsage" declaredName="x" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EFloat</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="y" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EFloat</featureSpecialization>
+      </body>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="Bounds">
+      <body xsi:type="AttributeUsage" declaredName="x" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EFloat</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="y" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EFloat</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="width" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EFloat</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="height" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EFloat</featureSpecialization>
+      </body>
+    </body>
+  </body>
+</Namespace>

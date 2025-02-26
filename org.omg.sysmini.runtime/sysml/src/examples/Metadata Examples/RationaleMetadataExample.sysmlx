@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="ASCII"?>
+<sysml:Namespace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sysml="https://www.omg.org/spec/SysML/20240201">
+  <ownedRelationship xsi:type="sysml:OwningMembership">
+    <ownedRelatedElement xsi:type="sysml:Package" declaredName="RationaleMetadataExample">
+      <ownedRelationship xsi:type="sysml:MembershipImport">
+        <importedMembership href="RationaleMetadataExample.sysml#|0"/>
+      </ownedRelationship>
+      <ownedRelationship xsi:type="sysml:OwningMembership">
+        <ownedRelatedElement xsi:type="sysml:Comment" body="/* Example: the following provides the rationale for selecting the engine4cyl based on a trade study analysis. &#xD;&#xA;    The rationale could be contained in the vehicle configuration with the selected engine */"/>
+      </ownedRelationship>
+      <ownedRelationship xsi:type="sysml:OwningMembership">
+        <ownedRelatedElement xsi:type="sysml:PartUsage" declaredName="engine"/>
+      </ownedRelationship>
+      <ownedRelationship xsi:type="sysml:OwningMembership">
+        <ownedRelatedElement xsi:type="sysml:PartUsage" declaredName="engine4cyl">
+          <ownedRelationship xsi:type="sysml:Subsetting">
+            <subsettedFeature href="RationaleMetadataExample.sysml#|1"/>
+          </ownedRelationship>
+        </ownedRelatedElement>
+      </ownedRelationship>
+      <ownedRelationship xsi:type="sysml:OwningMembership">
+        <ownedRelatedElement xsi:type="sysml:PartUsage" declaredName="engine6cyl">
+          <ownedRelationship xsi:type="sysml:Subsetting">
+            <subsettedFeature href="RationaleMetadataExample.sysml#|2"/>
+          </ownedRelationship>
+        </ownedRelatedElement>
+      </ownedRelationship>
+      <ownedRelationship xsi:type="sysml:OwningMembership">
+        <ownedRelatedElement xsi:type="sysml:MetadataUsage" declaredName="engineSelectionRationale">
+          <ownedRelationship xsi:type="sysml:FeatureTyping">
+            <type href="RationaleMetadataExample.sysml#|3"/>
+          </ownedRelationship>
+          <ownedRelationship xsi:type="sysml:Annotation">
+            <annotatedElement xsi:type="sysml:Subclassification" href="RationaleMetadataExample.sysml#|4"/>
+          </ownedRelationship>
+          <ownedRelationship xsi:type="sysml:FeatureMembership">
+            <ownedRelatedElement xsi:type="sysml:ReferenceUsage">
+              <ownedRelationship xsi:type="sysml:Redefinition">
+                <redefinedFeature href="RationaleMetadataExample.sysml#|5"/>
+              </ownedRelationship>
+              <ownedRelationship xsi:type="sysml:FeatureValue">
+                <ownedRelatedElement xsi:type="sysml:LiteralString" value="&quot;This rationale for selecting the engine4cyl refers to the engineTradeOffAnalysis.&quot;"/>
+              </ownedRelationship>
+            </ownedRelatedElement>
+          </ownedRelationship>
+          <ownedRelationship xsi:type="sysml:FeatureMembership">
+            <ownedRelatedElement xsi:type="sysml:ReferenceUsage">
+              <ownedRelationship xsi:type="sysml:Redefinition">
+                <redefinedFeature href="RationaleMetadataExample.sysml#|6"/>
+              </ownedRelationship>
+              <ownedRelationship xsi:type="sysml:FeatureValue">
+                <ownedRelatedElement xsi:type="sysml:FeatureReferenceExpression">
+                  <ownedRelationship xsi:type="sysml:Membership">
+                    <memberElement xsi:type="sysml:Subclassification" href="RationaleMetadataExample.sysml#|7"/>
+                  </ownedRelationship>
+                </ownedRelatedElement>
+              </ownedRelationship>
+            </ownedRelatedElement>
+          </ownedRelationship>
+        </ownedRelatedElement>
+      </ownedRelationship>
+      <ownedRelationship xsi:type="sysml:NamespaceImport">
+        <importedNamespace href="RationaleMetadataExample.sysml#|8"/>
+      </ownedRelationship>
+      <ownedRelationship xsi:type="sysml:OwningMembership">
+        <ownedRelatedElement xsi:type="sysml:AnalysisCaseUsage" declaredName="engineTradeOffAnalysis">
+          <ownedRelationship xsi:type="sysml:FeatureTyping">
+            <type href="RationaleMetadataExample.sysml#|9"/>
+          </ownedRelationship>
+          <ownedRelationship xsi:type="sysml:SubjectMembership">
+            <ownedRelatedElement xsi:type="sysml:ReferenceUsage" declaredName="alternatives">
+              <ownedRelationship xsi:type="sysml:Subsetting">
+                <subsettedFeature href="RationaleMetadataExample.sysml#|10"/>
+              </ownedRelationship>
+              <ownedRelationship xsi:type="sysml:OwningMembership">
+                <ownedRelatedElement xsi:type="sysml:MultiplicityRange">
+                  <ownedRelationship xsi:type="sysml:OwningMembership">
+                    <ownedRelatedElement xsi:type="sysml:LiteralInteger" value="2"/>
+                  </ownedRelationship>
+                </ownedRelatedElement>
+              </ownedRelationship>
+              <ownedRelationship xsi:type="sysml:FeatureValue">
+                <ownedRelatedElement xsi:type="sysml:OperatorExpression" operator=","/>
+              </ownedRelationship>
+            </ownedRelatedElement>
+          </ownedRelationship>
+          <ownedRelationship xsi:type="sysml:OwningMembership">
+            <ownedRelatedElement xsi:type="sysml:Comment" body="/* ... */"/>
+          </ownedRelationship>
+          <ownedRelationship xsi:type="sysml:ReturnParameterMembership">
+            <ownedRelatedElement xsi:type="sysml:ReferenceUsage" declaredName="selectedEngine">
+              <ownedRelationship xsi:type="sysml:Subsetting">
+                <subsettedFeature href="RationaleMetadataExample.sysml#|13"/>
+              </ownedRelationship>
+            </ownedRelatedElement>
+          </ownedRelationship>
+        </ownedRelatedElement>
+      </ownedRelationship>
+    </ownedRelatedElement>
+  </ownedRelationship>
+</sysml:Namespace>

@@ -1,0 +1,801 @@
+@"http://www.obeonetwork.com/bpmn2/addons"
+@namespace(uri="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI", prefix="bpmn")
+package bpmn2;
+
+import "platform:/resource/org.omg.sysmini/metamodel/BPMN/BPMNDI.ecore";
+
+class Interface extends RootElement {
+	!ordered attr String[1] name;
+	!ordered val Operation[+] operations;
+	!ordered ref EObject implementationRef;
+}
+
+abstract class RootElement extends BaseElement {
+}
+
+abstract class BaseElement {
+	!ordered id attr String[1] ~id;
+	!ordered ref ExtensionDefinition[*] extensionDefinitions;
+	!ordered val ExtensionAttributeValue[*] extensionValues;
+	!ordered val Documentation[*] documentation;
+	attr String description;
+}
+
+class ExtensionDefinition {
+	!ordered attr String[1] name;
+	!ordered val ExtensionAttributeDefinition[*]#extensionDefinition extensionAttributeDefinitions;
+	!ordered id attr String[1] ~id;
+}
+
+class ExtensionAttributeDefinition {
+	!ordered attr String[1] name;
+	!ordered attr String[1] type;
+	!ordered attr boolean[1] isReference = false;
+	!ordered ref ExtensionDefinition[1]#extensionAttributeDefinitions extensionDefinition;
+	!ordered id attr String[1] ~id;
+}
+
+class ExtensionAttributeValue {
+	!ordered ref EObject valueRef;
+	!ordered val EObject value;
+	!ordered ref ExtensionAttributeDefinition extensionAttributeDefinition;
+	!ordered id attr String[1] ~id;
+}
+
+class Documentation extends BaseElement {
+	!ordered attr String[1] text;
+	!ordered attr String[1] textFormat = "text/plain";
+}
+
+class Operation extends BaseElement {
+	!ordered attr String[1] name;
+	!ordered ref Message[1] inMessageRef;
+	!ordered ref Message outMessageRef;
+	!ordered ref Error[*] errorRefs;
+	!ordered ref EObject implementationRef;
+}
+
+class Message extends RootElement {
+	!ordered attr String name;
+	!ordered ref ItemDefinition itemRef;
+}
+
+class ItemDefinition extends RootElement {
+	!ordered attr ItemKind[1] itemKind;
+	!ordered ref EObject[1] structureRef;
+	!ordered attr boolean[1] isCollection = false;
+	!ordered ref Import ~import;
+}
+
+enum ItemKind {
+	Physical = 0;
+	Information = 1;
+}
+
+class Import {
+	!ordered attr String[1] importType;
+	!ordered attr String[1] location;
+	!ordered attr String[1] namespace;
+	!ordered id attr String[1] ~id;
+}
+
+class Error extends RootElement {
+	!ordered ref ItemDefinition structureRef;
+	!ordered attr String[1] name;
+	!ordered attr String[1] errorCode;
+}
+
+class EndPoint extends RootElement {
+}
+
+class Auditing extends BaseElement {
+}
+
+class GlobalTask extends CallableElement {
+	!ordered val ResourceRole[*] resources;
+}
+
+abstract class CallableElement extends RootElement {
+	!ordered attr String name;
+	!ordered val InputOutputSpecification ioSpecification;
+	!ordered ref Interface[*] supportedInterfaceRefs;
+	!ordered val InputOutputBinding[*] ioBinding;
+}
+
+class InputOutputSpecification extends BaseElement {
+	!ordered val InputSet[*] inputSets;
+	!ordered val OutputSet[*] outputSets;
+	!ordered val DataInput[*] dataInputs;
+	!ordered val DataOutput[*] dataOutputs;
+}
+
+class InputSet extends BaseElement {
+	!ordered attr String name;
+	!ordered !resolve ref DataInput[*]#inputSetRefs dataInputRefs;
+	!ordered !resolve ref DataInput[*]#inputSetWithOptional optionalInputRefs;
+	!ordered !resolve ref DataInput[*]#inputSetWithWhileExecuting whileExecutingInputRefs;
+	!ordered !resolve ref OutputSet[*]#inputSetRefs outputSetRefs;
+}
+
+class DataInput extends ItemAwareElement {
+	!ordered attr String name;
+	!ordered attr boolean[1] isCollection = false;
+	!ordered transient derived ref InputSet[*]#optionalInputRefs inputSetWithOptional;
+	!ordered transient derived ref InputSet[*]#whileExecutingInputRefs inputSetWithWhileExecuting;
+	!ordered transient derived ref InputSet[*]#dataInputRefs inputSetRefs;
+}
+
+class ItemAwareElement extends BaseElement {
+	!ordered ref ItemDefinition itemSubjectRef;
+	!ordered val DataState dataState;
+}
+
+class DataState extends BaseElement {
+	!ordered attr String[1] name;
+}
+
+class OutputSet extends BaseElement {
+	!ordered !resolve ref DataOutput[*]#outputSetRefs dataOutputRefs;
+	!ordered !resolve ref DataOutput[*]#outputSetWithOptional optionalOutputRefs;
+	!ordered derived !resolve ref DataOutput[*]#outputSetWithWhileExecuting whileExecutingOutputRefs;
+	!ordered attr String name;
+	!ordered ref InputSet[*]#outputSetRefs inputSetRefs;
+}
+
+class DataOutput extends ItemAwareElement {
+	!ordered attr String name;
+	!ordered attr boolean[1] isCollection = false;
+	!ordered transient derived ref OutputSet[*]#optionalOutputRefs outputSetWithOptional;
+	!ordered transient derived ref OutputSet[*]#whileExecutingOutputRefs outputSetWithWhileExecuting;
+	!ordered transient derived ref OutputSet[*]#dataOutputRefs outputSetRefs;
+}
+
+class InputOutputBinding {
+	!ordered ref InputSet[1] inputDataRef;
+	!ordered ref OutputSet[1] outputDataRef;
+	!ordered ref Operation[1] operationRef;
+	!ordered id attr String[1] ~id;
+}
+
+class ResourceRole extends BaseElement {
+	!ordered ref Resource resourceRef;
+	!ordered val ResourceParameterBinding[*] resourceParameterBindings;
+	!ordered val ResourceAssignmentExpression resourceAssignmentExpression;
+	!ordered attr String[1] name;
+}
+
+class Resource extends RootElement {
+	!ordered attr String[1] name;
+	!ordered val ResourceParameter[*] resourceParameters;
+}
+
+class ResourceParameter extends BaseElement {
+	!ordered attr String[1] name;
+	!ordered attr boolean[1] isRequired;
+	!ordered ref ItemDefinition type;
+}
+
+class ResourceParameterBinding {
+	!ordered val Expression[1] expression;
+	!ordered ref ResourceParameter[1] parameterRef;
+	!ordered id attr String[1] ~id;
+}
+
+class Expression extends BaseElement {
+}
+
+class ResourceAssignmentExpression {
+	!ordered val Expression[1] expression;
+	!ordered id attr String[1] ~id;
+}
+
+class Monitoring extends BaseElement {
+}
+
+class Performer extends ResourceRole {
+}
+
+class Process extends CallableElement, FlowElementsContainer {
+	!ordered attr ProcessType[1] processType;
+	!ordered attr boolean[1] isClosed;
+	!ordered val Auditing auditing;
+	!ordered val Monitoring monitoring;
+	!ordered val Property[*] properties;
+	!ordered ref Process[*] supports;
+	!ordered ref Collaboration definitionalCollaborationRef;
+	!ordered attr boolean[1] isExecutable;
+	!ordered val ResourceRole[*] resources;
+	!ordered val Artifact[*] artifacts;
+	!ordered val CorrelationSubscription[*] correlationSubscriptions;
+	val Process[*]#decomposes decomposedBy;
+	ref Process#decomposedBy decomposes;
+}
+
+abstract class FlowElementsContainer extends BaseElement {
+	!ordered val FlowElement[*] flowElements;
+	!ordered val LaneSet[*] laneSets;
+}
+
+abstract class FlowElement extends BaseElement {
+	!ordered attr String name;
+	!ordered val Auditing auditing;
+	!ordered val Monitoring monitoring;
+	!ordered transient !resolve ref CategoryValue[*]#categorizedFlowElements categoryValueRef;
+}
+
+class CategoryValue extends BaseElement {
+	!ordered attr String[1] value;
+	!ordered readonly transient derived !resolve ref FlowElement[*]#categoryValueRef categorizedFlowElements;
+}
+
+class LaneSet extends BaseElement {
+	!ordered val Lane[*] lanes;
+	!ordered attr String name;
+}
+
+class Lane extends BaseElement {
+	!ordered attr String name;
+	!ordered val LaneSet childLaneSet;
+	!ordered ref BaseElement partitionElementRef;
+	!ordered !resolve ref FlowNode[*]#lanes flowNodeRefs;
+	!ordered val BaseElement partitionElement;
+}
+
+abstract class FlowNode extends FlowElement {
+	ref SequenceFlow[*]#sourceRef outgoing;
+	!ordered ref SequenceFlow[*]#targetRef incoming;
+	!ordered transient derived ref Lane[*]#flowNodeRefs lanes;
+}
+
+class SequenceFlow extends FlowElement {
+	!ordered attr boolean isImmediate;
+	!ordered val Expression conditionExpression;
+	!ordered ref FlowNode#incoming targetRef;
+	!ordered ref FlowNode#outgoing sourceRef;
+}
+
+enum ProcessType {
+	None = 0;
+	Public = 1;
+	Private = 2;
+}
+
+class Property extends ItemAwareElement {
+	!ordered attr String[1] name;
+}
+
+class Collaboration extends RootElement {
+	!ordered attr String name;
+	!ordered attr boolean[1] isClosed;
+	!ordered ref Choreography[*] choreographyRef;
+	!ordered val Artifact[*] artifacts;
+	!ordered val ParticipantAssociation[*] participantAssociations;
+	!ordered val MessageFlowAssociation[*] messageFlowAssociations;
+	!ordered val ConversationAssociation conversationAssociations;
+	!ordered val Participant[*] participants;
+	!ordered val MessageFlow[*] messageFlows;
+	!ordered val CorrelationKey[*] correlationKeys;
+	!ordered val ConversationNode[*] conversations;
+	!ordered val ConversationLink[*] conversationLinks;
+}
+
+class Choreography extends Collaboration, FlowElementsContainer {
+}
+
+abstract class Artifact extends BaseElement {
+}
+
+class ParticipantAssociation extends BaseElement {
+	!ordered ref Participant[1] innerParticipantRef;
+	!ordered ref Participant[1] outerParticipantRef;
+}
+
+class Participant extends BaseElement, InteractionNode {
+	!ordered attr String name;
+	!ordered ref Interface[*] interfaceRefs;
+	!ordered val ParticipantMultiplicity participantMultiplicity;
+	!ordered ref EndPoint[*] endPointRefs;
+	!ordered ref Process processRef;
+}
+
+abstract class InteractionNode {
+	!ordered readonly transient derived ref ConversationLink[*]#targetRef incomingConversationLinks;
+	!ordered readonly transient derived ref ConversationLink[*]#sourceRef outgoingConversationLinks;
+}
+
+class ConversationLink extends BaseElement {
+	!ordered transient ref InteractionNode[1]#outgoingConversationLinks sourceRef;
+	!ordered attr String name;
+	!ordered transient ref InteractionNode[1]#incomingConversationLinks targetRef;
+}
+
+class ParticipantMultiplicity {
+	!ordered attr int[1] minimum = 0;
+	!ordered attr int maximum = 1;
+	!ordered id attr String[1] ~id;
+}
+
+class MessageFlowAssociation extends BaseElement {
+	!ordered ref MessageFlow[1] innerMessageFlowRef;
+	!ordered ref MessageFlow[1] outerMessageFlowRef;
+}
+
+class MessageFlow extends BaseElement {
+	!ordered attr String name;
+	!ordered ref InteractionNode sourceRef;
+	!ordered ref InteractionNode targetRef;
+	!ordered ref Message messageRef;
+}
+
+class ConversationAssociation extends BaseElement {
+	!ordered ref ConversationNode[1] innerConversationNodeRef;
+	!ordered ref ConversationNode[1] outerConversationNodeRef;
+}
+
+abstract class ConversationNode extends BaseElement, InteractionNode {
+	!ordered attr String[1] name;
+	!ordered ref Participant[2..*] participantRefs;
+	!ordered ref MessageFlow[*] messageFlowRefs;
+	!ordered val CorrelationKey[*] correlationKeys;
+}
+
+class CorrelationKey extends BaseElement {
+	!ordered ref CorrelationProperty[*] correlationPropertyRef;
+	!ordered attr String[1] name;
+}
+
+class CorrelationProperty extends RootElement {
+	!ordered val CorrelationPropertyRetrievalExpression[+] correlationPropertyRetrievalExpression;
+	!ordered attr String[1] name;
+	!ordered ref ItemDefinition type;
+}
+
+class CorrelationPropertyRetrievalExpression extends BaseElement {
+	!ordered val FormalExpression[1] messagePath;
+	!ordered ref Message[1] messageRef;
+}
+
+class FormalExpression extends Expression {
+	!ordered attr String[1] language;
+	!ordered ref EObject[1] body;
+	!ordered ref ItemDefinition[1] evaluatesToTypeRef;
+}
+
+class CorrelationSubscription extends BaseElement {
+	!ordered ref CorrelationKey[1] correlationKeyRef;
+	!ordered val CorrelationPropertyBinding[*] correlationPropertyBinding;
+}
+
+class CorrelationPropertyBinding extends BaseElement {
+	!ordered val FormalExpression[1] dataPath;
+	!ordered ref CorrelationProperty[1] correlationPropertyRef;
+}
+
+class GlobalManualTask extends GlobalTask {
+}
+
+class ManualTask extends Task {
+}
+
+class Task extends Activity {
+}
+
+abstract class Activity extends FlowNode, InteractionNode {
+	!ordered attr boolean[1] isForCompensation = false;
+	!ordered val LoopCharacteristics loopCharacteristics;
+	!ordered val ResourceRole[*] resources;
+	!ordered ref SequenceFlow default;
+	!ordered val Property[*] properties;
+	!ordered val InputOutputSpecification ioSpecification;
+	!ordered ref BoundaryEvent[*]#attachedToRef boundaryEventRefs;
+	!ordered val DataInputAssociation[*] dataInputAssociations;
+	!ordered val DataOutputAssociation[*] dataOutputAssociations;
+	!ordered attr int[1] startQuantity = 1;
+	!ordered attr int[1] completionQuantity = 1;
+}
+
+abstract class LoopCharacteristics extends BaseElement {
+}
+
+class BoundaryEvent extends CatchEvent {
+	!ordered attr boolean[1] cancelActivity = true;
+	!ordered ref Activity[1]#boundaryEventRefs attachedToRef;
+}
+
+abstract class CatchEvent extends Event {
+	!ordered attr boolean[1] parallelMultiple = false;
+	!ordered val OutputSet outputSet;
+	!ordered ref EventDefinition[*] eventDefinitionRefs;
+	!ordered val DataOutputAssociation[*] dataOutputAssociation;
+	!ordered val DataOutput[*] dataOutputs;
+	!ordered val EventDefinition[*] eventDefinitions;
+}
+
+abstract class Event extends FlowNode, InteractionNode {
+	!ordered val Property[*] properties;
+}
+
+abstract class EventDefinition extends RootElement {
+}
+
+class DataOutputAssociation extends DataAssociation {
+}
+
+class DataAssociation extends BaseElement {
+	!ordered val FormalExpression transformation;
+	!ordered val Assignment[*] assignment;
+	!ordered ref ItemAwareElement[1] targetRef;
+	!ordered ref ItemAwareElement[*] sourceRef;
+}
+
+class Assignment extends BaseElement {
+	!ordered val Expression[1] from;
+	!ordered val Expression[1] to;
+}
+
+class DataInputAssociation extends DataAssociation {
+}
+
+class UserTask extends Task {
+	!ordered val Rendering[*] renderings;
+	!ordered attr String implementation;
+}
+
+class Rendering extends BaseElement {
+}
+
+class HumanPerformer extends Performer {
+}
+
+class PotentialOwner extends HumanPerformer {
+}
+
+class GlobalUserTask extends GlobalTask {
+	!ordered attr String[1] implementation;
+	!ordered val Rendering[*] renderings;
+}
+
+abstract class Gateway extends FlowNode {
+	!ordered attr GatewayDirection[1] gatewayDirection = "Unspecified";
+}
+
+enum GatewayDirection {
+	Unspecified = 0;
+	Converging = 1;
+	Diverging = 2;
+	Mixed = 3;
+}
+
+class EventBasedGateway extends Gateway {
+	!ordered attr boolean[1] instantiate = false;
+	!ordered attr EventBasedGatewayType[1] eventGatewayType;
+}
+
+enum EventBasedGatewayType {
+	Parallel = 0;
+	Exclusive = 1;
+}
+
+class ComplexGateway extends Gateway {
+	!ordered val Expression activationCondition;
+	!ordered ref SequenceFlow default;
+}
+
+class ExclusiveGateway extends Gateway {
+	!ordered ref SequenceFlow default;
+}
+
+class InclusiveGateway extends Gateway {
+	!ordered ref SequenceFlow default;
+}
+
+class ParallelGateway extends Gateway {
+}
+
+class Relationship extends BaseElement {
+	!ordered attr String[1] type;
+	!ordered attr RelationshipDirection[1] direction;
+	!ordered ref EObject[+] sources;
+	!ordered ref EObject[+] targets;
+}
+
+enum RelationshipDirection {
+	None = 0;
+	Forward = 1;
+	Backward = 2;
+	Both = 3;
+}
+
+class Extension {
+	!ordered attr boolean[1] mustUnderstand = false;
+	!ordered val ExtensionDefinition[1] definition;
+	!ordered id attr String[1] ~id;
+}
+
+class IntermediateCatchEvent extends CatchEvent {
+}
+
+class IntermediateThrowEvent extends ThrowEvent {
+}
+
+abstract class ThrowEvent extends Event {
+	!ordered val InputSet inputSet;
+	!ordered ref EventDefinition[*] eventDefinitionRefs;
+	!ordered val DataInputAssociation[*] dataInputAssociation;
+	!ordered val DataInput[*] dataInputs;
+	!ordered val EventDefinition[*] eventDefinitions;
+}
+
+class EndEvent extends ThrowEvent {
+}
+
+class StartEvent extends CatchEvent {
+	!ordered attr boolean[1] isInterrupting = true;
+}
+
+class CancelEventDefinition extends EventDefinition {
+}
+
+class ErrorEventDefinition extends EventDefinition {
+	!ordered ref Error errorRef;
+}
+
+class TerminateEventDefinition extends EventDefinition {
+}
+
+class EscalationEventDefinition extends EventDefinition {
+	!ordered ref Escalation escalationRef;
+}
+
+class Escalation {
+	!ordered ref ItemDefinition structureRef;
+	!ordered attr String[1] name;
+	!ordered attr String[1] escalationCode;
+	!ordered id attr String[1] ~id;
+}
+
+class CompensateEventDefinition extends EventDefinition {
+	!ordered attr boolean[1] waitForCompletion;
+	!ordered ref Activity activityRef;
+}
+
+class TimerEventDefinition extends EventDefinition {
+	!ordered val Expression timeDate;
+	!ordered val Expression timeCycle;
+	!ordered val Expression timeDuration;
+}
+
+class LinkEventDefinition extends EventDefinition {
+	!ordered attr String name;
+	!ordered ref LinkEventDefinition#source target;
+	!ordered ref LinkEventDefinition[*]#target source;
+}
+
+class MessageEventDefinition extends EventDefinition {
+	!ordered ref Message messageRef;
+	!ordered ref Operation operationRef;
+}
+
+class ConditionalEventDefinition extends EventDefinition {
+	!ordered val Expression[1] condition;
+}
+
+class SignalEventDefinition extends EventDefinition {
+	!ordered ref Signal signalRef;
+}
+
+class Signal extends RootElement {
+	!ordered ref ItemDefinition structureRef;
+	!ordered attr String[1] name;
+}
+
+class ImplicitThrowEvent extends ThrowEvent {
+}
+
+class DataObject extends FlowElement, ItemAwareElement {
+	!ordered attr boolean[1] isCollection = false;
+}
+
+class DataStore extends ItemAwareElement, RootElement {
+	!ordered attr String name;
+	!ordered attr int[1] capacity;
+	!ordered attr boolean[1] isUnlimited = true;
+}
+
+class DataStoreReference extends FlowElement, ItemAwareElement {
+	!ordered ref DataStore dataStoreRef;
+}
+
+class DataObjectReference extends FlowElement, ItemAwareElement {
+	!ordered ref DataObject[1] dataObjectRef;
+}
+
+class CallConversation extends ConversationNode {
+	!ordered ref Collaboration calledCollaborationRef;
+	!ordered val ParticipantAssociation[*] participantAssociations;
+}
+
+class Conversation extends ConversationNode {
+}
+
+class SubConversation extends ConversationNode {
+	!ordered val ConversationNode[*] conversationNodes;
+}
+
+class GlobalConversation extends Collaboration {
+}
+
+class PartnerEntity extends RootElement {
+	!ordered attr String[1] name;
+	!ordered ref Participant[*] participantRef;
+}
+
+class PartnerRole extends RootElement {
+	!ordered attr String[1] name;
+	!ordered ref Participant[*] participantRef;
+}
+
+abstract class ChoreographyActivity extends FlowNode {
+	!ordered ref Participant[*] participantRefs;
+	!ordered ref Participant initiatingParticipantRef;
+	!ordered val CorrelationKey[*] correlationKeys;
+	!ordered attr ChoreographyLoopType[1] loopType = "None";
+}
+
+enum ChoreographyLoopType {
+	None = 0;
+	Standard = 1;
+	MultiInstanceSequential = 2;
+	MultiInstanceParallel = 3;
+}
+
+class CallChoreography extends ChoreographyActivity {
+	!ordered ref Choreography calledChoreographyRef;
+	!ordered val ParticipantAssociation[*] participantAssociations;
+}
+
+class SubChoreography extends ChoreographyActivity, FlowElementsContainer {
+	!ordered val Artifact[*] artifacts;
+}
+
+class ChoreographyTask extends ChoreographyActivity {
+	!ordered ref MessageFlow[0..2] messageFlowRef;
+}
+
+class GlobalChoreographyTask extends Choreography {
+	!ordered ref Participant[1] initiatingParticipantRef;
+}
+
+class TextAnnotation extends Artifact {
+	!ordered attr String text;
+	!ordered attr String[1] textFormat = "text/plain";
+}
+
+class Group extends Artifact {
+	!ordered ref CategoryValue categoryValueRef;
+}
+
+class Association extends Artifact {
+	!ordered attr AssociationDirection[1] associationDirection;
+	!ordered ref BaseElement sourceRef;
+	!ordered ref BaseElement targetRef;
+}
+
+enum AssociationDirection {
+	None = 0;
+	One = 1;
+	Both = 2;
+}
+
+class Category extends RootElement {
+	!ordered val CategoryValue[*] categoryValue;
+	!ordered attr String[1] name;
+}
+
+class ServiceTask extends Task {
+	!ordered attr String implementation;
+	!ordered ref Operation operationRef;
+}
+
+class SubProcess extends Activity, FlowElementsContainer {
+	!ordered attr boolean[1] triggeredByEvent = false;
+	!ordered val Artifact[*] artifacts;
+}
+
+enum MultiInstanceBehavior {
+	None = 0;
+	One = 1;
+	All = 2;
+	Complex = 3;
+}
+
+class MultiInstanceLoopCharacteristics extends LoopCharacteristics {
+	!ordered attr boolean[1] isSequential = false;
+	!ordered attr MultiInstanceBehavior[1] behavior = "All";
+	!ordered val Expression loopCardinality;
+	!ordered ref ItemAwareElement loopDataInputRef;
+	!ordered ref ItemAwareElement loopDataOutputRef;
+	!ordered val DataInput inputDataItem;
+	!ordered val DataOutput outputDataItem;
+	!ordered val Expression completionCondition;
+	!ordered val ComplexBehaviorDefinition[*] complexBehaviorDefinition;
+	!ordered ref EventDefinition oneBehaviorEventRef;
+	!ordered ref EventDefinition noneBehaviorEventRef;
+}
+
+class ComplexBehaviorDefinition extends BaseElement {
+	!ordered val FormalExpression[1] condition;
+	!ordered val ImplicitThrowEvent event;
+}
+
+class StandardLoopCharacteristics extends LoopCharacteristics {
+	!ordered attr boolean[1] testBefore = false;
+	!ordered val Expression loopCondition;
+	!ordered val Expression loopMaximum;
+}
+
+class CallActivity extends Activity {
+	!ordered ref CallableElement calledElementRef;
+}
+
+class SendTask extends Task {
+	!ordered attr String implementation;
+	!ordered ref Operation operationRef;
+	!ordered ref Message messageRef;
+}
+
+class ReceiveTask extends Task {
+	!ordered attr String implementation;
+	!ordered attr boolean[1] instantiate = false;
+	!ordered ref Operation operationRef;
+	!ordered ref Message messageRef;
+}
+
+class ScriptTask extends Task {
+	!ordered attr String scriptFormat;
+	!ordered attr String script;
+}
+
+class BusinessRuleTask extends Task {
+	!ordered attr String implementation;
+}
+
+class AdHocSubProcess extends SubProcess {
+	!ordered val Expression[1] completionCondition;
+	!ordered attr AdHocOrdering[1] ordering;
+	!ordered attr boolean[1] cancelRemainingInstances = true;
+}
+
+enum AdHocOrdering {
+	Parallel = 0;
+	Sequential = 1;
+}
+
+class Transaction extends SubProcess {
+	!ordered attr String protocol;
+	!ordered attr String[1] method;
+}
+
+class GlobalScriptTask extends GlobalTask {
+	!ordered attr String[1] scriptLanguage;
+	!ordered attr String[1] script;
+}
+
+class GlobalBusinessRuleTask extends GlobalTask {
+	!ordered attr String[1] implementation;
+}
+
+class Definitions extends BaseElement {
+	!ordered attr String name;
+	!ordered attr String targetNamespace;
+	!ordered attr String[1] expressionLanguage = "http://www.w3.org/1999/XPath";
+	!ordered attr String[1] typeLanguage = "http://www.w3.org/2001/XMLSchema";
+	!ordered val Import[*] imports;
+	!ordered val Extension[*] extensions;
+	!ordered val Relationship[*] relationships;
+	!ordered val RootElement[*] rootElements;
+	!ordered val bpmdi.BPMNDiagram[*] diagrams;
+	!ordered attr String exporter;
+	!ordered attr String exporterVersion;
+}
+

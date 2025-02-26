@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="ASCII"?>
+<Namespace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="sysmini">
+  <body xsi:type="Package" declaredName="di">
+    <body xsi:type="NamespaceImport" declaredName="ecore"/>
+    <body xsi:type="NamespaceImport" declaredName="dc"/>
+    <body xsi:type="PartDefinition" declaredName="DiagramElement" isAbstract="true">
+      <body xsi:type="ReferenceUsage" declaredName="owningDiagram" multiplicityRange="[1]" ReferenceUsageType="ReferenceUsage">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Diagram</featureSpecialization>
+      </body>
+      <body xsi:type="ReferenceUsage" declaredName="owningElement" multiplicityRange="[1]" ReferenceUsageType="ReferenceUsage">
+        <featureNote>:</featureNote>
+        <featureSpecialization>DiagramElement</featureSpecialization>
+      </body>
+      <body xsi:type="ReferenceUsage" declaredName="ownedElement" multiplicityRange="[*]" ReferenceUsageType="ReferenceUsage">
+        <featureNote>:</featureNote>
+        <featureSpecialization>DiagramElement</featureSpecialization>
+      </body>
+      <body xsi:type="ReferenceUsage" declaredName="modelElement" multiplicityRange="[1]" ReferenceUsageType="ReferenceUsage">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EObject</featureSpecialization>
+      </body>
+      <body xsi:type="ReferenceUsage" declaredName="style" multiplicityRange="[1]" ReferenceUsageType="ReferenceUsage">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Style</featureSpecialization>
+      </body>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="Diagram" isAbstract="true">
+      <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="documentation" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="resolution" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EFloat</featureSpecialization>
+      </body>
+      <body xsi:type="ReferenceUsage" declaredName="ownedStyle" multiplicityRange="[*]" ReferenceUsageType="ReferenceUsage">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Style</featureSpecialization>
+      </body>
+      <body xsi:type="ReferenceUsage" declaredName="rootElement" multiplicityRange="[1]" ReferenceUsageType="ReferenceUsage">
+        <featureNote>:</featureNote>
+        <featureSpecialization>DiagramElement</featureSpecialization>
+      </body>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="Style" isAbstract="true"/>
+    <body xsi:type="PartDefinition" declaredName="Node" isAbstract="true">
+      <SubclassificationPart>DiagramElement</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="Edge" isAbstract="true">
+      <body xsi:type="ReferenceUsage" declaredName="source" multiplicityRange="[1]" ReferenceUsageType="ReferenceUsage">
+        <featureNote>:</featureNote>
+        <featureSpecialization>DiagramElement</featureSpecialization>
+      </body>
+      <body xsi:type="ReferenceUsage" declaredName="target" multiplicityRange="[1]" ReferenceUsageType="ReferenceUsage">
+        <featureNote>:</featureNote>
+        <featureSpecialization>DiagramElement</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="waypoint" multiplicityRange="[2..*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Point</featureSpecialization>
+      </body>
+      <SubclassificationPart>DiagramElement</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="Shape" isAbstract="true">
+      <body xsi:type="PartUsage" declaredName="bounds" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Bounds</featureSpecialization>
+      </body>
+      <SubclassificationPart>Node</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="LabeledEdge" isAbstract="true">
+      <body xsi:type="ReferenceUsage" declaredName="ownedLabel" multiplicityRange="[*]" ReferenceUsageType="ReferenceUsage">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Label</featureSpecialization>
+      </body>
+      <SubclassificationPart>Edge</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="Label" isAbstract="true">
+      <body xsi:type="PartUsage" declaredName="bounds" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Bounds</featureSpecialization>
+      </body>
+      <SubclassificationPart>Node</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="LabeledShape" isAbstract="true">
+      <body xsi:type="ReferenceUsage" declaredName="ownedLabel" multiplicityRange="[*]" ReferenceUsageType="ReferenceUsage">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Label</featureSpecialization>
+      </body>
+      <SubclassificationPart>Shape</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="Plane" isAbstract="true">
+      <body xsi:type="PartUsage" declaredName="planeElement" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>DiagramElement</featureSpecialization>
+      </body>
+      <SubclassificationPart>Node</SubclassificationPart>
+    </body>
+  </body>
+</Namespace>

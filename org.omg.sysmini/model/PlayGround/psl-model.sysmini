@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="ASCII"?>
+<Namespace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="sysmini">
+  <body xsi:type="Package" declaredName="psl_model">
+    <body xsi:type="NamespaceImport" declaredName="psl"/>
+    <body xsi:type="PartUsage" declaredName="Project_1">
+      <body xsi:type="AttributeUsage" valuePart="&quot;ACME&quot;">
+        <featureNote>:>></featureNote>
+        <featureSpecialization>title</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" valuePart="(Task_1, Task_2, Task_3)" isReference="true">
+        <featureNote>:></featureNote>
+        <featureSpecialization>tasks</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" valuePart="(Person_1, Person_2)" isReference="true">
+        <featureNote>:></featureNote>
+        <featureSpecialization>people</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="Task_1">
+        <body xsi:type="AttributeUsage" valuePart="&quot;Analysis&quot;">
+          <featureNote>:>></featureNote>
+          <featureSpecialization>title</featureSpecialization>
+        </body>
+        <body xsi:type="AttributeUsage" valuePart="1">
+          <featureNote>:>></featureNote>
+          <featureSpecialization>start</featureSpecialization>
+        </body>
+        <body xsi:type="AttributeUsage" valuePart="3">
+          <featureNote>:>></featureNote>
+          <featureSpecialization>duration</featureSpecialization>
+        </body>
+        <body xsi:type="PartUsage" valuePart="Task_1.Effort_1" isReference="true">
+          <featureNote>:></featureNote>
+          <featureSpecialization>effort</featureSpecialization>
+        </body>
+        <body xsi:type="PartUsage" declaredName="Effort_1">
+          <body xsi:type="AttributeUsage" valuePart="100">
+            <featureNote>:>></featureNote>
+            <featureSpecialization>percentage</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" valuePart="Person_1" isReference="true">
+            <featureNote>:></featureNote>
+            <featureSpecialization>person</featureSpecialization>
+          </body>
+          <featureNote>:</featureNote>
+          <featureNote>:></featureNote>
+          <featureSpecialization>Effort</featureSpecialization>
+          <featureSpecialization>effort</featureSpecialization>
+        </body>
+        <featureNote>:</featureNote>
+        <featureNote>:></featureNote>
+        <featureSpecialization>Task</featureSpecialization>
+        <featureSpecialization>tasks</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="Task_2">
+        <body xsi:type="AttributeUsage" valuePart="&quot;Design&quot;">
+          <featureNote>:>></featureNote>
+          <featureSpecialization>title</featureSpecialization>
+        </body>
+        <body xsi:type="AttributeUsage" valuePart="4">
+          <featureNote>:>></featureNote>
+          <featureSpecialization>start</featureSpecialization>
+        </body>
+        <body xsi:type="AttributeUsage" valuePart="6">
+          <featureNote>:>></featureNote>
+          <featureSpecialization>duration</featureSpecialization>
+        </body>
+        <body xsi:type="PartUsage" valuePart="Task_2.Effort_2" isReference="true">
+          <featureNote>:></featureNote>
+          <featureSpecialization>effort</featureSpecialization>
+        </body>
+        <body xsi:type="PartUsage" declaredName="Effort_2">
+          <body xsi:type="AttributeUsage" valuePart="100">
+            <featureNote>:>></featureNote>
+            <featureSpecialization>percentage</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" valuePart="Person_2" isReference="true">
+            <featureNote>:></featureNote>
+            <featureSpecialization>person</featureSpecialization>
+          </body>
+          <featureNote>:</featureNote>
+          <featureNote>:></featureNote>
+          <featureSpecialization>Effort</featureSpecialization>
+          <featureSpecialization>effort</featureSpecialization>
+        </body>
+        <featureNote>:</featureNote>
+        <featureNote>:></featureNote>
+        <featureSpecialization>Task</featureSpecialization>
+        <featureSpecialization>tasks</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="Task_3">
+        <body xsi:type="AttributeUsage" valuePart="&quot;Implementation&quot;">
+          <featureNote>:>></featureNote>
+          <featureSpecialization>title</featureSpecialization>
+        </body>
+        <body xsi:type="AttributeUsage" valuePart="7">
+          <featureNote>:>></featureNote>
+          <featureSpecialization>start</featureSpecialization>
+        </body>
+        <body xsi:type="AttributeUsage" valuePart="3">
+          <featureNote>:>></featureNote>
+          <featureSpecialization>duration</featureSpecialization>
+        </body>
+        <body xsi:type="PartUsage" valuePart="(Task_3.Effort_3, Task_3.Effort_4)" isReference="true">
+          <featureNote>:></featureNote>
+          <featureSpecialization>effort</featureSpecialization>
+        </body>
+        <body xsi:type="PartUsage" declaredName="Effort_3">
+          <body xsi:type="AttributeUsage" valuePart="50">
+            <featureNote>:>></featureNote>
+            <featureSpecialization>percentage</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" valuePart="Person_2" isReference="true">
+            <featureNote>:></featureNote>
+            <featureSpecialization>person</featureSpecialization>
+          </body>
+          <featureNote>:</featureNote>
+          <featureNote>:></featureNote>
+          <featureSpecialization>Effort</featureSpecialization>
+          <featureSpecialization>effort</featureSpecialization>
+        </body>
+        <body xsi:type="PartUsage" declaredName="Effort_4">
+          <body xsi:type="AttributeUsage" valuePart="50">
+            <featureNote>:>></featureNote>
+            <featureSpecialization>percentage</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" valuePart="Person_1" isReference="true">
+            <featureNote>:></featureNote>
+            <featureSpecialization>person</featureSpecialization>
+          </body>
+          <featureNote>:</featureNote>
+          <featureNote>:></featureNote>
+          <featureSpecialization>Effort</featureSpecialization>
+          <featureSpecialization>effort</featureSpecialization>
+        </body>
+        <featureNote>:</featureNote>
+        <featureNote>:></featureNote>
+        <featureSpecialization>Task</featureSpecialization>
+        <featureSpecialization>tasks</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="Person_1">
+        <body xsi:type="AttributeUsage" valuePart="&quot;Alice&quot;">
+          <featureNote>:>></featureNote>
+          <featureSpecialization>name</featureSpecialization>
+        </body>
+        <featureNote>:</featureNote>
+        <featureNote>:></featureNote>
+        <featureSpecialization>Person</featureSpecialization>
+        <featureSpecialization>people</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="Person_2">
+        <body xsi:type="AttributeUsage" valuePart="&quot;Bob&quot;">
+          <featureNote>:>></featureNote>
+          <featureSpecialization>name</featureSpecialization>
+        </body>
+        <featureNote>:</featureNote>
+        <featureNote>:></featureNote>
+        <featureSpecialization>Person</featureSpecialization>
+        <featureSpecialization>people</featureSpecialization>
+      </body>
+      <featureNote>:</featureNote>
+      <featureSpecialization>Project</featureSpecialization>
+    </body>
+  </body>
+</Namespace>

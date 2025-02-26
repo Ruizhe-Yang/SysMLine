@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="ASCII"?>
+<sysml:Namespace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sysml="https://www.omg.org/spec/SysML/20240201">
+  <ownedRelationship xsi:type="sysml:OwningMembership">
+    <ownedRelatedElement xsi:type="sysml:Package" declaredName="RequirementMetadataExample">
+      <ownedRelationship xsi:type="sysml:MembershipImport">
+        <importedMembership href="RequirementMetadataExample.sysml#|0"/>
+      </ownedRelationship>
+      <ownedRelationship xsi:type="sysml:NamespaceImport">
+        <importedNamespace href="RequirementMetadataExample.sysml#|1"/>
+      </ownedRelationship>
+      <ownedRelationship xsi:type="sysml:NamespaceImport">
+        <importedNamespace href="RequirementMetadataExample.sysml#|2"/>
+      </ownedRelationship>
+      <ownedRelationship xsi:type="sysml:NamespaceImport">
+        <importedNamespace href="RequirementMetadataExample.sysml#|3"/>
+      </ownedRelationship>
+      <ownedRelationship xsi:type="sysml:OwningMembership">
+        <ownedRelatedElement xsi:type="sysml:RequirementDefinition" declaredName="Goal"/>
+      </ownedRelationship>
+      <ownedRelationship xsi:type="sysml:OwningMembership">
+        <ownedRelatedElement xsi:type="sysml:RequirementUsage" declaredName="goals">
+          <ownedRelationship xsi:type="sysml:FeatureTyping">
+            <type href="RequirementMetadataExample.sysml#|4"/>
+          </ownedRelationship>
+          <ownedRelationship xsi:type="sysml:OwningMembership">
+            <ownedRelatedElement xsi:type="sysml:MultiplicityRange">
+              <ownedRelationship xsi:type="sysml:OwningMembership">
+                <ownedRelatedElement xsi:type="sysml:LiteralInfinity"/>
+              </ownedRelationship>
+            </ownedRelatedElement>
+          </ownedRelationship>
+        </ownedRelatedElement>
+      </ownedRelationship>
+      <ownedRelationship xsi:type="sysml:OwningMembership">
+        <ownedRelatedElement xsi:type="sysml:MetadataDefinition" declaredName="goal">
+          <ownedRelationship xsi:type="sysml:Subclassification">
+            <superclassifier href="RequirementMetadataExample.sysml#|5"/>
+          </ownedRelationship>
+          <ownedRelationship xsi:type="sysml:FeatureMembership">
+            <ownedRelatedElement xsi:type="sysml:ReferenceUsage">
+              <ownedRelationship xsi:type="sysml:Redefinition">
+                <redefinedFeature href="RequirementMetadataExample.sysml#|6"/>
+              </ownedRelationship>
+              <ownedRelationship xsi:type="sysml:FeatureValue">
+                <ownedRelatedElement xsi:type="sysml:OperatorExpression" operator="meta">
+                  <ownedRelationship xsi:type="sysml:ReturnParameterMembership">
+                    <ownedRelatedElement xsi:type="sysml:Feature">
+                      <ownedRelationship xsi:type="sysml:FeatureTyping">
+                        <type href="RequirementMetadataExample.sysml#|7"/>
+                      </ownedRelationship>
+                    </ownedRelatedElement>
+                  </ownedRelationship>
+                </ownedRelatedElement>
+              </ownedRelationship>
+            </ownedRelatedElement>
+          </ownedRelationship>
+        </ownedRelatedElement>
+      </ownedRelationship>
+      <ownedRelationship xsi:type="sysml:OwningMembership">
+        <ownedRelatedElement xsi:type="sysml:RequirementUsage" declaredShortName="'1'" declaredName="vehicleMassRequirement">
+          <ownedRelationship xsi:type="sysml:OwningMembership">
+            <ownedRelatedElement xsi:type="sysml:Documentation" body="/* The total mass of a vehicle shall be less than or equal to the required mass. */"/>
+          </ownedRelationship>
+          <ownedRelationship xsi:type="sysml:OwningMembership">
+            <ownedRelatedElement xsi:type="sysml:MetadataUsage">
+              <ownedRelationship xsi:type="sysml:FeatureTyping">
+                <type href="RequirementMetadataExample.sysml#|9"/>
+              </ownedRelationship>
+              <ownedRelationship xsi:type="sysml:FeatureMembership">
+                <ownedRelatedElement xsi:type="sysml:ReferenceUsage">
+                  <ownedRelationship xsi:type="sysml:Redefinition">
+                    <redefinedFeature href="RequirementMetadataExample.sysml#|10"/>
+                  </ownedRelationship>
+                  <ownedRelationship xsi:type="sysml:FeatureValue">
+                    <ownedRelatedElement xsi:type="sysml:FeatureReferenceExpression">
+                      <ownedRelationship xsi:type="sysml:Membership">
+                        <memberElement xsi:type="sysml:Subclassification" href="RequirementMetadataExample.sysml#|11"/>
+                      </ownedRelationship>
+                    </ownedRelatedElement>
+                  </ownedRelationship>
+                </ownedRelatedElement>
+              </ownedRelationship>
+              <ownedRelationship xsi:type="sysml:FeatureMembership">
+                <ownedRelatedElement xsi:type="sysml:ReferenceUsage">
+                  <ownedRelationship xsi:type="sysml:Redefinition">
+                    <redefinedFeature href="RequirementMetadataExample.sysml#|12"/>
+                  </ownedRelationship>
+                  <ownedRelationship xsi:type="sysml:FeatureMembership">
+                    <ownedRelatedElement xsi:type="sysml:ReferenceUsage">
+                      <ownedRelationship xsi:type="sysml:Redefinition">
+                        <redefinedFeature href="RequirementMetadataExample.sysml#|13"/>
+                      </ownedRelationship>
+                      <ownedRelationship xsi:type="sysml:FeatureValue">
+                        <ownedRelatedElement xsi:type="sysml:FeatureReferenceExpression">
+                          <ownedRelationship xsi:type="sysml:Membership">
+                            <memberElement xsi:type="sysml:Subclassification" href="RequirementMetadataExample.sysml#|14"/>
+                          </ownedRelationship>
+                        </ownedRelatedElement>
+                      </ownedRelationship>
+                    </ownedRelatedElement>
+                  </ownedRelationship>
+                  <ownedRelationship xsi:type="sysml:FeatureMembership">
+                    <ownedRelatedElement xsi:type="sysml:ReferenceUsage">
+                      <ownedRelationship xsi:type="sysml:Redefinition">
+                        <redefinedFeature href="RequirementMetadataExample.sysml#|15"/>
+                      </ownedRelationship>
+                      <ownedRelationship xsi:type="sysml:FeatureValue">
+                        <ownedRelatedElement xsi:type="sysml:FeatureReferenceExpression">
+                          <ownedRelationship xsi:type="sysml:Membership">
+                            <memberElement xsi:type="sysml:Subclassification" href="RequirementMetadataExample.sysml#|16"/>
+                          </ownedRelationship>
+                        </ownedRelatedElement>
+                      </ownedRelationship>
+                    </ownedRelatedElement>
+                  </ownedRelationship>
+                  <ownedRelationship xsi:type="sysml:FeatureMembership">
+                    <ownedRelatedElement xsi:type="sysml:ReferenceUsage">
+                      <ownedRelationship xsi:type="sysml:Redefinition">
+                        <redefinedFeature href="RequirementMetadataExample.sysml#|17"/>
+                      </ownedRelationship>
+                      <ownedRelationship xsi:type="sysml:FeatureValue">
+                        <ownedRelatedElement xsi:type="sysml:FeatureReferenceExpression">
+                          <ownedRelationship xsi:type="sysml:Membership">
+                            <memberElement xsi:type="sysml:Subclassification" href="RequirementMetadataExample.sysml#|18"/>
+                          </ownedRelationship>
+                        </ownedRelatedElement>
+                      </ownedRelationship>
+                    </ownedRelatedElement>
+                  </ownedRelationship>
+                  <ownedRelationship xsi:type="sysml:FeatureMembership">
+                    <ownedRelatedElement xsi:type="sysml:ReferenceUsage">
+                      <ownedRelationship xsi:type="sysml:Redefinition">
+                        <redefinedFeature href="RequirementMetadataExample.sysml#|19"/>
+                      </ownedRelationship>
+                      <ownedRelationship xsi:type="sysml:FeatureValue">
+                        <ownedRelatedElement xsi:type="sysml:FeatureReferenceExpression">
+                          <ownedRelationship xsi:type="sysml:Membership">
+                            <memberElement xsi:type="sysml:Subclassification" href="RequirementMetadataExample.sysml#|20"/>
+                          </ownedRelationship>
+                        </ownedRelatedElement>
+                      </ownedRelationship>
+                    </ownedRelatedElement>
+                  </ownedRelationship>
+                </ownedRelatedElement>
+              </ownedRelationship>
+              <ownedRelationship xsi:type="sysml:FeatureMembership">
+                <ownedRelatedElement xsi:type="sysml:ReferenceUsage">
+                  <ownedRelationship xsi:type="sysml:Redefinition">
+                    <redefinedFeature href="RequirementMetadataExample.sysml#|21"/>
+                  </ownedRelationship>
+                  <ownedRelationship xsi:type="sysml:FeatureValue">
+                    <ownedRelatedElement xsi:type="sysml:LiteralString" value="&quot;Bob&quot;"/>
+                  </ownedRelationship>
+                </ownedRelatedElement>
+              </ownedRelationship>
+              <ownedRelationship xsi:type="sysml:FeatureMembership">
+                <ownedRelatedElement xsi:type="sysml:ReferenceUsage">
+                  <ownedRelationship xsi:type="sysml:Redefinition">
+                    <redefinedFeature href="RequirementMetadataExample.sysml#|22"/>
+                  </ownedRelationship>
+                  <ownedRelationship xsi:type="sysml:FeatureValue">
+                    <ownedRelatedElement xsi:type="sysml:LiteralString" value="&quot;Mary&quot;"/>
+                  </ownedRelationship>
+                </ownedRelatedElement>
+              </ownedRelationship>
+            </ownedRelatedElement>
+          </ownedRelationship>
+        </ownedRelatedElement>
+      </ownedRelationship>
+      <ownedRelationship xsi:type="sysml:OwningMembership">
+        <ownedRelatedElement xsi:type="sysml:RequirementUsage" declaredName="deliverPayload">
+          <ownedRelationship xsi:type="sysml:OwningMembership">
+            <ownedRelatedElement xsi:type="sysml:MetadataUsage">
+              <ownedRelationship xsi:type="sysml:FeatureTyping">
+                <type href="RequirementMetadataExample.sysml#|23"/>
+              </ownedRelationship>
+            </ownedRelatedElement>
+          </ownedRelationship>
+          <ownedRelationship xsi:type="sysml:RequirementConstraintMembership">
+            <ownedRelatedElement xsi:type="sysml:ConstraintUsage" declaredName="payloadMassLimit">
+              <ownedRelationship xsi:type="sysml:OwningMembership">
+                <ownedRelatedElement xsi:type="sysml:MetadataUsage">
+                  <ownedRelationship xsi:type="sysml:FeatureTyping">
+                    <type href="RequirementMetadataExample.sysml#|24"/>
+                  </ownedRelationship>
+                </ownedRelatedElement>
+              </ownedRelationship>
+            </ownedRelatedElement>
+          </ownedRelationship>
+          <ownedRelationship xsi:type="sysml:RequirementConstraintMembership" kind="requirement">
+            <ownedRelatedElement xsi:type="sysml:ConstraintUsage" declaredName="vehicleMassRequirement">
+              <ownedRelationship xsi:type="sysml:OwningMembership">
+                <ownedRelatedElement xsi:type="sysml:MetadataUsage">
+                  <ownedRelationship xsi:type="sysml:FeatureTyping">
+                    <type href="RequirementMetadataExample.sysml#|25"/>
+                  </ownedRelationship>
+                </ownedRelatedElement>
+              </ownedRelationship>
+            </ownedRelatedElement>
+          </ownedRelationship>
+        </ownedRelatedElement>
+      </ownedRelationship>
+    </ownedRelatedElement>
+  </ownedRelationship>
+</sysml:Namespace>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="ASCII"?>
+<Namespace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="sysmini">
+  <body xsi:type="Package" declaredName="base">
+    <body xsi:type="NamespaceImport" hasVisibility="true" declaredName="ecore"/>
+    <body xsi:type="PartDefinition" declaredName="Element" isAbstract="true"/>
+    <body xsi:type="PartDefinition" declaredName="LangString">
+      <body xsi:type="AttributeUsage" declaredName="lang" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="content" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <SubclassificationPart>Element</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="ExpressionLangString">
+      <body xsi:type="PartUsage" declaredName="expression" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ArtifactElement</featureSpecialization>
+      </body>
+      <SubclassificationPart>LangString</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="MultiLangString">
+      <body xsi:type="PartUsage" declaredName="'value'" multiplicityRange="[1..*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>LangString</featureSpecialization>
+      </body>
+      <SubclassificationPart>Element</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="SACMElement" isAbstract="true">
+      <body xsi:type="AttributeUsage" declaredName="gid" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="isCitation" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="isAbstract" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="ReferenceUsage" declaredName="citedElement" multiplicityRange="[1]" ReferenceUsageType="ReferenceUsage">
+        <featureNote>:</featureNote>
+        <featureSpecialization>SACMElement</featureSpecialization>
+      </body>
+      <body xsi:type="ReferenceUsage" declaredName="abstractForm" multiplicityRange="[1]" ReferenceUsageType="ReferenceUsage">
+        <featureNote>:</featureNote>
+        <featureSpecialization>SACMElement</featureSpecialization>
+      </body>
+      <SubclassificationPart>Element</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="UtilityElement" isAbstract="true">
+      <body xsi:type="PartUsage" declaredName="content" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>MultiLangString</featureSpecialization>
+      </body>
+      <SubclassificationPart>SACMElement</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="Description">
+      <SubclassificationPart>UtilityElement</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="ImplementationConstraint">
+      <SubclassificationPart>UtilityElement</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="Note">
+      <SubclassificationPart>UtilityElement</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="TaggedValue">
+      <body xsi:type="PartUsage" declaredName="key" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>MultiLangString</featureSpecialization>
+      </body>
+      <SubclassificationPart>UtilityElement</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="ModelElement" isAbstract="true">
+      <body xsi:type="PartUsage" declaredName="name" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>LangString</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="description" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Description</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="implementationConstraint" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ImplementationConstraint</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="note" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Note</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="taggedValue" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>TaggedValue</featureSpecialization>
+      </body>
+      <SubclassificationPart>SACMElement</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="ArtifactElement" isAbstract="true">
+      <SubclassificationPart>ModelElement</SubclassificationPart>
+    </body>
+  </body>
+</Namespace>

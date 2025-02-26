@@ -1,0 +1,29 @@
+@namespace(uri="http://www.omg.org/spec/DD/20100524/DC-XMI", prefix="dc")
+package dc;
+
+class Font {
+
+	@GenModel(documentation="size >=  0")
+	op boolean non_negative_size(@GenModel(documentation="The chain of diagnostics to which problems are to be appended.")
+ecore.EDiagnosticChain diagnostics, @GenModel(documentation="The cache of context-specific information.")
+ecore.EMap<EJavaObject, EJavaObject> context);
+	!ordered attr String name;
+	!ordered attr float size;
+	!ordered attr boolean isBold;
+	!ordered attr boolean isItalic;
+	!ordered attr boolean isUnderline;
+	!ordered attr boolean isStrikeThrough;
+}
+
+class Point {
+	!ordered attr float[1] x = "0";
+	!ordered attr float[1] y = "0";
+}
+
+class Bounds {
+	!ordered attr float[1] x = "0";
+	!ordered attr float[1] y = "0";
+	!ordered attr float[1] width;
+	!ordered attr float[1] height;
+}
+

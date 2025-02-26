@@ -1,0 +1,21 @@
+//"--------------".println();
+//for (e in Model!Element.all){
+//	e.println();
+//	if (e.type().name == "NamespaceImport"){
+//		e.eContainer.println();
+//	}
+//}
+
+//M!Namespace.all.first().sysmini_child.first().println();
+
+//var s = OrderedSet{};
+//for (i in 1.to(s.size())){
+//	OrderedSet{}.size().println();
+//	(s.first() == null).println();
+//}
+
+"--------------".println();
+
+for (e in Ecore!EPackage.all){
+	e.println();
+}

@@ -1,0 +1,84 @@
+import "Ecore2SysMini-util.eol";
+
+pre{
+	"------------------ ETL Start ------------------".println();
+	var KeyWords = Sequence{"default", "event", "value", "import", "language", "from", "to", "interface"};
+	main();
+}
+
+post{
+	"------------------ ETL Over  ------------------".println();
+}
+
+operation main(){
+	var rootEcore = Ecore!EPackage.all.first();
+	var rootSysMini = new SysMini!Namespace;
+	rootEcore.addRootNodeTo(rootSysMini);
+}
+
+@lazy
+rule Epackage
+	transform s : Ecore!EPackage
+	to t : SysMini!Package{
+		t.declaredName = s.name.clearKeyWord();
+	}
+
+@lazy
+rule EClass
+	transform s : Ecore!EClass
+	to t : SysMini!PartDefinition{
+		t.declaredName = s.name.clearKeyWord();
+		t.isAbstract = s.Abstract;
+		if (s.eContents().getElementOf("EGenericType").size() > 0){
+			for (eGenericType in s.eContents().getElementOf("EGenericType")){
+				t.SubclassificationPart.add(eGenericType.eClassifier.name);
+			}
+		}
+	}
+
+@lazy
+rule EAttribute
+	transform s : Ecore!EAttribute
+	to t : SysMini!AttributeUsage{
+		t.declaredName = s.name.clearKeyWord();
+		t.multiplicityRange = s.getRange();
+		t.featureNote.add(":");
+		t.featureSpecialization.add(s.eContents().select(i|i.isTypeOf(Ecore!EGenericType)).first().eClassifier.name);
+	}
+	
+@lazy
+rule EReference_val
+	transform s : Ecore!EReference
+	to t : SysMini!PartUsage{
+		guard : s.containment==true
+		t.declaredName = s.name.clearKeyWord();
+		t.multiplicityRange = s.getRange();
+		t.featureNote.add(":");
+		t.featureSpecialization.add(s.eContents().select(i|i.isTypeOf(Ecore!EGenericType)).first().eClassifier.name);
+	}
+
+@lazy
+rule EReference_ref
+	transform s : Ecore!EReference
+	to t : SysMini!PartUsage{
+		guard : s.containment==false
+		t.isReference = true;
+		t.declaredName = s.name.clearKeyWord();
+		t.multiplicityRange = s.getRange();
+		t.featureNote.add(":");
+		t.featureSpecialization.add(s.eContents().select(i|i.isTypeOf(Ecore!EGenericType)).first().eClassifier.name);
+	}
+	
+@lazy
+rule EEnum
+	transform s : Ecore!EEnum
+	to t : SysMini!EnumerationDefinition{
+		t.declaredName = s.name.clearKeyWord();
+	}
+
+@lazy
+rule EEnumLiteral
+	transform s : Ecore!EEnumLiteral
+	to t : SysMini!EnumerationUsage{
+		t.declaredName = s.name.clearKeyWord();
+	}

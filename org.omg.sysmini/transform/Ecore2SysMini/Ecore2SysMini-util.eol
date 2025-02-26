@@ -1,0 +1,105 @@
+operation Ecore!EObject addRootNodeTo(rootNode : SysMini!Element){
+	if (self.isEntity()){
+		var node = self.equivalent();
+		rootNode.body.add(node);
+		node.addNamespaceImport("ecore", false);
+		var namespaceImportPackage = Sequence{"ecore", node.declaredName};
+		for (eReference in Ecore!EReference){
+			if (eReference.isExtendedEcore(namespaceImportPackage)){
+				var newNamespaceImport = eReference.eType.eContainer().name;
+				node.addNamespaceImport(newNamespaceImport, true);
+				namespaceImportPackage.add(newNamespaceImport);			
+			}
+		}
+		for (eGenericType in Ecore!EGenericType){
+			if (eGenericType.isExtendedEcore(namespaceImportPackage)){
+				var newNamespaceImport = eGenericType.eClassifier.eContainer().name;
+				node.addNamespaceImport(newNamespaceImport, true);
+				namespaceImportPackage.add(newNamespaceImport);			
+			}
+		}
+		for (child in self.eContents()){
+			child.addNodeTo(node);
+		}
+	}
+}
+
+operation Ecore!EObject isExtendedEcore(namespaceImportPackage : Sequence){
+	var eName = String;
+	if (self.isKindOf(Ecore!EReference)){
+		eName = self.eType.eContainer().name.asString();
+	}
+	else if (self.isTypeOf(Ecore!EGenericType)){
+		eName = self.eClassifier.eContainer().name.asString();
+	}
+	if (namespaceImportPackage.includes(eName)){
+		return false;
+	}
+	else{
+		return true;
+	}
+}
+
+operation SysMini!Package addNamespaceImport(name:String, isPublic : Boolean){
+	var namespaceImport = new SysMini!NamespaceImport;
+	namespaceImport.declaredName = name;
+	namespaceImport.hasVisibility = true;
+	if (isPublic){
+		namespaceImport.visibility = SysMini!VisibilityKind#public;
+	}
+	self.body.add(namespaceImport);
+}
+
+operation Ecore!EObject addNodeTo(rootNode : SysMini!Element){
+	if (self.isEntity()){
+		var node = self.equivalent();
+		rootNode.body.add(node);
+		for (child in self.eContents()){
+			child.addNodeTo(node);
+		}
+	}
+}
+
+operation Ecore!EObject isEntity(){
+	if (self.isTypeOf(Ecore!EGenericType) or
+		self.isTypeOf(Ecore!EOperation) or  
+		self.isTypeOf(Ecore!EAnnotation)
+		){
+		return false;
+	}
+	else{
+		return true;
+	}
+}
+
+operation Ecore!ETypedElement getRange(){
+	if (self.lowerBound == 0 and self.upperBound == 1){
+		return "[1]";
+	}
+	else if (self.lowerBound == 0 and self.upperBound == -1){
+		return "[*]";
+	}
+	else if (self.upperBound == -1){
+		return "["+self.lowerBound+"..*]";
+	}
+	else if (self.lowerBound == self.upperBound){
+		return "["+self.lowerBound+"]";
+	}
+	else if (self.lowerBound < self.upperBound){
+		return "["+self.lowerBound+".."+self.upperBound+"]";
+	}
+	return "";
+}
+
+operation Sequence getElementOf(typeName : String){
+	return self.select(e|e.type().name == typeName);
+}
+
+operation String clearKeyWord(){
+	if (KeyWords.includes(self)){
+		return "'"+self+"'";
+	}
+	else{
+		return self;
+	}
+}

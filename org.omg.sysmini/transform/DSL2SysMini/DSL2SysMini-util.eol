@@ -1,0 +1,125 @@
+operation DSL!EObject addNodeTo(rootNode : SysMini!Element){
+	if (self.isEntity()){
+		var node = self.equivalent();
+		rootNode.body.add(node);
+		for (child in self.eContents()){
+			child.addNodeTo(node);
+		}
+	}
+}
+
+operation DSL!EObject isEntity(){
+	return true;
+}
+
+operation Sequence getElementOf(typeName : String){
+	return self.select(e|e.type().name == typeName);
+}
+
+operation Any getEAttribute(){
+//	self.type().print();
+//	self.println(" ");
+	if (self == "" or self == null){
+		return null;
+	}
+	else if (self.type().hasProperty("name") and self.type().name == "String"){
+		return "\""+self+"\"";
+	}
+	else if (self.type().hasProperty("name") and self.type().name == "Boolean"){
+		if (self == false){
+			return null;
+		}
+		else{
+			return self.asString();
+		}
+	}
+	else if (self.hasProperty("value") and (self.eClass.name == "EEnumLiteral")){
+		if (self.value == 0){
+			return null;
+		}
+		else{
+			return "'"+self.name+"'";
+		}
+	}
+	else{
+		return self.asString();
+	}
+}
+
+operation Any getEReference(){
+	if (self == null or self.size() == 0){
+		return null;
+	}
+	else{
+		var eReferences = self.asSequence();
+		var eReferencesSequence = new Sequence;
+		for (eReference in eReferences){
+			eReferencesSequence.add(eReference.getExtendedDeclaredName());
+		}
+		if (eReferencesSequence.size() == 1){
+			return eReferencesSequence.first();
+		}
+		else{
+			return eReferencesSequence.getSequenceExpression();
+		}
+	}
+}
+
+operation Sequence getSequenceExpression(){
+	var str = "";
+	for (s in self){
+		str += s;
+		str += ", ";
+	}
+	str = "("+str.subString(0, str.length()-2)+")";
+	return str;
+}
+
+operation DSL!EObject getExtendedDeclaredName(){
+	var eObjectTuple = eObjectSequence.select(s|s.value == self).first();
+	var str = eObjectTuple.value.extendEContainer("");
+	if (str.length()>1){
+		str = str.subString(1, str.length());
+		str += "."+eObjectTuple.key;
+	}
+	else{
+		str = eObjectTuple.key;
+	}
+	return str;
+}
+
+operation DSL!EObject extendEContainer(str : String){
+	if (self.eContainer() != null and self.eContainer().getDeclaredName() != null){
+		str = self.eContainer().extendEContainer(str);
+		if (self.eContainer().eContainer().isUndefined()){
+			return "";
+		}
+		return str+"."+self.eContainer().getDeclaredName();
+	}
+	else{
+		return str;
+	}
+} 
+
+operation DSL!EObject getDeclaredName(){
+	var eObjectTuple = eObjectSequence.select(s|s.value == self).first();
+	if (eObjectTuple != null){
+		return eObjectTuple.key;
+	}
+	else{
+		return null;
+	}
+}
+
+operation DSL!EObject getfeatureSpecialization(){
+	return self.type().name;
+}
+
+operation String clearKeyWord(){
+	if (KeyWords.includes(self)){
+		return "'"+self+"'";
+	}
+	else{
+		return self;
+	}
+}

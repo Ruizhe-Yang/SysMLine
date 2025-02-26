@@ -1,0 +1,57 @@
+@namespace(uri="http://www.omg.org/spec/BPMN/20100524/DI-XMI", prefix="bpmndi")
+package bpmdi;
+
+import "platform:/resource/org.omg.sysmini/metamodel/BPMN/DC.ecore";
+import "platform:/resource/org.omg.sysmini/metamodel/BPMN/BPMN20.ecore";
+import "platform:/resource/org.omg.sysmini/metamodel/BPMN/DI.ecore";
+
+class BPMNPlane extends di.Plane {
+	!ordered ref bpmn2.BaseElement bpmnElement;
+}
+
+class BPMNShape extends di.LabeledShape {
+	!ordered ref bpmn2.BaseElement bpmnElement;
+	!ordered attr boolean isHorizontal;
+	!ordered attr boolean isExpanded;
+	!ordered attr boolean isMarkerVisible;
+	!ordered val BPMNLabel label;
+	!ordered attr boolean isMessageVisible;
+	!ordered attr ParticipantBandKind participantBandKind;
+	!ordered ref BPMNShape choreographyActivityShape;
+}
+
+class BPMNLabel extends di.Label {
+	!ordered ref BPMNLabelStyle labelStyle;
+}
+
+class BPMNLabelStyle extends di.Style {
+	!ordered val dc.Font[1] font;
+}
+
+enum ParticipantBandKind {
+	top_initiating = 0;
+	middle_initiating = 1;
+	bottom_initiating = 2;
+	top_non_initiating = 3;
+	middle_non_initiating = 4;
+	bottom_non_initiating = 5;
+}
+
+class BPMNEdge extends di.LabeledEdge {
+	!ordered val BPMNLabel label;
+	!ordered ref bpmn2.BaseElement bpmnElement;
+	!ordered ref di.DiagramElement sourceElement;
+	!ordered ref di.DiagramElement targetElement;
+	!ordered attr MessageVisibleKind messageVisibleKind;
+}
+
+enum MessageVisibleKind {
+	initiating = 0;
+	non_initiating = 1;
+}
+
+class BPMNDiagram extends di.Diagram {
+	!ordered val BPMNPlane[1] plane;
+	!ordered val BPMNLabelStyle[*] labelStyle;
+}
+

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="ASCII"?>
+<Namespace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="sysmini">
+  <body xsi:type="Package" declaredName="assuranceCase">
+    <body xsi:type="NamespaceImport" hasVisibility="true" declaredName="ecore"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="artifact"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="argumentation"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="terminology"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="base"/>
+    <body xsi:type="PartDefinition" declaredName="AssuranceCasePackage">
+      <body xsi:type="PartUsage" declaredName="assuranceCasePackage" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>AssuranceCasePackage</featureSpecialization>
+      </body>
+      <body xsi:type="ReferenceUsage" declaredName="'interface'" multiplicityRange="[*]" ReferenceUsageType="ReferenceUsage">
+        <featureNote>:</featureNote>
+        <featureSpecialization>AssuranceCasePackageInterface</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="artifactPackage" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ArtifactPackage</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="argumentPackage" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ArgumentPackage</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="terminologyPackage" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>TerminologyPackage</featureSpecialization>
+      </body>
+      <SubclassificationPart>ArtifactElement</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="AssuranceCasePackageBinding">
+      <body xsi:type="ReferenceUsage" declaredName="participantPackage" multiplicityRange="[2..*]" ReferenceUsageType="ReferenceUsage">
+        <featureNote>:</featureNote>
+        <featureSpecialization>AssuranceCasePackage</featureSpecialization>
+      </body>
+      <SubclassificationPart>AssuranceCasePackage</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="AssuranceCasePackageInterface">
+      <body xsi:type="ReferenceUsage" declaredName="implements" multiplicityRange="[1]" ReferenceUsageType="ReferenceUsage">
+        <featureNote>:</featureNote>
+        <featureSpecialization>AssuranceCasePackage</featureSpecialization>
+      </body>
+      <SubclassificationPart>AssuranceCasePackage</SubclassificationPart>
+    </body>
+  </body>
+</Namespace>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="ASCII"?>
+<Namespace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="sysmini">
+  <body xsi:type="Package" declaredName="terminology">
+    <body xsi:type="NamespaceImport" hasVisibility="true" declaredName="ecore"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="base"/>
+    <body xsi:type="PartDefinition" declaredName="TerminologyElement" isAbstract="true">
+      <SubclassificationPart>ArtifactElement</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="TerminologyGroup">
+      <body xsi:type="ReferenceUsage" declaredName="terminologyElement" multiplicityRange="[*]" ReferenceUsageType="ReferenceUsage">
+        <featureNote>:</featureNote>
+        <featureSpecialization>TerminologyElement</featureSpecialization>
+      </body>
+      <SubclassificationPart>TerminologyElement</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="TerminologyPackage">
+      <body xsi:type="PartUsage" declaredName="terminologyElement" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>TerminologyElement</featureSpecialization>
+      </body>
+      <SubclassificationPart>TerminologyElement</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="TerminologyPackageBinding">
+      <body xsi:type="ReferenceUsage" declaredName="participantPackage" multiplicityRange="[2..*]" ReferenceUsageType="ReferenceUsage">
+        <featureNote>:</featureNote>
+        <featureSpecialization>TerminologyPackage</featureSpecialization>
+      </body>
+      <SubclassificationPart>TerminologyPackage</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="TerminologyPackageInterface">
+      <body xsi:type="ReferenceUsage" declaredName="implements" multiplicityRange="[1]" ReferenceUsageType="ReferenceUsage">
+        <featureNote>:</featureNote>
+        <featureSpecialization>TerminologyPackage</featureSpecialization>
+      </body>
+      <SubclassificationPart>TerminologyPackage</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="TerminologyAsset" isAbstract="true">
+      <SubclassificationPart>TerminologyElement</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="Category">
+      <body xsi:type="ReferenceUsage" declaredName="category" multiplicityRange="[*]" ReferenceUsageType="ReferenceUsage">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Category</featureSpecialization>
+      </body>
+      <SubclassificationPart>TerminologyAsset</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="ExpressionElement" isAbstract="true">
+      <body xsi:type="AttributeUsage" declaredName="'value'" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="ReferenceUsage" declaredName="category" multiplicityRange="[*]" ReferenceUsageType="ReferenceUsage">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Category</featureSpecialization>
+      </body>
+      <SubclassificationPart>TerminologyAsset</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="Expression">
+      <body xsi:type="ReferenceUsage" declaredName="element" multiplicityRange="[*]" ReferenceUsageType="ReferenceUsage">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ExpressionElement</featureSpecialization>
+      </body>
+      <SubclassificationPart>ExpressionElement</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="Term">
+      <body xsi:type="AttributeUsage" declaredName="externalReference" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="ReferenceUsage" declaredName="origin" multiplicityRange="[1]" ReferenceUsageType="ReferenceUsage">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ModelElement</featureSpecialization>
+      </body>
+      <SubclassificationPart>ExpressionElement</SubclassificationPart>
+    </body>
+  </body>
+</Namespace>

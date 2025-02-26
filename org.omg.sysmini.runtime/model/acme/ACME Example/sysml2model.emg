@@ -1,0 +1,11 @@
+numberOf -> Context = 2;
+numberOf -> ArtifactPackage = 1;
+numberOf -> Goal = 7;
+numberOf -> AwayGoal = 1;
+numberOf -> Strategy = 1;
+numberOf -> InContextOf = 2;
+numberOf -> AssuranceCasePackage = 1;
+numberOf -> Module = 1;
+numberOf -> SupportedBy = 9;
+numberOf -> Artifact = 1;
+numberOf -> Solution = 1;

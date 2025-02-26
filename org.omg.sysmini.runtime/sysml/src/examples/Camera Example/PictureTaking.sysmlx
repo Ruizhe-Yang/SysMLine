@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="ASCII"?>
+<sysml:Namespace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sysml="https://www.omg.org/spec/SysML/20240201">
+  <ownedRelationship xsi:type="sysml:OwningMembership">
+    <ownedRelatedElement xsi:type="sysml:Package" declaredName="PictureTaking">
+      <ownedRelationship xsi:type="sysml:OwningMembership">
+        <ownedRelatedElement xsi:type="sysml:PartDefinition" declaredName="Exposure"/>
+      </ownedRelationship>
+      <ownedRelationship xsi:type="sysml:OwningMembership">
+        <ownedRelatedElement xsi:type="sysml:ActionDefinition" declaredName="Focus">
+          <ownedRelationship xsi:type="sysml:FeatureMembership">
+            <ownedRelatedElement xsi:type="sysml:ReferenceUsage" declaredName="xrsl" direction="out">
+              <ownedRelationship xsi:type="sysml:FeatureTyping">
+                <type href="PictureTaking.sysml#|0"/>
+              </ownedRelationship>
+            </ownedRelatedElement>
+          </ownedRelationship>
+        </ownedRelatedElement>
+      </ownedRelationship>
+      <ownedRelationship xsi:type="sysml:OwningMembership">
+        <ownedRelatedElement xsi:type="sysml:ActionDefinition" declaredName="Shoot">
+          <ownedRelationship xsi:type="sysml:FeatureMembership">
+            <ownedRelatedElement xsi:type="sysml:ReferenceUsage" declaredName="xsf">
+              <ownedRelationship xsi:type="sysml:FeatureTyping">
+                <type href="PictureTaking.sysml#|1"/>
+              </ownedRelationship>
+            </ownedRelatedElement>
+          </ownedRelationship>
+        </ownedRelatedElement>
+      </ownedRelationship>
+      <ownedRelationship xsi:type="sysml:OwningMembership">
+        <ownedRelatedElement xsi:type="sysml:ActionUsage" declaredName="takePicture">
+          <ownedRelationship xsi:type="sysml:FeatureMembership">
+            <ownedRelatedElement xsi:type="sysml:ActionUsage" declaredName="focus">
+              <ownedRelationship xsi:type="sysml:FeatureTyping">
+                <type href="PictureTaking.sysml#|2"/>
+              </ownedRelationship>
+              <ownedRelationship xsi:type="sysml:OwningMembership">
+                <ownedRelatedElement xsi:type="sysml:MultiplicityRange">
+                  <ownedRelationship xsi:type="sysml:OwningMembership">
+                    <ownedRelatedElement xsi:type="sysml:LiteralInteger" value="1"/>
+                  </ownedRelationship>
+                </ownedRelatedElement>
+              </ownedRelationship>
+            </ownedRelatedElement>
+          </ownedRelationship>
+          <ownedRelationship xsi:type="sysml:FeatureMembership">
+            <ownedRelatedElement xsi:type="sysml:FlowConnectionUsage">
+              <ownedRelationship xsi:type="sysml:EndFeatureMembership">
+                <ownedRelatedElement xsi:type="sysml:ItemFlowEnd">
+                  <ownedRelationship xsi:type="sysml:ReferenceSubsetting">
+                    <referencedFeature href="PictureTaking.sysml#|3"/>
+                  </ownedRelationship>
+                  <ownedRelationship xsi:type="sysml:FeatureMembership">
+                    <ownedRelatedElement xsi:type="sysml:ReferenceUsage">
+                      <ownedRelationship xsi:type="sysml:Redefinition">
+                        <redefinedFeature href="PictureTaking.sysml#|4"/>
+                      </ownedRelationship>
+                    </ownedRelatedElement>
+                  </ownedRelationship>
+                </ownedRelatedElement>
+              </ownedRelationship>
+              <ownedRelationship xsi:type="sysml:EndFeatureMembership">
+                <ownedRelatedElement xsi:type="sysml:ItemFlowEnd">
+                  <ownedRelationship xsi:type="sysml:ReferenceSubsetting">
+                    <referencedFeature href="PictureTaking.sysml#|5"/>
+                  </ownedRelationship>
+                  <ownedRelationship xsi:type="sysml:FeatureMembership">
+                    <ownedRelatedElement xsi:type="sysml:ReferenceUsage">
+                      <ownedRelationship xsi:type="sysml:Redefinition">
+                        <redefinedFeature href="PictureTaking.sysml#|6"/>
+                      </ownedRelationship>
+                    </ownedRelatedElement>
+                  </ownedRelationship>
+                </ownedRelatedElement>
+              </ownedRelationship>
+            </ownedRelatedElement>
+          </ownedRelationship>
+          <ownedRelationship xsi:type="sysml:FeatureMembership">
+            <ownedRelatedElement xsi:type="sysml:ActionUsage" declaredName="shoot">
+              <ownedRelationship xsi:type="sysml:FeatureTyping">
+                <type href="PictureTaking.sysml#|7"/>
+              </ownedRelationship>
+              <ownedRelationship xsi:type="sysml:OwningMembership">
+                <ownedRelatedElement xsi:type="sysml:MultiplicityRange">
+                  <ownedRelationship xsi:type="sysml:OwningMembership">
+                    <ownedRelatedElement xsi:type="sysml:LiteralInteger" value="1"/>
+                  </ownedRelationship>
+                </ownedRelatedElement>
+              </ownedRelationship>
+            </ownedRelatedElement>
+          </ownedRelationship>
+        </ownedRelatedElement>
+      </ownedRelationship>
+    </ownedRelatedElement>
+  </ownedRelationship>
+</sysml:Namespace>

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="ASCII"?>
+<Namespace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="sysmini">
+  <body xsi:type="Package" declaredName="argumentation">
+    <body xsi:type="NamespaceImport" hasVisibility="true" declaredName="ecore"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="base"/>
+    <body xsi:type="EnumerationDefinition" declaredName="AssertionDeclaration">
+      <body xsi:type="EnumerationUsage" declaredName="asserted"/>
+      <body xsi:type="EnumerationUsage" declaredName="needsSupport"/>
+      <body xsi:type="EnumerationUsage" declaredName="assumed"/>
+      <body xsi:type="EnumerationUsage" declaredName="axiomatic"/>
+      <body xsi:type="EnumerationUsage" declaredName="defeated"/>
+      <body xsi:type="EnumerationUsage" declaredName="asCited"/>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="ArgumentationElement" isAbstract="true">
+      <body xsi:type="AttributeUsage" declaredName="uninstantiated" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <SubclassificationPart>ArtifactElement</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="ArgumentGroup">
+      <body xsi:type="ReferenceUsage" declaredName="argumentationElement" multiplicityRange="[*]" ReferenceUsageType="ReferenceUsage">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ArgumentationElement</featureSpecialization>
+      </body>
+      <SubclassificationPart>ArgumentationElement</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="ArgumentPackage">
+      <body xsi:type="PartUsage" declaredName="argumentationElement" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ArgumentationElement</featureSpecialization>
+      </body>
+      <SubclassificationPart>ArgumentationElement</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="ArgumentPackageInterface">
+      <body xsi:type="ReferenceUsage" declaredName="implements" multiplicityRange="[1]" ReferenceUsageType="ReferenceUsage">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ArgumentPackage</featureSpecialization>
+      </body>
+      <SubclassificationPart>ArgumentPackage</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="ArgumentPackageBinding">
+      <body xsi:type="ReferenceUsage" declaredName="participantPackage" multiplicityRange="[2..*]" ReferenceUsageType="ReferenceUsage">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ArgumentPackage</featureSpecialization>
+      </body>
+      <SubclassificationPart>ArgumentPackage</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="ArgumentAsset" isAbstract="true">
+      <body xsi:type="PartUsage" declaredName="content" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>MultiLangString</featureSpecialization>
+      </body>
+      <SubclassificationPart>ArgumentationElement</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="Assertion" isAbstract="true">
+      <body xsi:type="AttributeUsage" declaredName="assertionDeclaration" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>AssertionDeclaration</featureSpecialization>
+      </body>
+      <body xsi:type="ReferenceUsage" declaredName="metaClaim" multiplicityRange="[*]" ReferenceUsageType="ReferenceUsage">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Claim</featureSpecialization>
+      </body>
+      <SubclassificationPart>ArgumentAsset</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="ArgumentReasoning">
+      <body xsi:type="ReferenceUsage" declaredName="structure" multiplicityRange="[1]" ReferenceUsageType="ReferenceUsage">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ArgumentPackage</featureSpecialization>
+      </body>
+      <SubclassificationPart>ArgumentAsset</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="Claim">
+      <SubclassificationPart>Assertion</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="AssertedRelationship" isAbstract="true">
+      <body xsi:type="AttributeUsage" declaredName="isCounter" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="ReferenceUsage" declaredName="source" multiplicityRange="[1..*]" ReferenceUsageType="ReferenceUsage">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ArgumentAsset</featureSpecialization>
+      </body>
+      <body xsi:type="ReferenceUsage" declaredName="target" multiplicityRange="[1..*]" ReferenceUsageType="ReferenceUsage">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ArgumentAsset</featureSpecialization>
+      </body>
+      <body xsi:type="ReferenceUsage" declaredName="reasoning" multiplicityRange="[1]" ReferenceUsageType="ReferenceUsage">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ArgumentReasoning</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="requies" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EInt</featureSpecialization>
+      </body>
+      <SubclassificationPart>Assertion</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="ArtifactReference">
+      <body xsi:type="ReferenceUsage" declaredName="referencedArtifactElement" multiplicityRange="[*]" ReferenceUsageType="ReferenceUsage">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ArtifactElement</featureSpecialization>
+      </body>
+      <SubclassificationPart>ArgumentAsset</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="AssertedArtifactSupport">
+      <SubclassificationPart>AssertedRelationship</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="AssertedInference">
+      <SubclassificationPart>AssertedRelationship</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="AssertedEvidence">
+      <SubclassificationPart>AssertedRelationship</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="AssertedContext">
+      <SubclassificationPart>AssertedRelationship</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="AssertedArtifactContext">
+      <SubclassificationPart>AssertedRelationship</SubclassificationPart>
+    </body>
+  </body>
+</Namespace>

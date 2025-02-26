@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="ASCII"?>
+<sysml:Namespace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sysml="https://www.omg.org/spec/SysML/20240201">
+  <ownedRelationship xsi:type="sysml:OwningMembership">
+    <ownedRelatedElement xsi:type="sysml:Package" declaredName="RiskMetadataExample">
+      <ownedRelationship xsi:type="sysml:NamespaceImport">
+        <importedNamespace href="RiskMetadataExample.sysml#|0"/>
+      </ownedRelationship>
+      <ownedRelationship xsi:type="sysml:NamespaceImport">
+        <importedNamespace href="RiskMetadataExample.sysml#|1"/>
+      </ownedRelationship>
+      <ownedRelationship xsi:type="sysml:OwningMembership">
+        <ownedRelatedElement xsi:type="sysml:PartUsage" declaredName="engine4cyl">
+          <ownedRelationship xsi:type="sysml:OwningMembership">
+            <ownedRelatedElement xsi:type="sysml:MetadataUsage">
+              <ownedRelationship xsi:type="sysml:FeatureTyping">
+                <type href="RiskMetadataExample.sysml#|2"/>
+              </ownedRelationship>
+              <ownedRelationship xsi:type="sysml:FeatureMembership">
+                <ownedRelatedElement xsi:type="sysml:ReferenceUsage">
+                  <ownedRelationship xsi:type="sysml:Redefinition">
+                    <redefinedFeature href="RiskMetadataExample.sysml#|3"/>
+                  </ownedRelationship>
+                  <ownedRelationship xsi:type="sysml:FeatureValue">
+                    <ownedRelatedElement xsi:type="sysml:FeatureReferenceExpression">
+                      <ownedRelationship xsi:type="sysml:Membership">
+                        <memberElement xsi:type="sysml:Subclassification" href="RiskMetadataExample.sysml#|4"/>
+                      </ownedRelationship>
+                    </ownedRelatedElement>
+                  </ownedRelationship>
+                </ownedRelatedElement>
+              </ownedRelationship>
+              <ownedRelationship xsi:type="sysml:FeatureMembership">
+                <ownedRelatedElement xsi:type="sysml:ReferenceUsage">
+                  <ownedRelationship xsi:type="sysml:Redefinition">
+                    <redefinedFeature href="RiskMetadataExample.sysml#|5"/>
+                  </ownedRelationship>
+                  <ownedRelationship xsi:type="sysml:FeatureValue">
+                    <ownedRelatedElement xsi:type="sysml:FeatureReferenceExpression">
+                      <ownedRelationship xsi:type="sysml:Membership">
+                        <memberElement xsi:type="sysml:Subclassification" href="RiskMetadataExample.sysml#|6"/>
+                      </ownedRelationship>
+                    </ownedRelatedElement>
+                  </ownedRelationship>
+                </ownedRelatedElement>
+              </ownedRelationship>
+              <ownedRelationship xsi:type="sysml:FeatureMembership">
+                <ownedRelatedElement xsi:type="sysml:ReferenceUsage">
+                  <ownedRelationship xsi:type="sysml:Redefinition">
+                    <redefinedFeature href="RiskMetadataExample.sysml#|7"/>
+                  </ownedRelationship>
+                  <ownedRelationship xsi:type="sysml:FeatureValue">
+                    <ownedRelatedElement xsi:type="sysml:FeatureReferenceExpression">
+                      <ownedRelationship xsi:type="sysml:Membership">
+                        <memberElement xsi:type="sysml:Subclassification" href="RiskMetadataExample.sysml#|8"/>
+                      </ownedRelationship>
+                    </ownedRelatedElement>
+                  </ownedRelationship>
+                </ownedRelatedElement>
+              </ownedRelationship>
+            </ownedRelatedElement>
+          </ownedRelationship>
+          <ownedRelationship xsi:type="sysml:OwningMembership">
+            <ownedRelatedElement xsi:type="sysml:MetadataUsage">
+              <ownedRelationship xsi:type="sysml:FeatureTyping">
+                <type href="RiskMetadataExample.sysml#|9"/>
+              </ownedRelationship>
+              <ownedRelationship xsi:type="sysml:FeatureMembership">
+                <ownedRelatedElement xsi:type="sysml:ReferenceUsage">
+                  <ownedRelationship xsi:type="sysml:Redefinition">
+                    <redefinedFeature href="RiskMetadataExample.sysml#|10"/>
+                  </ownedRelationship>
+                  <ownedRelationship xsi:type="sysml:FeatureMembership">
+                    <ownedRelatedElement xsi:type="sysml:ReferenceUsage">
+                      <ownedRelationship xsi:type="sysml:Redefinition">
+                        <redefinedFeature href="RiskMetadataExample.sysml#|11"/>
+                      </ownedRelationship>
+                      <ownedRelationship xsi:type="sysml:FeatureValue">
+                        <ownedRelatedElement xsi:type="sysml:LiteralRational" value="0.3"/>
+                      </ownedRelationship>
+                    </ownedRelatedElement>
+                  </ownedRelationship>
+                  <ownedRelationship xsi:type="sysml:FeatureMembership">
+                    <ownedRelatedElement xsi:type="sysml:ReferenceUsage">
+                      <ownedRelationship xsi:type="sysml:Redefinition">
+                        <redefinedFeature href="RiskMetadataExample.sysml#|12"/>
+                      </ownedRelationship>
+                      <ownedRelationship xsi:type="sysml:FeatureValue">
+                        <ownedRelatedElement xsi:type="sysml:LiteralRational" value="0.7"/>
+                      </ownedRelationship>
+                    </ownedRelatedElement>
+                  </ownedRelationship>
+                </ownedRelatedElement>
+              </ownedRelationship>
+            </ownedRelatedElement>
+          </ownedRelationship>
+        </ownedRelatedElement>
+      </ownedRelationship>
+    </ownedRelatedElement>
+  </ownedRelationship>
+</sysml:Namespace>

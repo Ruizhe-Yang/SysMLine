@@ -1,0 +1,1782 @@
+<?xml version="1.0" encoding="ASCII"?>
+<Namespace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="sysmini">
+  <body xsi:type="Package" declaredName="bpmn2">
+    <body xsi:type="NamespaceImport" hasVisibility="true" declaredName="ecore"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="bpmdi"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="dc"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="di"/>
+    <body xsi:type="PartDefinition" declaredName="Interface">
+      <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="operations" multiplicityRange="[1..*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Operation</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="implementationRef" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EObject</featureSpecialization>
+      </body>
+      <SubclassificationPart>RootElement</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="RootElement" isAbstract="true">
+      <SubclassificationPart>BaseElement</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="BaseElement" isAbstract="true">
+      <body xsi:type="AttributeUsage" declaredName="id" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="extensionDefinitions" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ExtensionDefinition</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="extensionValues" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ExtensionAttributeValue</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="documentation" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Documentation</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="description" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="ExtensionDefinition">
+      <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="extensionAttributeDefinitions" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ExtensionAttributeDefinition</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="id" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="ExtensionAttributeDefinition">
+      <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="type" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="isReference" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="extensionDefinition" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ExtensionDefinition</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="id" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="ExtensionAttributeValue">
+      <body xsi:type="PartUsage" declaredName="valueRef" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EObject</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="'value'" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EObject</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="extensionAttributeDefinition" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ExtensionAttributeDefinition</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="id" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="Documentation">
+      <body xsi:type="AttributeUsage" declaredName="text" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="textFormat" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <SubclassificationPart>BaseElement</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="Operation">
+      <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="inMessageRef" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Message</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="outMessageRef" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Message</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="errorRefs" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Error</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="implementationRef" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EObject</featureSpecialization>
+      </body>
+      <SubclassificationPart>BaseElement</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="Message">
+      <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="itemRef" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ItemDefinition</featureSpecialization>
+      </body>
+      <SubclassificationPart>RootElement</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="ItemDefinition">
+      <body xsi:type="AttributeUsage" declaredName="itemKind" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ItemKind</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="structureRef" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EObject</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="isCollection" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="'import'" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Import</featureSpecialization>
+      </body>
+      <SubclassificationPart>RootElement</SubclassificationPart>
+    </body>
+    <body xsi:type="EnumerationDefinition" declaredName="ItemKind">
+      <body xsi:type="EnumerationUsage" declaredName="Physical"/>
+      <body xsi:type="EnumerationUsage" declaredName="Information"/>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="Import">
+      <body xsi:type="AttributeUsage" declaredName="importType" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="location" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="namespace" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="id" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="Error">
+      <body xsi:type="PartUsage" declaredName="structureRef" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ItemDefinition</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="errorCode" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <SubclassificationPart>RootElement</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="EndPoint">
+      <SubclassificationPart>RootElement</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="Auditing">
+      <SubclassificationPart>BaseElement</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="GlobalTask">
+      <body xsi:type="PartUsage" declaredName="resources" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ResourceRole</featureSpecialization>
+      </body>
+      <SubclassificationPart>CallableElement</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="CallableElement" isAbstract="true">
+      <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="ioSpecification" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>InputOutputSpecification</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="supportedInterfaceRefs" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Interface</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="ioBinding" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>InputOutputBinding</featureSpecialization>
+      </body>
+      <SubclassificationPart>RootElement</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="InputOutputSpecification">
+      <body xsi:type="PartUsage" declaredName="inputSets" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>InputSet</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="outputSets" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>OutputSet</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="dataInputs" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>DataInput</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="dataOutputs" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>DataOutput</featureSpecialization>
+      </body>
+      <SubclassificationPart>BaseElement</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="InputSet">
+      <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="dataInputRefs" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>DataInput</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="optionalInputRefs" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>DataInput</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="whileExecutingInputRefs" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>DataInput</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="outputSetRefs" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>OutputSet</featureSpecialization>
+      </body>
+      <SubclassificationPart>BaseElement</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="DataInput">
+      <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="isCollection" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="inputSetWithOptional" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>InputSet</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="inputSetWithWhileExecuting" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>InputSet</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="inputSetRefs" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>InputSet</featureSpecialization>
+      </body>
+      <SubclassificationPart>ItemAwareElement</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="ItemAwareElement">
+      <body xsi:type="PartUsage" declaredName="itemSubjectRef" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ItemDefinition</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="dataState" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>DataState</featureSpecialization>
+      </body>
+      <SubclassificationPart>BaseElement</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="DataState">
+      <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <SubclassificationPart>BaseElement</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="OutputSet">
+      <body xsi:type="PartUsage" declaredName="dataOutputRefs" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>DataOutput</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="optionalOutputRefs" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>DataOutput</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="whileExecutingOutputRefs" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>DataOutput</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="inputSetRefs" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>InputSet</featureSpecialization>
+      </body>
+      <SubclassificationPart>BaseElement</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="DataOutput">
+      <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="isCollection" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="outputSetWithOptional" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>OutputSet</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="outputSetWithWhileExecuting" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>OutputSet</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="outputSetRefs" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>OutputSet</featureSpecialization>
+      </body>
+      <SubclassificationPart>ItemAwareElement</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="InputOutputBinding">
+      <body xsi:type="PartUsage" declaredName="inputDataRef" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>InputSet</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="outputDataRef" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>OutputSet</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="operationRef" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Operation</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="id" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="ResourceRole">
+      <body xsi:type="PartUsage" declaredName="resourceRef" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Resource</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="resourceParameterBindings" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ResourceParameterBinding</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="resourceAssignmentExpression" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ResourceAssignmentExpression</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <SubclassificationPart>BaseElement</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="Resource">
+      <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="resourceParameters" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ResourceParameter</featureSpecialization>
+      </body>
+      <SubclassificationPart>RootElement</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="ResourceParameter">
+      <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="isRequired" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="type" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ItemDefinition</featureSpecialization>
+      </body>
+      <SubclassificationPart>BaseElement</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="ResourceParameterBinding">
+      <body xsi:type="PartUsage" declaredName="expression" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Expression</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="parameterRef" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ResourceParameter</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="id" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="Expression">
+      <SubclassificationPart>BaseElement</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="ResourceAssignmentExpression">
+      <body xsi:type="PartUsage" declaredName="expression" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Expression</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="id" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="Monitoring">
+      <SubclassificationPart>BaseElement</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="Performer">
+      <SubclassificationPart>ResourceRole</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="Process">
+      <body xsi:type="AttributeUsage" declaredName="processType" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ProcessType</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="isClosed" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="auditing" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Auditing</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="monitoring" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Monitoring</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="properties" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Property</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="supports" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Process</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="definitionalCollaborationRef" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Collaboration</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="isExecutable" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="resources" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ResourceRole</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="artifacts" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Artifact</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="correlationSubscriptions" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>CorrelationSubscription</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="decomposedBy" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Process</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="decomposes" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Process</featureSpecialization>
+      </body>
+      <SubclassificationPart>CallableElement</SubclassificationPart>
+      <SubclassificationPart>FlowElementsContainer</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="FlowElementsContainer" isAbstract="true">
+      <body xsi:type="PartUsage" declaredName="flowElements" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FlowElement</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="laneSets" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>LaneSet</featureSpecialization>
+      </body>
+      <SubclassificationPart>BaseElement</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="FlowElement" isAbstract="true">
+      <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="auditing" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Auditing</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="monitoring" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Monitoring</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="categoryValueRef" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>CategoryValue</featureSpecialization>
+      </body>
+      <SubclassificationPart>BaseElement</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="CategoryValue">
+      <body xsi:type="AttributeUsage" declaredName="'value'" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="categorizedFlowElements" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FlowElement</featureSpecialization>
+      </body>
+      <SubclassificationPart>BaseElement</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="LaneSet">
+      <body xsi:type="PartUsage" declaredName="lanes" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Lane</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <SubclassificationPart>BaseElement</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="Lane">
+      <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="childLaneSet" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>LaneSet</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="partitionElementRef" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>BaseElement</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="flowNodeRefs" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FlowNode</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="partitionElement" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>BaseElement</featureSpecialization>
+      </body>
+      <SubclassificationPart>BaseElement</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="FlowNode" isAbstract="true">
+      <body xsi:type="PartUsage" declaredName="outgoing" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>SequenceFlow</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="incoming" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>SequenceFlow</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="lanes" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Lane</featureSpecialization>
+      </body>
+      <SubclassificationPart>FlowElement</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="SequenceFlow">
+      <body xsi:type="AttributeUsage" declaredName="isImmediate" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="conditionExpression" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Expression</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="targetRef" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FlowNode</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="sourceRef" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FlowNode</featureSpecialization>
+      </body>
+      <SubclassificationPart>FlowElement</SubclassificationPart>
+    </body>
+    <body xsi:type="EnumerationDefinition" declaredName="ProcessType">
+      <body xsi:type="EnumerationUsage" declaredName="None"/>
+      <body xsi:type="EnumerationUsage" declaredName="Public"/>
+      <body xsi:type="EnumerationUsage" declaredName="Private"/>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="Property">
+      <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <SubclassificationPart>ItemAwareElement</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="Collaboration">
+      <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="isClosed" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="choreographyRef" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Choreography</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="artifacts" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Artifact</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="participantAssociations" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ParticipantAssociation</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="messageFlowAssociations" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>MessageFlowAssociation</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="conversationAssociations" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ConversationAssociation</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="participants" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Participant</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="messageFlows" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>MessageFlow</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="correlationKeys" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>CorrelationKey</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="conversations" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ConversationNode</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="conversationLinks" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ConversationLink</featureSpecialization>
+      </body>
+      <SubclassificationPart>RootElement</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="Choreography">
+      <SubclassificationPart>Collaboration</SubclassificationPart>
+      <SubclassificationPart>FlowElementsContainer</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="Artifact" isAbstract="true">
+      <SubclassificationPart>BaseElement</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="ParticipantAssociation">
+      <body xsi:type="PartUsage" declaredName="innerParticipantRef" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Participant</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="outerParticipantRef" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Participant</featureSpecialization>
+      </body>
+      <SubclassificationPart>BaseElement</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="Participant">
+      <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="interfaceRefs" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Interface</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="participantMultiplicity" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ParticipantMultiplicity</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="endPointRefs" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EndPoint</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="processRef" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Process</featureSpecialization>
+      </body>
+      <SubclassificationPart>BaseElement</SubclassificationPart>
+      <SubclassificationPart>InteractionNode</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="InteractionNode" isAbstract="true">
+      <body xsi:type="PartUsage" declaredName="incomingConversationLinks" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ConversationLink</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="outgoingConversationLinks" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ConversationLink</featureSpecialization>
+      </body>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="ConversationLink">
+      <body xsi:type="PartUsage" declaredName="sourceRef" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>InteractionNode</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="targetRef" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>InteractionNode</featureSpecialization>
+      </body>
+      <SubclassificationPart>BaseElement</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="ParticipantMultiplicity">
+      <body xsi:type="AttributeUsage" declaredName="minimum" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EInt</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="maximum" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EInt</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="id" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="MessageFlowAssociation">
+      <body xsi:type="PartUsage" declaredName="innerMessageFlowRef" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>MessageFlow</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="outerMessageFlowRef" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>MessageFlow</featureSpecialization>
+      </body>
+      <SubclassificationPart>BaseElement</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="MessageFlow">
+      <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="sourceRef" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>InteractionNode</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="targetRef" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>InteractionNode</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="messageRef" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Message</featureSpecialization>
+      </body>
+      <SubclassificationPart>BaseElement</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="ConversationAssociation">
+      <body xsi:type="PartUsage" declaredName="innerConversationNodeRef" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ConversationNode</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="outerConversationNodeRef" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ConversationNode</featureSpecialization>
+      </body>
+      <SubclassificationPart>BaseElement</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="ConversationNode" isAbstract="true">
+      <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="participantRefs" multiplicityRange="[2..*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Participant</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="messageFlowRefs" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>MessageFlow</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="correlationKeys" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>CorrelationKey</featureSpecialization>
+      </body>
+      <SubclassificationPart>BaseElement</SubclassificationPart>
+      <SubclassificationPart>InteractionNode</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="CorrelationKey">
+      <body xsi:type="PartUsage" declaredName="correlationPropertyRef" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>CorrelationProperty</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <SubclassificationPart>BaseElement</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="CorrelationProperty">
+      <body xsi:type="PartUsage" declaredName="correlationPropertyRetrievalExpression" multiplicityRange="[1..*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>CorrelationPropertyRetrievalExpression</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="type" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ItemDefinition</featureSpecialization>
+      </body>
+      <SubclassificationPart>RootElement</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="CorrelationPropertyRetrievalExpression">
+      <body xsi:type="PartUsage" declaredName="messagePath" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FormalExpression</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="messageRef" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Message</featureSpecialization>
+      </body>
+      <SubclassificationPart>BaseElement</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="FormalExpression">
+      <body xsi:type="AttributeUsage" declaredName="'language'" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="body" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EObject</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="evaluatesToTypeRef" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ItemDefinition</featureSpecialization>
+      </body>
+      <SubclassificationPart>Expression</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="CorrelationSubscription">
+      <body xsi:type="PartUsage" declaredName="correlationKeyRef" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>CorrelationKey</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="correlationPropertyBinding" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>CorrelationPropertyBinding</featureSpecialization>
+      </body>
+      <SubclassificationPart>BaseElement</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="CorrelationPropertyBinding">
+      <body xsi:type="PartUsage" declaredName="dataPath" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FormalExpression</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="correlationPropertyRef" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>CorrelationProperty</featureSpecialization>
+      </body>
+      <SubclassificationPart>BaseElement</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="GlobalManualTask">
+      <SubclassificationPart>GlobalTask</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="ManualTask">
+      <SubclassificationPart>Task</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="Task">
+      <SubclassificationPart>Activity</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="Activity" isAbstract="true">
+      <body xsi:type="AttributeUsage" declaredName="isForCompensation" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="loopCharacteristics" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>LoopCharacteristics</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="resources" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ResourceRole</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="'default'" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>SequenceFlow</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="properties" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Property</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="ioSpecification" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>InputOutputSpecification</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="boundaryEventRefs" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>BoundaryEvent</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="dataInputAssociations" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>DataInputAssociation</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="dataOutputAssociations" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>DataOutputAssociation</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="startQuantity" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EInt</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="completionQuantity" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EInt</featureSpecialization>
+      </body>
+      <SubclassificationPart>FlowNode</SubclassificationPart>
+      <SubclassificationPart>InteractionNode</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="LoopCharacteristics" isAbstract="true">
+      <SubclassificationPart>BaseElement</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="BoundaryEvent">
+      <body xsi:type="AttributeUsage" declaredName="cancelActivity" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="attachedToRef" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Activity</featureSpecialization>
+      </body>
+      <SubclassificationPart>CatchEvent</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="CatchEvent" isAbstract="true">
+      <body xsi:type="AttributeUsage" declaredName="parallelMultiple" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="outputSet" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>OutputSet</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="eventDefinitionRefs" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EventDefinition</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="dataOutputAssociation" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>DataOutputAssociation</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="dataOutputs" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>DataOutput</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="eventDefinitions" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EventDefinition</featureSpecialization>
+      </body>
+      <SubclassificationPart>Event</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="Event" isAbstract="true">
+      <body xsi:type="PartUsage" declaredName="properties" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Property</featureSpecialization>
+      </body>
+      <SubclassificationPart>FlowNode</SubclassificationPart>
+      <SubclassificationPart>InteractionNode</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="EventDefinition" isAbstract="true">
+      <SubclassificationPart>RootElement</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="DataOutputAssociation">
+      <SubclassificationPart>DataAssociation</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="DataAssociation">
+      <body xsi:type="PartUsage" declaredName="transformation" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FormalExpression</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="assignment" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Assignment</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="targetRef" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ItemAwareElement</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="sourceRef" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ItemAwareElement</featureSpecialization>
+      </body>
+      <SubclassificationPart>BaseElement</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="Assignment">
+      <body xsi:type="PartUsage" declaredName="'from'" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Expression</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="'to'" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Expression</featureSpecialization>
+      </body>
+      <SubclassificationPart>BaseElement</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="DataInputAssociation">
+      <SubclassificationPart>DataAssociation</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="UserTask">
+      <body xsi:type="PartUsage" declaredName="renderings" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Rendering</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="implementation" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <SubclassificationPart>Task</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="Rendering">
+      <SubclassificationPart>BaseElement</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="HumanPerformer">
+      <SubclassificationPart>Performer</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="PotentialOwner">
+      <SubclassificationPart>HumanPerformer</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="GlobalUserTask">
+      <body xsi:type="AttributeUsage" declaredName="implementation" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="renderings" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Rendering</featureSpecialization>
+      </body>
+      <SubclassificationPart>GlobalTask</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="Gateway" isAbstract="true">
+      <body xsi:type="AttributeUsage" declaredName="gatewayDirection" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>GatewayDirection</featureSpecialization>
+      </body>
+      <SubclassificationPart>FlowNode</SubclassificationPart>
+    </body>
+    <body xsi:type="EnumerationDefinition" declaredName="GatewayDirection">
+      <body xsi:type="EnumerationUsage" declaredName="Unspecified"/>
+      <body xsi:type="EnumerationUsage" declaredName="Converging"/>
+      <body xsi:type="EnumerationUsage" declaredName="Diverging"/>
+      <body xsi:type="EnumerationUsage" declaredName="Mixed"/>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="EventBasedGateway">
+      <body xsi:type="AttributeUsage" declaredName="instantiate" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="eventGatewayType" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EventBasedGatewayType</featureSpecialization>
+      </body>
+      <SubclassificationPart>Gateway</SubclassificationPart>
+    </body>
+    <body xsi:type="EnumerationDefinition" declaredName="EventBasedGatewayType">
+      <body xsi:type="EnumerationUsage" declaredName="Parallel"/>
+      <body xsi:type="EnumerationUsage" declaredName="Exclusive"/>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="ComplexGateway">
+      <body xsi:type="PartUsage" declaredName="activationCondition" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Expression</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="'default'" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>SequenceFlow</featureSpecialization>
+      </body>
+      <SubclassificationPart>Gateway</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="ExclusiveGateway">
+      <body xsi:type="PartUsage" declaredName="'default'" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>SequenceFlow</featureSpecialization>
+      </body>
+      <SubclassificationPart>Gateway</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="InclusiveGateway">
+      <body xsi:type="PartUsage" declaredName="'default'" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>SequenceFlow</featureSpecialization>
+      </body>
+      <SubclassificationPart>Gateway</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="ParallelGateway">
+      <SubclassificationPart>Gateway</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="Relationship">
+      <body xsi:type="AttributeUsage" declaredName="type" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="direction" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>RelationshipDirection</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="sources" multiplicityRange="[1..*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EObject</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="targets" multiplicityRange="[1..*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EObject</featureSpecialization>
+      </body>
+      <SubclassificationPart>BaseElement</SubclassificationPart>
+    </body>
+    <body xsi:type="EnumerationDefinition" declaredName="RelationshipDirection">
+      <body xsi:type="EnumerationUsage" declaredName="None"/>
+      <body xsi:type="EnumerationUsage" declaredName="Forward"/>
+      <body xsi:type="EnumerationUsage" declaredName="Backward"/>
+      <body xsi:type="EnumerationUsage" declaredName="Both"/>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="Extension">
+      <body xsi:type="AttributeUsage" declaredName="mustUnderstand" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="definition" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ExtensionDefinition</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="id" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="IntermediateCatchEvent">
+      <SubclassificationPart>CatchEvent</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="IntermediateThrowEvent">
+      <SubclassificationPart>ThrowEvent</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="ThrowEvent" isAbstract="true">
+      <body xsi:type="PartUsage" declaredName="inputSet" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>InputSet</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="eventDefinitionRefs" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EventDefinition</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="dataInputAssociation" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>DataInputAssociation</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="dataInputs" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>DataInput</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="eventDefinitions" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EventDefinition</featureSpecialization>
+      </body>
+      <SubclassificationPart>Event</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="EndEvent">
+      <SubclassificationPart>ThrowEvent</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="StartEvent">
+      <body xsi:type="AttributeUsage" declaredName="isInterrupting" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <SubclassificationPart>CatchEvent</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="CancelEventDefinition">
+      <SubclassificationPart>EventDefinition</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="ErrorEventDefinition">
+      <body xsi:type="PartUsage" declaredName="errorRef" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Error</featureSpecialization>
+      </body>
+      <SubclassificationPart>EventDefinition</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="TerminateEventDefinition">
+      <SubclassificationPart>EventDefinition</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="EscalationEventDefinition">
+      <body xsi:type="PartUsage" declaredName="escalationRef" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Escalation</featureSpecialization>
+      </body>
+      <SubclassificationPart>EventDefinition</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="Escalation">
+      <body xsi:type="PartUsage" declaredName="structureRef" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ItemDefinition</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="escalationCode" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="id" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="CompensateEventDefinition">
+      <body xsi:type="AttributeUsage" declaredName="waitForCompletion" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="activityRef" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Activity</featureSpecialization>
+      </body>
+      <SubclassificationPart>EventDefinition</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="TimerEventDefinition">
+      <body xsi:type="PartUsage" declaredName="timeDate" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Expression</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="timeCycle" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Expression</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="timeDuration" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Expression</featureSpecialization>
+      </body>
+      <SubclassificationPart>EventDefinition</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="LinkEventDefinition">
+      <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="target" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>LinkEventDefinition</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="source" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>LinkEventDefinition</featureSpecialization>
+      </body>
+      <SubclassificationPart>EventDefinition</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="MessageEventDefinition">
+      <body xsi:type="PartUsage" declaredName="messageRef" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Message</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="operationRef" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Operation</featureSpecialization>
+      </body>
+      <SubclassificationPart>EventDefinition</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="ConditionalEventDefinition">
+      <body xsi:type="PartUsage" declaredName="condition" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Expression</featureSpecialization>
+      </body>
+      <SubclassificationPart>EventDefinition</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="SignalEventDefinition">
+      <body xsi:type="PartUsage" declaredName="signalRef" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Signal</featureSpecialization>
+      </body>
+      <SubclassificationPart>EventDefinition</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="Signal">
+      <body xsi:type="PartUsage" declaredName="structureRef" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ItemDefinition</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <SubclassificationPart>RootElement</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="ImplicitThrowEvent">
+      <SubclassificationPart>ThrowEvent</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="DataObject">
+      <body xsi:type="AttributeUsage" declaredName="isCollection" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <SubclassificationPart>FlowElement</SubclassificationPart>
+      <SubclassificationPart>ItemAwareElement</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="DataStore">
+      <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="capacity" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EInt</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="isUnlimited" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <SubclassificationPart>ItemAwareElement</SubclassificationPart>
+      <SubclassificationPart>RootElement</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="DataStoreReference">
+      <body xsi:type="PartUsage" declaredName="dataStoreRef" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>DataStore</featureSpecialization>
+      </body>
+      <SubclassificationPart>FlowElement</SubclassificationPart>
+      <SubclassificationPart>ItemAwareElement</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="DataObjectReference">
+      <body xsi:type="PartUsage" declaredName="dataObjectRef" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>DataObject</featureSpecialization>
+      </body>
+      <SubclassificationPart>FlowElement</SubclassificationPart>
+      <SubclassificationPart>ItemAwareElement</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="CallConversation">
+      <body xsi:type="PartUsage" declaredName="calledCollaborationRef" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Collaboration</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="participantAssociations" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ParticipantAssociation</featureSpecialization>
+      </body>
+      <SubclassificationPart>ConversationNode</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="Conversation">
+      <SubclassificationPart>ConversationNode</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="SubConversation">
+      <body xsi:type="PartUsage" declaredName="conversationNodes" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ConversationNode</featureSpecialization>
+      </body>
+      <SubclassificationPart>ConversationNode</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="GlobalConversation">
+      <SubclassificationPart>Collaboration</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="PartnerEntity">
+      <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="participantRef" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Participant</featureSpecialization>
+      </body>
+      <SubclassificationPart>RootElement</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="PartnerRole">
+      <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="participantRef" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Participant</featureSpecialization>
+      </body>
+      <SubclassificationPart>RootElement</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="ChoreographyActivity" isAbstract="true">
+      <body xsi:type="PartUsage" declaredName="participantRefs" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Participant</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="initiatingParticipantRef" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Participant</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="correlationKeys" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>CorrelationKey</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="loopType" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ChoreographyLoopType</featureSpecialization>
+      </body>
+      <SubclassificationPart>FlowNode</SubclassificationPart>
+    </body>
+    <body xsi:type="EnumerationDefinition" declaredName="ChoreographyLoopType">
+      <body xsi:type="EnumerationUsage" declaredName="None"/>
+      <body xsi:type="EnumerationUsage" declaredName="Standard"/>
+      <body xsi:type="EnumerationUsage" declaredName="MultiInstanceSequential"/>
+      <body xsi:type="EnumerationUsage" declaredName="MultiInstanceParallel"/>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="CallChoreography">
+      <body xsi:type="PartUsage" declaredName="calledChoreographyRef" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Choreography</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="participantAssociations" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ParticipantAssociation</featureSpecialization>
+      </body>
+      <SubclassificationPart>ChoreographyActivity</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="SubChoreography">
+      <body xsi:type="PartUsage" declaredName="artifacts" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Artifact</featureSpecialization>
+      </body>
+      <SubclassificationPart>ChoreographyActivity</SubclassificationPart>
+      <SubclassificationPart>FlowElementsContainer</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="ChoreographyTask">
+      <body xsi:type="PartUsage" declaredName="messageFlowRef" multiplicityRange="[0..2]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>MessageFlow</featureSpecialization>
+      </body>
+      <SubclassificationPart>ChoreographyActivity</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="GlobalChoreographyTask">
+      <body xsi:type="PartUsage" declaredName="initiatingParticipantRef" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Participant</featureSpecialization>
+      </body>
+      <SubclassificationPart>Choreography</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="TextAnnotation">
+      <body xsi:type="AttributeUsage" declaredName="text" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="textFormat" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <SubclassificationPart>Artifact</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="Group">
+      <body xsi:type="PartUsage" declaredName="categoryValueRef" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>CategoryValue</featureSpecialization>
+      </body>
+      <SubclassificationPart>Artifact</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="Association">
+      <body xsi:type="AttributeUsage" declaredName="associationDirection" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>AssociationDirection</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="sourceRef" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>BaseElement</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="targetRef" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>BaseElement</featureSpecialization>
+      </body>
+      <SubclassificationPart>Artifact</SubclassificationPart>
+    </body>
+    <body xsi:type="EnumerationDefinition" declaredName="AssociationDirection">
+      <body xsi:type="EnumerationUsage" declaredName="None"/>
+      <body xsi:type="EnumerationUsage" declaredName="One"/>
+      <body xsi:type="EnumerationUsage" declaredName="Both"/>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="Category">
+      <body xsi:type="PartUsage" declaredName="categoryValue" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>CategoryValue</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <SubclassificationPart>RootElement</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="ServiceTask">
+      <body xsi:type="AttributeUsage" declaredName="implementation" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="operationRef" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Operation</featureSpecialization>
+      </body>
+      <SubclassificationPart>Task</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="SubProcess">
+      <body xsi:type="AttributeUsage" declaredName="triggeredByEvent" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="artifacts" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Artifact</featureSpecialization>
+      </body>
+      <SubclassificationPart>Activity</SubclassificationPart>
+      <SubclassificationPart>FlowElementsContainer</SubclassificationPart>
+    </body>
+    <body xsi:type="EnumerationDefinition" declaredName="MultiInstanceBehavior">
+      <body xsi:type="EnumerationUsage" declaredName="None"/>
+      <body xsi:type="EnumerationUsage" declaredName="One"/>
+      <body xsi:type="EnumerationUsage" declaredName="All"/>
+      <body xsi:type="EnumerationUsage" declaredName="Complex"/>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="MultiInstanceLoopCharacteristics">
+      <body xsi:type="AttributeUsage" declaredName="isSequential" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="behavior" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>MultiInstanceBehavior</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="loopCardinality" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Expression</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="loopDataInputRef" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ItemAwareElement</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="loopDataOutputRef" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ItemAwareElement</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="inputDataItem" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>DataInput</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="outputDataItem" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>DataOutput</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="completionCondition" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Expression</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="complexBehaviorDefinition" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ComplexBehaviorDefinition</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="oneBehaviorEventRef" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EventDefinition</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="noneBehaviorEventRef" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EventDefinition</featureSpecialization>
+      </body>
+      <SubclassificationPart>LoopCharacteristics</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="ComplexBehaviorDefinition">
+      <body xsi:type="PartUsage" declaredName="condition" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FormalExpression</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="'event'" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ImplicitThrowEvent</featureSpecialization>
+      </body>
+      <SubclassificationPart>BaseElement</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="StandardLoopCharacteristics">
+      <body xsi:type="AttributeUsage" declaredName="testBefore" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="loopCondition" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Expression</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="loopMaximum" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Expression</featureSpecialization>
+      </body>
+      <SubclassificationPart>LoopCharacteristics</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="CallActivity">
+      <body xsi:type="PartUsage" declaredName="calledElementRef" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>CallableElement</featureSpecialization>
+      </body>
+      <SubclassificationPart>Activity</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="SendTask">
+      <body xsi:type="AttributeUsage" declaredName="implementation" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="operationRef" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Operation</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="messageRef" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Message</featureSpecialization>
+      </body>
+      <SubclassificationPart>Task</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="ReceiveTask">
+      <body xsi:type="AttributeUsage" declaredName="implementation" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="instantiate" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="operationRef" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Operation</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="messageRef" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Message</featureSpecialization>
+      </body>
+      <SubclassificationPart>Task</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="ScriptTask">
+      <body xsi:type="AttributeUsage" declaredName="scriptFormat" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="script" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <SubclassificationPart>Task</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="BusinessRuleTask">
+      <body xsi:type="AttributeUsage" declaredName="implementation" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <SubclassificationPart>Task</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="AdHocSubProcess">
+      <body xsi:type="PartUsage" declaredName="completionCondition" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Expression</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="ordering" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>AdHocOrdering</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="cancelRemainingInstances" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <SubclassificationPart>SubProcess</SubclassificationPart>
+    </body>
+    <body xsi:type="EnumerationDefinition" declaredName="AdHocOrdering">
+      <body xsi:type="EnumerationUsage" declaredName="Parallel"/>
+      <body xsi:type="EnumerationUsage" declaredName="Sequential"/>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="Transaction">
+      <body xsi:type="AttributeUsage" declaredName="protocol" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="method" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <SubclassificationPart>SubProcess</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="GlobalScriptTask">
+      <body xsi:type="AttributeUsage" declaredName="scriptLanguage" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="script" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <SubclassificationPart>GlobalTask</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="GlobalBusinessRuleTask">
+      <body xsi:type="AttributeUsage" declaredName="implementation" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <SubclassificationPart>GlobalTask</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="Definitions">
+      <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="targetNamespace" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="expressionLanguage" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="typeLanguage" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="imports" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Import</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="extensions" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Extension</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="relationships" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Relationship</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="rootElements" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>RootElement</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="diagrams" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>BPMNDiagram</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="exporter" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="exporterVersion" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <SubclassificationPart>BaseElement</SubclassificationPart>
+    </body>
+  </body>
+</Namespace>

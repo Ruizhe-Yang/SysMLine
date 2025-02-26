@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="ASCII"?>
+<Namespace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="sysmini">
+  <body xsi:type="Package" declaredName="gsn">
+    <body xsi:type="NamespaceImport" hasVisibility="true" declaredName="ecore"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="argumentation"/>
+    <body xsi:type="PartDefinition" declaredName="Module">
+      <SubclassificationPart>ArgumentPackage</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="ContractModule">
+      <SubclassificationPart>ArgumentPackageBinding</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="ChoiceNode">
+      <body xsi:type="AttributeUsage" declaredName="choice" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <SubclassificationPart>ArgumentAsset</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="Context">
+      <body xsi:type="AttributeUsage" declaredName="isPublic" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="refersToExternalMaterial" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <SubclassificationPart>ArgumentAsset</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="Strategy">
+      <body xsi:type="AttributeUsage" declaredName="undeveloped" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <SubclassificationPart>ArgumentReasoning</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="Goal">
+      <body xsi:type="AttributeUsage" declaredName="isPublic" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="undeveloped" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="toBeSupportedByContract" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <SubclassificationPart>Claim</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="Justification">
+      <SubclassificationPart>Claim</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="Assumption">
+      <SubclassificationPart>Claim</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="AwayGoal">
+      <SubclassificationPart>Claim</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="AwaySolution">
+      <SubclassificationPart>ArtifactReference</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="AwayContext">
+      <SubclassificationPart>ArgumentAsset</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="ModuleReference">
+      <body xsi:type="ReferenceUsage" declaredName="module" multiplicityRange="[1]" ReferenceUsageType="ReferenceUsage">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Module</featureSpecialization>
+      </body>
+      <SubclassificationPart>ArtifactReference</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="ContractModuleReference">
+      <body xsi:type="ReferenceUsage" declaredName="module" multiplicityRange="[1]" ReferenceUsageType="ReferenceUsage">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ContractModule</featureSpecialization>
+      </body>
+      <SubclassificationPart>ArtifactReference</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="Solution">
+      <body xsi:type="AttributeUsage" declaredName="isPublic" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <SubclassificationPart>ArtifactReference</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="SupportedBy">
+      <body xsi:type="AttributeUsage" declaredName="isMany" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="isOptional" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="isChoice" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <SubclassificationPart>AssertedInference</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="InContextOf">
+      <body xsi:type="AttributeUsage" declaredName="isMany" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="isOptional" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="isChoice" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <SubclassificationPart>AssertedContext</SubclassificationPart>
+    </body>
+  </body>
+</Namespace>

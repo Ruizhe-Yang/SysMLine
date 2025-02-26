@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="ASCII"?>
+<Namespace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="sysmini">
+  <body xsi:type="Package" declaredName="artifact">
+    <body xsi:type="NamespaceImport" hasVisibility="true" declaredName="ecore"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="base"/>
+    <body xsi:type="PartDefinition" declaredName="ArtifactGroup">
+      <body xsi:type="ReferenceUsage" declaredName="artifactElement" multiplicityRange="[*]" ReferenceUsageType="ReferenceUsage">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ArtifactElement</featureSpecialization>
+      </body>
+      <SubclassificationPart>ArtifactElement</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="ArtifactPackage">
+      <body xsi:type="PartUsage" declaredName="artifactElement" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ArtifactElement</featureSpecialization>
+      </body>
+      <SubclassificationPart>ArtifactElement</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="ArtifactPackageBinding">
+      <body xsi:type="ReferenceUsage" declaredName="participantPackage" multiplicityRange="[2..*]" ReferenceUsageType="ReferenceUsage">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ArtifactPackage</featureSpecialization>
+      </body>
+      <SubclassificationPart>ArtifactPackage</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="ArtifactPackageInterface">
+      <body xsi:type="ReferenceUsage" declaredName="implements" multiplicityRange="[1]" ReferenceUsageType="ReferenceUsage">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ArtifactPackage</featureSpecialization>
+      </body>
+      <SubclassificationPart>ArtifactPackage</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="ArtifactAsset" isAbstract="true">
+      <body xsi:type="PartUsage" declaredName="artifactProperty" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Property</featureSpecialization>
+      </body>
+      <SubclassificationPart>ArtifactElement</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="Property">
+      <SubclassificationPart>ArtifactAsset</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="Technique">
+      <SubclassificationPart>ArtifactAsset</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="Participant">
+      <SubclassificationPart>ArtifactAsset</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="Activity">
+      <body xsi:type="AttributeUsage" declaredName="startTime" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EDate</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="endTime" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EDate</featureSpecialization>
+      </body>
+      <SubclassificationPart>ArtifactAsset</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="Event">
+      <body xsi:type="AttributeUsage" declaredName="occurence" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EDate</featureSpecialization>
+      </body>
+      <SubclassificationPart>ArtifactAsset</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="Resource">
+      <SubclassificationPart>ArtifactAsset</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="Artifact">
+      <body xsi:type="AttributeUsage" declaredName="version" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="date" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EDate</featureSpecialization>
+      </body>
+      <SubclassificationPart>ArtifactAsset</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="ArtifactAssetRelationship">
+      <body xsi:type="ReferenceUsage" declaredName="source" multiplicityRange="[1..*]" ReferenceUsageType="ReferenceUsage">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ArtifactAsset</featureSpecialization>
+      </body>
+      <body xsi:type="ReferenceUsage" declaredName="target" multiplicityRange="[1..*]" ReferenceUsageType="ReferenceUsage">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ArtifactAsset</featureSpecialization>
+      </body>
+      <SubclassificationPart>ArtifactAsset</SubclassificationPart>
+    </body>
+  </body>
+</Namespace>

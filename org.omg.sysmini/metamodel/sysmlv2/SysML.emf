@@ -1,0 +1,1016 @@
+package sysmini;
+
+class Subclassification extends Specialization {
+	ref Classifier[1] superclassifier;
+	ref Classifier#ownedSubclassification owningClassifier;
+	ref Classifier[1] subclassifier;
+}
+
+class Specialization extends Relationship {
+	ref Type#ownedSpecialization owningType;
+	ref Type[1] general;
+	ref Type[1] specific;
+}
+
+abstract class Relationship extends Element {
+	val Element[*]#owningRelationship ownedRelatedElement;
+	ref Element#ownedRelationship owningRelatedElement;
+	ref Element[*] relatedElement;
+	ref Element[*] target;
+	ref Element[*] source;	
+	attr boolean[1] isImplied = "false";
+}
+
+abstract class Element {
+	op String escapedName();
+	op String effectiveShortName();
+	op String effectiveName();
+	op Namespace libraryNamespace();
+	ref OwningMembership#ownedMemberElement owningMembership;
+	ref Namespace#ownedMember owningNamespace;
+	ref Relationship#ownedRelatedElement owningRelationship;
+	id attr String[1] elementId;
+	val Relationship[*]#owningRelatedElement ownedRelationship;
+	ref Element#ownedElement owner;
+	ref Element[*]#owner ownedElement;
+	ref Documentation[*]#documentedElement documentation;
+	ref Annotation[*]#owningAnnotatedElement ownedAnnotation;
+	ref TextualRepresentation[*]#representedElement textualRepresentation;
+	attr String[*] aliasIds;
+	attr String declaredShortName;
+	attr String declaredName;
+	attr String shortName;
+	attr String name;
+	attr String qualifiedName;
+	attr boolean[1] isImpliedIncluded = "false";
+	attr boolean[1] isLibraryElement;
+}
+
+class OwningMembership extends Membership {
+	attr String[1] ownedMemberElementId;
+	attr String ownedMemberShortName;
+	attr String ownedMemberName;
+	ref Element[1]#owningMembership ownedMemberElement;
+}
+
+class Membership extends Relationship {
+	op boolean[1] isDistinguishableFrom(Membership[1] other);
+	attr String[1] memberElementId;
+	ref Namespace[1]#ownedMembership membershipOwningNamespace;
+	attr String memberShortName;
+	ref Element[1] memberElement;
+	attr String memberName;
+	attr VisibilityKind[1] visibility = "public";
+}
+
+class Namespace extends Element {
+	op String[*] namesOf(Element[1] element);
+	op VisibilityKind[1] visibilityOf(Membership[1] mem);
+	op Membership[*] visibleMemberships(Namespace[*] excluded, boolean[1] isRecursive, boolean[1] includeAll);
+	op Membership[*] importedMemberships(Namespace[*] excluded);
+	op Membership ~resolve(String[1] qualifiedName);
+	op Membership resolveGlobal(String[1] qualifiedName);
+	op Membership resolveLocal(String[1] name);
+	op Membership resolveVisible(String[1] name);
+	op String qualificationOf(String[1] qualifiedName);
+	op String[1] unqualifiedNameOf(String[1] qualifiedName);
+	readonly ref Membership[*] membership;
+	ref Import[*]#importOwningNamespace ownedImport;
+	ref Element[*] member;
+	ref Element[*]#owningNamespace ownedMember;
+	ref Membership[*] importedMembership;
+	ref Membership[*]#membershipOwningNamespace ownedMembership;
+}
+
+abstract class Import extends Relationship {
+	op Membership[*] importedMemberships(Namespace[*] excluded);
+	attr VisibilityKind[1] visibility = "private";
+	attr boolean[1] isRecursive = "false";
+	attr boolean[1] isImportAll = "false";
+	ref Element[1] importedElement;
+	ref Namespace[1]#ownedImport importOwningNamespace;
+}
+
+enum VisibilityKind {
+	private = 0;
+	protected = 1;
+	public = 2;
+}
+
+class Documentation extends Comment {
+	ref Element[1]#documentation documentedElement;
+}
+
+class Comment extends AnnotatingElement {
+	attr String locale;
+	attr String[1] body;
+}
+
+class AnnotatingElement extends Element {
+	ref Element[+] annotatedElement;
+	ref Annotation[*]#owningAnnotatingElement ownedAnnotatingRelationship;
+	ref Annotation[*]#annotatingElement annotation;
+}
+
+class Annotation extends Relationship {
+	ref AnnotatingElement[1]#annotation annotatingElement;
+	ref Element[1] annotatedElement;
+	ref Element#ownedAnnotation owningAnnotatedElement;
+	ref AnnotatingElement#ownedAnnotatingRelationship owningAnnotatingElement;
+}
+
+class TextualRepresentation extends AnnotatingElement {
+	attr String[1] language;
+	attr String[1] body;
+	ref Element[1]#textualRepresentation representedElement;
+}
+
+class Type extends Namespace {
+	op Membership[*] inheritedMemberships(Type[*] excluded, boolean[1] excludeImplied);
+	op FeatureDirectionKind directionOf(Feature[1] feature);
+	op Type[*] allSupertypes();
+	op boolean[1] specializes(Type[1] supertype);
+	op boolean[1] specializesFromLibrary(String[1] libraryTypeName);
+	ref FeatureMembership[*]#owningType ownedFeatureMembership;
+	ref Feature[*]#owningType ownedFeature;
+	ref Feature[*]#endOwningType ownedEndFeature;
+	ref Feature[*] feature;
+	ref Feature[*] input;
+	ref Feature[*] output;
+	attr boolean[1] isAbstract = "false";
+	ref Membership[*] inheritedMembership;
+	ref Feature[*] endFeature;
+	attr boolean[1] isSufficient = "false";
+	ref Conjugation#owningType ownedConjugator;
+	attr boolean[1] isConjugated;
+	ref Feature[*] inheritedFeature;
+	ref Multiplicity multiplicity;
+	ref Type[*] unioningType;
+	ref Intersecting[*]#typeIntersected ownedIntersecting;
+	ref Type[*] intersectingType;
+	ref Unioning[*]#typeUnioned ownedUnioning;
+	ref Disjoining[*]#owningType ownedDisjoining;
+	ref FeatureMembership[*] featureMembership;
+	ref Type[*] differencingType;
+	ref Differencing[*]#typeDifferenced ownedDifferencing;
+	ref Feature[*] directedFeature;
+	ref Specialization[*]#owningType ownedSpecialization;
+}
+
+class FeatureMembership extends OwningMembership, Featuring {
+	ref Feature[1]#owningFeatureMembership ownedMemberFeature;
+	ref Type[1]#ownedFeatureMembership owningType;
+}
+
+abstract class Featuring extends Relationship {
+	ref Type[1] type;
+	ref Feature[1] feature;
+}
+
+class Feature extends Type {
+	op FeatureDirectionKind directionFor(Type[1] type);
+	op boolean[1] isFeaturedWithin(Type type);
+	op Feature namingFeature();
+	op boolean[1] redefines(Feature[1] redefinedFeature);
+	op boolean[1] redefinesFromLibrary(String[1] libraryFeatureName);
+	op boolean[1] subsetsChain(Feature[1] first, Feature[1] second);
+	op Feature[*] typingFeatures();
+	ref Type#ownedFeature owningType;
+	attr boolean[1] isUnique = "true";
+	attr boolean[1] isOrdered = "false";
+	ref Type[*] type;
+	ref Redefinition[*] ownedRedefinition;
+	ref Subsetting[*]#owningFeature ownedSubsetting;
+	ref FeatureMembership#ownedMemberFeature owningFeatureMembership;
+	attr boolean[1] isComposite = "false";
+	attr boolean[1] isEnd = "false";
+	ref Type#ownedEndFeature endOwningType;
+	ref FeatureTyping[*]#owningFeature ownedTyping;
+	ref Type[*] featuringType;
+	ref TypeFeaturing[*]#owningFeatureOfType ownedTypeFeaturing;
+	attr boolean[1] isDerived = "false";
+	!unique ref Feature[*] chainingFeature;
+	ref FeatureInverting[*]#owningFeature ownedFeatureInverting;
+	ref FeatureChaining[*]#featureChained ownedFeatureChaining;
+	attr boolean[1] isReadOnly = "false";
+	attr boolean[1] isPortion = "false";
+	attr FeatureDirectionKind direction;
+	ref ReferenceSubsetting#referencingFeature ownedReferenceSubsetting;
+	ref Feature[1] featureTarget;
+	attr boolean[1] isNonunique = "false";
+}
+
+class Redefinition extends Subsetting {
+	ref Feature[1] redefiningFeature;
+	ref Feature[1] redefinedFeature;
+}
+
+class Subsetting extends Specialization {
+	ref Feature[1] subsettedFeature;
+	ref Feature[1] subsettingFeature;
+	ref Feature#ownedSubsetting owningFeature;
+}
+class FeatureTyping extends Specialization {
+	ref Feature[1] typedFeature;
+	ref Type[1] type;
+	ref Feature#ownedTyping owningFeature;
+}
+
+class TypeFeaturing extends Featuring {
+	ref Feature[1] featureOfType;
+	ref Type[1] featuringType;
+	ref Feature#ownedTypeFeaturing owningFeatureOfType;
+}
+
+class FeatureInverting extends Relationship {
+	ref Feature[1] featureInverted;
+	ref Feature[1] invertingFeature;
+	ref Feature#ownedFeatureInverting owningFeature;
+}
+
+class FeatureChaining extends Relationship {
+	ref Feature[1] chainingFeature;
+	ref Feature[1]#ownedFeatureChaining featureChained;
+}
+
+enum FeatureDirectionKind {
+	in = 0;
+	inout = 1;
+	out = 2;
+}
+
+class ReferenceSubsetting extends Subsetting {
+	ref Feature[1] referencedFeature;
+	ref Feature[1]#ownedReferenceSubsetting referencingFeature;
+}
+
+class Conjugation extends Relationship {
+	ref Type[1] originalType;
+	ref Type[1] conjugatedType;
+	ref Type#ownedConjugator owningType;
+}
+
+class Multiplicity extends Feature {
+}
+
+class Intersecting extends Relationship {
+	ref Type[1] intersectingType;
+	ref Type[1]#ownedIntersecting typeIntersected;
+}
+
+class Unioning extends Relationship {
+	ref Type[1] unioningType;
+	ref Type[1]#ownedUnioning typeUnioned;
+}
+
+class Disjoining extends Relationship {
+	ref Type[1] typeDisjoined;
+	ref Type[1] disjoiningType;
+	ref Type#ownedDisjoining owningType;
+}
+
+class Differencing extends Relationship {
+	ref Type[1] differencingType;
+	ref Type[1]#ownedDifferencing typeDifferenced;
+}
+
+class Classifier extends Type {
+	ref Subclassification[*]#owningClassifier ownedSubclassification;
+}
+
+class EndFeatureMembership extends FeatureMembership {
+}
+
+class Package extends Namespace {
+	op boolean[1] includeAsMember(Element[1] element);
+	ref Expression[*] filterCondition;
+}
+
+class Expression extends Step {
+	op boolean[1] modelLevelEvaluable(Feature[*] visited);
+	!unique op Element[*] evaluate(Element[1] target);
+	op boolean[1] checkCondition(Element[1] target);
+	ref Function function;
+	ref Feature[1] result;
+	attr boolean[1] isModelLevelEvaluable;
+}
+
+class Step extends Feature {
+	ref Behavior[*] behavior;
+	ref Feature[*] parameter;
+}
+
+class Behavior extends Class {
+	ref Step[*] step;
+	ref Feature[*] parameter;
+}
+
+class Class extends Classifier {
+}
+
+class Function extends Behavior {
+	ref Expression[*] expression;
+	ref Feature[1] result;
+	attr boolean[1] isModelLevelEvaluable;
+}
+
+class LibraryPackage extends Package {
+	attr boolean[1] isStandard = "false";
+}
+
+class ElementFilterMembership extends OwningMembership {
+	ref Expression[1] condition;
+}
+
+class LiteralRational extends LiteralExpression {
+	attr double[1] value;
+}
+
+class LiteralExpression extends Expression {
+}
+
+class MetadataAccessExpression extends Expression {
+	op MetadataFeature[1] metaclassFeature();
+	ref Element[1] referencedElement;
+}
+
+class MetadataFeature extends Feature, AnnotatingElement {
+	op Element[*] evaluateFeature(Feature[1] baseFeature);
+	op boolean[1] isSemantic();
+	op boolean[1] isSyntactic();
+	op Element syntaxElement();
+	ref Metaclass metaclass;
+}
+
+class Metaclass extends Structure {
+}
+
+class Structure extends Class {
+}
+
+class FeatureReferenceExpression extends Expression {
+	ref Feature[1] referent;
+}
+
+class LiteralInteger extends LiteralExpression {
+	attr int[1] value;
+}
+
+class FeatureChainExpression extends OperatorExpression {
+	op Feature sourceTargetFeature();
+	ref Feature[1] targetFeature;
+}
+
+class OperatorExpression extends InvocationExpression {
+	attr String[1] operator;
+}
+
+class InvocationExpression extends Expression {
+	ref Expression[*] argument;
+	val Expression[*] operand;
+}
+
+class LiteralString extends LiteralExpression {
+	attr String[1] value;
+}
+
+class NullExpression extends Expression {
+}
+
+class LiteralBoolean extends LiteralExpression {
+}
+
+class SelectExpression extends OperatorExpression {
+}
+
+class CollectExpression extends OperatorExpression {
+}
+
+class LiteralInfinity extends LiteralExpression {
+}
+
+class ParameterMembership extends FeatureMembership {
+	op FeatureDirectionKind[1] parameterDirection();
+	ref Feature[1] ownedMemberParameter;
+}
+
+class DataType extends Classifier {
+}
+
+class SuccessionItemFlow extends ItemFlow, Succession {
+}
+
+class Succession extends Connector {
+	ref Step transitionStep;
+	ref Step[*] triggerStep;
+	ref Step[*] effectStep;
+	ref Expression[*] guardExpression;
+}
+
+class Connector extends Feature, Relationship {
+	!unique ref Feature[*] relatedFeature;
+	ref Association[*] association;
+	ref Feature[*] connectorEnd;
+	ref Feature sourceFeature;
+	ref Feature[*] targetFeature;
+}
+
+class Association extends Classifier, Relationship {
+	!unique ref Type[*] relatedType;
+	ref Type sourceType;
+	ref Type[*] targetType;
+	ref Feature[*] associationEnd;
+}
+
+class ItemFlow extends Connector, Step {
+	!unique ref Classifier[*] itemType;
+	!unique ref Feature targetInputFeature;
+	!unique ref Feature sourceOutputFeature;
+	ref ItemFlowEnd[0..2] itemFlowEnd;
+	ref ItemFeature itemFeature;
+	ref Interaction[*] interaction;
+}
+
+class ItemFlowEnd extends Feature {
+}
+
+class ItemFeature extends Feature {
+}
+
+class Interaction extends Association, Behavior {
+}
+
+class MultiplicityRange extends Multiplicity {
+	op boolean[1] hasBounds(int[1] lower, int[1] upper);
+	op int valueOf(Expression bound);
+	ref Expression lowerBound;
+	ref Expression[1] upperBound;
+	readonly ref Expression[1..2] bound;
+}
+
+class BindingConnector extends Connector {
+}
+
+class AssociationStructure extends Association, Structure {
+}
+
+class FeatureValue extends OwningMembership {
+	ref Feature[1] featureWithValue;
+	ref Expression[1] value;
+	attr boolean[1] isInitial = "false";
+	attr boolean[1] isDefault = "false";
+}
+
+class Invariant extends BooleanExpression {
+	attr boolean[1] isNegated = "false";
+}
+
+class BooleanExpression extends Expression {
+	ref Predicate predicate;
+}
+
+class Predicate extends Function {
+}
+
+class ReturnParameterMembership extends ParameterMembership {
+}
+
+class ResultExpressionMembership extends FeatureMembership {
+	ref Expression[1] ownedResultExpression;
+}
+
+class NamespaceImport extends Import {
+	ref Namespace[1] importedNamespace;
+}
+
+class MembershipImport extends Import {
+	ref Membership[1] importedMembership;
+}
+
+class Dependency extends Relationship {
+	ref Element[+] client;
+	ref Element[+] supplier;
+}
+
+class ItemUsage extends OccurrenceUsage {
+	ref Structure[*] itemDefinition;
+}
+
+class OccurrenceUsage extends Usage {
+	ref Class[*] occurrenceDefinition;
+	ref OccurrenceDefinition individualDefinition;
+	attr boolean[1] isIndividual = "false";
+	attr PortionKind portionKind;
+}
+
+class Usage extends Feature {
+	attr boolean[1] isReference;
+	attr boolean[1] isVariation;
+	ref Usage[*] variant;
+	ref VariantMembership[*] variantMembership;
+	ref Definition#ownedUsage owningDefinition;
+	ref Usage#nestedUsage owningUsage;
+	ref Usage[*]#owningUsage nestedUsage;
+	ref Classifier[*] definition;
+	ref Usage[*] usage;
+	ref Usage[*] directedUsage;
+	ref ReferenceUsage[*] nestedReference;
+	ref AttributeUsage[*] nestedAttribute;
+	ref EnumerationUsage[*] nestedEnumeration;
+	ref OccurrenceUsage[*] nestedOccurrence;
+	ref ItemUsage[*] nestedItem;
+	ref PartUsage[*] nestedPart;
+	ref PortUsage[*] nestedPort;
+	ref ConnectorAsUsage[*] nestedConnection;
+	ref FlowConnectionUsage[*] nestedFlow;
+	ref InterfaceUsage[*] nestedInterface;
+	ref AllocationUsage[*] nestedAllocation;
+	ref ActionUsage[*] nestedAction;
+	ref StateUsage[*] nestedState;
+	ref TransitionUsage[*] nestedTransition;
+	ref CalculationUsage[*] nestedCalculation;
+	ref ConstraintUsage[*] nestedConstraint;
+	ref RequirementUsage[*] nestedRequirement;
+	ref ConcernUsage[*] nestedConcern;
+	ref CaseUsage[*] nestedCase;
+	ref AnalysisCaseUsage[*] nestedAnalysisCase;
+	ref VerificationCaseUsage[*] nestedVerificationCase;
+	ref UseCaseUsage[*] nestedUseCase;
+	ref ViewUsage[*] nestedView;
+	ref ViewpointUsage[*] nestedViewpoint;
+	ref RenderingUsage[*] nestedRendering;
+	ref MetadataUsage[*] nestedMetadata;
+}
+
+class VariantMembership extends OwningMembership {
+	ref Usage[1] ownedVariantUsage;
+}
+
+class Definition extends Classifier {
+	attr boolean[1] isVariation;
+	ref Usage[*] variant;
+	ref VariantMembership[*] variantMembership;
+	ref Usage[*] usage;
+	ref Usage[*] directedUsage;
+	ref ReferenceUsage[*] ownedReference;
+	ref AttributeUsage[*] ownedAttribute;
+	ref EnumerationUsage[*] ownedEnumeration;
+	ref OccurrenceUsage[*] ownedOccurrence;
+	ref ItemUsage[*] ownedItem;
+	ref PartUsage[*] ownedPart;
+	ref PortUsage[*] ownedPort;
+	ref ConnectorAsUsage[*] ownedConnection;
+	ref FlowConnectionUsage[*] ownedFlow;
+	ref InterfaceUsage[*] ownedInterface;
+	ref AllocationUsage[*] ownedAllocation;
+	ref ActionUsage[*] ownedAction;
+	ref StateUsage[*] ownedState;
+	ref TransitionUsage[*] ownedTransition;
+	ref CalculationUsage[*] ownedCalculation;
+	ref ConstraintUsage[*] ownedConstraint;
+	ref RequirementUsage[*] ownedRequirement;
+	ref ConcernUsage[*] ownedConcern;
+	ref CaseUsage[*] ownedCase;
+	ref AnalysisCaseUsage[*] ownedAnalysisCase;
+	ref VerificationCaseUsage[*] ownedVerificationCase;
+	ref UseCaseUsage[*] ownedUseCase;
+	ref ViewUsage[*] ownedView;
+	ref ViewpointUsage[*] ownedViewpoint;
+	ref RenderingUsage[*] ownedRendering;
+	ref MetadataUsage[*] ownedMetadata;
+	ref Usage[*]#owningDefinition ownedUsage;
+}
+
+class ReferenceUsage extends Usage {
+}
+
+class AttributeUsage extends Usage {
+	ref DataType[*] attributeDefinition;
+}
+
+class EnumerationUsage extends AttributeUsage {
+	ref EnumerationDefinition[1] enumerationDefinition;
+}
+
+class EnumerationDefinition extends AttributeDefinition {
+	ref EnumerationUsage[*] enumeratedValue;
+}
+
+class AttributeDefinition extends Definition, DataType {
+}
+
+class PartUsage extends ItemUsage {
+	ref PartDefinition[*] partDefinition;
+}
+
+class PartDefinition extends ItemDefinition {
+}
+
+class ItemDefinition extends OccurrenceDefinition, Structure {
+}
+
+class OccurrenceDefinition extends Definition, Class {
+	ref LifeClass lifeClass;
+	attr boolean[1] isIndividual = "false";
+}
+
+class LifeClass extends Class {
+}
+
+class PortUsage extends OccurrenceUsage {
+	ref PortDefinition[*] portDefinition;
+}
+
+class PortDefinition extends OccurrenceDefinition, Structure {
+	ref ConjugatedPortDefinition#originalPortDefinition conjugatedPortDefinition;
+}
+
+class ConjugatedPortDefinition extends PortDefinition {
+	ref PortConjugation[1]#conjugatedPortDefinition ownedPortConjugator;
+	ref PortDefinition[1]#conjugatedPortDefinition originalPortDefinition;
+}
+
+class PortConjugation extends Conjugation {
+	ref PortDefinition[1] originalPortDefinition;
+	ref ConjugatedPortDefinition[1]#ownedPortConjugator conjugatedPortDefinition;
+}
+
+abstract class ConnectorAsUsage extends Usage, Connector {
+}
+
+class FlowConnectionUsage extends ConnectionUsage, ActionUsage, ItemFlow {
+	ref Interaction[*] flowConnectionDefinition;
+}
+
+class ConnectionUsage extends ConnectorAsUsage, PartUsage {
+	ref AssociationStructure[*] connectionDefinition;
+}
+
+class ActionUsage extends OccurrenceUsage, Step {
+	op Feature[*] inputParameters();
+	op Feature inputParameter(int[1] i);
+	op Expression argument(int[1] i);
+	op boolean[1] isSubactionUsage();
+	ref Behavior[*] actionDefinition;
+}
+
+class InterfaceUsage extends ConnectionUsage {
+	ref InterfaceDefinition[*] interfaceDefinition;
+}
+
+class InterfaceDefinition extends ConnectionDefinition {
+	ref PortUsage[*] interfaceEnd;
+}
+
+class ConnectionDefinition extends PartDefinition, AssociationStructure {
+	ref Usage[*] connectionEnd;
+}
+
+class AllocationUsage extends ConnectionUsage {
+	ref AllocationDefinition[*] allocationDefinition;
+}
+
+class AllocationDefinition extends ConnectionDefinition {
+	ref AllocationUsage[*] allocation;
+}
+
+class StateUsage extends ActionUsage {
+	op boolean[1] isSubstateUsage(boolean[1] isParallel);
+	ref Behavior[*] stateDefinition;
+	ref ActionUsage entryAction;
+	ref ActionUsage doAction;
+	ref ActionUsage exitAction;
+	attr boolean[1] isParallel = "false";
+}
+
+class TransitionUsage extends ActionUsage {
+	op ReferenceUsage triggerPayloadParameter();
+	ref ActionUsage[1] source;
+	ref ActionUsage[1] target;
+	ref AcceptActionUsage[*] triggerAction;
+	ref Expression[*] guardExpression;
+	ref ActionUsage[*] effectAction;
+	ref Succession[1] succession;
+}
+
+class AcceptActionUsage extends ActionUsage {
+	op boolean[1] isTriggerAction();
+	ref Expression receiverArgument;
+	ref ReferenceUsage[1] payloadParameter;
+	ref Expression payloadArgument;
+}
+
+class CalculationUsage extends ActionUsage, Expression {
+	ref Function calculationDefinition;
+}
+
+class ConstraintUsage extends OccurrenceUsage, BooleanExpression {
+	ref Predicate constraintDefinition;
+}
+
+class RequirementUsage extends ConstraintUsage {
+	ref RequirementDefinition requirementDefinition;
+	attr String reqId;
+	attr String[*] text;
+	ref ConstraintUsage[*] requiredConstraint;
+	ref ConstraintUsage[*] assumedConstraint;
+	ref Usage[1] subjectParameter;
+	ref ConcernUsage[*] framedConcern;
+	ref PartUsage[*] actorParameter;
+	ref PartUsage[*] stakeholderParameter;
+}
+
+class RequirementDefinition extends ConstraintDefinition {
+	attr String reqId;
+	attr String[*] text;
+	ref Usage[1] subjectParameter;
+	ref PartUsage[*] actorParameter;
+	ref PartUsage[*] stakeholderParameter;
+	ref ConstraintUsage[*] assumedConstraint;
+	ref ConstraintUsage[*] requiredConstraint;
+	ref ConcernUsage[*] framedConcern;
+}
+
+class ConstraintDefinition extends OccurrenceDefinition, Predicate {
+}
+
+class ConcernUsage extends RequirementUsage {
+	ref ConcernDefinition concernDefinition;
+}
+
+class ConcernDefinition extends RequirementDefinition {
+}
+
+class CaseUsage extends CalculationUsage {
+	ref RequirementUsage objectiveRequirement;
+	ref CaseDefinition caseDefinition;
+	ref Usage[1] subjectParameter;
+	ref PartUsage[*] actorParameter;
+}
+
+class CaseDefinition extends CalculationDefinition {
+	ref RequirementUsage objectiveRequirement;
+	ref Usage[1] subjectParameter;
+	ref PartUsage[*] actorParameter;
+}
+
+class CalculationDefinition extends ActionDefinition, Function {
+	ref CalculationUsage[*] calculation;
+}
+
+class ActionDefinition extends OccurrenceDefinition, Behavior {
+	ref ActionUsage[*] action;
+}
+
+class AnalysisCaseUsage extends CaseUsage {
+	ref AnalysisCaseDefinition analysisCaseDefinition;
+	ref Expression resultExpression;
+}
+
+class AnalysisCaseDefinition extends CaseDefinition {
+	ref Expression resultExpression;
+}
+
+class VerificationCaseUsage extends CaseUsage {
+	ref VerificationCaseDefinition verificationCaseDefinition;
+	ref RequirementUsage[*] verifiedRequirement;
+}
+
+class VerificationCaseDefinition extends CaseDefinition {
+	ref RequirementUsage[*] verifiedRequirement;
+}
+
+class UseCaseUsage extends CaseUsage {
+	ref UseCaseDefinition useCaseDefinition;
+	ref UseCaseUsage[*] includedUseCase;
+}
+
+class UseCaseDefinition extends CaseDefinition {
+	ref UseCaseUsage[*] includedUseCase;
+}
+
+class ViewUsage extends PartUsage {
+	op boolean[1] includeAsExposed(Element[1] element);
+	ref ViewDefinition viewDefinition;
+	ref ViewpointUsage[*] satisfiedViewpoint;
+	ref Element[*] exposedElement;
+	ref RenderingUsage viewRendering;
+	ref Expression[*] viewCondition;
+}
+
+class ViewDefinition extends PartDefinition {
+	ref ViewUsage[*] view;
+	ref ViewpointUsage[*] satisfiedViewpoint;
+	ref RenderingUsage viewRendering;
+	ref Expression[*] viewCondition;
+}
+
+class ViewpointUsage extends RequirementUsage {
+	ref ViewpointDefinition viewpointDefinition;
+	ref PartUsage[*] viewpointStakeholder;
+}
+
+class ViewpointDefinition extends RequirementDefinition {
+	ref PartUsage[*] viewpointStakeholder;
+}
+
+class RenderingUsage extends PartUsage {
+	ref RenderingDefinition renderingDefinition;
+}
+
+class RenderingDefinition extends PartDefinition {
+	ref RenderingUsage[*] rendering;
+}
+
+class MetadataUsage extends ItemUsage, MetadataFeature {
+	ref Metaclass metadataDefinition;
+}
+
+enum PortionKind {
+	timeslice = 0;
+	snapshot = 1;
+}
+
+class SubjectMembership extends ParameterMembership {
+	ref Usage[1] ownedSubjectParameter;
+}
+
+class RequirementConstraintMembership extends FeatureMembership {
+	attr RequirementConstraintKind[1] kind;
+	ref ConstraintUsage[1] ownedConstraint;
+	ref ConstraintUsage[1] referencedConstraint;
+}
+
+enum RequirementConstraintKind {
+	assumption = 0;
+	requirement = 1;
+}
+
+class StakeholderMembership extends ParameterMembership {
+	ref PartUsage[1] ownedStakeholderParameter;
+}
+
+class ActorMembership extends ParameterMembership {
+	ref PartUsage[1] ownedActorParameter;
+}
+
+class SatisfyRequirementUsage extends RequirementUsage, AssertConstraintUsage {
+	ref RequirementUsage[1] satisfiedRequirement;
+	ref Feature[1] satisfyingFeature;
+}
+
+class AssertConstraintUsage extends ConstraintUsage, Invariant {
+	ref ConstraintUsage[1] assertedConstraint;
+}
+
+class FramedConcernMembership extends RequirementConstraintMembership {
+	ref ConcernUsage[1] ownedConcern;
+	ref ConcernUsage[1] referencedConcern;
+}
+
+class EventOccurrenceUsage extends OccurrenceUsage {
+	ref OccurrenceUsage[1] eventOccurrence;
+}
+
+class ConjugatedPortTyping extends FeatureTyping {
+	ref PortDefinition[1] portDefinition;
+	ref ConjugatedPortDefinition[1] conjugatedPortDefinition;
+}
+
+class SuccessionAsUsage extends ConnectorAsUsage, Succession {
+}
+
+class FlowConnectionDefinition extends ConnectionDefinition, ActionDefinition, Interaction {
+}
+
+class BindingConnectorAsUsage extends ConnectorAsUsage, BindingConnector {
+}
+
+class SuccessionFlowConnectionUsage extends FlowConnectionUsage, SuccessionItemFlow {
+}
+
+class ObjectiveMembership extends FeatureMembership {
+	ref RequirementUsage[1] ownedObjectiveRequirement;
+}
+
+class ExhibitStateUsage extends StateUsage, PerformActionUsage {
+	ref StateUsage[1] exhibitedState;
+}
+
+class PerformActionUsage extends ActionUsage, EventOccurrenceUsage {
+	ref ActionUsage[1] performedAction;
+}
+
+enum TransitionFeatureKind {
+	trigger = 0;
+	guard = 1;
+	effect = 2;
+}
+
+class StateSubactionMembership extends FeatureMembership {
+	attr StateSubactionKind[1] kind;
+	ref ActionUsage[1] action;
+}
+
+enum StateSubactionKind {
+	entry = 0;
+	do = 1;
+	exit = 2;
+}
+
+class StateDefinition extends ActionDefinition {
+	ref StateUsage[*] state;
+	ref ActionUsage entryAction;
+	ref ActionUsage doAction;
+	ref ActionUsage exitAction;
+	attr boolean[1] isParallel = "false";
+}
+
+class TransitionFeatureMembership extends FeatureMembership {
+	attr TransitionFeatureKind[1] kind;
+	ref Step[1] transitionFeature;
+}
+
+class MembershipExpose extends MembershipImport, Expose {
+}
+
+abstract class Expose extends Import {
+}
+
+class ViewRenderingMembership extends FeatureMembership {
+	ref RenderingUsage[1] ownedRendering;
+	ref RenderingUsage[1] referencedRendering;
+}
+
+class NamespaceExpose extends NamespaceImport, Expose {
+}
+
+class RequirementVerificationMembership extends RequirementConstraintMembership {
+	ref RequirementUsage[1] ownedRequirement;
+	ref RequirementUsage[1] verifiedRequirement;
+}
+
+class MetadataDefinition extends ItemDefinition, Metaclass {
+}
+
+class IncludeUseCaseUsage extends UseCaseUsage, PerformActionUsage {
+	ref UseCaseUsage[1] useCaseIncluded;
+}
+
+abstract class LoopActionUsage extends ActionUsage {
+	ref ActionUsage[1] bodyAction;
+}
+
+class WhileLoopActionUsage extends LoopActionUsage {
+	ref Expression[1] whileArgument;
+	ref Expression untilArgument;
+}
+
+class SendActionUsage extends ActionUsage {
+	ref Expression receiverArgument;
+	ref Expression[1] payloadArgument;
+	ref Expression senderArgument;
+}
+
+enum TriggerKind {
+	when = 0;
+	at = 1;
+	after = 2;
+}
+
+class DecisionNode extends ControlNode {
+}
+
+abstract class ControlNode extends ActionUsage {
+	op boolean[1] multiplicityHasBounds(Multiplicity[1] mult, int[1] lower, int[1] upper);
+}
+
+class ForLoopActionUsage extends LoopActionUsage {
+	ref Expression[1] seqArgument;
+	ref ReferenceUsage[1] loopVariable;
+}
+
+class ForkNode extends ControlNode {
+}
+
+class TriggerInvocationExpression extends InvocationExpression {
+	attr TriggerKind[1] kind;
+}
+
+class MergeNode extends ControlNode {
+}
+
+class IfActionUsage extends ActionUsage {
+	ref ActionUsage elseAction;
+	ref ActionUsage[1] thenAction;
+	ref Expression[1] ifArgument;
+}
+
+class AssignmentActionUsage extends ActionUsage {
+	ref Expression targetArgument;
+	ref Expression valueExpression;
+	ref Feature[1] referent;
+}
+
+class JoinNode extends ControlNode {
+}
