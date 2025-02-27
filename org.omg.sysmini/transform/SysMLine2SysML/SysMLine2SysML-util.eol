@@ -1,0 +1,1652 @@
+/* Package */
+operation SysMLine!Package Package() : String {
+	return self.PrefixMetadataMember() + 
+			self.PackageDeclaration() + 
+			self.PackageBody();
+}
+
+operation SysMLine!LibraryPackage LibraryPackage() : String {
+	return self.isStandard() + 
+			"library".space() + 
+			self.PrefixMetadataMember() +
+			self.PackageDeclaration() + 
+			self.PackageBody();
+}
+
+/* Import */
+operation SysMLine!NamespaceImport NamespaceImport() : String {
+	return self.ImportPrefix() + 
+			self.ImportedNamespace() + 
+			self.FilterPackage();
+}
+
+operation SysMLine!MembershipImport MembershipImport() : String {
+	return self.ImportPrefix() + 
+			self.ImportedMembership();
+}
+
+operation SysMLine!NamespaceExpose NamespaceExpose() : String {
+	return self.ExposePrefix() + 
+			self.ImportedNamespace() + 
+			self.FilterPackage();
+}
+
+operation SysMLine!MembershipExpose MembershipExpose() : String {
+	return self.ExposePrefix() + 
+			self.ImportedMembership();
+}
+
+
+/* AnnotatingElement */
+operation SysMLine!Comment Comment() : String {
+	var str = "";
+	if (self.declaredName != null and self.declaredName != ""){
+		str += "comment".space();
+		str += self.declaredName.space(); 
+	}
+	if (self.annotation.size() > 0){
+		str += "about".space();
+		for (annotationString in self.annotation){
+			str += annotationString.space();
+			// TBD
+		}
+	}
+	if (self.locale != null){
+		str += "locale".space() + self.locale.space();
+	}
+	str += "/";
+	str += "*".space() + self.text;
+	str += "*/".space();
+	return str;
+}
+
+operation SysMLine!Documentation Documentation() : String {
+	var str = "";
+	str += "doc".space();
+	str += self.declaredName.space(); 
+	if (self.locale != null){
+		str += "locale".space() + self.locale.space();
+	}
+	str += "/";
+	str += "*".space() + self.text;
+	str += "*/".space();
+	return str;
+}
+
+operation SysMLine!TextualRepresentation TextualRepresentation() : String {
+	var str = "";
+	if (self.declaredName != null){
+		str += "rep".space();
+		str += self.declaredName.space(); 
+	}
+	if (self.language != null){
+		str += "language".space() + self.language.space();
+	}
+	str += "/";
+	str += "*".space() + self.text;
+	str += "*/".space();
+	return str;
+}
+
+
+/* Definitions */
+operation SysMLine!AttributeDefinition AttributeDefinition() : String {
+	return self.BasicDefinitionPrefix() + 
+			AttributeDefKeyword() + 
+			self.Definition();
+}
+
+operation SysMLine!EnumerationDefinition EnumerationDefinition() : String {
+	return self.DefinitionExtensionKeyword() + 
+			EnumerationDefKeyword() + 
+			self.DefinitionDeclaration() + 
+			self.EnumerationBody();
+}
+
+operation SysMLine!OccurrenceDefinition OccurrenceDefinition() : String {
+	return self.OccurrenceDefinitionPrefix() + 
+			OccurrenceDefKeyword() + 
+			self.Definition();
+}
+
+operation SysMLine!OccurrenceDefinition IndividualDefinition() : String {
+	return self.BasicDefinitionPrefix() + 
+			self.isIndividual() + 
+			self.DefinitionExtensionKeyword() + 
+			"def".space() + 
+			self.Definition() +
+			self.LifeClassMembership();
+}
+
+operation SysMLine!ItemDefinition ItemDefinition() : String {
+	return self.OccurrenceDefinitionPrefix() + 
+			ItemDefKeyword() + 
+			self.Definition();
+}
+
+operation SysMLine!MetadataDefinition MetadataDefinition() : String {
+	return self.isAbstract() + 
+			self.DefinitionExtensionKeyword() + 
+			MetadataDefKeyword() + 
+			self.Definition();
+}
+
+operation SysMLine!PartDefinition PartDefinition() : String {
+	return self.OccurrenceDefinitionPrefix() + 
+			PartDefKeyword() + 
+			self.Definition();
+}
+
+operation SysMLine!ConnectionDefinition ConnectionDefinition() : String {
+	return self.OccurrenceDefinitionPrefix() + 
+			ConnectionDefKeyword() + 
+			self.Definition();
+}
+
+operation SysMLine!FlowConnectionDefinition FlowConnectionDefinition() : String {
+	return self.OccurrenceDefinitionPrefix() + 
+			FlowConnectionDefKeyword() + 
+			self.Definition();
+}
+
+operation SysMLine!InterfaceDefinition InterfaceDefinition() : String {
+	return self.OccurrenceDefinitionPrefix() +
+			InterfaceDefKeyword() + 
+			self.DefinitionDeclaration() + 
+			self.InterfaceBody();
+}
+
+operation SysMLine!AllocationDefinition AllocationDefinition() : String {
+	return self.OccurrenceDefinitionPrefix() + 
+			AllocationDefKeyword() + 
+			self.Definition();
+}
+
+operation SysMLine!PortDefinition PortDefinition() : String {
+	return self.DefinitionPrefix() + 
+			PortDefKeyword() + 
+			self.Definition() +
+			self.ConjugatedPortDefinitionMember();
+}
+
+operation SysMLine!ActionDefinition ActionDefinition() : String {
+	return self.OccurrenceDefinitionPrefix() + 
+			ActionDefKeyword() + 
+			self.DefinitionDeclaration() + 
+			self.ActionBody();
+}
+
+operation SysMLine!CalculationDefinition CalculationDefinition() : String {
+	return self.OccurrenceDefinitionPrefix() + 
+			CalculationDefKeyword() + 
+			self.DefinitionDeclaration() + 
+			self.CalculationBody();
+}
+
+operation SysMLine!StateDefinition StateDefinition() : String {
+	return self.OccurrenceDefinitionPrefix() + 
+			StateDefKeyword() + 
+			self.DefinitionDeclaration() + 
+			self.StateDefBody();
+}
+
+operation SysMLine!ConstraintDefinition ConstraintDefinition() : String {
+	return self.OccurrenceDefinitionPrefix() + 
+			ConstraintDefKeyword() + 
+			self.DefinitionDeclaration() + 
+			self.CalculationBody();
+}
+
+operation SysMLine!RequirementDefinition RequirementDefinition() : String {
+	return self.OccurrenceDefinitionPrefix() + 
+			RequirementDefKeyword() + 
+			self.DefinitionDeclaration() +
+			self.RequirementBody();
+}
+
+operation SysMLine!ConcernDefinition ConcernDefinition() : String {
+	return self.OccurrenceDefinitionPrefix() + 
+			ConcernDefKeyword() + 
+			self.DefinitionDeclaration() + 
+			self.RequirementBody();
+}
+
+operation SysMLine!CaseDefinition CaseDefinition() : String {
+	return self.OccurrenceDefinitionPrefix() + 
+			CaseDefKeyword() + 
+			self.DefinitionDeclaration() + 
+			self.CaseBody();
+}
+
+operation SysMLine!AnalysisCaseDefinition AnalysisCaseDefinition() : String {
+	return self.OccurrenceDefinitionPrefix() + 
+			AnalysisCaseDefKeyword() + 
+			self.DefinitionDeclaration() + 
+			self.CaseBody();
+}
+
+operation SysMLine!VerificationCaseDefinition VerificationCaseDefinition() : String {
+	return self.OccurrenceDefinitionPrefix() + 
+			VerificationCaseDefKeyword() + 
+			self.DefinitionDeclaration() + 
+			self.CaseBody();
+}
+
+operation SysMLine!UseCaseDefinition UseCaseDefinition() : String {
+	return self.OccurrenceDefinitionPrefix() + 
+			UseCaseDefKeyword() + 
+			self.DefinitionDeclaration() + 
+			self.CaseBody();
+}
+
+operation SysMLine!ViewDefinition ViewDefinition() : String {
+	return self.OccurrenceDefinitionPrefix() + 
+			ViewDefKeyword() + 
+			self.DefinitionDeclaration() +
+			self.ViewDefinitionBody();
+}
+
+operation SysMLine!ViewpointDefinition ViewpointDefinition() : String {
+	return self.OccurrenceDefinitionPrefix() + 
+			ViewpointDefKeyword() + 
+			self.DefinitionDeclaration() +
+			self.RequirementBody();
+}
+
+operation SysMLine!RenderingDefinition RenderingDefinition() : String {
+	return self.OccurrenceDefinitionPrefix() + 
+			RenderingDefKeyword() + 
+			self.Definition();
+}
+
+
+/* Usage */
+/* Usage(NonOccurrenceUsageElement) */
+operation SysMLine!ReferenceUsage ReferenceUsage() : String {
+	if (self.ReferenceUsageType == "DefaultReferenceUsage"){
+		return self.RefPrefix() + 
+				self.UsageDeclaration() + 
+				self.ValuePart() + 
+				self.UsageBody();
+	}
+	else if (self.ReferenceUsageType == "VariantReference"){
+		return self.declaredName.space() + 
+				self.featureSpecialization.getSequence().space() + 
+				self.UsageBody();
+	}
+	else if (self.ReferenceUsageType == "ReferenceUsage"){
+		return self.RefPrefix() + 
+				ReferenceUsageKeyword() + 
+				self.Usage();
+	}
+	else if (self.ReferenceUsageType == "MetadataBodyUsage"){
+		return self.declaredName.space() + 
+				self.FeatureSpecializationPart() + 
+				self.ValuePart() + 
+				self.MetadataBody();
+	}
+	else if (self.ReferenceUsageType == "SubjectUsage"){
+		return "subject".space() + 
+				self.UsageExtensionKeyword() + 
+				self.Usage();
+	}
+}
+
+operation SysMLine!AttributeUsage AttributeUsage() : String {
+	return self.UsagePrefix() +
+			AttributeUsageKeyword() + 
+			self.Usage();
+}
+
+operation SysMLine!EnumerationUsage EnumerationUsage() : String {
+	return self.UsagePrefix() +
+			EnumerationUsageKeyword() + 
+			self.Usage();
+}
+
+operation SysMLine!BindingConnectorAsUsage BindingConnectorAsUsage() : String {
+	var str = "";
+	str += self.UsagePrefix();
+	if (self.declaredName != null and self.declaredName != ""){
+		str += BindingKeyword();
+		str += self.UsageDeclaration();
+	}
+	str += "bind".space();
+	str += self.connectorEndMember.first().space();
+	str += "=".space();
+	str += self.connectorEndMember.second().space();
+	str += self.DefinitionBody();
+	return str;
+}
+
+operation SysMLine!SuccessionAsUsage SuccessionAsUsage() : String {
+// TBD
+	var str = "";
+	if (self.SuccessionType == "SuccessionAsUsage"){
+		str += self.UsagePrefix();
+		if (self.declaredName != null and self.declaredName != ""){
+			str += SuccessionKeyword();
+			str += self.UsageDeclaration();
+		}
+		str += "first".space();
+		str += self.connectorEndMember.first().space();
+		str += "then".space();
+		str += self.connectorEndMember.second().space();
+		str += self.DefinitionBody();
+	}
+	return str;
+}
+
+operation SysMLine!Usage ExtendedUsage() : String {
+	return self.BasicUsagePrefix() +
+			self.UsageExtensionKeyword() + 
+			self.Usage();
+}
+
+/* Usage(OccurrenceUsageElement/StructureUsageElement) */
+operation SysMLine!OccurrenceUsage OccurrenceUsage() : String {
+	return self.OccurrenceUsagePrefix() + 
+			OccurrenceUsageKeyword() + 
+			self.Usage();
+}
+
+operation SysMLine!EventOccurrenceUsage EventOccurrenceUsage() : String {
+	if (self.isExtendKeyWord){
+		return self.OccurrenceUsagePrefix() + 
+			'event'.space() + 
+			'occurrence'.space() +
+			self.UsageDeclaration() + 
+			self.UsageCompletion();
+	}
+	else{
+		return self.OccurrenceUsagePrefix() + 
+			'event'.space() + 
+			self.declaredName.space() +
+			self.featureSpecialization.getSequence().space() + 
+			self.UsageCompletion();
+	}
+}
+
+operation SysMLine!ItemUsage ItemUsage() : String {
+	return self.OccurrenceUsagePrefix() + 
+			ItemUsageKeyword() + 
+			self.Usage();
+}
+
+operation SysMLine!PartUsage PartUsage() : String {
+	return self.OccurrenceUsagePrefix() + 
+			PartUsageKeyword() + 
+			self.Usage();
+}
+
+operation SysMLine!ViewUsage ViewUsage() : String {
+	return self.OccurrenceUsagePrefix() + 
+			ViewUsageKeyword() + 
+			self.UsageDeclaration() + 
+			self.ValuePart() + 
+			self.ViewBody();
+}
+
+operation SysMLine!RenderingUsage RenderingUsage() : String {
+	if (self.RenderingUsageType == "ViewRenderingUsage"){
+// TBD
+		if (self.declaredName != null and self.declaredName != ""){
+			return "";
+		}
+		else{
+			return "";
+		}
+	}
+	else if (self.RenderingUsageType == "RenderingUsage"){
+		return self.OccurrenceUsagePrefix() + 
+			RenderingUsageKeyword() + 
+			self.Usage();
+	}
+}
+
+operation SysMLine!PortUsage PortUsage() : String {
+	return self.OccurrenceUsagePrefix() + 
+			PortUsageKeyword() + 
+			self.Usage();
+}
+
+operation SysMLine!ConnectionUsage ConnectionUsage() : String {
+	var str = "";
+	str += self.OccurrenceUsagePrefix();
+	if (self.declaredName != null and self.declaredName != ""){
+		str += ConnectionUsageKeyword();
+	}
+	str += self.UsageDeclaration();
+	str += self.ValuePart();
+	if (self.connectorPart.size() > 1){
+		str += ConnectorKeyword();
+		str += self.connectorPart.asSequence().getConnectorPartString();
+	}
+	str += self.UsageBody();
+	return str;
+}
+
+operation SysMLine!InterfaceUsage InterfaceUsage() : String {
+	var str = "";
+	str += self.OccurrenceUsagePrefix();
+	str += InterfaceKeyword();
+	str += self.UsageDeclaration();
+	if (self.interfacePart.size() > 1){
+		str += ConnectorKeyword();
+		str += self.interfacePart.asSequence().getConnectorPartString();
+	}
+	str += self.InterfaceBody();
+	return str;
+}
+
+operation SysMLine!AllocationUsage AllocationUsage() : String {
+	var str = "";
+	str += self.OccurrenceUsagePrefix();
+	if (self.declaredName != null and self.declaredName != ""){
+		str += AllocationKeyword();
+		str += self.UsageDeclaration();
+	}
+	if (self.connectorPart.size() > 1){
+		str += AllocateKeyword();
+		str += self.connectorPart.asSequence().getConnectorPartString();
+	}
+	str += self.UsageBody();
+	return str;
+}
+
+operation SysMLine!FlowConnectionUsage FlowConnectionUsage() : String {
+	if (self.note == "Message"){
+		return self.OccurrenceUsagePrefix() + 
+				MessageKeyword() + 
+				self.MessageDeclaration() + 
+				self.DefinitionBody();
+	}
+	else if (self.note == "FlowConnectionUsage"){
+		return self.OccurrenceUsagePrefix() + 
+				FlowConnectionKeyword() + 
+				self.FlowConnectionDeclaration() + 
+				self.DefinitionBody();
+	}
+}
+
+operation SysMLine!SuccessionFlowConnectionUsage SuccessionFlowConnectionUsage() : String {
+	return self.OccurrenceUsagePrefix() + 
+			SuccessionKeyword() + 
+			FlowConnectionKeyword() + 
+			self.FlowConnectionDeclaration() +
+			self.DefinitionBody();
+}
+
+/* Usage(OccurrenceUsageElement/BehaviorUsageElement) */
+operation SysMLine!ActionUsage ActionUsage() : String {
+	return self.OccurrenceUsagePrefix() + 
+			ActionUsageKeyword() + 
+			self.ActionUsageDeclaration() + 
+			self.ActionBody();
+}
+
+operation SysMLine!CalculationUsage CalculationUsage() : String {
+	return self.OccurrenceUsagePrefix() + 
+			CalculationUsageKeyword() + 
+			self.ActionUsageDeclaration() + 
+			self.CalculationBody();
+}
+
+operation SysMLine!StateUsage StateUsage() : String {
+	return self.OccurrenceUsagePrefix() + 
+			StateUsageKeyword() + 
+			self.ActionUsageDeclaration() + 
+			self.StateUsageBody();
+}
+
+operation SysMLine!ConstraintUsage ConstraintUsage() : String {
+	return self.RequirementConstraintMembershipKind.space();
+			self.OccurrenceUsagePrefix() + 
+			ConstraintUsageKeyword() + 
+			self.ConstraintUsageDeclaration() + 
+			self.CalculationBody();
+}
+
+operation SysMLine!RequirementUsage RequirementUsage() : String {
+	return self.OccurrenceUsagePrefix() + 
+			RequirementUsageKeyword() + 
+			self.ConstraintUsageDeclaration() + 
+			self.RequirementBody();
+}
+
+operation SysMLine!ConcernUsage ConcernUsage() : String {
+	return self.OccurrenceUsagePrefix() + 
+			ConcernUsageKeyword() + 
+			self.ConstraintUsageDeclaration() + 
+			self.RequirementBody();
+}
+
+operation SysMLine!CaseUsage CaseUsage() : String {
+	return self.OccurrenceUsagePrefix() + 
+			CaseUsageKeyword() + 
+			self.ActionUsageDeclaration() + 
+			self.CaseBody();
+}
+
+operation SysMLine!AnalysisCaseUsage AnalysisCaseUsage() : String {
+	return self.OccurrenceUsagePrefix() + 
+			AnalysisCaseUsageKeyword() + 
+			self.ActionUsageDeclaration() + 
+			self.CaseBody();
+}
+
+operation SysMLine!VerificationCaseUsage VerificationCaseUsage() : String {
+	return self.OccurrenceUsagePrefix() + 
+			VerificationCaseUsageKeyword() + 
+			self.ActionUsageDeclaration() + 
+			self.CaseBody();
+}
+
+operation SysMLine!UseCaseUsage UseCaseUsage() : String {
+	return self.OccurrenceUsagePrefix() + 
+			UseCaseUsageKeyword() + 
+			self.ActionUsageDeclaration() + 
+			self.CaseBody();
+}
+
+operation SysMLine!ViewpointUsage ViewpointUsage() : String {
+	return self.OccurrenceUsagePrefix() + 
+			ViewpointUsageKeyword() + 
+			self.ConstraintUsageDeclaration() + 
+			self.RequirementBody();
+}
+
+operation SysMLine!PerformActionUsage PerformActionUsage() : String {
+	if (self.isExtendKeyWord){
+		return self.OccurrenceUsagePrefix() + 
+			'perform'.space() + 
+			'action'.space() +
+			self.UsageDeclaration() + 
+			self.ValuePart() + 
+			self.ActionBody();
+	}
+	else{
+		return self.OccurrenceUsagePrefix() + 
+			'perform'.space() + 
+			self.declaredName.space() +
+			self.featureSpecialization.getSequence().space() + 
+			self.ValuePart() + 
+			self.ActionBody();
+	}
+}
+
+operation SysMLine!ExhibitStateUsage ExhibitStateUsage() : String {
+	if (self.isExtendKeyWord){
+		return self.OccurrenceUsagePrefix() + 
+			'exhibit'.space() + 
+			'state'.space() +
+			self.UsageDeclaration() + 
+			self.ValuePart() + 
+			self.StateUsageBody();
+	}
+	else{
+		return self.OccurrenceUsagePrefix() + 
+			'exhibit'.space() + 
+			self.declaredName.space() +
+			self.featureSpecialization.getSequence().space() + 
+			self.ValuePart() + 
+			self.StateUsageBody();
+	}
+}
+
+operation SysMLine!IncludeUseCaseUsage IncludeUseCaseUsage() : String {
+	if (self.isExtendKeyWord){
+		return self.OccurrenceUsagePrefix() + 
+			'include'.space() + 
+			'use case'.space() +
+			self.UsageDeclaration() + 
+			self.ValuePart() + 
+			self.CaseBody();
+	}
+	else{
+		return self.OccurrenceUsagePrefix() + 
+			'include'.space() + 
+			self.declaredName.space() +
+			self.featureSpecialization.getSequence().space() + 
+			self.ValuePart() + 
+			self.CaseBody();
+	}
+}
+
+operation SysMLine!AssertConstraintUsage AssertConstraintUsage() : String {
+	var str = "";
+	str += self.OccurrenceUsagePrefix();
+	str += "assert".space();
+	str += self.isNegated();
+	if (self.notConstraintUsageKeyword){
+		str += self.declaredName.space();
+		str += self.featureSpecialization.getSequence().space();
+	}
+	else{
+		str += ConstraintUsageKeyword();
+		str += self.ConstraintUsageDeclaration();
+	}
+	str += self.CalculationBody();
+	return str;
+}
+
+operation SysMLine!SatisfyRequirementUsage SatisfyRequirementUsage() : String {
+	var str = "";
+	str += self.OccurrenceUsagePrefix();
+	str += self.isNegated();
+	str += "satisfy".space();
+	if (self.notConstraintUsageKeyword){
+		str += self.declaredName.space();
+		str += self.featureSpecialization.getSequence().space();
+	}
+	else{
+		str += RequirementUsageKeyword();
+		str += self.UsageDeclaration();
+	}
+	str += self.ValuePart();
+	if (self.satisfactionSubjectMember != null and self.satisfactionSubjectMember != ""){
+		str += "by".space();
+		str += self.satisfactionSubjectMember.space();
+	}
+	str += self.RequirementBody();
+	return str;
+}
+
+/* Others */
+operation SysMLine!Dependency Dependency() : String {
+	var str = "";
+	str += self.PrefixMetadataMember();
+	str += "dependency".space();
+	if (self.declaredName != null and self.declaredName != ""){
+		str += self.Identification();
+		str += "from".space();
+	}
+	str += self.client.asSequence().getDependencyObject().space();
+	str += "to".space();
+	str += self.supplier.asSequence().getDependencyObject().space();
+	str += self.RelationshipBody();
+	return str;
+}
+
+operation SysMLine!ElementFilterMembership ElementFilterMembership() : String {
+	return self.MemberPrefix() + 
+			"filter".space() + 
+			self.ElementFilterText.space();
+}
+
+operation SysMLine!Membership Membership() : String {
+	if (self.MembershipType == "InitialNodeMember"){
+		return self.MemberPrefix() + 
+				"first".space() + 
+				self.declaredName.space() + 
+				self.RelationshipBody();
+	}
+	else if (self.MembershipType == "AliasMember"){
+		return self.MemberPrefix() + 
+				"alias".space() + 
+				self.memberShortName() + 
+				self.memberName() + 
+				"for".space() + 
+				self.declaredName.space() + 
+				self.RelationshipBody();
+	}
+}
+
+operation SysMLine!MetadataUsage MetadataUsage() : String {
+	var str = "";
+	str += self.UsageExtensionKeyword();
+	str += "@";
+	str += self.MetadataUsageDeclaration();
+	if (self.annotatedElement.size() > 0){
+		str += "about".space();
+		for (annotation in self.annotatedElement){
+			str += annotation;
+			str += ",".space();
+		}
+		str = str.substring(0, str.length()-2);
+	}
+	str += self.MetadataBody();
+	return str;
+}
+
+operation SysMLine!MergeNode MergeNode() : String {
+	return self.ControlNodePrefix() +
+			"merge".space() + 
+			self.UsageDeclaration() + 
+			self.ActionNodeBody();
+}
+
+operation SysMLine!DecisionNode DecisionNode() : String {
+	return self.ControlNodePrefix() +
+			"decide".space() + 
+			self.UsageDeclaration() + 
+			self.ActionNodeBody();
+}
+
+operation SysMLine!JoinNode JoinNode() : String {
+	return self.ControlNodePrefix() +
+			"join".space() + 
+			self.UsageDeclaration() + 
+			self.ActionNodeBody();
+}
+
+operation SysMLine!ForkNode ForkNode() : String {
+	return self.ControlNodePrefix() +
+			"fork".space() + 
+			self.UsageDeclaration() + 
+			self.ActionNodeBody();
+}
+
+operation SysMLine!WhileLoopActionUsage WhileLoopActionUsage() : String {
+// TBD
+	return "[WhileLoopActionUsage]";
+}
+
+operation SysMLine!ForLoopActionUsage ForLoopActionUsage() : String {
+// TBD
+	return "[ForLoopActionUsage]";
+}
+
+operation SysMLine!OperatorExpression OperatorExpression() : String {
+	return self.valuePart;
+}
+
+operation SysMLine!SendActionUsage SendActionUsage() : String {
+	var str = "";
+	str += self.ActionNodeUsageDeclaration();
+	str += "send".space();
+	str += self.NodeParameterMember.first().space();
+	if (self.NodeParameterMember.second() != ""){
+		str += "via".space();
+		str += self.NodeParameterMember.second().space();
+	}
+	if (self.NodeParameterMember.third() != ""){
+		str += "to".space();
+		str += self.NodeParameterMember.third().space();
+	}
+	return str;
+}
+
+/* Def Key Word*/
+operation RenderingDefKeyword() : String {
+	return RenderingKeyword() + "def".space();
+}
+
+operation ViewpointDefKeyword() : String {
+	return ViewpointKeyword() + "def".space();
+}
+
+operation ViewDefKeyword() : String {
+	return ViewKeyword() + "def".space();
+}
+
+operation UseCaseDefKeyword() : String {
+	return UseCaseKeyword() + "def".space();
+}
+
+operation VerificationCaseDefKeyword() : String {
+	return VerificationCaseKeyword() + "def".space();
+}
+
+operation AnalysisCaseDefKeyword() : String {
+	return AnalysisCaseKeyword() + "def".space();
+}
+
+operation CaseDefKeyword() : String {
+	return CaseKeyword() + "def".space();
+}
+
+operation ConcernDefKeyword() : String {
+	return ConcernKeyword() + "def".space();
+}
+
+operation RequirementDefKeyword() : String {
+	return RequirementKeyword() + "def".space();
+}
+
+operation ConstraintDefKeyword() : String {
+	return ConstraintKeyword() + "def".space();
+}
+
+operation StateDefKeyword() : String {
+	return StateKeyword() + "def".space();
+}
+
+operation CalculationDefKeyword() : String {
+	return CalculationKeyword() + "def".space();
+}
+
+operation ActionDefKeyword() : String {
+	return ActionKeyword() + "def".space();
+}
+
+operation PortDefKeyword() : String {
+	return PortKeyword() + "def".space();
+}
+
+operation AllocationDefKeyword() : String {
+	return AllocationKeyword() + "def".space();
+}
+
+operation InterfaceDefKeyword() : String {
+	return InterfaceKeyword() + "def".space();
+}
+
+operation FlowConnectionDefKeyword() : String {
+	return FlowConnectionKeyword() + "def".space();
+}
+
+operation ConnectionDefKeyword() : String {
+	return ConnectionKeyword() + "def".space();
+}
+
+operation EnumerationDefKeyword() : String {
+	return EnumerationKeyword() + "def".space();
+}
+
+operation OccurrenceDefKeyword() : String {
+	return OccurrenceKeyword() + "def".space();
+}
+
+operation MetadataDefKeyword() : String {
+	return MetadataKeyword() + "def".space();
+}
+
+operation ItemDefKeyword() : String {
+	return ItemKeyword() + "def".space();
+}
+
+operation AttributeDefKeyword() : String {
+	return AttributeKeyword() + "def".space();
+}
+
+operation PartDefKeyword() : String {
+	return PartKeyword()+"def".space();
+}
+
+
+/* Usage Key Word*/
+operation ReferenceUsageKeyword() : String {
+	return ReferenceKeyword();
+}
+
+operation AttributeUsageKeyword() : String {
+	return AttributeKeyword();
+}
+
+operation EnumerationUsageKeyword() : String {
+	return EnumerationKeyword();
+}
+
+operation OccurrenceUsageKeyword() : String {
+	return OccurrenceKeyword();
+}
+
+operation ItemUsageKeyword() : String {
+	return ItemKeyword();
+}
+
+operation PartUsageKeyword() : String {
+	return PartKeyword();
+}
+
+operation PortUsageKeyword() : String {
+	return PortKeyword();
+}
+
+operation ConnectionUsageKeyword() : String {
+	return ConnectionKeyword();
+}
+
+operation InterfaceUsageKeyword() : String {
+	return InterfaceKeyword();
+}
+
+operation AllocationUsageKeyword() : String {
+	return AllocationKeyword();
+}
+
+operation ActionUsageKeyword() : String {
+	return ActionKeyword();
+}
+
+operation StateUsageKeyword() : String {
+	return StateKeyword();
+}
+
+operation TransitionUsageKeyword() : String {
+	return "transition".space();
+}
+
+operation CalculationUsageKeyword() : String {
+	return CalculationKeyword();
+}
+
+operation ConstraintUsageKeyword() : String {
+	return ConstraintKeyword();
+}
+
+operation RequirementUsageKeyword() : String {
+	return RequirementKeyword();
+}
+
+operation ConcernUsageKeyword() : String {
+	return ConcernKeyword();
+}
+
+operation CaseUsageKeyword() : String {
+	return CaseKeyword();
+}
+
+operation ViewpointUsageKeyword() : String {
+	return ViewpointKeyword();
+}
+
+operation AnalysisCaseUsageKeyword() : String {
+	return AnalysisCaseKeyword();
+}
+
+operation VerificationCaseUsageKeyword() : String {
+	return VerificationCaseKeyword();
+}
+
+operation UseCaseUsageKeyword() : String {
+	return UseCaseKeyword();
+}
+
+operation ViewUsageKeyword() : String {
+	return ViewKeyword();
+}
+
+operation RenderingUsageKeyword() : String {
+	return RenderingKeyword();
+}
+
+
+/* Key Word*/
+operation SpecializesKeyword() : String {
+	return ":>".space();
+}
+
+operation ReferenceKeyword() : String {
+	return "ref".space();
+}
+
+operation RenderingKeyword() : String {
+	return "rendering".space();
+}
+
+operation BindingKeyword() : String {
+	return "binding".space();
+}
+
+operation ViewpointKeyword() : String {
+	return "viewpoint".space();
+}
+
+operation ViewKeyword() : String {
+	return "view".space();
+}
+
+operation UseCaseKeyword() : String {
+	return "use case".space();
+}
+
+operation VerificationCaseKeyword() : String {
+	return "verification".space();
+}
+
+operation AnalysisCaseKeyword() : String {
+	return "analysis".space();
+}
+
+operation CaseKeyword() : String {
+	return "case".space();
+}
+
+operation ConcernKeyword() : String {
+	return "concern".space();
+}
+
+operation RequirementKeyword() : String {
+	return "requirement".space();
+}
+
+operation ConstraintKeyword() : String {
+	return "constraint".space();
+}
+
+operation StateKeyword() : String {
+	return "state".space();
+}
+
+operation CalculationKeyword() : String {
+	return "calc".space();
+}
+
+operation ActionKeyword() : String {
+	return "action".space();
+}
+
+operation PortKeyword() : String {
+	return "port".space();
+}
+
+operation AllocationKeyword() : String {
+	return "allocation".space();
+}
+
+operation InterfaceKeyword() : String {
+	return "interface".space();
+}
+
+operation AllocateKeyword() : String {
+	return "allocate".space();
+}
+
+operation FlowConnectionKeyword() : String {
+	return "flow".space();
+}
+
+operation MessageKeyword() : String {
+	return "message".space();
+}
+
+operation SuccessionKeyword() : String {
+	return "succession".space();
+}
+
+operation ConnectorKeyword() : String {
+	return "connect".space();
+}
+
+operation ConnectionKeyword() : String {
+	return "connection".space();
+}
+
+operation MetadataKeyword() : String {
+	return "metadata".space();
+}
+
+operation OccurrenceKeyword() : String {
+	return "occurrence".space();
+}
+
+operation EnumerationKeyword() : String {
+	return "enum".space();
+}
+
+operation ItemKeyword() : String {
+	return "item".space();
+}
+
+operation AttributeKeyword() : String {
+	return "attribute".space();
+}
+
+operation PartKeyword() : String {
+	return "part".space();
+}
+
+operation DefinedByKeyword() : String {
+	return ":".space();
+}
+
+/* Others */
+operation SysMLine!OccurrenceUsage OccurrenceUsagePrefix() : String {
+	return self.BasicUsagePrefix() + 
+			self.isIndividual() + 
+			self.portionKind() + 
+			self.UsageExtensionKeyword();
+}
+
+operation Sequence getConnectorPartString() : String{
+	var str = "";
+	if (self.size() == 2){
+		str += self.at(0).space();
+		str += "to".space();
+		str += self.at(1).space();
+	}
+	else if (self.size() > 2){
+		str += "(".space();
+		for (c in self){
+			str += c;
+			str += ",".space();
+		}
+		str = str.substring(0, str.length()-2);
+		str += ")".space();
+	}
+	return str;
+}
+
+operation Sequence getDependencyObject() : String{
+	var str = "";
+	if (self.size() == 1){
+		str = self.first();
+	}
+	else if (self.size() > 1){
+		for (c in self){
+			str += c;
+			str += ",".space();
+		}
+		str = str.substring(0, str.length()-2);
+	}
+	return str;
+}
+
+operation SysMLine!FlowConnectionUsage MessageDeclaration(){
+	return self.FlowConnectionDeclaration();
+}
+
+operation SysMLine!FlowConnectionUsage FlowConnectionDeclaration(){
+	var str = "";
+	str += self.UsageDeclaration();
+	str += self.ValuePart();
+	if (self.itemFeature != null){
+		str += "of".space() + self.itemFeature;
+	}
+	str += "from".space();
+	str += self.source.space();
+	str += "to".space();
+	str += self.target.space();
+	return str;
+}
+
+operation SysMLine!Element PrefixMetadataMember() : String {
+	return self.prefixMetadata.space();
+}
+
+operation SysMLine!Package PackageDeclaration() : String {
+	return "package".space() + self.Identification();
+}
+
+operation SysMLine!Package PackageBody() : String {
+	if (self.body.size() == 0){
+		return "{}";
+	}
+	return "";
+}
+
+operation SysMLine!Import ImportedMembership() : String {
+	if (self.isRecursive){
+		return (self.declaredName+"::**").space();
+	}
+	else{
+		return (self.declaredName+"::*").space();
+	}
+}
+
+operation SysMLine!Import ImportedNamespace() : String {
+	if (self.isRecursive){
+		return (self.declaredName+"::**").space();
+	}
+	else{
+		return (self.declaredName+"::*").space();
+	}
+}
+
+operation SysMLine!Import ImportPrefix() : String {
+	return self.VisibilityIndicator() + 
+			"import".space() + 
+			self.isImportAll();
+}
+
+operation SysMLine!Import ExposePrefix() : String {
+	return self.VisibilityIndicator()  + 
+			"expose".space();
+}
+
+operation SysMLine!Element VisibilityIndicator() : String {
+	return self.visibility.name.space();
+}
+
+operation SysMLine!Definition LifeClassMembership() : String {
+	return "";
+}
+
+operation SysMLine!Element FilterPackage() : String {
+	// TBD
+	return "";
+}
+
+operation SysMLine!Definition ConjugatedPortDefinitionMember() : String {
+	return "";
+}
+
+operation SysMLine!Definition DefinitionPrefix() : String {
+	return self.BasicDefinitionPrefix() + 
+			self.DefinitionExtensionKeyword();
+}
+
+operation SysMLine!Definition BasicDefinitionPrefix(): String {
+	return self.isAbstract() + self.isVariation();
+}
+
+operation SysMLine!Definition DefinitionExtensionKeyword() : String {
+	return self.prefixMetadata.space();
+}
+
+operation SysMLine!OccurrenceDefinition OccurrenceDefinitionPrefix() : String {
+	return self.BasicDefinitionPrefix() + 
+			self.isIndividual() + 
+			self.LifeClassMembership() + 
+			self.DefinitionExtensionKeyword();
+}
+
+operation SysMLine!Definition Definition() : String {
+	return self.DefinitionDeclaration() + 
+			self.DefinitionBody();
+}
+
+operation SysMLine!Usage Usage() : String {
+	return self.UsageDeclaration() + 
+			self.UsageCompletion();
+}
+
+operation SysMLine!Usage UsageDeclaration() : String {
+	return self.FeatureDeclaration();
+}
+
+operation SysMLine!ActionUsage ActionNodeUsageDeclaration() : String {
+	return ActionUsageKeyword() + 
+			self.UsageDeclaration();
+}
+
+operation SysMLine!MetadataUsage MetadataUsageDeclaration() : String {
+	var str = "";
+	str += self.Identification();
+	if (self.declaredName != null and self.declaredName != ""){
+		str += DefinedByKeyword();
+	}
+	str += self.prefixMetadata.space();
+	return str;
+}
+
+operation SysMLine!ActionUsage ActionUsageDeclaration() : String {
+	return self.UsageDeclaration() +
+			self.ValuePart();
+}
+
+operation SysMLine!ConstraintUsage ConstraintUsageDeclaration() : String {
+	return self.UsageDeclaration() +
+			self.ValuePart();
+}
+
+operation SysMLine!Feature FeatureDeclaration() : String {
+	return self.Identification() + 
+			self.FeatureSpecializationPart();
+}
+
+operation SysMLine!Feature FeatureSpecializationPart() : String {
+	var str = "";
+	if (self.featureNote.size() > 1){
+		str += self.multiplicityRange.space();
+	}
+	if (self.featureNote.size() != 0){
+		for (i in 1.to(self.featureNote.size())){
+			str += self.featureNote.at(i-1).space();
+			str += self.featureSpecialization.at(i-1).space();
+		}
+	}
+	if (self.featureNote.size() == 1){
+		str += self.multiplicityRange.space();
+	}
+	return str;
+}
+
+operation Any getSequence(): String{
+	if (self != null and self.size() != 0){
+		var str = "";
+		for (s in self){
+			str += s;
+			str += ",";
+		}
+		return str.subString(0, str.length()-1);
+	}
+	else{
+		return "";
+	}
+}
+
+operation SysMLine!Usage UsageCompletion() : String {
+	return self.ValuePart() + 
+			self.UsageBody();
+}
+
+operation SysMLine!Feature ValuePart() : String {
+	if (self.valuePart != null and self.valuePart != ""){
+		var str = "";
+		if (self.isInitial){
+			str += ":=".space();
+		}
+		else if (self.isDefault){
+			str += "default".space();
+		}
+		else{
+			str += "=".space();
+//			str += ":".space();
+		}
+		str += self.valuePart.space();
+		return str;
+	}
+	else{
+		return "";
+	}
+}
+
+operation SysMLine!Usage UsageBody() : String {
+	return self.DefinitionBody();
+}
+
+operation SysMLine!ViewUsage ViewBody() : String {
+	return "";
+}
+
+operation SysMLine!Usage UsagePrefix() : String {
+	return self.BasicUsagePrefix() + 
+			self.UsageExtensionKeyword();
+}
+
+operation SysMLine!Usage UsageExtensionKeyword() : String {
+	return self.prefixMetadata.space();
+}
+
+operation SysMLine!Usage BasicUsagePrefix() : String {
+	return self.RefPrefix() + 
+			self.isReference();
+}
+
+operation SysMLine!Usage RefPrefix() : String {
+	return self.isReturn() + 
+			self.featureDirection() + 
+			self.isAbstract() + 
+			self.isVariation() + 
+			self.isReadOnly() + 
+			self.isDerived() +
+			self.isEnd();
+}
+
+operation SysMLine!Definition DefinitionDeclaration() : String {
+	return self.Identification() + 
+			self.SubclassificationPart();
+}
+
+operation SysMLine!Membership MemberPrefix() : String {
+	return self.VisibilityIndicator();
+}
+
+operation SysMLine!Element Identification() : String {
+	var str = "";
+	if (self.declaredShortName != null){
+		str += "<"+self.declaredShortName+">".space();
+	}
+	if (self.declaredName != null) {
+//		str += self.declaredName.space();
+		str += self.declaredName.withQuotationMarks().space();
+	}
+	return str;
+}
+
+operation Any withQuotationMarks(){
+	if (self == null){
+		return "";
+	}
+	else{
+		var n = self.split(" ");
+		if (n.size() > 1){
+			return "'"+self+"'";
+		}
+		else{
+			return self;
+		}
+	}
+}
+
+operation SysMLine!OccurrenceUsage ControlNodePrefix() : String {
+	return self.RefPrefix() + 
+			self.isIndividual() + 
+			self.portionKind() + 
+			self.UsageExtensionKeyword();
+}
+
+operation SysMLine!Membership memberShortName(){
+	if (self.memberShortName != null and self.memberShortName != ""){
+		return ("<" + self.memberShortName + ">").space();
+	}
+	else{
+		return "";
+	}
+}
+
+operation SysMLine!Membership memberName(){
+	if (self.memberName != null and self.memberName != ""){
+		return self.memberName.space();
+	}
+	else{
+		return "";
+	}
+}
+
+operation SysMLine!Type MetadataBody() : String {
+	return "";
+}
+
+operation SysMLine!Classifier SubclassificationPart() : String {
+	if (self.SubclassificationPart.size() > 0){
+		var str = "";
+		str += SpecializesKeyword();
+		for (ownedSubclassification in self.SubclassificationPart){
+			str += ownedSubclassification.withQuotationMarks();
+			str += ",".space();
+		}
+		str = str.substring(0, str.length()-2);
+		return str;
+	}
+	else{
+		return "";
+	}
+}
+
+operation SysMLine!InterfaceUsage InterfaceUsageDeclaration() : String {
+	// TBD
+	return "";
+}
+
+operation SysMLine!Type ViewDefinitionBody() : String {
+	return "";
+}
+
+operation SysMLine!Type CaseBody() : String {
+	return "";
+}
+
+operation SysMLine!Type RequirementBody() : String {
+	return "";
+}
+
+operation SysMLine!Type StateDefBody() : String {
+	return self.isParallel() + "";
+}
+
+operation SysMLine!Type CalculationBody() : String {
+	return "";
+}
+
+operation SysMLine!Relationship RelationshipBody() : String {
+	return "";
+}
+
+operation SysMLine!Type ActionBody() : String {
+	return "";
+}
+
+operation SysMLine!ControlNode ActionNodeBody() : String {
+	return "";
+}
+
+operation SysMLine!Type DefinitionBody() : String {
+	return "";
+}
+
+operation SysMLine!Type InterfaceBody() : String {
+	return "";
+}
+
+operation SysMLine!Type StateUsageBody() : String {
+	return self.isParallel();
+}
+
+operation SysMLine!Type EnumerationBody() : String {
+	return "";
+}
+
+operation SysMLine!Element isParallel() : String {
+	if (self.isParallel){
+		return "parallel".space();
+	}
+	else{
+		return "";
+	}
+}
+
+operation SysMLine!Element isIndividual() : String {
+	if (self.isIndividual){
+		return "individual".space();
+	}
+	else{
+		return "";
+	}
+}
+
+operation SysMLine!Element isReturn() : String {
+	if (self.isReturn){
+		return "return".space();
+	}
+	else{
+		return "";
+	}
+}
+
+operation SysMLine!Element isAbstract() : String {
+	if (self.isAbstract){
+		return "abstract".space();
+	}
+	else{
+		return "";
+	}
+}
+
+operation SysMLine!Element isVariation() : String {
+	if (self.isVariation){
+		return "variation".space();
+	}
+	else{
+		return "";
+	}
+}
+
+operation SysMLine!Element isStandard() : String {
+	if (self.isStandard){
+		return "standard".space();
+	}
+	else{
+		return "";
+	}
+}
+
+operation SysMLine!Element isImportAll() : String {
+	if (self.isImportAll){
+		return "all".space();
+	}
+	else{
+		return "";
+	}
+}
+
+operation SysMLine!Feature isReadOnly() : String {
+	if (self.isReadOnly){
+		return "readonly".space();
+	}
+	else{
+		return "";
+	}
+}
+
+operation SysMLine!Feature isDerived() : String {
+	if (self.isDerived){
+		return "derived".space();
+	}
+	else{
+		return "";
+	}
+}
+
+operation SysMLine!Feature isEnd() : String {
+	if (self.isEnd){
+		return "end".space();
+	}
+	else{
+		return "";
+	}
+}
+
+operation SysMLine!Element isReference() : String {
+	if (self.isReference){
+		return "ref".space();
+	}
+	else{
+		return "";
+	}
+}
+
+operation SysMLine!Element isNegated() : String {
+	if (self.isReference){
+		return "not".space();
+	}
+	else{
+		return "";
+	}
+}
+
+operation SysMLine!OccurrenceUsage portionKind() : String {
+	if (self.portionKind.name == "timeslice"){
+		return "";
+	}
+	else{
+		return self.portionKind.name.space();
+	}
+}
+
+operation SysMLine!Feature featureDirection() : String {
+	if (self.direction.name == "in"){
+		return "";
+	}
+	else{
+		return self.direction.name.space();
+	}
+}
+
+operation SysMLine!Element isOwningElementOf(str:String):Boolean{
+	if (self.hasProperty("ownedRelationship") and self.ownedRelationship.getELementOf("str").size()>0){
+		return true;
+	}
+	else if (self.hasProperty("ownedRelatedElement") and self.ownedRelatedElement.getELementOf("str").size()>0){
+		return true;
+	}
+	else{
+		return false;
+	}
+}
+
+operation OrderedSet getElementOf(typeName : String){
+	return self.select(e|e.type().name == typeName);
+}
+
+operation Any space(){
+	if (self == null or self == ""){
+		return "";
+	}
+	else{
+		return self.asString()+" ";
+	}
+}

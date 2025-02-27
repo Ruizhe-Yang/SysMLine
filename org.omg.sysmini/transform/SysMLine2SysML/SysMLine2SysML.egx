@@ -1,0 +1,9 @@
+rule gen_sysmlv2
+	transform root : Namespace{
+	template : "SysMLine2SysML.egl"
+	target : root.getFileName()
+}
+
+operation SysMLine!Namespace getFileName(){
+	return "../../model/SysML-gen/"+self.eContents().first().declaredName+".sysml";
+}
