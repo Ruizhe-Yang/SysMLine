@@ -1,4 +1,4 @@
-operation Ecore!EObject addRootNodeTo(rootNode : SysMini!Element){
+operation Ecore!EObject addRootNodeTo(rootNode : SysMLine!Element){
 	if (self.isEntity()){
 		var node = self.equivalent();
 		rootNode.body.add(node);
@@ -40,17 +40,17 @@ operation Ecore!EObject isExtendedEcore(namespaceImportPackage : Sequence){
 	}
 }
 
-operation SysMini!Package addNamespaceImport(name:String, isPublic : Boolean){
-	var namespaceImport = new SysMini!NamespaceImport;
+operation SysMLine!Package addNamespaceImport(name:String, isPublic : Boolean){
+	var namespaceImport = new SysMLine!NamespaceImport;
 	namespaceImport.declaredName = name;
 	namespaceImport.hasVisibility = true;
 	if (isPublic){
-		namespaceImport.visibility = SysMini!VisibilityKind#public;
+		namespaceImport.visibility = SysMLine!VisibilityKind#public;
 	}
 	self.body.add(namespaceImport);
 }
 
-operation Ecore!EObject addNodeTo(rootNode : SysMini!Element){
+operation Ecore!EObject addNodeTo(rootNode : SysMLine!Element){
 	if (self.isEntity()){
 		var node = self.equivalent();
 		rootNode.body.add(node);

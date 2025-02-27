@@ -1,4 +1,4 @@
-import "DSL2SysMini-util.eol";
+import "DSL2SysMLine-util.eol";
 
 pre{
 	"------------------ ETL Start ------------------".println();
@@ -14,11 +14,11 @@ post{
 
 operation main_psl(){
 	var rootEcore = DSL!EObject.all.first();
-	var rootSysMini = new SysMini!Namespace;
-	var rootPackage = new SysMini!Package;
+	var rootSysMLine = new SysMLine!Namespace;
+	var rootPackage = new SysMLine!Package;
 	rootPackage.declaredName = "psl_model";
-	rootSysMini.body.add(rootPackage);
-	var namespaceImport = new SysMini!NamespaceImport;
+	rootSysMLine.body.add(rootPackage);
+	var namespaceImport = new SysMLine!NamespaceImport;
 	namespaceImport.declaredName = "psl";
 	rootPackage.body.add(namespaceImport);
 	rootEcore.addNodeTo(rootPackage);
@@ -54,7 +54,7 @@ operation init_psl(){
 @abstract
 rule Base
 	transform s : DSL!EObject
-	to t : SysMini!PartUsage{
+	to t : SysMLine!PartUsage{
 	t.declaredName = s.getDeclaredName();
 	t.featureNote.add(":");
 	t.featureSpecialization.add(s.getfeatureSpecialization());
@@ -67,11 +67,11 @@ rule Base
 @lazy
 rule Project
 	transform s : DSL!Project
-	to t : SysMini!PartUsage
+	to t : SysMLine!PartUsage
 	extends Base{
 	//Project -> EAttribute : title
 	if (s.title.getEAttribute() != null){
-		var title = new SysMini!AttributeUsage;
+		var title = new SysMLine!AttributeUsage;
 		title.featureNote.add(":>>");
 		title.featureSpecialization.add("title");
 		title.valuePart = s.title.getEAttribute();
@@ -79,7 +79,7 @@ rule Project
 	}
 	//Project -> EAttribute : description
 	if (s.description.getEAttribute() != null){
-		var description = new SysMini!AttributeUsage;
+		var description = new SysMLine!AttributeUsage;
 		description.featureNote.add(":>>");
 		description.featureSpecialization.add("description");
 		description.valuePart = s.description.getEAttribute();
@@ -87,7 +87,7 @@ rule Project
 	}
 	//Project -> EReference : tasks
 	if (s.tasks.getEReference() != null){
-		var tasks = new SysMini!PartUsage;
+		var tasks = new SysMLine!PartUsage;
 		tasks.isReference = true;
 		tasks.featureNote.add(":>");
 		tasks.featureSpecialization.add("tasks");
@@ -96,7 +96,7 @@ rule Project
 	}
 	//Project -> EReference : people
 	if (s.people.getEReference() != null){
-		var people = new SysMini!PartUsage;
+		var people = new SysMLine!PartUsage;
 		people.isReference = true;
 		people.featureNote.add(":>");
 		people.featureSpecialization.add("people");
@@ -108,11 +108,11 @@ rule Project
 @lazy
 rule Task
 	transform s : DSL!Task
-	to t : SysMini!PartUsage
+	to t : SysMLine!PartUsage
 	extends Base{
 	//Task -> EAttribute : title
 	if (s.title.getEAttribute() != null){
-		var title = new SysMini!AttributeUsage;
+		var title = new SysMLine!AttributeUsage;
 		title.featureNote.add(":>>");
 		title.featureSpecialization.add("title");
 		title.valuePart = s.title.getEAttribute();
@@ -120,7 +120,7 @@ rule Task
 	}
 	//Task -> EAttribute : start
 	if (s.start.getEAttribute() != null){
-		var start = new SysMini!AttributeUsage;
+		var start = new SysMLine!AttributeUsage;
 		start.featureNote.add(":>>");
 		start.featureSpecialization.add("start");
 		start.valuePart = s.start.getEAttribute();
@@ -128,7 +128,7 @@ rule Task
 	}
 	//Task -> EAttribute : duration
 	if (s.duration.getEAttribute() != null){
-		var duration = new SysMini!AttributeUsage;
+		var duration = new SysMLine!AttributeUsage;
 		duration.featureNote.add(":>>");
 		duration.featureSpecialization.add("duration");
 		duration.valuePart = s.duration.getEAttribute();
@@ -136,7 +136,7 @@ rule Task
 	}
 	//Task -> EReference : effort
 	if (s.effort.getEReference() != null){
-		var effort = new SysMini!PartUsage;
+		var effort = new SysMLine!PartUsage;
 		effort.isReference = true;
 		effort.featureNote.add(":>");
 		effort.featureSpecialization.add("effort");
@@ -148,11 +148,11 @@ rule Task
 @lazy
 rule Person
 	transform s : DSL!Person
-	to t : SysMini!PartUsage
+	to t : SysMLine!PartUsage
 	extends Base{
 	//Person -> EAttribute : name
 	if (s.name.getEAttribute() != null){
-		var name = new SysMini!AttributeUsage;
+		var name = new SysMLine!AttributeUsage;
 		name.featureNote.add(":>>");
 		name.featureSpecialization.add("name");
 		name.valuePart = s.name.getEAttribute();
@@ -163,11 +163,11 @@ rule Person
 @lazy
 rule Effort
 	transform s : DSL!Effort
-	to t : SysMini!PartUsage
+	to t : SysMLine!PartUsage
 	extends Base{
 	//Effort -> EAttribute : percentage
 	if (s.percentage.getEAttribute() != null){
-		var percentage = new SysMini!AttributeUsage;
+		var percentage = new SysMLine!AttributeUsage;
 		percentage.featureNote.add(":>>");
 		percentage.featureSpecialization.add("percentage");
 		percentage.valuePart = s.percentage.getEAttribute();
@@ -175,7 +175,7 @@ rule Effort
 	}
 	//Effort -> EReference : person
 	if (s.person.getEReference() != null){
-		var person = new SysMini!PartUsage;
+		var person = new SysMLine!PartUsage;
 		person.isReference = true;
 		person.featureNote.add(":>");
 		person.featureSpecialization.add("person");

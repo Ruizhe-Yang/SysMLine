@@ -1,4 +1,4 @@
-import "Ecore2SysMini-util.eol";
+import "Ecore2SysMLine-util.eol";
 
 pre{
 	"------------------ ETL Start ------------------".println();
@@ -12,21 +12,21 @@ post{
 
 operation main(){
 	var rootEcore = Ecore!EPackage.all.first();
-	var rootSysMini = new SysMini!Namespace;
-	rootEcore.addRootNodeTo(rootSysMini);
+	var rootSysMLine = new SysMLine!Namespace;
+	rootEcore.addRootNodeTo(rootSysMLine);
 }
 
 @lazy
 rule Epackage
 	transform s : Ecore!EPackage
-	to t : SysMini!Package{
+	to t : SysMLine!Package{
 		t.declaredName = s.name.clearKeyWord();
 	}
 
 @lazy
 rule EClass
 	transform s : Ecore!EClass
-	to t : SysMini!PartDefinition{
+	to t : SysMLine!PartDefinition{
 		t.declaredName = s.name.clearKeyWord();
 		t.isAbstract = s.Abstract;
 		if (s.eContents().getElementOf("EGenericType").size() > 0){
@@ -39,7 +39,7 @@ rule EClass
 @lazy
 rule EAttribute
 	transform s : Ecore!EAttribute
-	to t : SysMini!AttributeUsage{
+	to t : SysMLine!AttributeUsage{
 		t.declaredName = s.name.clearKeyWord();
 		t.multiplicityRange = s.getRange();
 		t.featureNote.add(":");
@@ -49,7 +49,7 @@ rule EAttribute
 @lazy
 rule EReference_val
 	transform s : Ecore!EReference
-	to t : SysMini!PartUsage{
+	to t : SysMLine!PartUsage{
 		guard : s.containment==true
 		t.declaredName = s.name.clearKeyWord();
 		t.multiplicityRange = s.getRange();
@@ -60,7 +60,7 @@ rule EReference_val
 @lazy
 rule EReference_ref
 	transform s : Ecore!EReference
-	to t : SysMini!PartUsage{
+	to t : SysMLine!PartUsage{
 		guard : s.containment==false
 		t.isReference = true;
 		t.declaredName = s.name.clearKeyWord();
@@ -72,13 +72,13 @@ rule EReference_ref
 @lazy
 rule EEnum
 	transform s : Ecore!EEnum
-	to t : SysMini!EnumerationDefinition{
+	to t : SysMLine!EnumerationDefinition{
 		t.declaredName = s.name.clearKeyWord();
 	}
 
 @lazy
 rule EEnumLiteral
 	transform s : Ecore!EEnumLiteral
-	to t : SysMini!EnumerationUsage{
+	to t : SysMLine!EnumerationUsage{
 		t.declaredName = s.name.clearKeyWord();
 	}

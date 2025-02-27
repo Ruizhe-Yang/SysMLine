@@ -6,5 +6,5 @@ rule gen_sysmlv2
 
 operation Ecore!EPackage getFileName(){
 //	self.name.println();
-	return "../DSL2SysMini/"+self.name+".etl";
+	return "../DSL2SysMLine/"+self.name+".etl";
 }

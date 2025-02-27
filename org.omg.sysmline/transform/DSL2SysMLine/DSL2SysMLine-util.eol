@@ -1,4 +1,4 @@
-operation DSL!EObject addNodeTo(rootNode : SysMini!Element){
+operation DSL!EObject addNodeTo(rootNode : SysMLine!Element){
 	if (self.isEntity()){
 		var node = self.equivalent();
 		rootNode.body.add(node);
