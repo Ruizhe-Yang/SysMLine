@@ -1,4 +1,5 @@
-package sysmini;
+@namespace(uri="sysml", prefix="")
+package sysml;
 
 class Subclassification extends Specialization {
 	ref Classifier[1] superclassifier;
