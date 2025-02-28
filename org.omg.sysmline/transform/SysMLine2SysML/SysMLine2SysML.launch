@@ -7,7 +7,7 @@
     <intAttribute key="generateTo" value="1"/>
     <stringAttribute key="implementation_name" value="Sequential EGX"/>
     <listAttribute key="models">
-        <listEntry value="#Fri Feb 28 05:10:48 CST 2025&#13;&#10;aliases=&#13;&#10;reuseUnmodifiedFileBasedMetamodels=true&#13;&#10;modelFile=/org.omg.sysmline/model/examples/ASimpleVehicleModel/ASimpleVehicleModel.sysmline&#13;&#10;metamodelUri=sysmline&#13;&#10;concurrent=false&#13;&#10;type=EMF&#13;&#10;readOnLoad=true&#13;&#10;storeOnDisposal=false&#13;&#10;expand=true&#13;&#10;fileBasedMetamodelUri=&#13;&#10;metamodelFile=&#13;&#10;cached=true&#13;&#10;name=SysMLine&#13;&#10;modelUri=platform\:/resource/org.omg.sysmline/model/examples/ASimpleVehicleModel/ASimpleVehicleModel.sysmline&#13;&#10;isMetamodelFileBased=false&#13;&#10;validate=false"/>
+        <listEntry value="#Fri Feb 28 20:51:49 CST 2025&#13;&#10;aliases=&#13;&#10;reuseUnmodifiedFileBasedMetamodels=true&#13;&#10;modelFile=/org.omg.sysmline/metamodel/Ecore/ecore.sysmline&#13;&#10;metamodelUri=sysmline&#13;&#10;concurrent=false&#13;&#10;type=EMF&#13;&#10;readOnLoad=true&#13;&#10;storeOnDisposal=false&#13;&#10;expand=true&#13;&#10;fileBasedMetamodelUri=&#13;&#10;metamodelFile=&#13;&#10;cached=true&#13;&#10;name=SysMLine&#13;&#10;modelUri=platform\:/resource/org.omg.sysmline/metamodel/Ecore/ecore.sysmline&#13;&#10;isMetamodelFileBased=false&#13;&#10;validate=false"/>
     </listAttribute>
     <booleanAttribute key="org.eclipse.debug.core.ATTR_FORCE_SYSTEM_CONSOLE_ENCODING" value="false"/>
     <stringAttribute key="outputDirPath" value=""/>

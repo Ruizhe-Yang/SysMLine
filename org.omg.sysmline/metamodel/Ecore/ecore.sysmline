@@ -1,0 +1,455 @@
+<?xml version="1.0" encoding="ASCII"?>
+<Namespace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="sysmline">
+  <body xsi:type="Package" declaredName="ecore">
+    <body xsi:type="NamespaceImport" hasVisibility="true" declaredName="ecore"/>
+    <body xsi:type="ItemDefinition" declaredName="EAttribute">
+      <body xsi:type="AttributeUsage" declaredName="iD" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="eAttributeType" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EDataType</featureSpecialization>
+      </body>
+      <SubclassificationPart>EStructuralFeature</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="EAnnotation">
+      <body xsi:type="AttributeUsage" declaredName="source" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="eModelElement" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EModelElement</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="contents" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EObject</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="'references'" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EObject</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="details" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EMap</featureSpecialization>
+      </body>
+      <SubclassificationPart>EModelElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="EClass">
+      <body xsi:type="AttributeUsage" declaredName="'abstract'" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="'interface'" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="eSuperTypes" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EClass</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="eOperations" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EOperation</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="eAllAttributes" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EAttribute</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="eAllReferences" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EReference</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="eReferences" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EReference</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="eAttributes" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EAttribute</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="eAllContainments" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EReference</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="eAllOperations" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EOperation</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="eAllStructuralFeatures" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EStructuralFeature</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="eAllSuperTypes" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EClass</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="eIDAttribute" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EAttribute</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="eStructuralFeatures" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EStructuralFeature</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="eGenericSuperTypes" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EGenericType</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="eAllGenericSuperTypes" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EGenericType</featureSpecialization>
+      </body>
+      <SubclassificationPart>EClassifier</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="EClassifier" isAbstract="true">
+      <body xsi:type="AttributeUsage" declaredName="instanceClassName" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="instanceClass" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EJavaClass</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="defaultValue" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EJavaObject</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="instanceTypeName" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ePackage" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EPackage</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="eTypeParameters" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ETypeParameter</featureSpecialization>
+      </body>
+      <SubclassificationPart>ENamedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="EDataType">
+      <body xsi:type="AttributeUsage" declaredName="serializable" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <SubclassificationPart>EClassifier</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="EEnum">
+      <body xsi:type="ItemUsage" declaredName="eLiterals" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EEnumLiteral</featureSpecialization>
+      </body>
+      <SubclassificationPart>EDataType</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="EEnumLiteral">
+      <body xsi:type="AttributeUsage" declaredName="'value'" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EInt</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="instance" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EEnumerator</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="literal" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="eEnum" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EEnum</featureSpecialization>
+      </body>
+      <SubclassificationPart>ENamedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="EFactory">
+      <body xsi:type="ItemUsage" declaredName="ePackage" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EPackage</featureSpecialization>
+      </body>
+      <SubclassificationPart>EModelElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="EModelElement" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="eAnnotations" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EAnnotation</featureSpecialization>
+      </body>
+      <SubclassificationPart>EObject</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ENamedElement" isAbstract="true">
+      <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <SubclassificationPart>EModelElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="EObject">
+      <body xsi:type="ItemUsage" declaredName="eContentUnion" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EObject</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="eContainer" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EObject</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="metaElementID" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EInt</featureSpecialization>
+      </body>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="EOperation">
+      <body xsi:type="AttributeUsage" declaredName="operationID" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EInt</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="eContainingClass" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EClass</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="eTypeParameters" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ETypeParameter</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="eParameters" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EParameter</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="eExceptions" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EClassifier</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="eGenericExceptions" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EGenericType</featureSpecialization>
+      </body>
+      <SubclassificationPart>ETypedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="EPackage">
+      <body xsi:type="AttributeUsage" declaredName="nsURI" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="nsPrefix" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="eFactoryInstance" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EFactory</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="eClassifiers" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EClassifier</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="eSubpackages" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EPackage</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="eSuperPackage" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EPackage</featureSpecialization>
+      </body>
+      <SubclassificationPart>ENamedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="EParameter">
+      <body xsi:type="ItemUsage" declaredName="eOperation" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EOperation</featureSpecialization>
+      </body>
+      <SubclassificationPart>ETypedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="EReference">
+      <body xsi:type="AttributeUsage" declaredName="containment" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="container" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="resolveProxies" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="eOpposite" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EReference</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="eReferenceType" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EClass</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="eKeys" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EAttribute</featureSpecialization>
+      </body>
+      <SubclassificationPart>EStructuralFeature</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="EStructuralFeature" isAbstract="true">
+      <body xsi:type="AttributeUsage" declaredName="changeable" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="volatile" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="transient" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="defaultValueLiteral" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="defaultValue" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EJavaObject</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="unsettable" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="'derived'" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="featureID" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EInt</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="eContainingClass" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EClass</featureSpecialization>
+      </body>
+      <SubclassificationPart>ETypedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ETypedElement" isAbstract="true">
+      <body xsi:type="AttributeUsage" declaredName="'ordered'" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="unique" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="lowerBound" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EInt</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="upperBound" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EInt</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="many" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="required" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="eType" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EClassifier</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="eGenericType" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EGenericType</featureSpecialization>
+      </body>
+      <SubclassificationPart>ENamedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="AttributeDefinition" declaredName="EBigDecimal"/>
+    <body xsi:type="AttributeDefinition" declaredName="EBigInteger"/>
+    <body xsi:type="AttributeDefinition" declaredName="EBoolean"/>
+    <body xsi:type="AttributeDefinition" declaredName="EBooleanObject"/>
+    <body xsi:type="AttributeDefinition" declaredName="EByte"/>
+    <body xsi:type="AttributeDefinition" declaredName="EByteArray"/>
+    <body xsi:type="AttributeDefinition" declaredName="EByteObject"/>
+    <body xsi:type="AttributeDefinition" declaredName="EChar"/>
+    <body xsi:type="AttributeDefinition" declaredName="ECharacterObject"/>
+    <body xsi:type="AttributeDefinition" declaredName="EDate"/>
+    <body xsi:type="AttributeDefinition" declaredName="EDiagnosticChain"/>
+    <body xsi:type="AttributeDefinition" declaredName="EDouble"/>
+    <body xsi:type="AttributeDefinition" declaredName="EDoubleObject"/>
+    <body xsi:type="AttributeDefinition" declaredName="EEList"/>
+    <body xsi:type="AttributeDefinition" declaredName="EEnumerator"/>
+    <body xsi:type="AttributeDefinition" declaredName="EFeatureMap"/>
+    <body xsi:type="AttributeDefinition" declaredName="EFeatureMapEntry"/>
+    <body xsi:type="AttributeDefinition" declaredName="EFloat"/>
+    <body xsi:type="AttributeDefinition" declaredName="EFloatObject"/>
+    <body xsi:type="AttributeDefinition" declaredName="EInt"/>
+    <body xsi:type="AttributeDefinition" declaredName="EIntegerObject"/>
+    <body xsi:type="AttributeDefinition" declaredName="EJavaClass"/>
+    <body xsi:type="AttributeDefinition" declaredName="EJavaObject"/>
+    <body xsi:type="AttributeDefinition" declaredName="ELong"/>
+    <body xsi:type="AttributeDefinition" declaredName="ELongObject"/>
+    <body xsi:type="AttributeDefinition" declaredName="EMap"/>
+    <body xsi:type="AttributeDefinition" declaredName="EResource"/>
+    <body xsi:type="AttributeDefinition" declaredName="EResourceSet"/>
+    <body xsi:type="AttributeDefinition" declaredName="EShort"/>
+    <body xsi:type="AttributeDefinition" declaredName="EShortObject"/>
+    <body xsi:type="AttributeDefinition" declaredName="EString"/>
+    <body xsi:type="ItemDefinition" declaredName="EStringToStringMapEntry">
+      <body xsi:type="AttributeUsage" declaredName="key" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="'value'" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+    </body>
+    <body xsi:type="AttributeDefinition" declaredName="ETreeIterator"/>
+    <body xsi:type="ItemDefinition" declaredName="EGenericType">
+      <body xsi:type="ItemUsage" declaredName="eUpperBound" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EGenericType</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="eTypeArguments" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EGenericType</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="eRawType" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EClassifier</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="eLowerBound" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EGenericType</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="eTypeParameter" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ETypeParameter</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="eClassifier" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EClassifier</featureSpecialization>
+      </body>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ETypeParameter">
+      <body xsi:type="ItemUsage" declaredName="eBounds" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EGenericType</featureSpecialization>
+      </body>
+      <SubclassificationPart>ENamedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="AttributeDefinition" declaredName="EInvocationTargetException"/>
+    <body xsi:type="ItemDefinition" declaredName="EObjectContainer">
+      <body xsi:type="ItemUsage" declaredName="container" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EObject</featureSpecialization>
+      </body>
+      <SubclassificationPart>EObject</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="EObjectAny">
+      <body xsi:type="ItemUsage" declaredName="'any'" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EJavaObject</featureSpecialization>
+      </body>
+      <SubclassificationPart>EObject</SubclassificationPart>
+    </body>
+    <body xsi:type="AttributeDefinition" declaredName="Any"/>
+  </body>
+</Namespace>

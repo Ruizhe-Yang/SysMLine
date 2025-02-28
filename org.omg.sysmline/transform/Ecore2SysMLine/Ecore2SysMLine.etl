@@ -2,7 +2,7 @@ import "Ecore2SysMLine-util.eol";
 
 pre{
 	"------------------ ETL Start ------------------".println();
-	var KeyWords = Sequence{"default", "event", "value", "import", "language", "from", "to", "interface"};
+	var KeyWords = Sequence{"default", "event", "value", "import", "language", "from", "to", "interface", "any", "derived", "ordered", "references", "abstract"};
 	main();
 }
 
@@ -26,7 +26,7 @@ rule Epackage
 @lazy
 rule EClass
 	transform s : Ecore!EClass
-	to t : SysMLine!PartDefinition{
+	to t : SysMLine!ItemDefinition{
 		t.declaredName = s.name.clearKeyWord();
 		t.isAbstract = s.Abstract;
 		if (s.eContents().getElementOf("EGenericType").size() > 0){
@@ -49,7 +49,7 @@ rule EAttribute
 @lazy
 rule EReference_val
 	transform s : Ecore!EReference
-	to t : SysMLine!PartUsage{
+	to t : SysMLine!ItemUsage{
 		guard : s.containment==true
 		t.declaredName = s.name.clearKeyWord();
 		t.multiplicityRange = s.getRange();
@@ -60,7 +60,7 @@ rule EReference_val
 @lazy
 rule EReference_ref
 	transform s : Ecore!EReference
-	to t : SysMLine!PartUsage{
+	to t : SysMLine!ItemUsage{
 		guard : s.containment==false
 		t.isReference = true;
 		t.declaredName = s.name.clearKeyWord();
@@ -80,5 +80,12 @@ rule EEnum
 rule EEnumLiteral
 	transform s : Ecore!EEnumLiteral
 	to t : SysMLine!EnumerationUsage{
+		t.declaredName = s.name.clearKeyWord();
+	}
+	
+@lazy
+rule EDataType
+	transform s : Ecore!EDataType
+	to t : SysMLine!AttributeDefinition{
 		t.declaredName = s.name.clearKeyWord();
 	}

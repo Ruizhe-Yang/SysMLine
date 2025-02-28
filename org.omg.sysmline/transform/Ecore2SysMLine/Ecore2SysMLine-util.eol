@@ -30,6 +30,10 @@ operation Ecore!EObject isExtendedEcore(namespaceImportPackage : Sequence){
 		eName = self.eType.eContainer().name.asString();
 	}
 	else if (self.isTypeOf(Ecore!EGenericType)){
+		if (self.eClassifier == null){
+//			self.eContainer().println();
+			return false;
+		}
 		eName = self.eClassifier.eContainer().name.asString();
 	}
 	if (namespaceImportPackage.includes(eName)){
@@ -53,9 +57,11 @@ operation SysMLine!Package addNamespaceImport(name:String, isPublic : Boolean){
 operation Ecore!EObject addNodeTo(rootNode : SysMLine!Element){
 	if (self.isEntity()){
 		var node = self.equivalent();
-		rootNode.body.add(node);
-		for (child in self.eContents()){
-			child.addNodeTo(node);
+		if (node != null){
+			rootNode.body.add(node);
+			for (child in self.eContents()){
+				child.addNodeTo(node);
+			}
 		}
 	}
 }
