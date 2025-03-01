@@ -10,6 +10,7 @@ SysMLine: Model-Driven Bidirectional Transformation for SysML v2 and EMF
 
 ### 未完成的工作
 
+- 添加cross类
 - 若干Usage的一类多用未处理
 - 若干Membership实例化情况未确定，会影响Usage
 - TransitionUsage目前关闭
@@ -30,3 +31,7 @@ SysMLine: Model-Driven Bidirectional Transformation for SysML v2 and EMF
 
 - 部分幽灵ReferenceUsage生成问题：可能会随着Usage处理逐渐消除；
 - 偶尔出现的PerformActionUsage意外生成问题：可能是equivalent()调用后未实例化出现的问题。
+
+### 注意
+
+- ecore.ecore不能Register！
