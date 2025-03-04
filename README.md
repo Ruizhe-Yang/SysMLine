@@ -1,6 +1,6 @@
 # SysMLine
 
-SysMLine: Model-Driven Bidirectional Transformation for SysML v2 and EMF
+SysMLine: Model-Driven Bidirectional Transformation for SysML v2 and EMF 
 
 ## 当前版本实现的工作
 
