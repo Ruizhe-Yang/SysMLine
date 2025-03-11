@@ -31,11 +31,12 @@ import java.nio.file.*;
 public class SysML2XMIni_file {
 	
 	//Directory path of 'types.ecore', 'kerml.ecore' and 'SysML.ecore'.
-	public static String ecoreDirectoryPath = "E:\\GitYang\\SysMLine\\org.omg.sysmline\\metamodel\\sysmlv2";
+	public static String ecoreDirectoryPath = "E:\\GitYang\\SysMLine\\org.omg.sysmline\\metamodel\\sysml";
 	//Directory path of the 'sysml.library'.
 	public static String libraryDirectoryPath = "E:\\GitYang\\SysMLine\\org.omg.sysmline.runtime\\sysml.library";
 	//File path of the target file 'xxx.sysml'.
-	public static String targetFilePath = "E:\\GitYang\\SysMLine\\org.omg.sysmline.runtime\\model\\Packet Example\\Packets.sysml";
+//	public static String targetFilePath = "E:\\GitYang\\SysMLine\\org.omg.sysmline.runtime\\model\\training\\01. Packages\\CommentExample.sysml";
+	public static String targetFilePath = "E:\\GitYang\\SysMLine\\org.omg.sysmline.runtime\\model\\vehicle example\\VehicleDefinitions.sysml";
 	//Generate file 'xxx_.sysmlx'.
 	public static String fileName = null;
 	//Directory path of the self.
@@ -55,6 +56,7 @@ public class SysML2XMIni_file {
         String[] result = findFiles(libraryDirectoryPath);
         String[] config = {"-g", targetFilePath};
         String[] arg = mergeArrays(config, result);
+        System.out.println("SysML2XMIni.main()...");
 		SysML2XMI.main(arg);
     	File libraryDirectory = new File(libraryDirectoryPath);
     	File targetFile = new File(targetFilePath+"x");
@@ -226,7 +228,7 @@ public class SysML2XMIni_file {
             }
             
             EStructuralFeature declaredShortNameFeature = sourceXMI.eClass().getEStructuralFeature("declaredShortName");
-            String newDeclaredShortName = extractBetweenBackslashAndHash(sourceXMI.eResource().getURI().toFileString())+sourceXMI.eGet(declaredShortNameFeature);
+            String newDeclaredShortName = extractBetweenBackslashAndHash2(sourceXMI.eResource().getURI().toFileString())+sourceXMI.eGet(declaredShortNameFeature);
             EAttribute declaredShortNameAttribute = getDeclaredNameAttribute(targetXMI);
             if (declaredShortNameAttribute != null) {
             	targetXMI.eSet(declaredShortNameAttribute, newDeclaredShortName);
@@ -256,7 +258,7 @@ public class SysML2XMIni_file {
         int backslashIndex = input.lastIndexOf('\\');
         if (backslashIndex != -1 ) {
         	String className = input.substring(backslashIndex + 1, input.length() - 7);
-        	System.out.print("className: '"+className+"'");
+        	System.out.print("'"+className+"'|");
         	if (Arrays.asList(systemsLibrary).contains(className)) {
         		return "";
         	}
@@ -267,6 +269,20 @@ public class SysML2XMIni_file {
         return "";
     }
 
+    private static String extractBetweenBackslashAndHash2(String input) {
+        int backslashIndex = input.lastIndexOf('\\');
+        if (backslashIndex != -1 ) {
+        	String className = input.substring(backslashIndex + 1, input.length() - 7);
+        	if (Arrays.asList(systemsLibrary).contains(className)) {
+        		return "";
+        	}
+        	else {
+        		return className + "::";
+        	}
+        }
+        return "";
+    }
+    
     private static void saveXMIFile(Resource resource) throws IOException {
         resource.save(null);
     }
@@ -299,6 +315,7 @@ public class SysML2XMIni_file {
 	                }
 	            }
 	        }
+	        
 	        fileName = addUnderscoreToExtension(file);
 	        saveDocumentToFile(document, fileName);
 	        System.out.println("There are "+strss.size()+" objects to be converted...");
@@ -310,6 +327,7 @@ public class SysML2XMIni_file {
     }
     
     private static String addUnderscoreToExtension(File file) {
+    	
         String absolutePath = file.getAbsolutePath();
         int dotIndex = absolutePath.lastIndexOf(".");
         if (dotIndex > 0) {
@@ -412,7 +430,7 @@ public class SysML2XMIni_file {
                 boolean found = searchForElementId(rootElement, targetElementId);
                 if (found) {
                 	EObject element = getElement(rootElement, targetElementId);
-                	System.out.print(".");
+//                	System.out.print(".");
 //                    System.out.println("Found element in file: " + file.getAbsolutePath());
 //                    System.out.println("rootElement: "+rootElement.eClass());
                     return element;
@@ -457,3 +475,6 @@ public class SysML2XMIni_file {
     }
     
 }
+
+// KerML2XMI：98, 115, 116, 123, 125, (211, 213)
+// SysMLUtile: 223
