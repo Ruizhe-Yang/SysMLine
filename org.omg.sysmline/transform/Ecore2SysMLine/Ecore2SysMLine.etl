@@ -46,6 +46,7 @@ rule EAttribute
 		t.featureSpecialization.add(s.eContents().select(i|i.isTypeOf(Ecore!EGenericType)).first().eClassifier.name);
 	}
 	
+	
 @lazy
 rule EReference_val
 	transform s : Ecore!EReference
