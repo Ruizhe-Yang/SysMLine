@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="ASCII"?>
+<sysml:Namespace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sysml="https://www.omg.org/spec/SysML/20240201" xmi:id="b8d60692-d55f-4a81-8be0-9cc7c70e7ce0" elementId="b8d60692-d55f-4a81-8be0-9cc7c70e7ce0">
+  <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="fa561e59-ea16-4e04-b4cd-74a7bb0d61f1" elementId="fa561e59-ea16-4e04-b4cd-74a7bb0d61f1">
+    <ownedRelatedElement xsi:type="sysml:Package" xmi:id="3874ce4e-325f-46b6-ad32-d6982bc61eae" elementId="3874ce4e-325f-46b6-ad32-d6982bc61eae" declaredName="CommentExample">
+      <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="5b98f96a-7926-4c33-8633-d32cd1409fdc" elementId="5b98f96a-7926-4c33-8633-d32cd1409fdc">
+        <ownedRelatedElement xsi:type="sysml:Comment" xmi:id="d7e271e5-ebe6-48af-9d89-725055f64019" elementId="d7e271e5-ebe6-48af-9d89-725055f64019" body="This is a comment, which is a part of the model, &#xA;annotating (by default) it's owning namespace. "/>
+      </ownedRelationship>
+      <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="298b493b-dd6a-4e11-8771-d70c82231e74" elementId="298b493b-dd6a-4e11-8771-d70c82231e74">
+        <ownedRelatedElement xsi:type="sysml:Comment" xmi:id="ae3362a8-3167-4f89-bae4-f2e202dccee1" elementId="ae3362a8-3167-4f89-bae4-f2e202dccee1" declaredName="Comment1" body="This is a named comment. "/>
+      </ownedRelationship>
+      <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="461a2579-c0c3-4780-a6af-04c05edf2fec" elementId="461a2579-c0c3-4780-a6af-04c05edf2fec">
+        <ownedRelatedElement xsi:type="sysml:Comment" xmi:id="742a28d4-fa31-461f-8363-2ec5bc376ab8" elementId="742a28d4-fa31-461f-8363-2ec5bc376ab8" body="This is an unnamed comment, annotating an &#xA;explicitly specified element. &#xA;">
+          <ownedRelationship xsi:type="sysml:Annotation" xmi:id="448a09e7-e297-4ff9-9319-f068b2ba76af" elementId="448a09e7-e297-4ff9-9319-f068b2ba76af">
+            <annotatedElement xsi:type="sysml:LiteralInfinity" href="CommentExample.sysml#|0"/>
+          </ownedRelationship>
+        </ownedRelatedElement>
+      </ownedRelationship>
+      <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="71534f5f-a36f-453b-bbcb-800e5a397b32" elementId="71534f5f-a36f-453b-bbcb-800e5a397b32">
+        <ownedRelatedElement xsi:type="sysml:PartDefinition" xmi:id="f1f41597-6772-4c1e-94c4-733ae61c1211" elementId="f1f41597-6772-4c1e-94c4-733ae61c1211" declaredName="Automobile" isImpliedIncluded="true">
+          <ownedRelationship xsi:type="sysml:Subclassification" xmi:id="eafe3be9-eed8-4db8-b24f-587ba7696d2f" elementId="eafe3be9-eed8-4db8-b24f-587ba7696d2f" isImplied="true" subclassifier="f1f41597-6772-4c1e-94c4-733ae61c1211">
+            <superclassifier href="../../../sysml.library/Systems%20Library/Parts.sysmlx#0774a545-39e3-5bc1-9607-63beabc6bf65"/>
+          </ownedRelationship>
+        </ownedRelatedElement>
+      </ownedRelationship>
+      <ownedRelationship xsi:type="sysml:Membership" xmi:id="edf2a430-910c-480b-8f56-142ebff47e95" elementId="edf2a430-910c-480b-8f56-142ebff47e95" memberName="Car">
+        <ownedRelationship xsi:type="sysml:Annotation" xmi:id="add6cb15-ebb0-4841-b5f7-a386482acd6b" elementId="add6cb15-ebb0-4841-b5f7-a386482acd6b" annotatedElement="edf2a430-910c-480b-8f56-142ebff47e95">
+          <ownedRelatedElement xsi:type="sysml:Comment" xmi:id="5ba956c0-b480-420f-b39b-b0b3bee2f5ef" elementId="5ba956c0-b480-420f-b39b-b0b3bee2f5ef" body="This is a comment annotating its owning&#xA;element.&#xA;"/>
+        </ownedRelationship>
+        <memberElement xsi:type="sysml:LiteralInfinity" href="CommentExample.sysml#|1"/>
+      </ownedRelationship>
+      <ownedRelationship xsi:type="sysml:Membership" xmi:id="d260b501-31b1-4925-8c04-6e6c8d5db3a7" elementId="d260b501-31b1-4925-8c04-6e6c8d5db3a7" memberName="Torque">
+        <memberElement xsi:type="sysml:LiteralInfinity" href="CommentExample.sysml#|2"/>
+      </ownedRelationship>
+    </ownedRelatedElement>
+  </ownedRelationship>
+</sysml:Namespace>

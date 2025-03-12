@@ -35,8 +35,8 @@ public class SysML2XMIni_file {
 	//Directory path of the 'sysml.library'.
 	public static String libraryDirectoryPath = "E:\\GitYang\\SysMLine\\org.omg.sysmline.runtime\\sysml.library";
 	//File path of the target file 'xxx.sysml'.
-//	public static String targetFilePath = "E:\\GitYang\\SysMLine\\org.omg.sysmline.runtime\\model\\training\\01. Packages\\CommentExample.sysml";
-	public static String targetFilePath = "E:\\GitYang\\SysMLine\\org.omg.sysmline.runtime\\model\\vehicle example\\VehicleDefinitions.sysml";
+	public static String targetFilePath = "E:\\GitYang\\SysMLine\\org.omg.sysmline.runtime\\model\\training\\Packages\\CommentExample.sysml";
+//	public static String targetFilePath = "E:\\GitYang\\SysMLine\\org.omg.sysmline.runtime\\model\\vehicle example\\VehicleDefinitions.sysml";
 	//Generate file 'xxx_.sysmlx'.
 	public static String fileName = null;
 	//Directory path of the self.
@@ -209,6 +209,7 @@ public class SysML2XMIni_file {
             }
         }
     }
+        
     //Delete the href index and add the model name of the index to the declaredName attribute.
     public static void modifyXMI(File directory, List<List<String>> lists) throws IOException {
     	
@@ -217,36 +218,38 @@ public class SysML2XMIni_file {
         resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("sysmlx", new XMIResourceFactoryImpl());
         Resource resource = resourceSet.getResource(URI.createFileURI(inputFile.getAbsolutePath()), true);
     	for (List<String> id : lists) {
-    		EObject sourceXMI = getEObject(directory, id.get(1));
-    		EObject targetXMI = null;
-            for (EObject rootElement : resource.getContents()) {
-                boolean found = searchForElementId(rootElement, id.get(0));
-                if (found) {
-                	targetXMI = getElement(rootElement, id.get(0));
-//                    System.out.println("Found element \"" + targetXMI + "\" in file: " + inputFile.getAbsolutePath());
+    		if (id.get(1).charAt(0) != '|') {
+        		EObject sourceXMI = getEObject(directory, id.get(1));
+        		EObject targetXMI = null;
+                for (EObject rootElement : resource.getContents()) {
+                    boolean found = searchForElementId(rootElement, id.get(0));
+                    if (found) {
+                    	targetXMI = getElement(rootElement, id.get(0));
+//                        System.out.println("Found element \"" + targetXMI + "\" in file: " + inputFile.getAbsolutePath());
+                    }
                 }
-            }
-            
-            EStructuralFeature declaredShortNameFeature = sourceXMI.eClass().getEStructuralFeature("declaredShortName");
-            String newDeclaredShortName = extractBetweenBackslashAndHash2(sourceXMI.eResource().getURI().toFileString())+sourceXMI.eGet(declaredShortNameFeature);
-            EAttribute declaredShortNameAttribute = getDeclaredNameAttribute(targetXMI);
-            if (declaredShortNameAttribute != null) {
-            	targetXMI.eSet(declaredShortNameAttribute, newDeclaredShortName);
-//            	System.out.println("targetXMI: "+targetXMI);
-            }
-            
-            EStructuralFeature declaredNameFeature = sourceXMI.eClass().getEStructuralFeature("declaredName");
-            String newDeclaredName = extractBetweenBackslashAndHash(sourceXMI.eResource().getURI().toFileString())+sourceXMI.eGet(declaredNameFeature);
-            EAttribute declaredNameAttribute = getDeclaredNameAttribute(targetXMI);
-            if (declaredNameAttribute != null) {
-            	targetXMI.eSet(declaredNameAttribute, newDeclaredName);
-//            	System.out.println("targetXMI: "+targetXMI);
-            }
-           
-//            System.out.println("Delete id:'"+id.get(0)+"' and add '"+newDeclaredName+"'.");
+                
+                EStructuralFeature declaredShortNameFeature = sourceXMI.eClass().getEStructuralFeature("declaredShortName");
+                String newDeclaredShortName = extractBetweenBackslashAndHash2(sourceXMI.eResource().getURI().toFileString())+sourceXMI.eGet(declaredShortNameFeature);
+                EAttribute declaredShortNameAttribute = getDeclaredNameAttribute(targetXMI);
+                if (declaredShortNameAttribute != null) {
+                	targetXMI.eSet(declaredShortNameAttribute, newDeclaredShortName);
+//                	System.out.println("targetXMI: "+targetXMI);
+                }
+                
+                EStructuralFeature declaredNameFeature = sourceXMI.eClass().getEStructuralFeature("declaredName");
+                String newDeclaredName = extractBetweenBackslashAndHash(sourceXMI.eResource().getURI().toFileString())+sourceXMI.eGet(declaredNameFeature);
+                EAttribute declaredNameAttribute = getDeclaredNameAttribute(targetXMI);
+                if (declaredNameAttribute != null) {
+                	targetXMI.eSet(declaredNameAttribute, newDeclaredName);
+//                	System.out.println("targetXMI: "+targetXMI);
+                }
+                System.out.println("id: " + id);
+//                System.out.println("Delete id:'"+id.get(0)+"' and add '"+newDeclaredName+"'.");
+    		}
+    		
     	}
     	saveXMIFile(resource);
-
     }
     
     private static EAttribute getDeclaredNameAttribute(EObject eObject) {
