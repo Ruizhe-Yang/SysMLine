@@ -9,9 +9,9 @@ public class Ecore2SysML {
 	
 	public static void main(String[] args) throws IOException {
 		run("metamodel\\BPMN\\BPMN20");
-		run("metamodel\\BPMN\\BPMNDI");
-		run("metamodel\\BPMN\\DC");
-		run("metamodel\\BPMN\\DI");
+//		run("metamodel\\BPMN\\BPMNDI");
+//		run("metamodel\\BPMN\\DC");
+//		run("metamodel\\BPMN\\DI");
     }
 	
 	public static void run(String modelName) {

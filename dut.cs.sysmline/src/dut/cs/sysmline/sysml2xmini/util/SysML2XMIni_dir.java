@@ -8,11 +8,11 @@ import java.util.List;
 
 public class SysML2XMIni_dir extends SysML2XMIni_file {
 	//Directory path of 'types.ecore', 'kerml.ecore' and 'SysML.ecore'.
-	public static String ecoreDirectoryPath = "E:\\GitYang\\SysMLine\\org.omg.sysmline\\metamodel\\sysmlv2";
+	public static String ecoreDirectoryPath = "E:\\GitYang\\SysMLine\\dut.cs.sysmline\\metamodel\\sysmlv2";
 	//Directory path of the 'sysml.library'.
-	public static String libraryDirectoryPath = "E:\\GitYang\\SysMLine\\org.omg.sysmline.runtime\\sysml.library";
+	public static String libraryDirectoryPath = "E:\\GitYang\\SysMLine\\dut.cs.sysmline.runtime\\sysml.library";
 	//File path of the target file 'xxx.sysml'.
-	public static String targetFileDirectory = "E:\\GitYang\\SysMLine\\org.omg.sysmline.runtime\\sysml\\src\\examples";
+	public static String targetFileDirectory = "E:\\GitYang\\SysMLine\\dut.cs.sysmline.runtime\\sysml\\src\\examples";
 	
     public static void main(String[] args) throws IOException {
     	run();

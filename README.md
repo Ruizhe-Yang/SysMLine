@@ -21,7 +21,8 @@ SysMLine: Model-Driven Bidirectional Transformation for SysML v2 and EMF
 
 ### 未解决的BUG
 
-- 全架构JAVA驱动实现的问题：当前target platform使用上添加Epsilon会起冲突；EOL可用ETL和EGL不可用；
+- DSL2SysMLine.java中的EmfModel无法加载；
+- Ecore2SysMLine.java驱动Ecore2SysMLine.etl时加载模型不同，导致与其他Ecore间引用时JAVA版本的引用缺失；
 - 一次性对一个文件夹进行转换的代码存在问题，SysML2XMI中的函数一次只能执行一个；
 - 一些引用会使用缩写，缩写目前无法被检索，如550、551行；
 - MetadataBodyUsage不对，ReferenceUsage未处理清楚，如240行；
@@ -35,3 +36,5 @@ SysMLine: Model-Driven Bidirectional Transformation for SysML v2 and EMF
 ### 注意
 
 - ecore.ecore不能Register！
+- KerML2XMI：98、115、116、123、125、（211、213）
+- SysMLUtile: 223
