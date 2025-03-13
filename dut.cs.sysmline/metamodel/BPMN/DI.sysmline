@@ -3,11 +3,6 @@
   <body xsi:type="Package" declaredName="di">
     <body xsi:type="NamespaceImport" hasVisibility="true" declaredName="ecore"/>
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="dc"/>
-    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="dc"/>
-    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="dc"/>
-    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="dc"/>
-    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="dc"/>
-    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="dc"/>
     <body xsi:type="ItemDefinition" declaredName="DiagramElement" isAbstract="true">
       <body xsi:type="ItemUsage" declaredName="owningDiagram" multiplicityRange="[1]" isReference="true">
         <featureNote>:</featureNote>

@@ -1,7 +1,6 @@
 package bpmn2 {
 	private import ecore::*;
 	public import bpmndi::*;
-	public import bpmndi::*;
 	item def Interface :> RootElement{
 		attribute name : EString [1];
 		item operations : Operation [1..*];

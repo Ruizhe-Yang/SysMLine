@@ -1,1 +1,1 @@
-git add . && git commit -m '.' && git push && pause
+git add . && git commit -m 'dut.cs' && git push && pause

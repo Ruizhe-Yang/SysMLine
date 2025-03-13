@@ -3,22 +3,7 @@
   <body xsi:type="Package" declaredName="bpmdi">
     <body xsi:type="NamespaceImport" hasVisibility="true" declaredName="ecore"/>
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="bpmn20"/>
-    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="bpmn20"/>
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="dc"/>
-    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="bpmn20"/>
-    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="di"/>
-    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="di"/>
-    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="bpmn20"/>
-    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="di"/>
-    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="bpmn20"/>
-    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="di"/>
-    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="di"/>
-    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="dc"/>
-    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="di"/>
-    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="bpmn20"/>
-    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="di"/>
-    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="di"/>
-    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="di"/>
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="di"/>
     <body xsi:type="ItemDefinition" declaredName="BPMNPlane">
       <body xsi:type="ItemUsage" declaredName="bpmnElement" multiplicityRange="[1]" isReference="true">

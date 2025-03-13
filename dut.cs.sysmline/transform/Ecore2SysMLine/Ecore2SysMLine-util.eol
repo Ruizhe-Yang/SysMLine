@@ -40,18 +40,22 @@ operation Ecore!EObject isExtendedEcore(namespaceImportPackage : Sequence){
 	var eName = String;
 	if (self.isKindOf(Ecore!EReference)){
 		if (self.eType.eProxyURI.asString().split("#//").size()>1){
-			return true;
+			eName = self.eType.eProxyURI.asString().split("#//").first().split('.ecore').first().asString().toLowerCase();
 		}
-		eName = self.eType.eContainer().name.asString();
+		else{
+			eName = self.eType.eContainer().name.asString();
+		}
 	}
 	else if (self.isTypeOf(Ecore!EGenericType)){
 		if (self.eClassifier == null){
 			return false;
 		}
 		if (self.eClassifier.eProxyURI.asString().split("#//").size()>1){
-			return true;
+			eName = self.eClassifier.eProxyURI.asString().split("#//").first().split('.ecore').first().asString().toLowerCase();
 		}
-		eName = self.eClassifier.eContainer().name.asString();
+		else{
+			eName = self.eClassifier.eContainer().name.asString();
+		}
 	}
 	if (namespaceImportPackage.includes(eName)){
 		return false;

@@ -1,22 +1,7 @@
 package bpmdi {
 	private import ecore::*;
 	public import bpmn20::*;
-	public import bpmn20::*;
 	public import dc::*;
-	public import bpmn20::*;
-	public import di::*;
-	public import di::*;
-	public import bpmn20::*;
-	public import di::*;
-	public import bpmn20::*;
-	public import di::*;
-	public import di::*;
-	public import dc::*;
-	public import di::*;
-	public import bpmn20::*;
-	public import di::*;
-	public import di::*;
-	public import di::*;
 	public import di::*;
 	item def BPMNPlane :> {
 		ref item bpmnElement : [1];

@@ -3,7 +3,6 @@
   <body xsi:type="Package" declaredName="bpmn2">
     <body xsi:type="NamespaceImport" hasVisibility="true" declaredName="ecore"/>
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="bpmndi"/>
-    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="bpmndi"/>
     <body xsi:type="ItemDefinition" declaredName="Interface">
       <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
         <featureNote>:</featureNote>

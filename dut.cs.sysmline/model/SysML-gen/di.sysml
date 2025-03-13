@@ -1,11 +1,6 @@
 package di {
 	private import ecore::*;
 	public import dc::*;
-	public import dc::*;
-	public import dc::*;
-	public import dc::*;
-	public import dc::*;
-	public import dc::*;
 	abstract item def DiagramElement {
 		ref item owningDiagram : Diagram [1];
 		ref item owningElement : DiagramElement [1];
