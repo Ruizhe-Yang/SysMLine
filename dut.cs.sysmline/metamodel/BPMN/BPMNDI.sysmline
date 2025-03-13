@@ -8,14 +8,14 @@
     <body xsi:type="ItemDefinition" declaredName="BPMNPlane">
       <body xsi:type="ItemUsage" declaredName="bpmnElement" multiplicityRange="[1]" isReference="true">
         <featureNote>:</featureNote>
-        <featureSpecialization xsi:nil="true"/>
+        <featureSpecialization>BaseElement</featureSpecialization>
       </body>
       <SubclassificationPart xsi:nil="true"/>
     </body>
     <body xsi:type="ItemDefinition" declaredName="BPMNShape">
       <body xsi:type="ItemUsage" declaredName="bpmnElement" multiplicityRange="[1]" isReference="true">
         <featureNote>:</featureNote>
-        <featureSpecialization xsi:nil="true"/>
+        <featureSpecialization>BaseElement</featureSpecialization>
       </body>
       <body xsi:type="AttributeUsage" declaredName="isHorizontal" multiplicityRange="[1]">
         <featureNote>:</featureNote>
@@ -57,7 +57,7 @@
     <body xsi:type="ItemDefinition" declaredName="BPMNLabelStyle">
       <body xsi:type="ItemUsage" declaredName="font" multiplicityRange="[1]">
         <featureNote>:</featureNote>
-        <featureSpecialization xsi:nil="true"/>
+        <featureSpecialization>Font</featureSpecialization>
       </body>
       <SubclassificationPart xsi:nil="true"/>
     </body>
@@ -76,15 +76,15 @@
       </body>
       <body xsi:type="ItemUsage" declaredName="bpmnElement" multiplicityRange="[1]" isReference="true">
         <featureNote>:</featureNote>
-        <featureSpecialization xsi:nil="true"/>
+        <featureSpecialization>BaseElement</featureSpecialization>
       </body>
       <body xsi:type="ItemUsage" declaredName="sourceElement" multiplicityRange="[1]" isReference="true">
         <featureNote>:</featureNote>
-        <featureSpecialization xsi:nil="true"/>
+        <featureSpecialization>DiagramElement</featureSpecialization>
       </body>
       <body xsi:type="ItemUsage" declaredName="targetElement" multiplicityRange="[1]" isReference="true">
         <featureNote>:</featureNote>
-        <featureSpecialization xsi:nil="true"/>
+        <featureSpecialization>DiagramElement</featureSpecialization>
       </body>
       <body xsi:type="AttributeUsage" declaredName="messageVisibleKind" multiplicityRange="[1]">
         <featureNote>:</featureNote>

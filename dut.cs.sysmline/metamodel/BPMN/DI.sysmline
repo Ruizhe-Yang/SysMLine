@@ -62,14 +62,14 @@
       </body>
       <body xsi:type="ItemUsage" declaredName="waypoint" multiplicityRange="[2..*]">
         <featureNote>:</featureNote>
-        <featureSpecialization xsi:nil="true"/>
+        <featureSpecialization>Point</featureSpecialization>
       </body>
       <SubclassificationPart>DiagramElement</SubclassificationPart>
     </body>
     <body xsi:type="ItemDefinition" declaredName="Shape" isAbstract="true">
       <body xsi:type="ItemUsage" declaredName="bounds" multiplicityRange="[1]">
         <featureNote>:</featureNote>
-        <featureSpecialization xsi:nil="true"/>
+        <featureSpecialization>Bounds</featureSpecialization>
       </body>
       <SubclassificationPart>Node</SubclassificationPart>
     </body>
@@ -83,7 +83,7 @@
     <body xsi:type="ItemDefinition" declaredName="Label" isAbstract="true">
       <body xsi:type="ItemUsage" declaredName="bounds" multiplicityRange="[1]">
         <featureNote>:</featureNote>
-        <featureSpecialization xsi:nil="true"/>
+        <featureSpecialization>Bounds</featureSpecialization>
       </body>
       <SubclassificationPart>Node</SubclassificationPart>
     </body>

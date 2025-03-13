@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="ASCII"?>
+<Namespace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="sysmline" xsi:schemaLocation="sysmline metamodel/sysmline/sysmline.ecore">
+  <body xsi:type="Package" declaredName="la">
+    <body xsi:type="NamespaceImport" hasVisibility="true" declaredName="ecore"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="ctx"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="pa"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="capellacommon"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="cs"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="information"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="fa"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="file:/e:/gityang/sysmline/dut.cs.sysmline/org.polarsys.capella.common.data.def/model/modellingcore"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="epbs"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="capellacore"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="oa"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="deployment"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="interaction"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="datavalue"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="datatype"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="communication"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="file:/e:/gityang/sysmline/dut.cs.sysmline/org.polarsys.capella.common.data.def/model/behavior"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="file:/e:/gityang/sysmline/dut.cs.sysmline/org.polarsys.capella.common.data.def/model/activity"/>
+    <body xsi:type="ItemDefinition" declaredName="LogicalArchitecturePkg">
+      <body xsi:type="ItemUsage" declaredName="ownedLogicalArchitectures" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>LogicalArchitecture</featureSpecialization>
+      </body>
+      <SubclassificationPart>BlockArchitecturePkg</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="LogicalArchitecture">
+      <body xsi:type="ItemUsage" declaredName="ownedLogicalComponentPkg" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>LogicalComponentPkg</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="containedCapabilityRealizationPkg" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>CapabilityRealizationPkg</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="containedLogicalFunctionPkg" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>LogicalFunctionPkg</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedSystemAnalysisRealizations" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>SystemAnalysisRealization</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="allocatedSystemAnalysisRealizations" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>SystemAnalysisRealization</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="allocatedSystemAnalyses" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>SystemAnalysis</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="allocatingPhysicalArchitectures" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>PhysicalArchitecture</featureSpecialization>
+      </body>
+      <SubclassificationPart>ComponentArchitecture</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="LogicalFunction">
+      <body xsi:type="ItemUsage" declaredName="ownedLogicalFunctionPkgs" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>LogicalFunctionPkg</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="allocatingLogicalComponents" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>LogicalComponent</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="realizedSystemFunctions" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>SystemFunction</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="realizingPhysicalFunctions" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>PhysicalFunction</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="containedLogicalFunctions" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>LogicalFunction</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="childrenLogicalFunctions" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>LogicalFunction</featureSpecialization>
+      </body>
+      <SubclassificationPart>AbstractFunction</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="LogicalFunctionPkg">
+      <body xsi:type="ItemUsage" declaredName="ownedLogicalFunctions" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>LogicalFunction</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedLogicalFunctionPkgs" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>LogicalFunctionPkg</featureSpecialization>
+      </body>
+      <SubclassificationPart>FunctionPkg</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="LogicalComponent">
+      <body xsi:type="ItemUsage" declaredName="ownedLogicalComponents" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>LogicalComponent</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedLogicalArchitectures" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>LogicalArchitecture</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedLogicalComponentPkgs" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>LogicalComponentPkg</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="subLogicalComponents" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>LogicalComponent</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="allocatedLogicalFunctions" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>LogicalFunction</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="realizedSystemComponents" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>SystemComponent</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="realizingPhysicalComponents" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>PhysicalComponent</featureSpecialization>
+      </body>
+      <SubclassificationPart>Component</SubclassificationPart>
+      <SubclassificationPart>CapabilityRealizationInvolvedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="LogicalComponentPkg">
+      <body xsi:type="ItemUsage" declaredName="ownedLogicalComponents" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>LogicalComponent</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedLogicalComponentPkgs" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>LogicalComponentPkg</featureSpecialization>
+      </body>
+      <SubclassificationPart>ComponentPkg</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="CapabilityRealization">
+      <body xsi:type="ItemUsage" declaredName="ownedCapabilityRealizationInvolvements" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>CapabilityRealizationInvolvement</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="involvedComponents" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>CapabilityRealizationInvolvedElement</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="realizedCapabilities" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Capability</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="realizedCapabilityRealizations" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>CapabilityRealization</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="realizingCapabilityRealizations" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>CapabilityRealization</featureSpecialization>
+      </body>
+      <SubclassificationPart>AbstractCapability</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="CapabilityRealizationPkg">
+      <body xsi:type="ItemUsage" declaredName="ownedCapabilityRealizations" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>CapabilityRealization</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedCapabilityRealizationPkgs" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>CapabilityRealizationPkg</featureSpecialization>
+      </body>
+      <SubclassificationPart>AbstractCapabilityPkg</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="SystemAnalysisRealization">
+      <SubclassificationPart>ArchitectureAllocation</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ContextInterfaceRealization">
+      <SubclassificationPart>InterfaceAllocation</SubclassificationPart>
+    </body>
+  </body>
+</Namespace>

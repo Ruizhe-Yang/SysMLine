@@ -330,7 +330,6 @@ public class SysML2XMIni_file {
     }
     
     private static String addUnderscoreToExtension(File file) {
-    	
         String absolutePath = file.getAbsolutePath();
         int dotIndex = absolutePath.lastIndexOf(".");
         if (dotIndex > 0) {

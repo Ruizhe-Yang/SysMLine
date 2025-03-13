@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="ASCII"?>
+<Namespace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="sysmline" xsi:schemaLocation="sysmline metamodel/sysmline/sysmline.ecore">
+  <body xsi:type="Package" declaredName="modellingcore">
+    <body xsi:type="NamespaceImport" hasVisibility="true" declaredName="ecore"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="platform:/plugin/org.polarsys.kitalpha.emde/model/emde"/>
+    <body xsi:type="ItemDefinition" declaredName="ModelElement" isAbstract="true">
+      <body xsi:type="AttributeUsage" declaredName="id" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="sid" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="constraints" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>AbstractConstraint</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedConstraints" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>AbstractConstraint</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedMigratedElements" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ModelElement</featureSpecialization>
+      </body>
+      <SubclassificationPart xsi:nil="true"/>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="AbstractRelationship" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="realizedFlow" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>AbstractInformationFlow</featureSpecialization>
+      </body>
+      <SubclassificationPart>ModelElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="AbstractNamedElement" isAbstract="true">
+      <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <SubclassificationPart>ModelElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="InformationsExchanger" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="incomingInformationFlows" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>AbstractInformationFlow</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="outgoingInformationFlows" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>AbstractInformationFlow</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="informationFlows" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>AbstractInformationFlow</featureSpecialization>
+      </body>
+      <SubclassificationPart>ModelElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="TraceableElement" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="incomingTraces" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>AbstractTrace</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="outgoingTraces" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>AbstractTrace</featureSpecialization>
+      </body>
+      <SubclassificationPart>ModelElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="FinalizableElement" isAbstract="true">
+      <body xsi:type="AttributeUsage" declaredName="final" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <SubclassificationPart>ModelElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="PublishableElement" isAbstract="true">
+      <body xsi:type="AttributeUsage" declaredName="visibleInDoc" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="visibleInLM" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <SubclassificationPart>ModelElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="AbstractType" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="abstractTypedElements" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>AbstractTypedElement</featureSpecialization>
+      </body>
+      <SubclassificationPart>AbstractNamedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="AbstractTypedElement" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="abstractType" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>AbstractType</featureSpecialization>
+      </body>
+      <SubclassificationPart>AbstractNamedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="AbstractTrace" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="targetElement" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>TraceableElement</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="sourceElement" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>TraceableElement</featureSpecialization>
+      </body>
+      <SubclassificationPart>TraceableElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="AbstractConstraint" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="constrainedElements" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ModelElement</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedSpecification" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ValueSpecification</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="context" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ModelElement</featureSpecialization>
+      </body>
+      <SubclassificationPart>ModelElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ValueSpecification" isAbstract="true">
+      <SubclassificationPart>AbstractTypedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="AbstractParameter" isAbstract="true">
+      <body xsi:type="AttributeUsage" declaredName="isException" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="isStream" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="isOptional" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="kindOfRate" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>RateKind</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="effect" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ParameterEffectKind</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="rate" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ValueSpecification</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="probability" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ValueSpecification</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="parameterSet" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>AbstractParameterSet</featureSpecialization>
+      </body>
+      <SubclassificationPart>AbstractTypedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="EnumerationDefinition" declaredName="ParameterEffectKind">
+      <body xsi:type="EnumerationUsage" declaredName="create"/>
+      <body xsi:type="EnumerationUsage" declaredName="read"/>
+      <body xsi:type="EnumerationUsage" declaredName="update"/>
+      <body xsi:type="EnumerationUsage" declaredName="delete"/>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="AbstractParameterSet" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="ownedConditions" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>AbstractConstraint</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="probability" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ValueSpecification</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="parameters" multiplicityRange="[1..*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>AbstractParameter</featureSpecialization>
+      </body>
+      <SubclassificationPart>AbstractNamedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="EnumerationDefinition" declaredName="RateKind">
+      <body xsi:type="EnumerationUsage" declaredName="Unspecified"/>
+      <body xsi:type="EnumerationUsage" declaredName="Continuous"/>
+      <body xsi:type="EnumerationUsage" declaredName="Discrete"/>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="AbstractInformationFlow" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="realizations" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>AbstractRelationship</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="convoyedInformations" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>AbstractExchangeItem</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="source" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>InformationsExchanger</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="target" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>InformationsExchanger</featureSpecialization>
+      </body>
+      <SubclassificationPart>AbstractNamedElement</SubclassificationPart>
+      <SubclassificationPart>AbstractRelationship</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="AbstractExchangeItem" isAbstract="true">
+      <SubclassificationPart>AbstractType</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="IState" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="referencedStates" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>IState</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="exploitedStates" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>IState</featureSpecialization>
+      </body>
+      <SubclassificationPart>AbstractNamedElement</SubclassificationPart>
+    </body>
+  </body>
+</Namespace>

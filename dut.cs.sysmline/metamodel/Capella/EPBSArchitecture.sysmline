@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="ASCII"?>
+<Namespace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="sysmline" xsi:schemaLocation="sysmline metamodel/sysmline/sysmline.ecore">
+  <body xsi:type="Package" declaredName="epbs">
+    <body xsi:type="NamespaceImport" hasVisibility="true" declaredName="ecore"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="la"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="pa"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="cs"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="capellacommon"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="information"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="fa"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="file:/e:/gityang/sysmline/dut.cs.sysmline/org.polarsys.capella.common.data.def/model/modellingcore"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="capellacore"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="ctx"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="deployment"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="interaction"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="file:/e:/gityang/sysmline/dut.cs.sysmline/org.polarsys.capella.common.data.def/model/behavior"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="datavalue"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="datatype"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="communication"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="file:/e:/gityang/sysmline/dut.cs.sysmline/org.polarsys.capella.common.data.def/model/activity"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="oa"/>
+    <body xsi:type="ItemDefinition" declaredName="EPBSArchitecturePkg">
+      <body xsi:type="ItemUsage" declaredName="ownedEPBSArchitectures" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EPBSArchitecture</featureSpecialization>
+      </body>
+      <SubclassificationPart>BlockArchitecturePkg</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="EPBSArchitecture">
+      <body xsi:type="ItemUsage" declaredName="ownedConfigurationItemPkg" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ConfigurationItemPkg</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="containedCapabilityRealizationPkg" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>CapabilityRealizationPkg</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedPhysicalArchitectureRealizations" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>PhysicalArchitectureRealization</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="allocatedPhysicalArchitectureRealizations" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>PhysicalArchitectureRealization</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="allocatedPhysicalArchitectures" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>PhysicalArchitecture</featureSpecialization>
+      </body>
+      <SubclassificationPart>ComponentArchitecture</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ConfigurationItemPkg">
+      <body xsi:type="ItemUsage" declaredName="ownedConfigurationItems" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ConfigurationItem</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedConfigurationItemPkgs" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ConfigurationItemPkg</featureSpecialization>
+      </body>
+      <SubclassificationPart>ComponentPkg</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ConfigurationItem">
+      <body xsi:type="AttributeUsage" declaredName="itemIdentifier" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="kind" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ConfigurationItemKind</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedConfigurationItems" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ConfigurationItem</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedConfigurationItemPkgs" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ConfigurationItemPkg</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedPhysicalArtifactRealizations" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>PhysicalArtifactRealization</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="allocatedPhysicalArtifacts" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>AbstractPhysicalArtifact</featureSpecialization>
+      </body>
+      <SubclassificationPart>CapabilityRealizationInvolvedElement</SubclassificationPart>
+      <SubclassificationPart>Component</SubclassificationPart>
+    </body>
+    <body xsi:type="EnumerationDefinition" declaredName="ConfigurationItemKind">
+      <body xsi:type="EnumerationUsage" declaredName="Unset"/>
+      <body xsi:type="EnumerationUsage" declaredName="COTSCI"/>
+      <body xsi:type="EnumerationUsage" declaredName="CSCI"/>
+      <body xsi:type="EnumerationUsage" declaredName="HWCI"/>
+      <body xsi:type="EnumerationUsage" declaredName="InterfaceCI"/>
+      <body xsi:type="EnumerationUsage" declaredName="NDICI"/>
+      <body xsi:type="EnumerationUsage" declaredName="PrimeItemCI"/>
+      <body xsi:type="EnumerationUsage" declaredName="SystemCI"/>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="PhysicalArchitectureRealization">
+      <SubclassificationPart>ArchitectureAllocation</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="PhysicalArtifactRealization">
+      <body xsi:type="ItemUsage" declaredName="realizedPhysicalArtifact" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>AbstractPhysicalArtifact</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="realizingConfigurationItem" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ConfigurationItem</featureSpecialization>
+      </body>
+      <SubclassificationPart>Allocation</SubclassificationPart>
+    </body>
+  </body>
+</Namespace>

@@ -1,0 +1,841 @@
+<?xml version="1.0" encoding="ASCII"?>
+<Namespace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="sysmline" xsi:schemaLocation="sysmline metamodel/sysmline/sysmline.ecore">
+  <body xsi:type="Package" declaredName="fa">
+    <body xsi:type="NamespaceImport" hasVisibility="true" declaredName="ecore"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="capellacore"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="capellacommon"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="ctx"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="la"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="information"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="cs"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="file:/e:/gityang/sysmline/dut.cs.sysmline/org.polarsys.capella.common.data.def/model/modellingcore"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="interaction"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="file:/e:/gityang/sysmline/dut.cs.sysmline/org.polarsys.capella.common.data.def/model/behavior"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="oa"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="pa"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="datavalue"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="datatype"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="communication"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="epbs"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="file:/e:/gityang/sysmline/dut.cs.sysmline/org.polarsys.capella.common.data.def/model/activity"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="deployment"/>
+    <body xsi:type="ItemDefinition" declaredName="AbstractFunctionalArchitecture" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="ownedFunctionPkg" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FunctionPkg</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedComponentExchanges" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ComponentExchange</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedComponentExchangeCategories" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ComponentExchangeCategory</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedFunctionalLinks" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ExchangeLink</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedFunctionalAllocations" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ComponentFunctionalAllocation</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedComponentExchangeRealizations" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ComponentExchangeRealization</featureSpecialization>
+      </body>
+      <SubclassificationPart>ModellingArchitecture</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="AbstractFunctionalBlock" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="ownedFunctionalAllocation" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ComponentFunctionalAllocation</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedComponentExchanges" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ComponentExchange</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedComponentExchangeCategories" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ComponentExchangeCategory</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="functionalAllocations" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ComponentFunctionalAllocation</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="allocatedFunctions" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>AbstractFunction</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="inExchangeLinks" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ExchangeLink</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="outExchangeLinks" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ExchangeLink</featureSpecialization>
+      </body>
+      <SubclassificationPart>ModellingBlock</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="FunctionPkg" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="ownedFunctionalLinks" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ExchangeLink</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedExchanges" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FunctionalExchangeSpecification</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedExchangeSpecificationRealizations" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ExchangeSpecificationRealization</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedCategories" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ExchangeCategory</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedFunctionSpecifications" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FunctionSpecification</featureSpecialization>
+      </body>
+      <SubclassificationPart>Structure</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="FunctionSpecification">
+      <body xsi:type="ItemUsage" declaredName="inExchangeLinks" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ExchangeLink</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="outExchangeLinks" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ExchangeLink</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedFunctionPorts" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FunctionPort</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="subFunctionSpecifications" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FunctionSpecification</featureSpecialization>
+      </body>
+      <SubclassificationPart>Namespace</SubclassificationPart>
+      <SubclassificationPart xsi:nil="true"/>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ExchangeCategory">
+      <body xsi:type="ItemUsage" declaredName="exchanges" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FunctionalExchange</featureSpecialization>
+      </body>
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ExchangeLink">
+      <body xsi:type="ItemUsage" declaredName="exchanges" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ExchangeSpecification</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="exchangeContainmentLinks" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ExchangeContainment</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedExchangeContainments" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ExchangeContainment</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="sources" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FunctionSpecification</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="destinations" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FunctionSpecification</featureSpecialization>
+      </body>
+      <SubclassificationPart>NamedRelationship</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ExchangeContainment">
+      <body xsi:type="ItemUsage" declaredName="exchange" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ExchangeSpecification</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="link" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ExchangeLink</featureSpecialization>
+      </body>
+      <SubclassificationPart>Relationship</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ExchangeSpecification" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="containingLink" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ExchangeLink</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="link" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ExchangeContainment</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="outgoingExchangeSpecificationRealizations" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ExchangeSpecificationRealization</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="incomingExchangeSpecificationRealizations" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ExchangeSpecificationRealization</featureSpecialization>
+      </body>
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+      <SubclassificationPart xsi:nil="true"/>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="FunctionalExchangeSpecification">
+      <body xsi:type="ItemUsage" declaredName="functionalExchanges" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FunctionalExchange</featureSpecialization>
+      </body>
+      <SubclassificationPart>ExchangeSpecification</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="FunctionalChain">
+      <body xsi:type="AttributeUsage" declaredName="kind" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FunctionalChainKind</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedFunctionalChainInvolvements" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FunctionalChainInvolvement</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedFunctionalChainRealizations" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FunctionalChainRealization</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="involvedFunctionalChainInvolvements" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FunctionalChainInvolvement</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="involvedFunctions" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>AbstractFunction</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="involvedFunctionalExchanges" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FunctionalExchange</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="involvedElements" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>InvolvedElement</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="enactedFunctions" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>AbstractFunction</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="enactedFunctionalBlocks" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>AbstractFunctionalBlock</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="availableInStates" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>State</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="firstFunctionalChainInvolvements" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FunctionalChainInvolvement</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="involvingCapabilities" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Capability</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="involvingCapabilityRealizations" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>CapabilityRealization</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="realizedFunctionalChains" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FunctionalChain</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="realizingFunctionalChains" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FunctionalChain</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="preCondition" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Constraint</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="postCondition" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Constraint</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedSequenceNodes" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ControlNode</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedSequenceLinks" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>SequenceLink</featureSpecialization>
+      </body>
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+      <SubclassificationPart>InvolverElement</SubclassificationPart>
+      <SubclassificationPart>InvolvedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="EnumerationDefinition" declaredName="FunctionalChainKind">
+      <body xsi:type="EnumerationUsage" declaredName="SIMPLE"/>
+      <body xsi:type="EnumerationUsage" declaredName="COMPOSITE"/>
+      <body xsi:type="EnumerationUsage" declaredName="FRAGMENT"/>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="AbstractFunctionalChainContainer" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="ownedFunctionalChains" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FunctionalChain</featureSpecialization>
+      </body>
+      <SubclassificationPart>CapellaElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="FunctionalChainInvolvement" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="nextFunctionalChainInvolvements" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FunctionalChainInvolvement</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="previousFunctionalChainInvolvements" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FunctionalChainInvolvement</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="involvedElement" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>InvolvedElement</featureSpecialization>
+      </body>
+      <SubclassificationPart>Involvement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="FunctionalChainReference">
+      <body xsi:type="ItemUsage" declaredName="referencedFunctionalChain" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FunctionalChain</featureSpecialization>
+      </body>
+      <SubclassificationPart>FunctionalChainInvolvement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="FunctionInputPort">
+      <body xsi:type="ItemUsage" declaredName="incomingExchangeItems" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ExchangeItem</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="incomingFunctionalExchanges" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FunctionalExchange</featureSpecialization>
+      </body>
+      <SubclassificationPart>FunctionPort</SubclassificationPart>
+      <SubclassificationPart xsi:nil="true"/>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="FunctionOutputPort">
+      <body xsi:type="ItemUsage" declaredName="outgoingExchangeItems" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ExchangeItem</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="outgoingFunctionalExchanges" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FunctionalExchange</featureSpecialization>
+      </body>
+      <SubclassificationPart>FunctionPort</SubclassificationPart>
+      <SubclassificationPart xsi:nil="true"/>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="AbstractFunctionAllocation" isAbstract="true">
+      <SubclassificationPart>Allocation</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ComponentFunctionalAllocation">
+      <body xsi:type="ItemUsage" declaredName="function" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>AbstractFunction</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="block" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>AbstractFunctionalBlock</featureSpecialization>
+      </body>
+      <SubclassificationPart>AbstractFunctionAllocation</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="FunctionalChainRealization">
+      <SubclassificationPart>Allocation</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ExchangeSpecificationRealization" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="realizedExchangeSpecification" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ExchangeSpecification</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="realizingExchangeSpecification" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ExchangeSpecification</featureSpecialization>
+      </body>
+      <SubclassificationPart>Allocation</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="FunctionalExchangeRealization">
+      <body xsi:type="ItemUsage" declaredName="realizedFunctionalExchange" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FunctionalExchange</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="realizingFunctionalExchange" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FunctionalExchange</featureSpecialization>
+      </body>
+      <SubclassificationPart>Allocation</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="FunctionRealization">
+      <body xsi:type="ItemUsage" declaredName="allocatedFunction" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>AbstractFunction</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="allocatingFunction" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>AbstractFunction</featureSpecialization>
+      </body>
+      <SubclassificationPart>AbstractFunctionAllocation</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="FunctionalExchange">
+      <body xsi:type="ItemUsage" declaredName="exchangeSpecifications" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FunctionalExchangeSpecification</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="involvingFunctionalChains" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FunctionalChain</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="exchangedItems" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ExchangeItem</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="allocatingComponentExchanges" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ComponentExchange</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="incomingComponentExchangeFunctionalExchangeRealizations" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ComponentExchangeFunctionalExchangeAllocation</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="incomingFunctionalExchangeRealizations" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FunctionalExchangeRealization</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="outgoingFunctionalExchangeRealizations" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FunctionalExchangeRealization</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="categories" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ExchangeCategory</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedFunctionalExchangeRealizations" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FunctionalExchangeRealization</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="sourceFunctionOutputPort" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FunctionOutputPort</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="targetFunctionInputPort" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FunctionInputPort</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="realizedFunctionalExchanges" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FunctionalExchange</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="realizingFunctionalExchanges" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FunctionalExchange</featureSpecialization>
+      </body>
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+      <SubclassificationPart>Relationship</SubclassificationPart>
+      <SubclassificationPart>InvolvedElement</SubclassificationPart>
+      <SubclassificationPart xsi:nil="true"/>
+      <SubclassificationPart>AbstractEventOperation</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="AbstractFunction" isAbstract="true">
+      <body xsi:type="AttributeUsage" declaredName="kind" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FunctionKind</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="condition" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedFunctions" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>AbstractFunction</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedFunctionRealizations" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FunctionRealization</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedFunctionalExchanges" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FunctionalExchange</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="subFunctions" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>AbstractFunction</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="outFunctionRealizations" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FunctionRealization</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="inFunctionRealizations" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FunctionRealization</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="componentFunctionalAllocations" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ComponentFunctionalAllocation</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="allocationBlocks" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>AbstractFunctionalBlock</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="availableInStates" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>State</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="involvingCapabilities" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Capability</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="involvingCapabilityRealizations" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>CapabilityRealization</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="involvingFunctionalChains" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FunctionalChain</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="linkedStateMachine" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>StateMachine</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="linkedFunctionSpecification" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FunctionSpecification</featureSpecialization>
+      </body>
+      <SubclassificationPart>Namespace</SubclassificationPart>
+      <SubclassificationPart>InvolvedElement</SubclassificationPart>
+      <SubclassificationPart>AbstractInstance</SubclassificationPart>
+      <SubclassificationPart>AbstractFunctionalChainContainer</SubclassificationPart>
+      <SubclassificationPart xsi:nil="true"/>
+    </body>
+    <body xsi:type="EnumerationDefinition" declaredName="FunctionKind">
+      <body xsi:type="EnumerationUsage" declaredName="FUNCTION"/>
+      <body xsi:type="EnumerationUsage" declaredName="DUPLICATE"/>
+      <body xsi:type="EnumerationUsage" declaredName="GATHER"/>
+      <body xsi:type="EnumerationUsage" declaredName="SELECT"/>
+      <body xsi:type="EnumerationUsage" declaredName="SPLIT"/>
+      <body xsi:type="EnumerationUsage" declaredName="ROUTE"/>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="FunctionPort" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="representedComponentPort" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ComponentPort</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="allocatorComponentPorts" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ComponentPort</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="realizedFunctionPorts" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FunctionPort</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="realizingFunctionPorts" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FunctionPort</featureSpecialization>
+      </body>
+      <SubclassificationPart>Port</SubclassificationPart>
+      <SubclassificationPart>TypedElement</SubclassificationPart>
+      <SubclassificationPart xsi:nil="true"/>
+    </body>
+    <body xsi:type="EnumerationDefinition" declaredName="ComponentExchangeKind">
+      <body xsi:type="EnumerationUsage" declaredName="UNSET"/>
+      <body xsi:type="EnumerationUsage" declaredName="DELEGATION"/>
+      <body xsi:type="EnumerationUsage" declaredName="ASSEMBLY"/>
+      <body xsi:type="EnumerationUsage" declaredName="FLOW"/>
+    </body>
+    <body xsi:type="EnumerationDefinition" declaredName="ComponentPortKind">
+      <body xsi:type="EnumerationUsage" declaredName="STANDARD"/>
+      <body xsi:type="EnumerationUsage" declaredName="FLOW"/>
+    </body>
+    <body xsi:type="EnumerationDefinition" declaredName="OrientationPortKind">
+      <body xsi:type="EnumerationUsage" declaredName="UNSET"/>
+      <body xsi:type="EnumerationUsage" declaredName="IN"/>
+      <body xsi:type="EnumerationUsage" declaredName="OUT"/>
+      <body xsi:type="EnumerationUsage" declaredName="INOUT"/>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ComponentExchange">
+      <body xsi:type="AttributeUsage" declaredName="kind" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ComponentExchangeKind</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="oriented" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="allocatedFunctionalExchanges" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FunctionalExchange</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="incomingComponentExchangeRealizations" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ComponentExchangeRealization</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="outgoingComponentExchangeRealizations" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ComponentExchangeRealization</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="outgoingComponentExchangeFunctionalExchangeAllocations" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ComponentExchangeFunctionalExchangeAllocation</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedComponentExchangeFunctionalExchangeAllocations" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ComponentExchangeFunctionalExchangeAllocation</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedComponentExchangeRealizations" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ComponentExchangeRealization</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedComponentExchangeEnds" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ComponentExchangeEnd</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="sourcePort" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Port</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="sourcePart" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Part</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="targetPort" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Port</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="targetPart" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Part</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="categories" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ComponentExchangeCategory</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="allocatorPhysicalLinks" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>PhysicalLink</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="realizedComponentExchanges" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ComponentExchange</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="realizingComponentExchanges" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ComponentExchange</featureSpecialization>
+      </body>
+      <SubclassificationPart xsi:nil="true"/>
+      <SubclassificationPart>AbstractEventOperation</SubclassificationPart>
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+      <SubclassificationPart>ExchangeSpecification</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ComponentExchangeAllocation">
+      <body xsi:type="ItemUsage" declaredName="componentExchangeAllocated" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ComponentExchange</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="componentExchangeAllocator" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ComponentExchangeAllocator</featureSpecialization>
+      </body>
+      <SubclassificationPart>Allocation</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ComponentExchangeAllocator" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="ownedComponentExchangeAllocations" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ComponentExchangeAllocation</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="allocatedComponentExchanges" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ComponentExchange</featureSpecialization>
+      </body>
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ComponentExchangeCategory">
+      <body xsi:type="ItemUsage" declaredName="exchanges" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ComponentExchange</featureSpecialization>
+      </body>
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ComponentExchangeEnd">
+      <body xsi:type="ItemUsage" declaredName="port" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Port</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="part" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Part</featureSpecialization>
+      </body>
+      <SubclassificationPart xsi:nil="true"/>
+      <SubclassificationPart>CapellaElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ComponentExchangeFunctionalExchangeAllocation">
+      <body xsi:type="ItemUsage" declaredName="allocatedFunctionalExchange" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FunctionalExchange</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="allocatingComponentExchange" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ComponentExchange</featureSpecialization>
+      </body>
+      <SubclassificationPart>AbstractFunctionAllocation</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ComponentExchangeRealization">
+      <body xsi:type="ItemUsage" declaredName="allocatedComponentExchange" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ComponentExchange</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="allocatingComponentExchange" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ComponentExchange</featureSpecialization>
+      </body>
+      <SubclassificationPart>ExchangeSpecificationRealization</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ComponentPort">
+      <body xsi:type="AttributeUsage" declaredName="orientation" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>OrientationPortKind</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="kind" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ComponentPortKind</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="componentExchanges" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ComponentExchange</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="allocatedFunctionPorts" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FunctionPort</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="delegatedComponentPorts" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ComponentPort</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="delegatingComponentPorts" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ComponentPort</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="allocatingPhysicalPorts" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>PhysicalPort</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="realizedComponentPorts" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ComponentPort</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="realizingComponentPorts" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ComponentPort</featureSpecialization>
+      </body>
+      <SubclassificationPart>Port</SubclassificationPart>
+      <SubclassificationPart xsi:nil="true"/>
+      <SubclassificationPart>Property</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ComponentPortAllocation">
+      <body xsi:type="ItemUsage" declaredName="ownedComponentPortAllocationEnds" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ComponentPortAllocationEnd</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="allocatedPort" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Port</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="allocatingPort" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Port</featureSpecialization>
+      </body>
+      <SubclassificationPart>Allocation</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ComponentPortAllocationEnd">
+      <body xsi:type="ItemUsage" declaredName="port" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Port</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="part" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Part</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="owningComponentPortAllocation" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ComponentPortAllocation</featureSpecialization>
+      </body>
+      <SubclassificationPart>CapellaElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="FunctionalChainInvolvementLink">
+      <body xsi:type="ItemUsage" declaredName="exchangeContext" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Constraint</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="exchangedItems" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ExchangeItem</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="source" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FunctionalChainInvolvementFunction</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="target" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FunctionalChainInvolvementFunction</featureSpecialization>
+      </body>
+      <SubclassificationPart>FunctionalChainInvolvement</SubclassificationPart>
+      <SubclassificationPart>ReferenceHierarchyContext</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="SequenceLink">
+      <body xsi:type="ItemUsage" declaredName="condition" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Constraint</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="links" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FunctionalChainInvolvementLink</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="source" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>SequenceLinkEnd</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="target" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>SequenceLinkEnd</featureSpecialization>
+      </body>
+      <SubclassificationPart>CapellaElement</SubclassificationPart>
+      <SubclassificationPart>ReferenceHierarchyContext</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="SequenceLinkEnd" isAbstract="true">
+      <SubclassificationPart>CapellaElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="FunctionalChainInvolvementFunction">
+      <body xsi:type="ItemUsage" declaredName="outgoingInvolvementLinks" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FunctionalChainInvolvementLink</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="incomingInvolvementLinks" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FunctionalChainInvolvementLink</featureSpecialization>
+      </body>
+      <SubclassificationPart>FunctionalChainInvolvement</SubclassificationPart>
+      <SubclassificationPart>SequenceLinkEnd</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ControlNode">
+      <body xsi:type="AttributeUsage" declaredName="kind" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ControlNodeKind</featureSpecialization>
+      </body>
+      <SubclassificationPart>SequenceLinkEnd</SubclassificationPart>
+    </body>
+    <body xsi:type="EnumerationDefinition" declaredName="ControlNodeKind">
+      <body xsi:type="EnumerationUsage" declaredName="OR"/>
+      <body xsi:type="EnumerationUsage" declaredName="AND"/>
+      <body xsi:type="EnumerationUsage" declaredName="ITERATE"/>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ReferenceHierarchyContext" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="sourceReferenceHierarchy" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FunctionalChainReference</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="targetReferenceHierarchy" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FunctionalChainReference</featureSpecialization>
+      </body>
+    </body>
+  </body>
+</Namespace>

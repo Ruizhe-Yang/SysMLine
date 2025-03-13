@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="ASCII"?>
+<Namespace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="sysmline" xsi:schemaLocation="sysmline metamodel/sysmline/sysmline.ecore">
+  <body xsi:type="Package" declaredName="capellacore">
+    <body xsi:type="NamespaceImport" hasVisibility="true" declaredName="ecore"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="capellacommon"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="information"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="file:/e:/gityang/sysmline/dut.cs.sysmline/org.polarsys.capella.common.data.def/model/modellingcore"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="la"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="fa"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="interaction"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="file:/e:/gityang/sysmline/dut.cs.sysmline/org.polarsys.capella.common.data.def/model/behavior"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="datavalue"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="datatype"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="communication"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="cs"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="ctx"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="pa"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="file:/e:/gityang/sysmline/dut.cs.sysmline/org.polarsys.capella.common.data.def/model/activity"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="epbs"/>
+    <body xsi:type="ItemDefinition" declaredName="CapellaElement" isAbstract="true">
+      <body xsi:type="AttributeUsage" declaredName="summary" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="description" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="review" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedPropertyValues" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>AbstractPropertyValue</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedEnumerationPropertyTypes" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EnumerationPropertyType</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="appliedPropertyValues" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>AbstractPropertyValue</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedPropertyValueGroups" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>PropertyValueGroup</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="appliedPropertyValueGroups" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>PropertyValueGroup</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="status" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EnumerationPropertyLiteral</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="features" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EnumerationPropertyLiteral</featureSpecialization>
+      </body>
+      <SubclassificationPart xsi:nil="true"/>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="NamedElement" isAbstract="true">
+      <SubclassificationPart xsi:nil="true"/>
+      <SubclassificationPart>CapellaElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Relationship" isAbstract="true">
+      <SubclassificationPart xsi:nil="true"/>
+      <SubclassificationPart>CapellaElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Namespace" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="ownedTraces" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Trace</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="containedGenericTraces" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>GenericTrace</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="namingRules" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>NamingRule</featureSpecialization>
+      </body>
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="NamedRelationship" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="namingRules" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>NamingRule</featureSpecialization>
+      </body>
+      <SubclassificationPart>Relationship</SubclassificationPart>
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Structure" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="ownedPropertyValuePkgs" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>PropertyValuePkg</featureSpecialization>
+      </body>
+      <SubclassificationPart>Namespace</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="AbstractModellingStructure" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="ownedArchitectures" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ModellingArchitecture</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedArchitecturePkgs" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ModellingArchitecturePkg</featureSpecialization>
+      </body>
+      <SubclassificationPart>ReuserStructure</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ModellingBlock" isAbstract="true">
+      <SubclassificationPart>Type</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ModellingArchitecture" isAbstract="true">
+      <SubclassificationPart>Structure</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ModellingArchitecturePkg" isAbstract="true">
+      <SubclassificationPart>Structure</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Type" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="typedElements" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>TypedElement</featureSpecialization>
+      </body>
+      <SubclassificationPart xsi:nil="true"/>
+      <SubclassificationPart>Namespace</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="TypedElement" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="type" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Type</featureSpecialization>
+      </body>
+      <SubclassificationPart xsi:nil="true"/>
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Trace" isAbstract="true">
+      <SubclassificationPart>Relationship</SubclassificationPart>
+      <SubclassificationPart xsi:nil="true"/>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="AbstractAnnotation" isAbstract="true">
+      <body xsi:type="AttributeUsage" declaredName="content" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <SubclassificationPart>CapellaElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="NamingRule">
+      <body xsi:type="AttributeUsage" declaredName="targetType" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <SubclassificationPart>AbstractAnnotation</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Constraint">
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+      <SubclassificationPart xsi:nil="true"/>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="KeyValue">
+      <body xsi:type="AttributeUsage" declaredName="key" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="'value'" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <SubclassificationPart>CapellaElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ReuseLink">
+      <body xsi:type="ItemUsage" declaredName="reused" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ReuseableStructure</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="reuser" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ReuserStructure</featureSpecialization>
+      </body>
+      <SubclassificationPart>Relationship</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ReuseableStructure" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="reuseLinks" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ReuseLink</featureSpecialization>
+      </body>
+      <SubclassificationPart>Structure</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ReuserStructure" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="reuseLinks" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ReuseLink</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedReuseLinks" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ReuseLink</featureSpecialization>
+      </body>
+      <SubclassificationPart>Structure</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="GeneralizableElement" isAbstract="true">
+      <body xsi:type="AttributeUsage" declaredName="'abstract'" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedGeneralizations" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Generalization</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="superGeneralizations" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Generalization</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="subGeneralizations" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Generalization</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="super" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>GeneralizableElement</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="sub" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>GeneralizableElement</featureSpecialization>
+      </body>
+      <SubclassificationPart>Type</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Classifier" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="ownedFeatures" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Feature</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="containedProperties" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Property</featureSpecialization>
+      </body>
+      <SubclassificationPart>GeneralizableElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="GeneralClass" isAbstract="true">
+      <body xsi:type="AttributeUsage" declaredName="visibility" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>VisibilityKind</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="containedOperations" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Operation</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="nestedGeneralClasses" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>GeneralClass</featureSpecialization>
+      </body>
+      <SubclassificationPart>Classifier</SubclassificationPart>
+      <SubclassificationPart xsi:nil="true"/>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Generalization">
+      <body xsi:type="ItemUsage" declaredName="super" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>GeneralizableElement</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="sub" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>GeneralizableElement</featureSpecialization>
+      </body>
+      <SubclassificationPart>Relationship</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Feature" isAbstract="true">
+      <body xsi:type="AttributeUsage" declaredName="isAbstract" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="isStatic" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="visibility" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>VisibilityKind</featureSpecialization>
+      </body>
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="AbstractExchangeItemPkg" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="ownedExchangeItems" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ExchangeItem</featureSpecialization>
+      </body>
+      <SubclassificationPart>Structure</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Allocation" isAbstract="true">
+      <SubclassificationPart>Relationship</SubclassificationPart>
+      <SubclassificationPart xsi:nil="true"/>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Involvement" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="involver" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>InvolverElement</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="involved" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>InvolvedElement</featureSpecialization>
+      </body>
+      <SubclassificationPart>Relationship</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="InvolverElement" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="involvedInvolvements" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Involvement</featureSpecialization>
+      </body>
+      <SubclassificationPart>CapellaElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="InvolvedElement" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="involvingInvolvements" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Involvement</featureSpecialization>
+      </body>
+      <SubclassificationPart>CapellaElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="AbstractPropertyValue" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="involvedElements" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>CapellaElement</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="valuedElements" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>CapellaElement</featureSpecialization>
+      </body>
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="StringPropertyValue">
+      <body xsi:type="AttributeUsage" declaredName="'value'" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <SubclassificationPart>AbstractPropertyValue</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="IntegerPropertyValue">
+      <body xsi:type="AttributeUsage" declaredName="'value'" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EInt</featureSpecialization>
+      </body>
+      <SubclassificationPart>AbstractPropertyValue</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="BooleanPropertyValue">
+      <body xsi:type="AttributeUsage" declaredName="'value'" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <SubclassificationPart>AbstractPropertyValue</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="FloatPropertyValue">
+      <body xsi:type="AttributeUsage" declaredName="'value'" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EFloat</featureSpecialization>
+      </body>
+      <SubclassificationPart>AbstractPropertyValue</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="EnumerationPropertyValue">
+      <body xsi:type="ItemUsage" declaredName="type" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EnumerationPropertyType</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="'value'" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EnumerationPropertyLiteral</featureSpecialization>
+      </body>
+      <SubclassificationPart>AbstractPropertyValue</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="EnumerationPropertyType">
+      <body xsi:type="ItemUsage" declaredName="ownedLiterals" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EnumerationPropertyLiteral</featureSpecialization>
+      </body>
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="EnumerationPropertyLiteral">
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="PropertyValueGroup">
+      <body xsi:type="ItemUsage" declaredName="valuedElements" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>CapellaElement</featureSpecialization>
+      </body>
+      <SubclassificationPart>Namespace</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="PropertyValuePkg">
+      <SubclassificationPart>Structure</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="AbstractDependenciesPkg" isAbstract="true">
+      <SubclassificationPart>Structure</SubclassificationPart>
+    </body>
+    <body xsi:type="EnumerationDefinition" declaredName="VisibilityKind">
+      <body xsi:type="EnumerationUsage" declaredName="UNSET"/>
+      <body xsi:type="EnumerationUsage" declaredName="PUBLIC"/>
+      <body xsi:type="EnumerationUsage" declaredName="PROTECTED"/>
+      <body xsi:type="EnumerationUsage" declaredName="PRIVATE"/>
+      <body xsi:type="EnumerationUsage" declaredName="PACKAGE"/>
+    </body>
+  </body>
+</Namespace>

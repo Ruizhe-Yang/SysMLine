@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="ASCII"?>
+<Namespace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="sysmline" xsi:schemaLocation="sysmline metamodel/sysmline/sysmline.ecore">
+  <body xsi:type="Package" declaredName="capellacommon">
+    <body xsi:type="NamespaceImport" hasVisibility="true" declaredName="ecore"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="capellacore"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="file:/e:/gityang/sysmline/dut.cs.sysmline/org.polarsys.capella.common.data.def/model/modellingcore"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="la"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="fa"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="interaction"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="file:/e:/gityang/sysmline/dut.cs.sysmline/org.polarsys.capella.common.data.def/model/behavior"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="information"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="ctx"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="pa"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="cs"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="file:/e:/gityang/sysmline/dut.cs.sysmline/org.polarsys.capella.common.data.def/model/activity"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="datavalue"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="datatype"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="communication"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="oa"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="epbs"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="deployment"/>
+    <body xsi:type="ItemDefinition" declaredName="AbstractCapabilityPkg" isAbstract="true">
+      <SubclassificationPart>Structure</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="GenericTrace">
+      <body xsi:type="ItemUsage" declaredName="keyValuePairs" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>KeyValue</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="source" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>TraceableElement</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="target" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>TraceableElement</featureSpecialization>
+      </body>
+      <SubclassificationPart>Trace</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="TransfoLink">
+      <SubclassificationPart>GenericTrace</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="JustificationLink">
+      <SubclassificationPart>GenericTrace</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="CapabilityRealizationInvolvement">
+      <body xsi:type="ItemUsage" declaredName="involvedCapabilityRealizationInvolvedElement" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>CapabilityRealizationInvolvedElement</featureSpecialization>
+      </body>
+      <SubclassificationPart>Involvement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="CapabilityRealizationInvolvedElement" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="capabilityRealizationInvolvements" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>CapabilityRealizationInvolvement</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="involvingCapabilityRealizations" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>CapabilityRealization</featureSpecialization>
+      </body>
+      <SubclassificationPart>InvolvedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="StateMachine">
+      <body xsi:type="ItemUsage" declaredName="ownedRegions" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Region</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedConnectionPoints" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Pseudostate</featureSpecialization>
+      </body>
+      <SubclassificationPart>CapellaElement</SubclassificationPart>
+      <SubclassificationPart xsi:nil="true"/>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Region">
+      <body xsi:type="ItemUsage" declaredName="ownedStates" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>AbstractState</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedTransitions" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>StateTransition</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="involvedStates" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>AbstractState</featureSpecialization>
+      </body>
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="State">
+      <body xsi:type="ItemUsage" declaredName="ownedRegions" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Region</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedConnectionPoints" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Pseudostate</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="availableAbstractFunctions" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>AbstractFunction</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="availableFunctionalChains" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FunctionalChain</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="availableAbstractCapabilities" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>AbstractCapability</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="entry" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>AbstractEvent</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="doActivity" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>AbstractEvent</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="exit" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>AbstractEvent</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="stateInvariant" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>AbstractConstraint</featureSpecialization>
+      </body>
+      <SubclassificationPart>AbstractState</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Mode">
+      <SubclassificationPart>State</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="FinalState">
+      <SubclassificationPart>State</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="AbstractState" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="ownedAbstractStateRealizations" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>AbstractStateRealization</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="realizedAbstractStates" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>AbstractState</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="realizingAbstractStates" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>AbstractState</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="outgoing" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>StateTransition</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="incoming" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>StateTransition</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="involverRegions" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Region</featureSpecialization>
+      </body>
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+      <SubclassificationPart xsi:nil="true"/>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="StateTransition">
+      <body xsi:type="AttributeUsage" declaredName="kind" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>TransitionKind</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="triggerDescription" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="guard" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Constraint</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="source" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>AbstractState</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="target" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>AbstractState</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="effect" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>AbstractEvent</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="triggers" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>AbstractEvent</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedStateTransitionRealizations" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>StateTransitionRealization</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="realizedStateTransitions" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>StateTransition</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="realizingStateTransitions" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>StateTransition</featureSpecialization>
+      </body>
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+      <SubclassificationPart>Relationship</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Pseudostate" isAbstract="true">
+      <SubclassificationPart>AbstractState</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="InitialPseudoState">
+      <SubclassificationPart>Pseudostate</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="JoinPseudoState">
+      <SubclassificationPart>Pseudostate</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ForkPseudoState">
+      <SubclassificationPart>Pseudostate</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ChoicePseudoState">
+      <SubclassificationPart>Pseudostate</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="TerminatePseudoState">
+      <SubclassificationPart>Pseudostate</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="AbstractStateRealization">
+      <body xsi:type="ItemUsage" declaredName="realizedAbstractState" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>AbstractState</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="realizingAbstractState" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>AbstractState</featureSpecialization>
+      </body>
+      <SubclassificationPart>Allocation</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="StateTransitionRealization">
+      <body xsi:type="ItemUsage" declaredName="realizedStateTransition" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>StateTransition</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="realizingStateTransition" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>StateTransition</featureSpecialization>
+      </body>
+      <SubclassificationPart>Allocation</SubclassificationPart>
+    </body>
+    <body xsi:type="EnumerationDefinition" declaredName="TransitionKind">
+      <body xsi:type="EnumerationUsage" declaredName="internal"/>
+      <body xsi:type="EnumerationUsage" declaredName="local"/>
+      <body xsi:type="EnumerationUsage" declaredName="external"/>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ShallowHistoryPseudoState">
+      <SubclassificationPart>Pseudostate</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="DeepHistoryPseudoState">
+      <SubclassificationPart>Pseudostate</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="EntryPointPseudoState">
+      <SubclassificationPart>Pseudostate</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ExitPointPseudoState">
+      <SubclassificationPart>Pseudostate</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="StateEventRealization">
+      <body xsi:type="ItemUsage" declaredName="realizedEvent" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>StateEvent</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="realizingEvent" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>StateEvent</featureSpecialization>
+      </body>
+      <SubclassificationPart>Allocation</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="StateEvent" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="expression" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Constraint</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedStateEventRealizations" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>StateEventRealization</featureSpecialization>
+      </body>
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+      <SubclassificationPart xsi:nil="true"/>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ChangeEvent">
+      <body xsi:type="AttributeUsage" declaredName="kind" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ChangeEventKind</featureSpecialization>
+      </body>
+      <SubclassificationPart>StateEvent</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="TimeEvent">
+      <body xsi:type="AttributeUsage" declaredName="kind" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>TimeEventKind</featureSpecialization>
+      </body>
+      <SubclassificationPart>StateEvent</SubclassificationPart>
+    </body>
+    <body xsi:type="EnumerationDefinition" declaredName="TimeEventKind">
+      <body xsi:type="EnumerationUsage" declaredName="AT"/>
+      <body xsi:type="EnumerationUsage" declaredName="AFTER"/>
+    </body>
+    <body xsi:type="EnumerationDefinition" declaredName="ChangeEventKind">
+      <body xsi:type="EnumerationUsage" declaredName="WHEN"/>
+    </body>
+  </body>
+</Namespace>

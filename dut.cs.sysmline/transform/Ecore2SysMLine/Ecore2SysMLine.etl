@@ -41,10 +41,7 @@ rule EClass
 rule EAttribute
 	transform s : Ecore!EAttribute
 	to t : SysMLine!AttributeUsage{
-		t.declaredName = s.name.clearKeyWord();
-		t.multiplicityRange = s.getRange();
-		t.featureNote.add(":");
-		t.featureSpecialization.add(s.eContents().select(i|i.isTypeOf(Ecore!EGenericType)).first().eClassifier.name);
+		eStructuralFeatureTransform(s, t);
 	}
 	
 	
@@ -53,10 +50,7 @@ rule EReference_val
 	transform s : Ecore!EReference
 	to t : SysMLine!ItemUsage{
 		guard : s.containment==true
-		t.declaredName = s.name.clearKeyWord();
-		t.multiplicityRange = s.getRange();
-		t.featureNote.add(":");
-		t.featureSpecialization.add(s.eContents().select(i|i.isTypeOf(Ecore!EGenericType)).first().eClassifier.name);
+		eStructuralFeatureTransform(s, t);
 	}
 
 @lazy
@@ -65,10 +59,7 @@ rule EReference_ref
 	to t : SysMLine!ItemUsage{
 		guard : s.containment==false
 		t.isReference = true;
-		t.declaredName = s.name.clearKeyWord();
-		t.multiplicityRange = s.getRange();
-		t.featureNote.add(":");
-		t.featureSpecialization.add(s.eContents().select(i|i.isTypeOf(Ecore!EGenericType)).first().eClassifier.name);
+		eStructuralFeatureTransform(s, t);
 	}
 	
 @lazy

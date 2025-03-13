@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="ASCII"?>
+<Namespace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="sysmline" xsi:schemaLocation="sysmline metamodel/sysmline/sysmline.ecore">
+  <body xsi:type="Package" declaredName="capellamodeller">
+    <body xsi:type="NamespaceImport" hasVisibility="true" declaredName="ecore"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="capellacore"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="oa"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="ctx"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="la"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="pa"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="epbs"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="sharedmodel"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="capellacommon"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="information"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="cs"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="deployment"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="fa"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="file:/e:/gityang/sysmline/dut.cs.sysmline/org.polarsys.capella.common.data.def/model/modellingcore"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="file:/e:/gityang/sysmline/dut.cs.sysmline/org.polarsys.capella.common.data.def/model/activity"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="interaction"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="file:/e:/gityang/sysmline/dut.cs.sysmline/org.polarsys.capella.common.data.def/model/behavior"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="datavalue"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="datatype"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="communication"/>
+    <body xsi:type="ItemDefinition" declaredName="Project">
+      <body xsi:type="ItemUsage" declaredName="keyValuePairs" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>KeyValue</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedFolders" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Folder</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedModelRoots" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ModelRoot</featureSpecialization>
+      </body>
+      <SubclassificationPart>Structure</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Folder">
+      <body xsi:type="ItemUsage" declaredName="ownedFolders" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Folder</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedModelRoots" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ModelRoot</featureSpecialization>
+      </body>
+      <SubclassificationPart>Structure</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ModelRoot" isAbstract="true">
+      <SubclassificationPart>CapellaElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="SystemEngineering">
+      <body xsi:type="ItemUsage" declaredName="containedOperationalAnalysis" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>OperationalAnalysis</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="containedSystemAnalysis" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>SystemAnalysis</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="containedLogicalArchitectures" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>LogicalArchitecture</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="containedPhysicalArchitectures" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>PhysicalArchitecture</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="containedEPBSArchitectures" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EPBSArchitecture</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="containedSharedPkgs" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>SharedPkg</featureSpecialization>
+      </body>
+      <SubclassificationPart>AbstractModellingStructure</SubclassificationPart>
+      <SubclassificationPart>ModelRoot</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="SystemEngineeringPkg">
+      <body xsi:type="ItemUsage" declaredName="ownedSystemEngineerings" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>SystemEngineering</featureSpecialization>
+      </body>
+      <SubclassificationPart>Structure</SubclassificationPart>
+      <SubclassificationPart>ModelRoot</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Library">
+      <SubclassificationPart>Project</SubclassificationPart>
+    </body>
+  </body>
+</Namespace>

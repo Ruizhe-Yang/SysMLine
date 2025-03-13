@@ -1764,7 +1764,7 @@
       </body>
       <body xsi:type="ItemUsage" declaredName="diagrams" multiplicityRange="[*]">
         <featureNote>:</featureNote>
-        <featureSpecialization xsi:nil="true"/>
+        <featureSpecialization>BPMNDiagram</featureSpecialization>
       </body>
       <body xsi:type="AttributeUsage" declaredName="exporter" multiplicityRange="[1]">
         <featureNote>:</featureNote>

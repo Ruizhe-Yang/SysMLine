@@ -65,6 +65,22 @@ operation Ecore!EObject isExtendedEcore(namespaceImportPackage : Sequence){
 	}
 }
 
+operation eStructuralFeatureTransform(s, t){
+	t.declaredName = s.name.clearKeyWord();
+	t.multiplicityRange = s.getRange();
+	t.featureNote.add(":");
+	var fsName = s.eContents().select(i|i.isTypeOf(Ecore!EGenericType)).first().eClassifier.name;
+	if (fsName.asString() != ""){
+		t.featureSpecialization.add(fsName);
+	}
+	else{
+		var eProxyURI = s.eContents().select(i|i.isTypeOf(Ecore!EGenericType)).first().eClassifier.eProxyURI.asString();
+		fsName = eProxyURI.split("#//").second();
+		t.featureSpecialization.add(fsName);
+	}
+}
+
+
 operation SysMLine!Package addNamespaceImport(name:String, isPublic : Boolean){
 	var namespaceImport = new SysMLine!NamespaceImport;
 	namespaceImport.declaredName = name;
