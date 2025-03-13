@@ -6,7 +6,7 @@ package la {
 	public import cs::*;
 	public import information::*;
 	public import fa::*;
-	public import file:/e:/gityang/sysmline/dut.cs.sysmline/org.polarsys.capella.common.data.def/model/modellingcore::*;
+	public import modellingcore::*;
 	public import epbs::*;
 	public import capellacore::*;
 	public import oa::*;
@@ -15,8 +15,8 @@ package la {
 	public import datavalue::*;
 	public import datatype::*;
 	public import communication::*;
-	public import file:/e:/gityang/sysmline/dut.cs.sysmline/org.polarsys.capella.common.data.def/model/behavior::*;
-	public import file:/e:/gityang/sysmline/dut.cs.sysmline/org.polarsys.capella.common.data.def/model/activity::*;
+	public import behavior::*;
+	public import activity::*;
 	item def LogicalArchitecturePkg :> BlockArchitecturePkg{
 		item ownedLogicalArchitectures : LogicalArchitecture [*];
 	}

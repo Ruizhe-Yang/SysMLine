@@ -5,7 +5,7 @@ package oa {
 	public import cs::*;
 	public import information::*;
 	public import fa::*;
-	public import file:/e:/gityang/sysmline/dut.cs.sysmline/org.polarsys.capella.common.data.def/model/modellingcore::*;
+	public import modellingcore::*;
 	public import epbs::*;
 	public import capellacore::*;
 	public import la::*;
@@ -13,8 +13,8 @@ package oa {
 	public import datavalue::*;
 	public import datatype::*;
 	public import communication::*;
-	public import file:/e:/gityang/sysmline/dut.cs.sysmline/org.polarsys.capella.common.data.def/model/behavior::*;
-	public import file:/e:/gityang/sysmline/dut.cs.sysmline/org.polarsys.capella.common.data.def/model/activity::*;
+	public import behavior::*;
+	public import activity::*;
 	public import pa::*;
 	item def OperationalAnalysis :> BlockArchitecture{
 		item ownedRolePkg : RolePkg [1];

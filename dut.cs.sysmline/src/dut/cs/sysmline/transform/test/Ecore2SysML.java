@@ -9,6 +9,7 @@ import dut.cs.sysmline.transform.SysMLine2SysML;
 public class Ecore2SysML {
 	
 	public static void main(String[] args) throws IOException {
+//		run("metamodel\\Capella\\Interaction");
 		testCapellaEcore();
 //		testBPMNEcore();
     }

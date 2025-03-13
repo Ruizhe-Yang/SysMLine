@@ -2,7 +2,7 @@ package activity {
 	private import ecore::*;
 	public import modellingcore::*;
 	public import behavior::*;
-	public import platform:/plugin/org.polarsys.kitalpha.emde/model/emde::*;
+	public import emde::*;
 	abstract item def AbstractActivity :> AbstractBehavior, TraceableElement{
 		attribute isReadOnly : EBoolean [1];
 		attribute isSingleExecution : EBoolean [1];

@@ -6,16 +6,16 @@ package fa {
 	public import la::*;
 	public import information::*;
 	public import cs::*;
-	public import file:/e:/gityang/sysmline/dut.cs.sysmline/org.polarsys.capella.common.data.def/model/modellingcore::*;
+	public import modellingcore::*;
 	public import interaction::*;
-	public import file:/e:/gityang/sysmline/dut.cs.sysmline/org.polarsys.capella.common.data.def/model/behavior::*;
+	public import behavior::*;
 	public import oa::*;
 	public import pa::*;
 	public import datavalue::*;
 	public import datatype::*;
 	public import communication::*;
 	public import epbs::*;
-	public import file:/e:/gityang/sysmline/dut.cs.sysmline/org.polarsys.capella.common.data.def/model/activity::*;
+	public import activity::*;
 	public import deployment::*;
 	abstract item def AbstractFunctionalArchitecture :> ModellingArchitecture{
 		item ownedFunctionPkg : FunctionPkg [1];

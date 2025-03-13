@@ -3,7 +3,7 @@
   <body xsi:type="Package" declaredName="behavior">
     <body xsi:type="NamespaceImport" hasVisibility="true" declaredName="ecore"/>
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="modellingcore"/>
-    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="platform:/plugin/org.polarsys.kitalpha.emde/model/emde"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="emde"/>
     <body xsi:type="ItemDefinition" declaredName="AbstractBehavior" isAbstract="true">
       <body xsi:type="AttributeUsage" declaredName="isControlOperator" multiplicityRange="[1]">
         <featureNote>:</featureNote>

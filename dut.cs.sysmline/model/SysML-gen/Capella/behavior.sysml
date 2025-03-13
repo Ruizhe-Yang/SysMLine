@@ -1,7 +1,7 @@
 package behavior {
 	private import ecore::*;
 	public import modellingcore::*;
-	public import platform:/plugin/org.polarsys.kitalpha.emde/model/emde::*;
+	public import emde::*;
 	abstract item def AbstractBehavior :> AbstractNamedElement{
 		attribute isControlOperator : EBoolean [1];
 		ref item ownedParameterSet : AbstractParameterSet [*];

@@ -14,10 +14,10 @@ package sharedmodel {
 	public import datatype::*;
 	public import communication::*;
 	public import cs::*;
-	public import file:/e:/gityang/sysmline/dut.cs.sysmline/org.polarsys.capella.common.data.def/model/modellingcore::*;
-	public import file:/e:/gityang/sysmline/dut.cs.sysmline/org.polarsys.capella.common.data.def/model/behavior::*;
+	public import modellingcore::*;
+	public import behavior::*;
 	public import fa::*;
-	public import file:/e:/gityang/sysmline/dut.cs.sysmline/org.polarsys.capella.common.data.def/model/activity::*;
+	public import activity::*;
 	public import deployment::*;
 	item def SharedPkg :> ReuseableStructure, ModelRoot{
 		item ownedDataPkg : DataPkg [1];

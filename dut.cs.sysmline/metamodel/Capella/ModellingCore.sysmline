@@ -2,7 +2,7 @@
 <Namespace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="sysmline" xsi:schemaLocation="sysmline metamodel/sysmline/sysmline.ecore">
   <body xsi:type="Package" declaredName="modellingcore">
     <body xsi:type="NamespaceImport" hasVisibility="true" declaredName="ecore"/>
-    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="platform:/plugin/org.polarsys.kitalpha.emde/model/emde"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="emde"/>
     <body xsi:type="ItemDefinition" declaredName="ModelElement" isAbstract="true">
       <body xsi:type="AttributeUsage" declaredName="id" multiplicityRange="[1]">
         <featureNote>:</featureNote>

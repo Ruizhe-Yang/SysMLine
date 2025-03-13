@@ -1,16 +1,16 @@
 package capellacommon {
 	private import ecore::*;
 	public import capellacore::*;
-	public import file:/e:/gityang/sysmline/dut.cs.sysmline/org.polarsys.capella.common.data.def/model/modellingcore::*;
+	public import modellingcore::*;
 	public import la::*;
 	public import fa::*;
 	public import interaction::*;
-	public import file:/e:/gityang/sysmline/dut.cs.sysmline/org.polarsys.capella.common.data.def/model/behavior::*;
+	public import behavior::*;
 	public import information::*;
 	public import ctx::*;
 	public import pa::*;
 	public import cs::*;
-	public import file:/e:/gityang/sysmline/dut.cs.sysmline/org.polarsys.capella.common.data.def/model/activity::*;
+	public import activity::*;
 	public import datavalue::*;
 	public import datatype::*;
 	public import communication::*;

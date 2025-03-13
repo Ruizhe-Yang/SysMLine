@@ -8,11 +8,12 @@ operation Ecore!EObject addRootNodeTo(rootNode : SysMLine!Element){
 			if (eReference.isExtendedEcore(namespaceImportPackage)){
 				var newNamespaceImport = "";
 				if (eReference.eType.eProxyURI.asString().split("#//").size()>1){
-					newNamespaceImport = eReference.eType.eProxyURI.asString().split("#//").first().split('.ecore').first().asString().toLowerCase();
+					newNamespaceImport = eReference.eType.eProxyURI.asString().split("#//").first().split('.ecore').first().asString().toLowerCase().removeAddress();
 				}
 				else{
 					newNamespaceImport = eReference.eType.eContainer().name;
 				}
+//				newNamespaceImport = newNamespaceImport.asString().removeAddress();
 				node.addNamespaceImport(newNamespaceImport, true);
 				namespaceImportPackage.add(newNamespaceImport);			
 			}
@@ -21,11 +22,12 @@ operation Ecore!EObject addRootNodeTo(rootNode : SysMLine!Element){
 			if (eGenericType.isExtendedEcore(namespaceImportPackage)){
 				var newNamespaceImport = "";
 				if (eGenericType.eClassifier.eProxyURI.asString().split("#//").size()>1){
-					newNamespaceImport = eGenericType.eClassifier.eProxyURI.asString().split("#//").first().split('.ecore').first().asString().toLowerCase();
+					newNamespaceImport = eGenericType.eClassifier.eProxyURI.asString().split("#//").first().split('.ecore').first().asString().toLowerCase().removeAddress();
 				}
 				else{
 					newNamespaceImport = eGenericType.eClassifier.eContainer().name;
 				}
+//				newNamespaceImport = newNamespaceImport.removeAddress();
 				node.addNamespaceImport(newNamespaceImport, true);
 				namespaceImportPackage.add(newNamespaceImport);			
 			}
@@ -36,11 +38,20 @@ operation Ecore!EObject addRootNodeTo(rootNode : SysMLine!Element){
 	}
 }
 
+operation String removeAddress(){
+	if (self.split("/").size() > 1){
+		return self.split("/").last();
+	}
+	else{
+		return self;
+	}
+}
+
 operation Ecore!EObject isExtendedEcore(namespaceImportPackage : Sequence){
 	var eName = String;
 	if (self.isKindOf(Ecore!EReference)){
 		if (self.eType.eProxyURI.asString().split("#//").size()>1){
-			eName = self.eType.eProxyURI.asString().split("#//").first().split('.ecore').first().asString().toLowerCase();
+			eName = self.eType.eProxyURI.asString().split("#//").first().split('.ecore').first().asString().toLowerCase().removeAddress();
 		}
 		else{
 			eName = self.eType.eContainer().name.asString();
@@ -51,7 +62,7 @@ operation Ecore!EObject isExtendedEcore(namespaceImportPackage : Sequence){
 			return false;
 		}
 		if (self.eClassifier.eProxyURI.asString().split("#//").size()>1){
-			eName = self.eClassifier.eProxyURI.asString().split("#//").first().split('.ecore').first().asString().toLowerCase();
+			eName = self.eClassifier.eProxyURI.asString().split("#//").first().split('.ecore').first().asString().toLowerCase().removeAddress();
 		}
 		else{
 			eName = self.eClassifier.eContainer().name.asString();

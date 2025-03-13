@@ -7,12 +7,12 @@ package information {
 	public import datatype::*;
 	public import communication::*;
 	public import cs::*;
-	public import file:/e:/gityang/sysmline/dut.cs.sysmline/org.polarsys.capella.common.data.def/model/modellingcore::*;
+	public import modellingcore::*;
 	public import fa::*;
 	public import la::*;
-	public import file:/e:/gityang/sysmline/dut.cs.sysmline/org.polarsys.capella.common.data.def/model/behavior::*;
+	public import behavior::*;
 	public import epbs::*;
-	public import file:/e:/gityang/sysmline/dut.cs.sysmline/org.polarsys.capella.common.data.def/model/activity::*;
+	public import activity::*;
 	public import ctx::*;
 	public import pa::*;
 	abstract item def AbstractInstance :> Property{

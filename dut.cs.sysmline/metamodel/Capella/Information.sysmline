@@ -9,12 +9,12 @@
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="datatype"/>
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="communication"/>
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="cs"/>
-    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="file:/e:/gityang/sysmline/dut.cs.sysmline/org.polarsys.capella.common.data.def/model/modellingcore"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="modellingcore"/>
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="fa"/>
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="la"/>
-    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="file:/e:/gityang/sysmline/dut.cs.sysmline/org.polarsys.capella.common.data.def/model/behavior"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="behavior"/>
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="epbs"/>
-    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="file:/e:/gityang/sysmline/dut.cs.sysmline/org.polarsys.capella.common.data.def/model/activity"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="activity"/>
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="ctx"/>
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="pa"/>
     <body xsi:type="ItemDefinition" declaredName="AbstractInstance" isAbstract="true">

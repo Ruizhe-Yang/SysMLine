@@ -2,18 +2,18 @@ package capellacore {
 	private import ecore::*;
 	public import capellacommon::*;
 	public import information::*;
-	public import file:/e:/gityang/sysmline/dut.cs.sysmline/org.polarsys.capella.common.data.def/model/modellingcore::*;
+	public import modellingcore::*;
 	public import la::*;
 	public import fa::*;
 	public import interaction::*;
-	public import file:/e:/gityang/sysmline/dut.cs.sysmline/org.polarsys.capella.common.data.def/model/behavior::*;
+	public import behavior::*;
 	public import datavalue::*;
 	public import datatype::*;
 	public import communication::*;
 	public import cs::*;
 	public import ctx::*;
 	public import pa::*;
-	public import file:/e:/gityang/sysmline/dut.cs.sysmline/org.polarsys.capella.common.data.def/model/activity::*;
+	public import activity::*;
 	public import epbs::*;
 	abstract item def CapellaElement :> {
 		attribute summary : EString [1];

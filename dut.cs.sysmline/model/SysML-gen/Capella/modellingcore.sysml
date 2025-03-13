@@ -1,6 +1,6 @@
 package modellingcore {
 	private import ecore::*;
-	public import platform:/plugin/org.polarsys.kitalpha.emde/model/emde::*;
+	public import emde::*;
 	abstract item def ModelElement :> {
 		attribute id : EString [1];
 		attribute sid : EString [1];

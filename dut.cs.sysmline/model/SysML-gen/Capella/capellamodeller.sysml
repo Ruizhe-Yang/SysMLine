@@ -12,10 +12,10 @@ package capellamodeller {
 	public import cs::*;
 	public import deployment::*;
 	public import fa::*;
-	public import file:/e:/gityang/sysmline/dut.cs.sysmline/org.polarsys.capella.common.data.def/model/modellingcore::*;
-	public import file:/e:/gityang/sysmline/dut.cs.sysmline/org.polarsys.capella.common.data.def/model/activity::*;
+	public import modellingcore::*;
+	public import activity::*;
 	public import interaction::*;
-	public import file:/e:/gityang/sysmline/dut.cs.sysmline/org.polarsys.capella.common.data.def/model/behavior::*;
+	public import behavior::*;
 	public import datavalue::*;
 	public import datatype::*;
 	public import communication::*;

@@ -5,15 +5,15 @@ package interaction {
 	public import cs::*;
 	public import fa::*;
 	public import capellacommon::*;
-	public import file:/e:/gityang/sysmline/dut.cs.sysmline/org.polarsys.capella.common.data.def/model/modellingcore::*;
+	public import modellingcore::*;
 	public import datavalue::*;
 	public import datatype::*;
 	public import communication::*;
 	public import epbs::*;
 	public import ctx::*;
 	public import la::*;
-	public import file:/e:/gityang/sysmline/dut.cs.sysmline/org.polarsys.capella.common.data.def/model/behavior::*;
-	public import file:/e:/gityang/sysmline/dut.cs.sysmline/org.polarsys.capella.common.data.def/model/activity::*;
+	public import behavior::*;
+	public import activity::*;
 	public import pa::*;
 	public import oa::*;
 	item def SequenceMessage :> NamedElement{
