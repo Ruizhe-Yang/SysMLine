@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="ASCII"?>
+<Namespace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="sysmline" xsi:schemaLocation="sysmline metamodel/sysmline/sysmline.ecore">
+  <body xsi:type="Package" declaredName="bpmdi">
+    <body xsi:type="NamespaceImport" hasVisibility="true" declaredName="ecore"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="bpmn20"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="bpmn20"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="dc"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="bpmn20"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="di"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="di"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="bpmn20"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="di"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="bpmn20"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="di"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="di"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="dc"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="di"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="bpmn20"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="di"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="di"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="di"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="di"/>
+    <body xsi:type="ItemDefinition" declaredName="BPMNPlane">
+      <body xsi:type="ItemUsage" declaredName="bpmnElement" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization xsi:nil="true"/>
+      </body>
+      <SubclassificationPart xsi:nil="true"/>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="BPMNShape">
+      <body xsi:type="ItemUsage" declaredName="bpmnElement" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization xsi:nil="true"/>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="isHorizontal" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="isExpanded" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="isMarkerVisible" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="label" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>BPMNLabel</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="isMessageVisible" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="participantBandKind" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ParticipantBandKind</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="choreographyActivityShape" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>BPMNShape</featureSpecialization>
+      </body>
+      <SubclassificationPart xsi:nil="true"/>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="BPMNLabel">
+      <body xsi:type="ItemUsage" declaredName="labelStyle" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>BPMNLabelStyle</featureSpecialization>
+      </body>
+      <SubclassificationPart xsi:nil="true"/>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="BPMNLabelStyle">
+      <body xsi:type="ItemUsage" declaredName="font" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization xsi:nil="true"/>
+      </body>
+      <SubclassificationPart xsi:nil="true"/>
+    </body>
+    <body xsi:type="EnumerationDefinition" declaredName="ParticipantBandKind">
+      <body xsi:type="EnumerationUsage" declaredName="top_initiating"/>
+      <body xsi:type="EnumerationUsage" declaredName="middle_initiating"/>
+      <body xsi:type="EnumerationUsage" declaredName="bottom_initiating"/>
+      <body xsi:type="EnumerationUsage" declaredName="top_non_initiating"/>
+      <body xsi:type="EnumerationUsage" declaredName="middle_non_initiating"/>
+      <body xsi:type="EnumerationUsage" declaredName="bottom_non_initiating"/>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="BPMNEdge">
+      <body xsi:type="ItemUsage" declaredName="label" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>BPMNLabel</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="bpmnElement" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization xsi:nil="true"/>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="sourceElement" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization xsi:nil="true"/>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="targetElement" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization xsi:nil="true"/>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="messageVisibleKind" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>MessageVisibleKind</featureSpecialization>
+      </body>
+      <SubclassificationPart xsi:nil="true"/>
+    </body>
+    <body xsi:type="EnumerationDefinition" declaredName="MessageVisibleKind">
+      <body xsi:type="EnumerationUsage" declaredName="initiating"/>
+      <body xsi:type="EnumerationUsage" declaredName="non_initiating"/>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="BPMNDiagram">
+      <body xsi:type="ItemUsage" declaredName="plane" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>BPMNPlane</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="labelStyle" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>BPMNLabelStyle</featureSpecialization>
+      </body>
+      <SubclassificationPart xsi:nil="true"/>
+    </body>
+  </body>
+</Namespace>

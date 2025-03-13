@@ -26,7 +26,7 @@ public class DSL2SysMLine {
 	        EmfModel dslModel = new EmfModel();
 	        dslModel.setName("DSL");
 	        dslModel.setMetamodelFile("E:\\GitYang\\SysMLine\\org.omg.sysmline\\model\\PlayGround\\psl.ecore");
-	        dslModel.setModelFile("E:\\GitYang\\SysMLine\\org.omg.sysmline\\model\\PlayGround\\pslmodel.xmi");
+	        dslModel.setModelFile("E:\\GitYang\\SysMLine\\org.omg.sysmline\\model\\PlayGround\\psl-model.flexmi");
 	        
 //	        dslModel.setMetamodelFile(ModelEcore);
 	        

@@ -6,14 +6,26 @@ operation Ecore!EObject addRootNodeTo(rootNode : SysMLine!Element){
 		var namespaceImportPackage = Sequence{"ecore", node.declaredName};
 		for (eReference in Ecore!EReference){
 			if (eReference.isExtendedEcore(namespaceImportPackage)){
-				var newNamespaceImport = eReference.eType.eContainer().name;
+				var newNamespaceImport = "";
+				if (eReference.eType.eProxyURI.asString().split("#//").size()>1){
+					newNamespaceImport = eReference.eType.eProxyURI.asString().split("#//").first().split('.ecore').first().asString().toLowerCase();
+				}
+				else{
+					newNamespaceImport = eReference.eType.eContainer().name;
+				}
 				node.addNamespaceImport(newNamespaceImport, true);
 				namespaceImportPackage.add(newNamespaceImport);			
 			}
 		}
 		for (eGenericType in Ecore!EGenericType){
 			if (eGenericType.isExtendedEcore(namespaceImportPackage)){
-				var newNamespaceImport = eGenericType.eClassifier.eContainer().name;
+				var newNamespaceImport = "";
+				if (eGenericType.eClassifier.eProxyURI.asString().split("#//").size()>1){
+					newNamespaceImport = eGenericType.eClassifier.eProxyURI.asString().split("#//").first().split('.ecore').first().asString().toLowerCase();
+				}
+				else{
+					newNamespaceImport = eGenericType.eClassifier.eContainer().name;
+				}
 				node.addNamespaceImport(newNamespaceImport, true);
 				namespaceImportPackage.add(newNamespaceImport);			
 			}
@@ -27,12 +39,17 @@ operation Ecore!EObject addRootNodeTo(rootNode : SysMLine!Element){
 operation Ecore!EObject isExtendedEcore(namespaceImportPackage : Sequence){
 	var eName = String;
 	if (self.isKindOf(Ecore!EReference)){
+		if (self.eType.eProxyURI.asString().split("#//").size()>1){
+			return true;
+		}
 		eName = self.eType.eContainer().name.asString();
 	}
 	else if (self.isTypeOf(Ecore!EGenericType)){
 		if (self.eClassifier == null){
-//			self.eContainer().println();
 			return false;
+		}
+		if (self.eClassifier.eProxyURI.asString().split("#//").size()>1){
+			return true;
 		}
 		eName = self.eClassifier.eContainer().name.asString();
 	}

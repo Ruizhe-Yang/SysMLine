@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="ASCII"?>
+<Namespace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="sysmline" xsi:schemaLocation="sysmline metamodel/sysmline/sysmline.ecore">
+  <body xsi:type="Package" declaredName="di">
+    <body xsi:type="NamespaceImport" hasVisibility="true" declaredName="ecore"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="dc"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="dc"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="dc"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="dc"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="dc"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="dc"/>
+    <body xsi:type="ItemDefinition" declaredName="DiagramElement" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="owningDiagram" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Diagram</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="owningElement" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>DiagramElement</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedElement" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>DiagramElement</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="modelElement" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EObject</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="style" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Style</featureSpecialization>
+      </body>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Diagram" isAbstract="true">
+      <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="documentation" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="resolution" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EFloat</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedStyle" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Style</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="rootElement" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>DiagramElement</featureSpecialization>
+      </body>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Style" isAbstract="true"/>
+    <body xsi:type="ItemDefinition" declaredName="Node" isAbstract="true">
+      <SubclassificationPart>DiagramElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Edge" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="source" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>DiagramElement</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="target" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>DiagramElement</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="waypoint" multiplicityRange="[2..*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization xsi:nil="true"/>
+      </body>
+      <SubclassificationPart>DiagramElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Shape" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="bounds" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization xsi:nil="true"/>
+      </body>
+      <SubclassificationPart>Node</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="LabeledEdge" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="ownedLabel" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Label</featureSpecialization>
+      </body>
+      <SubclassificationPart>Edge</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Label" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="bounds" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization xsi:nil="true"/>
+      </body>
+      <SubclassificationPart>Node</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="LabeledShape" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="ownedLabel" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Label</featureSpecialization>
+      </body>
+      <SubclassificationPart>Shape</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Plane" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="planeElement" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>DiagramElement</featureSpecialization>
+      </body>
+      <SubclassificationPart>Node</SubclassificationPart>
+    </body>
+  </body>
+</Namespace>
