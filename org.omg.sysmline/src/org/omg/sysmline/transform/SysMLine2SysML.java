@@ -40,8 +40,8 @@ public class SysMLine2SysML {
 	        
 	        eglModule.getContext().getModelRepository().addModel(sysmlineModel);
 	        eglModule.execute();
-//	        eglModule.getContext().getModelRepository().dispose();
-	        System.out.println("SysMLine2SysML.java runtime ends.");
+	        eglModule.getContext().getModelRepository().dispose();
+//	        System.out.println("SysMLine2SysML.java runtime ends.");
 	        
 	    } catch (Exception e) {
 	        e.printStackTrace();
