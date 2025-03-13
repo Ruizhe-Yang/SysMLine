@@ -1,4 +1,4 @@
-package org.omg.sysmline.transform;
+package dut.cs.sysmline.transform;
 
 import java.io.File;
 import java.io.IOException;
@@ -6,27 +6,33 @@ import java.io.IOException;
 import org.eclipse.epsilon.etl.EtlModule;
 import org.eclipse.epsilon.emc.emf.EmfModel;
 
-public class XMIni2SysMLine {
-	public static String ModelName = "model\\examples\\VehicleIndividuals\\VehicleIndividuals";
-	public static String XMIniEcore = "E:\\EclipseBoxes\\sysml-v2-20250302\\git\\SysML-v2-Pilot-Implementation\\org.omg.sysml\\model\\SysML.ecore";
+public class DSL2SysMLine {
+	public static String ExtentedName = "flexmi";
+	public static String ModelName = "model\\PlayGround\\psl-model";
+	public static String ModelEcore = "model\\PlayGround\\psl.ecore";
+	public static String ETL = "transform\\DSL2SysMLine\\psl2SysMLine.etl";
 	public static String SysMLineEcore = "metamodel\\sysmline\\sysmline.ecore";
 	
 	public static void main(String[] args) throws IOException {
-		run(ModelName);
+		run(ModelName, ModelEcore, ETL, ExtentedName);
     }
 	
-	public static void run(String modelName) {
+	public static void run(String modelName, String ModelEcore, String ETL, String ExtentedName) {
 		try {
-			String sourceModel = modelName + "_.sysmlx";
+			String sourceModel = modelName + "." + ExtentedName;
 			String targetModel = modelName + ".sysmline";
 			ensureFileExists(targetModel);
-	        EmfModel xminiModel = new EmfModel();
-	        xminiModel.setMetamodelFile(XMIniEcore);
-	        xminiModel.setModelFile(sourceModel);
-	        xminiModel.setName("XMIni");
-	        xminiModel.setReadOnLoad(true);
-	        xminiModel.setStoredOnDisposal(false);
-	        xminiModel.load();
+			
+	        EmfModel dslModel = new EmfModel();
+	        dslModel.setName("DSL");
+	        dslModel.setMetamodelFile("E:\\GitYang\\SysMLine\\org.omg.sysmline\\model\\PlayGround\\psl.ecore");
+	        dslModel.setModelFile("E:\\GitYang\\SysMLine\\org.omg.sysmline\\model\\PlayGround\\pslmodel.xmi");
+	        
+//	        dslModel.setMetamodelFile(ModelEcore);
+	        
+	        dslModel.setReadOnLoad(true);
+	        dslModel.setStoredOnDisposal(false);
+	        dslModel.load();
 	        
 	        EmfModel sysmlineModel = new EmfModel();
 	        sysmlineModel.setMetamodelFile(SysMLineEcore);
@@ -36,10 +42,9 @@ public class XMIni2SysMLine {
 	        sysmlineModel.setStoredOnDisposal(true);
 	        sysmlineModel.load();
 	        
-			EtlModule etlModule = new EtlModule();    
-	        File etlFile = new File("transform\\XMIni2SysMLine\\XMIni2SysMLine.etl");
-	        etlModule.parse(etlFile);
-	        etlModule.getContext().getModelRepository().addModel(xminiModel);
+			EtlModule etlModule = new EtlModule();
+	        etlModule.parse(new File(ETL));
+	        etlModule.getContext().getModelRepository().addModel(dslModel);
 	        etlModule.getContext().getModelRepository().addModel(sysmlineModel);
 	        etlModule.execute();
 	        etlModule.getContext().getModelRepository().dispose();

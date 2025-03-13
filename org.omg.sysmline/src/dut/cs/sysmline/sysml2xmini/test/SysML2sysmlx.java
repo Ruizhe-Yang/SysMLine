@@ -1,4 +1,4 @@
-package org.omg.sysmline.sysml2xmini.test;
+package dut.cs.sysmline.sysml2xmini.test;
 
 import java.io.File;
 import org.omg.sysml.xtext.util.SysML2XMI;

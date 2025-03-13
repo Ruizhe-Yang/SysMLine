@@ -5,6 +5,6 @@ rule gen_sysmlv2
 }
 
 operation Ecore!EPackage getFileName(){
-//	self.name.println();
-	return "../DSL2SysMLine/"+self.name+".etl";
+	("[EGX] Ecore2SysML >> transform/DSL2SysMLine/"+self.name+"2SysMLine.etl").println();
+	return "../DSL2SysMLine/"+self.name+"2SysMLine.etl";
 }

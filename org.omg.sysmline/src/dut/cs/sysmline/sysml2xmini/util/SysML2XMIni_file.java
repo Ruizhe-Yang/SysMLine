@@ -1,4 +1,4 @@
-package org.omg.sysmline.sysml2xmini.util;
+package dut.cs.sysmline.sysml2xmini.util;
 
 import org.w3c.dom.*;
 import javax.xml.parsers.*;

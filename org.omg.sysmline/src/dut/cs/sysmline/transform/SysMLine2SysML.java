@@ -1,4 +1,4 @@
-package org.omg.sysmline.transform;
+package dut.cs.sysmline.transform;
 
 import java.io.File;
 import java.io.IOException;

@@ -1,13 +1,14 @@
 import "Ecore2SysMLine-util.eol";
 
 pre{
-	"------------------ ETL Start ------------------".println();
+//	"------------------ ETL Start ------------------".println();
 	var KeyWords = Sequence{"default", "event", "value", "import", "language", "from", "to", "interface", "any", "derived", "ordered", "references", "abstract"};
 	main();
 }
 
 post{
-	"------------------ ETL Over  ------------------".println();
+//	"------------------ ETL Over  ------------------".println();
+	("[ETL] Ecore2SysMLine >> " + SysMLine!Package.all.first().declaredName + ".sysmline").println();
 }
 
 operation main(){
