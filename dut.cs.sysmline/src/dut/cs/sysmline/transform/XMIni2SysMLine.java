@@ -36,7 +36,7 @@ public class XMIni2SysMLine {
 	        sysmlineModel.setStoredOnDisposal(true);
 	        sysmlineModel.load();
 	        
-			EtlModule etlModule = new EtlModule();    
+			EtlModule etlModule = new EtlModule();
 	        File etlFile = new File("transform\\XMIni2SysMLine\\XMIni2SysMLine.etl");
 	        etlModule.parse(etlFile);
 	        etlModule.getContext().getModelRepository().addModel(xminiModel);
