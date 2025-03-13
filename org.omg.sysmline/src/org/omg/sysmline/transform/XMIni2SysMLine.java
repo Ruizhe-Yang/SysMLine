@@ -12,13 +12,14 @@ public class XMIni2SysMLine {
 	public static String SysMLineEcore = "metamodel\\sysmline\\sysmline.ecore";
 	
 	public static void main(String[] args) throws IOException {
-		run();
+		run(ModelName);
     }
 	
-	public static void run() {
+	public static void run(String modelName) {
 		try {
-			String sourceModel = ModelName + "_.sysmlx";
-			String targetModel = ModelName + ".sysmline";
+			String sourceModel = modelName + "_.sysmlx";
+			String targetModel = modelName + ".sysmline";
+			ensureFileExists(targetModel);
 	        EmfModel xminiModel = new EmfModel();
 	        xminiModel.setMetamodelFile(XMIniEcore);
 	        xminiModel.setModelFile(sourceModel);
@@ -48,5 +49,25 @@ public class XMIni2SysMLine {
 	    }
 		
 	}
+	
+	public static boolean ensureFileExists(String filePath) {
+        File file = new File(filePath);
+        if (file.exists()) {
+            return file.isFile();
+        }
+        File parentDir = file.getParentFile();
+        if (parentDir != null && !parentDir.exists()) {
+            if (!parentDir.mkdirs()) {
+                return false;
+            }
+        }
+        try {
+        	System.out.println(">> create "+filePath);
+            return file.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 	
 }

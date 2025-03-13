@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ASCII"?>
-<Namespace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="sysmline">
+<Namespace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="sysmline" xsi:schemaLocation="sysmline metamodel/sysmline/sysmline.ecore">
   <body xsi:type="Package" declaredName="VehicleUsages">
     <body xsi:type="Documentation" text="Example usages of elements from the vehicle definitions model."/>
     <body xsi:type="MembershipImport" hasVisibility="true" declaredName="SI"/>

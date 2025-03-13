@@ -1,7 +1,7 @@
 import "XMIni2SysMLine-util.eol";
 
 pre{
-	"------------------ ETL Start ------------------".println();
+//	"------------------ ETL Start ------------------".println();
 	var allImportPackages = new Sequence;
 	//var extraConjugatedPortPackages = new Sequence;
 	var sysmlTuples = Sequence{ Tuple{"value"="PerformActionUsage",     	"key"="performedActions"},
@@ -56,7 +56,8 @@ pre{
 }
 
 post{
-	"------------------ ETL Over  ------------------".println();
+//	"------------------ ETL Over  ------------------".println();
+	("[ETL] XMIni2SysMLine >> " + SysMLine!Package.all.first().declaredName + ".sysmline").println();
 }
 
 operation main(){
