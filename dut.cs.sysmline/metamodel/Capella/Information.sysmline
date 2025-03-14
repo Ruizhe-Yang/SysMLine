@@ -580,7 +580,7 @@
         <SubclassificationPart>CommunicationItem</SubclassificationPart>
       </body>
       <body xsi:type="ItemDefinition" declaredName="MessageReference">
-        <body xsi:type="ItemUsage" declaredName="message" multiplicityRange="[1]" isReference="true">
+        <body xsi:type="ItemUsage" declaredName="'message'" multiplicityRange="[1]" isReference="true">
           <featureNote>:</featureNote>
           <featureSpecialization>Message</featureSpecialization>
         </body>
@@ -655,7 +655,7 @@
           <featureNote>:</featureNote>
           <featureSpecialization>CommunicationLink</featureSpecialization>
         </body>
-        <body xsi:type="ItemUsage" declaredName="send" multiplicityRange="[*]" isReference="true">
+        <body xsi:type="ItemUsage" declaredName="'send'" multiplicityRange="[*]" isReference="true">
           <featureNote>:</featureNote>
           <featureSpecialization>CommunicationLink</featureSpecialization>
         </body>

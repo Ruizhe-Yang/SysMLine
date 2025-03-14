@@ -50,7 +50,7 @@
         <featureNote>:</featureNote>
         <featureSpecialization>EString</featureSpecialization>
       </body>
-      <body xsi:type="AttributeUsage" declaredName="objective" multiplicityRange="[1]">
+      <body xsi:type="AttributeUsage" declaredName="'objective'" multiplicityRange="[1]">
         <featureNote>:</featureNote>
         <featureSpecialization>EString</featureSpecialization>
       </body>
@@ -337,7 +337,7 @@
         <featureNote>:</featureNote>
         <featureSpecialization>Concept</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="item" multiplicityRange="[1]" isReference="true">
+      <body xsi:type="ItemUsage" declaredName="'item'" multiplicityRange="[1]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>AbstractConceptItem</featureSpecialization>
       </body>

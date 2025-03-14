@@ -109,7 +109,7 @@
         <featureNote>:</featureNote>
         <featureSpecialization>AbstractCapability</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="entry" multiplicityRange="[*]" isReference="true">
+      <body xsi:type="ItemUsage" declaredName="'entry'" multiplicityRange="[*]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>AbstractEvent</featureSpecialization>
       </body>
@@ -117,7 +117,7 @@
         <featureNote>:</featureNote>
         <featureSpecialization>AbstractEvent</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="exit" multiplicityRange="[*]" isReference="true">
+      <body xsi:type="ItemUsage" declaredName="'exit'" multiplicityRange="[*]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>AbstractEvent</featureSpecialization>
       </body>

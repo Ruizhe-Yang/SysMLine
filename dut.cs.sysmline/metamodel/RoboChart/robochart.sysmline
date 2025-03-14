@@ -1,0 +1,1102 @@
+<?xml version="1.0" encoding="ASCII"?>
+<Namespace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="sysmline" xsi:schemaLocation="sysmline metamodel/sysmline/sysmline.ecore">
+  <body xsi:type="Package" declaredName="robochart">
+    <body xsi:type="NamespaceImport" hasVisibility="true" declaredName="ecore"/>
+    <body xsi:type="ItemDefinition" declaredName="BasicPackage">
+      <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="imports" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Import</featureSpecialization>
+      </body>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="RCPackage">
+      <body xsi:type="ItemUsage" declaredName="interfaces" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Interface</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="robots" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>RoboticPlatformDef</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="types" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>TypeDecl</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="machines" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>StateMachineDef</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="controllers" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ControllerDef</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="modules" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>RCModule</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="operations" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>OperationDef</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="functions" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Function</featureSpecialization>
+      </body>
+      <SubclassificationPart>BasicPackage</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Import">
+      <body xsi:type="AttributeUsage" declaredName="importedNamespace" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="NamedElement" isAbstract="true">
+      <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="TypeDecl" isAbstract="true">
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="PrimitiveType">
+      <SubclassificationPart>TypeDecl</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="RecordType">
+      <body xsi:type="ItemUsage" declaredName="fields" multiplicityRange="[1..*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Field</featureSpecialization>
+      </body>
+      <SubclassificationPart>TypeDecl</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Field">
+      <SubclassificationPart>Member</SubclassificationPart>
+      <SubclassificationPart>NamedExpression</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="TypedNamedElement" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="type" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Type</featureSpecialization>
+      </body>
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Member" isAbstract="true">
+      <SubclassificationPart>TypedNamedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Enumeration">
+      <body xsi:type="ItemUsage" declaredName="literals" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Literal</featureSpecialization>
+      </body>
+      <SubclassificationPart>TypeDecl</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Literal">
+      <body xsi:type="ItemUsage" declaredName="types" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Type</featureSpecialization>
+      </body>
+      <SubclassificationPart>TypeDecl</SubclassificationPart>
+      <SubclassificationPart>NamedExpression</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="NameType">
+      <body xsi:type="ItemUsage" declaredName="type" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Type</featureSpecialization>
+      </body>
+      <SubclassificationPart>TypeDecl</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Type" isAbstract="true"/>
+    <body xsi:type="ItemDefinition" declaredName="ProductType">
+      <body xsi:type="ItemUsage" declaredName="types" multiplicityRange="[2..*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Type</featureSpecialization>
+      </body>
+      <SubclassificationPart>Type</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="RelationType">
+      <body xsi:type="ItemUsage" declaredName="domain" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Type</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="range" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Type</featureSpecialization>
+      </body>
+      <SubclassificationPart>Type</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="FunctionType">
+      <SubclassificationPart>RelationType</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="SetType">
+      <body xsi:type="ItemUsage" declaredName="domain" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Type</featureSpecialization>
+      </body>
+      <SubclassificationPart>Type</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="SeqType">
+      <SubclassificationPart>SetType</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="TypeRef">
+      <body xsi:type="ItemUsage" declaredName="'ref'" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>TypeDecl</featureSpecialization>
+      </body>
+      <SubclassificationPart>Type</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="AnyType">
+      <body xsi:type="AttributeUsage" declaredName="identifier" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <SubclassificationPart>Type</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="VariableList">
+      <body xsi:type="AttributeUsage" declaredName="modifier" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>VariableModifier</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="vars" multiplicityRange="[1..*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Variable</featureSpecialization>
+      </body>
+    </body>
+    <body xsi:type="EnumerationDefinition" declaredName="VariableModifier">
+      <body xsi:type="EnumerationUsage" declaredName="VAR"/>
+      <body xsi:type="EnumerationUsage" declaredName="CONST"/>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Variable">
+      <body xsi:type="ItemUsage" declaredName="initial" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Expression</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="modifier" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>VariableModifier</featureSpecialization>
+      </body>
+      <SubclassificationPart>TypedNamedElement</SubclassificationPart>
+      <SubclassificationPart>Member</SubclassificationPart>
+      <SubclassificationPart>Mutable</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Event">
+      <body xsi:type="ItemUsage" declaredName="type" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Type</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="broadcast" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Function">
+      <body xsi:type="ItemUsage" declaredName="parameters" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Parameter</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="preconditions" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Expression</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="postconditions" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Expression</featureSpecialization>
+      </body>
+      <SubclassificationPart>TypedNamedElement</SubclassificationPart>
+      <SubclassificationPart>NamedExpression</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Parameter">
+      <SubclassificationPart>Variable</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="OperationSig">
+      <body xsi:type="AttributeUsage" declaredName="terminates" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="parameters" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Parameter</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="preconditions" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Expression</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="postconditions" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Expression</featureSpecialization>
+      </body>
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Operation" isAbstract="true">
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+      <SubclassificationPart>ConnectionNode</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="OperationDef">
+      <SubclassificationPart>Operation</SubclassificationPart>
+      <SubclassificationPart>OperationSig</SubclassificationPart>
+      <SubclassificationPart>StateMachineBody</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Reference" isAbstract="true"/>
+    <body xsi:type="ItemDefinition" declaredName="OperationRef">
+      <body xsi:type="ItemUsage" declaredName="'ref'" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>OperationDef</featureSpecialization>
+      </body>
+      <SubclassificationPart>Operation</SubclassificationPart>
+      <SubclassificationPart>Reference</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Interface">
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+      <SubclassificationPart>BasicContext</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="BasicContext" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="variableList" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>VariableList</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="operations" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>OperationSig</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="events" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Event</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="clocks" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Clock</featureSpecialization>
+      </body>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="RoboticPlatform" isAbstract="true">
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+      <SubclassificationPart>ConnectionNode</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="RoboticPlatformDef">
+      <SubclassificationPart>Context</SubclassificationPart>
+      <SubclassificationPart>RoboticPlatform</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Context" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="pInterfaces" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Interface</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="rInterfaces" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Interface</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="interfaces" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Interface</featureSpecialization>
+      </body>
+      <SubclassificationPart>BasicContext</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="RoboticPlatformRef">
+      <body xsi:type="ItemUsage" declaredName="'ref'" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>RoboticPlatformDef</featureSpecialization>
+      </body>
+      <SubclassificationPart>RoboticPlatform</SubclassificationPart>
+      <SubclassificationPart>Reference</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="StateMachine" isAbstract="true">
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+      <SubclassificationPart>ConnectionNode</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="StateMachineDef">
+      <SubclassificationPart>StateMachineBody</SubclassificationPart>
+      <SubclassificationPart>StateMachine</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="StateMachineRef">
+      <body xsi:type="ItemUsage" declaredName="'ref'" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>StateMachineDef</featureSpecialization>
+      </body>
+      <SubclassificationPart>StateMachine</SubclassificationPart>
+      <SubclassificationPart>Reference</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="StateMachineBody">
+      <SubclassificationPart>Context</SubclassificationPart>
+      <SubclassificationPart>NodeContainer</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Clock">
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="NodeContainer" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="nodes" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Node</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="transitions" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Transition</featureSpecialization>
+      </body>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Node" isAbstract="true">
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Junction">
+      <SubclassificationPart>Node</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Initial">
+      <SubclassificationPart>Junction</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="State">
+      <body xsi:type="ItemUsage" declaredName="actions" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Action</featureSpecialization>
+      </body>
+      <SubclassificationPart>Node</SubclassificationPart>
+      <SubclassificationPart>NodeContainer</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Final">
+      <SubclassificationPart>State</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ProbabilisticJunction">
+      <SubclassificationPart>Junction</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Transition">
+      <body xsi:type="ItemUsage" declaredName="source" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Node</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="target" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Node</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="trigger" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Communication</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="deadline" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Expression</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="condition" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Expression</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="'action'" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Statement</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="probability" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Expression</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="reset" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ClockReset</featureSpecialization>
+      </body>
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Communication">
+      <body xsi:type="ItemUsage" declaredName="'event'" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Event</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="_from" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Variable</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="_predicate" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Expression</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="parameter" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Variable</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="'value'" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Expression</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="_type" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>CommunicationType</featureSpecialization>
+      </body>
+    </body>
+    <body xsi:type="EnumerationDefinition" declaredName="CommunicationType">
+      <body xsi:type="EnumerationUsage" declaredName="SIMPLE"/>
+      <body xsi:type="EnumerationUsage" declaredName="INPUT"/>
+      <body xsi:type="EnumerationUsage" declaredName="OUTPUT"/>
+      <body xsi:type="EnumerationUsage" declaredName="SYNC"/>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Action" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="'action'" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Statement</featureSpecialization>
+      </body>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="EntryAction">
+      <SubclassificationPart>Action</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="DuringAction">
+      <SubclassificationPart>Action</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ExitAction">
+      <SubclassificationPart>Action</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Controller" isAbstract="true">
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+      <SubclassificationPart>ConnectionNode</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ControllerDef">
+      <body xsi:type="ItemUsage" declaredName="machines" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>StateMachine</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="lOperations" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Operation</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="connections" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Connection</featureSpecialization>
+      </body>
+      <SubclassificationPart>Context</SubclassificationPart>
+      <SubclassificationPart>Controller</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Connection">
+      <body xsi:type="ItemUsage" declaredName="'from'" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ConnectionNode</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="'to'" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ConnectionNode</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="efrom" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Event</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="eto" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Event</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="async" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="bidirec" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ControllerRef">
+      <body xsi:type="ItemUsage" declaredName="'ref'" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ControllerDef</featureSpecialization>
+      </body>
+      <SubclassificationPart>Controller</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="RCModule">
+      <body xsi:type="ItemUsage" declaredName="connections" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Connection</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="nodes" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ConnectionNode</featureSpecialization>
+      </body>
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Statement" isAbstract="true"/>
+    <body xsi:type="ItemDefinition" declaredName="TimedStatement">
+      <body xsi:type="ItemUsage" declaredName="stmt" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Statement</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="deadline" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Expression</featureSpecialization>
+      </body>
+      <SubclassificationPart>Statement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Wait">
+      <body xsi:type="ItemUsage" declaredName="duration" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Expression</featureSpecialization>
+      </body>
+      <SubclassificationPart>Statement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Skip">
+      <SubclassificationPart>Statement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="IfStmt">
+      <body xsi:type="ItemUsage" declaredName="expression" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Expression</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="'then'" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Statement</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="'else'" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Statement</featureSpecialization>
+      </body>
+      <SubclassificationPart>Statement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Assignment">
+      <body xsi:type="ItemUsage" declaredName="left" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Assignable</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="right" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Expression</featureSpecialization>
+      </body>
+      <SubclassificationPart>Statement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="CommunicationStmt">
+      <body xsi:type="ItemUsage" declaredName="communication" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Communication</featureSpecialization>
+      </body>
+      <SubclassificationPart>Statement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="SeqStatement">
+      <body xsi:type="ItemUsage" declaredName="statements" multiplicityRange="[2..*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Statement</featureSpecialization>
+      </body>
+      <SubclassificationPart>Statement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ParStmt">
+      <body xsi:type="ItemUsage" declaredName="stmt" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Statement</featureSpecialization>
+      </body>
+      <SubclassificationPart>Statement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Call">
+      <body xsi:type="ItemUsage" declaredName="operation" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>OperationSig</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="args" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Expression</featureSpecialization>
+      </body>
+      <SubclassificationPart>Statement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ClockReset">
+      <body xsi:type="ItemUsage" declaredName="clock" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Clock</featureSpecialization>
+      </body>
+      <SubclassificationPart>Statement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Expression" isAbstract="true"/>
+    <body xsi:type="ItemDefinition" declaredName="ResultExp">
+      <SubclassificationPart>Expression</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ArrayExp">
+      <body xsi:type="ItemUsage" declaredName="'value'" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Expression</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="parameters" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Expression</featureSpecialization>
+      </body>
+      <SubclassificationPart>Expression</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ClockExp">
+      <body xsi:type="ItemUsage" declaredName="clock" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Clock</featureSpecialization>
+      </body>
+      <SubclassificationPart>Expression</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="StateClockExp">
+      <body xsi:type="ItemUsage" declaredName="'state'" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>State</featureSpecialization>
+      </body>
+      <SubclassificationPart>Expression</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="BinaryExpression" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="left" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Expression</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="right" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Expression</featureSpecialization>
+      </body>
+      <SubclassificationPart>Expression</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Iff">
+      <SubclassificationPart>BinaryExpression</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Implies">
+      <SubclassificationPart>BinaryExpression</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Or">
+      <SubclassificationPart>BinaryExpression</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="QuantifierExpression" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="variables" multiplicityRange="[1..*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Variable</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="suchthat" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Expression</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="predicate" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Expression</featureSpecialization>
+      </body>
+      <SubclassificationPart>Expression</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Forall">
+      <SubclassificationPart>QuantifierExpression</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Exists">
+      <body xsi:type="AttributeUsage" declaredName="unique" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <SubclassificationPart>QuantifierExpression</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="LambdaExp">
+      <body xsi:type="ItemUsage" declaredName="variables" multiplicityRange="[1..*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Variable</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="suchthat" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Expression</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="expression" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Expression</featureSpecialization>
+      </body>
+      <SubclassificationPart>Expression</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="DefiniteDescription">
+      <SubclassificationPart>LambdaExp</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="IfExpression">
+      <body xsi:type="ItemUsage" declaredName="condition" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Expression</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ifexp" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Expression</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="elseexp" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Expression</featureSpecialization>
+      </body>
+      <SubclassificationPart>Expression</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Declaration">
+      <body xsi:type="ItemUsage" declaredName="'value'" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Expression</featureSpecialization>
+      </body>
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+      <SubclassificationPart>NamedExpression</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="LetExpression">
+      <body xsi:type="ItemUsage" declaredName="declarations" multiplicityRange="[1..*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Declaration</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="expression" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Expression</featureSpecialization>
+      </body>
+      <SubclassificationPart>Expression</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="And">
+      <SubclassificationPart>BinaryExpression</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Not">
+      <body xsi:type="ItemUsage" declaredName="exp" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Expression</featureSpecialization>
+      </body>
+      <SubclassificationPart>Expression</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="InExp">
+      <body xsi:type="ItemUsage" declaredName="member" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Expression</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="set" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Expression</featureSpecialization>
+      </body>
+      <SubclassificationPart>Expression</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="TypeExp">
+      <body xsi:type="ItemUsage" declaredName="type" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Type</featureSpecialization>
+      </body>
+      <SubclassificationPart>Expression</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Equals">
+      <SubclassificationPart>BinaryExpression</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Different">
+      <SubclassificationPart>BinaryExpression</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="GreaterThan">
+      <SubclassificationPart>BinaryExpression</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="GreaterOrEqual">
+      <SubclassificationPart>BinaryExpression</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="LessThan">
+      <SubclassificationPart>BinaryExpression</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="LessOrEqual">
+      <SubclassificationPart>BinaryExpression</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Plus">
+      <SubclassificationPart>BinaryExpression</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Minus">
+      <SubclassificationPart>BinaryExpression</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Modulus">
+      <SubclassificationPart>BinaryExpression</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Mult">
+      <SubclassificationPart>BinaryExpression</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Div">
+      <SubclassificationPart>BinaryExpression</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Cat">
+      <SubclassificationPart>BinaryExpression</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Neg">
+      <body xsi:type="ItemUsage" declaredName="exp" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Expression</featureSpecialization>
+      </body>
+      <SubclassificationPart>Expression</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Selection">
+      <body xsi:type="ItemUsage" declaredName="receiver" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Expression</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="member" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Member</featureSpecialization>
+      </body>
+      <SubclassificationPart>Expression</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="IntegerExp">
+      <body xsi:type="AttributeUsage" declaredName="'value'" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EInt</featureSpecialization>
+      </body>
+      <SubclassificationPart>Expression</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="FloatExp">
+      <body xsi:type="AttributeUsage" declaredName="'value'" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EFloat</featureSpecialization>
+      </body>
+      <SubclassificationPart>Expression</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="StringExp">
+      <body xsi:type="AttributeUsage" declaredName="'value'" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <SubclassificationPart>Expression</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="BooleanExp">
+      <body xsi:type="AttributeUsage" declaredName="'value'" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <SubclassificationPart>Expression</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="VarExp">
+      <body xsi:type="ItemUsage" declaredName="'value'" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Variable</featureSpecialization>
+      </body>
+      <SubclassificationPart>Expression</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="RefExp">
+      <body xsi:type="ItemUsage" declaredName="'ref'" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>NamedExpression</featureSpecialization>
+      </body>
+      <SubclassificationPart>Expression</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ToExp">
+      <SubclassificationPart>Expression</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="FromExp">
+      <SubclassificationPart>Expression</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="IdExp">
+      <SubclassificationPart>Expression</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="AsExp">
+      <body xsi:type="ItemUsage" declaredName="exp" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Expression</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="type" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Type</featureSpecialization>
+      </body>
+      <SubclassificationPart>Expression</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="IsExp">
+      <body xsi:type="ItemUsage" declaredName="exp" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Expression</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="type" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Type</featureSpecialization>
+      </body>
+      <SubclassificationPart>Expression</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="EnumExp">
+      <body xsi:type="ItemUsage" declaredName="type" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Enumeration</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="literal" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Literal</featureSpecialization>
+      </body>
+      <SubclassificationPart>Expression</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ParExp">
+      <body xsi:type="ItemUsage" declaredName="exp" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Expression</featureSpecialization>
+      </body>
+      <SubclassificationPart>Expression</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="SeqExp">
+      <body xsi:type="ItemUsage" declaredName="values" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Expression</featureSpecialization>
+      </body>
+      <SubclassificationPart>Expression</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="SetExp">
+      <body xsi:type="ItemUsage" declaredName="values" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Expression</featureSpecialization>
+      </body>
+      <SubclassificationPart>Expression</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="SetComp">
+      <body xsi:type="ItemUsage" declaredName="variables" multiplicityRange="[1..*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Variable</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="predicate" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Expression</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="expression" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Expression</featureSpecialization>
+      </body>
+      <SubclassificationPart>Expression</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="SetRange">
+      <body xsi:type="ItemUsage" declaredName="start" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Expression</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="'end'" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Expression</featureSpecialization>
+      </body>
+      <SubclassificationPart>Expression</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="TupleExp">
+      <body xsi:type="ItemUsage" declaredName="values" multiplicityRange="[2..*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Expression</featureSpecialization>
+      </body>
+      <SubclassificationPart>Expression</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="RangeExp">
+      <body xsi:type="AttributeUsage" declaredName="linterval" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="lrange" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Expression</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="rrange" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Expression</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="rinterval" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <SubclassificationPart>Expression</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="CallExp">
+      <body xsi:type="ItemUsage" declaredName="function" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Expression</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="args" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Expression</featureSpecialization>
+      </body>
+      <SubclassificationPart>Expression</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ElseExp">
+      <SubclassificationPart>Expression</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Assignable" isAbstract="true"/>
+    <body xsi:type="ItemDefinition" declaredName="VarSelection">
+      <body xsi:type="ItemUsage" declaredName="receiver" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Assignable</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="member" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Member</featureSpecialization>
+      </body>
+      <SubclassificationPart>Assignable</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ArrayAssignable">
+      <body xsi:type="ItemUsage" declaredName="'value'" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Assignable</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="parameters" multiplicityRange="[1..*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Expression</featureSpecialization>
+      </body>
+      <SubclassificationPart>Assignable</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="VarRef">
+      <body xsi:type="ItemUsage" declaredName="name" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Mutable</featureSpecialization>
+      </body>
+      <SubclassificationPart>Assignable</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ConnectionNode" isAbstract="true"/>
+    <body xsi:type="ItemDefinition" declaredName="NamedExpression" isAbstract="true"/>
+    <body xsi:type="ItemDefinition" declaredName="WaitingCondition">
+      <body xsi:type="ItemUsage" declaredName="expression" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Expression</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="transitions" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Transition</featureSpecialization>
+      </body>
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="WaitingConditionRef">
+      <body xsi:type="ItemUsage" declaredName="'ref'" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>WaitingCondition</featureSpecialization>
+      </body>
+      <SubclassificationPart>Expression</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="VectorType">
+      <body xsi:type="ItemUsage" declaredName="base" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Type</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="size" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Expression</featureSpecialization>
+      </body>
+      <SubclassificationPart>Type</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="MatrixType">
+      <body xsi:type="ItemUsage" declaredName="base" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Type</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="rows" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Expression</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="columns" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Expression</featureSpecialization>
+      </body>
+      <SubclassificationPart>Type</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="RecordExp">
+      <body xsi:type="ItemUsage" declaredName="definitions" multiplicityRange="[1..*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FieldDefinition</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="record" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>RecordType</featureSpecialization>
+      </body>
+      <SubclassificationPart>Expression</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="FieldDefinition">
+      <body xsi:type="ItemUsage" declaredName="field" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Field</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="'value'" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Expression</featureSpecialization>
+      </body>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Mutable" isAbstract="true">
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+      <SubclassificationPart>NamedExpression</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="VectorExp">
+      <body xsi:type="ItemUsage" declaredName="values" multiplicityRange="[1..*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Expression</featureSpecialization>
+      </body>
+      <SubclassificationPart>Expression</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="MatrixExp">
+      <body xsi:type="ItemUsage" declaredName="values" multiplicityRange="[1..*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>VectorExp</featureSpecialization>
+      </body>
+      <SubclassificationPart>Expression</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="InverseExp">
+      <body xsi:type="ItemUsage" declaredName="'value'" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Expression</featureSpecialization>
+      </body>
+      <SubclassificationPart>Expression</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="TransposeExp">
+      <body xsi:type="ItemUsage" declaredName="'value'" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Expression</featureSpecialization>
+      </body>
+      <SubclassificationPart>Expression</SubclassificationPart>
+    </body>
+  </body>
+</Namespace>

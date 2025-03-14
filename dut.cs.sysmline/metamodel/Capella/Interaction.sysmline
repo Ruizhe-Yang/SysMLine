@@ -138,7 +138,7 @@
       <SubclassificationPart xsi:nil="true"/>
     </body>
     <body xsi:type="ItemDefinition" declaredName="MessageEnd">
-      <body xsi:type="ItemUsage" declaredName="message" multiplicityRange="[1]" isReference="true">
+      <body xsi:type="ItemUsage" declaredName="'message'" multiplicityRange="[1]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>SequenceMessage</featureSpecialization>
       </body>

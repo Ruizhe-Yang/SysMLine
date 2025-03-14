@@ -335,7 +335,7 @@
         <featureNote>:</featureNote>
         <featureSpecialization>AbstractFunction</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="block" multiplicityRange="[1]" isReference="true">
+      <body xsi:type="ItemUsage" declaredName="'block'" multiplicityRange="[1]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>AbstractFunctionalBlock</featureSpecialization>
       </body>
@@ -656,11 +656,11 @@
       <SubclassificationPart>NamedElement</SubclassificationPart>
     </body>
     <body xsi:type="ItemDefinition" declaredName="ComponentExchangeEnd">
-      <body xsi:type="ItemUsage" declaredName="port" multiplicityRange="[1]" isReference="true">
+      <body xsi:type="ItemUsage" declaredName="'port'" multiplicityRange="[1]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>Port</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="part" multiplicityRange="[1]" isReference="true">
+      <body xsi:type="ItemUsage" declaredName="'part'" multiplicityRange="[1]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>Part</featureSpecialization>
       </body>
@@ -746,11 +746,11 @@
       <SubclassificationPart>Allocation</SubclassificationPart>
     </body>
     <body xsi:type="ItemDefinition" declaredName="ComponentPortAllocationEnd">
-      <body xsi:type="ItemUsage" declaredName="port" multiplicityRange="[1]" isReference="true">
+      <body xsi:type="ItemUsage" declaredName="'port'" multiplicityRange="[1]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>Port</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="part" multiplicityRange="[1]" isReference="true">
+      <body xsi:type="ItemUsage" declaredName="'part'" multiplicityRange="[1]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>Part</featureSpecialization>
       </body>

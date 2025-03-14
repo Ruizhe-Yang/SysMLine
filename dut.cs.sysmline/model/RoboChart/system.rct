@@ -1,0 +1,86 @@
+interface SRWIntf {
+	const MaxDist : int
+	const MaxSteps : nat
+	const Pl : real
+	var x : int = 0
+	var steps : nat = 0
+}
+
+interface EventIntf {
+	event left
+	event right
+}
+
+controller SRWCtrl {
+	uses EventIntf requires SRWIntf sref stm_ref = SRWSTM
+	connection stm_ref on right to SRWCtrl on right
+	connection stm_ref on left to SRWCtrl on left
+}
+
+stm SRWSTM {
+	uses EventIntf requires SRWIntf initial i0
+	state Move {
+		entry steps = Update ( steps , MaxSteps , x == 0 )
+	}
+probabilistic p0
+	transition t0 {
+		from i0
+		to Move
+	}
+	transition t1 {
+		from Move
+		to p0
+	condition x < MaxDist /\ x > - MaxDist /\ steps < MaxSteps
+	}
+	transition t2 {
+		from p0
+		to Move
+	probability 1 - Pl
+		action 
+	x = Plus ( x , MaxDist ) ; right
+	}
+	transition t3 {
+		from p0
+		to Move
+	probability Pl
+		action 
+	
+	x = Minus ( x , - MaxDist ) ; left
+	}
+	transition t4 {
+		from Move
+		to Move
+		condition x >= MaxDist /\ steps < MaxSteps
+		action 
+	
+	x = Minus ( x , - MaxDist ) ; left
+	}
+	transition t5 {
+		from Move
+		to Move
+		condition x <= - MaxDist /\ steps < MaxSteps
+		action 
+	
+	x = Plus ( x , MaxDist ) ; right
+	}
+state Stuck {
+	}
+transition t6 {
+		from Move
+		to Stuck
+		condition steps == MaxSteps
+	}
+}
+
+module SRWMod {
+	robotic platform SRWRP {
+		uses EventIntf provides SRWIntf }
+
+	cref ctrl_ref = SRWCtrl
+connection ctrl_ref on left to SRWRP on left ( _async )
+	connection ctrl_ref on right to SRWRP on right ( _async )
+}
+
+function Plus ( v : int , max : int ) : int { postcondition result == ( if v < max then v + 1 else v end ) } 
+function Minus ( v : int , min : int ) : int { postcondition result == ( if v > min then v - 1 else v end ) } 
+function Update ( v : nat , max : nat, origin : boolean ) : nat { postcondition result == ( if origin then 0 else (if v < max then v + 1 else v end) end ) }

@@ -30,7 +30,7 @@
         <featureNote>:</featureNote>
         <featureSpecialization>EBoolean</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="when" multiplicityRange="[1]" isReference="true">
+      <body xsi:type="ItemUsage" declaredName="'when'" multiplicityRange="[1]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>TimeExpression</featureSpecialization>
       </body>

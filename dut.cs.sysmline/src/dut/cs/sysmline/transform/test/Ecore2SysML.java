@@ -12,6 +12,7 @@ public class Ecore2SysML {
 //		run("metamodel\\Capella\\Interaction");
 		testCapellaEcore();
 //		testBPMNEcore();
+//		testRoboChartEcore();
     }
 	
 	public static void run(String modelName) {
@@ -24,6 +25,10 @@ public class Ecore2SysML {
 		run("metamodel\\BPMN\\BPMNDI");
 		run("metamodel\\BPMN\\DC");
 		run("metamodel\\BPMN\\DI");
+	}
+	
+	public static void testRoboChartEcore() {
+		run("metamodel\\RoboChart\\robochart");
 	}
 	
 	public static void testCapellaEcore() {
