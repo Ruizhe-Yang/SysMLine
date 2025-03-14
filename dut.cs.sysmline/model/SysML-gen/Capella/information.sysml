@@ -218,7 +218,7 @@ package information {
 		item def Exception :> CommunicationItem;
 		item def Message :> CommunicationItem;
 		item def MessageReference :> Relationship{
-			ref item message : Message [1];
+			ref item 'message' : Message [1];
 		}
 		abstract item def MessageReferencePkg :> Structure{
 			item ownedMessageReferences : MessageReference [*];
@@ -259,7 +259,7 @@ package information {
 			item ownedCommunicationLinks : CommunicationLink [*];
 			ref item produce : CommunicationLink [*];
 			ref item consume : CommunicationLink [*];
-			ref item send : CommunicationLink [*];
+			ref item 'send' : CommunicationLink [*];
 			ref item receive : CommunicationLink [*];
 			ref item call : CommunicationLink [*];
 			ref item execute : CommunicationLink [*];

@@ -26,7 +26,7 @@ package oa {
 	}
 	abstract item def OperationalScenario :> NamedElement{
 		attribute context : EString [1];
-		attribute objective : EString [1];
+		attribute 'objective' : EString [1];
 	}
 	item def OperationalActivityPkg :> FunctionPkg{
 		item ownedOperationalActivities : OperationalActivity [*];
@@ -118,7 +118,7 @@ package oa {
 	}
 	item def ItemInConcept :> NamedElement{
 		ref item concept : Concept [1];
-		ref item item : AbstractConceptItem [1];
+		ref item 'item' : AbstractConceptItem [1];
 	}
 	abstract item def AbstractConceptItem :> Component{
 		ref item composingLinks : ItemInConcept [*];

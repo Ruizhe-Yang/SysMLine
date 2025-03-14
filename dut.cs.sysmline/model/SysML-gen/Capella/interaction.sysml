@@ -49,7 +49,7 @@ package interaction {
 		ref item realizingScenarios : Scenario [*];
 	}
 	item def MessageEnd :> AbstractEnd{
-		ref item message : SequenceMessage [1];
+		ref item 'message' : SequenceMessage [1];
 	}
 	item def Execution :> TimeLapse{
 		ref item covered : InstanceRole [1];

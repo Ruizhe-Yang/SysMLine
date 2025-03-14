@@ -11,7 +11,7 @@ package behavior {
 	abstract item def AbstractEvent :> AbstractType;
 	abstract item def AbstractTimeEvent :> AbstractEvent{
 		attribute isRelative : EBoolean [1];
-		ref item when : TimeExpression [1];
+		ref item 'when' : TimeExpression [1];
 	}
 	abstract item def AbstractMessageEvent :> AbstractEvent;
 	abstract item def AbstractSignalEvent :> AbstractMessageEvent{

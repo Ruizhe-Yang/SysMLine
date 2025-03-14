@@ -118,7 +118,7 @@ package fa {
 	abstract item def AbstractFunctionAllocation :> Allocation;
 	item def ComponentFunctionalAllocation :> AbstractFunctionAllocation{
 		ref item function : AbstractFunction [1];
-		ref item block : AbstractFunctionalBlock [1];
+		ref item 'block' : AbstractFunctionalBlock [1];
 	}
 	item def FunctionalChainRealization :> Allocation;
 	abstract item def ExchangeSpecificationRealization :> Allocation{
@@ -227,8 +227,8 @@ package fa {
 		ref item exchanges : ComponentExchange [*];
 	}
 	item def ComponentExchangeEnd :> , CapellaElement{
-		ref item port : Port [1];
-		ref item part : Part [1];
+		ref item 'port' : Port [1];
+		ref item 'part' : Part [1];
 	}
 	item def ComponentExchangeFunctionalExchangeAllocation :> AbstractFunctionAllocation{
 		ref item allocatedFunctionalExchange : FunctionalExchange [1];
@@ -255,8 +255,8 @@ package fa {
 		ref item allocatingPort : Port [1];
 	}
 	item def ComponentPortAllocationEnd :> CapellaElement{
-		ref item port : Port [1];
-		ref item part : Part [1];
+		ref item 'port' : Port [1];
+		ref item 'part' : Part [1];
 		ref item owningComponentPortAllocation : ComponentPortAllocation [1];
 	}
 	item def FunctionalChainInvolvementLink :> FunctionalChainInvolvement, ReferenceHierarchyContext{

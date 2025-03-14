@@ -36,7 +36,7 @@ package cs {
 	}
 	abstract item def ComponentArchitecture :> BlockArchitecture;
 	abstract item def Component :> Block, Classifier, InterfaceAllocator, CommunicationLinkExchanger{
-		attribute actor : EBoolean [1];
+		attribute 'actor' : EBoolean [1];
 		attribute human : EBoolean [1];
 		item ownedInterfaceUses : InterfaceUse [*];
 		ref item usedInterfaceLinks : InterfaceUse [*];
@@ -160,8 +160,8 @@ package cs {
 		ref item links : PhysicalLink [*];
 	}
 	item def PhysicalLinkEnd :> AbstractPhysicalLinkEnd{
-		ref item port : PhysicalPort [1];
-		ref item part : Part [1];
+		ref item 'port' : PhysicalPort [1];
+		ref item 'part' : Part [1];
 	}
 	item def PhysicalLinkRealization :> Allocation;
 	item def PhysicalPath :> NamedElement, ComponentExchangeAllocator, AbstractPathInvolvedElement, InvolverElement{

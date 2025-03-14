@@ -47,9 +47,9 @@ package capellacommon {
 		ref item availableAbstractFunctions : AbstractFunction [*];
 		ref item availableFunctionalChains : FunctionalChain [*];
 		ref item availableAbstractCapabilities : AbstractCapability [*];
-		ref item entry : AbstractEvent [*];
+		ref item 'entry' : AbstractEvent [*];
 		ref item doActivity : AbstractEvent [*];
-		ref item exit : AbstractEvent [*];
+		ref item 'exit' : AbstractEvent [*];
 		item stateInvariant : AbstractConstraint [1];
 	}
 	item def Mode :> State;
