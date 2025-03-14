@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="SysML1" nsURI="http://www.omg.org/spec/SysML/20181001/SysML">
+  <eAnnotations source="OMG SysML 1.7 profile for MagicDraw." references="#/"/>
+  <eSubpackages name="Blocks"/>
+  <eSubpackages name="Ports&amp;Flows">
+    <eClassifiers xsi:type="ecore:EEnum" name="FlowDirectionKind">
+      <eAnnotations source="FlowDirection is an enumeration type that defines literals used for specifying input and output directions. FlowDirection is used by flow properties to indicate if a property is an input or an output with respect to its owner."
+          references="#//Ports%26Flows/FlowDirectionKind"/>
+      <eLiterals name="in">
+        <eAnnotations source="Indicates that the flow property is input to the owning block."
+            references="#//Ports%26Flows/FlowDirectionKind/in"/>
+      </eLiterals>
+      <eLiterals name="out">
+        <eAnnotations source="Indicates that the flow property is an output of the owning block."
+            references="#//Ports%26Flows/FlowDirectionKind/out"/>
+      </eLiterals>
+      <eLiterals name="inout">
+        <eAnnotations source="Indicates that the flow property is both an input and an output of the owning block."
+            references="#//Ports%26Flows/FlowDirectionKind/inout"/>
+      </eLiterals>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EEnum" name="FeatureDirectionKind">
+      <eLiterals name="provided"/>
+      <eLiterals name="required"/>
+      <eLiterals name="providedRequired"/>
+    </eClassifiers>
+  </eSubpackages>
+  <eSubpackages name="Activities"/>
+  <eSubpackages name="ModelElements">
+    <eSubpackages name="Deprecated"/>
+  </eSubpackages>
+  <eSubpackages name="Non-Normative Extensions">
+    <eSubpackages name="Block"/>
+    <eSubpackages name="Requirement">
+      <eClassifiers xsi:type="ecore:EEnum" name="RiskKind">
+        <eAnnotations source="1) High indicates an unacceptable level of risk, &#xA;2) Medium indicates an acceptable level of risk, and&#xA;3) Low indicates a minimal level of risk or no risk"
+            references="#//Non-Normative%20Extensions/Requirement/RiskKind"/>
+        <eLiterals name="High">
+          <eAnnotations source="High indicates an unacceptable level of risk" references="#//Non-Normative%20Extensions/Requirement/RiskKind/High"/>
+        </eLiterals>
+        <eLiterals name="Medium">
+          <eAnnotations source="Medium indicates an acceptable level of risk" references="#//Non-Normative%20Extensions/Requirement/RiskKind/Medium"/>
+        </eLiterals>
+        <eLiterals name="Low">
+          <eAnnotations source="Low indicates a minimal level of risk or no risk"
+              references="#//Non-Normative%20Extensions/Requirement/RiskKind/Low"/>
+        </eLiterals>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EEnum" name="VerificationMethodKind">
+        <eAnnotations source="1) Analysis indicates that verification will be performed by technical evaluation using mathematical representations, charts, graphs, circuit diagrams, data reduction, or representative data. Analysis also includes the verification of requirements under conditions, which are simulated or modeled; where the results are derived from the analysis of the results produced by the model,&#xA;2) Demonstration indicates that verification will be performed by operation, movement or adjustment of the item under specific conditions to perform the design functions without recording of quantitative data. Demonstration is typically considered the least restrictive of the verification types,&#xA;3) Inspection indicates that verification will be performed by examination of the item, reviewing descriptive documentation, and comparing the appropriate characteristics with a predetermined standard to determine conformance to requirements without the use of special laboratory equipment or procedures, and&#xA;4) Test indicates that verification will be performed through systematic exercising of the applicable item under appropriate conditions with instrumentation to measure required parameters and the collection, analysis, and evaluation of quantitative data to show that measured parameters equal or exceed specified requirements."
+            references="#//Non-Normative%20Extensions/Requirement/VerificationMethodKind"/>
+        <eLiterals name="Analysis">
+          <eAnnotations source="Analysis indicates that verification will be performed by technical evaluation using mathematical representations, charts, graphs, circuit diagrams, data reduction, or representative data. Analysis also includes the verification of requirements under conditions, which are simulated or modeled; where the results are derived from the analysis of the results produced by the model"
+              references="#//Non-Normative%20Extensions/Requirement/VerificationMethodKind/Analysis"/>
+        </eLiterals>
+        <eLiterals name="Demonstration">
+          <eAnnotations source="Demonstration indicates that verification will be performed by operation, movement or adjustment of the item under specific conditions to perform the design functions without recording of quantitative data. Demonstration is typically considered the least restrictive of the verification types"
+              references="#//Non-Normative%20Extensions/Requirement/VerificationMethodKind/Demonstration"/>
+        </eLiterals>
+        <eLiterals name="Inspection">
+          <eAnnotations source="Inspection indicates that verification will be performed by examination of the item, reviewing descriptive documentation, and comparing the appropriate characteristics with a predetermined standard to determine conformance to requirements without the use of special laboratory equipment or procedures"
+              references="#//Non-Normative%20Extensions/Requirement/VerificationMethodKind/Inspection"/>
+        </eLiterals>
+        <eLiterals name="Test">
+          <eAnnotations source="Test indicates that verification will be performed through systematic exercising of the applicable item under appropriate conditions with instrumentation to measure required parameters and the collection, analysis, and evaluation of quantitative data to show that measured parameters equal or exceed specified requirements"
+              references="#//Non-Normative%20Extensions/Requirement/VerificationMethodKind/Test"/>
+        </eLiterals>
+      </eClassifiers>
+    </eSubpackages>
+    <eSubpackages name="Actors"/>
+    <eSubpackages name="Distributions"/>
+    <eSubpackages name="Diagrams"/>
+    <eSubpackages name="Parametric"/>
+    <eSubpackages name="Activity"/>
+  </eSubpackages>
+  <eSubpackages name="ConstraintBlocks"/>
+  <eSubpackages name="Allocations"/>
+  <eSubpackages name="Requirements">
+    <eClassifiers xsi:type="ecore:EEnum" name="VerdictKind">
+      <eAnnotations source="Type of a return parameter of a TestCase must be VerdictKind, consistent with the UML Testing Profile."
+          references="#//Requirements/VerdictKind"/>
+      <eLiterals name="pass"/>
+      <eLiterals name="fail"/>
+      <eLiterals name="inconclusive"/>
+      <eLiterals name="error"/>
+    </eClassifiers>
+  </eSubpackages>
+  <eSubpackages name="DeprecatedElements"/>
+  <eSubpackages name="Libraries">
+    <eSubpackages name="PrimitiveValueTypes">
+      <eClassifiers xsi:type="ecore:EDataType" name="Boolean"/>
+      <eClassifiers xsi:type="ecore:EDataType" name="Complex">
+        <eAnnotations source="A Complex value type represents the mathematical concept of a complex number. A complex number consists of a real part defined by a real number, and an imaginary part defined by a real number multiplied by the square root of -1. Complex numbers are used to express solutions to various forms of mathematical equations."
+            references="#//Libraries/PrimitiveValueTypes/Complex"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EDataType" name="Integer"/>
+      <eClassifiers xsi:type="ecore:EDataType" name="Number"/>
+      <eClassifiers xsi:type="ecore:EDataType" name="Real">
+        <eAnnotations source="A Real value type represents the mathematical concept of a real number. A Real value type may be used to type values that hold continuous quantities, without committing a specific representation such as a floating point data type with restrictions on precision and scale."
+            references="#//Libraries/PrimitiveValueTypes/Real"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EDataType" name="String"/>
+      <eSubpackages name="Deprecated">
+        <eClassifiers xsi:type="ecore:EDataType" name="UnlimitedNatural"/>
+      </eSubpackages>
+    </eSubpackages>
+    <eSubpackages name="ControlValues">
+      <eClassifiers xsi:type="ecore:EEnum" name="ControlValueKind">
+        <eAnnotations source="The ControlValue enumeration is a type for treating control values as data and for UML control pins. It can be used as the type of behavior and operation parameters, object nodes, and attributes, and so on. The possible runtime values are given as enumeration literals. Modelers can extend the enumeration with additional literals, such as suspend, resume, with their own semantics."
+            references="#//Libraries/ControlValues/ControlValueKind"/>
+        <eLiterals name="disable">
+          <eAnnotations source="The disable literal means a termination of an executing behavior that can only be started again from the beginning (compare to suspend)."
+              references="#//Libraries/ControlValues/ControlValueKind/disable"/>
+        </eLiterals>
+        <eLiterals name="enable">
+          <eAnnotations source="The enable literal means to start a new execution of a behavior (compare to resume)."
+              references="#//Libraries/ControlValues/ControlValueKind/enable"/>
+        </eLiterals>
+      </eClassifiers>
+    </eSubpackages>
+    <eSubpackages name="UnitAndQuantityKind">
+      <eClassifiers xsi:type="ecore:EClass" name="Unit">
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="symbol" ordered="false"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" ordered="false"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="definitionURI" ordered="false"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="quantityKind" ordered="false"
+            upperBound="-1" eType="#//Libraries/UnitAndQuantityKind/QuantityKind"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="QuantityKind">
+        <eStructuralFeatures xsi:type="ecore:EReference" name="scale" ordered="false"
+            eType="#//Libraries/UnitAndQuantityKind/Deprecated/Scale"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="symbol" ordered="false"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" ordered="false"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="definitionURI" ordered="false"/>
+      </eClassifiers>
+      <eSubpackages name="Deprecated">
+        <eClassifiers xsi:type="ecore:EClass" name="ScaleValueDefinition">
+          <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" ordered="false"
+              lowerBound="1"/>
+          <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" ordered="false"
+              lowerBound="1" eType="#//Libraries/PrimitiveValueTypes/Number"/>
+        </eClassifiers>
+        <eClassifiers xsi:type="ecore:EClass" name="Scale">
+          <eStructuralFeatures xsi:type="ecore:EReference" name="valueDefinition"
+              upperBound="-1" eType="#//Libraries/UnitAndQuantityKind/Deprecated/ScaleValueDefinition"/>
+          <eStructuralFeatures xsi:type="ecore:EReference" name="unit" ordered="false"
+              eType="#//Libraries/UnitAndQuantityKind/Unit"/>
+        </eClassifiers>
+      </eSubpackages>
+    </eSubpackages>
+  </eSubpackages>
+  <eSubpackages name="Built-in Operations"/>
+</ecore:EPackage>

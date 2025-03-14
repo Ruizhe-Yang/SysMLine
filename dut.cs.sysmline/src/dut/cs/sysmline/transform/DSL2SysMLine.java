@@ -7,8 +7,8 @@ import org.eclipse.epsilon.etl.EtlModule;
 import org.eclipse.epsilon.emc.emf.EmfModel;
 
 public class DSL2SysMLine {
-	public static String ExtentedName = "flexmi";
-	public static String ModelName = "model\\PlayGround\\psl-model";
+	public static String ExtentedName = "model";
+	public static String ModelName = "model\\PlayGround\\pslmodeltest";
 	public static String ModelEcore = "model\\PlayGround\\psl.ecore";
 	public static String ETL = "transform\\DSL2SysMLine\\psl2SysMLine.etl";
 	public static String SysMLineEcore = "metamodel\\sysmline\\sysmline.ecore";
@@ -25,10 +25,10 @@ public class DSL2SysMLine {
 			
 	        EmfModel dslModel = new EmfModel();
 	        dslModel.setName("DSL");
-	        dslModel.setMetamodelFile("E:\\GitYang\\SysMLine\\dut.cs.sysmline\\model\\PlayGround\\psl.ecore");
-	        dslModel.setModelFile("E:\\GitYang\\SysMLine\\dut.cs.sysmline\\model\\PlayGround\\psl-model.flexmi");
+//	        dslModel.setMetamodelFile("E:\\GitYang\\SysMLine\\dut.cs.sysmline\\model\\PlayGround\\psl.ecore");
+	        dslModel.setModelFile(sourceModel);
 	        
-//	        dslModel.setMetamodelFile(ModelEcore);
+	        dslModel.setMetamodelFile(ModelEcore);
 	        
 	        dslModel.setReadOnLoad(true);
 	        dslModel.setStoredOnDisposal(false);

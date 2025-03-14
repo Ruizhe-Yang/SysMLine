@@ -1,0 +1,669 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="UML Standard Profile1" nsURI="_copy">
+  <eAnnotations source="UML Standard Profile contains a UML metamodel (metaclasses without properties and associations), Standard UML stereotypes defined in the annex C of UML specification, validation suites for UML model correctness and completeness checking, and stereotypes used by MagicDraw internally."
+      references="#/"/>
+  <eSubpackages name="MagicDraw Profile" nsURI="http://www.omg.org/spec/UML/20131001/MagicDrawProfile_copy">
+    <eAnnotations source="MagicDraw Profile contains UML extensions used in MagicDraw internal mechanisms and some features based on UML extensions."
+        references="#//MagicDraw%20Profile"/>
+    <eClassifiers xsi:type="ecore:EEnum" name="typeModifierEnumeration">
+      <eLiterals name="&amp;"/>
+      <eLiterals name="*"/>
+      <eLiterals name="[]"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EEnum" name="relationMapLayoutEnumeration">
+      <eLiterals name="Radial"/>
+      <eLiterals name="Tree"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EEnum" name="TableDisplayMode">
+      <eLiterals name="Complete tree"/>
+      <eLiterals name="Compact tree"/>
+      <eLiterals name="List"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EDataType" name="adornment"/>
+    <eClassifiers xsi:type="ecore:EClass" name="Excel Import Status"/>
+    <eClassifiers xsi:type="ecore:EEnum" name="filteringPreference">
+      <eLiterals name="Show"/>
+      <eLiterals name="Hide"/>
+    </eClassifiers>
+    <eSubpackages name="migration" nsURI="_copy">
+      <eAnnotations source="Stereotypes used in migration framework." references="#//MagicDraw%20Profile/migration"/>
+      <eClassifiers xsi:type="ecore:EClass" name="ProfileUpgradeTable customization"/>
+    </eSubpackages>
+    <eSubpackages name="DSL Customization" nsURI="_copy">
+      <eClassifiers xsi:type="ecore:EEnum" name="NumberingStyle">
+        <eLiterals name="Multi-level"/>
+        <eLiterals name="Consecutive"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EEnum" name="SequenceType">
+        <eLiterals name="Numeric"/>
+        <eLiterals name="Character"/>
+        <eLiterals name="Expression"/>
+        <eLiterals name="Separator"/>
+        <eLiterals name="OwnerNumber"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="CustomizationOfderivedPropertySpecification"/>
+      <eClassifiers xsi:type="ecore:EClass" name="CustomizationOfPropertyGroup">
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="subgroup" ordered="false"
+            lowerBound="1"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="CustomizationOfElementsLibraryBranch"/>
+      <eClassifiers xsi:type="ecore:EClass" name="CustomizationOfDiagramTable">
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="columnIds" ordered="false"
+            lowerBound="1"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="CustomizationOfRelationMap">
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="Relation Map" ordered="false"
+            lowerBound="1"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="CustomizationOfElementsLibrary"/>
+      <eClassifiers xsi:type="ecore:EClass" name="CustomizationOfInfo"/>
+      <eClassifiers xsi:type="ecore:EEnum" name="CustomizationGroupNames">
+        <eLiterals name="Connection Rules"/>
+        <eLiterals name="Model Initialization"/>
+        <eLiterals name="Properties"/>
+        <eLiterals name="OwnedElements"/>
+        <eLiterals name="General"/>
+        <eLiterals name="Naming"/>
+        <eLiterals name="Symbol"/>
+        <eLiterals name="Content"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="CustomizationOfCustomization">
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="General" ordered="false"
+            lowerBound="1"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="Connection Rules" ordered="false"
+            lowerBound="1"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="Model Initialization"
+            ordered="false" lowerBound="1"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="Naming" ordered="false"
+            lowerBound="1"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="Owned Elements" ordered="false"
+            lowerBound="1"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="Properties" ordered="false"
+            lowerBound="1"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="Symbol" ordered="false"
+            lowerBound="1"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="Content" ordered="false"
+            lowerBound="1"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="CustomizationOfNumberingScheme">
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="numberParts" ordered="false"
+            lowerBound="1"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="CustomizationOfNumberPart"/>
+      <eClassifiers xsi:type="ecore:EClass" name="CustomizationOfAutoNumber"/>
+      <eClassifiers xsi:type="ecore:EClass" name="CustomizationOfLegend">
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="Legend Items" ordered="false"
+            lowerBound="1">
+          <eAnnotations references="#//MagicDraw%20Profile/DSL%20Customization/CustomizationOfLegend/Legend%20Items"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="ownedRule" ordered="false"
+            lowerBound="1">
+          <eAnnotations source="List of legend items owned by the diagram legend"
+              references="#//MagicDraw%20Profile/DSL%20Customization/CustomizationOfLegend/ownedRule"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="Apply To" ordered="false"
+            lowerBound="1"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="specificDiagrams" ordered="false"
+            upperBound="-1">
+          <eAnnotations source="Specify the diagrams for which the legend should be applied."
+              references="#//MagicDraw%20Profile/DSL%20Customization/CustomizationOfLegend/specificDiagrams"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="CustomizationOfLegendItem">
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="specification" ordered="false"
+            lowerBound="1">
+          <eAnnotations source="Specify element types and define the condition that should be evaluated for the instances of the chosen element types. The legend item is applied only if the defined condition is met."
+              references="#//MagicDraw%20Profile/DSL%20Customization/CustomizationOfLegendItem/specification"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="Apply To" ordered="false"
+            lowerBound="1"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="specificElements" ordered="false"
+            upperBound="-1">
+          <eAnnotations source="Specify the elements to which the legend item should be applied."
+              references="#//MagicDraw%20Profile/DSL%20Customization/CustomizationOfLegendItem/specificElements"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="CustomizationOfMetaProperty"/>
+      <eClassifiers xsi:type="ecore:EClass" name="CustomizationOfSuggestedValues"/>
+      <eClassifiers xsi:type="ecore:EClass" name="CustomizationOfGrouped"/>
+      <eClassifiers xsi:type="ecore:EClass" name="CustomizationOfSuggestedStringValues"/>
+      <eClassifiers xsi:type="ecore:EClass" name="CustomizationOfDragAndDropSpecification"/>
+      <eClassifiers xsi:type="ecore:EEnum" name="SubcontentsKind">
+        <eLiterals name="None"/>
+        <eLiterals name="All"/>
+        <eLiterals name="Some"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="CustomizationOfSmartPackage">
+        <eStructuralFeatures xsi:type="ecore:EReference" name="additionalContentCalc"
+            ordered="false" upperBound="-1"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="Content" ordered="false"
+            lowerBound="1"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="CustomizationOfInstanceTable"/>
+      <eClassifiers xsi:type="ecore:EClass" name="CustomizationOfParameterDefinition"/>
+      <eClassifiers xsi:type="ecore:EClass" name="CustomizationOfMetricSuite"/>
+      <eClassifiers xsi:type="ecore:EClass" name="CustomizationOfMetricDefinition"/>
+      <eClassifiers xsi:type="ecore:EClass" name="CustomizationOfMetricInstance">
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="classifier" ordered="false"
+            lowerBound="1"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="CustomizationOfTerm"/>
+      <eClassifiers xsi:type="ecore:EClass" name="CustomizationOfAttachedFile">
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="body" ordered="false"
+            eType="#//UML2%20Metamodel/PrimitiveTypes/String"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="CustomizationOfReportTemplate">
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="body" ordered="false"
+            eType="#//UML2%20Metamodel/PrimitiveTypes/String"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="CustomizationForLegacyMountLocations">
+        <eStructuralFeatures xsi:type="ecore:EReference" name="mountedPackage" ordered="false"
+            upperBound="-1"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="CustomizationMount"/>
+      <eClassifiers xsi:type="ecore:EClass" name="CustomizationOfPlaceOnDiagramPalette"/>
+      <eClassifiers xsi:type="ecore:EClass" name="CustomizationOfSearchRule"/>
+      <eClassifiers xsi:type="ecore:EClass" name="CustomizationOfComplete"/>
+      <eClassifiers xsi:type="ecore:EClass" name="CustomizationOfImportMap"/>
+      <eClassifiers xsi:type="ecore:EClass" name="CustomizationOfImportMapGroup"/>
+      <eSubpackages name="Drag&amp;Drop Specifications" nsURI="_copy">
+        <eClassifiers xsi:type="ecore:EClass" name="SetCustomizationTarget"/>
+      </eSubpackages>
+      <eSubpackages name="Metrics" nsURI="_copy">
+        <eClassifiers xsi:type="ecore:EClass" name="BaseMetricSuite" abstract="true">
+          <eStructuralFeatures xsi:type="ecore:EAttribute" name="date" ordered="false"
+              lowerBound="1" eType="#//MagicDraw%20Profile/datatypes/date" defaultValueLiteral="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?>&#xA;&lt;unionExpressionSpecification xmlns=&quot;http://www.nomagic.com/schemas/MagicDraw/StructuredExpression/2013&quot;>&#xA;    &lt;taggedValues>&#xA;        &lt;entry key=&quot;name&quot;>&#xA;            &lt;value>Body&lt;/value>&#xA;        &lt;/entry>&#xA;        &lt;entry key=&quot;ROOT_UNION&quot;>&#xA;            &lt;value>true&lt;/value>&#xA;        &lt;/entry>&#xA;    &lt;/taggedValues>&#xA;    &lt;value xsi:type=&quot;callExpressionSpecification&quot; includeCustomTypes=&quot;true&quot; includeSubtypes=&quot;false&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;>&#xA;        &lt;taggedValues>&#xA;            &lt;entry key=&quot;name&quot;>&#xA;                &lt;value>Timestamp&lt;/value>&#xA;            &lt;/entry>&#xA;        &lt;/taggedValues>&#xA;        &lt;argument xsi:type=&quot;lookupExpressionSpecification&quot; symbol=&quot;THIS&quot;/>&#xA;        &lt;expression xsi:type=&quot;makeInlineExpressionSpecification&quot; language=&quot;Groovy&quot;>&#xA;            &lt;parameter name=&quot;Context&quot; type=&quot;com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Element&quot; ordered=&quot;false&quot; unique=&quot;false&quot; multiple=&quot;false&quot;/>&#xA;            &lt;body>new Date()&lt;/body>&#xA;        &lt;/expression>&#xA;    &lt;/value>&#xA;&lt;/unionExpressionSpecification>&#xA;"/>
+          <eStructuralFeatures xsi:type="ecore:EReference" name="scope" ordered="false"
+              lowerBound="1" upperBound="-1"/>
+          <eStructuralFeatures xsi:type="ecore:EReference" name="coveringScope" ordered="false"
+              upperBound="-1"/>
+          <eStructuralFeatures xsi:type="ecore:EReference" name="type" ordered="false"
+              upperBound="-1"/>
+        </eClassifiers>
+        <eClassifiers xsi:type="ecore:EClass" name="CustomizationOfMetricDefinition"/>
+        <eClassifiers xsi:type="ecore:EClass" name="CustomizationOfMetricInstance">
+          <eStructuralFeatures xsi:type="ecore:EAttribute" name="classifier" ordered="false"
+              lowerBound="1"/>
+        </eClassifiers>
+        <eClassifiers xsi:type="ecore:EClass" name="CustomizationOfMetricSuite"/>
+        <eClassifiers xsi:type="ecore:EEnum" name="MetricType">
+          <eLiterals name="Element Quantity"/>
+          <eLiterals name="Passed Element Quantity"/>
+          <eLiterals name="Failed Element Quantity"/>
+          <eLiterals name="Failure Quantity"/>
+          <eLiterals name="Passed Element Percentage"/>
+          <eLiterals name="Failed Element Percentage"/>
+        </eClassifiers>
+        <eClassifiers xsi:type="ecore:EClass" name="CustomizationOfValidationBasedMetricDefinition"/>
+      </eSubpackages>
+    </eSubpackages>
+    <eSubpackages name="Merge" nsURI="_copy">
+      <eSubpackages name="Diagram Merge" nsURI="_copy"/>
+    </eSubpackages>
+    <eSubpackages name="libraries" nsURI="_copy">
+      <eClassifiers xsi:type="ecore:EEnum" name="treeStructureEnumeration">
+        <eLiterals name="containment"/>
+        <eLiterals name="composition"/>
+        <eLiterals name="inheritance"/>
+      </eClassifiers>
+    </eSubpackages>
+    <eSubpackages name="datatypes" nsURI="_copy">
+      <eClassifiers xsi:type="ecore:EDataType" name="float"/>
+      <eClassifiers xsi:type="ecore:EDataType" name="void"/>
+      <eClassifiers xsi:type="ecore:EDataType" name="byte"/>
+      <eClassifiers xsi:type="ecore:EDataType" name="boolean">
+        <eAnnotations source="boolean type" references="#//MagicDraw%20Profile/datatypes/boolean"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EDataType" name="int"/>
+      <eClassifiers xsi:type="ecore:EDataType" name="short"/>
+      <eClassifiers xsi:type="ecore:EDataType" name="char"/>
+      <eClassifiers xsi:type="ecore:EDataType" name="long"/>
+      <eClassifiers xsi:type="ecore:EDataType" name="date"/>
+      <eClassifiers xsi:type="ecore:EDataType" name="double"/>
+      <eClassifiers xsi:type="ecore:EDataType" name="StructuredExpression"/>
+      <eClassifiers xsi:type="ecore:EDataType" name="XML"/>
+      <eClassifiers xsi:type="ecore:EDataType" name="Color"/>
+    </eSubpackages>
+    <eSubpackages name="Traceability customization" nsURI="_copy">
+      <eAnnotations source="Traceability customization for UML, specifying needed derived properties expressions for analysing elements realization and specification. You can discover the specifications and realization of a element in higher and lover level of abstraction through any relationships and properties those are already used in project for traceability."
+          references="#//MagicDraw%20Profile/Traceability%20customization"/>
+      <eSubpackages name="Properties descriptors" nsURI="_copy">
+        <eSubpackages name="Other" nsURI="_copy">
+          <eClassifiers xsi:type="ecore:EClass" name="Participates In Interactions">
+            <eStructuralFeatures xsi:type="ecore:EReference" name="participatesInInteraction"
+                upperBound="-1">
+              <eAnnotations source="The interactions wherein the classifier is used as an object type or the interactions that are owned by the classifier."
+                  references="#//MagicDraw%20Profile/Traceability%20customization/Properties%20descriptors/Other/Participates%20In%20Interactions/participatesInInteraction"/>
+            </eStructuralFeatures>
+            <eStructuralFeatures xsi:type="ecore:EAttribute" name="Traceability" ordered="false"
+                lowerBound="1"/>
+          </eClassifiers>
+          <eClassifiers xsi:type="ecore:EClass" name="Participates In Activities">
+            <eStructuralFeatures xsi:type="ecore:EReference" name="participatesInActivity"
+                upperBound="-1">
+              <eAnnotations source="Activities wherein the classifier is used as an object type or the activities that are owned by the classifier."
+                  references="#//MagicDraw%20Profile/Traceability%20customization/Properties%20descriptors/Other/Participates%20In%20Activities/participatesInActivity"/>
+            </eStructuralFeatures>
+            <eStructuralFeatures xsi:type="ecore:EAttribute" name="Traceability" ordered="false"
+                lowerBound="1"/>
+          </eClassifiers>
+          <eClassifiers xsi:type="ecore:EClass" name="Used Classifiers In Interactions">
+            <eStructuralFeatures xsi:type="ecore:EReference" name="usedClassifier"
+                upperBound="-1">
+              <eAnnotations source="Classifiers which are used in the interaction as object types and/or the classifier that owns the interaction."
+                  references="#//MagicDraw%20Profile/Traceability%20customization/Properties%20descriptors/Other/Used%20Classifiers%20In%20Interactions/usedClassifier"/>
+            </eStructuralFeatures>
+            <eStructuralFeatures xsi:type="ecore:EAttribute" name="Traceability" ordered="false"
+                lowerBound="1"/>
+          </eClassifiers>
+          <eClassifiers xsi:type="ecore:EClass" name="Described Use Cases">
+            <eStructuralFeatures xsi:type="ecore:EReference" name="describedUseCase"
+                upperBound="-1">
+              <eAnnotations source="The described use cases by behavior or behavior diagram."
+                  references="#//MagicDraw%20Profile/Traceability%20customization/Properties%20descriptors/Other/Described%20Use%20Cases/describedUseCase"/>
+            </eStructuralFeatures>
+            <eStructuralFeatures xsi:type="ecore:EAttribute" name="Traceability" ordered="false"
+                lowerBound="1"/>
+          </eClassifiers>
+          <eClassifiers xsi:type="ecore:EClass" name="Describing Behaviors">
+            <eAnnotations source="Behaviors and behavior diagrams (state, activity, sequence, communication, and interaction), which describe the use case."
+                references="#//MagicDraw%20Profile/Traceability%20customization/Properties%20descriptors/Other/Describing%20Behaviors"/>
+            <eStructuralFeatures xsi:type="ecore:EReference" name="describingBehavior"
+                upperBound="-1">
+              <eAnnotations source="Behaviors and behavior diagrams (state, activity, sequence, communication, and interaction), which describe the use case"
+                  references="#//MagicDraw%20Profile/Traceability%20customization/Properties%20descriptors/Other/Describing%20Behaviors/describingBehavior"/>
+            </eStructuralFeatures>
+            <eStructuralFeatures xsi:type="ecore:EAttribute" name="Traceability" ordered="false"
+                lowerBound="1"/>
+          </eClassifiers>
+          <eClassifiers xsi:type="ecore:EClass" name="Specific Classifiers">
+            <eStructuralFeatures xsi:type="ecore:EReference" name="specificClassifier"
+                upperBound="-1">
+              <eAnnotations source="Directly inherited classifiers." references="#//MagicDraw%20Profile/Traceability%20customization/Properties%20descriptors/Other/Specific%20Classifiers/specificClassifier"/>
+            </eStructuralFeatures>
+            <eStructuralFeatures xsi:type="ecore:EAttribute" name="Traceability" ordered="false"
+                lowerBound="1"/>
+          </eClassifiers>
+          <eClassifiers xsi:type="ecore:EClass" name="All Specific Classifiers">
+            <eStructuralFeatures xsi:type="ecore:EReference" name="allSpecificClassifiers"
+                upperBound="-1">
+              <eAnnotations source="Directly or indirectly inherited classifiers."
+                  references="#//MagicDraw%20Profile/Traceability%20customization/Properties%20descriptors/Other/All%20Specific%20Classifiers/allSpecificClassifiers"/>
+            </eStructuralFeatures>
+            <eStructuralFeatures xsi:type="ecore:EAttribute" name="Traceability" ordered="false"
+                lowerBound="1"/>
+          </eClassifiers>
+          <eClassifiers xsi:type="ecore:EClass" name="All General Classifiers">
+            <eStructuralFeatures xsi:type="ecore:EReference" name="allGeneralClassifiers"
+                upperBound="-1">
+              <eAnnotations source="Gathers classifiers from which the current element directly or indirectly inherits."
+                  references="#//MagicDraw%20Profile/Traceability%20customization/Properties%20descriptors/Other/All%20General%20Classifiers/allGeneralClassifiers"/>
+            </eStructuralFeatures>
+            <eStructuralFeatures xsi:type="ecore:EAttribute" name="Traceability" ordered="false"
+                lowerBound="1"/>
+          </eClassifiers>
+          <eClassifiers xsi:type="ecore:EClass" name="Used Classifiers In Activities">
+            <eStructuralFeatures xsi:type="ecore:EReference" name="usedClassifier"
+                upperBound="-1">
+              <eAnnotations source="Classifiers which are used in the activity as object types or the classifier that owns the activity."
+                  references="#//MagicDraw%20Profile/Traceability%20customization/Properties%20descriptors/Other/Used%20Classifiers%20In%20Activities/usedClassifier"/>
+            </eStructuralFeatures>
+            <eStructuralFeatures xsi:type="ecore:EAttribute" name="Traceability" ordered="false"
+                lowerBound="1"/>
+          </eClassifiers>
+          <eClassifiers xsi:type="ecore:EClass" name="Traceability Group">
+            <eStructuralFeatures xsi:type="ecore:EAttribute" name="Traceability" ordered="false"
+                lowerBound="1"/>
+          </eClassifiers>
+        </eSubpackages>
+        <eSubpackages name="Specification" nsURI="_copy">
+          <eClassifiers xsi:type="ecore:EClass" name="Use Case Specifying Use Cases ">
+            <eStructuralFeatures xsi:type="ecore:EReference" name="specifyingUseCase"
+                upperBound="-1">
+              <eAnnotations source="The use cases that specifies the given use case in the higher level of abstraction. For example, the business use case specifies the requirements use case."
+                  references="#//MagicDraw%20Profile/Traceability%20customization/Properties%20descriptors/Specification/Use%20Case%20Specifying%20Use%20Cases%20/specifyingUseCase"/>
+            </eStructuralFeatures>
+            <eStructuralFeatures xsi:type="ecore:EAttribute" name="Traceability" ordered="false"
+                lowerBound="1"/>
+          </eClassifiers>
+          <eClassifiers xsi:type="ecore:EClass" name="Component Specifying Classes">
+            <eStructuralFeatures xsi:type="ecore:EReference" name="specifyingClass"
+                upperBound="-1">
+              <eAnnotations source="The classes representing the component specification from the Design model."
+                  references="#//MagicDraw%20Profile/Traceability%20customization/Properties%20descriptors/Specification/Component%20Specifying%20Classes/specifyingClass"/>
+            </eStructuralFeatures>
+            <eStructuralFeatures xsi:type="ecore:EAttribute" name="Traceability" ordered="false"
+                lowerBound="1"/>
+          </eClassifiers>
+          <eClassifiers xsi:type="ecore:EClass" name="Artifact Manifesting Classifiers">
+            <eStructuralFeatures xsi:type="ecore:EReference" name="manifestedInArtifact"
+                upperBound="-1">
+              <eAnnotations source="Components which are manifested in an artifact."
+                  references="#//MagicDraw%20Profile/Traceability%20customization/Properties%20descriptors/Specification/Artifact%20Manifesting%20Classifiers/manifestedInArtifact"/>
+            </eStructuralFeatures>
+            <eStructuralFeatures xsi:type="ecore:EAttribute" name="Traceability" ordered="false"
+                lowerBound="1"/>
+          </eClassifiers>
+          <eClassifiers xsi:type="ecore:EClass" name="Class Specifying Use Cases">
+            <eStructuralFeatures xsi:type="ecore:EReference" name="specifyingUseCase"
+                upperBound="-1">
+              <eAnnotations source="The use cases (from the Requirements model) representing the class specification."
+                  references="#//MagicDraw%20Profile/Traceability%20customization/Properties%20descriptors/Specification/Class%20Specifying%20Use%20Cases/specifyingUseCase"/>
+            </eStructuralFeatures>
+            <eStructuralFeatures xsi:type="ecore:EAttribute" name="Traceability" ordered="false"
+                lowerBound="1"/>
+          </eClassifiers>
+          <eClassifiers xsi:type="ecore:EClass" name="Element Specifying Elements">
+            <eStructuralFeatures xsi:type="ecore:EReference" name="specifyingElement"
+                upperBound="-1">
+              <eAnnotations source="Gathers specifying elements from the upper abstraction level."
+                  references="#//MagicDraw%20Profile/Traceability%20customization/Properties%20descriptors/Specification/Element%20Specifying%20Elements/specifyingElement"/>
+            </eStructuralFeatures>
+            <eStructuralFeatures xsi:type="ecore:EAttribute" name="Traceability" ordered="false"
+                lowerBound="1"/>
+          </eClassifiers>
+          <eClassifiers xsi:type="ecore:EClass" name="Element All Specifying Elements">
+            <eStructuralFeatures xsi:type="ecore:EReference" name="allSpecifyingElements"
+                upperBound="-1">
+              <eAnnotations source="Transitively gathers specifying elements from all upper abstraction levels."
+                  references="#//MagicDraw%20Profile/Traceability%20customization/Properties%20descriptors/Specification/Element%20All%20Specifying%20Elements/allSpecifyingElements"/>
+            </eStructuralFeatures>
+            <eStructuralFeatures xsi:type="ecore:EAttribute" name="Traceability" ordered="false"
+                lowerBound="1"/>
+          </eClassifiers>
+          <eClassifiers xsi:type="ecore:EClass" name="Classifier Specifying Components">
+            <eStructuralFeatures xsi:type="ecore:EReference" name="specifyingComponent"
+                upperBound="-1">
+              <eAnnotations source="The components that are realized by classifiers through component realization."
+                  references="#//MagicDraw%20Profile/Traceability%20customization/Properties%20descriptors/Specification/Classifier%20Specifying%20Components/specifyingComponent"/>
+            </eStructuralFeatures>
+            <eStructuralFeatures xsi:type="ecore:EAttribute" name="Traceability" ordered="false"
+                lowerBound="1"/>
+          </eClassifiers>
+        </eSubpackages>
+        <eSubpackages name="Realization" nsURI="_copy">
+          <eClassifiers xsi:type="ecore:EClass" name="Element Realizing Elements">
+            <eStructuralFeatures xsi:type="ecore:EReference" name="realizingElement"
+                upperBound="-1">
+              <eAnnotations source="Gathers realizing elements from the lower abstraction level."
+                  references="#//MagicDraw%20Profile/Traceability%20customization/Properties%20descriptors/Realization/Element%20Realizing%20Elements/realizingElement"/>
+            </eStructuralFeatures>
+            <eStructuralFeatures xsi:type="ecore:EAttribute" name="Traceability" ordered="false"
+                lowerBound="1"/>
+          </eClassifiers>
+          <eClassifiers xsi:type="ecore:EClass" name="Element All Realizing Elements">
+            <eStructuralFeatures xsi:type="ecore:EReference" name="allRealizingElements"
+                upperBound="-1">
+              <eAnnotations source="Transitively gathers realizing elements from all lower abstraction levels."
+                  references="#//MagicDraw%20Profile/Traceability%20customization/Properties%20descriptors/Realization/Element%20All%20Realizing%20Elements/allRealizingElements"/>
+            </eStructuralFeatures>
+            <eStructuralFeatures xsi:type="ecore:EAttribute" name="Traceability" ordered="false"
+                lowerBound="1"/>
+          </eClassifiers>
+          <eClassifiers xsi:type="ecore:EClass" name="Use Case Realizing Use Cases">
+            <eStructuralFeatures xsi:type="ecore:EReference" name="realizingUseCase"
+                upperBound="-1">
+              <eAnnotations source="The realizing use cases of the current use case in the lower level of abstraction thus demonstrating how the use case is implemented. For example, the requirements use case realizes the business use case."
+                  references="#//MagicDraw%20Profile/Traceability%20customization/Properties%20descriptors/Realization/Use%20Case%20Realizing%20Use%20Cases/realizingUseCase"/>
+            </eStructuralFeatures>
+            <eStructuralFeatures xsi:type="ecore:EAttribute" name="Traceability" ordered="false"
+                lowerBound="1"/>
+          </eClassifiers>
+          <eClassifiers xsi:type="ecore:EClass" name="Component Realizing Classifiers">
+            <eStructuralFeatures xsi:type="ecore:EReference" name="realizingClassifier"
+                upperBound="-1">
+              <eAnnotations source="Classifiers that realize components through component realization."
+                  references="#//MagicDraw%20Profile/Traceability%20customization/Properties%20descriptors/Realization/Component%20Realizing%20Classifiers/realizingClassifier"/>
+            </eStructuralFeatures>
+            <eStructuralFeatures xsi:type="ecore:EAttribute" name="Traceability" ordered="false"
+                lowerBound="1"/>
+          </eClassifiers>
+          <eClassifiers xsi:type="ecore:EClass" name="Component Manifested by Artifacts">
+            <eStructuralFeatures xsi:type="ecore:EReference" name="manifestedByArtifact"
+                upperBound="-1">
+              <eAnnotations source="Artifacts that physically render current component."
+                  references="#//MagicDraw%20Profile/Traceability%20customization/Properties%20descriptors/Realization/Component%20Manifested%20by%20Artifacts/manifestedByArtifact"/>
+            </eStructuralFeatures>
+            <eStructuralFeatures xsi:type="ecore:EAttribute" name="Traceability" ordered="false"
+                lowerBound="1"/>
+          </eClassifiers>
+          <eClassifiers xsi:type="ecore:EClass" name="Interface Realizing Classifiers">
+            <eStructuralFeatures xsi:type="ecore:EReference" name="realizingClassifier"
+                upperBound="-1">
+              <eAnnotations source="The classifiers conforming to the contract specified by the interface and related with this interface through the interface realization relation."
+                  references="#//MagicDraw%20Profile/Traceability%20customization/Properties%20descriptors/Realization/Interface%20Realizing%20Classifiers/realizingClassifier"/>
+            </eStructuralFeatures>
+            <eStructuralFeatures xsi:type="ecore:EAttribute" name="Traceability" ordered="false"
+                lowerBound="1"/>
+          </eClassifiers>
+          <eClassifiers xsi:type="ecore:EClass" name="Class Realizing Components">
+            <eStructuralFeatures xsi:type="ecore:EReference" name="realizingComponent"
+                upperBound="-1">
+              <eAnnotations source="Components representing the class realization in the Implementation model."
+                  references="#//MagicDraw%20Profile/Traceability%20customization/Properties%20descriptors/Realization/Class%20Realizing%20Components/realizingComponent"/>
+            </eStructuralFeatures>
+            <eStructuralFeatures xsi:type="ecore:EAttribute" name="Traceability" ordered="false"
+                lowerBound="1"/>
+          </eClassifiers>
+          <eClassifiers xsi:type="ecore:EClass" name="Use Case Realizing Classes">
+            <eStructuralFeatures xsi:type="ecore:EReference" name="realizingClass"
+                upperBound="-1">
+              <eAnnotations source="Classes representing the use case realization in the Design model."
+                  references="#//MagicDraw%20Profile/Traceability%20customization/Properties%20descriptors/Realization/Use%20Case%20Realizing%20Classes/realizingClass"/>
+            </eStructuralFeatures>
+            <eStructuralFeatures xsi:type="ecore:EAttribute" name="Traceability" ordered="false"
+                lowerBound="1"/>
+          </eClassifiers>
+        </eSubpackages>
+      </eSubpackages>
+    </eSubpackages>
+    <eSubpackages name="Built-In Operations" nsURI="_copy">
+      <eClassifiers xsi:type="ecore:EClass" name="java.lang.Object"/>
+      <eClassifiers xsi:type="ecore:EClass" name="com.nomagic.expressions.Operation"/>
+      <eSubpackages name="logical" nsURI="_copy"/>
+      <eSubpackages name="collection" nsURI="_copy"/>
+      <eSubpackages name="comparison" nsURI="_copy"/>
+      <eSubpackages name="string" nsURI="_copy"/>
+      <eSubpackages name="date" nsURI="_copy"/>
+      <eSubpackages name="deprecated" nsURI="_copy"/>
+    </eSubpackages>
+    <eSubpackages name="PredefinedMetricSuites" nsURI="_copy">
+      <eClassifiers xsi:type="ecore:EClass" name="MetricSuiteWithCount" eSuperTypes="#//MagicDraw%20Profile/DSL%20Customization/Metrics/BaseMetricSuite">
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="count" ordered="false"
+            lowerBound="1" defaultValueLiteral="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?>&#xA;&lt;unionExpressionSpecification ordered=&quot;true&quot; unique=&quot;true&quot; xmlns=&quot;http://www.nomagic.com/schemas/MagicDraw/StructuredExpression/2013&quot;>&#xA;    &lt;taggedValues>&#xA;        &lt;entry key=&quot;ROOT_UNION&quot;>&#xA;            &lt;value>true&lt;/value>&#xA;        &lt;/entry>&#xA;        &lt;entry key=&quot;name&quot;>&#xA;            &lt;value>Body&lt;/value>&#xA;        &lt;/entry>&#xA;    &lt;/taggedValues>&#xA;    &lt;value xsi:type=&quot;callExpressionSpecification&quot; includeCustomTypes=&quot;true&quot; includeSubtypes=&quot;false&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;>&#xA;        &lt;taggedValues>&#xA;            &lt;entry key=&quot;name&quot;>&#xA;                &lt;value>Script1&lt;/value>&#xA;            &lt;/entry>&#xA;        &lt;/taggedValues>&#xA;        &lt;argument xsi:type=&quot;callExpressionSpecification&quot; includeCustomTypes=&quot;true&quot; includeSubtypes=&quot;false&quot;>&#xA;            &lt;taggedValues>&#xA;                &lt;entry key=&quot;name&quot;>&#xA;                    &lt;value>Find1&lt;/value>&#xA;                &lt;/entry>&#xA;            &lt;/taggedValues>&#xA;            &lt;argument xsi:type=&quot;stringExpressionSpecification&quot;>&#xA;                &lt;value>*&lt;/value>&#xA;            &lt;/argument>&#xA;            &lt;argument xsi:type=&quot;callExpressionSpecification&quot; includeCustomTypes=&quot;true&quot; includeSubtypes=&quot;false&quot;>&#xA;                &lt;taggedValues>&#xA;                    &lt;entry key=&quot;name&quot;>&#xA;                        &lt;value>Script1&lt;/value>&#xA;                    &lt;/entry>&#xA;                &lt;/taggedValues>&#xA;                &lt;argument xsi:type=&quot;lookupExpressionSpecification&quot; symbol=&quot;THIS&quot;/>&#xA;                &lt;expression xsi:type=&quot;makeInlineExpressionSpecification&quot; language=&quot;Groovy&quot;>&#xA;                    &lt;parameter name=&quot;arg1&quot; type=&quot;java.lang.Object&quot; ordered=&quot;false&quot; unique=&quot;false&quot; multiple=&quot;false&quot;/>&#xA;                    &lt;body>return  valueContext.getValue(&quot;scope&quot;)&lt;/body>&#xA;                &lt;/expression>&#xA;            &lt;/argument>&#xA;            &lt;argument xsi:type=&quot;callExpressionSpecification&quot; includeCustomTypes=&quot;true&quot; includeSubtypes=&quot;false&quot;>&#xA;                &lt;taggedValues>&#xA;                    &lt;entry key=&quot;name&quot;>&#xA;                        &lt;value>Script1&lt;/value>&#xA;                    &lt;/entry>&#xA;                &lt;/taggedValues>&#xA;                &lt;argument xsi:type=&quot;lookupExpressionSpecification&quot; symbol=&quot;THIS&quot;/>&#xA;                &lt;expression xsi:type=&quot;makeInlineExpressionSpecification&quot; language=&quot;Groovy&quot;>&#xA;                    &lt;parameter name=&quot;arg1&quot; type=&quot;java.lang.Object&quot; ordered=&quot;false&quot; unique=&quot;false&quot; multiple=&quot;false&quot;/>&#xA;                    &lt;body>return valueContext.getValue(&quot;type&quot;)&lt;/body>&#xA;                &lt;/expression>&#xA;            &lt;/argument>&#xA;            &lt;argument xsi:type=&quot;booleanExpressionSpecification&quot; value=&quot;false&quot;/>&#xA;            &lt;argument xsi:type=&quot;booleanExpressionSpecification&quot; value=&quot;false&quot;/>&#xA;            &lt;argument xsi:type=&quot;stringExpressionSpecification&quot;>&#xA;                &lt;value>&lt;/value>&#xA;            &lt;/argument>&#xA;            &lt;argument xsi:type=&quot;stringExpressionSpecification&quot;>&#xA;                &lt;value>&lt;/value>&#xA;            &lt;/argument>&#xA;            &lt;argument xsi:type=&quot;booleanExpressionSpecification&quot; value=&quot;false&quot;/>&#xA;            &lt;argument xsi:type=&quot;booleanExpressionSpecification&quot; value=&quot;false&quot;/>&#xA;            &lt;argument xsi:type=&quot;booleanExpressionSpecification&quot; value=&quot;true&quot;/>&#xA;            &lt;argument xsi:type=&quot;booleanExpressionSpecification&quot; value=&quot;false&quot;/>&#xA;            &lt;argument xsi:type=&quot;booleanExpressionSpecification&quot; value=&quot;false&quot;/>&#xA;            &lt;argument xsi:type=&quot;booleanExpressionSpecification&quot; value=&quot;false&quot;/>&#xA;            &lt;expression xsi:type=&quot;interpretElementExpressionSpecification&quot;>&#xA;                &lt;element xsi:type=&quot;elementExpressionSpecification&quot; element=&quot;_2022x_68301fa_1741959065654_478634_5956&quot;/>&#xA;            &lt;/expression>&#xA;        &lt;/argument>&#xA;        &lt;expression xsi:type=&quot;makeInlineExpressionSpecification&quot; language=&quot;Groovy&quot;>&#xA;            &lt;parameter name=&quot;arg1&quot; type=&quot;java.lang.Object&quot; ordered=&quot;false&quot; unique=&quot;false&quot; multiple=&quot;false&quot;/>&#xA;            &lt;body>import com.nomagic.uml2.ext.jmi.helpers.StereotypesHelper&#xA;import com.nomagic.uml2.ext.magicdraw.classes.mdkernel.InstanceSpecification&#xA;&#xA;Set set = (HashSet)arg1;&#xA;return set.size()&lt;/body>&#xA;        &lt;/expression>&#xA;    &lt;/value>&#xA;&lt;/unionExpressionSpecification>&#xA;"/>
+      </eClassifiers>
+    </eSubpackages>
+    <eSubpackages name="Find By Text" nsURI="_copy"/>
+  </eSubpackages>
+  <eSubpackages name="UML2 Metamodel" nsURI="http://www.omg.org/spec/UML/20131001_copy">
+    <eClassifiers xsi:type="ecore:EEnum" name="MessageKind">
+      <eLiterals name="complete"/>
+      <eLiterals name="lost"/>
+      <eLiterals name="found"/>
+      <eLiterals name="unknown"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EEnum" name="CallConcurrencyKind">
+      <eLiterals name="sequential"/>
+      <eLiterals name="guarded"/>
+      <eLiterals name="concurrent"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EEnum" name="ExpansionKind">
+      <eLiterals name="parallel"/>
+      <eLiterals name="iterative"/>
+      <eLiterals name="stream"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EEnum" name="ParameterEffectKind">
+      <eLiterals name="create"/>
+      <eLiterals name="read"/>
+      <eLiterals name="update"/>
+      <eLiterals name="delete"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EEnum" name="TransitionKind">
+      <eLiterals name="external"/>
+      <eLiterals name="internal"/>
+      <eLiterals name="local"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EEnum" name="ConnectorKind">
+      <eLiterals name="assembly"/>
+      <eLiterals name="delegation"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EEnum" name="InteractionOperatorKind">
+      <eLiterals name="seq"/>
+      <eLiterals name="alt"/>
+      <eLiterals name="opt"/>
+      <eLiterals name="break"/>
+      <eLiterals name="par"/>
+      <eLiterals name="strict"/>
+      <eLiterals name="loop"/>
+      <eLiterals name="critical"/>
+      <eLiterals name="neg"/>
+      <eLiterals name="assert"/>
+      <eLiterals name="ignore"/>
+      <eLiterals name="consider"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EEnum" name="VisibilityKind">
+      <eLiterals name="public"/>
+      <eLiterals name="private"/>
+      <eLiterals name="protected"/>
+      <eLiterals name="package"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EEnum" name="AggregationKind">
+      <eLiterals name="none"/>
+      <eLiterals name="shared"/>
+      <eLiterals name="composite"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EEnum" name="PseudostateKind">
+      <eLiterals name="initial"/>
+      <eLiterals name="deepHistory"/>
+      <eLiterals name="shallowHistory"/>
+      <eLiterals name="join"/>
+      <eLiterals name="fork"/>
+      <eLiterals name="junction"/>
+      <eLiterals name="choice"/>
+      <eLiterals name="entryPoint"/>
+      <eLiterals name="exitPoint"/>
+      <eLiterals name="terminate"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EEnum" name="MessageSort">
+      <eLiterals name="synchCall"/>
+      <eLiterals name="asynchCall"/>
+      <eLiterals name="asynchSignal"/>
+      <eLiterals name="createMessage"/>
+      <eLiterals name="deleteMessage"/>
+      <eLiterals name="reply"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EEnum" name="ParameterDirectionKind">
+      <eLiterals name="in"/>
+      <eLiterals name="inout"/>
+      <eLiterals name="out"/>
+      <eLiterals name="return"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EEnum" name="ObjectNodeOrderingKind">
+      <eLiterals name="unordered"/>
+      <eLiterals name="ordered"/>
+      <eLiterals name="LIFO"/>
+      <eLiterals name="FIFO"/>
+    </eClassifiers>
+    <eSubpackages name="PrimitiveTypes" nsURI="http://www.omg.org/spec/PrimitiveTypes/20100901_copy">
+      <eClassifiers xsi:type="ecore:EDataType" name="String">
+        <eAnnotations source="An instance of String defines a piece of text. The semantics of the string itself depends on its purpose, it can be a comment, computational language expression, OCL expression, etc. It is used for String attributes and String expressions in the metamodel."
+            references="#//UML2%20Metamodel/PrimitiveTypes/String"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EDataType" name="UnlimitedNatural">
+        <eAnnotations source="An instance of UnlimitedNatural is an element in the (infinite) set of naturals (0, 1, 2…). The value of infinity is shown&#xA;using an asterisk (‘*’)."
+            references="#//UML2%20Metamodel/PrimitiveTypes/UnlimitedNatural"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EDataType" name="Real">
+        <eAnnotations source="A real is a primitive type representing the mathematical concept of real."
+            references="#//UML2%20Metamodel/PrimitiveTypes/Real"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EDataType" name="Integer">
+        <eAnnotations source="An instance of Integer is an element in the (infinite) set of integers (…-2, -1, 0, 1, 2…). It is used for integer attributes and integer expressions in the metamodel."
+            references="#//UML2%20Metamodel/PrimitiveTypes/Integer"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EDataType" name="Boolean">
+        <eAnnotations source="Boolean is an instance of PrimitiveType. In the metamodel, Boolean defines an enumeration that denotes a logical condition. &#xA;Its enumeration literals are:&#xA;• true - The Boolean condition is satisfied. &#xA;• false - The Boolean condition is not satisfied. &#xA;&#xA;It is used for Boolean attribute and Boolean expressions in the metamodel, such as OCL expression. &#xA;"
+            references="#//UML2%20Metamodel/PrimitiveTypes/Boolean"/>
+      </eClassifiers>
+    </eSubpackages>
+  </eSubpackages>
+  <eSubpackages name="Validation Profile" nsURI="_copy">
+    <eClassifiers xsi:type="ecore:EEnum" name="SeverityKind">
+      <eLiterals name="debug"/>
+      <eLiterals name="info"/>
+      <eLiterals name="warning"/>
+      <eLiterals name="error"/>
+      <eLiterals name="fatal"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="_ValidationRuleCustomization">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="Validation Rule" ordered="false"
+          lowerBound="1"/>
+    </eClassifiers>
+    <eSubpackages name="Spelling" nsURI="_copy"/>
+    <eSubpackages name="Rule Validation Suite" nsURI="_copy"/>
+    <eSubpackages name="Composition Integrity" nsURI="_copy"/>
+    <eSubpackages name="Project Integrity Correctness" nsURI="_copy"/>
+    <eSubpackages name="UML completeness constraints" nsURI="_copy"/>
+    <eSubpackages name="UML correctness constraints" nsURI="_copy"/>
+    <eSubpackages name="Active Validation" nsURI="_copy">
+      <eSubpackages name="UML Correctness" nsURI="_copy"/>
+      <eSubpackages name="Numbering Validation" nsURI="_copy"/>
+      <eSubpackages name="Parameters Synchronization" nsURI="_copy"/>
+      <eSubpackages name="Pins Displaying" nsURI="_copy"/>
+      <eSubpackages name="Path Overlapping" nsURI="_copy"/>
+      <eSubpackages name="Shape Ownership" nsURI="_copy"/>
+      <eSubpackages name="Relations Ownership" nsURI="_copy"/>
+      <eSubpackages name="Text References Validation (Auto)" nsURI="_copy"/>
+      <eSubpackages name="Suspended Symbols (Auto)" nsURI="_copy"/>
+    </eSubpackages>
+    <eSubpackages name="Text References Validation" nsURI="_copy"/>
+    <eSubpackages name="Suspended Symbols" nsURI="_copy"/>
+    <eSubpackages name="MetricDefinitionValidation" nsURI="_copy"/>
+    <eSubpackages name="Composition Integrity Analysis" nsURI="_copy"/>
+    <eSubpackages name="Deprecated JavaScript" nsURI="_copy"/>
+  </eSubpackages>
+  <eSubpackages name="StandardProfile" nsURI="http://www.omg.org/spec/UML/20131001/StandardProfile_copy"/>
+  <eSubpackages name="Dependency Matrix Profile" nsURI="_copy">
+    <eClassifiers xsi:type="ecore:EClass" name="CustomizationOfDependencyMatrix">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="Row" ordered="false"
+          lowerBound="1"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="Column" ordered="false"
+          lowerBound="1"/>
+    </eClassifiers>
+    <eSubpackages name="Types" nsURI="_copy">
+      <eClassifiers xsi:type="ecore:EEnum" name="TextDirection">
+        <eLiterals name="Vertical"/>
+        <eLiterals name="Horizontal"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EEnum" name="RelationOption">
+        <eLiterals name="All"/>
+        <eLiterals name="With relations"/>
+        <eLiterals name="Without relations"/>
+        <eLiterals name="Columns without relations"/>
+        <eLiterals name="Rows without relations"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EEnum" name="Direction">
+        <eLiterals name="Row to column"/>
+        <eLiterals name="Column to row"/>
+        <eLiterals name="Both"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EEnum" name="OwnerDisplayMode">
+        <eLiterals name="Complete tree"/>
+        <eLiterals name="Hidden"/>
+        <eLiterals name="Full qualified name"/>
+        <eLiterals name="Compact tree"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EEnum" name="SortingMode">
+        <eLiterals name="Ascending"/>
+        <eLiterals name="Descending"/>
+        <eLiterals name="Custom"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EEnum" name="LegendLocation">
+        <eLiterals name="Top-Left Corner"/>
+        <eLiterals name="Above Column Header"/>
+        <eLiterals name="Do Not Display"/>
+      </eClassifiers>
+    </eSubpackages>
+  </eSubpackages>
+</ecore:EPackage>

@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="ASCII"?>
-<Namespace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="sysmline" xsi:schemaLocation="sysmline metamodel/sysmline/sysmline.ecore">
+<Namespace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="sysmline">
   <body xsi:type="Package" declaredName="bpmn2">
     <body xsi:type="NamespaceImport" hasVisibility="true" declaredName="ecore"/>
-    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="bpmndi"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="bpmdi"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="dc"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="di"/>
     <body xsi:type="ItemDefinition" declaredName="Interface">
       <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
         <featureNote>:</featureNote>
