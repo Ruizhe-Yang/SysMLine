@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="ASCII"?>
+<Namespace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="sysmline" xsi:schemaLocation="sysmline metamodel/sysmline/sysmline.ecore">
+  <body xsi:type="Package" declaredName="libraries">
+    <body xsi:type="NamespaceImport" hasVisibility="true" declaredName="ecore"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="emde"/>
+    <body xsi:type="ItemDefinition" declaredName="ModelInformation">
+      <body xsi:type="ItemUsage" declaredName="ownedReferences" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>LibraryReference</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="version" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ModelVersion</featureSpecialization>
+      </body>
+      <SubclassificationPart>LibraryAbstractElement</SubclassificationPart>
+      <SubclassificationPart xsi:nil="true"/>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="LibraryReference">
+      <body xsi:type="ItemUsage" declaredName="library" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ModelInformation</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="accessPolicy" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>AccessPolicy</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="version" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ModelVersion</featureSpecialization>
+      </body>
+      <SubclassificationPart>LibraryAbstractElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ModelVersion">
+      <body xsi:type="AttributeUsage" declaredName="majorVersionNumber" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EInt</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="minorVersionNumber" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EInt</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="lastModifiedFileStamp" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ELong</featureSpecialization>
+      </body>
+      <SubclassificationPart>LibraryAbstractElement</SubclassificationPart>
+    </body>
+    <body xsi:type="EnumerationDefinition" declaredName="AccessPolicy">
+      <body xsi:type="EnumerationUsage" declaredName="readOnly"/>
+      <body xsi:type="EnumerationUsage" declaredName="readAndWrite"/>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="LibraryAbstractElement" isAbstract="true">
+      <body xsi:type="AttributeUsage" declaredName="id" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <SubclassificationPart xsi:nil="true"/>
+    </body>
+  </body>
+</Namespace>

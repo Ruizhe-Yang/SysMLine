@@ -1,26 +1,26 @@
-package bpmdi {
+package bpmndi {
 	private import ecore::*;
-	private import bpmn2::*;
-	private import dc::*;
-	private import di::*;
-	part def BPMNPlane :> Plane{
-		ref bpmnElement [1] : BaseElement;
+	public import bpmn2::*;
+	public import dc::*;
+	public import di::*;
+	item def BPMNPlane :> Plane{
+		ref item bpmnElement : BaseElement [1];
 	}
-	part def BPMNShape :> LabeledShape{
-		ref bpmnElement [1] : BaseElement;
-		attribute isHorizontal [1] : EBoolean;
-		attribute isExpanded [1] : EBoolean;
-		attribute isMarkerVisible [1] : EBoolean;
-		part label [1] : BPMNLabel;
-		attribute isMessageVisible [1] : EBoolean;
-		attribute participantBandKind [1] : ParticipantBandKind;
-		ref choreographyActivityShape [1] : BPMNShape;
+	item def BPMNShape :> LabeledShape{
+		ref item bpmnElement : BaseElement [1];
+		attribute isHorizontal : EBoolean [1];
+		attribute isExpanded : EBoolean [1];
+		attribute isMarkerVisible : EBoolean [1];
+		item label : BPMNLabel [1];
+		attribute isMessageVisible : EBoolean [1];
+		attribute participantBandKind : ParticipantBandKind [1];
+		ref item choreographyActivityShape : BPMNShape [1];
 	}
-	part def BPMNLabel :> Label{
-		ref labelStyle [1] : BPMNLabelStyle;
+	item def BPMNLabel :> Label{
+		ref item labelStyle : BPMNLabelStyle [1];
 	}
-	part def BPMNLabelStyle :> Style{
-		part font [1] : Font;
+	item def BPMNLabelStyle :> Style{
+		item font : Font [1];
 	}
 	enum def ParticipantBandKind {
 		enum top_initiating;
@@ -30,20 +30,20 @@ package bpmdi {
 		enum middle_non_initiating;
 		enum bottom_non_initiating;
 	}
-	part def BPMNEdge :> LabeledEdge{
-		part label [1] : BPMNLabel;
-		ref bpmnElement [1] : BaseElement;
-		ref sourceElement [1] : DiagramElement;
-		ref targetElement [1] : DiagramElement;
-		attribute messageVisibleKind [1] : MessageVisibleKind;
+	item def BPMNEdge :> LabeledEdge{
+		item label : BPMNLabel [1];
+		ref item bpmnElement : BaseElement [1];
+		ref item sourceElement : DiagramElement [1];
+		ref item targetElement : DiagramElement [1];
+		attribute messageVisibleKind : MessageVisibleKind [1];
 	}
 	enum def MessageVisibleKind {
 		enum initiating;
 		enum non_initiating;
 	}
-	part def BPMNDiagram :> Diagram{
-		part plane [1] : BPMNPlane;
-		part labelStyle [*] : BPMNLabelStyle;
+	item def BPMNDiagram :> Diagram{
+		item plane : BPMNPlane [1];
+		item labelStyle : BPMNLabelStyle [*];
 	}
 }
 

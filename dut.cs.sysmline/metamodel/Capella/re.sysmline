@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="ASCII"?>
+<Namespace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="sysmline" xsi:schemaLocation="sysmline metamodel/sysmline/sysmline.ecore">
+  <body xsi:type="Package" declaredName="re">
+    <body xsi:type="NamespaceImport" hasVisibility="true" declaredName="ecore"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="emde"/>
+    <body xsi:type="ItemDefinition" declaredName="ReAbstractElement" isAbstract="true">
+      <body xsi:type="AttributeUsage" declaredName="id" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <SubclassificationPart xsi:nil="true"/>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ReNamedElement" isAbstract="true">
+      <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <SubclassificationPart>ReAbstractElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ReDescriptionElement" isAbstract="true">
+      <body xsi:type="AttributeUsage" declaredName="description" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <SubclassificationPart>ReNamedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ReElementContainer" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="ownedElements" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>CatalogElement</featureSpecialization>
+      </body>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="CatalogElementPkg">
+      <body xsi:type="ItemUsage" declaredName="ownedElementPkgs" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>CatalogElementPkg</featureSpecialization>
+      </body>
+      <SubclassificationPart>ReNamedElement</SubclassificationPart>
+      <SubclassificationPart>ReElementContainer</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="RecCatalog">
+      <body xsi:type="ItemUsage" declaredName="ownedCompliancyDefinitionPkg" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>CompliancyDefinitionPkg</featureSpecialization>
+      </body>
+      <SubclassificationPart>CatalogElementPkg</SubclassificationPart>
+      <SubclassificationPart xsi:nil="true"/>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="GroupingElementPkg">
+      <SubclassificationPart>CatalogElementPkg</SubclassificationPart>
+      <SubclassificationPart xsi:nil="true"/>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="CatalogElementLink">
+      <body xsi:type="ItemUsage" declaredName="source" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>CatalogElement</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="target" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EObject</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="origin" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>CatalogElementLink</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="unsynchronizedFeatures" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="suffixed" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <SubclassificationPart>ReAbstractElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="CatalogElement">
+      <body xsi:type="AttributeUsage" declaredName="kind" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>CatalogElementKind</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="author" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="environment" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="suffix" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="purpose" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="readOnly" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="version" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="tags" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="origin" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>CatalogElement</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="currentCompliancy" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>CompliancyDefinition</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="defaultReplicaCompliancy" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>CompliancyDefinition</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedLinks" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>CatalogElementLink</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="referencedElements" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EObject</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="replicatedElements" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>CatalogElement</featureSpecialization>
+      </body>
+      <SubclassificationPart>ReDescriptionElement</SubclassificationPart>
+      <SubclassificationPart>ReElementContainer</SubclassificationPart>
+    </body>
+    <body xsi:type="EnumerationDefinition" declaredName="CatalogElementKind">
+      <body xsi:type="EnumerationUsage" declaredName="REC"/>
+      <body xsi:type="EnumerationUsage" declaredName="RPL"/>
+      <body xsi:type="EnumerationUsage" declaredName="REC_RPL"/>
+      <body xsi:type="EnumerationUsage" declaredName="GROUPING"/>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="CompliancyDefinitionPkg">
+      <body xsi:type="ItemUsage" declaredName="ownedDefinitions" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>CompliancyDefinition</featureSpecialization>
+      </body>
+      <SubclassificationPart>ReNamedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="CompliancyDefinition">
+      <SubclassificationPart>ReDescriptionElement</SubclassificationPart>
+    </body>
+  </body>
+</Namespace>

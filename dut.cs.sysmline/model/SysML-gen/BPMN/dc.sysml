@@ -1,22 +1,22 @@
 package dc {
 	private import ecore::*;
-	part def Font {
-		attribute name [1] : EString;
-		attribute size [1] : EFloat;
-		attribute isBold [1] : EBoolean;
-		attribute isItalic [1] : EBoolean;
-		attribute isUnderline [1] : EBoolean;
-		attribute isStrikeThrough [1] : EBoolean;
+	item def Font {
+		attribute name : EString [1];
+		attribute size : EFloat [1];
+		attribute isBold : EBoolean [1];
+		attribute isItalic : EBoolean [1];
+		attribute isUnderline : EBoolean [1];
+		attribute isStrikeThrough : EBoolean [1];
 	}
-	part def Point {
-		attribute x [1] : EFloat;
-		attribute y [1] : EFloat;
+	item def Point {
+		attribute x : EFloat [1];
+		attribute y : EFloat [1];
 	}
-	part def Bounds {
-		attribute x [1] : EFloat;
-		attribute y [1] : EFloat;
-		attribute width [1] : EFloat;
-		attribute height [1] : EFloat;
+	item def Bounds {
+		attribute x : EFloat [1];
+		attribute y : EFloat [1];
+		attribute width : EFloat [1];
+		attribute height : EFloat [1];
 	}
 }
 
