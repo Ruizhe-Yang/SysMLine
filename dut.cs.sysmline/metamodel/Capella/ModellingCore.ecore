@@ -22,7 +22,7 @@
     <details key="reference documentation" value="none"/>
   </eAnnotations>
   <eAnnotations source="http://www.polarsys.org/capella/semantic"/>
-  <eClassifiers xsi:type="ecore:EClass" name="ModelElement" abstract="true" eSuperTypes="platform:/plugin/org.polarsys.kitalpha.emde/model/eMDE.ecore#//ExtensibleElement">
+  <eClassifiers xsi:type="ecore:EClass" name="ModelElement" abstract="true" eSuperTypes="eMDE.ecore#//ExtensibleElement">
     <eAnnotations source="http://www.polarsys.org/capella/2007/BusinessInformation">
       <details key="Label" value="ModelElement"/>
     </eAnnotations>
