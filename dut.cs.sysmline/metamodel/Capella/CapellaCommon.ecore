@@ -93,7 +93,7 @@
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"
-        eType="ecore:EClass ../../org.polarsys.capella.common.data.def/model/ModellingCore.ecore#//TraceableElement"
+        eType="ecore:EClass ModellingCore.ecore#//TraceableElement"
         changeable="false" volatile="true" transient="true" derived="true" resolveProxies="false">
       <eAnnotations source="http://www.polarsys.org/capella/derived">
         <details key="viatra.variant" value="alias"/>
@@ -102,7 +102,7 @@
       <eAnnotations source="http://www.polarsys.org/capella/semantic"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
-        eType="ecore:EClass ../../org.polarsys.capella.common.data.def/model/ModellingCore.ecore#//TraceableElement"
+        eType="ecore:EClass ModellingCore.ecore#//TraceableElement"
         changeable="false" volatile="true" transient="true" derived="true" resolveProxies="false">
       <eAnnotations source="http://www.polarsys.org/capella/derived">
         <details key="viatra.variant" value="alias"/>
@@ -236,7 +236,7 @@
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="StateMachine" eSuperTypes="CapellaCore.ecore#//CapellaElement ../../org.polarsys.capella.common.data.def/model/Behavior.ecore#//AbstractBehavior">
+  <eClassifiers xsi:type="ecore:EClass" name="StateMachine" eSuperTypes="CapellaCore.ecore#//CapellaElement Behavior.ecore#//AbstractBehavior">
     <eAnnotations source="http://www.polarsys.org/kitalpha/ecore/documentation">
       <details key="description" value="State machines can be used to express the behavior of part of a system. Behavior is modeled as a traversal of a graph of&#xD;&#xA;state nodes interconnected by one or more joined transition arcs that are triggered by the dispatching of series of (event)&#xD;&#xA;occurrences. During this traversal, the state machine executes a series of activities associated with various elements of the&#xD;&#xA;state machine.&#xD;&#xA;[source: UML superstructure v2.2]&#xD;&#xA;"/>
       <details key="usage guideline" value="a state machine is created (usually through the creation of a state or mode diagram, declaring states, modes, and transitions between them) as a support to specify the dynamic behavior of an entity"/>
@@ -415,7 +415,7 @@
       <eAnnotations source="http://www.polarsys.org/capella/semantic"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="entry" upperBound="-1"
-        eType="ecore:EClass ../../org.polarsys.capella.common.data.def/model/Behavior.ecore#//AbstractEvent">
+        eType="ecore:EClass Behavior.ecore#//AbstractEvent">
       <eAnnotations source="http://www.polarsys.org/kitalpha/ecore/documentation">
         <details key="description" value="An optional behavior that is executed whenever this state is entered regardless of the transition taken to reach the state. If&#xD;&#xA;defined, entry actions are always executed to completion prior to any internal behavior or transitions performed within the&#xD;&#xA;state.&#xD;&#xA;[source:UML Superstructure v2.2]"/>
         <details key="constraints" value="none"/>
@@ -429,7 +429,7 @@
       <eAnnotations source="http://www.polarsys.org/capella/semantic"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="doActivity" upperBound="-1"
-        eType="ecore:EClass ../../org.polarsys.capella.common.data.def/model/Behavior.ecore#//AbstractEvent">
+        eType="ecore:EClass Behavior.ecore#//AbstractEvent">
       <eAnnotations source="http://www.polarsys.org/kitalpha/ecore/documentation">
         <details key="description" value="An optional behavior that is executed while being in the state. The execution starts when this state is entered, and stops&#xD;&#xA;either by itself or when the state is exited whichever comes first.&#xD;&#xA;[source:UML Superstructure v2.2]"/>
         <details key="constraints" value="none"/>
@@ -442,7 +442,7 @@
       </eAnnotations>
       <eAnnotations source="http://www.polarsys.org/capella/semantic"/>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="exit" upperBound="-1" eType="ecore:EClass ../../org.polarsys.capella.common.data.def/model/Behavior.ecore#//AbstractEvent">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="exit" upperBound="-1" eType="ecore:EClass Behavior.ecore#//AbstractEvent">
       <eAnnotations source="http://www.polarsys.org/kitalpha/ecore/documentation">
         <details key="description" value="An optional behavior that is executed whenever this state is exited regardless of which transition was taken out of the&#xD;&#xA;state. If defined, exit actions are always executed to completion only after all internal activities and transition actions have&#xD;&#xA;completed execution.&#xD;&#xA;[source:UML Superstructure v2.2]"/>
         <details key="constraints" value="none"/>
@@ -455,7 +455,7 @@
       </eAnnotations>
       <eAnnotations source="http://www.polarsys.org/capella/semantic"/>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="stateInvariant" eType="ecore:EClass ../../org.polarsys.capella.common.data.def/model/ModellingCore.ecore#//AbstractConstraint"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="stateInvariant" eType="ecore:EClass ModellingCore.ecore#//AbstractConstraint"
         containment="true">
       <eAnnotations source="http://www.polarsys.org/kitalpha/ecore/documentation">
         <details key="description" value="Specifies conditions that are always true when this state is the current state. In protocol state machines, state invariants are&#xD;&#xA;additional conditions to the preconditions of the outgoing transitions, and to the postcondition of the incoming transitions.&#xD;&#xA;[source:UML Superstructure v2.2]"/>
@@ -505,7 +505,7 @@
     </eAnnotations>
     <eAnnotations source="http://www.polarsys.org/capella/semantic"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="AbstractState" abstract="true" eSuperTypes="CapellaCore.ecore#//NamedElement ../../org.polarsys.capella.common.data.def/model/ModellingCore.ecore#//IState">
+  <eClassifiers xsi:type="ecore:EClass" name="AbstractState" abstract="true" eSuperTypes="CapellaCore.ecore#//NamedElement ModellingCore.ecore#//IState">
     <eAnnotations source="http://www.polarsys.org/kitalpha/ecore/documentation">
       <details key="description" value="an abstract base class to define various kinds of states (typically real states and pseudo states)&#xD;&#xA;[source: Capella study]"/>
       <details key="usage guideline" value="n/a (Abstract)"/>
@@ -705,7 +705,7 @@
       <eAnnotations source="http://www.polarsys.org/capella/semantic"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="effect" upperBound="-1"
-        eType="ecore:EClass ../../org.polarsys.capella.common.data.def/model/Behavior.ecore#//AbstractEvent">
+        eType="ecore:EClass Behavior.ecore#//AbstractEvent">
       <eAnnotations source="http://www.polarsys.org/kitalpha/ecore/documentation">
         <details key="description" value="The event to be triggered"/>
         <details key="constraints" value="none"/>
@@ -719,7 +719,7 @@
       <eAnnotations source="http://www.polarsys.org/capella/semantic"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="triggers" upperBound="-1"
-        eType="ecore:EClass ../../org.polarsys.capella.common.data.def/model/Behavior.ecore#//AbstractEvent">
+        eType="ecore:EClass Behavior.ecore#//AbstractEvent">
       <eAnnotations source="http://www.polarsys.org/kitalpha/ecore/documentation">
         <details key="description" value="Specifies the triggers that may fire the transition."/>
         <details key="constraints" value="none"/>
@@ -1149,7 +1149,7 @@
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="StateEvent" abstract="true" eSuperTypes="CapellaCore.ecore#//NamedElement ../../org.polarsys.capella.common.data.def/model/Behavior.ecore#//AbstractEvent">
+  <eClassifiers xsi:type="ecore:EClass" name="StateEvent" abstract="true" eSuperTypes="CapellaCore.ecore#//NamedElement Behavior.ecore#//AbstractEvent">
     <eAnnotations source="http://www.polarsys.org/kitalpha/ecore/documentation">
       <details key="description" value="An event used in statemachine definition which occurs at a given condition. &#xD;&#xA;[source: Capella study]"/>
       <details key="usage guideline" value="n/a"/>

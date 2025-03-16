@@ -363,7 +363,7 @@
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="FunctionSpecification" eSuperTypes="CapellaCore.ecore#//Namespace ../../org.polarsys.capella.common.data.def/model/Activity.ecore#//AbstractActivity">
+  <eClassifiers xsi:type="ecore:EClass" name="FunctionSpecification" eSuperTypes="CapellaCore.ecore#//Namespace Activity.ecore#//AbstractActivity">
     <eAnnotations source="http://www.polarsys.org/capella/2007/BusinessInformation">
       <details key="Label" value="Function Specification"/>
     </eAnnotations>
@@ -692,7 +692,7 @@
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ExchangeSpecification" abstract="true"
-      eSuperTypes="CapellaCore.ecore#//NamedElement ../../org.polarsys.capella.common.data.def/model/Activity.ecore#//ActivityExchange">
+      eSuperTypes="CapellaCore.ecore#//NamedElement Activity.ecore#//ActivityExchange">
     <eAnnotations source="http://www.polarsys.org/kitalpha/ecore/documentation">
       <details key="description" value="a high-level abstract class specifying a set of constraints that concrete exchanges might fulfill (e.g. implement this specification)&#xD;&#xA;[source: Capella study]"/>
       <details key="usage guideline" value="n/a"/>
@@ -1323,7 +1323,7 @@
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="FunctionInputPort" eSuperTypes="#//FunctionPort ../../org.polarsys.capella.common.data.def/model/Activity.ecore#//InputPin">
+  <eClassifiers xsi:type="ecore:EClass" name="FunctionInputPort" eSuperTypes="#//FunctionPort Activity.ecore#//InputPin">
     <eAnnotations source="http://www.polarsys.org/kitalpha/ecore/documentation">
       <details key="description" value="an input interface of its owning function, to receive functional exchanges from other functions&#xD;&#xA;[source: Capella study]"/>
       <details key="usage guideline" value="It is necessary to create a function input port on a function, to be able to set this function as the receiving end of a functional exchange. Note however that the Capella tool automatically creates a function input port on the destination function, when a functional exchange is created.&#xD;&#xA;[source: Capella study]"/>
@@ -1371,7 +1371,7 @@
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="FunctionOutputPort" eSuperTypes="#//FunctionPort ../../org.polarsys.capella.common.data.def/model/Activity.ecore#//OutputPin">
+  <eClassifiers xsi:type="ecore:EClass" name="FunctionOutputPort" eSuperTypes="#//FunctionPort Activity.ecore#//OutputPin">
     <eAnnotations source="http://www.polarsys.org/kitalpha/ecore/documentation">
       <details key="description" value="an output interface of its owning function, to be the origin of functional exchanges towards other functions&#xD;&#xA;[source: Capella study]"/>
       <details key="usage guideline" value="It is necessary to create a function output port on a function, to be able to set this function as the origin of a functional exchange. Note however that the Capella tool automatically creates a function output port on the origin function, when a functional exchange is created.&#xD;&#xA;[source: Capella study]"/>
@@ -1692,7 +1692,7 @@
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="FunctionalExchange" eSuperTypes="CapellaCore.ecore#//NamedElement CapellaCore.ecore#//Relationship CapellaCore.ecore#//InvolvedElement ../../org.polarsys.capella.common.data.def/model/Activity.ecore#//ObjectFlow ../../org.polarsys.capella.common.data.def/model/Behavior.ecore#//AbstractEvent Information.ecore#//AbstractEventOperation">
+  <eClassifiers xsi:type="ecore:EClass" name="FunctionalExchange" eSuperTypes="CapellaCore.ecore#//NamedElement CapellaCore.ecore#//Relationship CapellaCore.ecore#//InvolvedElement Activity.ecore#//ObjectFlow Behavior.ecore#//AbstractEvent Information.ecore#//AbstractEventOperation">
     <eAnnotations source="http://www.polarsys.org/capella/2007/BusinessInformation">
       <details key="Label" value="Transition"/>
     </eAnnotations>
@@ -1935,7 +1935,7 @@
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="AbstractFunction" abstract="true" eSuperTypes="CapellaCore.ecore#//Namespace CapellaCore.ecore#//InvolvedElement Information.ecore#//AbstractInstance #//AbstractFunctionalChainContainer ../../org.polarsys.capella.common.data.def/model/Activity.ecore#//CallBehaviorAction ../../org.polarsys.capella.common.data.def/model/Behavior.ecore#//AbstractEvent">
+  <eClassifiers xsi:type="ecore:EClass" name="AbstractFunction" abstract="true" eSuperTypes="CapellaCore.ecore#//Namespace CapellaCore.ecore#//InvolvedElement Information.ecore#//AbstractInstance #//AbstractFunctionalChainContainer Activity.ecore#//CallBehaviorAction Behavior.ecore#//AbstractEvent">
     <eAnnotations source="http://www.polarsys.org/capella/2007/BusinessInformation">
       <details key="Label" value="Action"/>
     </eAnnotations>
@@ -2235,7 +2235,7 @@
     <eLiterals name="SPLIT" value="4"/>
     <eLiterals name="ROUTE" value="5"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="FunctionPort" abstract="true" eSuperTypes="Information.ecore#//Port CapellaCore.ecore#//TypedElement ../../org.polarsys.capella.common.data.def/model/Behavior.ecore#//AbstractEvent">
+  <eClassifiers xsi:type="ecore:EClass" name="FunctionPort" abstract="true" eSuperTypes="Information.ecore#//Port CapellaCore.ecore#//TypedElement Behavior.ecore#//AbstractEvent">
     <eAnnotations source="http://www.polarsys.org/capella/2007/BusinessInformation">
       <details key="Label" value="Function Port"/>
     </eAnnotations>
@@ -2488,7 +2488,7 @@
       </eAnnotations>
     </eLiterals>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ComponentExchange" eSuperTypes="../../org.polarsys.capella.common.data.def/model/Behavior.ecore#//AbstractEvent Information.ecore#//AbstractEventOperation CapellaCore.ecore#//NamedElement #//ExchangeSpecification">
+  <eClassifiers xsi:type="ecore:EClass" name="ComponentExchange" eSuperTypes="Behavior.ecore#//AbstractEvent Information.ecore#//AbstractEventOperation CapellaCore.ecore#//NamedElement #//ExchangeSpecification">
     <eAnnotations source="http://www.polarsys.org/kitalpha/ecore/documentation">
       <details key="description" value="a specialized version of an exchange specification, dedicated to characterize exchanges between components&#xD;&#xA;[source: Capella study]"/>
       <details key="usage guideline" value="n/a"/>
@@ -2911,7 +2911,7 @@
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ComponentExchangeEnd" eSuperTypes="../../org.polarsys.capella.common.data.def/model/ModellingCore.ecore#//InformationsExchanger CapellaCore.ecore#//CapellaElement">
+  <eClassifiers xsi:type="ecore:EClass" name="ComponentExchangeEnd" eSuperTypes="ModellingCore.ecore#//InformationsExchanger CapellaCore.ecore#//CapellaElement">
     <eAnnotations source="http://www.polarsys.org/capella/2007/BusinessInformation">
       <details key="Label" value="ConnectionEnd"/>
     </eAnnotations>
@@ -3087,7 +3087,7 @@
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ComponentPort" eSuperTypes="Information.ecore#//Port ../../org.polarsys.capella.common.data.def/model/ModellingCore.ecore#//InformationsExchanger Information.ecore#//Property">
+  <eClassifiers xsi:type="ecore:EClass" name="ComponentPort" eSuperTypes="Information.ecore#//Port ModellingCore.ecore#//InformationsExchanger Information.ecore#//Property">
     <eAnnotations source="http://www.polarsys.org/kitalpha/ecore/documentation">
       <details key="description" value="A component port is the unification of the standard port and the flow port."/>
       <details key="constraints" value="none"/>

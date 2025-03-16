@@ -193,7 +193,7 @@
       <eAnnotations source="http://www.polarsys.org/capella/semantic"/>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Scenario" eSuperTypes="CapellaCore.ecore#//Namespace ../../org.polarsys.capella.common.data.def/model/Behavior.ecore#//AbstractBehavior">
+  <eClassifiers xsi:type="ecore:EClass" name="Scenario" eSuperTypes="CapellaCore.ecore#//Namespace Behavior.ecore#//AbstractBehavior">
     <eAnnotations source="http://www.polarsys.org/capella/2007/BusinessInformation">
       <details key="Label" value="Scenario"/>
     </eAnnotations>
@@ -1020,7 +1020,7 @@
       </eAnnotations>
     </eLiterals>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Event" abstract="true" eSuperTypes="CapellaCore.ecore#//NamedElement ../../org.polarsys.capella.common.data.def/model/Behavior.ecore#//AbstractEvent">
+  <eClassifiers xsi:type="ecore:EClass" name="Event" abstract="true" eSuperTypes="CapellaCore.ecore#//NamedElement Behavior.ecore#//AbstractEvent">
     <eAnnotations source="http://www.polarsys.org/capella/2007/BusinessInformation">
       <details key="Label" value="Event"/>
     </eAnnotations>
@@ -3015,7 +3015,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="exchangeItemElement" eType="ecore:EClass Information.ecore#//ExchangeItemElement">
       <eAnnotations source="http://www.polarsys.org/capella/semantic"/>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="ecore:EClass ../../org.polarsys.capella.common.data.def/model/ModellingCore.ecore#//ValueSpecification">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="ecore:EClass ModellingCore.ecore#//ValueSpecification">
       <eAnnotations source="http://www.polarsys.org/capella/semantic"/>
     </eStructuralFeatures>
   </eClassifiers>
