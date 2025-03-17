@@ -6,6 +6,7 @@ package cs {
 	public import modellingcore::*;
 	public import epbs::*;
 	public import capellacore::*;
+	public import emde::*;
 	public import ctx::*;
 	public import la::*;
 	public import interaction::*;
@@ -57,7 +58,7 @@ package cs {
 		item ownedPhysicalLinkCategories : PhysicalLinkCategory [*];
 		ref item representingParts : Part [*];
 	}
-	item def Part :> AbstractInstance, , DeployableElement, DeploymentTarget, AbstractPathInvolvedElement{
+	item def Part :> AbstractInstance, InformationsExchanger, DeployableElement, DeploymentTarget, AbstractPathInvolvedElement{
 		ref item providedInterfaces : Interface [*];
 		ref item requiredInterfaces : Interface [*];
 		item ownedDeploymentLinks : AbstractDeploymentLink [*];
@@ -121,7 +122,7 @@ package cs {
 		ref item provisionedInterfaceAllocations : InterfaceAllocation [*];
 		ref item allocatedInterfaces : Interface [*];
 	}
-	item def ExchangeItemAllocation :> Relationship, AbstractEventOperation, {
+	item def ExchangeItemAllocation :> Relationship, AbstractEventOperation, FinalizableElement{
 		attribute sendProtocol : CommunicationLinkProtocol [1];
 		attribute receiveProtocol : CommunicationLinkProtocol [1];
 		ref item allocatedItem : ExchangeItem [1];
@@ -182,7 +183,7 @@ package cs {
 		ref item referencedPhysicalPath : PhysicalPath [1];
 	}
 	item def PhysicalPathRealization :> Allocation;
-	item def PhysicalPort :> Port, AbstractPhysicalArtifact, , AbstractPhysicalLinkEnd, Property{
+	item def PhysicalPort :> Port, AbstractPhysicalArtifact, InformationsExchanger, AbstractPhysicalLinkEnd, Property{
 		item ownedComponentPortAllocations : ComponentPortAllocation [*];
 		item ownedPhysicalPortRealizations : PhysicalPortRealization [*];
 		ref item allocatedComponentPorts : ComponentPort [*];

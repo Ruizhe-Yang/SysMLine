@@ -9,14 +9,15 @@ package la {
 	public import modellingcore::*;
 	public import epbs::*;
 	public import capellacore::*;
+	public import emde::*;
 	public import oa::*;
 	public import deployment::*;
 	public import interaction::*;
 	public import datavalue::*;
 	public import datatype::*;
 	public import communication::*;
-	public import behavior::*;
 	public import activity::*;
+	public import behavior::*;
 	item def LogicalArchitecturePkg :> BlockArchitecturePkg{
 		item ownedLogicalArchitectures : LogicalArchitecture [*];
 	}

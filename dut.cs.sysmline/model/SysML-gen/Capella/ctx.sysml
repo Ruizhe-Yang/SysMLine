@@ -9,13 +9,14 @@ package ctx {
 	public import fa::*;
 	public import modellingcore::*;
 	public import epbs::*;
+	public import emde::*;
 	public import pa::*;
 	public import interaction::*;
 	public import datavalue::*;
 	public import datatype::*;
 	public import communication::*;
-	public import behavior::*;
 	public import activity::*;
+	public import behavior::*;
 	public import deployment::*;
 	item def SystemAnalysis :> ComponentArchitecture{
 		item ownedSystemComponentPkg : SystemComponentPkg [1];

@@ -8,6 +8,7 @@
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="modellingcore"/>
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="epbs"/>
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="capellacore"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="emde"/>
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="ctx"/>
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="la"/>
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="interaction"/>
@@ -192,7 +193,7 @@
         <featureSpecialization>AbstractType</featureSpecialization>
       </body>
       <SubclassificationPart>AbstractInstance</SubclassificationPart>
-      <SubclassificationPart xsi:nil="true"/>
+      <SubclassificationPart>InformationsExchanger</SubclassificationPart>
       <SubclassificationPart>DeployableElement</SubclassificationPart>
       <SubclassificationPart>DeploymentTarget</SubclassificationPart>
       <SubclassificationPart>AbstractPathInvolvedElement</SubclassificationPart>
@@ -393,7 +394,7 @@
       </body>
       <SubclassificationPart>Relationship</SubclassificationPart>
       <SubclassificationPart>AbstractEventOperation</SubclassificationPart>
-      <SubclassificationPart xsi:nil="true"/>
+      <SubclassificationPart>FinalizableElement</SubclassificationPart>
     </body>
     <body xsi:type="ItemDefinition" declaredName="DeployableElement" isAbstract="true">
       <body xsi:type="ItemUsage" declaredName="deployingLinks" multiplicityRange="[*]" isReference="true">
@@ -584,7 +585,7 @@
       </body>
       <SubclassificationPart>Port</SubclassificationPart>
       <SubclassificationPart>AbstractPhysicalArtifact</SubclassificationPart>
-      <SubclassificationPart xsi:nil="true"/>
+      <SubclassificationPart>InformationsExchanger</SubclassificationPart>
       <SubclassificationPart>AbstractPhysicalLinkEnd</SubclassificationPart>
       <SubclassificationPart>Property</SubclassificationPart>
     </body>

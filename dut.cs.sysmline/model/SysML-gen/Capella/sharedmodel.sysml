@@ -9,12 +9,13 @@ package sharedmodel {
 	public import la::*;
 	public import pa::*;
 	public import epbs::*;
+	public import modellingcore::*;
+	public import emde::*;
 	public import interaction::*;
 	public import datavalue::*;
 	public import datatype::*;
 	public import communication::*;
 	public import cs::*;
-	public import modellingcore::*;
 	public import behavior::*;
 	public import fa::*;
 	public import activity::*;

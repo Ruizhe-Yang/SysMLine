@@ -9,13 +9,14 @@ package pa {
 	public import capellacommon::*;
 	public import modellingcore::*;
 	public import capellacore::*;
+	public import emde::*;
 	public import ctx::*;
 	public import interaction::*;
 	public import datavalue::*;
 	public import datatype::*;
 	public import communication::*;
-	public import behavior::*;
 	public import activity::*;
+	public import behavior::*;
 	public import oa::*;
 	item def PhysicalArchitecturePkg :> BlockArchitecturePkg{
 		item ownedPhysicalArchitecturePkgs : PhysicalArchitecturePkg [*];

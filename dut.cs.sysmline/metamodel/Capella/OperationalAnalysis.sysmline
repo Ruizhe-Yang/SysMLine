@@ -11,12 +11,13 @@
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="epbs"/>
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="capellacore"/>
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="la"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="emde"/>
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="interaction"/>
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="datavalue"/>
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="datatype"/>
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="communication"/>
-    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="behavior"/>
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="activity"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="behavior"/>
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="pa"/>
     <body xsi:type="ItemDefinition" declaredName="OperationalAnalysis">
       <body xsi:type="ItemUsage" declaredName="ownedRolePkg" multiplicityRange="[1]">
@@ -119,7 +120,7 @@
         <featureSpecialization>Entity</featureSpecialization>
       </body>
       <SubclassificationPart>NamedElement</SubclassificationPart>
-      <SubclassificationPart xsi:nil="true"/>
+      <SubclassificationPart>ActivityPartition</SubclassificationPart>
     </body>
     <body xsi:type="ItemDefinition" declaredName="OperationalCapabilityPkg">
       <body xsi:type="ItemUsage" declaredName="ownedOperationalCapabilities" multiplicityRange="[*]">
@@ -296,7 +297,7 @@
         <featureSpecialization>SystemComponent</featureSpecialization>
       </body>
       <SubclassificationPart>AbstractConceptItem</SubclassificationPart>
-      <SubclassificationPart xsi:nil="true"/>
+      <SubclassificationPart>InformationsExchanger</SubclassificationPart>
       <SubclassificationPart>InvolvedElement</SubclassificationPart>
     </body>
     <body xsi:type="ItemDefinition" declaredName="ConceptPkg">

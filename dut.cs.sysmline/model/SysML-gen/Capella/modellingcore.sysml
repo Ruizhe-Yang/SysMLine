@@ -1,7 +1,7 @@
 package modellingcore {
 	private import ecore::*;
 	public import emde::*;
-	abstract item def ModelElement :> {
+	abstract item def ModelElement :> ExtensibleElement{
 		attribute id : EString [1];
 		attribute sid : EString [1];
 		ref item constraints : AbstractConstraint [*];

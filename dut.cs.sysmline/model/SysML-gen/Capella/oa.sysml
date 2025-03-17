@@ -9,12 +9,13 @@ package oa {
 	public import epbs::*;
 	public import capellacore::*;
 	public import la::*;
+	public import emde::*;
 	public import interaction::*;
 	public import datavalue::*;
 	public import datatype::*;
 	public import communication::*;
-	public import behavior::*;
 	public import activity::*;
+	public import behavior::*;
 	public import pa::*;
 	item def OperationalAnalysis :> BlockArchitecture{
 		item ownedRolePkg : RolePkg [1];
@@ -46,7 +47,7 @@ package oa {
 	item def OperationalProcess :> FunctionalChain{
 		ref item involvingOperationalCapabilities : OperationalCapability [*];
 	}
-	item def Swimlane :> NamedElement, {
+	item def Swimlane :> NamedElement, ActivityPartition{
 		ref item representedEntity : Entity [1];
 	}
 	item def OperationalCapabilityPkg :> AbstractCapabilityPkg{
@@ -91,7 +92,7 @@ package oa {
 		item ownedLocations : Location [*];
 		item ownedCommunicationMeans : CommunicationMean [*];
 	}
-	item def Entity :> AbstractConceptItem, , InvolvedElement{
+	item def Entity :> AbstractConceptItem, InformationsExchanger, InvolvedElement{
 		ref item roleAllocations : RoleAllocation [*];
 		ref item organisationalUnitMemberships : OrganisationalUnitComposition [*];
 		ref item actualLocation : Location [1];

@@ -11,10 +11,11 @@
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="sharedmodel"/>
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="capellacommon"/>
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="information"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="modellingcore"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="emde"/>
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="cs"/>
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="deployment"/>
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="fa"/>
-    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="modellingcore"/>
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="activity"/>
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="interaction"/>
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="behavior"/>

@@ -24,7 +24,7 @@
         <featureNote>:</featureNote>
         <featureSpecialization>ModelElement</featureSpecialization>
       </body>
-      <SubclassificationPart xsi:nil="true"/>
+      <SubclassificationPart>ExtensibleElement</SubclassificationPart>
     </body>
     <body xsi:type="ItemDefinition" declaredName="AbstractRelationship" isAbstract="true">
       <body xsi:type="ItemUsage" declaredName="realizedFlow" multiplicityRange="[1]" isReference="true">

@@ -5,6 +5,7 @@
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="capellacommon"/>
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="information"/>
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="modellingcore"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="emde"/>
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="la"/>
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="fa"/>
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="interaction"/>
@@ -58,14 +59,15 @@
         <featureNote>:</featureNote>
         <featureSpecialization>EnumerationPropertyLiteral</featureSpecialization>
       </body>
-      <SubclassificationPart xsi:nil="true"/>
+      <SubclassificationPart>TraceableElement</SubclassificationPart>
+      <SubclassificationPart>PublishableElement</SubclassificationPart>
     </body>
     <body xsi:type="ItemDefinition" declaredName="NamedElement" isAbstract="true">
-      <SubclassificationPart xsi:nil="true"/>
+      <SubclassificationPart>AbstractNamedElement</SubclassificationPart>
       <SubclassificationPart>CapellaElement</SubclassificationPart>
     </body>
     <body xsi:type="ItemDefinition" declaredName="Relationship" isAbstract="true">
-      <SubclassificationPart xsi:nil="true"/>
+      <SubclassificationPart>AbstractRelationship</SubclassificationPart>
       <SubclassificationPart>CapellaElement</SubclassificationPart>
     </body>
     <body xsi:type="ItemDefinition" declaredName="Namespace" isAbstract="true">
@@ -123,7 +125,7 @@
         <featureNote>:</featureNote>
         <featureSpecialization>TypedElement</featureSpecialization>
       </body>
-      <SubclassificationPart xsi:nil="true"/>
+      <SubclassificationPart>AbstractType</SubclassificationPart>
       <SubclassificationPart>Namespace</SubclassificationPart>
     </body>
     <body xsi:type="ItemDefinition" declaredName="TypedElement" isAbstract="true">
@@ -131,12 +133,12 @@
         <featureNote>:</featureNote>
         <featureSpecialization>Type</featureSpecialization>
       </body>
-      <SubclassificationPart xsi:nil="true"/>
+      <SubclassificationPart>AbstractTypedElement</SubclassificationPart>
       <SubclassificationPart>NamedElement</SubclassificationPart>
     </body>
     <body xsi:type="ItemDefinition" declaredName="Trace" isAbstract="true">
       <SubclassificationPart>Relationship</SubclassificationPart>
-      <SubclassificationPart xsi:nil="true"/>
+      <SubclassificationPart>AbstractTrace</SubclassificationPart>
     </body>
     <body xsi:type="ItemDefinition" declaredName="AbstractAnnotation" isAbstract="true">
       <body xsi:type="AttributeUsage" declaredName="content" multiplicityRange="[1]">
@@ -154,7 +156,7 @@
     </body>
     <body xsi:type="ItemDefinition" declaredName="Constraint">
       <SubclassificationPart>NamedElement</SubclassificationPart>
-      <SubclassificationPart xsi:nil="true"/>
+      <SubclassificationPart>AbstractConstraint</SubclassificationPart>
     </body>
     <body xsi:type="ItemDefinition" declaredName="KeyValue">
       <body xsi:type="AttributeUsage" declaredName="key" multiplicityRange="[1]">
@@ -248,7 +250,7 @@
         <featureSpecialization>GeneralClass</featureSpecialization>
       </body>
       <SubclassificationPart>Classifier</SubclassificationPart>
-      <SubclassificationPart xsi:nil="true"/>
+      <SubclassificationPart>FinalizableElement</SubclassificationPart>
     </body>
     <body xsi:type="ItemDefinition" declaredName="Generalization">
       <body xsi:type="ItemUsage" declaredName="super" multiplicityRange="[1]" isReference="true">
@@ -285,7 +287,7 @@
     </body>
     <body xsi:type="ItemDefinition" declaredName="Allocation" isAbstract="true">
       <SubclassificationPart>Relationship</SubclassificationPart>
-      <SubclassificationPart xsi:nil="true"/>
+      <SubclassificationPart>AbstractTrace</SubclassificationPart>
     </body>
     <body xsi:type="ItemDefinition" declaredName="Involvement" isAbstract="true">
       <body xsi:type="ItemUsage" declaredName="involver" multiplicityRange="[1]" isReference="true">

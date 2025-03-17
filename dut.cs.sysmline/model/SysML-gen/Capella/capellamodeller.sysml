@@ -9,10 +9,11 @@ package capellamodeller {
 	public import sharedmodel::*;
 	public import capellacommon::*;
 	public import information::*;
+	public import modellingcore::*;
+	public import emde::*;
 	public import cs::*;
 	public import deployment::*;
 	public import fa::*;
-	public import modellingcore::*;
 	public import activity::*;
 	public import interaction::*;
 	public import behavior::*;

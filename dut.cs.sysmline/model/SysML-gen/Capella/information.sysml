@@ -8,6 +8,7 @@ package information {
 	public import communication::*;
 	public import cs::*;
 	public import modellingcore::*;
+	public import emde::*;
 	public import fa::*;
 	public import la::*;
 	public import behavior::*;
@@ -41,7 +42,7 @@ package information {
 		ref item realizedClasses : Class [*];
 		ref item realizingClasses : Class [*];
 	}
-	item def Collection :> Classifier, MultiplicityElement, DataValueContainer, {
+	item def Collection :> Classifier, MultiplicityElement, DataValueContainer, FinalizableElement{
 		attribute isPrimitive : EBoolean [1];
 		attribute visibility : VisibilityKind [1];
 		attribute kind : CollectionKind [1];
@@ -89,7 +90,7 @@ package information {
 		item ownedMaxCard : NumericValue [1];
 		item ownedMaxLength : NumericValue [1];
 	}
-	abstract item def Operation :> Feature, , AbstractEventOperation{
+	abstract item def Operation :> Feature, AbstractEvent, AbstractEventOperation{
 		item ownedParameters : Parameter [*];
 		ref item allocatingOperations : Operation [*];
 		ref item allocatedOperations : Operation [*];
@@ -101,7 +102,7 @@ package information {
 		ref item allocatedOperation : Operation [1];
 		ref item allocatingOperation : Operation [1];
 	}
-	item def Parameter :> TypedElement, MultiplicityElement, {
+	item def Parameter :> TypedElement, MultiplicityElement, AbstractParameter{
 		attribute direction : ParameterDirection [1];
 		attribute passingMode : PassingMode [1];
 	}
@@ -118,7 +119,7 @@ package information {
 		enum BY_REF;
 		enum BY_VALUE;
 	}
-	item def Property :> Feature, TypedElement, MultiplicityElement, {
+	item def Property :> Feature, TypedElement, MultiplicityElement, FinalizableElement{
 		attribute aggregationKind : AggregationKind [1];
 		attribute isDerived : EBoolean [1];
 		attribute isReadOnly : EBoolean [1];
@@ -169,7 +170,7 @@ package information {
 		ref item allocatedPort : Port [1];
 		ref item allocatingPort : Port [1];
 	}
-	item def ExchangeItem :> , GeneralizableElement{
+	item def ExchangeItem :> AbstractExchangeItem, AbstractEvent, AbstractSignal, FinalizableElement, GeneralizableElement{
 		attribute exchangeMechanism : ExchangeMechanism [1];
 		item ownedElements : ExchangeItemElement [*];
 		item ownedInformationRealizations : InformationRealization [*];
@@ -223,7 +224,7 @@ package information {
 		abstract item def MessageReferencePkg :> Structure{
 			item ownedMessageReferences : MessageReference [*];
 		}
-		item def Signal :> CommunicationItem, {
+		item def Signal :> CommunicationItem, AbstractSignal{
 			item signalInstances : SignalInstance [*];
 		}
 		item def SignalInstance :> AbstractInstance;
@@ -270,7 +271,7 @@ package information {
 		}
 	}
 	package datatype {
-		abstract item def DataType :> GeneralizableElement, DataValueContainer, {
+		abstract item def DataType :> GeneralizableElement, DataValueContainer, FinalizableElement{
 			attribute discrete : EBoolean [1];
 			attribute minInclusive : EBoolean [1];
 			attribute maxInclusive : EBoolean [1];
@@ -316,7 +317,7 @@ package information {
 		}
 	}
 	package datavalue {
-		abstract item def DataValue :> NamedElement, {
+		abstract item def DataValue :> NamedElement, ValueSpecification{
 			attribute 'abstract' : EBoolean [1];
 			ref item type : Type [1];
 		}
@@ -414,7 +415,7 @@ package information {
 			enum SUC;
 			enum PRE;
 		}
-		item def OpaqueExpression :> CapellaElement, {
+		item def OpaqueExpression :> CapellaElement, ValueSpecification{
 			attribute bodies : EString [*];
 			attribute languages : EString [*];
 		}

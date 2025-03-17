@@ -9,15 +9,16 @@
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="information"/>
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="cs"/>
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="modellingcore"/>
-    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="interaction"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="emde"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="activity"/>
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="behavior"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="interaction"/>
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="oa"/>
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="pa"/>
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="datavalue"/>
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="datatype"/>
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="communication"/>
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="epbs"/>
-    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="activity"/>
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="deployment"/>
     <body xsi:type="ItemDefinition" declaredName="AbstractFunctionalArchitecture" isAbstract="true">
       <body xsi:type="ItemUsage" declaredName="ownedFunctionPkg" multiplicityRange="[1]">
@@ -118,7 +119,7 @@
         <featureSpecialization>FunctionSpecification</featureSpecialization>
       </body>
       <SubclassificationPart>Namespace</SubclassificationPart>
-      <SubclassificationPart xsi:nil="true"/>
+      <SubclassificationPart>AbstractActivity</SubclassificationPart>
     </body>
     <body xsi:type="ItemDefinition" declaredName="ExchangeCategory">
       <body xsi:type="ItemUsage" declaredName="exchanges" multiplicityRange="[*]" isReference="true">
@@ -179,7 +180,7 @@
         <featureSpecialization>ExchangeSpecificationRealization</featureSpecialization>
       </body>
       <SubclassificationPart>NamedElement</SubclassificationPart>
-      <SubclassificationPart xsi:nil="true"/>
+      <SubclassificationPart>ActivityExchange</SubclassificationPart>
     </body>
     <body xsi:type="ItemDefinition" declaredName="FunctionalExchangeSpecification">
       <body xsi:type="ItemUsage" declaredName="functionalExchanges" multiplicityRange="[*]" isReference="true">
@@ -313,7 +314,7 @@
         <featureSpecialization>FunctionalExchange</featureSpecialization>
       </body>
       <SubclassificationPart>FunctionPort</SubclassificationPart>
-      <SubclassificationPart xsi:nil="true"/>
+      <SubclassificationPart>InputPin</SubclassificationPart>
     </body>
     <body xsi:type="ItemDefinition" declaredName="FunctionOutputPort">
       <body xsi:type="ItemUsage" declaredName="outgoingExchangeItems" multiplicityRange="[*]" isReference="true">
@@ -325,7 +326,7 @@
         <featureSpecialization>FunctionalExchange</featureSpecialization>
       </body>
       <SubclassificationPart>FunctionPort</SubclassificationPart>
-      <SubclassificationPart xsi:nil="true"/>
+      <SubclassificationPart>OutputPin</SubclassificationPart>
     </body>
     <body xsi:type="ItemDefinition" declaredName="AbstractFunctionAllocation" isAbstract="true">
       <SubclassificationPart>Allocation</SubclassificationPart>
@@ -433,7 +434,8 @@
       <SubclassificationPart>NamedElement</SubclassificationPart>
       <SubclassificationPart>Relationship</SubclassificationPart>
       <SubclassificationPart>InvolvedElement</SubclassificationPart>
-      <SubclassificationPart xsi:nil="true"/>
+      <SubclassificationPart>ObjectFlow</SubclassificationPart>
+      <SubclassificationPart>AbstractEvent</SubclassificationPart>
       <SubclassificationPart>AbstractEventOperation</SubclassificationPart>
     </body>
     <body xsi:type="ItemDefinition" declaredName="AbstractFunction" isAbstract="true">
@@ -505,7 +507,8 @@
       <SubclassificationPart>InvolvedElement</SubclassificationPart>
       <SubclassificationPart>AbstractInstance</SubclassificationPart>
       <SubclassificationPart>AbstractFunctionalChainContainer</SubclassificationPart>
-      <SubclassificationPart xsi:nil="true"/>
+      <SubclassificationPart>CallBehaviorAction</SubclassificationPart>
+      <SubclassificationPart>AbstractEvent</SubclassificationPart>
     </body>
     <body xsi:type="EnumerationDefinition" declaredName="FunctionKind">
       <body xsi:type="EnumerationUsage" declaredName="FUNCTION"/>
@@ -534,7 +537,7 @@
       </body>
       <SubclassificationPart>Port</SubclassificationPart>
       <SubclassificationPart>TypedElement</SubclassificationPart>
-      <SubclassificationPart xsi:nil="true"/>
+      <SubclassificationPart>AbstractEvent</SubclassificationPart>
     </body>
     <body xsi:type="EnumerationDefinition" declaredName="ComponentExchangeKind">
       <body xsi:type="EnumerationUsage" declaredName="UNSET"/>
@@ -621,7 +624,7 @@
         <featureNote>:</featureNote>
         <featureSpecialization>ComponentExchange</featureSpecialization>
       </body>
-      <SubclassificationPart xsi:nil="true"/>
+      <SubclassificationPart>AbstractEvent</SubclassificationPart>
       <SubclassificationPart>AbstractEventOperation</SubclassificationPart>
       <SubclassificationPart>NamedElement</SubclassificationPart>
       <SubclassificationPart>ExchangeSpecification</SubclassificationPart>
@@ -664,7 +667,7 @@
         <featureNote>:</featureNote>
         <featureSpecialization>Part</featureSpecialization>
       </body>
-      <SubclassificationPart xsi:nil="true"/>
+      <SubclassificationPart>InformationsExchanger</SubclassificationPart>
       <SubclassificationPart>CapellaElement</SubclassificationPart>
     </body>
     <body xsi:type="ItemDefinition" declaredName="ComponentExchangeFunctionalExchangeAllocation">
@@ -727,7 +730,7 @@
         <featureSpecialization>ComponentPort</featureSpecialization>
       </body>
       <SubclassificationPart>Port</SubclassificationPart>
-      <SubclassificationPart xsi:nil="true"/>
+      <SubclassificationPart>InformationsExchanger</SubclassificationPart>
       <SubclassificationPart>Property</SubclassificationPart>
     </body>
     <body xsi:type="ItemDefinition" declaredName="ComponentPortAllocation">

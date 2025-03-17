@@ -11,13 +11,14 @@
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="capellacommon"/>
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="modellingcore"/>
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="capellacore"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="emde"/>
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="ctx"/>
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="interaction"/>
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="datavalue"/>
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="datatype"/>
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="communication"/>
-    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="behavior"/>
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="activity"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="behavior"/>
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="oa"/>
     <body xsi:type="ItemDefinition" declaredName="PhysicalArchitecturePkg">
       <body xsi:type="ItemUsage" declaredName="ownedPhysicalArchitecturePkgs" multiplicityRange="[*]">

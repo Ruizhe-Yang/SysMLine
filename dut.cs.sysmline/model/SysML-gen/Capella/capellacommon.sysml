@@ -7,6 +7,7 @@ package capellacommon {
 	public import interaction::*;
 	public import behavior::*;
 	public import information::*;
+	public import emde::*;
 	public import ctx::*;
 	public import pa::*;
 	public import cs::*;
@@ -32,7 +33,7 @@ package capellacommon {
 		ref item capabilityRealizationInvolvements : CapabilityRealizationInvolvement [*];
 		ref item involvingCapabilityRealizations : CapabilityRealization [*];
 	}
-	item def StateMachine :> CapellaElement, {
+	item def StateMachine :> CapellaElement, AbstractBehavior{
 		item ownedRegions : Region [*];
 		item ownedConnectionPoints : Pseudostate [*];
 	}
@@ -54,7 +55,7 @@ package capellacommon {
 	}
 	item def Mode :> State;
 	item def FinalState :> State;
-	abstract item def AbstractState :> NamedElement, {
+	abstract item def AbstractState :> NamedElement, IState{
 		item ownedAbstractStateRealizations : AbstractStateRealization [*];
 		ref item realizedAbstractStates : AbstractState [*];
 		ref item realizingAbstractStates : AbstractState [*];
@@ -101,7 +102,7 @@ package capellacommon {
 		ref item realizedEvent : StateEvent [1];
 		ref item realizingEvent : StateEvent [1];
 	}
-	abstract item def StateEvent :> NamedElement, {
+	abstract item def StateEvent :> NamedElement, AbstractEvent{
 		ref item expression : Constraint [1];
 		item ownedStateEventRealizations : StateEventRealization [*];
 	}

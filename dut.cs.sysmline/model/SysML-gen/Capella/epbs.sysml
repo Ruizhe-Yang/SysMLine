@@ -8,6 +8,7 @@ package epbs {
 	public import fa::*;
 	public import modellingcore::*;
 	public import capellacore::*;
+	public import emde::*;
 	public import ctx::*;
 	public import deployment::*;
 	public import interaction::*;

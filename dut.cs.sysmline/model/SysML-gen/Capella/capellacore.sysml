@@ -3,6 +3,7 @@ package capellacore {
 	public import capellacommon::*;
 	public import information::*;
 	public import modellingcore::*;
+	public import emde::*;
 	public import la::*;
 	public import fa::*;
 	public import interaction::*;
@@ -15,7 +16,7 @@ package capellacore {
 	public import pa::*;
 	public import activity::*;
 	public import epbs::*;
-	abstract item def CapellaElement :> {
+	abstract item def CapellaElement :> TraceableElement, PublishableElement{
 		attribute summary : EString [1];
 		attribute description : EString [1];
 		attribute review : EString [1];
@@ -27,8 +28,8 @@ package capellacore {
 		ref item status : EnumerationPropertyLiteral [1];
 		ref item features : EnumerationPropertyLiteral [*];
 	}
-	abstract item def NamedElement :> , CapellaElement;
-	abstract item def Relationship :> , CapellaElement;
+	abstract item def NamedElement :> AbstractNamedElement, CapellaElement;
+	abstract item def Relationship :> AbstractRelationship, CapellaElement;
 	abstract item def Namespace :> NamedElement{
 		item ownedTraces : Trace [*];
 		ref item containedGenericTraces : GenericTrace [*];
@@ -47,20 +48,20 @@ package capellacore {
 	abstract item def ModellingBlock :> Type;
 	abstract item def ModellingArchitecture :> Structure;
 	abstract item def ModellingArchitecturePkg :> Structure;
-	abstract item def Type :> , Namespace{
+	abstract item def Type :> AbstractType, Namespace{
 		ref item typedElements : TypedElement [*];
 	}
-	abstract item def TypedElement :> , NamedElement{
+	abstract item def TypedElement :> AbstractTypedElement, NamedElement{
 		ref item type : Type [1];
 	}
-	abstract item def Trace :> Relationship,;
+	abstract item def Trace :> Relationship, AbstractTrace;
 	abstract item def AbstractAnnotation :> CapellaElement{
 		attribute content : EString [1];
 	}
 	item def NamingRule :> AbstractAnnotation{
 		attribute targetType : EString [1];
 	}
-	item def Constraint :> NamedElement,;
+	item def Constraint :> NamedElement, AbstractConstraint;
 	item def KeyValue :> CapellaElement{
 		attribute key : EString [1];
 		attribute 'value' : EString [1];
@@ -88,7 +89,7 @@ package capellacore {
 		item ownedFeatures : Feature [*];
 		ref item containedProperties : Property [*];
 	}
-	abstract item def GeneralClass :> Classifier, {
+	abstract item def GeneralClass :> Classifier, FinalizableElement{
 		attribute visibility : VisibilityKind [1];
 		ref item containedOperations : Operation [*];
 		item nestedGeneralClasses : GeneralClass [*];
@@ -105,7 +106,7 @@ package capellacore {
 	abstract item def AbstractExchangeItemPkg :> Structure{
 		item ownedExchangeItems : ExchangeItem [*];
 	}
-	abstract item def Allocation :> Relationship,;
+	abstract item def Allocation :> Relationship, AbstractTrace;
 	abstract item def Involvement :> Relationship{
 		ref item involver : InvolverElement [1];
 		ref item involved : InvolvedElement [1];

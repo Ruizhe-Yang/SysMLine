@@ -8,6 +8,7 @@
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="fa"/>
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="capellacommon"/>
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="modellingcore"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="emde"/>
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="datavalue"/>
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="datatype"/>
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="communication"/>
@@ -135,7 +136,7 @@
         <featureSpecialization>Scenario</featureSpecialization>
       </body>
       <SubclassificationPart>Namespace</SubclassificationPart>
-      <SubclassificationPart xsi:nil="true"/>
+      <SubclassificationPart>AbstractBehavior</SubclassificationPart>
     </body>
     <body xsi:type="ItemDefinition" declaredName="MessageEnd">
       <body xsi:type="ItemUsage" declaredName="'message'" multiplicityRange="[1]" isReference="true">
@@ -200,7 +201,7 @@
     </body>
     <body xsi:type="ItemDefinition" declaredName="Event" isAbstract="true">
       <SubclassificationPart>NamedElement</SubclassificationPart>
-      <SubclassificationPart xsi:nil="true"/>
+      <SubclassificationPart>AbstractEvent</SubclassificationPart>
     </body>
     <body xsi:type="ItemDefinition" declaredName="EventReceiptOperation">
       <body xsi:type="ItemUsage" declaredName="operation" multiplicityRange="[1]" isReference="true">

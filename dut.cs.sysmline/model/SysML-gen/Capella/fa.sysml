@@ -7,15 +7,16 @@ package fa {
 	public import information::*;
 	public import cs::*;
 	public import modellingcore::*;
-	public import interaction::*;
+	public import emde::*;
+	public import activity::*;
 	public import behavior::*;
+	public import interaction::*;
 	public import oa::*;
 	public import pa::*;
 	public import datavalue::*;
 	public import datatype::*;
 	public import communication::*;
 	public import epbs::*;
-	public import activity::*;
 	public import deployment::*;
 	abstract item def AbstractFunctionalArchitecture :> ModellingArchitecture{
 		item ownedFunctionPkg : FunctionPkg [1];
@@ -41,7 +42,7 @@ package fa {
 		item ownedCategories : ExchangeCategory [*];
 		item ownedFunctionSpecifications : FunctionSpecification [*];
 	}
-	item def FunctionSpecification :> Namespace, {
+	item def FunctionSpecification :> Namespace, AbstractActivity{
 		ref item inExchangeLinks : ExchangeLink [*];
 		ref item outExchangeLinks : ExchangeLink [*];
 		item ownedFunctionPorts : FunctionPort [*];
@@ -61,7 +62,7 @@ package fa {
 		ref item exchange : ExchangeSpecification [1];
 		ref item link : ExchangeLink [1];
 	}
-	abstract item def ExchangeSpecification :> NamedElement, {
+	abstract item def ExchangeSpecification :> NamedElement, ActivityExchange{
 		ref item containingLink : ExchangeLink [1];
 		ref item link : ExchangeContainment [1];
 		ref item outgoingExchangeSpecificationRealizations : ExchangeSpecificationRealization [*];
@@ -107,11 +108,11 @@ package fa {
 	item def FunctionalChainReference :> FunctionalChainInvolvement{
 		ref item referencedFunctionalChain : FunctionalChain [1];
 	}
-	item def FunctionInputPort :> FunctionPort, {
+	item def FunctionInputPort :> FunctionPort, InputPin{
 		ref item incomingExchangeItems : ExchangeItem [*];
 		ref item incomingFunctionalExchanges : FunctionalExchange [*];
 	}
-	item def FunctionOutputPort :> FunctionPort, {
+	item def FunctionOutputPort :> FunctionPort, OutputPin{
 		ref item outgoingExchangeItems : ExchangeItem [*];
 		ref item outgoingFunctionalExchanges : FunctionalExchange [*];
 	}
@@ -133,7 +134,7 @@ package fa {
 		ref item allocatedFunction : AbstractFunction [1];
 		ref item allocatingFunction : AbstractFunction [1];
 	}
-	item def FunctionalExchange :> NamedElement, Relationship, InvolvedElement, , AbstractEventOperation{
+	item def FunctionalExchange :> NamedElement, Relationship, InvolvedElement, ObjectFlow, AbstractEvent, AbstractEventOperation{
 		ref item exchangeSpecifications : FunctionalExchangeSpecification [*];
 		ref item involvingFunctionalChains : FunctionalChain [*];
 		ref item exchangedItems : ExchangeItem [*];
@@ -148,7 +149,7 @@ package fa {
 		ref item realizedFunctionalExchanges : FunctionalExchange [*];
 		ref item realizingFunctionalExchanges : FunctionalExchange [*];
 	}
-	abstract item def AbstractFunction :> Namespace, InvolvedElement, AbstractInstance, AbstractFunctionalChainContainer, {
+	abstract item def AbstractFunction :> Namespace, InvolvedElement, AbstractInstance, AbstractFunctionalChainContainer, CallBehaviorAction, AbstractEvent{
 		attribute kind : FunctionKind [1];
 		attribute condition : EString [1];
 		item ownedFunctions : AbstractFunction [*];
@@ -174,7 +175,7 @@ package fa {
 		enum SPLIT;
 		enum ROUTE;
 	}
-	abstract item def FunctionPort :> Port, TypedElement, {
+	abstract item def FunctionPort :> Port, TypedElement, AbstractEvent{
 		ref item representedComponentPort : ComponentPort [1];
 		ref item allocatorComponentPorts : ComponentPort [*];
 		ref item realizedFunctionPorts : FunctionPort [*];
@@ -196,7 +197,7 @@ package fa {
 		enum OUT;
 		enum INOUT;
 	}
-	item def ComponentExchange :> , AbstractEventOperation, NamedElement, ExchangeSpecification{
+	item def ComponentExchange :> AbstractEvent, AbstractEventOperation, NamedElement, ExchangeSpecification{
 		attribute kind : ComponentExchangeKind [1];
 		attribute oriented : EBoolean [1];
 		ref item allocatedFunctionalExchanges : FunctionalExchange [*];
@@ -226,7 +227,7 @@ package fa {
 	item def ComponentExchangeCategory :> NamedElement{
 		ref item exchanges : ComponentExchange [*];
 	}
-	item def ComponentExchangeEnd :> , CapellaElement{
+	item def ComponentExchangeEnd :> InformationsExchanger, CapellaElement{
 		ref item 'port' : Port [1];
 		ref item 'part' : Part [1];
 	}
@@ -238,7 +239,7 @@ package fa {
 		ref item allocatedComponentExchange : ComponentExchange [1];
 		ref item allocatingComponentExchange : ComponentExchange [1];
 	}
-	item def ComponentPort :> Port, , Property{
+	item def ComponentPort :> Port, InformationsExchanger, Property{
 		attribute orientation : OrientationPortKind [1];
 		attribute kind : ComponentPortKind [1];
 		ref item componentExchanges : ComponentExchange [*];

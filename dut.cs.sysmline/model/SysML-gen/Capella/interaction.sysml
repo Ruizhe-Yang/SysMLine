@@ -6,6 +6,7 @@ package interaction {
 	public import fa::*;
 	public import capellacommon::*;
 	public import modellingcore::*;
+	public import emde::*;
 	public import datavalue::*;
 	public import datatype::*;
 	public import communication::*;
@@ -29,7 +30,7 @@ package interaction {
 		ref item receivingFunction : AbstractFunction [1];
 		item ownedSequenceMessageValuations : SequenceMessageValuation [*];
 	}
-	item def Scenario :> Namespace, {
+	item def Scenario :> Namespace, AbstractBehavior{
 		attribute kind : ScenarioKind [1];
 		attribute merged : EBoolean [1];
 		ref item preCondition : Constraint [1];
@@ -77,7 +78,7 @@ package interaction {
 		enum CREATE;
 		enum TIMER;
 	}
-	abstract item def Event :> NamedElement,;
+	abstract item def Event :> NamedElement, AbstractEvent;
 	item def EventReceiptOperation :> Event{
 		ref item operation : AbstractEventOperation [1];
 	}

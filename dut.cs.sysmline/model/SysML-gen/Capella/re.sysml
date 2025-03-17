@@ -1,7 +1,7 @@
 package re {
 	private import ecore::*;
 	public import emde::*;
-	abstract item def ReAbstractElement :> {
+	abstract item def ReAbstractElement :> ExtensibleElement{
 		attribute id : EString [1];
 	}
 	abstract item def ReNamedElement :> ReAbstractElement{
@@ -16,10 +16,10 @@ package re {
 	item def CatalogElementPkg :> ReNamedElement, ReElementContainer{
 		item ownedElementPkgs : CatalogElementPkg [*];
 	}
-	item def RecCatalog :> CatalogElementPkg, {
+	item def RecCatalog :> CatalogElementPkg, ElementExtension{
 		item ownedCompliancyDefinitionPkg : CompliancyDefinitionPkg [1];
 	}
-	item def GroupingElementPkg :> CatalogElementPkg,;
+	item def GroupingElementPkg :> CatalogElementPkg, ElementExtension;
 	item def CatalogElementLink :> ReAbstractElement{
 		ref item source : CatalogElement [1];
 		ref item target : EObject [1];

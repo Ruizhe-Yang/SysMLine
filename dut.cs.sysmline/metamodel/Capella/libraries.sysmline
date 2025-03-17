@@ -13,10 +13,10 @@
         <featureSpecialization>ModelVersion</featureSpecialization>
       </body>
       <SubclassificationPart>LibraryAbstractElement</SubclassificationPart>
-      <SubclassificationPart xsi:nil="true"/>
+      <SubclassificationPart>ElementExtension</SubclassificationPart>
     </body>
     <body xsi:type="ItemDefinition" declaredName="LibraryReference">
-      <body xsi:type="ItemUsage" declaredName="library" multiplicityRange="[1]" isReference="true">
+      <body xsi:type="ItemUsage" declaredName="'library'" multiplicityRange="[1]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>ModelInformation</featureSpecialization>
       </body>
@@ -54,7 +54,7 @@
         <featureNote>:</featureNote>
         <featureSpecialization>EString</featureSpecialization>
       </body>
-      <SubclassificationPart xsi:nil="true"/>
+      <SubclassificationPart>ExtensibleElement</SubclassificationPart>
     </body>
   </body>
 </Namespace>

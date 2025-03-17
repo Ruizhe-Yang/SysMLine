@@ -9,6 +9,7 @@
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="interaction"/>
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="behavior"/>
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="information"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="emde"/>
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="ctx"/>
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="pa"/>
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="cs"/>
@@ -71,7 +72,7 @@
         <featureSpecialization>Pseudostate</featureSpecialization>
       </body>
       <SubclassificationPart>CapellaElement</SubclassificationPart>
-      <SubclassificationPart xsi:nil="true"/>
+      <SubclassificationPart>AbstractBehavior</SubclassificationPart>
     </body>
     <body xsi:type="ItemDefinition" declaredName="Region">
       <body xsi:type="ItemUsage" declaredName="ownedStates" multiplicityRange="[*]">
@@ -159,7 +160,7 @@
         <featureSpecialization>Region</featureSpecialization>
       </body>
       <SubclassificationPart>NamedElement</SubclassificationPart>
-      <SubclassificationPart xsi:nil="true"/>
+      <SubclassificationPart>IState</SubclassificationPart>
     </body>
     <body xsi:type="ItemDefinition" declaredName="StateTransition">
       <body xsi:type="AttributeUsage" declaredName="kind" multiplicityRange="[1]">
@@ -283,7 +284,7 @@
         <featureSpecialization>StateEventRealization</featureSpecialization>
       </body>
       <SubclassificationPart>NamedElement</SubclassificationPart>
-      <SubclassificationPart xsi:nil="true"/>
+      <SubclassificationPart>AbstractEvent</SubclassificationPart>
     </body>
     <body xsi:type="ItemDefinition" declaredName="ChangeEvent">
       <body xsi:type="AttributeUsage" declaredName="kind" multiplicityRange="[1]">

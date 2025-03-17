@@ -10,6 +10,7 @@
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="communication"/>
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="cs"/>
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="modellingcore"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="emde"/>
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="fa"/>
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="la"/>
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="behavior"/>
@@ -115,7 +116,7 @@
       <SubclassificationPart>Classifier</SubclassificationPart>
       <SubclassificationPart>MultiplicityElement</SubclassificationPart>
       <SubclassificationPart>DataValueContainer</SubclassificationPart>
-      <SubclassificationPart xsi:nil="true"/>
+      <SubclassificationPart>FinalizableElement</SubclassificationPart>
     </body>
     <body xsi:type="ItemDefinition" declaredName="AbstractCollectionValue" isAbstract="true">
       <SubclassificationPart>DataValue</SubclassificationPart>
@@ -276,7 +277,7 @@
         <featureSpecialization>ExchangeItem</featureSpecialization>
       </body>
       <SubclassificationPart>Feature</SubclassificationPart>
-      <SubclassificationPart xsi:nil="true"/>
+      <SubclassificationPart>AbstractEvent</SubclassificationPart>
       <SubclassificationPart>AbstractEventOperation</SubclassificationPart>
     </body>
     <body xsi:type="ItemDefinition" declaredName="OperationAllocation">
@@ -301,7 +302,7 @@
       </body>
       <SubclassificationPart>TypedElement</SubclassificationPart>
       <SubclassificationPart>MultiplicityElement</SubclassificationPart>
-      <SubclassificationPart xsi:nil="true"/>
+      <SubclassificationPart>AbstractParameter</SubclassificationPart>
     </body>
     <body xsi:type="EnumerationDefinition" declaredName="ParameterDirection">
       <body xsi:type="EnumerationUsage" declaredName="IN"/>
@@ -340,7 +341,7 @@
       <SubclassificationPart>Feature</SubclassificationPart>
       <SubclassificationPart>TypedElement</SubclassificationPart>
       <SubclassificationPart>MultiplicityElement</SubclassificationPart>
-      <SubclassificationPart xsi:nil="true"/>
+      <SubclassificationPart>FinalizableElement</SubclassificationPart>
     </body>
     <body xsi:type="EnumerationDefinition" declaredName="SynchronismKind">
       <body xsi:type="EnumerationUsage" declaredName="UNSET"/>
@@ -493,7 +494,10 @@
         <featureNote>:</featureNote>
         <featureSpecialization>Operation</featureSpecialization>
       </body>
-      <SubclassificationPart xsi:nil="true"/>
+      <SubclassificationPart>AbstractExchangeItem</SubclassificationPart>
+      <SubclassificationPart>AbstractEvent</SubclassificationPart>
+      <SubclassificationPart>AbstractSignal</SubclassificationPart>
+      <SubclassificationPart>FinalizableElement</SubclassificationPart>
       <SubclassificationPart>GeneralizableElement</SubclassificationPart>
     </body>
     <body xsi:type="ItemDefinition" declaredName="ExchangeItemElement">
@@ -599,7 +603,7 @@
           <featureSpecialization>SignalInstance</featureSpecialization>
         </body>
         <SubclassificationPart>CommunicationItem</SubclassificationPart>
-        <SubclassificationPart xsi:nil="true"/>
+        <SubclassificationPart>AbstractSignal</SubclassificationPart>
       </body>
       <body xsi:type="ItemDefinition" declaredName="SignalInstance">
         <SubclassificationPart>AbstractInstance</SubclassificationPart>
@@ -733,7 +737,7 @@
         </body>
         <SubclassificationPart>GeneralizableElement</SubclassificationPart>
         <SubclassificationPart>DataValueContainer</SubclassificationPart>
-        <SubclassificationPart xsi:nil="true"/>
+        <SubclassificationPart>FinalizableElement</SubclassificationPart>
       </body>
       <body xsi:type="ItemDefinition" declaredName="BooleanType">
         <body xsi:type="ItemUsage" declaredName="ownedLiterals" multiplicityRange="[0..2]">
@@ -838,7 +842,7 @@
           <featureSpecialization>Type</featureSpecialization>
         </body>
         <SubclassificationPart>NamedElement</SubclassificationPart>
-        <SubclassificationPart xsi:nil="true"/>
+        <SubclassificationPart>ValueSpecification</SubclassificationPart>
       </body>
       <body xsi:type="ItemDefinition" declaredName="DataValueContainer" isAbstract="true">
         <body xsi:type="ItemUsage" declaredName="ownedDataValues" multiplicityRange="[*]">
@@ -1064,7 +1068,7 @@
           <featureSpecialization>EString</featureSpecialization>
         </body>
         <SubclassificationPart>CapellaElement</SubclassificationPart>
-        <SubclassificationPart xsi:nil="true"/>
+        <SubclassificationPart>ValueSpecification</SubclassificationPart>
       </body>
     </body>
   </body>
