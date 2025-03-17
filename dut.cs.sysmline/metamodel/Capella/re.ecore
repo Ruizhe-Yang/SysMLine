@@ -6,7 +6,7 @@
     <details key="extensibleProviderFactory" value="true"/>
     <details key="childCreationExtenders" value="true"/>
   </eAnnotations>
-  <eClassifiers xsi:type="ecore:EClass" name="ReAbstractElement" abstract="true" eSuperTypes="platform:/plugin/org.polarsys.kitalpha.emde/model/eMDE.ecore#//ExtensibleElement">
+  <eClassifiers xsi:type="ecore:EClass" name="ReAbstractElement" abstract="true" eSuperTypes="eMDE.ecore#//ExtensibleElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         iD="true"/>
   </eClassifiers>
@@ -33,7 +33,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedElementPkgs" upperBound="-1"
         eType="#//CatalogElementPkg" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="RecCatalog" eSuperTypes="#//CatalogElementPkg platform:/plugin/org.polarsys.kitalpha.emde/model/eMDE.ecore#//ElementExtension">
+  <eClassifiers xsi:type="ecore:EClass" name="RecCatalog" eSuperTypes="#//CatalogElementPkg eMDE.ecore#//ElementExtension">
     <eAnnotations source="http://www.polarsys.org/kitalpha/emde/1.0.0/constraint">
       <details key="ExtendedElement" value="http://www.polarsys.org/capella/core/modeller/7.0.0#//SystemEngineering "/>
     </eAnnotations>
@@ -43,7 +43,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedCompliancyDefinitionPkg"
         eType="#//CompliancyDefinitionPkg" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="GroupingElementPkg" eSuperTypes="#//CatalogElementPkg platform:/plugin/org.polarsys.kitalpha.emde/model/eMDE.ecore#//ElementExtension">
+  <eClassifiers xsi:type="ecore:EClass" name="GroupingElementPkg" eSuperTypes="#//CatalogElementPkg eMDE.ecore#//ElementExtension">
     <eAnnotations source="http://www.polarsys.org/kitalpha/emde/1.0.0/constraint">
       <details key="ExtendedElement" value="http://www.polarsys.org/capella/core/modeller/7.0.0#//SystemEngineering http://www.polarsys.org/capella/core/cs/7.0.0#//BlockArchitecture"/>
     </eAnnotations>

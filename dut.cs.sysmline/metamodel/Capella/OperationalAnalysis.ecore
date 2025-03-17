@@ -431,7 +431,7 @@
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Swimlane" eSuperTypes="CapellaCore.ecore#//NamedElement ../../org.polarsys.capella.common.data.def/model/Activity.ecore#//ActivityPartition">
+  <eClassifiers xsi:type="ecore:EClass" name="Swimlane" eSuperTypes="CapellaCore.ecore#//NamedElement Activity.ecore#//ActivityPartition">
     <eAnnotations source="http://www.polarsys.org/kitalpha/ecore/documentation">
       <details key="description" value="a partition/subset of an activity&#xD;&#xA;[source: Capella study]"/>
       <details key="usage guideline" value="n/a"/>
@@ -979,7 +979,7 @@
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Entity" eSuperTypes="#//AbstractConceptItem ../../org.polarsys.capella.common.data.def/model/ModellingCore.ecore#//InformationsExchanger CapellaCore.ecore#//InvolvedElement">
+  <eClassifiers xsi:type="ecore:EClass" name="Entity" eSuperTypes="#//AbstractConceptItem ModellingCore.ecore#//InformationsExchanger CapellaCore.ecore#//InvolvedElement">
     <eAnnotations source="http://www.polarsys.org/kitalpha/ecore/documentation">
       <details key="description" value="An Operational Entity is a thing or entity that occurs in the real world of which information is required about fact that need to be known.&#xD;&#xA;An Operational Entity can be for instance: A operational node, an actor, an equipment..."/>
       <details key="usage guideline" value="n/a"/>
