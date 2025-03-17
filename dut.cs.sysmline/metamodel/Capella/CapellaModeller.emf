@@ -1,0 +1,140 @@
+@"http://www.polarsys.org/capella/2007/UML2Mapping"(profileName="Capella")
+@"http://www.polarsys.org/kitalpha/emde/1.0.0/extension"(trackResourceModification="true", useUUIDs="false", useIDAttributes="true", extensibleProviderFactory="true")
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="CapellaModeller aims at defining project level concepts.
+[source: Capella study]", "usage guideline"="none", "used in levels"="operational,system,logical,physical,epbs", "usage examples"="none", constraints="This package depends on the model CapellaCore.ecore", "comment/notes"="none", "reference documentation"="n/a")
+@"http://www.polarsys.org/capella/semantic"
+@namespace(uri="http://www.polarsys.org/capella/core/modeller/7.0.0", prefix="org.polarsys.capella.core.data.capellamodeller")
+package capellamodeller;
+
+import "platform:/resource/dut.cs.sysmline/metamodel/Capella/LogicalArchitecture.ecore";
+import "platform:/resource/dut.cs.sysmline/metamodel/Capella/ContextArchitecture.ecore";
+import "platform:/resource/dut.cs.sysmline/metamodel/Capella/CapellaCore.ecore";
+import "platform:/resource/dut.cs.sysmline/metamodel/Capella/OperationalAnalysis.ecore";
+import "platform:/resource/dut.cs.sysmline/metamodel/Capella/SharedModel.ecore";
+import "platform:/resource/dut.cs.sysmline/metamodel/Capella/EPBSArchitecture.ecore";
+import "platform:/resource/dut.cs.sysmline/metamodel/Capella/PhysicalArchitecture.ecore";
+
+@"http://www.polarsys.org/capella/2007/UML2Mapping"(metaclass="Model", stereotype="core.Project")
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Project is the model root of a Capella model
+[source:Capella study]", "usage guideline"="A Project is the model root of a Capella model", "used in levels"="operational, system, logical, physical, epbs", "usage examples"="None", constraints="None", "comment/notes"="None", "reference documentation"="None")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="uml::Package", explanation="none", constraints="none")
+@"http://www.polarsys.org/capella/semantic"
+class Project extends capellacore.Structure {
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(featureName="ownedComment", featureOwner="Element")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="a list of key/value pairs applying to this Project
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Element::ownedComment", explanation="none", constraints="uml::Element::ownedComment elements on which KeyValue stereotype or any stereotype that inherits from it is applied
+Order must be computed")
+	@"http://www.polarsys.org/capella/semantic"(feature="ownedArchitectures")
+	!resolve val capellacore.KeyValue[*] keyValuePairs;
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(featureName="packagedElement", featureOwner="Package")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Set of folders owned by the project
+[source:Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Package::nestedPackage#uml::Package::packagedElement", explanation="none", constraints="uml::Package::nestedPackage elements on which Folder stereotype or any stereotype that inherits from it is applied
+Order must be computed")
+	val Folder[*] ownedFolders;
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(featureName="packagedElement", featureOwner="Package")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Set of system engineering elements
+[source:Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Package::packagedElement", explanation="none", constraints="uml::Package::packagedElement elements on which ModelRoot stereotype or any stereotype that inherits from it is applied
+Order must be computed")
+	@"http://www.polarsys.org/capella/semantic"
+	val ModelRoot[*] ownedModelRoots;
+}
+
+@"http://www.polarsys.org/capella/2007/UML2Mapping"(metaclass="Package", stereotype="core.Folder")
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="a container for structuring the storage of models
+[source: Capella study]", "usage guideline"="n/a", "used in levels"="operational, system, logical, physical, epbs", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="uml::Package", explanation="none", constraints="none")
+class Folder extends capellacore.Structure {
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(featureName="packagedElement", featureOwner="Package")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Sub folders of this folder
+[source:Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Package::nestedPackage#uml::Package::packagedElement", explanation="none", constraints="Order must be computed")
+	val Folder[*] ownedFolders;
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(featureName="packagedElement", featureOwner="Package")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Set of system engineering elements
+[source:Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Package::packagedElement", explanation="none", constraints="uml::Package::packagedElement elements on which ModelRoot stereotype or any stereotype that inherits from it is applied
+Order must be computed")
+	val ModelRoot[*] ownedModelRoots;
+}
+
+@"http://www.polarsys.org/capella/2007/UML2Mapping"(metaclass="Element")
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="A model root may be a system engineering element or a package of system engineering elements
+[source:Capella study]", "usage guideline"="n/a", "used in levels"="operational, system, logical, physical, epbs", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="", explanation="none", constraints="none")
+abstract interface ModelRoot extends capellacore.CapellaElement {
+}
+
+@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="System Engineering")
+@"http://www.polarsys.org/capella/2007/UML2Mapping"(metaclass="Package", stereotype="eng.SystemEngineering")
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="System engineering is an interdisciplinary approach encompassing the entire technical effort to evolve and verify an integrated and life-cycle balanced set of system people, product, and process solutions that satisfy customer needs.
+Systems engineering encompasses:
+- the technical efforts related to the development, manufacturing, verification, deployment, operations,
+support, disposal of, and user training for, systems products and processes;
+- the definition and management of the system configuration;
+- the translation of the system definition into work breakdown structures;
+- and development of information for management decision making
+[source:MIL-STD 499B standard]
+", "usage guideline"="n/a", "used in levels"="operational, system, logical, physical, epbs", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="uml::Package", explanation="none", constraints="none")
+@"http://www.polarsys.org/capella/semantic"
+class SystemEngineering extends capellacore.AbstractModellingStructure, ModelRoot {
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="ownedArchitectures")
+	@"http://www.polarsys.org/capella/semantic"(feature="ownedArchitectures")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref oa.OperationalAnalysis[*] containedOperationalAnalysis;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="ownedArchitectures")
+	@"http://www.polarsys.org/capella/semantic"(feature="ownedArchitectures")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref ctx.SystemAnalysis[*] containedSystemAnalysis;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="ownedArchitectures")
+	@"http://www.polarsys.org/capella/semantic"(feature="ownedArchitectures")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref la.LogicalArchitecture[*] containedLogicalArchitectures;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="ownedArchitectures")
+	@"http://www.polarsys.org/capella/semantic"(feature="ownedArchitectures")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref pa.PhysicalArchitecture[*] containedPhysicalArchitectures;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="ownedArchitectures")
+	@"http://www.polarsys.org/capella/semantic"(feature="ownedArchitectures")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref epbs.EPBSArchitecture[*] containedEPBSArchitectures;
+
+	@"http://www.polarsys.org/capella/semantic"(feature="ownedArchitectures")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="unimplemented", viatra.expression="ownedArchitectures as SharedPkg, but SharedPkg is not a subclass of ModellingArchitecture !")
+	readonly volatile transient derived ref sharedmodel.SharedPkg[*] containedSharedPkgs;
+}
+
+@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="SystemEngineeringPkg")
+@"http://www.polarsys.org/capella/2007/UML2Mapping"(metaclass="Package", stereotype="eng.SystemEngineeringPkg")
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Package that contains system engineering elements
+[source:Capella study]", "usage guideline"="n/a", "used in levels"="operational, system, logical, physical, epbs", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="uml::Package", explanation="none", constraints="none")
+class SystemEngineeringPkg extends capellacore.Structure, ModelRoot {
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(featureName="packagedElement", featureOwner="Package")
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="ownedSystemEngineerings")
+	@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Set of system engineering elements
+[source:Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Package::packagedElement", explanation="none", constraints="Order must be computed")
+	!resolve val SystemEngineering[*] ownedSystemEngineerings;
+}
+
+@"http://www.polarsys.org/capella/semantic"
+class Library extends Project {
+}
+

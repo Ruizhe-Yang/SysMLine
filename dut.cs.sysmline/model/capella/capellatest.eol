@@ -1,0 +1,4 @@
+for (e in M!EObject.all){
+	e.println();
+}
+ 
