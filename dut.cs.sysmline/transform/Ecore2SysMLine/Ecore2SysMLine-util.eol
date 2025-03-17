@@ -5,10 +5,11 @@ operation Ecore!EObject addRootNodeTo(rootNode : SysMLine!Element){
 		node.addNamespaceImport("ecore", false);
 		var namespaceImportPackage = Sequence{"ecore", node.declaredName};
 		for (eReference in Ecore!EReference){
+//			(eReference.eType == null).println();
 			if (eReference.isExtendedEcore(namespaceImportPackage)){
 				var newNamespaceImport = "";
-//				eReference.println();
-				if (eReference.eType.eProxyURI.asString().split("#//").size()>1){
+				
+				if ((eReference.eType != null) and (eReference.eType.eProxyURI.asString().split("#//").size()>1)){
 					newNamespaceImport = eReference.eType.eProxyURI.asString().split("#//").first().split('.ecore').first().asString().toLowerCase().removeAddress();
 				}
 				else{
@@ -22,7 +23,7 @@ operation Ecore!EObject addRootNodeTo(rootNode : SysMLine!Element){
 		for (eGenericType in Ecore!EGenericType){
 			if (eGenericType.isExtendedEcore(namespaceImportPackage)){
 				var newNamespaceImport = "";
-				if (eGenericType.eClassifier.eProxyURI.asString().split("#//").size()>1){
+				if ((eGenericType.eClassifier != null) and (eGenericType.eClassifier.eProxyURI.asString().split("#//").size()>1)){
 					newNamespaceImport = eGenericType.eClassifier.eProxyURI.asString().split("#//").first().split('.ecore').first().asString().toLowerCase().removeAddress();
 				}
 				else{
@@ -51,6 +52,9 @@ operation String removeAddress(){
 operation Ecore!EObject isExtendedEcore(namespaceImportPackage : Sequence){
 	var eName = String;
 	if (self.isKindOf(Ecore!EReference)){
+		if (self.eType == null){
+			return false;
+		}
 		if (self.eType.eProxyURI.asString().split("#//").size()>1){
 			eName = self.eType.eProxyURI.asString().split("#//").first().split('.ecore').first().asString().toLowerCase().removeAddress();
 		}
@@ -81,6 +85,12 @@ operation eStructuralFeatureTransform(s, t){
 	t.declaredName = s.name.clearKeyWord();
 	t.multiplicityRange = s.getRange();
 	t.featureNote.add(":");
+//	if (s.isTypeOf(Ecore!EAttribute) and s.eAttributeType == null){
+//		return ;
+//	}
+//	else if (s.isTypeOf(Ecore!EReference) and s.eReferenceType == null){
+//		return ;
+//	}
 	var fsName = s.eContents().select(i|i.isTypeOf(Ecore!EGenericType)).first().eClassifier.name;
 	if (fsName.asString() != ""){
 		t.featureSpecialization.add(fsName);
