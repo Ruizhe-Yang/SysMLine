@@ -1,4 +1,3 @@
-[% import "Ecore2ETL-util.eol"; %]
 [%var fileName = root.name;%]
 [%root.println();%]
 [%var KeyWords = Sequence{"default", "import", "from", "to"};%]
@@ -108,5 +107,30 @@ rule [%=self.name%]
 }
 
 [%}%]
+
+[%
+operation String clearKeyWord(i){
+	if (KeyWords.includes(self) and i == 0){
+		return self+"_";
+	}
+	else if (KeyWords.includes(self) and i == 1){
+		return "'"+self+"'";
+	}
+	else if (KeyWords.includes(self) and i == 2){
+		return "~"+self;
+	}
+	else{
+		return self;
+	}
+}
+
+operation Ecore!EPackage main(){ 
+	var eClassSequence = root.eClassifiers.select(s|s.type().name == "EClass");
+	for (eClass in eClassSequence){
+		eClass.writeEClass();
+	} 
+}
+%]
+
 
 

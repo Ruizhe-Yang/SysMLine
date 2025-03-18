@@ -1,7 +1,4 @@
-[% import "Ecore2ETL-util.eol"; %]
-[%var fileName = root.name;%]
-[%root.println();%]
-[%var KeyWords = Sequence{"default", "import", "from", "to"};%]
+
 import "DSL2SysMLine-util.eol";
 
 pre{
@@ -33,35 +30,33 @@ pre{
 							"verification", "verify", "via", "view", "viewpoint",
 							"when", "while", "xor", "value", "any"
 	  						};
-	init_[%=fileName%]();
-	main_[%=fileName%]();
+	init_pslextended();
+	main_pslextended();
 }
 
 post{
 	"------------------ ETL Over  ------------------".println();
 }
 
-operation main_[%=fileName%](){
+operation main_pslextended(){
 	var rootEcore = DSL!EObject.all.first();
 	var rootSysMLine = new SysMLine!Namespace;
 	var rootPackage = new SysMLine!Package;
-	rootPackage.declaredName = "[%=fileName%]_model";
+	rootPackage.declaredName = "pslextended_model";
 	rootSysMLine.body.add(rootPackage);
 	var namespaceImport = new SysMLine!NamespaceImport;
-	namespaceImport.declaredName = "[%=fileName%]";
+	namespaceImport.declaredName = "pslextended";
 	rootPackage.body.add(namespaceImport);
 	rootEcore.addNodeTo(rootPackage);
 }
 
-operation init_[%=fileName%](){
-	[%for (eClass in root.eClassifiers.select(s|s.type().name == "EClass")){%]
-	//[%=eClass.name%] -> Instantiation
-	var id[%=eClass.name%] = 0;
-	for (e[%=eClass.name%] in DSL!EObject.all.select(s|s.isTypeOf(DSL![%=eClass.name%]))){
-		var e[%=eClass.name%]Tuple = Tuple{"key"=e[%=eClass.name%].type().name.asString()+"_"+(id[%=eClass.name%]++).asString(),"value"= e[%=eClass.name%]};
-		eObjectSequence.add(e[%=eClass.name%]Tuple);
+operation init_pslextended(){
+	//Person -> Instantiation
+	var idPerson = 0;
+	for (ePerson in DSL!EObject.all.select(s|s.isTypeOf(DSL!Person))){
+		var ePersonTuple = Tuple{"key"=ePerson.type().name.asString()+"_"+(idPerson++).asString(),"value"= ePerson};
+		eObjectSequence.add(ePersonTuple);
 	}
-	[%}%]
 }
 
 @abstract
@@ -77,36 +72,19 @@ rule Base
 	}
 }
 	
-[%=root.main()%]
-[% operation Ecore!EClass writeEClass(){%]
 @lazy
-rule [%=self.name%]
-	transform s : DSL![%=self.name%]
+rule Person
+	transform s : DSL!Person
 	to t : SysMLine!PartUsage
 	extends Base{
-	[%	for (eAttribute in self.eAllAttributes){%]
-	//[%=self.name%] -> EAttribute : [%=eAttribute.name%]
-	if (s.[%=eAttribute.name%].getEAttribute() != null){
-		var [%=eAttribute.name%] = new SysMLine!AttributeUsage;
-		[%=eAttribute.name%].featureNote.add(":>>");
-		[%=eAttribute.name%].featureSpecialization.add("[%=eAttribute.name%]");
-		[%=eAttribute.name%].valuePart = s.[%=eAttribute.name%].getEAttribute();
-		t.body.add([%=eAttribute.name%]);
+	//Person -> EAttribute : name
+	if (s.name.getEAttribute() != null){
+		var name = new SysMLine!AttributeUsage;
+		name.featureNote.add(":>>");
+		name.featureSpecialization.add("name");
+		name.valuePart = s.name.getEAttribute();
+		t.body.add(name);
 	}
-	[%}%]
-	[%	for (eReference in self.eAllReferences){%]
-	//[%=self.name%] -> EReference : [%=eReference.name.clearKeyWord(0)%]
-	if (s.[%=eReference.name.clearKeyWord(2)%].getEReference() != null){
-		var [%=eReference.name.clearKeyWord(0)%] = new SysMLine!PartUsage;
-		[%=eReference.name.clearKeyWord(0)%].isReference = true;
-		[%=eReference.name.clearKeyWord(0)%].featureNote.add(":>");
-		[%=eReference.name.clearKeyWord(0)%].featureSpecialization.add("[%=eReference.name.clearKeyWord(1)%]");
-		[%=eReference.name.clearKeyWord(0)%].valuePart = s.[%=eReference.name.clearKeyWord(0)%].getEReference();
-		t.body.add([%=eReference.name.clearKeyWord(0)%]);
-	}
-	[%}%]
 }
-
-[%}%]
 
 

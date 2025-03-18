@@ -1,11 +1,13 @@
 @namespace(uri="psl", prefix="")
 package psl;
 
+import "platform:/resource/dut.cs.sysmline/model/PlayGround/pslextended.ecore";
+
 class Project {
 	attr String title;
 	attr String description;
 	val Task[*] tasks;
-	val Person[*] people;
+	val pslextended.Person[*] people;
 }
 
 class Task {
@@ -15,11 +17,8 @@ class Task {
 	val Effort[*] effort;
 }
 
-class Person {
-	attr String name;
-}
 
 class Effort {
-	ref Person person;
+	ref pslextended.Person person;
 	attr int percentage = 100;
 }

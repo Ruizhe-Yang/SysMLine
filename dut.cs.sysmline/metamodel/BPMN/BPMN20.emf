@@ -2,7 +2,7 @@
 @namespace(uri="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI", prefix="bpmn")
 package bpmn2;
 
-import "platform:/resource/org.omg.sysmini/metamodel/BPMN/BPMNDI.ecore";
+import "platform:/resource/dut.cs.sysmline/metamodel/BPMN/BPMNDI.ecore";
 
 class Interface extends RootElement {
 	!ordered attr String[1] name;
