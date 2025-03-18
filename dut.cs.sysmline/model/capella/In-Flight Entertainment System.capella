@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!--Capella_Version_7.0.0-->
-<capellamodeller:Project xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI"
+<org.polarsys.capella.core.data.capellamodeller:Project xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:libraries="http://www.polarsys.org/capella/common/libraries/7.0.0"
     xmlns:org.polarsys.capella.core.data.capellacommon="http://www.polarsys.org/capella/core/common/7.0.0"
     xmlns:org.polarsys.capella.core.data.capellacore="http://www.polarsys.org/capella/core/core/7.0.0"
@@ -15860,4 +15860,4 @@
           sourceElement="#7c142d0f-dd8e-4539-bcb5-3ea9c2fdb59d"/>
     </ownedArchitectures>
   </ownedModelRoots>
-</capellamodeller:Project>
+</org.polarsys.capella.core.data.capellamodeller:Project>
