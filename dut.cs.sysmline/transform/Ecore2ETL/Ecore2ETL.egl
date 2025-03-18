@@ -2,10 +2,10 @@
 [%root.name.println("[gen-ETL] root Package >> ");%]
 [%for (epackage in Ecore!EPackage.all){%]
 [%if (root.name != epackage.name){%]
-[%epackage.name.println("[gen-ETL] referenced Package>> ");%]
+[%epackage.name.println("[gen-ETL] referenced Package >> ");%]
 [%}%]
 [%}%]
-[%var KeyWords = Sequence{"default", "import", "from", "to"};%]
+[%var KeyWords = Sequence{"default", "import", "from", "to", "extends"};%]
 import "DSL2SysMLine-util.eol";
 
 pre{

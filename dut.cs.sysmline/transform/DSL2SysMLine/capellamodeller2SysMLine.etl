@@ -15737,14 +15737,14 @@ rule OperationalCapability
 		outgoingCapabilityAllocation.valuePart = s.outgoingCapabilityAllocation.getEReference();
 		t.body.add(outgoingCapabilityAllocation);
 	}
-	//OperationalCapability.OperationalCapability -> EReference : extends
-	if (s.extends.getEReference() != null){
-		var extends = new SysMLine!ItemUsage;
-		extends.isReference = true;
-		extends.featureNote.add(":>");
-		extends.featureSpecialization.add("extends");
-		extends.valuePart = s.extends.getEReference();
-		t.body.add(extends);
+	//OperationalCapability.OperationalCapability -> EReference : extends_
+	if (s.~extends.getEReference() != null){
+		var extends_ = new SysMLine!ItemUsage;
+		extends_.isReference = true;
+		extends_.featureNote.add(":>");
+		extends_.featureSpecialization.add("'extends'");
+		extends_.valuePart = s.extends_.getEReference();
+		t.body.add(extends_);
 	}
 	//OperationalCapability.OperationalCapability -> EReference : extending
 	if (s.extending.getEReference() != null){
@@ -26124,14 +26124,14 @@ rule Capability
 		outgoingCapabilityAllocation.valuePart = s.outgoingCapabilityAllocation.getEReference();
 		t.body.add(outgoingCapabilityAllocation);
 	}
-	//Capability.Capability -> EReference : extends
-	if (s.extends.getEReference() != null){
-		var extends = new SysMLine!ItemUsage;
-		extends.isReference = true;
-		extends.featureNote.add(":>");
-		extends.featureSpecialization.add("extends");
-		extends.valuePart = s.extends.getEReference();
-		t.body.add(extends);
+	//Capability.Capability -> EReference : extends_
+	if (s.~extends.getEReference() != null){
+		var extends_ = new SysMLine!ItemUsage;
+		extends_.isReference = true;
+		extends_.featureNote.add(":>");
+		extends_.featureSpecialization.add("'extends'");
+		extends_.valuePart = s.extends_.getEReference();
+		t.body.add(extends_);
 	}
 	//Capability.Capability -> EReference : extending
 	if (s.extending.getEReference() != null){
@@ -31270,14 +31270,14 @@ rule CapabilityRealization
 		outgoingCapabilityAllocation.valuePart = s.outgoingCapabilityAllocation.getEReference();
 		t.body.add(outgoingCapabilityAllocation);
 	}
-	//CapabilityRealization.CapabilityRealization -> EReference : extends
-	if (s.extends.getEReference() != null){
-		var extends = new SysMLine!ItemUsage;
-		extends.isReference = true;
-		extends.featureNote.add(":>");
-		extends.featureSpecialization.add("extends");
-		extends.valuePart = s.extends.getEReference();
-		t.body.add(extends);
+	//CapabilityRealization.CapabilityRealization -> EReference : extends_
+	if (s.~extends.getEReference() != null){
+		var extends_ = new SysMLine!ItemUsage;
+		extends_.isReference = true;
+		extends_.featureNote.add(":>");
+		extends_.featureSpecialization.add("'extends'");
+		extends_.valuePart = s.extends_.getEReference();
+		t.body.add(extends_);
 	}
 	//CapabilityRealization.CapabilityRealization -> EReference : extending
 	if (s.extending.getEReference() != null){
