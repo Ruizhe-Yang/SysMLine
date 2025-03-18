@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="ASCII"?>
+<Namespace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="sysmline" xsi:schemaLocation="sysmline metamodel/sysmline/sysmline.ecore">
+  <body xsi:type="Package" declaredName="gsn">
+    <body xsi:type="NamespaceImport" hasVisibility="true" declaredName="ecore"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="argumentation"/>
+    <body xsi:type="ItemDefinition" declaredName="Module">
+      <SubclassificationPart xsi:nil="true"/>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ContractModule">
+      <SubclassificationPart xsi:nil="true"/>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ChoiceNode">
+      <body xsi:type="AttributeUsage" declaredName="choice" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <SubclassificationPart xsi:nil="true"/>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Context">
+      <body xsi:type="AttributeUsage" declaredName="isPublic" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="refersToExternalMaterial" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <SubclassificationPart xsi:nil="true"/>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Strategy">
+      <body xsi:type="AttributeUsage" declaredName="undeveloped" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <SubclassificationPart xsi:nil="true"/>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Goal">
+      <body xsi:type="AttributeUsage" declaredName="isPublic" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="undeveloped" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="toBeSupportedByContract" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <SubclassificationPart xsi:nil="true"/>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Justification">
+      <SubclassificationPart xsi:nil="true"/>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Assumption">
+      <SubclassificationPart xsi:nil="true"/>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="AwayGoal">
+      <SubclassificationPart xsi:nil="true"/>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="AwaySolution">
+      <SubclassificationPart xsi:nil="true"/>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="AwayContext">
+      <SubclassificationPart xsi:nil="true"/>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ModuleReference">
+      <body xsi:type="ItemUsage" declaredName="module" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Module</featureSpecialization>
+      </body>
+      <SubclassificationPart xsi:nil="true"/>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ContractModuleReference">
+      <body xsi:type="ItemUsage" declaredName="module" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ContractModule</featureSpecialization>
+      </body>
+      <SubclassificationPart xsi:nil="true"/>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Solution">
+      <body xsi:type="AttributeUsage" declaredName="isPublic" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <SubclassificationPart xsi:nil="true"/>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="SupportedBy">
+      <body xsi:type="AttributeUsage" declaredName="isMany" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="isOptional" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="isChoice" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <SubclassificationPart xsi:nil="true"/>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="InContextOf">
+      <body xsi:type="AttributeUsage" declaredName="isMany" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="isOptional" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="isChoice" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <SubclassificationPart xsi:nil="true"/>
+    </body>
+  </body>
+</Namespace>

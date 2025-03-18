@@ -1,0 +1,494 @@
+import "DSL2SysMLine-util.eol";
+
+pre{
+	var eObjectSequence = new Sequence;
+	var KeyWords = baseKeyWords();
+	init_assuranceCase();
+	main_assuranceCase();
+}
+
+post{
+	("[ETL] assuranceCase2SysMLine >> " + SysMLine!Package.all.first().declaredName + ".sysmline").println();
+}
+
+operation main_assuranceCase(){
+	var rootEcore = DSL!EObject.all.first();
+	var rootSysMLine = new SysMLine!Namespace;
+	var rootPackage = new SysMLine!Package;
+	rootPackage.declaredName = "assuranceCase_model";
+	rootSysMLine.body.add(rootPackage);
+	rootPackage.addNamespaceImport("assuranceCase");
+	rootEcore.addNodeTo(rootPackage);
+}
+
+operation init_assuranceCase(){
+	//assuranceCase.AssuranceCasePackage -> Instantiation
+	var idAssuranceCasePackage = 0;
+	for (eAssuranceCasePackage in DSL!EObject.all.select(s|s.isTypeOf(DSL!AssuranceCasePackage))){
+		var eAssuranceCasePackageTuple = Tuple{"key"=eAssuranceCasePackage.type().name.asString()+"_"+(idAssuranceCasePackage++).asString(),"value"= eAssuranceCasePackage};
+		eObjectSequence.add(eAssuranceCasePackageTuple);
+	}
+	//assuranceCase.AssuranceCasePackageBinding -> Instantiation
+	var idAssuranceCasePackageBinding = 0;
+	for (eAssuranceCasePackageBinding in DSL!EObject.all.select(s|s.isTypeOf(DSL!AssuranceCasePackageBinding))){
+		var eAssuranceCasePackageBindingTuple = Tuple{"key"=eAssuranceCasePackageBinding.type().name.asString()+"_"+(idAssuranceCasePackageBinding++).asString(),"value"= eAssuranceCasePackageBinding};
+		eObjectSequence.add(eAssuranceCasePackageBindingTuple);
+	}
+	//assuranceCase.AssuranceCasePackageInterface -> Instantiation
+	var idAssuranceCasePackageInterface = 0;
+	for (eAssuranceCasePackageInterface in DSL!EObject.all.select(s|s.isTypeOf(DSL!AssuranceCasePackageInterface))){
+		var eAssuranceCasePackageInterfaceTuple = Tuple{"key"=eAssuranceCasePackageInterface.type().name.asString()+"_"+(idAssuranceCasePackageInterface++).asString(),"value"= eAssuranceCasePackageInterface};
+		eObjectSequence.add(eAssuranceCasePackageInterfaceTuple);
+	}
+}
+
+@abstract
+rule Base
+	transform s : DSL!EObject
+	to t : SysMLine!ItemUsage{
+	t.declaredName = s.getDeclaredName();
+	t.featureNote.add(":");
+	t.featureSpecialization.add(s.getfeatureSpecialization());
+	if (s.eContainingFeature != null and s.eContainingFeature.name != null){
+		t.featureNote.add(":>");
+		t.featureSpecialization.add(s.eContainingFeature().name);
+	}
+}
+
+// assuranceCase.ecore
+@lazy
+rule AssuranceCasePackage
+	transform s : DSL!AssuranceCasePackage
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//AssuranceCasePackage.AssuranceCasePackage -> EAttribute : gid
+	if (s.gid.getEAttribute() != null){
+		var gid = new SysMLine!AttributeUsage;
+		gid.featureNote.add(":>>");
+		gid.featureSpecialization.add("gid");
+		gid.valuePart = s.gid.getEAttribute();
+		t.body.add(gid);
+	}
+	//AssuranceCasePackage.AssuranceCasePackage -> EAttribute : isCitation
+	if (s.isCitation.getEAttribute() != null){
+		var isCitation = new SysMLine!AttributeUsage;
+		isCitation.featureNote.add(":>>");
+		isCitation.featureSpecialization.add("isCitation");
+		isCitation.valuePart = s.isCitation.getEAttribute();
+		t.body.add(isCitation);
+	}
+	//AssuranceCasePackage.AssuranceCasePackage -> EAttribute : isAbstract
+	if (s.isAbstract.getEAttribute() != null){
+		var isAbstract = new SysMLine!AttributeUsage;
+		isAbstract.featureNote.add(":>>");
+		isAbstract.featureSpecialization.add("isAbstract");
+		isAbstract.valuePart = s.isAbstract.getEAttribute();
+		t.body.add(isAbstract);
+	}
+	//AssuranceCasePackage.AssuranceCasePackage -> EReference : citedElement
+	if (s.citedElement.getEReference() != null){
+		var citedElement = new SysMLine!ItemUsage;
+		citedElement.isReference = true;
+		citedElement.featureNote.add(":>");
+		citedElement.featureSpecialization.add("citedElement");
+		citedElement.valuePart = s.citedElement.getEReference();
+		t.body.add(citedElement);
+	}
+	//AssuranceCasePackage.AssuranceCasePackage -> EReference : abstractForm
+	if (s.abstractForm.getEReference() != null){
+		var abstractForm = new SysMLine!ItemUsage;
+		abstractForm.isReference = true;
+		abstractForm.featureNote.add(":>");
+		abstractForm.featureSpecialization.add("abstractForm");
+		abstractForm.valuePart = s.abstractForm.getEReference();
+		t.body.add(abstractForm);
+	}
+	//AssuranceCasePackage.AssuranceCasePackage -> EReference : name
+	if (s.name.getEReference() != null){
+		var name = new SysMLine!ItemUsage;
+		name.isReference = true;
+		name.featureNote.add(":>");
+		name.featureSpecialization.add("name");
+		name.valuePart = s.name.getEReference();
+		t.body.add(name);
+	}
+	//AssuranceCasePackage.AssuranceCasePackage -> EReference : description
+	if (s.description.getEReference() != null){
+		var description = new SysMLine!ItemUsage;
+		description.isReference = true;
+		description.featureNote.add(":>");
+		description.featureSpecialization.add("description");
+		description.valuePart = s.description.getEReference();
+		t.body.add(description);
+	}
+	//AssuranceCasePackage.AssuranceCasePackage -> EReference : implementationConstraint
+	if (s.implementationConstraint.getEReference() != null){
+		var implementationConstraint = new SysMLine!ItemUsage;
+		implementationConstraint.isReference = true;
+		implementationConstraint.featureNote.add(":>");
+		implementationConstraint.featureSpecialization.add("implementationConstraint");
+		implementationConstraint.valuePart = s.implementationConstraint.getEReference();
+		t.body.add(implementationConstraint);
+	}
+	//AssuranceCasePackage.AssuranceCasePackage -> EReference : note
+	if (s.note.getEReference() != null){
+		var note = new SysMLine!ItemUsage;
+		note.isReference = true;
+		note.featureNote.add(":>");
+		note.featureSpecialization.add("note");
+		note.valuePart = s.note.getEReference();
+		t.body.add(note);
+	}
+	//AssuranceCasePackage.AssuranceCasePackage -> EReference : taggedValue
+	if (s.taggedValue.getEReference() != null){
+		var taggedValue = new SysMLine!ItemUsage;
+		taggedValue.isReference = true;
+		taggedValue.featureNote.add(":>");
+		taggedValue.featureSpecialization.add("taggedValue");
+		taggedValue.valuePart = s.taggedValue.getEReference();
+		t.body.add(taggedValue);
+	}
+	//AssuranceCasePackage.AssuranceCasePackage -> EReference : assuranceCasePackage
+	if (s.assuranceCasePackage.getEReference() != null){
+		var assuranceCasePackage = new SysMLine!ItemUsage;
+		assuranceCasePackage.isReference = true;
+		assuranceCasePackage.featureNote.add(":>");
+		assuranceCasePackage.featureSpecialization.add("assuranceCasePackage");
+		assuranceCasePackage.valuePart = s.assuranceCasePackage.getEReference();
+		t.body.add(assuranceCasePackage);
+	}
+	//AssuranceCasePackage.AssuranceCasePackage -> EReference : interface
+	if (s.interface.getEReference() != null){
+		var interface = new SysMLine!ItemUsage;
+		interface.isReference = true;
+		interface.featureNote.add(":>");
+		interface.featureSpecialization.add("interface");
+		interface.valuePart = s.interface.getEReference();
+		t.body.add(interface);
+	}
+	//AssuranceCasePackage.AssuranceCasePackage -> EReference : artifactPackage
+	if (s.artifactPackage.getEReference() != null){
+		var artifactPackage = new SysMLine!ItemUsage;
+		artifactPackage.isReference = true;
+		artifactPackage.featureNote.add(":>");
+		artifactPackage.featureSpecialization.add("artifactPackage");
+		artifactPackage.valuePart = s.artifactPackage.getEReference();
+		t.body.add(artifactPackage);
+	}
+	//AssuranceCasePackage.AssuranceCasePackage -> EReference : argumentPackage
+	if (s.argumentPackage.getEReference() != null){
+		var argumentPackage = new SysMLine!ItemUsage;
+		argumentPackage.isReference = true;
+		argumentPackage.featureNote.add(":>");
+		argumentPackage.featureSpecialization.add("argumentPackage");
+		argumentPackage.valuePart = s.argumentPackage.getEReference();
+		t.body.add(argumentPackage);
+	}
+	//AssuranceCasePackage.AssuranceCasePackage -> EReference : terminologyPackage
+	if (s.terminologyPackage.getEReference() != null){
+		var terminologyPackage = new SysMLine!ItemUsage;
+		terminologyPackage.isReference = true;
+		terminologyPackage.featureNote.add(":>");
+		terminologyPackage.featureSpecialization.add("terminologyPackage");
+		terminologyPackage.valuePart = s.terminologyPackage.getEReference();
+		t.body.add(terminologyPackage);
+	}
+}
+
+@lazy
+rule AssuranceCasePackageBinding
+	transform s : DSL!AssuranceCasePackageBinding
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//AssuranceCasePackageBinding.AssuranceCasePackageBinding -> EAttribute : gid
+	if (s.gid.getEAttribute() != null){
+		var gid = new SysMLine!AttributeUsage;
+		gid.featureNote.add(":>>");
+		gid.featureSpecialization.add("gid");
+		gid.valuePart = s.gid.getEAttribute();
+		t.body.add(gid);
+	}
+	//AssuranceCasePackageBinding.AssuranceCasePackageBinding -> EAttribute : isCitation
+	if (s.isCitation.getEAttribute() != null){
+		var isCitation = new SysMLine!AttributeUsage;
+		isCitation.featureNote.add(":>>");
+		isCitation.featureSpecialization.add("isCitation");
+		isCitation.valuePart = s.isCitation.getEAttribute();
+		t.body.add(isCitation);
+	}
+	//AssuranceCasePackageBinding.AssuranceCasePackageBinding -> EAttribute : isAbstract
+	if (s.isAbstract.getEAttribute() != null){
+		var isAbstract = new SysMLine!AttributeUsage;
+		isAbstract.featureNote.add(":>>");
+		isAbstract.featureSpecialization.add("isAbstract");
+		isAbstract.valuePart = s.isAbstract.getEAttribute();
+		t.body.add(isAbstract);
+	}
+	//AssuranceCasePackageBinding.AssuranceCasePackageBinding -> EReference : citedElement
+	if (s.citedElement.getEReference() != null){
+		var citedElement = new SysMLine!ItemUsage;
+		citedElement.isReference = true;
+		citedElement.featureNote.add(":>");
+		citedElement.featureSpecialization.add("citedElement");
+		citedElement.valuePart = s.citedElement.getEReference();
+		t.body.add(citedElement);
+	}
+	//AssuranceCasePackageBinding.AssuranceCasePackageBinding -> EReference : abstractForm
+	if (s.abstractForm.getEReference() != null){
+		var abstractForm = new SysMLine!ItemUsage;
+		abstractForm.isReference = true;
+		abstractForm.featureNote.add(":>");
+		abstractForm.featureSpecialization.add("abstractForm");
+		abstractForm.valuePart = s.abstractForm.getEReference();
+		t.body.add(abstractForm);
+	}
+	//AssuranceCasePackageBinding.AssuranceCasePackageBinding -> EReference : name
+	if (s.name.getEReference() != null){
+		var name = new SysMLine!ItemUsage;
+		name.isReference = true;
+		name.featureNote.add(":>");
+		name.featureSpecialization.add("name");
+		name.valuePart = s.name.getEReference();
+		t.body.add(name);
+	}
+	//AssuranceCasePackageBinding.AssuranceCasePackageBinding -> EReference : description
+	if (s.description.getEReference() != null){
+		var description = new SysMLine!ItemUsage;
+		description.isReference = true;
+		description.featureNote.add(":>");
+		description.featureSpecialization.add("description");
+		description.valuePart = s.description.getEReference();
+		t.body.add(description);
+	}
+	//AssuranceCasePackageBinding.AssuranceCasePackageBinding -> EReference : implementationConstraint
+	if (s.implementationConstraint.getEReference() != null){
+		var implementationConstraint = new SysMLine!ItemUsage;
+		implementationConstraint.isReference = true;
+		implementationConstraint.featureNote.add(":>");
+		implementationConstraint.featureSpecialization.add("implementationConstraint");
+		implementationConstraint.valuePart = s.implementationConstraint.getEReference();
+		t.body.add(implementationConstraint);
+	}
+	//AssuranceCasePackageBinding.AssuranceCasePackageBinding -> EReference : note
+	if (s.note.getEReference() != null){
+		var note = new SysMLine!ItemUsage;
+		note.isReference = true;
+		note.featureNote.add(":>");
+		note.featureSpecialization.add("note");
+		note.valuePart = s.note.getEReference();
+		t.body.add(note);
+	}
+	//AssuranceCasePackageBinding.AssuranceCasePackageBinding -> EReference : taggedValue
+	if (s.taggedValue.getEReference() != null){
+		var taggedValue = new SysMLine!ItemUsage;
+		taggedValue.isReference = true;
+		taggedValue.featureNote.add(":>");
+		taggedValue.featureSpecialization.add("taggedValue");
+		taggedValue.valuePart = s.taggedValue.getEReference();
+		t.body.add(taggedValue);
+	}
+	//AssuranceCasePackageBinding.AssuranceCasePackageBinding -> EReference : assuranceCasePackage
+	if (s.assuranceCasePackage.getEReference() != null){
+		var assuranceCasePackage = new SysMLine!ItemUsage;
+		assuranceCasePackage.isReference = true;
+		assuranceCasePackage.featureNote.add(":>");
+		assuranceCasePackage.featureSpecialization.add("assuranceCasePackage");
+		assuranceCasePackage.valuePart = s.assuranceCasePackage.getEReference();
+		t.body.add(assuranceCasePackage);
+	}
+	//AssuranceCasePackageBinding.AssuranceCasePackageBinding -> EReference : interface
+	if (s.interface.getEReference() != null){
+		var interface = new SysMLine!ItemUsage;
+		interface.isReference = true;
+		interface.featureNote.add(":>");
+		interface.featureSpecialization.add("interface");
+		interface.valuePart = s.interface.getEReference();
+		t.body.add(interface);
+	}
+	//AssuranceCasePackageBinding.AssuranceCasePackageBinding -> EReference : artifactPackage
+	if (s.artifactPackage.getEReference() != null){
+		var artifactPackage = new SysMLine!ItemUsage;
+		artifactPackage.isReference = true;
+		artifactPackage.featureNote.add(":>");
+		artifactPackage.featureSpecialization.add("artifactPackage");
+		artifactPackage.valuePart = s.artifactPackage.getEReference();
+		t.body.add(artifactPackage);
+	}
+	//AssuranceCasePackageBinding.AssuranceCasePackageBinding -> EReference : argumentPackage
+	if (s.argumentPackage.getEReference() != null){
+		var argumentPackage = new SysMLine!ItemUsage;
+		argumentPackage.isReference = true;
+		argumentPackage.featureNote.add(":>");
+		argumentPackage.featureSpecialization.add("argumentPackage");
+		argumentPackage.valuePart = s.argumentPackage.getEReference();
+		t.body.add(argumentPackage);
+	}
+	//AssuranceCasePackageBinding.AssuranceCasePackageBinding -> EReference : terminologyPackage
+	if (s.terminologyPackage.getEReference() != null){
+		var terminologyPackage = new SysMLine!ItemUsage;
+		terminologyPackage.isReference = true;
+		terminologyPackage.featureNote.add(":>");
+		terminologyPackage.featureSpecialization.add("terminologyPackage");
+		terminologyPackage.valuePart = s.terminologyPackage.getEReference();
+		t.body.add(terminologyPackage);
+	}
+	//AssuranceCasePackageBinding.AssuranceCasePackageBinding -> EReference : participantPackage
+	if (s.participantPackage.getEReference() != null){
+		var participantPackage = new SysMLine!ItemUsage;
+		participantPackage.isReference = true;
+		participantPackage.featureNote.add(":>");
+		participantPackage.featureSpecialization.add("participantPackage");
+		participantPackage.valuePart = s.participantPackage.getEReference();
+		t.body.add(participantPackage);
+	}
+}
+
+@lazy
+rule AssuranceCasePackageInterface
+	transform s : DSL!AssuranceCasePackageInterface
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//AssuranceCasePackageInterface.AssuranceCasePackageInterface -> EAttribute : gid
+	if (s.gid.getEAttribute() != null){
+		var gid = new SysMLine!AttributeUsage;
+		gid.featureNote.add(":>>");
+		gid.featureSpecialization.add("gid");
+		gid.valuePart = s.gid.getEAttribute();
+		t.body.add(gid);
+	}
+	//AssuranceCasePackageInterface.AssuranceCasePackageInterface -> EAttribute : isCitation
+	if (s.isCitation.getEAttribute() != null){
+		var isCitation = new SysMLine!AttributeUsage;
+		isCitation.featureNote.add(":>>");
+		isCitation.featureSpecialization.add("isCitation");
+		isCitation.valuePart = s.isCitation.getEAttribute();
+		t.body.add(isCitation);
+	}
+	//AssuranceCasePackageInterface.AssuranceCasePackageInterface -> EAttribute : isAbstract
+	if (s.isAbstract.getEAttribute() != null){
+		var isAbstract = new SysMLine!AttributeUsage;
+		isAbstract.featureNote.add(":>>");
+		isAbstract.featureSpecialization.add("isAbstract");
+		isAbstract.valuePart = s.isAbstract.getEAttribute();
+		t.body.add(isAbstract);
+	}
+	//AssuranceCasePackageInterface.AssuranceCasePackageInterface -> EReference : citedElement
+	if (s.citedElement.getEReference() != null){
+		var citedElement = new SysMLine!ItemUsage;
+		citedElement.isReference = true;
+		citedElement.featureNote.add(":>");
+		citedElement.featureSpecialization.add("citedElement");
+		citedElement.valuePart = s.citedElement.getEReference();
+		t.body.add(citedElement);
+	}
+	//AssuranceCasePackageInterface.AssuranceCasePackageInterface -> EReference : abstractForm
+	if (s.abstractForm.getEReference() != null){
+		var abstractForm = new SysMLine!ItemUsage;
+		abstractForm.isReference = true;
+		abstractForm.featureNote.add(":>");
+		abstractForm.featureSpecialization.add("abstractForm");
+		abstractForm.valuePart = s.abstractForm.getEReference();
+		t.body.add(abstractForm);
+	}
+	//AssuranceCasePackageInterface.AssuranceCasePackageInterface -> EReference : name
+	if (s.name.getEReference() != null){
+		var name = new SysMLine!ItemUsage;
+		name.isReference = true;
+		name.featureNote.add(":>");
+		name.featureSpecialization.add("name");
+		name.valuePart = s.name.getEReference();
+		t.body.add(name);
+	}
+	//AssuranceCasePackageInterface.AssuranceCasePackageInterface -> EReference : description
+	if (s.description.getEReference() != null){
+		var description = new SysMLine!ItemUsage;
+		description.isReference = true;
+		description.featureNote.add(":>");
+		description.featureSpecialization.add("description");
+		description.valuePart = s.description.getEReference();
+		t.body.add(description);
+	}
+	//AssuranceCasePackageInterface.AssuranceCasePackageInterface -> EReference : implementationConstraint
+	if (s.implementationConstraint.getEReference() != null){
+		var implementationConstraint = new SysMLine!ItemUsage;
+		implementationConstraint.isReference = true;
+		implementationConstraint.featureNote.add(":>");
+		implementationConstraint.featureSpecialization.add("implementationConstraint");
+		implementationConstraint.valuePart = s.implementationConstraint.getEReference();
+		t.body.add(implementationConstraint);
+	}
+	//AssuranceCasePackageInterface.AssuranceCasePackageInterface -> EReference : note
+	if (s.note.getEReference() != null){
+		var note = new SysMLine!ItemUsage;
+		note.isReference = true;
+		note.featureNote.add(":>");
+		note.featureSpecialization.add("note");
+		note.valuePart = s.note.getEReference();
+		t.body.add(note);
+	}
+	//AssuranceCasePackageInterface.AssuranceCasePackageInterface -> EReference : taggedValue
+	if (s.taggedValue.getEReference() != null){
+		var taggedValue = new SysMLine!ItemUsage;
+		taggedValue.isReference = true;
+		taggedValue.featureNote.add(":>");
+		taggedValue.featureSpecialization.add("taggedValue");
+		taggedValue.valuePart = s.taggedValue.getEReference();
+		t.body.add(taggedValue);
+	}
+	//AssuranceCasePackageInterface.AssuranceCasePackageInterface -> EReference : assuranceCasePackage
+	if (s.assuranceCasePackage.getEReference() != null){
+		var assuranceCasePackage = new SysMLine!ItemUsage;
+		assuranceCasePackage.isReference = true;
+		assuranceCasePackage.featureNote.add(":>");
+		assuranceCasePackage.featureSpecialization.add("assuranceCasePackage");
+		assuranceCasePackage.valuePart = s.assuranceCasePackage.getEReference();
+		t.body.add(assuranceCasePackage);
+	}
+	//AssuranceCasePackageInterface.AssuranceCasePackageInterface -> EReference : interface
+	if (s.interface.getEReference() != null){
+		var interface = new SysMLine!ItemUsage;
+		interface.isReference = true;
+		interface.featureNote.add(":>");
+		interface.featureSpecialization.add("interface");
+		interface.valuePart = s.interface.getEReference();
+		t.body.add(interface);
+	}
+	//AssuranceCasePackageInterface.AssuranceCasePackageInterface -> EReference : artifactPackage
+	if (s.artifactPackage.getEReference() != null){
+		var artifactPackage = new SysMLine!ItemUsage;
+		artifactPackage.isReference = true;
+		artifactPackage.featureNote.add(":>");
+		artifactPackage.featureSpecialization.add("artifactPackage");
+		artifactPackage.valuePart = s.artifactPackage.getEReference();
+		t.body.add(artifactPackage);
+	}
+	//AssuranceCasePackageInterface.AssuranceCasePackageInterface -> EReference : argumentPackage
+	if (s.argumentPackage.getEReference() != null){
+		var argumentPackage = new SysMLine!ItemUsage;
+		argumentPackage.isReference = true;
+		argumentPackage.featureNote.add(":>");
+		argumentPackage.featureSpecialization.add("argumentPackage");
+		argumentPackage.valuePart = s.argumentPackage.getEReference();
+		t.body.add(argumentPackage);
+	}
+	//AssuranceCasePackageInterface.AssuranceCasePackageInterface -> EReference : terminologyPackage
+	if (s.terminologyPackage.getEReference() != null){
+		var terminologyPackage = new SysMLine!ItemUsage;
+		terminologyPackage.isReference = true;
+		terminologyPackage.featureNote.add(":>");
+		terminologyPackage.featureSpecialization.add("terminologyPackage");
+		terminologyPackage.valuePart = s.terminologyPackage.getEReference();
+		t.body.add(terminologyPackage);
+	}
+	//AssuranceCasePackageInterface.AssuranceCasePackageInterface -> EReference : implements
+	if (s.implements.getEReference() != null){
+		var implements = new SysMLine!ItemUsage;
+		implements.isReference = true;
+		implements.featureNote.add(":>");
+		implements.featureSpecialization.add("implements");
+		implements.valuePart = s.implements.getEReference();
+		t.body.add(implements);
+	}
+}
+
+

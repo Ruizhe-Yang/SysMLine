@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="ASCII"?>
+<Namespace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="sysmline" xsi:schemaLocation="sysmline metamodel/sysmline/sysmline.ecore">
+  <body xsi:type="Package" declaredName="assuranceCase">
+    <body xsi:type="NamespaceImport" hasVisibility="true" declaredName="ecore"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="artifact"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="argumentation"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="terminology"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="base"/>
+    <body xsi:type="ItemDefinition" declaredName="AssuranceCasePackage">
+      <body xsi:type="ItemUsage" declaredName="assuranceCasePackage" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>AssuranceCasePackage</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="'interface'" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>AssuranceCasePackageInterface</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="artifactPackage" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ArtifactPackage</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="argumentPackage" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ArgumentPackage</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="terminologyPackage" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>TerminologyPackage</featureSpecialization>
+      </body>
+      <SubclassificationPart xsi:nil="true"/>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="AssuranceCasePackageBinding">
+      <body xsi:type="ItemUsage" declaredName="participantPackage" multiplicityRange="[2..*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>AssuranceCasePackage</featureSpecialization>
+      </body>
+      <SubclassificationPart>AssuranceCasePackage</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="AssuranceCasePackageInterface">
+      <body xsi:type="ItemUsage" declaredName="implements" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>AssuranceCasePackage</featureSpecialization>
+      </body>
+      <SubclassificationPart>AssuranceCasePackage</SubclassificationPart>
+    </body>
+  </body>
+</Namespace>

@@ -1,44 +1,22 @@
-[% import "Ecore2ETL-util.eol"; %]
 [%var fileName = root.name;%]
-[%root.println();%]
+[%root.name.println("[gen-ETL] root Package >> ");%]
+[%for (epackage in Ecore!EPackage.all){%]
+[%if (root.name != epackage.name){%]
+[%epackage.name.println("[gen-ETL] referenced Package>> ");%]
+[%}%]
+[%}%]
 [%var KeyWords = Sequence{"default", "import", "from", "to"};%]
 import "DSL2SysMLine-util.eol";
 
 pre{
-	"------------------ ETL Start ------------------".println();
 	var eObjectSequence = new Sequence;
-	var KeyWords = Sequence{"about", "abstract", "accept", "action", "actor",
-							"after", "alias", "all", "allocate", "allocation",
-							"analysis", "and", "as", "assign", "assert",
-							"assoc", "assume", "at", "attribute", "bind",
-							"binding", "block", "by", "calc", "case",
-							"comment", "concern", "connect", "connection", "constraint",
-							"crosses", "decide", "def", "default", "defined",
-							"dependency", "derived", "do", "doc", "else",
-							"end", "entry", "enum", "event", "exhibit",
-							"exit", "expose", "filter", "first", "flow",
-							"for", "fork", "frame", "from", "hastype",
-							"if", "implies", "import", "in", "include",
-							"individual", "inout", "interface", "istype", "item",
-							"join", "language", "loop", "merge", "message",
-							"metadata", "nonunique", "not", "objective", "occurrence",
-							"of", "or", "ordered", "out", "package",
-							"parallel", "part", "perform", "port", "private",
-							"protected", "public", "readonly", "redefines", "ref",
-							"references", "render", "rendering", "rep", "require",
-							"requirement", "return", "satisfy", "send", "snapshot",
-							"specializes", "stakeholder", "state", "subject", "subsets",
-							"succession", "terminate", "then", "timeslice", "to",
-							"transition", "until", "use", "variant", "variation",
-							"verification", "verify", "via", "view", "viewpoint",
-							"when", "while", "xor", "value", "any"
-	  						};
+	var KeyWords = baseKeyWords();
 	init_[%=fileName%]();
 	main_[%=fileName%]();
 }
 
 post{
-	"------------------ ETL Over  ------------------".println();
+	("[ETL] [%=fileName%]2SysMLine >> " + SysMLine!Package.all.first().declaredName + ".sysmline").println();
 }
 
 operation main_[%=fileName%](){
@@ -47,27 +25,29 @@ operation main_[%=fileName%](){
 	var rootPackage = new SysMLine!Package;
 	rootPackage.declaredName = "[%=fileName%]_model";
 	rootSysMLine.body.add(rootPackage);
-	var namespaceImport = new SysMLine!NamespaceImport;
-	namespaceImport.declaredName = "[%=fileName%]";
-	rootPackage.body.add(namespaceImport);
+	[%for (epackage in Ecore!EPackage.all){%]
+	rootPackage.addNamespaceImport("[%=epackage.name%]");
+	[%}%]
 	rootEcore.addNodeTo(rootPackage);
 }
 
 operation init_[%=fileName%](){
-	[%for (eClass in root.eClassifiers.select(s|s.type().name == "EClass")){%]
-	//[%=eClass.name%] -> Instantiation
+	[%for (epackage in Ecore!EPackage.all){%]
+	[%for (eClass in epackage.eClassifiers.select(s|s.type().name == "EClass")){%]
+	//[%=epackage.name%].[%=eClass.name%] -> Instantiation
 	var id[%=eClass.name%] = 0;
 	for (e[%=eClass.name%] in DSL!EObject.all.select(s|s.isTypeOf(DSL![%=eClass.name%]))){
 		var e[%=eClass.name%]Tuple = Tuple{"key"=e[%=eClass.name%].type().name.asString()+"_"+(id[%=eClass.name%]++).asString(),"value"= e[%=eClass.name%]};
 		eObjectSequence.add(e[%=eClass.name%]Tuple);
 	}
 	[%}%]
+	[%}%]
 }
 
 @abstract
 rule Base
 	transform s : DSL!EObject
-	to t : SysMLine!PartUsage{
+	to t : SysMLine!ItemUsage{
 	t.declaredName = s.getDeclaredName();
 	t.featureNote.add(":");
 	t.featureSpecialization.add(s.getfeatureSpecialization());
@@ -76,16 +56,19 @@ rule Base
 		t.featureSpecialization.add(s.eContainingFeature().name);
 	}
 }
-	
-[%=root.main()%]
+
+[%for (epackage in Ecore!EPackage.all){%]
+// [%=epackage.name%].ecore
+[%=epackage.main()%]
+[%}%]
 [% operation Ecore!EClass writeEClass(){%]
 @lazy
 rule [%=self.name%]
 	transform s : DSL![%=self.name%]
-	to t : SysMLine!PartUsage
+	to t : SysMLine!ItemUsage
 	extends Base{
 	[%	for (eAttribute in self.eAllAttributes){%]
-	//[%=self.name%] -> EAttribute : [%=eAttribute.name%]
+	//[%=self.name%].[%=self.name%] -> EAttribute : [%=eAttribute.name%]
 	if (s.[%=eAttribute.name%].getEAttribute() != null){
 		var [%=eAttribute.name%] = new SysMLine!AttributeUsage;
 		[%=eAttribute.name%].featureNote.add(":>>");
@@ -95,9 +78,9 @@ rule [%=self.name%]
 	}
 	[%}%]
 	[%	for (eReference in self.eAllReferences){%]
-	//[%=self.name%] -> EReference : [%=eReference.name.clearKeyWord(0)%]
+	//[%=self.name%].[%=self.name%] -> EReference : [%=eReference.name.clearKeyWord(0)%]
 	if (s.[%=eReference.name.clearKeyWord(2)%].getEReference() != null){
-		var [%=eReference.name.clearKeyWord(0)%] = new SysMLine!PartUsage;
+		var [%=eReference.name.clearKeyWord(0)%] = new SysMLine!ItemUsage;
 		[%=eReference.name.clearKeyWord(0)%].isReference = true;
 		[%=eReference.name.clearKeyWord(0)%].featureNote.add(":>");
 		[%=eReference.name.clearKeyWord(0)%].featureSpecialization.add("[%=eReference.name.clearKeyWord(1)%]");
@@ -109,4 +92,26 @@ rule [%=self.name%]
 
 [%}%]
 
+[%
+operation Ecore!EPackage main(){ 
+	var eClassSequence = self.eClassifiers.select(s|s.type().name == "EClass");
+	for (eClass in eClassSequence){
+		eClass.writeEClass();
+	} 
+}
 
+operation String clearKeyWord(i){
+	if (KeyWords.includes(self) and i == 0){
+		return self+"_";
+	}
+	else if (KeyWords.includes(self) and i == 1){
+		return "'"+self+"'";
+	}
+	else if (KeyWords.includes(self) and i == 2){
+		return "~"+self;
+	}
+	else{
+		return self;
+	}
+}
+%]

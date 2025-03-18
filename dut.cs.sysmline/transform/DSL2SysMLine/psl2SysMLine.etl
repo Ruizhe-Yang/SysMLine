@@ -1,41 +1,14 @@
-
 import "DSL2SysMLine-util.eol";
 
 pre{
-	"------------------ ETL Start ------------------".println();
 	var eObjectSequence = new Sequence;
-	var KeyWords = Sequence{"about", "abstract", "accept", "action", "actor",
-							"after", "alias", "all", "allocate", "allocation",
-							"analysis", "and", "as", "assign", "assert",
-							"assoc", "assume", "at", "attribute", "bind",
-							"binding", "block", "by", "calc", "case",
-							"comment", "concern", "connect", "connection", "constraint",
-							"crosses", "decide", "def", "default", "defined",
-							"dependency", "derived", "do", "doc", "else",
-							"end", "entry", "enum", "event", "exhibit",
-							"exit", "expose", "filter", "first", "flow",
-							"for", "fork", "frame", "from", "hastype",
-							"if", "implies", "import", "in", "include",
-							"individual", "inout", "interface", "istype", "item",
-							"join", "language", "loop", "merge", "message",
-							"metadata", "nonunique", "not", "objective", "occurrence",
-							"of", "or", "ordered", "out", "package",
-							"parallel", "part", "perform", "port", "private",
-							"protected", "public", "readonly", "redefines", "ref",
-							"references", "render", "rendering", "rep", "require",
-							"requirement", "return", "satisfy", "send", "snapshot",
-							"specializes", "stakeholder", "state", "subject", "subsets",
-							"succession", "terminate", "then", "timeslice", "to",
-							"transition", "until", "use", "variant", "variation",
-							"verification", "verify", "via", "view", "viewpoint",
-							"when", "while", "xor", "value", "any"
-	  						};
+	var KeyWords = baseKeyWords();
 	init_psl();
 	main_psl();
 }
 
 post{
-	"------------------ ETL Over  ------------------".println();
+	("[ETL] psl2SysMLine >> " + SysMLine!Package.all.first().declaredName + ".sysmline").println();
 }
 
 operation main_psl(){
@@ -44,9 +17,8 @@ operation main_psl(){
 	var rootPackage = new SysMLine!Package;
 	rootPackage.declaredName = "psl_model";
 	rootSysMLine.body.add(rootPackage);
-	var namespaceImport = new SysMLine!NamespaceImport;
-	namespaceImport.declaredName = "psl";
-	rootPackage.body.add(namespaceImport);
+	rootPackage.addNamespaceImport("psl");
+	rootPackage.addNamespaceImport("pslextended");
 	rootEcore.addNodeTo(rootPackage);
 }
 
@@ -69,12 +41,18 @@ operation init_psl(){
 		var eEffortTuple = Tuple{"key"=eEffort.type().name.asString()+"_"+(idEffort++).asString(),"value"= eEffort};
 		eObjectSequence.add(eEffortTuple);
 	}
+	//Person -> Instantiation
+	var idPerson = 0;
+	for (ePerson in DSL!EObject.all.select(s|s.isTypeOf(DSL!Person))){
+		var ePersonTuple = Tuple{"key"=ePerson.type().name.asString()+"_"+(idPerson++).asString(),"value"= ePerson};
+		eObjectSequence.add(ePersonTuple);
+	}
 }
 
 @abstract
 rule Base
 	transform s : DSL!EObject
-	to t : SysMLine!PartUsage{
+	to t : SysMLine!ItemUsage{
 	t.declaredName = s.getDeclaredName();
 	t.featureNote.add(":");
 	t.featureSpecialization.add(s.getfeatureSpecialization());
@@ -83,11 +61,12 @@ rule Base
 		t.featureSpecialization.add(s.eContainingFeature().name);
 	}
 }
-	
+
+// psl.ecore
 @lazy
 rule Project
 	transform s : DSL!Project
-	to t : SysMLine!PartUsage
+	to t : SysMLine!ItemUsage
 	extends Base{
 	//Project -> EAttribute : title
 	if (s.title.getEAttribute() != null){
@@ -107,7 +86,7 @@ rule Project
 	}
 	//Project -> EReference : tasks
 	if (s.tasks.getEReference() != null){
-		var tasks = new SysMLine!PartUsage;
+		var tasks = new SysMLine!ItemUsage;
 		tasks.isReference = true;
 		tasks.featureNote.add(":>");
 		tasks.featureSpecialization.add("tasks");
@@ -116,7 +95,7 @@ rule Project
 	}
 	//Project -> EReference : people
 	if (s.people.getEReference() != null){
-		var people = new SysMLine!PartUsage;
+		var people = new SysMLine!ItemUsage;
 		people.isReference = true;
 		people.featureNote.add(":>");
 		people.featureSpecialization.add("people");
@@ -128,7 +107,7 @@ rule Project
 @lazy
 rule Task
 	transform s : DSL!Task
-	to t : SysMLine!PartUsage
+	to t : SysMLine!ItemUsage
 	extends Base{
 	//Task -> EAttribute : title
 	if (s.title.getEAttribute() != null){
@@ -156,7 +135,7 @@ rule Task
 	}
 	//Task -> EReference : effort
 	if (s.effort.getEReference() != null){
-		var effort = new SysMLine!PartUsage;
+		var effort = new SysMLine!ItemUsage;
 		effort.isReference = true;
 		effort.featureNote.add(":>");
 		effort.featureSpecialization.add("effort");
@@ -168,7 +147,7 @@ rule Task
 @lazy
 rule Effort
 	transform s : DSL!Effort
-	to t : SysMLine!PartUsage
+	to t : SysMLine!ItemUsage
 	extends Base{
 	//Effort -> EAttribute : percentage
 	if (s.percentage.getEAttribute() != null){
@@ -180,12 +159,29 @@ rule Effort
 	}
 	//Effort -> EReference : person
 	if (s.person.getEReference() != null){
-		var person = new SysMLine!PartUsage;
+		var person = new SysMLine!ItemUsage;
 		person.isReference = true;
 		person.featureNote.add(":>");
 		person.featureSpecialization.add("person");
 		person.valuePart = s.person.getEReference();
 		t.body.add(person);
+	}
+}
+
+
+// pslextended.ecore
+@lazy
+rule Person
+	transform s : DSL!Person
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//Person -> EAttribute : name
+	if (s.name.getEAttribute() != null){
+		var name = new SysMLine!AttributeUsage;
+		name.featureNote.add(":>>");
+		name.featureSpecialization.add("name");
+		name.valuePart = s.name.getEAttribute();
+		t.body.add(name);
 	}
 }
 

@@ -1,17 +1,12 @@
 rule gen_sysmlv2
 	transform root : Ecore!EPackage{
+	guard : root.name == Ecore!EPackage.all.first().name
 	template : "Ecore2ETL.egl"
 	target : root.getFileName()
 }
 
-//rule gen_sysmlv2
-//	transform root : Ecore2!EPackage{
-//	template : "Ecore2ETL.egl"
-//	target : root.getFileName()
-//}
 
 operation Ecore!EPackage getFileName(){
 	("[EGX] Ecore2SysML >> transform/DSL2SysMLine/"+self.name+"2SysMLine.etl").println();
 	return "../DSL2SysMLine/"+self.name+"2SysMLine.etl";
-//	return "../DSL2SysMLine/0002SysMLine.etl";
 }
