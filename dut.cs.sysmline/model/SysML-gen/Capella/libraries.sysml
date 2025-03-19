@@ -6,7 +6,7 @@ package libraries {
 		ref item version : ModelVersion [1];
 	}
 	item def LibraryReference :> LibraryAbstractElement{
-		ref item 'library' : ModelInformation [1];
+		ref item library : ModelInformation [1];
 		attribute accessPolicy : AccessPolicy [1];
 		ref item version : ModelVersion [1];
 	}

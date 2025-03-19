@@ -23,7 +23,8 @@ operation baseKeyWords(){
 					"succession", "terminate", "then", "timeslice", "to",
 					"transition", "until", "use", "variant", "variation",
 					"verification", "verify", "via", "view", "viewpoint",
-					"when", "while", "xor", "value", "any"
+					"when", "while", "xor", "value", "any",
+					"library"
 	  				};
 }
 
@@ -38,6 +39,7 @@ operation DSL!EObject addNodeTo(rootNode : SysMLine!Element){
 	if (self.isEntity()){
 		var node = self.equivalent();
 		rootNode.body.add(node);
+		node.declaredName.println("("+(i++).asString()+"/"+eObjectSequence.size().asString()+")"+" >> ");
 		for (child in self.eContents()){
 			child.addNodeTo(node);
 		}
@@ -53,6 +55,7 @@ operation Sequence getElementOf(typeName : String){
 }
 
 operation Any getEAttribute(){
+//	self.println();
 	if (self == "" or self == null){
 		return null;
 	}
@@ -67,12 +70,28 @@ operation Any getEAttribute(){
 			return self.asString();
 		}
 	}
-	else if (self.hasProperty("value") and (self.eClass.name == "EEnumLiteral")){
+		else if (self.type().hasProperty("name") and self.type().name == "Sequence"){
+		if (self.size() == 0){
+			return null;
+		}
+		else{
+			return self.getSequenceEString();
+		}
+	}
+	else if (self.type().hasProperty("name") and self.type().name == "OrderedSet"){
+		if (self.size() == 0){
+			return null;
+		}
+		else{
+			return self.getOrderedSetEString();
+		}
+	}
+	else if (self.hasProperty("value") and self.hasProperty("eClass") and (self.eClass.name == "EEnumLiteral")){
 		if (self.value == 0){
 			return null;
 		}
 		else{
-			return "'"+self.name+"'";
+			return "\""+self.name+"\"";
 		}
 	}
 	else{
@@ -126,8 +145,35 @@ operation Sequence getSequenceExpression(){
 	return str;
 }
 
+operation Sequence getSequenceEString(){
+	var str = "";
+	for (s in self){
+		if (s != ""){
+			str += "\""+s+"\"";
+			str += ", ";
+		}
+	}
+	str = "("+str.subString(0, str.length()-2)+")";
+	return str;
+}
+
+operation OrderedSet getOrderedSetEString(){
+	var str = "";
+	for (s in self){
+		if (s != ""){
+			str += "\""+s+"\"";
+			str += ", ";
+		}
+	}
+	str = "("+str.subString(0, str.length()-2)+")";
+	return str;
+}
+
 operation DSL!EObject getExtendedDeclaredName(){
 	var eObjectTuple = eObjectSequence.select(s|s.value == self).first();
+	if (eObjectTuple == null){
+		self.println("Failed to retrieve the EOject >>");
+	}
 	var str = eObjectTuple.value.extendEContainer("");
 	if (str.length()>1){
 		str = str.subString(1, str.length());

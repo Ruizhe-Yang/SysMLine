@@ -5,7 +5,7 @@
 [%epackage.name.println("[gen-ETL] referenced Package >> ");%]
 [%}%]
 [%}%]
-[%var KeyWords = Sequence{"default", "import", "from", "to", "extends"};%]
+[%var KeyWords = Sequence{"default", "import", "from", "to", "extends", "Collection", "guard", "function", "operation"};%]
 import "DSL2SysMLine-util.eol";
 
 pre{
@@ -36,7 +36,7 @@ operation Sequence init_[%=fileName%](){
 	[%for (eClass in epackage.eClassifiers.select(s|s.type().name == "EClass")){%]
 	//[%=epackage.name%].[%=eClass.name%] -> Instantiation
 	var id[%=eClass.name%] = 0;
-	for (e[%=eClass.name%] in DSL!EObject.all.select(s|s.isTypeOf(DSL![%=eClass.name%]))){
+	for (e[%=eClass.name%] in DSL!EObject.all.select(s|s.isTypeOf(DSL![%=eClass.name.clearKeyWord(2)%]))){
 		var e[%=eClass.name%]Tuple = Tuple{"key"="[%=eClass.name%]_"+(id[%=eClass.name%]++).asString(),"value"= e[%=eClass.name%]};
 		self.add(e[%=eClass.name%]Tuple);
 	}
@@ -63,8 +63,8 @@ rule Base
 [%}%]
 [% operation Ecore!EClass writeEClass(ePackageName){%]
 @lazy
-rule [%=self.name%]
-	transform s : DSL![%=self.name%] //[%=ePackageName%].[%=self.name%]
+rule [%=self.name.clearKeyWord(2)%]
+	transform s : DSL![%=self.name.clearKeyWord(2)%] //[%=ePackageName%].[%=self.name%]
 	to t : SysMLine!ItemUsage
 	extends Base{
 	[%	for (eAttribute in self.eAllAttributes){%]
@@ -73,7 +73,7 @@ rule [%=self.name%]
 	[%}%]
 	[%	for (eReference in self.eAllReferences){%]
 	//[%=self.name%].[%=eReference.name%] -> EReference : [%=eReference.name.clearKeyWord(0)%]
-	if (s.[%=eReference.name.clearKeyWord(2)%].getEReference() != null) t.addNewReference("[%=eReference.name.clearKeyWord(1)%]", s.[%=eReference.name.clearKeyWord(2)%].getEReference());
+	if (s.[%=eReference.name.clearKeyWord(2)%].getEReference() != null) t.addNewReference("[%=eReference.name.clearKeyWord(0)%]", s.[%=eReference.name.clearKeyWord(2)%].getEReference());
 	[%}%]
 }
 
@@ -95,7 +95,7 @@ operation String clearKeyWord(i){
 		return "'"+self+"'";
 	}
 	else if (KeyWords.includes(self) and i == 2){
-		return "~"+self;
+		return "`"+self+"`";
 	}
 	else{
 		return self;

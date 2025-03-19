@@ -16,7 +16,7 @@
       <SubclassificationPart>ElementExtension</SubclassificationPart>
     </body>
     <body xsi:type="ItemDefinition" declaredName="LibraryReference">
-      <body xsi:type="ItemUsage" declaredName="'library'" multiplicityRange="[1]" isReference="true">
+      <body xsi:type="ItemUsage" declaredName="library" multiplicityRange="[1]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>ModelInformation</featureSpecialization>
       </body>

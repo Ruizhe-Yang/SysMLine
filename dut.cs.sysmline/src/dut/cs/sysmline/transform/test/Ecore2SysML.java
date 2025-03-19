@@ -10,7 +10,8 @@ public class Ecore2SysML {
 	
 	public static void main(String[] args) throws IOException {
 //		run("metamodel\\Capella\\Interaction");
-		testSACM();
+//		testSACM();
+		testCapellaEcore();
 //		run("model\\PlayGround\\psl");
 //		run("metamodel\\HSUV\\HSUV");
 //		testBPMNEcore();
