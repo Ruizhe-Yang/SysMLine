@@ -1,0 +1,668 @@
+@"http://www.polarsys.org/capella/2007/UML2Mapping"(profileName="Capella")
+@"http://www.polarsys.org/kitalpha/emde/1.0.0/extension"(trackResourceModification="true", useUUIDs="false", useIDAttributes="true", extensibleProviderFactory="true", childCreationExtenders="true")
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="OperationalAnalysis aims at defining the system's ecosystem operational analysis modelling language (close to the OVs from NAF/MoDAF).
+[source: Capella study]", "usage guideline"="none", "used in levels"="operational", "usage examples"="none", constraints="This package depends on the model CompositeStructure.ecore
+This package depends on the model Interaction.ecore", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/semantic"
+@namespace(uri="http://www.polarsys.org/capella/core/oa/7.0.0", prefix="org.polarsys.capella.core.data.oa")
+package oa;
+
+import "platform:/resource/dut.cs.sysmline/metamodel/Capella/CapellaCore.ecore";
+import "platform:/resource/dut.cs.sysmline/metamodel/Capella/Activity.ecore";
+import "platform:/resource/dut.cs.sysmline/metamodel/Capella/CompositeStructure.ecore";
+import "platform:/resource/dut.cs.sysmline/metamodel/Capella/FunctionalAnalysis.ecore";
+import "platform:/resource/dut.cs.sysmline/metamodel/Capella/Interaction.ecore";
+import "platform:/resource/dut.cs.sysmline/metamodel/Capella/ModellingCore.ecore";
+import "platform:/resource/dut.cs.sysmline/metamodel/Capella/Information.ecore";
+import "platform:/resource/dut.cs.sysmline/metamodel/Capella/ContextArchitecture.ecore";
+import "platform:/resource/dut.cs.sysmline/metamodel/Capella/CapellaCommon.ecore";
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Model describing operational need - organisations, actors, operational activities & related items - associated to (created during) a modelling phase", "usage guideline"="n/a", "used in levels"="operational", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="uml::Package", explanation="none", constraints="none")
+@"http://www.polarsys.org/capella/semantic"
+class OperationalAnalysis extends cs.BlockArchitecture {
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="container for Role definitions of this operational analysis
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Package::nestedPackage#uml::Package::packagedElement", explanation="none", constraints="uml::Package::nestedPackage elements on which RolePkg stereotype or any stereotype that inherits from it is applied
+Multiplicity must be [1..1]")
+	@"http://www.polarsys.org/capella/semantic"
+	val RolePkg ownedRolePkg;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="container for the Entities defined for this operational analysis
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Package::nestedPackage#uml::Package::packagedElement", explanation="none", constraints="uml::Package::nestedPackage elements on which EntityPkgstereotype or any stereotype that inherits from it is applied
+Multiplicity must be [1..1]")
+	@"http://www.polarsys.org/capella/semantic"
+	val EntityPkg ownedEntityPkg;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="container for the Concepts defined in this operational analysis
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Package::nestedPackage#uml::Package::packagedElement", explanation="none", constraints="uml::Package::nestedPackage elements on which ConceptPkg stereotype or any stereotype that inherits from it is applied
+Multiplicity must be [1..1]")
+	val ConceptPkg ownedConceptPkg;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="ownedAbstractCapabilityPkg")
+	@"http://www.polarsys.org/capella/semantic"(feature="ownedAbstractCapabilityPkg")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref OperationalCapabilityPkg containedOperationalCapabilityPkg;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="ownedFunctionPkg")
+	@"http://www.polarsys.org/capella/semantic"(feature="ownedFunctionPkg")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref OperationalActivityPkg containedOperationalActivityPkg;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="allocatingArchitectures")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"(excludefrom="xmlpivot")
+	readonly volatile transient derived ref ctx.SystemAnalysis[*]#allocatedOperationalAnalyses allocatingSystemAnalyses;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Definition of a dynamic behaviour composed of the following information:
+Context, objective, pre-conditions, post-conditions, used capabilities, involved roles & actors, operational exchanges & interactions, processes and activities. Ability to be validated. Temporal & performance description.Criticity.
+Scenarios can be gathered in a set of Use Cases.", "usage guideline"="n/a", "used in levels"="operational", "usage examples"="n/a", constraints="none", "comment/notes"="not used/implemented as of Capella 1.0.3", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="", explanation="uml::UseCase", constraints="none")
+abstract class OperationalScenario extends capellacore.NamedElement {
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="description of the context in which this operational scenario takes place
+[source: Capella study]", constraints="none", type="n/a", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"
+	attr String[1] context;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="description of the objective/output of this operational scenario
+[source: Capella study]", constraints="none", type="n/a", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"
+	attr String[1] objective;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="container for operational activity elements
+[source: Capella study]", "usage guideline"="n/a", "used in levels"="operational", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="uml::Package", explanation="none", constraints="none")
+@"http://www.polarsys.org/capella/semantic"
+class OperationalActivityPkg extends fa.FunctionPkg {
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the operational activities contained in this package
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Package::packagedElement", explanation="none", constraints="uml::Package::packagedElement elements on which OperationalActivity stereotype or any stereotype that inherits from it is applied
+Order must be computed")
+	@"http://www.polarsys.org/capella/semantic"
+	val OperationalActivity[*] ownedOperationalActivities;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="sub-packages of operational activities, contained in this package
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Package::nestedPackage#uml::Package::packagedElement", explanation="none", constraints="uml::Package::nestedPackage elements on which OperationalActivityPkg stereotype or any stereotype that inherits from it is applied
+Order must be computed")
+	@"http://www.polarsys.org/capella/semantic"
+	val OperationalActivityPkg[*] ownedOperationalActivityPkgs;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Any process step or function performed, both mental and physical, toward achieving some objective. A task is a \"formal\" activity (see also task).
+[source: Sys EM, EIA/IS-731.1]", "usage guideline"="In the first steps of the operational analysis, all activities related to the targeted domain should be identified, regardless of their future allocation to the targeted system or not (e.g. even activities of actors external to the future system being design, should be identified and modelled)
+", arcadia_description="An operational Activity is a process step or function performed toward achieving some objective, by actors that could necessitate to use the system for this. Example: listen to radio, select a radio station...", "used in levels"="operational", "usage examples"="../img/usage_examples/example_operational_activities.png", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="uml::Activity", explanation="All functions are mapped to (empty) activities", constraints="none")
+@"http://www.polarsys.org/capella/semantic"
+class OperationalActivity extends fa.AbstractFunction {
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="sub-packages of operational activities, contained in this operational activity", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Package::nestedPackage#uml::Package::packagedElement", explanation="none", constraints="uml::Package::nestedPackage elements on which OperationalActivityPkg stereotype or any stereotype that inherits from it is applied
+Order must be computed")
+	@"http://www.polarsys.org/capella/semantic"
+	val OperationalActivityPkg[*] ownedOperationalActivityPkgs;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="incomingTraces")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="allocation of this operational activity to a given operational role
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref ActivityAllocation[*]#activity activityAllocations;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="list of swimlanes used to partition this operational activity
+[source: Capella study]", constraints="none", "comment/notes"="not used/implemented as of Capella")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="unimplemented", viatra.expression="Nothing in helpers ?")
+	readonly volatile transient derived ref Swimlane[*] ownedSwimlanes;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="list of Processes associated to this Operational Activity
+[source: Capella study]", constraints="none", "comment/notes"="not used/implemented as of Capella 1.0.3")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="ownedFunctionalChains")
+	readonly volatile transient derived ref OperationalProcess[*] ownedProcess;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="patternbody", viatra.expression="OperationalActivity.incomingTraces(self, cfa);
+ComponentFunctionalAllocation.sourceElement(cfa, target);")
+	@"http://www.polarsys.org/capella/semantic"(excludefrom="xmlpivot")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref Entity[*]#allocatedOperationalActivities allocatorEntities;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="inFunctionRealizations.allocatingFunction")
+	@"http://www.polarsys.org/capella/semantic"(excludefrom="xmlpivot")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref ctx.SystemFunction[*]#realizedOperationalActivities realizingSystemFunctions;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="activityAllocations.role")
+	@"http://www.polarsys.org/capella/semantic"(excludefrom="xmlpivot")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref Role[*] allocatingRoles;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="ownedFunctions")
+	@"http://www.polarsys.org/capella/semantic"(feature="ownedFunctions")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref OperationalActivity[*] containedOperationalActivities;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="subFunctions")
+	@"http://www.polarsys.org/capella/semantic"(excludefrom="xmlpivot")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="list of children operational activities
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref OperationalActivity[*] childrenOperationalActivities;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="An Operational Process is a logical organization of activities to fulfill an operational capability.", "usage guideline"="defining an Operational Process is similar to defining a functional chain at System Analysis level : it is composed of an ordered set of operational activities.
+[source: Capella study]", "used in levels"="operational", "usage examples"="n/a", constraints="none", "comment/notes"="not used/implemented as of Capella", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="", explanation="uml::Activity", constraints="none")
+@"http://www.polarsys.org/capella/semantic"
+class OperationalProcess extends fa.FunctionalChain {
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="patternbody", viatra.expression="OperationalProcess.involvingInvolvements(self, fcaci);
+FunctionalChainAbstractCapabilityInvolvement.capability(fcaci, target);")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"(excludefrom="xmlpivot")
+	readonly volatile transient derived ref OperationalCapability[*] involvingOperationalCapabilities;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="a partition/subset of an activity
+[source: Capella study]", "usage guideline"="n/a", "used in levels"="operational", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="uml::ActivityPartition", explanation="", constraints="none")
+class Swimlane extends capellacore.NamedElement, activity.ActivityPartition {
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="representedElement")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the entity to which that elements in this swimlane are being allocated
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref Entity representedEntity;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="container for operational capabilities
+[source: Capella study]", "usage guideline"="n/a", "used in levels"="operational", "usage examples"="n/a", constraints="none", "comment/notes"="not used/implemented as of Capella 1.0.3", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="uml::Package", explanation="none", constraints="none")
+@"http://www.polarsys.org/capella/semantic"
+class OperationalCapabilityPkg extends capellacommon.AbstractCapabilityPkg {
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="operational capabilities contained in this package
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Package::packagedElement", explanation="none", constraints="uml::Package::packagedElement elements on which OperationalCapability stereotype or any stereotype that inherits from it is applied
+Order must be computed")
+	@"http://www.polarsys.org/capella/semantic"
+	val OperationalCapability[*] ownedOperationalCapabilities;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="sub-packages of operational capabilities contained in this package
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Package::nestedPackage#uml::Package::packagedElement", explanation="none", constraints="uml::Package::nestedPackage elements on which OperationalCapabilityPkg stereotype or any stereotype that inherits from it is applied
+Order must be computed")
+	@"http://www.polarsys.org/capella/semantic"
+	val OperationalCapabilityPkg[*] ownedOperationalCapabilityPkgs;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Capability Configurations contained in this package
+[source: Capella study]", constraints="none", "comment/notes"="not used/implemented as of Capella 1.0.3")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Package::packagedElement", explanation="none", constraints="uml::Package::packagedElement elements on which CapabilityConfiguration stereotype or any stereotype that inherits from it is applied
+Order must be computed")
+	val CapabilityConfiguration[*] ownedCapabilityConfigurations;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="ConceptCompliance elements contained in this package
+[source: Capella study]", constraints="none", "comment/notes"="not used/implemented as of Capella")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Package::packagedElement", explanation="none", constraints="uml::Package::packagedElement elements on which ConceptCompliance stereotype or any stereotype that inherits from it is applied
+Order must be computed")
+	val ConceptCompliance[*] ownedConceptCompliances;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Ability of an organisation, system or process to to provide a service that supports the achievement of high-level operational goals
+
+At the organisation level: Ability of an organisation, system or process to realise a product that will fulfill the requirements for that product.
+[source: ISO 9000]
+
+At the program level: An operational outcome or effect that users of equipment need to achieve. 
+[source: Smart Procurement - Edition 3 - June 2000]
+
+At the system level: Set of functions that characterise an Operational service provided by a system, it is required against one or several requirements: functional and not functional (performance, constraint, ...).
+[source: MIST]
+", "usage guideline"="n/a", "used in levels"="operational", "usage examples"="n/a", constraints="none", "comment/notes"="not used/implemented as of Capella 1.0.3", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="uml::UseCase", explanation="none", constraints="none")
+@"http://www.polarsys.org/capella/semantic"
+class OperationalCapability extends interaction.AbstractCapability, capellacore.Namespace {
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the list of concepts to which this Capability complies
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::NamedElement::clientDependency", explanation="none", constraints="uml::NamedElement::clientDependency elements on which ConceptCompliance stereotype or any stereotype that inherits from it is applied
+Order must be computed")
+	ref ConceptCompliance[*] compliances;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the list of various configurations of this Capability
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	ref CapabilityConfiguration[*] configurations;
+
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="", explanation="none", constraints="none")
+	val EntityOperationalCapabilityInvolvement[*] ownedEntityOperationalCapabilityInvolvements;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="patternbody", viatra.expression="OperationalCapability.incomingTraces(self, acr);
+AbstractCapabilityRealization.realizingCapability(acr, target);")
+	@"http://www.polarsys.org/capella/semantic"(excludefrom="xmlpivot")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref ctx.Capability[*]#realizedOperationalCapabilities realizingCapabilities;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="patternbody", viatra.expression="OperationalCapability.involvedInvolvements(self, eoci);
+EntityOperationalCapabilityInvolvement.entity(eoci, target);")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"
+	readonly volatile transient derived ref Entity[*] involvedEntities;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="allocation relationship between an operational role and an operational activity
+[source: Capella study]", "usage guideline"="In Capella, these allocations are created using the \"Operational Role Blank\" diagram", "used in levels"="operational", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="SysML::Allocations::Allocate", explanation="none", constraints="none")
+class ActivityAllocation extends capellacore.Allocation {
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="sourceElement")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Operational role involved in this allocation relationship
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref Role[1]#activityAllocations role;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="targetElement")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Operational activity involved in this allocation relationship
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref OperationalActivity[1]#activityAllocations activity;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="container for operational roles
+[source: Capella study]", "usage guideline"="n/a", "used in levels"="operational", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="uml::Package", explanation="none", constraints="none")
+@"http://www.polarsys.org/capella/semantic"
+class RolePkg extends capellacore.Structure {
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="sub-(role)packages contained in this package
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Package::nestedPackage#uml::Package::packagedElement", explanation="none", constraints="uml::Package::nestedPackage elements on which RolePkg stereotype or any stereotype that inherits from it is applied
+Order must be computed")
+	@"http://www.polarsys.org/capella/semantic"
+	val RolePkg[*] ownedRolePkgs;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the Role elements contained in this package
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Package::packagedElement", explanation="none", constraints="uml::Package::packagedElement elements on which Role stereotype or any stereotype that inherits from it is applied
+Order must be computed")
+	@"http://www.polarsys.org/capella/semantic"
+	val Role[*] ownedRoles;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Role is a set of activities allocated to an actor or a system against another actor or system.", "usage guideline"="n/a", "used in levels"="operational", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="SysML ::Blocks ::Block", explanation="none", constraints="none")
+@"http://www.polarsys.org/capella/semantic"
+class Role extends information.AbstractInstance {
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="list of mediator elements establishing links between this role and parent/children roles
+[source: Capella study]", constraints="none", "comment/notes"="not used/implemented as of Capella 1.0.3")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Opposite reference of uml::Dependency::supplier", constraints="Order must be computed")
+	val RoleAssemblyUsage[*] ownedRoleAssemblyUsages;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="list of allocations between roles and operational activities, that are stored/owned by this role
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::nearestpackage", explanation="Elements are contained in the nearest possible parent container.", constraints="Some elements on which ActivityAllocation stereotype or any stereotype that inherits from it is applied")
+	val ActivityAllocation[*] ownedActivityAllocations;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="incomingTraces")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="list of allocations between this operational role, and operational entities
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref RoleAllocation[*]#role roleAllocations;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="outgoingTraces")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="(automatically computed) list of allocations of this role to/from operation activities
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref ActivityAllocation[*]#role activityAllocations;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="roleAllocations.entity")
+	@"http://www.polarsys.org/capella/semantic"(excludefrom="xmlpivot")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref Entity[*] allocatingEntities;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="activityAllocations.activity")
+	@"http://www.polarsys.org/capella/semantic"
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref OperationalActivity[*] allocatedOperationalActivities;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="mediator class supporting the relationship between two roles having a hierarchical dependence
+[source: Capella study]", "usage guideline"="n/a", "used in levels"="operational", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="uml::Usage", explanation="none", constraints="none")
+class RoleAssemblyUsage extends capellacore.NamedElement {
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="child Role involved in this relationship mediator element
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Dependency::client", explanation="none", constraints="Multiplicity must be [0..1]")
+	ref Role child;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Allocation link between an operational role and an operational entity
+[source: Capella study]", "usage guideline"="n/a", "used in levels"="operational", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="SysML::Allocations::Allocate", explanation="none", constraints="none")
+class RoleAllocation extends capellacore.Allocation {
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="targetElement")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the operational role involved in this allocation link
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref Role[1]#roleAllocations role;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="sourceElement")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the operational entity involved in this allocation link
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref Entity[1]#roleAllocations entity;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Container for operational entities
+[source: Capella study]", "usage guideline"="n/a", "used in levels"="operational", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="uml::Package", explanation="none", constraints="none")
+@"http://www.polarsys.org/capella/semantic"
+class EntityPkg extends cs.ComponentPkg {
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the Entity elements contained in this package
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Package::packagedElement", explanation="none", constraints="uml::Package::packagedElement elements on which Entity stereotype or any stereotype that inherits from it is applied
+Order must be computed")
+	@"http://www.polarsys.org/capella/semantic"
+	val Entity[*] ownedEntities;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="sub-(Entity)packages contained in this package
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Package::nestedPackage#uml::Package::packagedElement", explanation="none", constraints="uml::Package::nestedPackage elements on which EntityPkg stereotype or any stereotype that inherits from it is applied
+Order must be computed")
+	@"http://www.polarsys.org/capella/semantic"
+	val EntityPkg[*] ownedEntityPkgs;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the Location elements contained in this package
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Package::packagedElement", explanation="none", constraints="uml::Package::packagedElement elements on which Location stereotype or any stereotype that inherits from it is applied
+Order must be computed")
+	val Location[*] ownedLocations;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the CommunicationMean elements contained in this package
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Package::packagedElement", explanation="none", constraints="uml::Package::packagedElement elements on which CommunicationMean stereotype or any stereotype that inherits from it is applied
+Order must be computed")
+	val CommunicationMean[*] ownedCommunicationMeans;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="An Operational Entity is a thing or entity that occurs in the real world of which information is required about fact that need to be known.
+An Operational Entity can be for instance: A operational node, an actor, an equipment...", "usage guideline"="n/a", arcadia_description="An Operational Entity is a real world entity (other system, device, group or organisation...), interacting with the system (or software, equipment, hardware...) under study, or with its users.", "used in levels"="operational", "usage examples"="../img/usage_examples/example_operational_entities.png", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="SysML ::Blocks ::Block", explanation="", constraints="none")
+@"http://www.polarsys.org/capella/semantic"
+class Entity extends AbstractConceptItem, modellingcore.InformationsExchanger, capellacore.InvolvedElement {
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="outgoingTraces")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the allocation links between this operational entity and the operational roles
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref RoleAllocation[*]#entity roleAllocations;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="list of organisational units to which this Entity belongs
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Opposite reference of uml::Dependency::supplier", constraints="Order must be computed")
+	ref OrganisationalUnitComposition[*] organisationalUnitMemberships;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Location where this Entity operates.
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	ref Location actualLocation;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="ownedPartitions.type")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="sub-entities that have a derivation relationship from this entity
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"(excludefrom="xmlpivot")
+	readonly volatile transient derived ref Entity[*] subEntities;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Entities owned by this Entity", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::nearestpackage", explanation="Elements are contained in the nearest possible parent container.", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"
+	val Entity[*] ownedEntities;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="communication means associated to this Entity
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::nearestpackage", explanation="since CommunicationMean is mapped to uml::InformationFlow, and no containment reference on Block is available to receive this", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"
+	val CommunicationMean[*] ownedCommunicationMeans;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="role allocation links owned by this Entity
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::nearestpackage", explanation="Elements are contained in the nearest possible parent container.", constraints="some elements on which RoleAllocation stereotype or any stereotype that inherits from it is applied")
+	val RoleAllocation[*] ownedRoleAllocations;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="allocatedFunctions")
+	@"http://www.polarsys.org/capella/semantic"
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref OperationalActivity[*]#allocatorEntities allocatedOperationalActivities;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="roleAllocations.role")
+	@"http://www.polarsys.org/capella/semantic"
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref Role[*] allocatedRoles;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="patternbody", viatra.expression="Entity.involvingInvolvements(self, eoci);
+EntityOperationalCapabilityInvolvement.capability(eoci, target);")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"(excludefrom="xmlpivot")
+	readonly volatile transient derived ref OperationalCapability[*] involvingOperationalCapabilities;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="System Components that realize this Entity", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="realizingComponents")
+	@"http://www.polarsys.org/capella/semantic"(excludefrom="xmlpivot")
+	readonly volatile transient derived ref ctx.SystemComponent[*] realizingSystemComponents;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="container for operational concepts
+[source: Capella study]", "usage guideline"="n/a", "used in levels"="operational", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="uml::Package", explanation="none", constraints="none")
+class ConceptPkg extends capellacore.Structure {
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="concept packages contained in this package
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Package::nestedPackage#uml::Package::packagedElement", explanation="none", constraints="uml::Package::nestedPackage elements on which ConceptPkg stereotype or any stereotype that inherits from it is applied
+Order must be computed")
+	val ConceptPkg[*] ownedConceptPkgs;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Operational concepts contained in this package
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Package::packagedElement", explanation="none", constraints="uml::Package::packagedElement elements on which Concept stereotype or any stereotype that inherits from it is applied
+Order must be computed")
+	val Concept[*] ownedConcepts;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Describes how a range of (future and where necessary extant) capabilities is used in an operational context to solve a particular problem or achieve an operational goal according to applicable doctrines.", "usage guideline"="n/a", "used in levels"="operational", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="uml::Class", explanation="none", constraints="none")
+class Concept extends capellacore.NamedElement {
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the list of Compliances that this operational concept follows
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Opposite reference of uml::Dependency::supplier", constraints="Order must be computed")
+	ref ConceptCompliance[*] compliances;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="relationships with concept items
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::NamedElement::clientDependency, keyword::nearestpackage", explanation="none", constraints="uml::NamedElement::clientDependency elements on which ItemInConcept stereotype or any stereotype that inherits from it is applied
+Order must be computed")
+	val ItemInConcept[*] compositeLinks;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="compliance relationship between an operational capability and an operational concept
+[source: Capella study]", "usage guideline"="n/a", "used in levels"="operational", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="uml::Dependency", explanation="none", constraints="none")
+class ConceptCompliance extends capellacore.Relationship {
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the Concept involved in this compliance relationship
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Dependency::supplier", explanation="none", constraints="Multiplicity must be [1..1]")
+	ref Concept[1] complyWithConcept;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the Capability involved in this compliance relationship
+[source: Capella study]", constraints="none", "comment/notes"="n/a")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Dependency::client", explanation="none", constraints="Multiplicity must be [1..1]")
+	ref OperationalCapability[1] compliantCapability;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Mediator class for a relationship between an operational concept and a concept item
+[source: Capella study]", "usage guideline"="n/a", "used in levels"="operational", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="uml::Dependency", explanation="none", constraints="none")
+class ItemInConcept extends capellacore.NamedElement {
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the operational concept involved in the relationship implemented by this element
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Dependency::client", explanation="none", constraints="Multiplicity must be [1..1]")
+	ref Concept[1] concept;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the concept item involved in the relationship implemented by this element
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Dependency::supplier", explanation="none", constraints="Multiplicity must be [1..1]")
+	ref AbstractConceptItem[1] item;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Constitutive element of a Concept.
+[source: Capella study]", "usage guideline"="n/a", "used in levels"="operational", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="", explanation="uml::NamedElement", constraints="none")
+abstract class AbstractConceptItem extends cs.Component {
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="relationships between this item and the concept(s) that it is involved in
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Opposite reference of uml::Dependency::supplier", constraints="Order must be computed")
+	ref ItemInConcept[*] composingLinks;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="A Community of Interest consists of collaborative groups of stakeholders who must have a shared vocabulary to exchange information in pursuit of their shared goals, interests, missions, or business processes. This group may include end users, actors, program managers, application developers, subject matter experts, Combatant Command, Service and Agency representatives, and IT Portfolio representatives.
+
+A Community of Interest is a grouping of Actors that use the same information products/elements with the same QoI (e.g. timeliness, security and availability)
+[source: NAF]
+
+A Community of Interest consists of collaborative groups of users who must have a shared vocabulary to exchange information in pursuit of their shared goals, interests, missions, or business processes. This group includes end users, program managers, application developers, subject matter experts, Combatant Command, Service and Agency representatives, and IT Portfolio representatives.
+[source: DOD]", "usage guideline"="n/a", "used in levels"="operational", "usage examples"="n/a", constraints="none", "comment/notes"="not used/implemented as of Capella 1.0.3", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="uml::Actor", explanation="none", constraints="none")
+class CommunityOfInterest extends capellacore.NamedElement {
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="mediator elements implementing the relationships between this community of interest and the organizational units.
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::NamedElement::clientDependency, keyword::nearestpackage", explanation="none", constraints="Some elements on which CommunityOfInterestComposition stereotype or any stereotype that inherits from it is applied
+Order must be computed")
+	val CommunityOfInterestComposition[*] communityOfInterestCompositions;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Relationship between a community of interest and the organisational units
+[source: Capella study]", "usage guideline"="n/a", "used in levels"="operational", "usage examples"="n/a", constraints="none", "comment/notes"="not used/implemented as of Capella 1.0.3", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="uml::Dependency", explanation="none", constraints="none")
+class CommunityOfInterestComposition extends capellacore.NamedElement {
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="The community of interest involved in the relationship implemented by this mediator element
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Dependency::client", explanation="none", constraints="Multiplicity must be [0..1]")
+	ref CommunityOfInterest communityOfInterest;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="The organisational unit involved in the relationship implemented by this mediator element.
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Dependency::supplier", explanation="none", constraints="Multiplicity must be [0..1]")
+	ref OrganisationalUnit interestedOrganisationUnit;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Structured set of operational entities.
+Describes the high-level organizational decomposition of the system/enterprise, into organizational units.", "usage guideline"="n/a", "used in levels"="operational", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="uml::Actor", explanation="none", constraints="none")
+class OrganisationalUnit extends capellacore.NamedElement {
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="mediator elements implementing the relationships between this organisational unit and the entities that are part of it
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::NamedElement::clientDependency, keyword::nearestpackage", explanation="none", constraints="some elements on which OrganisationalUnitComposition stereotype or any stereotype that inherits from it is applied
+Order must be computed")
+	val OrganisationalUnitComposition[*] organisationalUnitCompositions;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the links between this organisational unit and the communities of interest to which it is associated
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Opposite reference of uml::Dependency::supplier", constraints="Order must be computed")
+	ref CommunityOfInterestComposition[*] communityOfInterestMemberships;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="mediator element to implement the relationship between an organisational unit and the entities it contains
+[source: Capella study]", "usage guideline"="n/a", "used in levels"="operational", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="uml::Dependency", explanation="none", constraints="none")
+class OrganisationalUnitComposition extends capellacore.NamedElement {
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the organisational unit involved in the relationship implemented by this mediator element
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Dependency::client", explanation="none", constraints="Multiplicity must be [0..1]")
+	ref OrganisationalUnit organisationalUnit;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the operational entity involved in the relationship implemented by this mediator element
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Dependency::supplier", explanation="none", constraints="Multiplicity must be [0..1]")
+	ref Entity participatingEntity;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="a physical place where specific entities can be located.
+[source: Capella study]", "usage guideline"="n/a", "used in levels"="operational", "usage examples"="n/a", constraints="none", "comment/notes"="not used/implemented as of Capella 1.0.3", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="uml::Class", explanation="none", constraints="none")
+class Location extends AbstractConceptItem {
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="a textual description of this location
+[source: Capella study]", constraints="none", type="n/a", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"
+	attr String locationDescription;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the operational entities assigned to this location
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	ref Entity[*] locatedEntities;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="one of the possible configurations of an operational capability
+[source: Capella study]", "usage guideline"="n/a", "used in levels"="operational", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="uml::Class", explanation="none", constraints="none")
+class CapabilityConfiguration extends AbstractConceptItem {
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the Capability to which this configuration is associated
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	ref OperationalCapability configuredCapability;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the mean by which two specific operational entities are able to exchange information
+[source: Capella study]", "usage guideline"="n/a", "used in levels"="operational", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="", explanation="not explicitly mapped to uml::InformationFlow, since its parent (ComponentExchange) is concrete and already mapped to uml::InformationFlow
+", constraints="none")
+@"http://www.polarsys.org/capella/semantic"
+class CommunicationMean extends capellacore.NamedRelationship, fa.ComponentExchange {
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="source")
+	@"http://www.polarsys.org/capella/semantic"
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref Entity sourceEntity;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="target")
+	@"http://www.polarsys.org/capella/semantic"
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref Entity targetEntity;
+}
+
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="", explanation="none", constraints="none")
+class EntityOperationalCapabilityInvolvement extends capellacore.Involvement {
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="involved")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref Entity[1] entity;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="involver")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref OperationalCapability[1] capability;
+}
+

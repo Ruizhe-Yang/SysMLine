@@ -1,0 +1,34 @@
+@"http://www.polarsys.org/kitalpha/emde/1.0.0/extension"(extensibleProviderFactory="true", childCreationExtenders="true")
+@namespace(uri="http://www.polarsys.org/capella/common/libraries/7.0.0", prefix="libraries")
+package libraries;
+
+import "platform:/resource/dut.cs.sysmline/metamodel/Capella/eMDE.ecore";
+
+@"http://www.polarsys.org/kitalpha/emde/1.0.0/constraint"(ExtendedElement="http://www.polarsys.org/capella/core/modeller/7.0.0#//Project")
+@"http://www.polarsys.org/kitalpha/emde/1.0.0/constraintMapping"(Mapping="platform:/plugin/org.polarsys.capella.core.data.gen/model/CapellaModeller.ecore#//Project")
+class ModelInformation extends LibraryAbstractElement, emde.ElementExtension {
+	val LibraryReference[*] ownedReferences;
+	ref ModelVersion version;
+}
+
+class LibraryReference extends LibraryAbstractElement {
+	ref ModelInformation[1] library;
+	attr AccessPolicy[1] accessPolicy;
+	ref ModelVersion version;
+}
+
+class ModelVersion extends LibraryAbstractElement {
+	attr int[1] majorVersionNumber;
+	attr int[1] minorVersionNumber;
+	attr long lastModifiedFileStamp;
+}
+
+enum AccessPolicy {
+	readOnly = 0;
+	readAndWrite = 1;
+}
+
+abstract class LibraryAbstractElement extends emde.ExtensibleElement {
+	id attr String ~id;
+}
+

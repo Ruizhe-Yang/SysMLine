@@ -1,0 +1,441 @@
+@"http://www.polarsys.org/capella/2007/UML2Mapping"(profileName="ModellingCore")
+@"http://www.polarsys.org/kitalpha/emde/1.0.0/extension"(trackResourceModification="true", useUUIDs="false", useIDAttributes="true", extensibleProviderFactory="true", childCreationExtenders="true")
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="ModellingCore aims at defining the core concepts of any modelling language.
+[source: Capella study]", "usage guideline"="none", "used in levels"="operational,system,logical,physical,epbs", "usage examples"="none", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/semantic"
+@namespace(uri="http://www.polarsys.org/capella/common/core/7.0.0", prefix="org.polarsys.capella.common.data.core")
+package modellingcore;
+
+import "platform:/resource/dut.cs.sysmline/metamodel/Capella/eMDE.ecore";
+
+@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="ModelElement")
+@"http://www.polarsys.org/capella/2007/UML2Mapping"(metaclass="Element")
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="common base for all Capella elements
+[source: Capella study]", "usage guideline"="n/a (Abstract)", "used in levels"="operational,system,logical,physical,epbs", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="", explanation="uml::Element", constraints="")
+abstract class ModelElement extends emde.ExtensibleElement {
+
+	@GenModel(body="org.eclipse.emf.ecore.util.EcoreUtil.delete(this);")
+	op void destroy();
+
+	@GenModel(body="return org.polarsys.capella.common.model.label.LabelRetriever.getFullLabel(this);")
+	op String getFullLabel();
+
+	@GenModel(body="return org.polarsys.capella.common.model.label.LabelRetriever.getLabel(this);")
+	op String getLabel();
+
+	@GenModel(body="return org.polarsys.capella.common.model.label.LabelRetriever.UNNAMED_ELEMENT.equals(this.getLabel());")
+	op boolean hasUnnamedLabel();
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the unique identifier for this element
+[source: Capella study]", constraints="none", type="n/a", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="", constraints="")
+	@"http://www.polarsys.org/capella/semantic"
+	id attr String[1] ~id;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the unique system identifier for this element", constraints="none", type="n/a", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/semantic"
+	attr String sid;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the list of constraints applying to this element of the model
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Opposite reference of uml::Constraint::constrainedElement", constraints="Order must be computed")
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="opposite", viatra.expression="constrainedElements")
+	@"http://www.polarsys.org/capella/semantic"(excludefrom="xmlpivot")
+	readonly volatile transient derived ref AbstractConstraint[*] constraints;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the constraints that are stored/owned by this element
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::nearestpackage", explanation="none", constraints="Some packaged elements of uml::Element::nearestPackage on which AbstractConstraint stereotype or any stereotype that inherits from it is applied
+Order must be computed")
+	@"http://www.polarsys.org/capella/semantic"
+	val AbstractConstraint[*] ownedConstraints;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Temporary migrated elements for the purpose of model migration.", constraints="none", "comment/notes"="none")
+	val ModelElement[*] ownedMigratedElements;
+}
+
+@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="Relationship")
+@"http://www.polarsys.org/capella/2007/UML2Mapping"(metaclass="Element")
+@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Ignore"
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="A relationship references one or more related elements. Relationship is an abstract metaclass
+[source: UML superstructure v2.2]", "usage guideline"="n/a (Abstract)", "used in levels"="operational,system,logical,physical,epbs", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="", explanation="uml::Relationship", constraints="")
+abstract class AbstractRelationship extends ModelElement {
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the information flow that this relationship realizes
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Opposite reference of uml::InformationFlow::realization", constraints="Multiplicity must be [0..1]")
+	ref AbstractInformationFlow#realizations realizedFlow;
+}
+
+@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="AbstractNamedElement")
+@"http://www.polarsys.org/capella/2007/UML2Mapping"(metaclass="AbstractNamedElement")
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="A named element represents elements that may have a name. The name is used for identification of the named element
+within the namespace in which it is defined. A named element also has a qualified name that allows it to be
+unambiguously identified within a hierarchy of nested namespaces. NamedElement is an abstract metaclass.
+[source: UML superstructure v2.2]", "usage guideline"="n/a (Abstract)", "used in levels"="operational,system,logical,physical,epbs", "usage examples"="n/a", constraints="- If there is no name, or one of the containing namespaces has no name, there is no qualified name.
+- When there is a name, and all of the containing namespaces have a name, the qualified name is constructed from the names of the containing namespaces.
+- If a NamedElement is not owned by a Namespace, it does not have a visibility.
+[source: Capella study]", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="", explanation="uml::NamedElement", constraints="none")
+abstract class AbstractNamedElement extends ModelElement {
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(featureName="name", featureOwner="AbstractNamedElement")
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(namingAttribute="true", Label="name")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="The name of the NamedElement
+[source: UML superstructure v2.2]", constraints="none", type="n/a", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::NamedElement::name", explanation="", constraints="")
+	@"http://www.polarsys.org/capella/semantic"
+	attr String name;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="a model element that is the source and/or destination of information flows
+[source: Capella study]", "usage guideline"="n/a (Abstract)", "used in levels"="operational,system,logical,physical,epbs", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="", explanation="uml::NamedElement in order to map Capella AbstractInformationFlow::source and  AbstractInformationFlow::target to uml::InformationFlow::source and uml::InformationFlow::target", constraints="none")
+abstract class InformationsExchanger extends ModelElement {
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="list of information flows coming towards this element
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Opposite reference of uml::InformationFlow::informationSource", constraints="Order must be computed")
+	@"http://www.polarsys.org/capella/semantic"(excludefrom="xmlpivot")
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="opposite", viatra.expression="target")
+	readonly volatile transient derived ref AbstractInformationFlow[*] incomingInformationFlows;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="list of information flows coming out of this element
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Opposite reference of uml::InformationFlow::informationTarget", constraints="Order must be computed")
+	@"http://www.polarsys.org/capella/semantic"(excludefrom="xmlpivot")
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="opposite", viatra.expression="source")
+	readonly volatile transient derived ref AbstractInformationFlow[*] outgoingInformationFlows;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="patternbody", viatra.expression="AbstractInformationFlow.source(target, self);
+} or {
+	AbstractInformationFlow.target(target, self);")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref AbstractInformationFlow[*] informationFlows;
+}
+
+@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="TraceableElement")
+@"http://www.polarsys.org/capella/2007/UML2Mapping"(metaclass="Element", stereotype="eng.TraceableElement")
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Base abstract class supporting the ability to trace a model element to/from other elements
+[source: Capella study]", "usage guideline"="n/a (Abstract)", "used in levels"="operational,system,logical,physical,epbs", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="", explanation="uml::NamedElement", constraints="")
+abstract interface TraceableElement extends ModelElement {
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(featureName="clientDependency", featureOwner="NamedElement")
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="incomingTraces")
+	@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="opposite", viatra.expression="targetElement")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the list of trace relationships pointing towards this element
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and Transient", constraints="none")
+	readonly volatile transient derived ref AbstractTrace[*] incomingTraces;
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(umlOppositeReference="supplier", umlOppositeReferenceOwner="Dependency")
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="outgoingTraces")
+	@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="opposite", viatra.expression="sourceElement")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the list of trace relationships starting from this element
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and Transient", constraints="none")
+	readonly volatile transient derived ref AbstractTrace[*] outgoingTraces;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="none", constraints="none", type="n/a", "comment/notes"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+abstract class FinalizableElement extends ModelElement {
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="none", constraints="none", type="n/a", "comment/notes"="none")
+	attr boolean final;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="none", constraints="none", type="n/a", "comment/notes"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+abstract class PublishableElement extends ModelElement {
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="none", constraints="none", type="n/a", "comment/notes"="none")
+	attr boolean visibleInDoc = true;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="none", constraints="none", type="n/a", "comment/notes"="none")
+	attr boolean visibleInLM = true;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="base abstract class supporting the definition of data types
+[source: Capella study]", "usage guideline"="n/a (Abstract)", "used in levels"="operational,system,logical,physical,epbs", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="", explanation="uml::Type", constraints="none")
+abstract class AbstractType extends AbstractNamedElement {
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="opposite", viatra.expression="abstractType")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the list of typed elements that reference this type
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and Transient", constraints="none")
+	readonly volatile transient derived ref AbstractTypedElement[*] abstractTypedElements;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="a (named) model element to which a specific type is associated
+[source: Capella study]", "usage guideline"="n/a (Abstract)", "used in levels"="operational,system,logical,physical,epbs", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="", explanation="uml::TypedElement", constraints="none")
+abstract class AbstractTypedElement extends AbstractNamedElement {
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(featureName="type", featureOwner="TypedElement")
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="type")
+	@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the type associated to this model element
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::TypedElement::type", explanation="", constraints="")
+	ref AbstractType abstractType;
+}
+
+@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="AbstractTrace")
+@"http://www.polarsys.org/capella/2007/UML2Mapping"(metaclass="Dependency")
+@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Ignore"
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="abstract base class supporting the ability to define a trace relationship between two model elements
+[source: Capella study]", "usage guideline"="n/a (Abstract)", "used in levels"="operational,system,logical,physical,epbs", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="", explanation="uml::Dependency", constraints="none")
+abstract interface AbstractTrace extends TraceableElement {
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(featureName="supplier", featureOwner="Dependency")
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="target")
+	@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the target/end of the trace link
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Dependency::supplier", explanation="none", constraints="uml::Dependency::supplier elements on which TraceableElement stereotype or any stereotype that inherits from it is applied
+Multiplicity must be [1..1]
+")
+	ref TraceableElement[1] targetElement;
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(featureName="client", featureOwner="Dependency")
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="source")
+	@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the source/beginning of the trace link
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Dependency::client", explanation="none", constraints="uml::Dependency::client elements on which TraceableElement stereotype or any stereotype that inherits from it is applied
+Multiplicity must be [1..1]")
+	ref TraceableElement[1] sourceElement;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="specifies a constraint applying to a given set of model elements
+[source: Capella study]", "usage guideline"="n/a (Abstract)", "used in levels"="n/a", "usage examples"="n/a", constraints="The value specification for a constraint must evaluate to a Boolean value.
+
+Evaluating the value specification for a constraint must not have side effects
+
+A constraint cannot be applied to itself.", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="", explanation="uml::Constraint", constraints="none")
+abstract interface AbstractConstraint extends ModelElement {
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the model elements being involved in the definition of this constraint
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Constraint::constrainedElement", explanation="", constraints="")
+	@"http://www.polarsys.org/capella/semantic"
+	ref ModelElement[*] constrainedElements;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="A condition that must be true when evaluated in order for the constraint to be satisfied")
+	@"http://www.polarsys.org/capella/semantic"
+	val ValueSpecification ownedSpecification;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="opposite", viatra.expression="ownedConstraints")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Specifies the element that is the context for evaluating this constraint, which is the Constraint's parent element.")
+	readonly volatile transient derived ref ModelElement context;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="A value specification is the specification of a (possibly empty) set of instances, including both objects and data values
+[source: UML superstructure v2.2]", "usage guideline"="n/a (Abstract)", "used in levels"="n/a", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="", explanation="uml::ValueSpecification,uml::InstanceSpecification
+uml::InstanceSpecification in order to map Capella AbstractParameter::rate to SysML::Activities::Rate", constraints="none")
+abstract interface ValueSpecification extends AbstractTypedElement {
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="A parameter is a specification of an argument used to pass information into or out of an invocation of a behavioral
+feature.
+[source: UML superstructure v2.2]", "usage guideline"="n/a (Abstract)", "used in levels"="operational,system,logical,physical,epbs", "usage examples"="n/a", constraints="- A parameter cannot be a stream and exception at the same time.
+- An input parameter cannot be an exception.
+- Reentrant behaviors cannot have stream parameters.
+- Only in and inout parameters may have a delete effect. Only out, inout, and return parameters may have a create effect.
+[source: UML superstructure v2.2]", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="", explanation="uml::Parameter", constraints="none")
+abstract class AbstractParameter extends AbstractTypedElement {
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Tells whether an output parameter may emit a value to the exclusion of the other outputs
+[source: UML superstructure v2.2]", constraints="none", type="n/a", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Parameter::isException", explanation="none", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"
+	attr boolean isException;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Tells whether an input parameter may accept values while its behavior is executing, or whether an output parameter
+post values while the behavior is executing
+[source: UML superstructure v2.2]", constraints="none", type="n/a", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Parameter::isStream", explanation="none", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"
+	attr boolean isStream;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="specifies whether the parameter is optional or not
+[source: Capella study]", constraints="none", type="n/a", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Capella AbstractParameter::isOptional is true if stereotype SysML::Activities::Optional is applied, false if not applied", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"
+	attr boolean isOptional;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="refer to RateKind enumeration description
+[source: Capella study]", constraints="none", type="refer to RateKind enumeration definition
+[source: Capella study]", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Capella AbstractParameter::kindOfRate is Capella RateKind::Continuous if stereotype SysML::Activities::Continuous is applied
+Capella AbstractParameter::kindOfRate is Capella RateKind::Discrete if stereotype SysML::Activities::Discrete is applied
+If none is applied, Capella AbstractParameter::kindOfRate is Capella RateKind::Unspecified", constraints="Applied stereotype that inherits from SysML::Activities::Rate stereotype must be either SysML::Activities::Continuous or SysML::Activities::Discrete.
+If none of both stereotypes are applied, kindOfRate is considered Unspecified")
+	@"http://www.polarsys.org/capella/semantic"
+	attr RateKind kindOfRate;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Specifies the effect that the owner of the parameter has on values passed in or out of the parameter
+[source: UML superstructure v2.2]", constraints="none", type="see ParameterEffectKind definition", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Parameter::effect", explanation="none", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"
+	attr ParameterEffectKind effect;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the number of objects or values that flow in or out of the parameter per time interval while the behavior or operation is executing
+[source: SysML specification v1.1]", constraints="this field only makes sense if the parameter is a streaming one.
+[source: SysML specification v1.1]", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::specific", explanation="SysML::Activities::Probability does not extend uml::Parameter", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"
+	val ValueSpecification rate;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Likelihood that values will be output on a parameter set
+[source: SysML specification v1.1]", constraints="the probability should be a number between 0 and 1", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::specific", explanation="SysML::Activities::Probability does not extend uml::Parameter", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"
+	val ValueSpecification probability;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="The parameter sets containing the parameter. See AbstractParameterSet
+[source: UML superstructure v2.2]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Parameter::parameterSet", explanation="none", constraints="Order must be computed")
+	ref AbstractParameterSet[*]#parameters parameterSet;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="The datatype ParameterEffectKind is an enumeration that indicates the effect of a behavior on values passed in or out of
+its parameters
+[source: UML superstructure v2.2]", constraints="none", "comment/notes"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::ParameterEffectKind", explanation="none", constraints="none")
+@"http://www.polarsys.org/capella/semantic"
+enum ParameterEffectKind {
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="referenced parameter value is being created upon behavior execution
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::ParameterEffectKind::create", explanation="none", constraints="none")
+	create = 2;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="referenced parameter value is only being read upon behavior execution
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::ParameterEffectKind::read", explanation="none", constraints="none")
+	read = 0;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="referenced parameter value is being updated upon behavior execution
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::ParameterEffectKind::update", explanation="none", constraints="none")
+	update = 1;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="referenced parameter value is being deleted upon behavior execution
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::ParameterEffectKind::delete", explanation="none", constraints="none")
+	delete = 3;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="A parameter set is an element that provides alternative sets of inputs or outputs that a behavior may use.
+[source: UML superstructure v2.2]", "usage guideline"="n/a", "used in levels"="n/a", "usage examples"="n/a", constraints="- The parameters in a parameter set must all be inputs or all be outputs of the same parameterized entity, and the parameter set is owned by that entity.
+- If a behavior has input parameters that are in a parameter set, then any inputs that are not in a parameter set must be streaming. Same for output parameters.
+- Two parameter sets cannot have exactly the same set of parameters.
+[source: UML superstructure v2.2]", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="", explanation="uml::ParameterSet", constraints="none")
+abstract class AbstractParameterSet extends AbstractNamedElement {
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Constraint that should be satisfied for the owner of the parameters in an input parameter set to start execution using
+the values provided for those parameters, or the owner of the parameters in an output parameter set to end execution
+providing the values for those parameters, if all preconditions and conditions on input parameter sets were satisfied
+[source: UML superstructure v2.2]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::ParameterSet::condition", explanation="none", constraints="Order must be computed")
+	val AbstractConstraint[*] ownedConditions;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the probability the parameter set will be given values at runtime
+[source: SysML specification v1.1]", constraints="These must be between zero and one inclusive, and add up to one for output parameter sets of the
+same behavior at the time the probabilities are used.
+[source: SysML specification v1.1]", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::specific", explanation="If SysML::Activities::Probability stereotype is applied, Capella AbstractParameterSet::probability is equal to SysML::Activities::Probability::probability.", constraints="none")
+	val ValueSpecification probability;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Parameters in the parameter set.
+[source: UML superstructure v2.2]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::ParameterSet::parameter", explanation="none", constraints="Order must be computed")
+	ref AbstractParameter[+]#parameterSet parameters;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="enumeration containing the possible caracterizations for the rate of a streaming parameter
+[source: Capella study]", constraints="none", "comment/notes"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Stereotype that inherits from SysML::Activities::Rate (SysML::Activities::Continuous or SysML::Activities::Discrete)", constraints="none")
+@"http://www.polarsys.org/capella/semantic"
+enum RateKind {
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="used when the rate kind is not precised
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="Neither SysML::Activities::Continuous or SysML::Activities::Discrete stereotypes are applied", constraints="none")
+	Unspecified = 0;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="used when the rate characterizes a continuous flow
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="SysML::Activities::Continuous", explanation="SysML::Activities::Continuous stereotype is applied", constraints="none")
+	Continuous = 1;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Used when the rate characterizes a discrete flow
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="SysML::Activities::Discrete", explanation="SysML::Activities::Discrete", constraints="none")
+	Discrete = 2;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="An InformationFlow specifies that one or more information items circulates from its sources to its targets. Information
+flows require some kind of 'information channel' for transmitting information items from the source to the destination.
+An information channel is represented in various ways depending on the nature of its sources and targets.
+[source: UML superstructure v2.2]", "usage guideline"="n/a", "used in levels"="n/a", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="", explanation="uml::InformationFlow", constraints="none")
+abstract class AbstractInformationFlow extends AbstractNamedElement, AbstractRelationship {
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Determines which Relationship will realize the specified flow.
+[source: UML superstructure v2.2]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::InformationFlow::realization", explanation="none", constraints="Order must be computed")
+	ref AbstractRelationship[*]#realizedFlow realizations;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Specifies the information items that may circulate on this information flow
+[source: UML superstructure v2.2]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::InformationFlow::conveyed", explanation="none", constraints="Order will not be preserved")
+	@"http://www.polarsys.org/capella/semantic"
+	ref AbstractExchangeItem[*] convoyedInformations;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Defines from which source the conveyed information items are initiated
+[source: UML superstructure v2.2]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::InformationFlow::informationSource", explanation="none", constraints="Multiplicity must be [0..1]")
+	ref InformationsExchanger[1] source;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Defines to which target the conveyed information items are directed
+[source: UML superstructure v2.2]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::InformationFlow::informationTarget", explanation="none", constraints="Multiplicity must be [0..1]")
+	ref InformationsExchanger[1] target;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Set of exchanged element (e.g. data, material...) expected or provided, exchanged between ports", "usage guideline"="n/a", "used in levels"="n/a", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="", explanation="uml::Classifier in order to map Capella AbstractInformationFlow::convoyedInformations to uml::InformationFlow::conveyed.", constraints="none")
+abstract class AbstractExchangeItem extends AbstractType {
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="A vertex is an abstraction of a node in a state machine graph. In general, it can be the source or destination of any number
+of transitions.
+[source:UML Superstructure v2.2]", "usage guideline"="n/a (abstract)", "used in levels"="operational,system,logical,physical", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="", explanation="uml::Vertex", constraints="none")
+abstract interface IState extends AbstractNamedElement {
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="none", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="none", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"
+	ref IState[*] referencedStates;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="none", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="none", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"
+	ref IState[*] exploitedStates;
+}
+

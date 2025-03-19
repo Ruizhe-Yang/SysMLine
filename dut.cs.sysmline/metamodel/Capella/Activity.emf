@@ -1,0 +1,630 @@
+@"http://www.polarsys.org/kitalpha/emde/1.0.0/extension"(trackResourceModification="true", useUUIDs="false", useIDAttributes="true", extensibleProviderFactory="true", childCreationExtenders="true")
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Activity aims at completing the implementation of the UML Activity provided by the FunctionalArchitecture in order to make it fully supportable anytime.
+[source: Capella study]", "usage guideline"="none", "used in levels"="operational,system,logical,physical,epbs", "usage examples"="none", constraints="This package depends on the model Behavior.ecore", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/semantic"
+@namespace(uri="http://www.polarsys.org/capella/common/activity/7.0.0", prefix="org.polarsys.capella.common.data.activity")
+package activity;
+
+import "platform:/resource/dut.cs.sysmline/metamodel/Capella/Behavior.ecore";
+import "platform:/resource/dut.cs.sysmline/metamodel/Capella/ModellingCore.ecore";
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="An activity specifies the coordination of executions of subordinate behaviors, using a control and data flow model
+[source: UML superstructure v2.2]", "usage guideline"="n/a (abstract)", "used in levels"="n/a", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="", explanation="uml::Activity", constraints="none")
+abstract class AbstractActivity extends behavior.AbstractBehavior, modellingcore.TraceableElement {
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="If true, this activity must not make any changes to variables outside the activity or to objects. (This is an assertion, not
+an executable property. It may be used by an execution engine to optimize model execution. If the assertion is
+violated by the action, then the model is ill formed.)
+[source: UML superstructure v2.2]", constraints="none", type="n/a", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Activity::isReadOnly", explanation="none", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"
+	attr boolean isReadOnly;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="If true, all invocations of the activity are handled by the same execution
+[source: UML superstructure v2.2]", constraints="none", type="n/a", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Activity::isSingleExecution", explanation="none", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"
+	attr boolean isSingleExecution;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Nodes coordinated by the activity.
+[source: UML superstructure v2.2]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Activity::node", explanation="none", constraints="Order must be computed")
+	val ActivityNode[*] ownedNodes;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Edges expressing flow between nodes of the activity.
+[source: UML superstructure v2.2]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Activity::edge", explanation="none", constraints="Order must be computed")
+	val ActivityEdge[*] ownedEdges;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Top-level groups in the activity
+[source: UML superstructure v2.2]", constraints="The groups of an activity have no supergroups
+[source: UML superstructure v2.2]", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Activity::group", explanation="none", constraints="Order must be computed")
+	val ActivityGroup[*] ownedGroups;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="ownedGroups")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Nodes coordinated by the activity
+[source: UML superstructure v2.2]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref StructuredActivityNode[*] ownedStructuredNodes;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="An exception handler is an element that specifies a body to execute in case the specified exception occurs during the
+execution of the protected node
+[source: UML superstructure specification v2.2]", "usage guideline"="n/a", "used in levels"="n/a", "usage examples"="n/a", constraints="none", "comment/notes"="Not used/implemented as of Capella 1.0.3", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="", explanation="uml::ExceptionHandler", constraints="none")
+abstract class ExceptionHandler extends modellingcore.ModelElement {
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="The node protected by the handler. The handler is examined if an exception propagates to the outside of the node
+[source: UML superstructure v2.2]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::ExceptionHandler::protectedNode", explanation="none", constraints="none")
+	ref ExecutableNode[1]#ownedHandlers protectedNode;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="A node that is executed if the handler satisfies an uncaught exception
+[source: UML superstructure v2.2]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::ExceptionHandler::handlerBody", explanation="none", constraints="none")
+	ref ExecutableNode[1] handlerBody;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="An object node within the handler body. When the handler catches an exception, the exception token is placed in this
+node, causing the body to execute
+[source: UML superstructure v2.2]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::ExceptionHandler::exceptionInput", explanation="none", constraints="none")
+	ref ObjectNode[1] exceptionInput;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="The kind of instances that the handler catches. If an exception occurs whose type is any of the classifiers in the set,
+the handler catches the exception and executes its body
+[source: UML superstructure v2.2]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::ExceptionHandler::exceptionType", explanation="none", constraints="Order must be computed")
+	ref modellingcore.AbstractType[+] exceptionTypes;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Activity groups are a generic grouping construct for nodes and edges. Nodes and edges can belong to more than one
+group. They have no inherent semantics and can be used for various purposes. Subclasses of ActivityGroup may add
+semantics.
+[source: UML superstructure v2.2]", "usage guideline"="n/a", "used in levels"="operational,system,logical,physical", "usage examples"="n/a", constraints="none", "comment/notes"="not used/implemented as of Capella 1.0.3", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="", explanation="uml::ActivityGroup", constraints="none")
+abstract class ActivityGroup extends modellingcore.ModelElement {
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Group immediately containing the group
+[source: UML superstructure v2.2]", constraints="none", "comment/notes"="_todo_ If it is corresponding to UML, this attribute should be derived")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::ActivityGroup::superGroup#keyword::none", explanation="none", constraints="none")
+	ref ActivityGroup#subGroups superGroup;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Groups immediately contained in the group
+[source: UML superstructure v2.2]", constraints="none", "comment/notes"="_todo_ If it is corresponding to UML, this attribute should be derived")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::ActivityGroup::subgroup#keyword::none", explanation="none", constraints="Order must be computed")
+	val ActivityGroup[*]#superGroup subGroups;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Nodes immediately contained in the group. This is a derived union
+[source: UML superstructure v2.2]", constraints="none", "comment/notes"="_todo_ If it is corresponding to UML, this attribute should be derived")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::ActivityGroup::containedNode#keyword::none", explanation="none", constraints="Order must be computed")
+	val ActivityNode[*] ownedNodes;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Edges immediately contained in the group. This is a derived union
+[source: UML superstructure v2.2]", constraints="none", "comment/notes"="_todo_ If it is corresponding to UML, this attribute should be derived")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::ActivityGroup::containedEdge#keyword::none", explanation="none", constraints="Order must be computed")
+	val ActivityEdge[*] ownedEdges;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="An interruptible region contains activity nodes. When a token leaves an interruptible region via edges designated by the
+region as interrupting edges, all tokens and behaviors in the region are terminated
+[source: UML superstructure v2.2]", "usage guideline"="n/a", "used in levels"="operational,system,logical,physical", "usage examples"="n/a", constraints="none", "comment/notes"="not used/implemented in Capella 1.0.3", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="", explanation="uml::InterruptibleActivityRegion", constraints="none")
+abstract class InterruptibleActivityRegion extends ActivityGroup {
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="The edges leaving the region that will abort other tokens flowing in the region
+[source: UML superstructure v2.2]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::InterruptibleActivityRegion::interruptingEdge", explanation="none", constraints="Order must be computed")
+	ref ActivityEdge[*]#interrupts interruptingEdges;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="ObjectNodeOrderingKind is an enumeration indicating queuing order within a node
+[source: UML superstructure v2.2]", constraints="none", "comment/notes"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::ObjectNodeOrderingKind", explanation="none", constraints="none")
+enum ObjectNodeOrderingKind {
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="First In First Out ordering", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::ObjectNodeOrderingKind::FIFO", explanation="none", constraints="none")
+	FIFO = 0;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Last In First Out ordering", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::ObjectNodeOrderingKind::LIFO", explanation="none", constraints="none")
+	LIFO = 1;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Indicates that object node tokens are ordered.", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::ObjectNodeOrderingKind::ordered", explanation="none", constraints="none")
+	~ordered = 2;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Indicates that object node tokens are unordered.", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::ObjectNodeOrderingKind::unordered", explanation="none", constraints="none")
+	unordered = 3;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="specifies the type of behavior of the object node with respect to incoming data
+[source: Capella study]", constraints="none", "comment/notes"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="")
+enum ObjectNodeKind {
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Used when incoming object node management policy is not precised", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	Unspecified = 0;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="When the \"nobuffer\" stereotype is applied to object nodes, tokens arriving at the node are discarded if they are refused by
+outgoing edges, or refused by actions for object nodes that are input pins
+[source: SysML specification v1.1]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	NoBuffer = 1;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="When the \"overwrite\" stereotype is applied to object nodes, a token arriving at a full object node replaces the ones
+already there (a full object node has as many tokens as allowed by its upper bound)
+[source: SysML specification v1.1]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	Overwrite = 2;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="ActivityEdge is an abstract class for the connections along which tokens flow between activity nodes. It covers control
+and data flow edges. Activity edges can control token flow
+[source: UML superstructure v2.2]", "usage guideline"="n/a", "used in levels"="n/a", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="", explanation="uml::ActivityEdge", constraints="none")
+abstract class ActivityEdge extends modellingcore.AbstractRelationship {
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="characterizes the rate : typically, discrete versus continuous.
+[source: Capella study]", constraints="none", type="typically, \"discrete\" or \"continuous\"", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::specific", explanation="Application of stereotypes that inherits from the SysML::Activities::Rate stereotype.
+It can be either SysML::Activities::Continuous or SysML::Activities::Discrete.", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"
+	attr modellingcore.RateKind kindOfRate;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="opposite", viatra.expression="ownedEdges")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Partitions containing the edge
+[source: UML superstructure v2.2]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref ActivityPartition inActivityPartition;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="opposite", viatra.expression="ownedEdges")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="(automatically computed) Region containing this edge
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref InterruptibleActivityRegion inInterruptibleRegion;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="opposite", viatra.expression="ownedEdges")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Structured activity node containing the edge
+[source: UML superstructure v2.2]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref StructuredActivityNode inStructuredNode;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="It specifies the expected value of the number of objects and
+values that traverse the edge per time interval, that is, the expected value rate at which they leave the source node and
+arrive at the target node. It does not refer to the rate at which a value changes over time
+[source: SysML specification v1.1]", constraints="The rate of a parameter must be less than or equal to rates on edges that come into or go out from pins and parameters nodes corresponding to the parameter.
+[source: SysML specification v1.1]", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::specific", explanation="Application of the SysML::Activities::Rate stereotype.
+SysML::Activities::Rate::rate", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"
+	val modellingcore.ValueSpecification rate;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Likelihood that a value leaving the decision node or object node will traverse the edge.
+[source: SysML specification v1.1]", constraints="Shall be between 0 and 1", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::specific", explanation="Application of the SysML::Activities::Probability stereotype.
+SysML::Activities::Probability::probability", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"
+	val modellingcore.ValueSpecification probability;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Node to which tokens are put when they traverse the edge
+[source: UML superstructure v2.2]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::ActivityEdge::target", explanation="none", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"
+	ref ActivityNode[1] target;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Node from which tokens are taken when they traverse the edge
+[source: UML superstructure v2.2]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::ActivityEdge::source", explanation="none", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"
+	ref ActivityNode[1] source;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Specification evaluated at runtime to determine if the edge can be traversed
+[source: UML superstructure v2.2]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::ActivityEdge::guard", explanation="none", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"
+	val modellingcore.ValueSpecification guard;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="The minimum number of tokens that must traverse the edge at the same time
+[source: UML superstructure v2.2]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::ActivityEdge::weight", explanation="none", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"
+	val modellingcore.ValueSpecification weight;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Region that the edge can interrupt
+[source: UML superstructure v2.2]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::ActivityEdge::interrupts", explanation="none", constraints="none")
+	ref InterruptibleActivityRegion#interruptingEdges interrupts;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="A control flow is an edge that starts an activity node after the previous one is finished
+[Source : UML superstructure specification v2.2]", "usage guideline"="n/a", "used in levels"="operational,system,logical,physical", "usage examples"="n/a", constraints="none", "comment/notes"="not used/implemented as of Capella 1.0.3", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="", explanation="uml::ControlFlow", constraints="none")
+abstract class ControlFlow extends ActivityEdge {
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="An object flow models the flow of values to or from object nodes
+[source: UML superstructure v2.2]", "usage guideline"="n/a (guideline)", "used in levels"="n/a", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="", explanation="uml::ObjectFlow", constraints="none")
+abstract class ObjectFlow extends ActivityEdge {
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Tells whether the objects in the flow are passed by multicasting
+[source: UML superstructure v2.2]", constraints="none", type="n/a", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::ObjectFlow:isMulticast", explanation="", constraints="The cardinality of uml::ObjectFlow::isMulticast is [1..1].")
+	@"http://www.polarsys.org/capella/semantic"
+	attr boolean isMulticast;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Tells whether the objects in the flow are gathered from respondents to multicasting
+[source: UML superstructure v2.2]", constraints="none", type="n/a", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::ObjectFlow::isMultireceive", explanation="none", constraints="Cardinality of uml::ObjectFlow::isMultiReceive is [1..1]")
+	@"http://www.polarsys.org/capella/semantic"
+	attr boolean isMultireceive;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Changes or replaces data tokens flowing along edge
+[source: UML superstructure v2.2]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::ObjectFlow::transformation", explanation="", constraints="none")
+	ref behavior.AbstractBehavior transformation;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Selects tokens from a source object node
+[source: UML superstructure v2.2]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::ObjectFlow::selection", explanation="none", constraints="none")
+	ref behavior.AbstractBehavior selection;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="An activity partition is a kind of activity group for identifying actions that have some characteristic in common.
+[source: UML superstructure v2.2]
+", "usage guideline"="n/a (abstract)", "used in levels"="n/a", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="", explanation="uml::ActivityPartition", constraints="none")
+abstract class ActivityPartition extends ActivityGroup, modellingcore.AbstractNamedElement {
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Tells whether the partition groups other partitions along a dimension
+[source: UML superstructure v2.2]", constraints="none", type="n/a", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::ActivityPartition::isDimension", explanation="none", constraints="Cardinality of uml::ActivityPartition::isDimension is [1..1]")
+	@"http://www.polarsys.org/capella/semantic"
+	attr boolean isDimension;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Tells whether the partition represents an entity to which the partitioning structure does not apply
+[source: UML superstructure v2.2]", constraints="none", type="n/a", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::ActivityPartition::isExternal", explanation="none", constraints="Cardinality of uml::ActivityPartition::isExternal is [1..1]")
+	@"http://www.polarsys.org/capella/semantic"
+	attr boolean isExternal;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="An element constraining behaviors invoked by nodes in the partition
+[source: UML superstructure v2.2]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::ActivityPartition::represents", explanation="none", constraints="none")
+	ref modellingcore.AbstractType representedElement;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="superGroup")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Partition immediately containing the partition.
+[source: UML superstructure v2.2]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref ActivityPartition superPartition;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="subGroups")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Partitions immediately contained in the partition.
+[source: UML superstructure v2.2]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::ActivityPartition::subpartition", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref ActivityPartition[*] subPartitions;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Interactions between Ports to support Functions, (e.g. Exchanges can be composed of system data, events, analogic signals...).
+Exchanges are a refinement of the interfaces requirements identified through behavioral modeling, and expressed through Functions.
+Hence any Function may identify a series of  Exchanges to fully transfer the required element ", "usage guideline"="n/a", "used in levels"="operational,system,logical,physical", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="", explanation="none", constraints="none")
+abstract class ActivityExchange extends modellingcore.AbstractInformationFlow {
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="realizations")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Determines which ActivityEdges will realize the specified flow.
+[source: UML superstructure v2.2]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref ActivityEdge[*] realizingActivityFlows;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="An activity node is an abstract class for the steps of an activity. It covers executable nodes, control nodes, and object
+nodes.
+[source: UML superstructure v2.2]", "usage guideline"="n/a (abstract)", "used in levels"="n/a", "usage examples"="n/a", constraints="Activity nodes can only be owned by activities or groups.
+Activity nodes may be owned by at most one structured node.
+[source: UML superstructure v2.2]", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="", explanation="uml::ActivityNode", constraints="none")
+abstract interface ActivityNode extends modellingcore.AbstractNamedElement {
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="opposite", viatra.expression="ownedNodes")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Partitions containing the node
+[source: UML superstructure v2.2]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref ActivityPartition inActivityPartition;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="opposite", viatra.expression="ownedNodes")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Interruptible regions containing the node
+[source: UML superstructure v2.2]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref InterruptibleActivityRegion inInterruptibleRegion;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="opposite", viatra.expression="ownedNodes")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Structured activity node containing the node
+[source: UML superstructure v2.2]", constraints="node", "comment/notes"="node")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref InterruptibleActivityRegion inStructuredNode;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Edges that have the node as source
+[source: UML superstructure v2.2]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="freeform", viatra.expression="pattern ActivityNode__outgoing(self : ActivityNode, target : ActivityEdge) {
+	ActivityEdge.source(target, self);
+} or {
+	AbstractAction(self);
+	AbstractAction.outputs(self, OutputPort);
+	ActivityNode.outgoing(OutputPort, target);
+}")
+	@"http://www.polarsys.org/capella/semantic"
+	readonly volatile transient derived ref ActivityEdge[*] outgoing;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Edges that have the node as target.
+[source: UML superstructure v2.2]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="freeform", viatra.expression="pattern ActivityNode__incoming(self : ActivityNode, target : ActivityEdge) {
+	ActivityEdge.target(target, self);
+} or {
+	AbstractAction(self);
+	AbstractAction.inputs(self, InputPort);
+	ActivityNode.incoming(InputPort, target);
+}")
+	@"http://www.polarsys.org/capella/semantic"
+	readonly volatile transient derived ref ActivityEdge[*] incoming;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="An executable node is an abstract class for activity nodes that may be executed. It is used as an attachment point for
+exception handlers.
+[source: UML superstructure v2.2]", "usage guideline"="n/a", "used in levels"="n/a", "usage examples"="n/a", constraints="none", "comment/notes"="not used/implemented as of Capella 1.0.3", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="", explanation="should be on uml::ExecutableNode, but Activity", constraints="none")
+abstract class ExecutableNode extends ActivityNode {
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="A set of exception handlers that are examined if an uncaught exception propagates to the outer level of the executable
+node.
+[source: UML superstructure v2.2]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::ExecutableNode::handler", explanation="none", constraints="Order must be computed")
+	val ExceptionHandler[*]#protectedNode ownedHandlers;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="A structured activity node represents a structured portion of the activity that is not shared with any other structured node,
+except for nesting
+[source: UML superstructure v2.2]", "usage guideline"="n/a", "used in levels"="n/a", "usage examples"="n/a", constraints="The edges owned by a structured node must have source and target nodes in the structured node, and vice versa
+[source: UML superstructure v2.2]", "comment/notes"="not used/implemented as of Capella", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="", explanation="uml::StructuredActivityNode", constraints="none")
+abstract class StructuredActivityNode extends ActivityGroup, AbstractAction {
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="An Action is a named element that is the fundamental unit of executable functionality. The execution of an action
+represents some transformation or processing in the modeled system, be it a computer system or otherwise
+[source: UML superstructure v2.2]", "usage guideline"="n/a (abstract)", "used in levels"="n/a", "usage examples"="n/a", constraints="none", "comment/notes"="not used/implemented as of Capella", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="", explanation="uml::Activity", constraints="none")
+abstract class AbstractAction extends ExecutableNode, modellingcore.AbstractNamedElement {
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="The preconditions for an action define conditions that must be true when the action is invoked.
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Behavior::precondition", explanation="none", constraints="none")
+	val modellingcore.AbstractConstraint localPrecondition;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="The postconditions for an action define conditions that will be true when the invocation of the action completes
+successfully, assuming the preconditions were satisfied
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Behavior::postcondition", explanation="none", constraints="none")
+	val modellingcore.AbstractConstraint localPostcondition;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="The classifier that owns the behavior of which this action is a part.
+[source: UML superstructure v2.2]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Behavior::context#keyword::none", explanation="", constraints="none")
+	ref modellingcore.AbstractType context;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="The ordered set of input pins connected to the Action. These are among the total set of inputs
+[source: UML superstructure v2.2]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Activity::node", explanation="mapped to either InputPin or ActivityParameterNode, depending on whether the associated function is an Activity, or a callBehaviorAction to an Activity", constraints="uml::Activity::node elements on which activity::InputPin stereotype or any stereotype that inherits from it is applied")
+	@"http://www.polarsys.org/capella/semantic"
+	val InputPin[*] inputs;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="The ordered set of output pins connected to the Action. The action places its results onto pins in this set
+[source: UML superstructure v2.2]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Activity::node", explanation="mapped to either OutputPin or ActivityParameterNode, depending on whether the associated function is an Activity, or a callBehaviorAction to an Activity", constraints="uml::Activity::node elements on which activity::OutputPin stereotype or any stereotype that inherits from it is applied")
+	@"http://www.polarsys.org/capella/semantic"
+	val OutputPin[*] outputs;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="AcceptEventAction is an action that waits for the occurrence of an event meeting specified condition
+[source: UML superstructure v2.2]", "usage guideline"="n/a", "used in levels"="n/a", "usage examples"="n/a", constraints="- AcceptEventActions may have no input pins.
+- There are no output pins if the trigger events are only ChangeEvents, or if they are only CallEvents when this action is an
+instance of AcceptEventAction and not an instance of a descendant of AcceptEventAction (such as AcceptCallAction).
+- If the trigger events are all TimeEvents, there is exactly one output pin.
+UML superstructure Specification, v2.2 235
+- If isUnmarshalled is true, there must be exactly one trigger for events of type SignalEvent. The number of result output
+pins must be the same as the number of attributes of the signal. The type and ordering of each result output pin must be the
+same as the corresponding attribute of the signal. The multiplicity of each result output pin must be compatible with the
+multiplicity of the corresponding attribute
+[source: UML superstructure v2.2]", "comment/notes"="not used/implemented as of Capella", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="", explanation="uml::AcceptEventAction", constraints="none")
+abstract class AcceptEventAction extends AbstractAction {
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Indicates whether there is a single output pin for the event, or multiple output pins for attributes of the event
+[source: UML superstructure v2.2]", constraints="none", type="n/a", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::AcceptEventAction::isUnmarshall", explanation="none", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"
+	attr boolean isUnmarshall;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Pins holding the received event objects or their attributes. Event objects may be copied in transmission, so identity
+might not be preserved
+[source: UML superstructure v2.2]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::AcceptEventAction::result", explanation="none", constraints="Order must be computed")
+	val OutputPin[*] result;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="In addition to targeting an object, invocation actions can also invoke behavioral features on ports from where the
+invocation requests are routed onwards on links deriving from attached connectors. Invocation actions may also be sent to
+a target via a given port, either on the sending object or on another object.
+[source: UML superstructure v2.2]", "usage guideline"="n/a", "used in levels"="n/a", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="", explanation="uml::InvocationAction", constraints="none")
+abstract class InvocationAction extends AbstractAction {
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="port(s) of the receiver object on which the behavioral feature is invoked
+[source: UML superstructure v2.2]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::InvocationAction::argument", explanation="none", constraints="none")
+	val InputPin[*] arguments;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="SendSignalAction is an action that creates a signal instance from its inputs, and transmits it to the target object, where it
+may cause the firing of a state machine transition or the execution of an activity. The argument values are available to the
+execution of associated behaviors. The requestor continues execution immediately. Any reply message is ignored and is
+not transmitted to the requestor. If the input is already a signal instance, use SendObjectAction
+[source: UML superstructure v2.2]", "usage guideline"="n/a", "used in levels"="n/a", "usage examples"="n/a", constraints="- The number and order of argument pins must be the same as the number and order of attributes in the signal.
+- The type, ordering, and multiplicity of an argument pin must be the same as the corresponding attribute of the signal.
+[source: UML superstructure v2.2]", "comment/notes"="not used/implemented as of Capella", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="", explanation="uml::SendSignalAction", constraints="none")
+abstract class SendSignalAction extends InvocationAction {
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="The target object to which the signal is sent.
+[source: UML superstructure v2.2]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::SendSignalAction::target", explanation="none", constraints="none")
+	val InputPin[1] target;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="The type of signal transmitted to the target object.
+[source: UML superstructure v2.2]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::SendSignalAction::signal", explanation="none", constraints="none")
+	ref behavior.AbstractSignal[1] signal;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="CallAction is an abstract class for actions that invoke behavior and receive return values
+[source: UML superstructure v2.2]", "usage guideline"="n/a", "used in levels"="n/a", "usage examples"="n/a", constraints="- Only synchronous call actions can have result pins.
+- The number and order of argument pins must be the same as the number and order of parameters of the invoked behavior
+or behavioral feature. Pins are matched to parameters by order.
+- The type, ordering, and multiplicity of an argument pin must be the same as the corresponding parameter of the behavior
+or behavioral feature.
+[source: UML superstructure v2.2]", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="", explanation="uml::CallAction", constraints="none")
+abstract class CallAction extends InvocationAction {
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="A list of output pins where the results of performing the invocation are placed
+[source: UML superstructure v2.2]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::CallAction::result", explanation="", constraints="")
+	val OutputPin[*] results;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="CallBehaviorAction is a call action that invokes a behavior directly rather than invoking a behavioral feature that, in turn,
+results in the invocation of that behavior. The argument values of the action are available to the execution of the invoked
+behavior. For synchronous calls the execution of the call behavior action waits until the execution of the invoked behavior
+completes and a result is returned on its output pin. The action completes immediately without a result, if the call is
+asynchronous.
+[source: UML superstructure v2.2]", "usage guideline"="n/a", "used in levels"="n/a", "usage examples"="n/a", constraints="- The number of argument pins and the number of parameters of the behavior of type in and in-out must be equal.
+- The number of result pins and the number of parameters of the behavior of type return, out, and in-out must be equal.
+- The type, ordering, and multiplicity of an argument or result pin is derived from the corresponding parameter of thebehavior.
+[source: UML superstructure v2.2]", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="", explanation="uml::CallBehaviorAction", constraints="none")
+abstract class CallBehaviorAction extends CallAction {
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="The invoked behavior. It must be capable of accepting and returning control
+[source: UML superstructure v2.2]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="cannot map to uml::CallBehaviorAction::behavior since it just does not match (refers to different things)", constraints="none")
+	ref behavior.AbstractBehavior behavior;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="An object node is an activity node that indicates an instance of a particular classifier, possibly in a particular state, may
+be available at a particular point in the activity
+[source: UML superstructure v2.2]", "usage guideline"="n/a", "used in levels"="n/a", "usage examples"="n/a", constraints="- All edges coming into or going out of object nodes must be object flow edges.
+- Object nodes are not unique typed elements.
+isUnique = false
+- If an object node has a selection behavior, then the ordering of the object node is ordered and vice versa.
+- A selection behavior has one input parameter and one output parameter. The input parameter must be a bag of elements of
+the same type as the object node or a supertype of the type of object node. The output parameter must be the same or a
+subtype of the type of object node. The behavior cannot have side effects.
+[source: UML superstructure v2.2]", "comment/notes"="for the SysML profile, it will make sense to use the SysML stereotypes \"no buffer\" and \"overwrite\" over a UML ObjectNode (p99 and 100 of SysML spec)", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="", explanation="uml::ObjectNode", constraints="none")
+abstract class ObjectNode extends ActivityNode, modellingcore.AbstractTypedElement {
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Tells whether the type of the object node is to be treated as control
+[source: UML superstructure v2.2]", constraints="none", type="n/a", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::ObjectNode::isControlType", explanation="none", constraints="Cardinality of uml::ObjectNode::isControlType is [1..1]")
+	@"http://www.polarsys.org/capella/semantic"
+	attr boolean isControlType;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="characterizes the node", constraints="none", type="refer to ObjectNodeKind enumeration", "comment/notes"="this field does not exist in UML but the related notion exists in SysML")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"
+	attr ObjectNodeKind kindOfNode;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Tells whether and how the tokens in the object node are ordered for selection to traverse edges outgoing from the
+object node
+[source: UML superstructure v2.2]", constraints="none", type="Refer to ObjectNodeOrderingKind enumeration", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::ObjectNode::ordering", explanation="none", constraints="Cardinality of uml::ObjectNode::ordering is [1..1]")
+	@"http://www.polarsys.org/capella/semantic"
+	attr ObjectNodeOrderingKind ordering;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="The maximum number of tokens allowed in the node. Objects cannot flow into the node if the upper bound is
+reached.
+[source: UML superstructure v2.2]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::ObjectNode::upperBound", explanation="none", constraints="Cardinality of uml::ObjectNode::upperBound is [1..1]")
+	@"http://www.polarsys.org/capella/semantic"
+	val modellingcore.ValueSpecification upperBound;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="The required states of the object available at this point in the activity
+[source: UML superstructure v2.2]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::ObjectNode::inState", explanation="none", constraints="Order must be computed")
+	@"http://www.polarsys.org/capella/semantic"
+	ref modellingcore.IState[*] inState;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Selects tokens for outgoing edges.
+[source: UML superstructure v2.2]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::ObjectNode::selection", explanation="none", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"
+	ref behavior.AbstractBehavior selection;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="A pin is a typed element and multiplicity element that provides values to actions and accepts result values from them
+[source: UML superstructure v2.2]", "usage guideline"="n/a (abstract)", "used in levels"="n/a", "usage examples"="n/a", constraints="If the action is an invocation action, the number and types of pins must be the same as the number of parameters and
+types of the invoked behavior or behavioral feature. Pins are matched to parameters by order
+[source: UML superstructure v2.2]", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="", explanation="uml::Pin", constraints="none")
+abstract interface Pin extends ObjectNode {
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Tells whether the pins provide data to the actions, or just controls when it executes it.
+[source: UML superstructure v2.2]
+", constraints="none", type="n/a", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="Cardinality of uml::Pin::isControl is [1..1]")
+	@"http://www.polarsys.org/capella/semantic"
+	attr boolean isControl;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="An input pin is a pin that holds input values to be consumed by an action
+[source: UML superstructure v2.2]
+
+An action input pin is a kind of pin that executes an action to determine the values to input to another.
+[source: UML superstructure v2.2]", "usage guideline"="n/a", "used in levels"="n/a", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="", explanation="uml::InputPin", constraints="none")
+abstract interface InputPin extends Pin {
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="The action used to provide values
+[source: UML superstructure v2.2]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="This association can be filled only if extended metaclass is ActionInputPin")
+	ref AbstractAction inputEvaluationAction;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="A value pin is an input pin that provides a value by evaluating a value specification
+[source: UML superstructure v2.2]", "usage guideline"="n/a", "used in levels"="n/a", "usage examples"="n/a", constraints="none", "comment/notes"="not used/implemented, as of Capella 1.0.3", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="", explanation="uml::ValuePin", constraints="none")
+abstract interface ValuePin extends InputPin {
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Value that the pin will provide
+[source: UML superstructure v2.2]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::ValuePin::value", explanation="", constraints="none")
+	val modellingcore.ValueSpecification[1] value;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="An output pin is a pin that holds output values produced by an action
+[source: UML superstructure v2.2]
+
+An action input pin is a kind of pin that executes an action to determine the values to input to another.
+[source: UML superstructure v2.2]", "usage guideline"="n/a", "used in levels"="n/a", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="", explanation="uml::OutputPin", constraints="none")
+abstract interface OutputPin extends Pin {
+}
+

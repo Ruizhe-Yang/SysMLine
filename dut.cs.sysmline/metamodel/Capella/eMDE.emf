@@ -1,0 +1,14 @@
+@"http://www.polarsys.org/kitalpha/emde/1.0.0/extension"(useUUIDs="true", useIDAttributes="false")
+@namespace(uri="http://www.polarsys.org/kitalpha/emde/1.0.0", prefix="emde")
+package emde;
+
+abstract class Element {
+}
+
+abstract class ExtensibleElement extends Element {
+	val ElementExtension[*] ownedExtensions;
+}
+
+abstract class ElementExtension extends ExtensibleElement {
+}
+

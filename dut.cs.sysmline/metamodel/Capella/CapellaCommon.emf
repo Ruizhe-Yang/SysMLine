@@ -1,0 +1,583 @@
+@"http://www.polarsys.org/capella/2007/UML2Mapping"(profileName="Capella")
+@"http://www.polarsys.org/kitalpha/emde/1.0.0/extension"(trackResourceModification="true", useUUIDs="false", useIDAttributes="true", extensibleProviderFactory="true", childCreationExtenders="true")
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="CapellaCommon aims at defining other concepts (mainly used to solve the constraints arisen from the 4.2.1 rationale). It concretises the Activity and the State machines.
+[source: Capella study]", "usage guideline"="none", "used in levels"="operational,system,logical,physical,epbs", "usage examples"="none", constraints="This package depends on the model CapellaCore.ecore
+This package depends on the model Activity.ecore
+This package depends on the model StateMachine.ecore", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/semantic"
+@namespace(uri="http://www.polarsys.org/capella/core/common/7.0.0", prefix="org.polarsys.capella.core.data.capellacommon")
+package capellacommon;
+
+import "platform:/resource/dut.cs.sysmline/metamodel/Capella/LogicalArchitecture.ecore";
+import "platform:/resource/dut.cs.sysmline/metamodel/Capella/Interaction.ecore";
+import "platform:/resource/dut.cs.sysmline/metamodel/Capella/Behavior.ecore";
+import "platform:/resource/dut.cs.sysmline/metamodel/Capella/ModellingCore.ecore";
+import "platform:/resource/dut.cs.sysmline/metamodel/Capella/FunctionalAnalysis.ecore";
+import "platform:/resource/dut.cs.sysmline/metamodel/Capella/CapellaCore.ecore";
+
+@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="Aspect")
+@"http://www.polarsys.org/capella/2007/UML2Mapping"(metaclass="NamedElement")
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="an abstract base class for deriving packages containing Capability entities
+[source: Capella study]", "usage guideline"="n/a (Abstract)", "used in levels"="n/a", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="", explanation="none", constraints="none")
+abstract class AbstractCapabilityPkg extends capellacore.Structure {
+}
+
+@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="GenericTrace")
+@"http://www.polarsys.org/capella/2007/UML2Mapping"(metaclass="Dependency", stereotype="eng.GenericTrace")
+@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Ignore"
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="a Trace relationship (in the UML sense) to which can be associated a set of key/value pairs characterizing the trace.
+[source: Capella study]", "usage guideline"="n/a (Abstract)", "used in levels"="operational, system, logical, physical, epbs", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="", explanation="coud be uml::Dependency, but left empty so that this element is not actually available/transformed for the end user.
+This is a feature of Capella that is not available in Capella/MAX anyway.", constraints="none")
+@"http://www.polarsys.org/capella/semantic"
+class GenericTrace extends capellacore.Trace {
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(featureName="ownedComment", featureOwner="Element")
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="keyValuePairs")
+	@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the list of key/value pairs that characterize this trace relationship
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Element::ownedComment", explanation="none", constraints="uml::Element::ownedComment elements on which KeyValue stereotype or any stereotype that inherits from it is applied
+Order must be computed")
+	!resolve val capellacore.KeyValue[*] keyValuePairs;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="sourceElement")
+	@"http://www.polarsys.org/capella/semantic"
+	readonly volatile transient derived !resolve ref modellingcore.TraceableElement[1] source;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="targetElement")
+	@"http://www.polarsys.org/capella/semantic"
+	readonly volatile transient derived !resolve ref modellingcore.TraceableElement[1] target;
+}
+
+@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="TransfoLink")
+@"http://www.polarsys.org/capella/2007/UML2Mapping"(metaclass="Dependency", stereotype="eng.TransfoLink")
+@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Ignore"
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="specialized trace to keep track of relationships between source elements of a transformation, and destination elements.
+[source: Capella study]", "usage guideline"="n/a", "used in levels"="operational, system, logical, physical, epbs", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="", explanation="uml::Dependency", constraints="none")
+class TransfoLink extends GenericTrace {
+}
+
+@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="JustificationLink")
+@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Ignore"
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="specialized trace to keep track of relationships between source elements of a transformation, and destination elements.
+[source: Capella study]", "usage guideline"="n/a", "used in levels"="operational, system, logical, physical, epbs", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="", explanation="uml::Dependency", constraints="none")
+class JustificationLink extends GenericTrace {
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="an involvement relationship of an entity in the capability that it realizes
+[source: Capella study]", "usage guideline"="n/a (Abstract)", "used in levels"="n/a", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="", explanation="none", constraints="none")
+class CapabilityRealizationInvolvement extends capellacore.Involvement {
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="involved")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="(automatically computed) the involved element
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref CapabilityRealizationInvolvedElement[1] involvedCapabilityRealizationInvolvedElement;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="a model element involved in the realization of a Capability
+[source: Capella study]", "usage guideline"="n/a (Abstract)", "used in levels"="n/a", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="", explanation="none", constraints="none")
+abstract class CapabilityRealizationInvolvedElement extends capellacore.InvolvedElement {
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the capability realization involvement relationships in which this element is referenced
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="involvingInvolvements")
+	readonly volatile transient derived ref CapabilityRealizationInvolvement[*] capabilityRealizationInvolvements;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Capability realizations that involve this element", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="patternbody", viatra.expression="CapabilityRealizationInvolvedElement.capabilityRealizationInvolvements(self, involvements);
+CapabilityRealizationInvolvement.involver(involvements, target);")
+	readonly volatile transient derived ref la.CapabilityRealization[*] involvingCapabilityRealizations;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="State machines can be used to express the behavior of part of a system. Behavior is modeled as a traversal of a graph of
+state nodes interconnected by one or more joined transition arcs that are triggered by the dispatching of series of (event)
+occurrences. During this traversal, the state machine executes a series of activities associated with various elements of the
+state machine.
+[source: UML superstructure v2.2]
+", "usage guideline"="a state machine is created (usually through the creation of a state or mode diagram, declaring states, modes, and transitions between them) as a support to specify the dynamic behavior of an entity", "used in levels"="operational, system, logical, physical", "usage examples"="../img/usage_examples/example_statemachine.png", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="uml::StateMachine", explanation="none", constraints="none")
+@"http://www.polarsys.org/capella/semantic"
+class StateMachine extends capellacore.CapellaElement, behavior.AbstractBehavior {
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="The regions owned directly by the state machine.
+[source:UML Superstructure v2.2]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::StateMachine::region", explanation="none", constraints="Order must be computed")
+	@"http://www.polarsys.org/capella/semantic"
+	val Region[*] ownedRegions;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="The entry and exit Pseudostates of a composite State. These can only be entry or exit Pseudostates, and they must have different names. They can only be defined for composite States.
+[source:UML v2.5]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::StateMachine::connectionPoint", explanation="none", constraints="Order must be computed")
+	@"http://www.polarsys.org/capella/semantic"
+	val Pseudostate[*] ownedConnectionPoints;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="A region is an orthogonal part of either a composite state or a state machine. It contains states and transitions.
+[source: UML superstructure v2.2]", "usage guideline"="in Capella, a Region is automatically created when creating a state/mode diagram", "used in levels"="operational, system, logical, physical", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="uml::Region", explanation="none", constraints="none")
+@"http://www.polarsys.org/capella/semantic"
+class Region extends capellacore.NamedElement {
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="The set of states owned by the region.
+[source:Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Region::subvertex", explanation="none", constraints="Order must be computed")
+	@"http://www.polarsys.org/capella/semantic"
+	val AbstractState[*] ownedStates;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="The set of transitions owned by the region. Note that internal transitions are owned by a region, but applies to the
+source state.
+[source:UML Superstructure v2.2]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Region::transition", explanation="none", constraints="Order must be computed")
+	@"http://www.polarsys.org/capella/semantic"
+	val StateTransition[*] ownedTransitions;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the list of elements that are involved in this region", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="none", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"
+	ref AbstractState[*] involvedStates;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="A state models a situation during which some (usually implicit) invariant condition holds. 
+[source: UML superstructure v2.2]
+
+A condition of a system or element, as defined by some of its properties, which can enable system behaviors and/or structure to occur. Note: The enabled behavior may include no actions, such as associated with a wait state. Also, the condition that defines the state may be dependent on one or more previous states
+[source: UML for SE RFP]", "usage guideline"="n/a", "used in levels"="operational, system, logical, physical", "usage examples"="../img/usage_examples/example_statemachine.png", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="uml::State", explanation="none", constraints="none")
+@"http://www.polarsys.org/capella/semantic"
+class State extends AbstractState {
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="The regions owned directly by the state.
+[source:UML Superstructure v2.2]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::State::region", explanation="none", constraints="Order must be computed")
+	@"http://www.polarsys.org/capella/semantic"
+	val Region[*] ownedRegions;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="The entry and exit Pseudostates of a composite State. These can only be entry or exit Pseudostates, and they must have different names. They can only be defined for composite States.
+[source:UML v2.5]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::State::connectionPoint", explanation="none", constraints="Order must be computed")
+	@"http://www.polarsys.org/capella/semantic"
+	val Pseudostate[*] ownedConnectionPoints;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="opposite", viatra.expression="availableInStates")
+	@"http://www.polarsys.org/capella/semantic"
+	readonly volatile transient derived !resolve ref fa.AbstractFunction[*] availableAbstractFunctions;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="opposite", viatra.expression="availableInStates")
+	@"http://www.polarsys.org/capella/semantic"
+	readonly volatile transient derived !resolve ref fa.FunctionalChain[*] availableFunctionalChains;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="opposite", viatra.expression="availableInStates")
+	@"http://www.polarsys.org/capella/semantic"
+	readonly volatile transient derived !resolve ref interaction.AbstractCapability[*] availableAbstractCapabilities;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="An optional behavior that is executed whenever this state is entered regardless of the transition taken to reach the state. If
+defined, entry actions are always executed to completion prior to any internal behavior or transitions performed within the
+state.
+[source:UML Superstructure v2.2]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::State::entry", explanation="none", constraints="Multiplicity must be [0..1]")
+	@"http://www.polarsys.org/capella/semantic"
+	ref behavior.AbstractEvent[*] entry;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="An optional behavior that is executed while being in the state. The execution starts when this state is entered, and stops
+either by itself or when the state is exited whichever comes first.
+[source:UML Superstructure v2.2]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::State::doActivity", explanation="none", constraints="Multiplicity must be [0..1]")
+	@"http://www.polarsys.org/capella/semantic"
+	ref behavior.AbstractEvent[*] doActivity;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="An optional behavior that is executed whenever this state is exited regardless of which transition was taken out of the
+state. If defined, exit actions are always executed to completion only after all internal activities and transition actions have
+completed execution.
+[source:UML Superstructure v2.2]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::State::exit", explanation="none", constraints="Multiplicity must be [0..1]")
+	@"http://www.polarsys.org/capella/semantic"
+	ref behavior.AbstractEvent[*] exit;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Specifies conditions that are always true when this state is the current state. In protocol state machines, state invariants are
+additional conditions to the preconditions of the outgoing transitions, and to the postcondition of the incoming transitions.
+[source:UML Superstructure v2.2]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::State::stateInvariant", explanation="none", constraints="none")
+	val modellingcore.AbstractConstraint stateInvariant;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="A condition which characterizes an expected behaviour through the set of functions or elements available at a point in time.", "usage guideline"="the main difference between a mode and a state, two close notions, is that the notion of mode is more intended to represent the availability level of the system (example : fully operational mode, degraded mode, maintenance mode, ...)", "used in levels"="operational, system, logical, physical", "usage examples"="../img/usage_examples/example_mode.png", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="", explanation="uml::State", constraints="none")
+@"http://www.polarsys.org/capella/semantic"
+class Mode extends State {
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="A special kind of state signifying that the enclosing region is completed. If the enclosing region is directly contained in a
+state machine and all other regions in the state machine also are completed, then it means that the entire state machine is
+completed.
+[source: UML superstructure v2.2]", "usage guideline"="n/a", "used in levels"="operational, system, logical, physical", "usage examples"="../img/usage_examples/example_statemachine.png", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="uml::FinalState", explanation="none", constraints="none")
+@"http://www.polarsys.org/capella/semantic"
+class FinalState extends State {
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="an abstract base class to define various kinds of states (typically real states and pseudo states)
+[source: Capella study]", "usage guideline"="n/a (Abstract)", "used in levels"="operational, system, logical, physical", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="", explanation="none", constraints="none")
+abstract class AbstractState extends capellacore.NamedElement, modellingcore.IState {
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the realization links that are owned/contained in this AbstractState
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::nearestpackage", explanation="Elements are contained in the nearest possible parent container.", constraints="Some elements on which AbstractStateRealization stereotype or any stereotype that inherits from it is applied")
+	val AbstractStateRealization[*] ownedAbstractStateRealizations;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="patternbody", viatra.expression="AbstractStateRealization.realizingAbstractState(asr, self);
+AbstractStateRealization.realizedAbstractState(asr, target);
+")
+	@"http://www.polarsys.org/capella/semantic"
+	readonly volatile transient derived !resolve ref AbstractState[*] realizedAbstractStates;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="patternbody", viatra.expression="AbstractStateRealization.realizedAbstractState(asr, self);
+AbstractStateRealization.realizingAbstractState(asr, target);
+")
+	@"http://www.polarsys.org/capella/semantic"(excludefrom="xmlpivot")
+	readonly volatile transient derived !resolve ref AbstractState[*] realizingAbstractStates;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="opposite", viatra.expression="source")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Specifies the transitions departing from this vertex.
+[source:UML Superstructure v2.2]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Opposite reference of uml::Transition::source", constraints="Order must be computed")
+	@"http://www.polarsys.org/capella/semantic"(excludefrom="xmlpivot")
+	readonly volatile transient derived ref StateTransition[*] outgoing;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="opposite", viatra.expression="target")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Specifies the transitions entering this vertex.
+[source:UML Superstructure v2.2]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Opposite reference of uml::Transition::target", constraints="Order must be computed")
+	@"http://www.polarsys.org/capella/semantic"(excludefrom="xmlpivot")
+	readonly volatile transient derived ref StateTransition[*] incoming;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="opposite", viatra.expression="involvedStates")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="none", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="none", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"(excludefrom="xmlpivot")
+	readonly volatile transient derived ref Region[*] involverRegions;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="A transition is a directed relationship between a source vertex and a target vertex. It may be part of a compound
+transition, which takes the state machine from one state configuration to another, representing the complete response of
+the state machine to an occurrence of an event of a particular type.
+[source: UML superstructure v2.2]", "usage guideline"="n/a", "used in levels"="operational, system, logical, physical", "usage examples"="../img/usage_examples/example_statemachine.png", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="uml::Transition", explanation="none", constraints="none")
+@"http://www.polarsys.org/capella/semantic"
+class StateTransition extends capellacore.NamedElement, capellacore.Relationship {
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="specifies the type of the state transition (see TransitionKind)
+[source: Capella study]", constraints="none", type="refer to TransitionKind definition", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Transition::kind", explanation="none", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"
+	attr TransitionKind kind;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="describes the trigger associated to the transition
+[source: Capella study]", constraints="none", type="", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"
+	attr String triggerDescription;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="specifies the guard of the state transition", constraints="none", type="", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"
+	ref capellacore.Constraint guard;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Designates the originating vertex (state or pseudostate) of the transition.
+[source:UML Superstructure v2.2]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Transition::source", explanation="none", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"
+	ref AbstractState[1] source;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Designates the target vertex that is reached when the transition is taken.
+[source:UML Superstructure v2.2]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Transition::target", explanation="none", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"
+	ref AbstractState[1] target;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="The event to be triggered", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"
+	ref behavior.AbstractEvent[*] effect;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Specifies the triggers that may fire the transition.", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Transition::trigger", explanation="none", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"
+	ref behavior.AbstractEvent[*] triggers;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the realization links that are owned/contained in this StateTransition
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::nearestpackage", explanation="Elements are contained in the nearest possible parent container.", constraints="Some elements on which StateTransitionRealization stereotype or any stereotype that inherits from it is applied")
+	val StateTransitionRealization[*] ownedStateTransitionRealizations;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="patternbody", viatra.expression="StateTransitionRealization.realizingStateTransition(asr, self);
+StateTransitionRealization.realizedStateTransition(asr, target);
+")
+	@"http://www.polarsys.org/capella/semantic"
+	readonly volatile transient derived !resolve ref StateTransition[*] realizedStateTransitions;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="patternbody", viatra.expression="StateTransitionRealization.realizedStateTransition(asr, self);
+StateTransitionRealization.realizingStateTransition(asr, target);
+")
+	@"http://www.polarsys.org/capella/semantic"(excludefrom="xmlpivot")
+	readonly volatile transient derived !resolve ref StateTransition[*] realizingStateTransitions;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="A pseudostate is an abstraction that encompasses different types of transient vertices in the state machine graph.
+[source: UML superstructure v2.2]", "usage guideline"="n/a (Abstract)", "used in levels"="operational, system, logical, physical", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="", explanation="uml::Pseudostate", constraints="none")
+@"http://www.polarsys.org/capella/semantic"
+abstract class Pseudostate extends AbstractState {
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="An initial pseudostate represents a default vertex that is the source for a single transition to the default state of a composite state. There can be at most one initial vertex in a region. The outgoing transition from the initial vertex may
+have a behavior, but not a trigger or guard.
+[source: UML superstructure v2.2]", "usage guideline"="this pseudo state should be used to declare the entry point of the state machine", "used in levels"="operational, system, logical, physical", "usage examples"="../img/usage_examples/example_statemachine.png", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="uml::Pseudostate", explanation="none", constraints="uml::Pseudostate elements for which kind is initial")
+@"http://www.polarsys.org/capella/semantic"
+class InitialPseudoState extends Pseudostate {
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="join vertices serve to merge several transitions emanating from source vertices in different orthogonal regions. The
+transitions entering a join vertex cannot have guards or triggers
+[source: UML superstructure v2.2]", "usage guideline"="n/a", "used in levels"="operational, system, logical, physical", "usage examples"="../img/usage_examples/example_joinpseudostate.png", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="uml::Pseudostate", explanation="none", constraints="uml::Pseudostate elements for which kind is join")
+@"http://www.polarsys.org/capella/semantic"
+class JoinPseudoState extends Pseudostate {
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="fork vertices serve to split an incoming transition into two or more transitions terminating on orthogonal target vertices
+(i.e., vertices in different regions of a composite state). The segments outgoing from a fork vertex must not have guards
+or triggers.
+[source: UML superstructure v2.2]", "usage guideline"="n/a", "used in levels"="operational, system, logical, physical", "usage examples"="../img/usage_examples/example_forkpseudostate.png", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="uml::Pseudostate", explanation="none", constraints="uml::Pseudostate elements for which kind is fork")
+@"http://www.polarsys.org/capella/semantic"
+class ForkPseudoState extends Pseudostate {
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="choice vertices which, when reached, result in the dynamic evaluation of the guards of the triggers of its outgoing
+transitions. This realizes a dynamic conditional branch. It allows splitting of transitions into multiple outgoing paths
+such that the decision on which path to take may be a function of the results of prior actions performed in the same runto-
+completion step
+[source: UML superstructure v2.2]", "usage guideline"="n/a", "used in levels"="operational, system, logical, physical", "usage examples"="../img/usage_examples/example_choicepseudostate.png", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="uml::Pseudostate", explanation="none", constraints="uml::Pseudostate elements for which kind is choice")
+@"http://www.polarsys.org/capella/semantic"
+class ChoicePseudoState extends Pseudostate {
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Entering a terminate pseudostate implies that the execution of this state machine by means of its context object is
+terminated. The state machine does not exit any states nor does it perform any exit actions other than those associated
+with the transition leading to the terminate pseudostate
+[source: UML superstructure v2.2]
+", "usage guideline"="n/a", "used in levels"="operational, system, logical, physical", "usage examples"="../img/usage_examples/example_terminatepseudostate.png", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="uml::Pseudostate", explanation="none", constraints="uml::Pseudostate elements for which kind is terminate")
+@"http://www.polarsys.org/capella/semantic"
+class TerminatePseudoState extends Pseudostate {
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="an AbstractStateRealization is a specific kind of allocation link between two AbstractStates (typically of different design levels, or of different nature)
+[source: Capella study]", "usage guideline"="n/a", "used in levels"="operational,system,logical,physical", "usage examples"="none", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="uml::Realization", explanation="none", constraints="none")
+class AbstractStateRealization extends capellacore.Allocation {
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="targetElement")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="destination of the realization link : the abstract state that is being realized
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref AbstractState[1] realizedAbstractState;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="sourceElement")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the source of the realization link : the abstract state that is realizing another abstract state
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref AbstractState[1] realizingAbstractState;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="a StateTransitionRealization is a specific kind of allocation link between two StateTransitions (typically of different design levels, or of different nature)
+[source: Capella study]", "usage guideline"="n/a", "used in levels"="operational,system,logical,physical", "usage examples"="none", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="uml::Realization", explanation="none", constraints="none")
+class StateTransitionRealization extends capellacore.Allocation {
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="targetElement")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="destination of the realization link : the state transition that is being realized
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref StateTransition[1] realizedStateTransition;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="sourceElement")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the source of the realization link : the state transition that is realizing another state transition
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref StateTransition[1] realizingStateTransition;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="TransitionKind is an enumeration type.
+[source:UML Superstructure v2.2]", constraints="none", "comment/notes"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::TransitionKind", explanation="none", constraints="none")
+enum TransitionKind {
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="kind=internal implies that the transition, if triggered, occurs without exiting or entering the source state. Thus, it does not
+cause a state change. This means that the entry or exit condition of the source state will not be invoked. An internal
+transition can be taken even if the state machine is in one or more regions nested within this state.
+[source:UML Superstructure v2.2]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::TransitionKind::internal", explanation="none", constraints="none")
+	internal = 0;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="kind=local implies that the transition, if triggered, will not exit the composite (source) state, but it will apply to any state
+within the composite state, and these will be exited and entered.
+[source:UML Superstructure v2.2]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::TransitionKind::local", explanation="none", constraints="none")
+	local = 1;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="kind=external implies that the transition, if triggered, will exit the composite (source) state.
+[source:UML Superstructure v2.2]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::TransitionKind::external", explanation="none", constraints="none")
+	external = 2;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Shallow history represents the most recent active substate of its containing state (but not the substates of that substate).
+A composite state can have at most one shallow history vertex. A transition coming into the shallow history vertex is
+equivalent to a transition coming into the most recent active substate of a state. At most one transition may originate
+from the history connector to the default shallow history state. This transition is taken in case the composite state had
+never been active before. The entry action of the state represented by the shallow history is performed.
+[source: UML superstructure v2.4]", "usage guideline"="n/a", "used in levels"="operational, system, logical, physical", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="uml::Pseudostate", explanation="none", constraints="uml::Pseudostate elements for which kind is shallowHistory")
+@"http://www.polarsys.org/capella/semantic"
+class ShallowHistoryPseudoState extends Pseudostate {
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Deep history represents the most recent active configuration of the composite state that directly contains this
+pseudostate (e.g., the state configuration that was active when the composite state was last exited). A composite state
+can have at most one deep history vertex. At most one transition may originate from the history connector to the default
+deep history state. This transition is taken in case the composite state had never been active before. Entry actions of
+states entered on the implicit direct path from the deep history to the innermost state(s) represented by a deep history
+are performed. The entry action is preformed only once for each state in the active state configuration being restored.
+[source: UML superstructure v2.4]", "usage guideline"="n/a", "used in levels"="operational, system, logical, physical", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="uml::Pseudostate", explanation="none", constraints="uml::Pseudostate elements for which kind is deepHistory")
+@"http://www.polarsys.org/capella/semantic"
+class DeepHistoryPseudoState extends Pseudostate {
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="An entry point pseudostate is an entry point of a state machine or composite state. In each region of the state machine or
+composite state it has at most a single transition to a vertex within the same region.
+[source: UML superstructure v2.4]", "usage guideline"="n/a", "used in levels"="operational, system, logical, physical", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="uml::Pseudostate", explanation="none", constraints="uml::Pseudostate elements for which kind is entry point")
+@"http://www.polarsys.org/capella/semantic"
+class EntryPointPseudoState extends Pseudostate {
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="An exit point pseudostate is an exit point of a state machine or composite state. Entering an exit point within any region
+of the composite state or state machine referenced by a submachine state implies the exit of this composite state or
+submachine state and the triggering of the transition that has this exit point as source in the state machine enclosing the
+submachine or composite state.
+[source: UML superstructure v2.4]", "usage guideline"="n/a", "used in levels"="operational, system, logical, physical", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="uml::Pseudostate", explanation="none", constraints="uml::Pseudostate elements for which kind is exit point")
+@"http://www.polarsys.org/capella/semantic"
+class ExitPointPseudoState extends Pseudostate {
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="a StateEventRealization is a specific kind of realization link between two StateEvent (typically of different design levels, or of different nature)
+[source: Capella study]", "usage guideline"="n/a", "used in levels"="operational,system,logical,physical", "usage examples"="none", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="uml::Realization", explanation="none", constraints="none")
+class StateEventRealization extends capellacore.Allocation {
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="targetElement")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="destination of the realization link : the state event that is being realized
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref StateEvent[1] realizedEvent;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="sourceElement")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the source of the realization link : the state event that is realizing another abstract state
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref StateEvent[1] realizingEvent;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="An event used in statemachine definition which occurs at a given condition. 
+[source: Capella study]", "usage guideline"="n/a", "used in levels"="operational, system, logical, physical", "usage examples"="../img/usage_examples/example_statemachine.png", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="none", explanation="none", constraints="none")
+@"http://www.polarsys.org/capella/semantic"
+abstract class StateEvent extends capellacore.NamedElement, behavior.AbstractEvent {
+
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::ChangeEvent::changeExpression if current element is a ChangeEvent
+uml::TimeEvent::when if current element is a TimeEvent
+", "base metaclass in UML/SysML profile "="uml::ChangeEvent and uml::TimeEvent
+", explanation="none", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"
+	ref capellacore.Constraint expression;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the realization links that are owned/contained in this StateEvent
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::nearestpackage", explanation="Elements are contained in the nearest possible parent container.", constraints="Some elements on which StateEventRealization stereotype or any stereotype that inherits from it is applied")
+	val StateEventRealization[*] ownedStateEventRealizations;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="A change event occurs when a Boolean-valued expression becomes true. For example, as a result of a change in the value
+held in a slot corresponding to an attribute, or a change in the value referenced by a link corresponding to an association.
+A change event is raised implicitly and is not the result of an explicit action
+[source: UML superstructure v2.4]", "usage guideline"="n/a", "used in levels"="operational, system, logical, physical", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="uml::ChangeEvent", explanation="none", constraints="none")
+@"http://www.polarsys.org/capella/semantic"
+class ChangeEvent extends StateEvent {
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="specifies the type of the state ChangeEvent (see ChangeEventKind)
+[source: Capella study]", constraints="none", type="refer to ChangeEventKind definition", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"
+	attr ChangeEventKind kind;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="A time event specifies a point in time by an expression. The expression might be absolute or might be relative to some
+other point in time.
+[source: UML superstructure v2.4]
+", "usage guideline"="n/a", "used in levels"="operational, system, logical, physical", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="uml::TimeEvent", explanation="none", constraints="none")
+@"http://www.polarsys.org/capella/semantic"
+class TimeEvent extends StateEvent {
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="specifies the type of the state TimeEvent (see TimeEventKind)
+[source: Capella study]", constraints="none", type="refer to TimeEventKind definition", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::TimeEvent::isRelative", explanation="A relative time trigger is specified with the keyword 'after' followed by an expression that evaluates to a time value, such
+as 'after (5 seconds).' An absolute time trigger is specified with the keyword 'at' followed by an expression that
+evaluates to a time value, such as 'Jan. 1, 2000, Noon'.", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"
+	attr TimeEventKind kind;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="TimeEventKind is an enumeration type.
+[source: Capella study]", constraints="none", "comment/notes"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::TransitionKind", explanation="none", constraints="none")
+enum TimeEventKind {
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="An absolute time trigger is specified with the keyword 'at' followed by an expression that
+evaluates to a time value, such as 'Jan. 1, 2000, Noon'.
+[source: UML superstructure v2.4]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::TimeEvent::isRelative = false", explanation="none", constraints="none")
+	AT = 0;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="A relative time trigger is specified with the keyword 'after' followed by an expression that evaluates to a time value, such
+as 'after (5 seconds)'.
+[source: UML superstructure v2.4]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::TimeEvent::isRelative = true", explanation="none", constraints="none")
+	AFTER = 1;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="ChangeEventKind is an enumeration type.
+[source:Capella study]", constraints="none", "comment/notes"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::TransitionKind", explanation="none", constraints="none")
+enum ChangeEventKind {
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="A change event occurs when a Boolean-valued expression becomes true.
+[source:UML Superstructure v2.4]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	WHEN = 0;
+}
+

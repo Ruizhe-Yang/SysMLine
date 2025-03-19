@@ -1,0 +1,108 @@
+@"http://www.polarsys.org/kitalpha/emde/1.0.0/extension"(trackResourceModification="true", useUUIDs="false", useIDAttributes="true", extensibleProviderFactory="true", childCreationExtenders="true")
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Behaviour aims at defining the core concepts of behavioural model.
+[source: Capella study]", "usage guideline"="none", "used in levels"="operational,system,logical,physical,epbs", "usage examples"="none", constraints="This package depends on the model ModellingCore.ecore", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/semantic"
+@namespace(uri="http://www.polarsys.org/capella/common/behavior/7.0.0", prefix="org.polarsys.capella.common.data.behavior")
+package behavior;
+
+import "platform:/resource/dut.cs.sysmline/metamodel/Capella/ModellingCore.ecore";
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="A Behavior is a specification of how its context classifier changes state over time.
+The concept of behavior is extended to own Parameter Sets.
+[source: UML superstructure v2.2]
+
+Dynamic response to an excitation of an engineering thing.
+[source: INCOSE AP233 WG, \"System Engineering Concepts - A semantic glossary and model\"]
+", "usage guideline"="n/a (abstract)", "used in levels"="n/a", "usage examples"="n/a", constraints="none", "comment/notes"="This element is a combination of UML2's Behavior from BasicBehavior package, and Behavior from CompleteBehavior package.
+It has Parameters, and also has ParameterSets definition (e.g. specific groupings of some of the parameters)", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="", explanation="uml::Behavior", constraints="none")
+abstract interface AbstractBehavior extends modellingcore.AbstractNamedElement {
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Tells whether the type of this behavior node is to be treated as control
+[source: UML superstructure v2.2]", constraints="none", type="n/a", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="_todo_ Maybye it can be mapped to uml::ObjectNode::isControlType...", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"
+	attr boolean isControlOperator;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="The ParameterSets owned by this Behavior
+[source: UML superstructure v2.2]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Behavior::ownedParameterSet", explanation="none", constraints="Order must be computed")
+	ref modellingcore.AbstractParameterSet[*] ownedParameterSet;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="References a list of parameters to the behavior that describes the order and type of arguments that can be given
+when the behavior is invoked and of the values that will be returned when the behavior completes its execution
+[source: UML superstructure v2.2]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Behavior::ownedParameter", explanation="none", constraints="none")
+	ref modellingcore.AbstractParameter[*] ownedParameter;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="A signal is a specification of send request instances communicated between objects. The receiving object handles the
+received request instances as specified by its receptions. The data carried by a send request (which was passed to it by the
+send invocation occurrence that caused that request) are represented as attributes of the signal. A signal is defined
+independently of the classifiers handling the signal occurrence
+[source: UML superstructure v2.2]", "usage guideline"="n/a (Abstract)", "used in levels"="n/a", "usage examples"="n/a", constraints="none", "comment/notes"="the UML2 definition of this element contains an attribute \"ownedAttribute [0..*]\", that is absent here, because the Capella version is a simplified one.
+This element should be removed, since it is only used in Information package, (Signal and references to the Signal), no need for a decoupling class located here.", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="", explanation="uml::Signal", constraints="none")
+abstract interface AbstractSignal extends modellingcore.AbstractType {
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="An event is the specification of some occurrence that may potentially trigger effects by an object
+[source: UML superstructure v2.2]", "usage guideline"="n/a (Abstract)", "used in levels"="n/a", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="", explanation="uml::Event", constraints="none")
+abstract interface AbstractEvent extends modellingcore.AbstractType {
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="A time event specifies a point in time by an expression. The expression might be absolute or might be relative to some
+other point in time.
+[source: UML superstructure v2.2]", "usage guideline"="n/a (Abstract)", "used in levels"="n/a", "usage examples"="n/a", constraints="none", "comment/notes"="not used/implemented as of Capella", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="", explanation="uml::TimeEvent", constraints="none")
+abstract interface AbstractTimeEvent extends AbstractEvent {
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Specifies whether it is relative or absolute time
+[source: UML superstructure v2.2]", constraints="none", type="n/a", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::TimeEvent::isRelative", explanation="none", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"
+	attr boolean isRelative;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Specifies the corresponding time deadline
+[source: UML superstructure v2.2]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::TimeEvent::when", explanation="none", constraints="Multiplicity must be [1..1]")
+	ref TimeExpression[1] when;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="A message event specifies the receipt by an object of either a call or a signal
+[source: UML superstructure v2.2]", "usage guideline"="n/a (Abstract)", "used in levels"="n/a", "usage examples"="n/a", constraints="none", "comment/notes"="not used/implemented as of Capella", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="", explanation="uml::MessageEvent", constraints="none")
+abstract interface AbstractMessageEvent extends AbstractEvent {
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="A signal event represents the receipt of an asynchronous signal. A signal event may cause a response, such as a state
+machine transition as specified in the classifier behavior of the classifier that specified the receiver object, if the signal
+referenced by the send request is mentioned in a reception owned or inherited by the classifier that specified the receiver
+object.
+[source: UML superstructure v2.2]", "usage guideline"="n/a (Abstract)", "used in levels"="n/a", "usage examples"="n/a", constraints="none", "comment/notes"="not used/implemented as of Capella", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="", explanation="uml::SignalEvent", constraints="none")
+abstract interface AbstractSignalEvent extends AbstractMessageEvent {
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="The specific signal that is associated with this event
+[source: UML superstructure v2.2]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::SignalEvent::signal", explanation="none", constraints="none")
+	ref AbstractSignal[1] signal;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="A Time Expression defines a value specification that represents a time value
+[source: UML superstructure v2.2]", "usage guideline"="n/a (Abstract)", "used in levels"="n/a", "usage examples"="n/a", constraints="none", "comment/notes"="not used/implemented as of Capella", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="", explanation="uml::TimeExpression", constraints="none")
+abstract interface TimeExpression extends modellingcore.ValueSpecification {
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Refers to the time and duration observations that are involved in expr
+[source: UML superstructure v2.2]", constraints="none", "comment/notes"="cardinality of TimeExpression::observations should be changed to [0..*]")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::TimeExpression::observation", explanation="none", constraints="Multiplicity must be [0..1]")
+	ref modellingcore.AbstractNamedElement observations;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="The value of the time expression
+[source: UML superstructure v2.2]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::TimeExpression::expr", explanation="none", constraints="none")
+	ref modellingcore.ValueSpecification expression;
+}
+

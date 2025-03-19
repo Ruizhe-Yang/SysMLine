@@ -1,0 +1,64 @@
+@"http://www.polarsys.org/kitalpha/emde/1.0.0/extension"(trackResourceModification="true", useUUIDs="false", useIDAttributes="true", extensibleProviderFactory="true", childCreationExtenders="true")
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Shared aims at defining a structure for the shared model elements storage. It is dedicated to the model elements reuse. This is a rest of MDSysE and may be reengineered into more adapted solutions.
+[source: Capella study]", "usage guideline"="none", "used in levels"="n/a", "usage examples"="none", constraints="This package depends on the model CapellaModeller.ecore", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/semantic"
+@namespace(uri="http://www.polarsys.org/capella/core/sharedmodel/7.0.0", prefix="org.polarsys.capella.core.data.sharedmodel")
+package sharedmodel;
+
+import "platform:/resource/dut.cs.sysmline/metamodel/Capella/Information.ecore";
+import "platform:/resource/dut.cs.sysmline/metamodel/Capella/CapellaModeller.ecore";
+import "platform:/resource/dut.cs.sysmline/metamodel/Capella/CapellaCore.ecore";
+
+@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="SharedPkg")
+@"http://www.polarsys.org/capella/2007/UML2Mapping"(metaclass="Package", stereotype="eng.SharedPkg")
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="a container specialized to hold elements intended to be shared across projects/analysis
+[source: Capella study]", "usage guideline"="n/a", "used in levels"="operational,system,logical,physical,epbs", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="uml::Package", explanation="none", constraints="none")
+@"http://www.polarsys.org/capella/semantic"
+class SharedPkg extends capellacore.ReuseableStructure, capellamodeller.ModelRoot {
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(featureName="packagedElement", featureOwner="Package")
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="ownedDataPkg")
+	@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the data packages contained in this shared package
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Package::nestedPackage#uml::Package::packagedElement", explanation="none", constraints="uml::Package::nestedPackage elements on which DataPkg stereotype or any stereotype that inherits from it is applied
+Multiplicity must be [0..1]")
+	!resolve val information.DataPkg ownedDataPkg;
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(featureName="packagedElement", featureOwner="Package")
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="genericPkg")
+	@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the generic packages contained in this shared package
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Package::nestedPackage#uml::Package::packagedElement", explanation="none", constraints="uml::Package::nestedPackage elements on which GenericPkg stereotype or any stereotype that inherits from it is applied
+Multiplicity must be [0..1]")
+	!resolve val GenericPkg ownedGenericPkg;
+}
+
+@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="GenericPkg")
+@"http://www.polarsys.org/capella/2007/UML2Mapping"(metaclass="Package", stereotype="eng.GenericPkg")
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="a generic container for Capella elements and sub packages
+[source: Capella study]", "usage guideline"="n/a", "used in levels"="operational,system,logical,physical,epbs", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="uml::Package", explanation="none", constraints="none")
+class GenericPkg extends capellacore.Structure {
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(featureName="packagedElement", featureOwner="Package")
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="subGenericPkgs")
+	@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="sub-packages contained in this package
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Package::nestedPackage#uml::Package::packagedElement", explanation="none", constraints="uml::Package::nestedPackage elements on which GenericPkg stereotype or any stereotype that inherits from it is applied
+Order must be computed")
+	!resolve val GenericPkg[*] subGenericPkgs;
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(featureName="packagedElement", featureOwner="Package")
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="capellaElements")
+	@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the Capella model elements stored directly under this package
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Package::packagedElement", explanation="none", constraints="uml::Package::packagedElement elements on which CapellaElement stereotype or any stereotype that inherits from it is applied
+Order must be computed")
+	!resolve val capellacore.CapellaElement[*] capellaElements;
+}
+

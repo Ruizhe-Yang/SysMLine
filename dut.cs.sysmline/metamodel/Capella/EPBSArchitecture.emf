@@ -1,0 +1,207 @@
+@"http://www.polarsys.org/kitalpha/emde/1.0.0/extension"(trackResourceModification="true", useUUIDs="false", useIDAttributes="true", extensibleProviderFactory="true", childCreationExtenders="true")
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="(E)PBS (for (End-)Product Breakdown Structure) aims at defining the system's work product breakdown (close to Clearcase/UCM's components concept).
+[source: Capella study]", "usage guideline"="none", "used in levels"="epbs", "usage examples"="none", constraints="This package depends on the model CompositeStructure.ecore", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/semantic"
+@namespace(uri="http://www.polarsys.org/capella/core/epbs/7.0.0", prefix="org.polarsys.capella.core.data.epbs")
+package epbs;
+
+import "platform:/resource/dut.cs.sysmline/metamodel/Capella/CapellaCore.ecore";
+import "platform:/resource/dut.cs.sysmline/metamodel/Capella/CapellaCommon.ecore";
+import "platform:/resource/dut.cs.sysmline/metamodel/Capella/LogicalArchitecture.ecore";
+import "platform:/resource/dut.cs.sysmline/metamodel/Capella/PhysicalArchitecture.ecore";
+import "platform:/resource/dut.cs.sysmline/metamodel/Capella/CompositeStructure.ecore";
+
+@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="EPBSArchitecturePkg")
+@"http://www.polarsys.org/capella/2007/UML2Mapping"(metaclass="Package", stereotype="eng.sys.EPBSArchitecturePkg")
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Package that contains end product breakdown structure architectures
+[source:Capella study]", "usage guideline"="n/a", "used in levels"="epbs", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="uml::Package", explanation="none", constraints="none")
+class EPBSArchitecturePkg extends cs.BlockArchitecturePkg {
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(featureName="packagedElement", featureOwner="Package")
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="ownedEPBSArchitectures")
+	@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="End product breakdown structure architectures set
+[source:Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Package::nestedPackage#uml::Package::packagedElement", explanation="none", constraints="uml::Package::nestedPackage elements on which EPBSArchitecture stereotype or any stereotype that inherits from it is applied
+Order must be computed")
+	val EPBSArchitecture[*] ownedEPBSArchitectures;
+}
+
+@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="EPBSArchitecture")
+@"http://www.polarsys.org/capella/2007/UML2Mapping"(metaclass="Package", stereotype="eng.sys.EPBSArchitecture")
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="End Product Breakdown Structure. Definition of the Physical Components grouping for development subcontracting or purchase. ", "usage guideline"="n/a", "used in levels"="epbs", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="uml::Package", explanation="none", constraints="none")
+@"http://www.polarsys.org/capella/semantic"
+class EPBSArchitecture extends cs.ComponentArchitecture {
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(featureName="packagedElement", featureOwner="Package")
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="ownedConfigurationItemPkgs")
+	@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Set of packages that contain configuration items, owned by this EPBS architecture
+[source:Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Package::nestedPackage#uml::Package::packagedElement", explanation="none", constraints="uml::Package::nestedPackage elements on which ConfigurationItemPkg stereotype or any stereotype that inherits from it is applied
+Order must be computed")
+	@"http://www.polarsys.org/capella/semantic"
+	val ConfigurationItemPkg ownedConfigurationItemPkg;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="ownedAbstractCapabilityPkg")
+	@"http://www.polarsys.org/capella/semantic"(feature="ownedAbstractCapabilityPkg")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref la.CapabilityRealizationPkg containedCapabilityRealizationPkg;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Set of physical architecture realization links owned by this EPBS architecture
+[source:Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Package::packagedElement", explanation="none", constraints="uml::Package::packagedElement elements on which PhysicalArchitectureRealisation stereotype or any stereotype that inherits from it is applied
+Order must be computed")
+	val PhysicalArchitectureRealization[*] ownedPhysicalArchitectureRealizations;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="provisionedArchitectureAllocations")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="(automatically computed) the physical architecture realization links involving this EPBS architecture
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref PhysicalArchitectureRealization[*] allocatedPhysicalArchitectureRealizations;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="allocatedArchitectures")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"
+	readonly volatile transient derived ref pa.PhysicalArchitecture[*]#allocatingEpbsArchitectures allocatedPhysicalArchitectures;
+}
+
+@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="ConfigurationItemPkg")
+@"http://www.polarsys.org/capella/2007/UML2Mapping"(metaclass="Package", stereotype="eng.sys.ConfigurationItemPkg")
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Package that contains configuration item elements
+[source:Capella study]", "usage guideline"="this element is provided as a utility to better structure configuration items, if needed", "used in levels"="epbs", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="uml::Package", explanation="none", constraints="none")
+@"http://www.polarsys.org/capella/semantic"
+class ConfigurationItemPkg extends cs.ComponentPkg {
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(featureName="packagedElement", featureOwner="Package")
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="ownedConfigurationItems")
+	@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Set of configuration items that are stored in the package
+[source:Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Package::packagedElement", explanation="none", constraints="uml::Package::packagedElement elements on which ConfigurationItem stereotype or any stereotype that inherits from it is applied
+Order must be computed")
+	@"http://www.polarsys.org/capella/semantic"
+	val ConfigurationItem[*] ownedConfigurationItems;
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(featureName="packagedElement", featureOwner="Package")
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="ownedConfigurationItemPkgs")
+	@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Set of owned packages containing configuration items
+[source:Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Package::nestedPackage#uml::Package::packagedElement", explanation="none", constraints="uml::Package::nestedPackage elements on which ConfigurationItemPkg stereotype or any stereotype that inherits from it is applied
+Order must be computed")
+	@"http://www.polarsys.org/capella/semantic"
+	val ConfigurationItemPkg[*] ownedConfigurationItemPkgs;
+}
+
+@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="ConfigurationItem")
+@"http://www.polarsys.org/capella/2007/UML2Mapping"(metaclass="Component")
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Aggregation of hardware, software, processed materials, services, or any of their discrete portions designated for configuration management and treated as a single entity in the configuration management process.", "usage guideline"="A configuration item is an abstract concept. Concrete concepts are : COTCI, CSCI, HWCI, InterfaceCI, NDICI, PrimeItemCI and SystemCI", "used in levels"="epbs", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none", arcadia_description="A configuration item (CI) is a part of the system, to be 
+- Designed and produced, or purchased
+- Duplicated as much as it is used in the system
+- assembled with others 
+in order to build each copy of the system. 
+Examples of configuration items are cabinets, racks, electronic boards, wiring & plugs, software components...
+CI are usually qualified as Hardware (HWCI), Computer Software (CSCI), Commercial off the Shelf (COTS, purchased item), Prime Item...
+")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="SysML::Blocks::Block", explanation="Could have been mapped to Package (to be closer to the semantic of a \"group of\" physical components, 
+but it is not possible since there are Parts associated to CI's, and packages do not inherit from Type, hence cannot be used to type a Part.", constraints="none")
+@"http://www.polarsys.org/capella/semantic"
+class ConfigurationItem extends capellacommon.CapabilityRealizationInvolvedElement, cs.Component {
+
+	@"http://www.polarsys.org/capella/semantic"
+	attr String itemIdentifier;
+
+	@"http://www.polarsys.org/capella/semantic"
+	attr ConfigurationItemKind kind = "Unset";
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(featureName="packagedElement", featureOwner="Component")
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="ownedConfigurationItems")
+	@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the children of this ConfigurationItem 
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Class::nestedClassifier", explanation="none", constraints="uml::Class::nestedClassifier elements on which ConfigurationItem stereotype or any stereotype that inherits from it is applied")
+	@"http://www.polarsys.org/capella/semantic"
+	val ConfigurationItem[*] ownedConfigurationItems;
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(featureName="packagedElement", featureOwner="Component")
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="ownedConfigurationItemPkgs")
+	@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the sub-(configuration item) packages owned by this component", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::nearestpackage", explanation="none", constraints="store them in the nearest possible package, since a Block cannot contain packages")
+	@"http://www.polarsys.org/capella/semantic"
+	val ConfigurationItemPkg[*] ownedConfigurationItemPkgs;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Physical Artifact Realization links owned by this Configuration Item", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/semantic"
+	val PhysicalArtifactRealization[*] ownedPhysicalArtifactRealizations;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="patternbody", viatra.expression="PhysicalArtifactRealization.sourceElement(par, self);
+PhysicalArtifactRealization.targetElement(par, target);")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="(automatically computed) the list of realizations links coming from physical artifacts, and in which this ConfigurationItem is involved
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"
+	!ordered readonly volatile transient derived ref cs.AbstractPhysicalArtifact[*]#allocatorConfigurationItems allocatedPhysicalArtifacts;
+}
+
+enum ConfigurationItemKind {
+	Unset = 0;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Commercial Off The Shelves Configuration Item", "usage guideline"="n/a", "used in levels"="epbs", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+	COTSCI = 1;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Computer Software Configuration Item", "usage guideline"="n/a", "used in levels"="epbs", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+	CSCI = 2;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Hardware Configuration Item", "usage guideline"="n/a", "used in levels"="epbs", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+	HWCI = 3;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Interface Configuration Item", "usage guideline"="n/a", "used in levels"="epbs", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+	InterfaceCI = 4;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Non Developmental Configuration Item", "usage guideline"="n/a", "used in levels"="epbs", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+	NDICI = 5;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Prime Item Configuration Item", "usage guideline"="n/a", "used in levels"="epbs", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+	PrimeItemCI = 6;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="System Configuration Item", "usage guideline"="n/a", "used in levels"="epbs", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+	SystemCI = 7;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Realization link betwen an EPBS architecture and a physical architecture
+[source:Capella study]
+
+Realization is a specialized abstraction relationship between two sets of model elements, one representing a specification
+(the supplier) and the other represents an implementation of the latter (the client). Realization can be used to model
+stepwise refinement, optimizations, transformations, templates, model synthesis, framework composition, etc.
+[source: UML superstructure v2.2]", "usage guideline"="n/a", "used in levels"="epbs", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="uml::Realization", explanation="none", constraints="none")
+class PhysicalArchitectureRealization extends cs.ArchitectureAllocation {
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Realization link betwen a Configuration Item and a physical artifact", constraints="none", "comment/notes"="none")
+class PhysicalArtifactRealization extends capellacore.Allocation {
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="targetElement")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Specifies the allocated architecture
+[source: Capella study]
+
+Specifies the targets of the DirectedRelationship.
+[source: UML superstructure v2.2]", constraints="none", "comment/notes"="none")
+	readonly volatile transient derived ref cs.AbstractPhysicalArtifact[1] realizedPhysicalArtifact;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="sourceElement")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Specifies the allocating architecture
+[source: Capella study]
+
+Specifies the sources of the DirectedRelationship.
+[source: UML superstructure v2.2]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref ConfigurationItem[1] realizingConfigurationItem;
+}
+

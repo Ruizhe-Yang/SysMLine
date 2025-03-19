@@ -6,13 +6,13 @@
 @namespace(uri="http://www.polarsys.org/capella/core/modeller/7.0.0", prefix="org.polarsys.capella.core.data.capellamodeller")
 package capellamodeller;
 
-import "platform:/resource/dut.cs.sysmline/metamodel/Capella/LogicalArchitecture.ecore";
-import "platform:/resource/dut.cs.sysmline/metamodel/Capella/ContextArchitecture.ecore";
-import "platform:/resource/dut.cs.sysmline/metamodel/Capella/CapellaCore.ecore";
-import "platform:/resource/dut.cs.sysmline/metamodel/Capella/OperationalAnalysis.ecore";
 import "platform:/resource/dut.cs.sysmline/metamodel/Capella/SharedModel.ecore";
-import "platform:/resource/dut.cs.sysmline/metamodel/Capella/EPBSArchitecture.ecore";
 import "platform:/resource/dut.cs.sysmline/metamodel/Capella/PhysicalArchitecture.ecore";
+import "platform:/resource/dut.cs.sysmline/metamodel/Capella/OperationalAnalysis.ecore";
+import "platform:/resource/dut.cs.sysmline/metamodel/Capella/ContextArchitecture.ecore";
+import "platform:/resource/dut.cs.sysmline/metamodel/Capella/LogicalArchitecture.ecore";
+import "platform:/resource/dut.cs.sysmline/metamodel/Capella/CapellaCore.ecore";
+import "platform:/resource/dut.cs.sysmline/metamodel/Capella/EPBSArchitecture.ecore";
 
 @"http://www.polarsys.org/capella/2007/UML2Mapping"(metaclass="Model", stereotype="core.Project")
 @"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Project is the model root of a Capella model

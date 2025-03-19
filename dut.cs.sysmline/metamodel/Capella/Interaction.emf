@@ -1,0 +1,1117 @@
+@"http://www.polarsys.org/kitalpha/emde/1.0.0/extension"(trackResourceModification="true", useUUIDs="false", useIDAttributes="true", extensibleProviderFactory="true", childCreationExtenders="true")
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Interaction aims at defining the components interaction language (close from the UML Sequence diagram, partially).
+[source: Capella study]", "usage guideline"="none", "used in levels"="operational,system,logical", "usage examples"="none", constraints="This package depends on the model FunctionalAnalysis.ecore
+This package depends on the model Behavior.ecore", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/semantic"
+@namespace(uri="http://www.polarsys.org/capella/core/interaction/7.0.0", prefix="org.polarsys.capella.core.data.interaction")
+package interaction;
+
+import "platform:/resource/dut.cs.sysmline/metamodel/Capella/FunctionalAnalysis.ecore";
+import "platform:/resource/dut.cs.sysmline/metamodel/Capella/ModellingCore.ecore";
+import "platform:/resource/dut.cs.sysmline/metamodel/Capella/Information.ecore";
+import "platform:/resource/dut.cs.sysmline/metamodel/Capella/Behavior.ecore";
+import "platform:/resource/dut.cs.sysmline/metamodel/Capella/CapellaCore.ecore";
+import "platform:/resource/dut.cs.sysmline/metamodel/Capella/CapellaCommon.ecore";
+import "platform:/resource/dut.cs.sysmline/metamodel/Capella/CompositeStructure.ecore";
+
+@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="SequenceMessage")
+@"http://www.polarsys.org/capella/2007/UML2Mapping"(metaclass="Message", stereotype="eng.SequenceMessage")
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="A Message defines a particular communication between Lifelines of an Interaction.
+[source:UML Superstructure v2.2]", "usage guideline"="n/a", "used in levels"="operational, system, logical, physical", "usage examples"="../img/usage_examples/example_sequence_scenario.png", constraints="none", "comment/notes"="Should be renamed Message to map UML concept", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="uml::Message", explanation="none", constraints="none")
+@"http://www.polarsys.org/capella/semantic"
+class SequenceMessage extends capellacore.NamedElement {
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(featureName="messageSort", featureOwner="Message")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="The sort of communication reflected by the Message.
+[source:UML Superstructure v2.2]", constraints="none", type="see MessageKind definition", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Message::messageSort", explanation="none", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"
+	attr MessageKind kind;
+
+	@"http://www.polarsys.org/capella/semantic"
+	ref capellacore.Constraint exchangeContext;
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(featureName="sendEvent", featureOwner="Message")
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="sendingEnd")
+	@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="This is equivalent to UML Message::sendEvent :
+References the Sending of the Message.
+[source:UML Superstructure v2.2]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Message::sendEvent", explanation="none", constraints="none")
+	ref MessageEnd sendingEnd;
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(featureName="receiveEvent", featureOwner="Message")
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="receivingEnd")
+	@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="This is equivalent to UML Message::sendEvent :
+References the Receiving of the Message.
+[source:UML Superstructure v2.2]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Message::receiveEvent", explanation="none", constraints="none")
+	ref MessageEnd receivingEnd;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the AbstractEventOperation triggered by this sequence message", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="patternbody", viatra.expression="SequenceMessage.receivingEnd.event(self, ero);
+	EventReceiptOperation.operation(ero, target);
+} or {
+	SequenceMessage.sendingEnd.event(self, eso);
+	EventSentOperation.operation(eso, target);
+")
+	@"http://www.polarsys.org/capella/semantic"
+	readonly volatile transient derived ref information.AbstractEventOperation invokedOperation;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the ExchangeItems carried by this sequence message", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"
+	ref information.ExchangeItem[*] exchangedItems;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="sendingEnd.covered.representedInstance")
+	@"http://www.polarsys.org/capella/semantic"
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref cs.Part sendingPart;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="receivingEnd.covered.representedInstance")
+	@"http://www.polarsys.org/capella/semantic"
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref cs.Part receivingPart;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="sendingEnd.covered.representedInstance")
+	@"http://www.polarsys.org/capella/semantic"
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref fa.AbstractFunction sendingFunction;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="receivingEnd.covered.representedInstance")
+	@"http://www.polarsys.org/capella/semantic"
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref fa.AbstractFunction receivingFunction;
+
+	@"http://www.polarsys.org/capella/semantic"
+	val SequenceMessageValuation[*] ownedSequenceMessageValuations;
+}
+
+@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="Scenario")
+@"http://www.polarsys.org/capella/2007/UML2Mapping"(metaclass="Interaction", stereotype="eng.Scenario")
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Definition of a dynamic behaviour composed of the following information :
+Context, objective, pre-conditions, post-conditions, used capabilities, involved roles & actors, operational exchanges & interactions, processes and activities. Ability to be validated. Temporal & performance description.Criticity.
+Scenarios can be gathered in a set of Use Cases.
+
+A scenario describes a temporal dynamic interaction between actors (included the system or possibly its components) through their exchanges, it also describes the initialisation and the evolution of the context of the interaction.
+[source:ARCADIA encyclopedia v0.8.0]
+
+A scenario is similar to UML Interaction concept :
+An interaction is a unit of behavior that focuses on the observable exchange of information between
+ConnectableElements.
+
+A scenario can be compared to an UML sequence diagram :
+A sequence diagram describes an Interaction by focusing on the sequence of Messages that are exchanged, along with
+their corresponding OccurrenceSpecifications on the Lifelines.
+[source:UML Superstructure v2.2]", "usage guideline"="n/a", "used in levels"="operational, system, logical, physical", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="uml::Interaction", explanation="none", constraints="none")
+@"http://www.polarsys.org/capella/semantic"
+class Scenario extends capellacore.Namespace, behavior.AbstractBehavior {
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="none", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"
+	attr ScenarioKind kind = "UNSET";
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(featureName="isMerged", featureOwner="eng.Scenario", fromStereotype="true")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Whether the scenario underwent a merge operation for the transition from one level to the next
+[source: Capella study]", constraints="none", type="n/a", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"
+	attr boolean merged;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the prerequisite conditions for the use of this Scenario", constraints="none", type="n/a", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="")
+	@"http://www.polarsys.org/capella/semantic"
+	ref capellacore.Constraint preCondition;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the conditions applying after this Scenario has been exercized", constraints="none", type="n/a", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="")
+	@"http://www.polarsys.org/capella/semantic"
+	ref capellacore.Constraint postCondition;
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(featureName="lifeline", featureOwner="Interaction")
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="instanceRoles")
+	@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Link to the set of instance roles (lifelines)
+[source:Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Interaction::lifeline", explanation="none", constraints="uml::Interaction::lifeline elements on which InstanceRole stereotype or any stereotype that inherits from it is applied
+Order must be computed")
+	@"http://www.polarsys.org/capella/semantic"
+	!resolve val InstanceRole[*] ownedInstanceRoles;
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(featureName="message", featureOwner="Interaction")
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="messages")
+	@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Link to the owned sequence messages
+[Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Interaction::message", explanation="none", constraints="Order must be computed")
+	@"http://www.polarsys.org/capella/semantic"
+	!resolve val SequenceMessage[*] ownedMessages;
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(featureName="fragment", featureOwner="Interaction")
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="ownedAbstractEnds")
+	@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Link to the owned message and operation ends
+[source:Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Interaction::fragment", explanation="none", constraints="uml::Interaction::fragment elements on which AbstractEnd stereotype or any stereotype that inherits from it is applied")
+	!resolve val InteractionFragment[*] ownedInteractionFragments;
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(featureName="fragment", featureOwner="Interaction")
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="ownedExecutions")
+	@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Link to the set of owned executions
+[source:Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Interaction::fragment", explanation="none", constraints="uml::Interaction::fragment elements on which Execution stereotype or any stereotype that inherits from it is applied")
+	@"http://www.polarsys.org/capella/semantic"
+	!resolve val TimeLapse[*] ownedTimeLapses;
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(featureName="packagedElement", featureOwner="Package")
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="ownedEvents")
+	@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the Events associated to this Capability
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::specific", explanation="specific rule : a package will be created in the nearest package, the events will be stored there, and the Capability will have a package import element.", constraints="")
+	!resolve val Event[*] ownedEvents;
+
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="n/a", "usage guideline"="n/a", "used in levels"="operational, system, logical, physical", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+	val Gate[*] ownedFormalGates;
+
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="n/a", "usage guideline"="n/a", "used in levels"="operational, system, logical, physical", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+	val ScenarioRealization[*] ownedScenarioRealization;
+
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="n/a", "usage guideline"="n/a", "used in levels"="operational, system, logical, physical", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+	@"http://www.polarsys.org/capella/semantic"
+	val ConstraintDuration[*] ownedConstraintDurations;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the SequenceMessage list, in sequence order", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="ownedInstanceRoles.representedInstance")
+	@"http://www.polarsys.org/capella/semantic"
+	readonly volatile transient derived ref fa.AbstractFunction[*] containedFunctions;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the SequenceMessage list, in sequence order", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="ownedInstanceRoles.representedInstance")
+	@"http://www.polarsys.org/capella/semantic"
+	readonly volatile transient derived ref cs.Part[*] containedParts;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="none", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="patternbody", viatra.expression="Scenario.ownedTimeLapses(self, iu);
+InteractionUse.referencedScenario(iu, target);")
+	@"http://www.polarsys.org/capella/semantic"
+	readonly volatile transient derived ref Scenario[*] referencedScenarios;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="none", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="patternbody", viatra.expression="Scenario.outgoingTraces(self, sr);
+ScenarioRealization.realizedScenario(sr, target);")
+	@"http://www.polarsys.org/capella/semantic"
+	readonly volatile transient derived ref Scenario[*]#realizingScenarios realizedScenarios;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="none", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="patternbody", viatra.expression="Scenario.incomingTraces(self, sr);
+ScenarioRealization.realizingScenario(sr, target);")
+	@"http://www.polarsys.org/capella/semantic"(excludefrom="xmlpivot")
+	readonly volatile transient derived ref Scenario[*]#realizedScenarios realizingScenarios;
+}
+
+@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="MessageEnd")
+@"http://www.polarsys.org/capella/2007/UML2Mapping"(metaclass="MessageOccurrenceSpecification", stereotype="eng.MessageEnd")
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Specifies the occurrence of events, such as sending and receiving of signals or invoking or receiving of operation calls. A
+message occurrence specification is a kind of message end. Messages are generated either by synchronous operation calls
+or asynchronous signal sends. They are received by the execution of corresponding accept event actions.
+
+This concept can be compared to UML MessageOccurrenceSpecification.
+[source:UML Superstructure v2.2] ", "usage guideline"="n/a", "used in levels"="operational, system, logical, physical", "usage examples"="n/a", constraints="none", "comment/notes"="Should be renamed MessageOccurrenceSpecification to map UML concept", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="uml::MessageOccurrenceSpecification", explanation="none", constraints="none")
+class MessageEnd extends AbstractEnd {
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(featureName="message", featureOwner="MessageEnd")
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="message")
+	@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the Message to which this MessageEnd is attached
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::MessageEnd::message", explanation="none", constraints="none")
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="patternbody", viatra.expression="SequenceMessage.sendingEnd(target, self);
+} or {
+	SequenceMessage.receivingEnd(target, self);")
+	readonly volatile transient derived ref SequenceMessage[1] message;
+}
+
+@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="Execution")
+@"http://www.polarsys.org/capella/2007/UML2Mapping"(metaclass="BehaviorExecutionSpecification", stereotype="eng.Execution")
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="An Execution Specification is a specification of the execution of a unit of behavior or action within the Lifeline. The
+duration of an ExecutionSpecification is represented by two ExecutionOccurrenceSpecifications, the start
+ExecutionOccurrenceSpecification and the finish ExecutionOccurrenceSpecification.
+
+Execution can be compared to UML Execution Specification.
+[source:UML Superstructure v2.2]", "usage guideline"="n/a", "used in levels"="operational, system, logical, physical", "usage examples"="n/a", constraints="none", "comment/notes"="Should be renamed ExecutionSpecification to map UML concept", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="uml::BehaviorExecutionSpecification", explanation="none", constraints="none")
+class Execution extends TimeLapse {
+
+	@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="covers")
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(featureName="covered", featureOwner="InteractionFragment")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the instance role that performs this Execution
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::InteractionFragment::covered", explanation="none", constraints="Multiplicity must be [1..1]")
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="patternbody", viatra.expression="Execution.start.coveredInstanceRoles(self, target);
+} or {
+	Execution.finish.coveredInstanceRoles(self, target);")
+	readonly volatile transient derived ref InstanceRole[1] covered;
+}
+
+@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="ExecutionEnd")
+@"http://www.polarsys.org/capella/2007/UML2Mapping"(metaclass="ExecutionOccurrenceSpecification", stereotype="eng.ExecutionEnd")
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="This concept can be compared to UML ExecutionOccurrenceSpecification : 
+An ExecutionOccurrenceSpecification represents moments in time at which actions or behaviors start or finish.
+[source:UML Superstructure v2.2]", "usage guideline"="n/a", "used in levels"="operational, system, logical, physical", "usage examples"="n/a", constraints="none", "comment/notes"="Should be renamed ExecutionOccurrenceSpecification to map UML concept", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="uml::ExecutionOccurrenceSpecification", explanation="none", constraints="none")
+class ExecutionEnd extends AbstractEnd {
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(featureName="execution", featureOwner="ExecutionOccurrenceSpecification")
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="execution")
+	@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the Execution to which this ExecutionEnd is attached
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::ExecutionOccurrenceSpecification::execution", explanation="none", constraints="none")
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="patternbody", viatra.expression="Execution.start(target, self);
+} or {
+	Execution.finish(target, self);")
+	readonly volatile transient derived ref Execution[1] execution;
+}
+
+@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="CreationEvent")
+@"http://www.polarsys.org/capella/2007/UML2Mapping"(metaclass="CreationEvent", stereotype="eng.CreationEvent")
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="A CreationEvent models the creation of an object.
+[source:UML Superstructure v2.2]", "usage guideline"="n/a", "used in levels"="operational, system, logical, physical", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="uml::CreationEvent", explanation="none", constraints="none")
+class CreationEvent extends Event {
+}
+
+@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="DestructionEvent")
+@"http://www.polarsys.org/capella/2007/UML2Mapping"(metaclass="DestructionEvent", stereotype="eng.DestructionEvent")
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="A DestructionEvent models the destruction of an object.
+[source:UML Superstructure v2.2]", "usage guideline"="n/a", "used in levels"="operational, system, logical, physical", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="uml::DestructionEvent", explanation="none", constraints="none")
+class DestructionEvent extends Event {
+}
+
+@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="ExecutionEvent")
+@"http://www.polarsys.org/capella/2007/UML2Mapping"(metaclass="ExecutionEvent", stereotype="eng.ExecutionEvent")
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="An ExecutionEvent models the start or finish of an execution occurrence.
+[source:UML Superstructure v2.2]", "usage guideline"="n/a", "used in levels"="operational, system, logical, physical", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="uml::ExecutionEvent", explanation="none", constraints="none")
+class ExecutionEvent extends Event {
+}
+
+@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="InstanceRole")
+@"http://www.polarsys.org/capella/2007/UML2Mapping"(metaclass="Lifeline", stereotype="eng.InstanceRole")
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Instance role can be compared to UML Lifeline : A lifeline represents an individual participant in the Interaction.
+[source:UML Superstructure v2.2]", "usage guideline"="n/a", "used in levels"="operational, system, logical, physical", "usage examples"="../img/usage_examples/example_instancerole.png", constraints="none", "comment/notes"="May be renamed Lifeline", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="uml::Lifeline", explanation="none", constraints="none")
+@"http://www.polarsys.org/capella/semantic"
+class InstanceRole extends capellacore.NamedElement {
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(featureName="coveredBy", featureOwner="Lifeline")
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="abstractEnds")
+	@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the start/end points of interactions that are attached to this lifeline
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Lifeline::coveredBy", explanation="none", constraints="Order must be computed")
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="opposite", viatra.expression="covered")
+	readonly volatile transient derived ref AbstractEnd[*]#covered abstractEnds;
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(featureName="represents", featureOwner="Lifeline")
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="representedInstance")
+	@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the instance that this lifeline represents the activity of
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Lifeline::represents", explanation="none", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"
+	ref information.AbstractInstance[1] representedInstance;
+}
+
+@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="AbstractEnd")
+@"http://www.polarsys.org/capella/2007/UML2Mapping"(metaclass="OccurrenceSpecification")
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="This concept can be compared to UML OccurrenceSpecification : The semantics of an OccurrenceSpecification is just the trace of that single OccurrenceSpecification.
+The understanding and deeper meaning of the OccurrenceSpecification is dependent upon the associated Message and the
+information that it conveys.
+[source:UML Superstructure v2.2]", "usage guideline"="n/a (Abstract)", "used in levels"="operational, system, logical, physical", "usage examples"="n/a", constraints="none", "comment/notes"="Should be renamed OccurrenceSpecification to map UML concept", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="", explanation="uml::OccurrenceSpecification", constraints="none")
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the scenario that this interaction endpoint is related to
+[source: Capella study]", constraints="none", "comment/notes"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::InteractionFragment::enclosingInteraction", explanation="none", constraints="none")
+abstract class AbstractEnd extends InteractionFragment {
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(featureName="event", featureOwner="OccurrenceSpecification")
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="event")
+	@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the Event associated to this interaction endpoint
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::OccurrenceSpecification::event", explanation="none", constraints="none")
+	ref Event[1] event;
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(featureName="covered", featureOwner="InteractionFragment")
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="instanceRole")
+	@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the instance role (lifeline) to which this interaction endpoint is attached
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::InteractionFragment::covered", explanation="none", constraints="Multiplicity must be [1..1]")
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="coveredInstanceRoles")
+	readonly volatile transient derived ref InstanceRole[1]#abstractEnds covered;
+}
+
+@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="MessageKind")
+@"http://www.polarsys.org/capella/2007/UML2Mapping"("enum"="MessageSort")
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="This concept is similar to UML MessageSort :
+This is an enumerated type that identifies the type of message.
+[source:UML Superstructure v2.2]", constraints="none", "comment/notes"="Should be renamed MessageSort to map UML concept")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::MessageSort", explanation="none", constraints="none")
+enum MessageKind {
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="The message kind is not specified
+[source:Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	UNSET = 0;
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(enumLiteral="ASYNCH_CALL")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="This enumeration literal is equivalent to UML MessageSort::asynchCall :
+The message was generated by an asynchronous call to an operation.
+[source:UML Superstructure v2.2]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::MessageSort::asynchCall", explanation="none", constraints="none")
+	ASYNCHRONOUS_CALL = 1;
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(enumLiteral="SYNCH_CALL")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="This enumeration literal is equivalent to UML MessageSort::synchCall :
+The message was generated by a synchronous call to an operation.
+[source:UML Superstructure v2.2]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::MessageSort::synchCall", explanation="none", constraints="none")
+	SYNCHRONOUS_CALL = 2;
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(enumLiteral="REPLY")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="This enumeration literal is equivalent to UML MessageSort::reply :
+The message is a reply message to an operation call.
+[source:UML Superstructure v2.2]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::MessageSort::reply", explanation="none", constraints="none")
+	REPLY = 3;
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(enumLiteral="DELETE_MESSAGE")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="This enumeration literal is equivalent to UML MessageSort::deleteMessage :
+The message designating the termination of another lifeline.
+[source:UML Superstructure v2.2]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::MessageSort::deleteMessage", explanation="none", constraints="none")
+	DELETE = 4;
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(enumLiteral="CREATE_MESSAGE")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="The message designating the creation of an instance role
+[source:Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::MessageSort::createMessage", explanation="none", constraints="none")
+	CREATE = 5;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="n/a", constraints="none", "comment/notes"="none")
+	TIMER = 6;
+}
+
+@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="Event")
+@"http://www.polarsys.org/capella/2007/UML2Mapping"(metaclass="Event")
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Event is similar to UML MessageEvent : A message event specifies the receipt by an object of either a call or a signal. MessageEvent is an abstract metaclass.
+[source:UML Superstructure v2.2]", "usage guideline"="n/a (Abstract)", "used in levels"="operational, system, logical, physical", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="", explanation="none", constraints="none")
+abstract class Event extends capellacore.NamedElement, behavior.AbstractEvent {
+}
+
+@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="EventReceiptOperation")
+@"http://www.polarsys.org/capella/2007/UML2Mapping"(metaclass="ReceiveOperationEvent", stereotype="eng.EventReceiptOperation")
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="This concept is similar to UML ReceiveOperationEvent : This specifies the event of receiving an operation invocation for a particular operation by the target entity.
+[source:UML Superstructure v2.2]", "usage guideline"="n/a", "used in levels"="operational, system, logical, physical", "usage examples"="n/a", constraints="none", "comment/notes"="Should be renamed ReceiveOperationEvent to map UML concept", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="uml::ReceiveOperationEvent", explanation="none", constraints="none")
+class EventReceiptOperation extends Event {
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(featureName="operation", featureOwner="ReceiveOperationEvent")
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="operation")
+	@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the Operation triggered by the reception of this event
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::ReceiveOperationEvent::operation", explanation="none", constraints="none")
+	ref information.AbstractEventOperation operation;
+}
+
+@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="EventSentOperation")
+@"http://www.polarsys.org/capella/2007/UML2Mapping"(metaclass="SendOperationEvent", stereotype="eng.EventSentOperation")
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="This concept is similar to UML SendOperationEvent : A SendOperationEvent models the invocation of an operation call.
+[source:UML Superstructure v2.2]", "usage guideline"="n/a", "used in levels"="operational, system, logical, physical", "usage examples"="n/a", constraints="none", "comment/notes"="Should be renamed SendOperationEvent to map UML concept", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="uml::SendOperationEvent", explanation="none", constraints="none")
+class EventSentOperation extends Event {
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(featureName="operation", featureOwner="SendOperationEvent")
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="operation")
+	@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the Operation triggering associated to the sending of this Event
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::SendOperationEvent::operation", explanation="none", constraints="none")
+	ref information.AbstractEventOperation operation;
+}
+
+@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="MergeLink")
+@"http://www.polarsys.org/capella/2007/UML2Mapping"(metaclass="Dependency", stereotype="eng.MergeLink")
+@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Ignore"
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="a specific kind of trace, indicating an operation of merge between two entities, for example two scenarios, merged into one in the refinement process towards the lower abstraction level
+[source: Capella study]", "usage guideline"="n/a", "used in levels"="operational, system, logical, physical", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="uml::Dependency", explanation="none", constraints="none")
+class MergeLink extends capellacore.Trace {
+}
+
+@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="RefinementLink")
+@"http://www.polarsys.org/capella/2007/UML2Mapping"(metaclass="Dependency", stereotype="eng.RefinementLink")
+@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Ignore"
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="a kind of trace between a model element at a given design level, and a model element at a low design level, refining the source element.
+[source: Capella study]", "usage guideline"="refinement links are automatically created/maintained by the tool when performing refinement operations from one abstraction level to the next", "used in levels"="operational, system, logical, physical", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="uml::Dependency", explanation="none", constraints="none")
+class RefinementLink extends capellacore.Trace {
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="An abstract capability realization describes an realization between an realizing capability and an realized capability
+[source:Capella study]", "usage guideline"="n/a", "used in levels"="operational, system, logical, physical", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="", explanation="none", constraints="none")
+class AbstractCapabilityRealization extends capellacore.Allocation {
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="targetElement")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the Capability being realized from the other Capability", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref AbstractCapability[1]#incomingCapabilityAllocation realizedCapability;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="sourceElement")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the Capability starting the realization relationships towards the other capability
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref AbstractCapability[1]#outgoingCapabilityAllocation realizingCapability;
+}
+
+@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="AbstractCapability")
+@"http://www.polarsys.org/capella/2007/UML2Mapping"(metaclass="Package")
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Base class for Capabilities (Capability and Capability Realization)
+[source:UML Superstructure v2.2]", "usage guideline"="n/a (Abstract)", "used in levels"="operational, system, logical, physical", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="", explanation="uml::UseCase", constraints="none")
+abstract class AbstractCapability extends capellacore.Structure, capellacore.InvolverElement, fa.AbstractFunctionalChainContainer {
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the prerequisite conditions for the use of this Capability
+[source: Capella study]", constraints="none", type="n/a", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="")
+	@"http://www.polarsys.org/capella/semantic"
+	ref capellacore.Constraint preCondition;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the conditions applying after this Capability has been exercized
+[source: Capella study]", constraints="none", type="n/a", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="")
+	@"http://www.polarsys.org/capella/semantic"
+	ref capellacore.Constraint postCondition;
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(featureName="ownedBehavior", featureOwner="BehavioredClassifier")
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="scenarios")
+	@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the Scenarios describing the dynamic aspects of this Capability
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::BehavioredClassifier::ownedBehavior", explanation="none", constraints="uml::BehavioredClassifier::ownedBehavior elements on which Scenario stereotype or any stereotype that inherits from it is applied
+Order must be computed")
+	@"http://www.polarsys.org/capella/semantic"
+	!resolve val Scenario[*] ownedScenarios;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="incomingTraces")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="(automatically computed) the allocations links which destination is this Capability
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref AbstractCapabilityRealization[*]#realizedCapability incomingCapabilityAllocation;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="outgoingTraces")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="(automatically computed) the allocation links having this Capability as their start point
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref AbstractCapabilityRealization[*]#realizingCapability outgoingCapabilityAllocation;
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(featureName="extend", featureOwner="UseCase")
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="extends")
+	@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the list of reference elements to the Capabilities that this Capability extends
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::UseCase::extend", explanation="none", constraints="Order must be computed")
+	!resolve val AbstractCapabilityExtend[*] ~extends;
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(umlOppositeReference="extendedCase", umlOppositeReferenceOwner="Extend")
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="extending")
+	@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the list of reference elements to Capabilities that extend this Capability
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Opposite reference of uml::Extend::extendedCase", constraints="Order must be computed")
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="opposite", viatra.expression="extended")
+	readonly volatile transient derived ref AbstractCapabilityExtend[*] extending;
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(featureName="extensionPoint", featureOwner="UseCase")
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="abstractCapabilityExtensionPoints")
+	@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the extension points that this Capability provides
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::UseCase::extensionPoint", explanation="none", constraints="Order must be computed")
+	!resolve val AbstractCapabilityExtensionPoint[*] abstractCapabilityExtensionPoints;
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(featureName="generalization", featureOwner="Classifier")
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="generalizations")
+	@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the list of references to Capabilities from which this Capability inherits
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Classifier::generalization", explanation="none", constraints="Order must be computed")
+	!resolve val AbstractCapabilityGeneralization[*] superGeneralizations;
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(featureName="generalization", featureOwner="Classifier")
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="generalizations")
+	@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the list of references to Capabilities that derive from this Capability
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Opposite reference of uml::Generalization::general", constraints="none")
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="opposite", viatra.expression="^super")
+	readonly volatile transient derived ref AbstractCapabilityGeneralization[*] subGeneralizations;
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(featureName="include", featureOwner="UseCase")
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="includes")
+	@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the list of references to Capabilities used/included by this Capability
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::UseCase::include", explanation="none", constraints="Order must be computed")
+	!resolve val AbstractCapabilityInclude[*] includes;
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(umlOppositeReference="addition", umlOppositeReferenceOwner="Include")
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="including")
+	@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the list of references to Capabilities that use/include this Capability
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Opposite reference of uml::Include::addition", constraints="Order must be computed")
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="opposite", viatra.expression="included")
+	readonly volatile transient derived ref AbstractCapabilityInclude[*] including;
+
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="superAbstractCapabilityUseCases")
+	@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="superGeneralizations.^super")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="(automatically computed) the direct references to Capabilities from which this Capability inherit", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"
+	readonly volatile transient derived ref AbstractCapability[*] ~super;
+
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="superAbstractCapabilityUseCases")
+	@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="subGeneralizations.sub")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="(automatically computed) the direct references to Capabilities that inherit from this Capability", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"(excludefrom="xmlpivot")
+	readonly volatile transient derived ref AbstractCapability[*] sub;
+
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="includedAbstractCapabilityUseCases")
+	@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="includes.included")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="(automatically computed) the direct references to the Capabilities that this Capability uses/includes", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"
+	readonly volatile transient derived ref AbstractCapability[*] includedAbstractCapabilities;
+
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="includedAbstractCapabilityUseCases")
+	@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="patternbody", viatra.expression="AbstractCapabilityInclude.included(aci, self);
+AbstractCapabilityInclude.inclusion(aci, target);")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="(automatically computed) the direct references to the Capabilities that this Capability uses/includes", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"(excludefrom="xmlpivot")
+	readonly volatile transient derived ref AbstractCapability[*] includingAbstractCapabilities;
+
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="extendedCapabilityUseCases")
+	@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="^extends.extended")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="(automatically computed) the direct references to the Capabilities that this Capability extends", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"
+	readonly volatile transient derived ref AbstractCapability[*] extendedAbstractCapabilities;
+
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="extendedCapabilityUseCases")
+	@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="patternbody", viatra.expression="AbstractCapabilityExtend.extended(ace, self);
+AbstractCapabilityExtend.^extension(ace, target);")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="(automatically computed) the direct references to the Capabilities that this Capability extends", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"(excludefrom="xmlpivot")
+	readonly volatile transient derived ref AbstractCapability[*] extendingAbstractCapabilities;
+
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	val FunctionalChainAbstractCapabilityInvolvement[*] ownedFunctionalChainAbstractCapabilityInvolvements;
+
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	val AbstractFunctionAbstractCapabilityInvolvement[*] ownedAbstractFunctionAbstractCapabilityInvolvements;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the list of (system) states in which this abstract capability is actually available
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"
+	ref capellacommon.State[*] availableInStates;
+
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	val AbstractCapabilityRealization[*] ownedAbstractCapabilityRealizations;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="patternbody", viatra.expression="AbstractCapability.involvedInvolvements(self, afaci);
+AbstractFunctionAbstractCapabilityInvolvement.function(afaci, target);")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"
+	readonly volatile transient derived ref fa.AbstractFunction[*] involvedAbstractFunctions;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="patternbody", viatra.expression="AbstractCapability.involvedInvolvements(self, fcaci);
+FunctionalChainAbstractCapabilityInvolvement.functionalChain(fcaci, target);")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"
+	readonly volatile transient derived ref fa.FunctionalChain[*] involvedFunctionalChains;
+}
+
+@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="AbstractCapabilityExtend")
+@"http://www.polarsys.org/capella/2007/UML2Mapping"(metaclass="Extend", stereotype="eng.AbstractCapabilityExtend")
+@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Ignore"
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="A relationship from an extending use case to an extended use case that specifies how and when the behavior defined in
+the extending use case can be inserted into the behavior defined in the extended use case.
+
+This concept is similar to UML Extend concept.
+[source:UML Superstructure v2.2]", "usage guideline"="n/a", "used in levels"="operational, system, logical, physical", "usage examples"="n/a", constraints="none", "comment/notes"="Should be renamed Extend to map UML concept", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="uml::Extend", explanation="none", constraints="none")
+class AbstractCapabilityExtend extends capellacore.Relationship {
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(featureName="extendedCase", featureOwner="Extend")
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="extended")
+	@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the Capability being extended
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Extend::extendedCase", explanation="none", constraints="none")
+	ref AbstractCapability[1] extended;
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(featureName="extension", featureOwner="Extend")
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="extension")
+	@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the Capability that realizes the extension
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Extend::extension", explanation="none", constraints="none")
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="opposite", viatra.expression="^extends")
+	readonly volatile transient derived ref AbstractCapability[1] extension;
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(featureName="extensionLocation", featureOwner="Extend")
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="extensionLocation")
+	@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the extension point to which the extending Capability is attached
+[source: Capella study]", constraints="this extension location must be one of the extensions of the Capability pointed by the  \"extended\" reference
+", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Extend::extensionLocation", explanation="none", constraints="Multiplicity must be [0..1]")
+	ref AbstractCapabilityExtensionPoint#extendLinks extensionLocation;
+}
+
+@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="AbstractCapabilityExtensionPoint")
+@"http://www.polarsys.org/capella/2007/UML2Mapping"(metaclass="ExtensionPoint", stereotype="eng.AbstractCapabilityExtensionPoint")
+@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Ignore"
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="An extension point identifies a point in the behavior of a use case where that behavior can be extended by the behavior of
+some other (extending) use case, as specified by an extend relationship.
+
+This concept is similar to UML ExtensionPoint.
+[source:UML Superstructure v2.2]", "usage guideline"="n/a", "used in levels"="operational, system, logical, physical", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="uml::ExtensionPoint", explanation="none", constraints="none")
+class AbstractCapabilityExtensionPoint extends capellacore.NamedRelationship {
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(featureName="useCase", featureOwner="ExtensionPoint")
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="abstractCapability")
+	@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the Capability to which this extension point belongs
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::ExtensionPoint::useCase", explanation="none", constraints="none")
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="opposite", viatra.expression="abstractCapabilityExtensionPoints")
+	readonly volatile transient derived ref AbstractCapability[1] abstractCapability;
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(umlOppositeReference="extensionLocation", umlOppositeReferenceOwner="Extend")
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="extendLinks")
+	@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the extension links starting from this extension point
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Opposite reference of uml::Extend::extensionLocation", constraints="uml::NamedElement::clientDependency elements on which AbstractCapabilityExtend stereotype or any stereotype that inherits from it is applied
+Order must be computed")
+	ref AbstractCapabilityExtend[*]#extensionLocation extendLinks;
+}
+
+@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="AbstractCapabilityGeneralization")
+@"http://www.polarsys.org/capella/2007/UML2Mapping"(metaclass="Generalization", stereotype="eng.AbstractCapabilityGeneralization")
+@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Ignore"
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="A specific kind of generalization link between Capabilities.
+[source: Capella study]
+
+The generalization is useful for Capability reuse (override or extension of Capability).", "usage guideline"="n/a", "used in levels"="operational, system, logical, physical", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="uml::Generalization", explanation="none", constraints="none")
+class AbstractCapabilityGeneralization extends capellacore.Relationship {
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(featureName="general", featureOwner="Generalization")
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="super")
+	@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the parent Capability
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Generalization::general", explanation="none", constraints="none")
+	ref AbstractCapability[1] ~super;
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(featureName="general", featureOwner="Generalization")
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="super")
+	@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the child Capability
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Generalization::specific", explanation="none", constraints="none")
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="opposite", viatra.expression="superGeneralizations")
+	readonly volatile transient derived ref AbstractCapability[1] sub;
+}
+
+@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="AbstractCapabilityInclude")
+@"http://www.polarsys.org/capella/2007/UML2Mapping"(metaclass="Include", stereotype="eng.AbstractCapabilityInclude")
+@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Ignore"
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="The Include is a relationship between two use cases, implying that the behavior of the included use case is inserted into the behavior of the including use case. It is also a kind of NamedElement so that it can have a name in the context of its owning use case. 
+The including use case may only depend on the result (value) of the included use case. This value is obtained as a result of the execution of the included use case.
+
+This concept is similar to UML Include concept.
+[source:UML Superstructure v2.2]
+
+Note that the included use case is not optional, and is always required for the including use case to execute correctly.", "usage guideline"="n/a", "used in levels"="operational, system, logical, physical", "usage examples"="n/a", constraints="none", "comment/notes"="Should be renamed Include to map UML concept", "reference documentation"="n/a")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="uml::Include", explanation="none", constraints="none")
+class AbstractCapabilityInclude extends capellacore.Relationship {
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(featureName="addition", featureOwner="Include")
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="included")
+	@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the Capability being included
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Include::addition", explanation="none", constraints="none")
+	ref AbstractCapability[1] included;
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(featureName="includingCase", featureOwner="Include")
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="inclusion")
+	@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the Capability performing the inclusion of the other Capability
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Include::includingCase", explanation="none", constraints="none")
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="opposite", viatra.expression="includes")
+	readonly volatile transient derived ref AbstractCapability[1] inclusion;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="none", constraints="none", "comment/notes"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+enum ScenarioKind {
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="none", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	UNSET = 4;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="none", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	INTERFACE = 0;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="none", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	DATA_FLOW = 1;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="none", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	INTERACTION = 2;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="none", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	FUNCTIONAL = 3;
+}
+
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="n/a", "usage guideline"="n/a", "used in levels"="operational, system, logical, physical", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+abstract class InteractionFragment extends capellacore.NamedElement {
+
+	@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="covers")
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(featureName="covered", featureOwner="InteractionFragment")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the instance role that performs this Execution
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::InteractionFragment::covered", explanation="none", constraints="Multiplicity must be [1..1]")
+	ref InstanceRole[+] coveredInstanceRoles;
+}
+
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="", explanation="none", constraints="none")
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="n/a", "usage guideline"="n/a", "used in levels"="operational, system, logical, physical", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+class InteractionState extends InteractionFragment {
+
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="n/a", "usage guideline"="n/a", "used in levels"="operational, system, logical, physical", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+	@GenModel(documentation="@deprecated : relatedAbstractState shall not be used anymore")
+	ref capellacommon.AbstractState relatedAbstractState;
+
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="n/a", "usage guideline"="n/a", "used in levels"="operational, system, logical, physical", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+	@GenModel(documentation="@deprecated : relatedAbstractFunction shall not be used anymore")
+	ref fa.AbstractFunction relatedAbstractFunction;
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(featureName="covered", featureOwner="InteractionFragment")
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="instanceRole")
+	@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the instance role (lifeline) to which this interaction endpoint is attached
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::InteractionFragment::covered", explanation="none", constraints="Multiplicity must be [1..1]")
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="coveredInstanceRoles")
+	readonly volatile transient derived ref InstanceRole[1] covered;
+}
+
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="", explanation="none", constraints="none")
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="n/a", "usage guideline"="n/a", "used in levels"="operational, system, logical, physical", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+class InteractionUse extends AbstractFragment {
+
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="n/a", "usage guideline"="n/a", "used in levels"="operational, system, logical, physical", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+	ref Scenario referencedScenario;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="ownedGates")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="n/a", "usage guideline"="n/a", "used in levels"="operational, system, logical, physical", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+	readonly volatile transient derived ref Gate[*] actualGates;
+}
+
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="", explanation="none", constraints="none")
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="A Combined Fragment.
+
+The concept is closed to the UML Combined Fragment.
+", "usage guideline"="n/a", "used in levels"="operational, system, logical, physical", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+class CombinedFragment extends AbstractFragment {
+
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="n/a", "usage guideline"="n/a", "used in levels"="operational, system, logical, physical", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+	@"http://www.polarsys.org/capella/semantic"
+	attr InteractionOperatorKind operator = "UNSET";
+
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="n/a", "usage guideline"="n/a", "used in levels"="operational, system, logical, physical", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+	ref InteractionOperand[*] referencedOperands;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="ownedGates")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="n/a", "usage guideline"="n/a", "used in levels"="operational, system, logical, physical", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+	readonly volatile transient derived ref Gate[*] expressionGates;
+}
+
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="A gate is a way to model the passing of information between a sequence diagram and its context.
+It is a message end.
+
+This concept is closed to the UML Gate.", "usage guideline"="n/a", "used in levels"="operational, system, logical, physical", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+class Gate extends MessageEnd {
+}
+
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="", explanation="none", constraints="none")
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="n/a", "usage guideline"="n/a", "used in levels"="operational, system, logical, physical", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+class InteractionOperand extends InteractionFragment {
+
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="n/a", "usage guideline"="n/a", "used in levels"="operational, system, logical, physical", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+	ref InteractionFragment[*] referencedInteractionFragments;
+
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="n/a", "usage guideline"="n/a", "used in levels"="operational, system, logical, physical", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+	@"http://www.polarsys.org/capella/semantic"
+	ref capellacore.Constraint guard;
+}
+
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="n/a", "usage guideline"="n/a", "used in levels"="operational, system, logical, physical", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+enum InteractionOperatorKind {
+
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="n/a", "usage guideline"="n/a", "used in levels"="operational, system, logical, physical", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+	UNSET = 11;
+
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="n/a", "usage guideline"="n/a", "used in levels"="operational, system, logical, physical", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+	ALT = 0;
+
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="n/a", "usage guideline"="n/a", "used in levels"="operational, system, logical, physical", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+	OPT = 1;
+
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="n/a", "usage guideline"="n/a", "used in levels"="operational, system, logical, physical", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+	PAR = 2;
+
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="n/a", "usage guideline"="n/a", "used in levels"="operational, system, logical, physical", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+	LOOP = 3;
+
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="n/a", "usage guideline"="n/a", "used in levels"="operational, system, logical, physical", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+	CRITICAL = 4;
+
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="n/a", "usage guideline"="n/a", "used in levels"="operational, system, logical, physical", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+	NEG = 5;
+
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="n/a", "usage guideline"="n/a", "used in levels"="operational, system, logical, physical", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+	ASSERT = 6;
+
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="n/a", "usage guideline"="n/a", "used in levels"="operational, system, logical, physical", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+	STRICT = 7;
+
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="n/a", "usage guideline"="n/a", "used in levels"="operational, system, logical, physical", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+	SEQ = 8;
+
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="n/a", "usage guideline"="n/a", "used in levels"="operational, system, logical, physical", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+	IGNORE = 9;
+
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="n/a", "usage guideline"="n/a", "used in levels"="operational, system, logical, physical", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+	CONSIDER = 10;
+}
+
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="n/a", "usage guideline"="n/a", "used in levels"="operational, system, logical, physical", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+abstract class TimeLapse extends capellacore.NamedElement {
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(featureName="start", featureOwner="ExecutionSpecification")
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="start")
+	@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the starting point of this Execution
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::ExecutionSpecification::start", explanation="none", constraints="none")
+	ref InteractionFragment[1] start;
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(featureName="finish", featureOwner="ExecutionSpecification")
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="finish")
+	@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the ending point of this Execution
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::ExecutionSpecification::finish", explanation="none", constraints="none")
+	ref InteractionFragment[1] finish;
+}
+
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Base class for Fragments in Scenarios.
+", "usage guideline"="n/a", "used in levels"="operational, system, logical, physical", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+abstract class AbstractFragment extends TimeLapse {
+
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="n/a", "usage guideline"="n/a", "used in levels"="operational, system, logical, physical", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+	val Gate[*] ownedGates;
+}
+
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="", explanation="none", constraints="none")
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="n/a", "usage guideline"="n/a", "used in levels"="operational, system, logical, physical", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+class FragmentEnd extends InteractionFragment {
+
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="n/a", "usage guideline"="n/a", "used in levels"="operational, system, logical, physical", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="patternbody", viatra.expression="AbstractFragment.start(target, self);
+} or {
+	AbstractFragment.finish(target, self);")
+	readonly volatile transient derived ref AbstractFragment[1] abstractFragment;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="A functional chain can be involved in capability
+[source: MBSD unified approach]", "usage guideline"="n/a", "used in levels"="operational, system, logical, physical", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="", explanation="none", constraints="none")
+class FunctionalChainAbstractCapabilityInvolvement extends capellacore.Involvement {
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="involver")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref AbstractCapability[1] capability;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="involved")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref fa.FunctionalChain[1] functionalChain;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="A function can be involved in a capability.
+[source: MBSD unified approach]", "usage guideline"="n/a", "used in levels"="operational, system, logical, physical", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="", explanation="none", constraints="none")
+class AbstractFunctionAbstractCapabilityInvolvement extends capellacore.Involvement {
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="involver")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref AbstractCapability[1] capability;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="involved")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref fa.AbstractFunction[1] function;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="an allocation link between a scenario, and the scenario that it realizes", "usage guideline"="this link is typically generated by the Capella tool during automated transitions between design levels", "used in levels"="operational,system,logical,physical", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="uml::Realization", explanation="none", constraints="none")
+class ScenarioRealization extends capellacore.Allocation {
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="targetElement")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the scenario that is being realized by/from the other scenario", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref Scenario realizedScenario;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="sourceElement")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the scenario that realizes (to) the other scenario", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref Scenario realizingScenario;
+}
+
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="", explanation="none", constraints="none")
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="none", "usage guideline"="n/a", "used in levels"="operational, system, logical, physical", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/semantic"
+class StateFragment extends TimeLapse {
+
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="n/a", "usage guideline"="n/a", "used in levels"="operational, system, logical, physical", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+	@"http://www.polarsys.org/capella/semantic"
+	ref capellacommon.AbstractState relatedAbstractState;
+
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="n/a", "usage guideline"="n/a", "used in levels"="operational, system, logical, physical", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+	@"http://www.polarsys.org/capella/semantic"
+	ref fa.AbstractFunction relatedAbstractFunction;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="n/a", constraints="none", "comment/notes"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="", explanation="none", constraints="none")
+class ArmTimerEvent extends Event {
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="n/a", constraints="none", "comment/notes"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="", explanation="none", constraints="none")
+class CancelTimerEvent extends Event {
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="n/a", constraints="none", "comment/notes"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="", explanation="none", constraints="none")
+@"http://www.polarsys.org/capella/semantic"
+class ConstraintDuration extends capellacore.NamedElement {
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="n/a", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/semantic"
+	attr String duration;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="n/a", constraints="none", "comment/notes"="none")
+	ref InteractionFragment start;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="n/a", constraints="none", "comment/notes"="none")
+	ref InteractionFragment finish;
+}
+
+@"http://www.polarsys.org/capella/semantic"
+class SequenceMessageValuation extends capellacore.CapellaElement {
+
+	@"http://www.polarsys.org/capella/semantic"
+	ref information.ExchangeItemElement exchangeItemElement;
+
+	@"http://www.polarsys.org/capella/semantic"
+	ref modellingcore.ValueSpecification value;
+}
+

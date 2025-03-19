@@ -1,0 +1,109 @@
+@"http://www.polarsys.org/kitalpha/emde/1.0.0/extension"(extensibleProviderFactory="true", childCreationExtenders="true")
+@namespace(uri="http://www.polarsys.org/capella/common/re/7.0.0", prefix="re")
+package re;
+
+import "platform:/resource/dut.cs.sysmline/metamodel/Capella/eMDE.ecore";
+
+abstract class ReAbstractElement extends emde.ExtensibleElement {
+	id attr String ~id;
+}
+
+abstract class ReNamedElement extends ReAbstractElement {
+
+	@"http://www.polarsys.org/capella/semantic"
+	attr String name;
+}
+
+abstract class ReDescriptionElement extends ReNamedElement {
+
+	@"http://www.polarsys.org/capella/semantic"
+	attr String description;
+}
+
+abstract interface ReElementContainer {
+
+	@"http://www.polarsys.org/capella/semantic"
+	val CatalogElement[*] ownedElements;
+}
+
+@"http://www.polarsys.org/capella/semantic"
+class CatalogElementPkg extends ReNamedElement, ReElementContainer {
+	val CatalogElementPkg[*] ownedElementPkgs;
+}
+
+@"http://www.polarsys.org/kitalpha/emde/1.0.0/constraint"(ExtendedElement="http://www.polarsys.org/capella/core/modeller/7.0.0#//SystemEngineering ")
+@"http://www.polarsys.org/kitalpha/emde/1.0.0/constraintMapping"(Mapping="platform:/plugin/org.polarsys.capella.core.data.gen/model/CapellaModeller.ecore#//SystemEngineering ")
+class RecCatalog extends CatalogElementPkg, emde.ElementExtension {
+	val CompliancyDefinitionPkg ownedCompliancyDefinitionPkg;
+}
+
+@"http://www.polarsys.org/kitalpha/emde/1.0.0/constraint"(ExtendedElement="http://www.polarsys.org/capella/core/modeller/7.0.0#//SystemEngineering http://www.polarsys.org/capella/core/cs/7.0.0#//BlockArchitecture")
+class GroupingElementPkg extends CatalogElementPkg, emde.ElementExtension {
+}
+
+class CatalogElementLink extends ReAbstractElement {
+	ref CatalogElement source;
+	ref EObject target;
+	ref CatalogElementLink origin;
+	attr String[*] unsynchronizedFeatures;
+	attr boolean suffixed;
+}
+
+@"http://www.polarsys.org/capella/semantic"
+class CatalogElement extends ReDescriptionElement, ReElementContainer {
+
+	@"http://www.polarsys.org/capella/semantic"
+	attr CatalogElementKind kind = "REC";
+
+	@"http://www.polarsys.org/capella/semantic"
+	attr String author;
+
+	@"http://www.polarsys.org/capella/semantic"
+	attr String environment;
+
+	@"http://www.polarsys.org/capella/semantic"
+	attr String suffix;
+
+	@"http://www.polarsys.org/capella/semantic"
+	attr String purpose;
+
+	@"http://www.polarsys.org/capella/semantic"
+	attr boolean readOnly = false;
+
+	@"http://www.polarsys.org/capella/semantic"
+	attr String version;
+
+	@"http://www.polarsys.org/capella/semantic"
+	attr String[*] tags;
+
+	@"http://www.polarsys.org/capella/semantic"
+	ref CatalogElement origin;
+	ref CompliancyDefinition currentCompliancy;
+	ref CompliancyDefinition defaultReplicaCompliancy;
+	val CatalogElementLink[*] ownedLinks;
+
+	@"http://www.polarsys.org/capella/semantic"
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="ownedLinks.target")
+	readonly volatile transient derived ref EObject[*] referencedElements;
+
+	@"http://www.polarsys.org/capella/semantic"
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="opposite", viatra.expression="origin")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="retrieve all referencing elements which have the current element as origin")
+	readonly volatile transient derived ref CatalogElement[*] replicatedElements;
+}
+
+enum CatalogElementKind {
+	REC = 0;
+	RPL = 1;
+	REC_RPL = 2;
+	GROUPING = 3;
+}
+
+class CompliancyDefinitionPkg extends ReNamedElement {
+	val CompliancyDefinition[*] ownedDefinitions;
+}
+
+@"http://www.polarsys.org/capella/semantic"
+class CompliancyDefinition extends ReDescriptionElement {
+}
+

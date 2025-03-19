@@ -1,0 +1,596 @@
+@"http://www.polarsys.org/kitalpha/emde/1.0.0/extension"(trackResourceModification="true", useUUIDs="false", useIDAttributes="true", extensibleProviderFactory="true", childCreationExtenders="true")
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="PhysicalArchitecture aims at defining the system's software, middleware and hardware architecture modelling language (close to the OMG's Platform Independent Model (PIM) in addition to OMG's Platform Model (PM)) using notions close to OMG's MARTE Resource concept. It adds the Deployment concern.
+This concern aggregates a lot of concepts regarding the others. A re-engineering of this concern should make sense.
+[source: Capella study]", "usage guideline"="none", "used in levels"="physical", "usage examples"="none", constraints="This package depends on the model CompositeStructure.ecore", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/semantic"
+@namespace(uri="http://www.polarsys.org/capella/core/pa/7.0.0", prefix="org.polarsys.capella.core.data.pa")
+package pa;
+
+import "platform:/resource/dut.cs.sysmline/metamodel/Capella/FunctionalAnalysis.ecore";
+import "platform:/resource/dut.cs.sysmline/metamodel/Capella/EPBSArchitecture.ecore";
+import "platform:/resource/dut.cs.sysmline/metamodel/Capella/CapellaCore.ecore";
+import "platform:/resource/dut.cs.sysmline/metamodel/Capella/Information.ecore";
+import "platform:/resource/dut.cs.sysmline/metamodel/Capella/CapellaCommon.ecore";
+import "platform:/resource/dut.cs.sysmline/metamodel/Capella/LogicalArchitecture.ecore";
+import "platform:/resource/dut.cs.sysmline/metamodel/Capella/CompositeStructure.ecore";
+
+@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="PhysicalArchitecturePkg")
+@"http://www.polarsys.org/capella/2007/UML2Mapping"(metaclass="Package", stereotype="eng.PhysicalArchitecturePkg")
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="container for physical architecture elements
+[source: Capella study]", "usage guideline"="n/a", "used in levels"="physical", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="uml::Package", explanation="none", constraints="none")
+class PhysicalArchitecturePkg extends cs.BlockArchitecturePkg {
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(featureName="packagedElement", featureOwner="Package")
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="subPhysicalArchitecturePkgs")
+	@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="sub-(physical architecture) packages contained in this package
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Package::nestedPackage#uml::Package::packagedElement", explanation="none", constraints="uml::Package::nestedPackage elements on which PhysicalArchitecturePkg stereotype or any stereotype that inherits from it is applied
+Order must be computed")
+	val PhysicalArchitecturePkg[*] ownedPhysicalArchitecturePkgs;
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(featureName="packagedElement", featureOwner="Package")
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="ownedPhysicalArchitectures")
+	@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the physical architecture elements contained in this package
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Package::packagedElement", explanation="none", constraints="uml::Package::packagedElement elements on which PhysicalArchitecture stereotype or any stereotype that inherits from it is applied
+Order must be computed")
+	val PhysicalArchitecture[*] ownedPhysicalArchitectures;
+}
+
+@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="Physical Architecture")
+@"http://www.polarsys.org/capella/2007/UML2Mapping"(metaclass="Package", stereotype="eng.PhysicalArchitecture")
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Model describing physical architecture part - hardware components & related items -  associated to (created during) a modelling phase", "usage guideline"="n/a", "used in levels"="physical", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="uml::Package", explanation="none", constraints="none")
+@"http://www.polarsys.org/capella/semantic"
+class PhysicalArchitecture extends cs.ComponentArchitecture {
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(featureName="packagedElement", featureOwner="Package")
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="ownedComponentPkgs")
+	@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="a package containing the physical components involved in this physical architecture
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Package::nestedPackage#uml::Package::packagedElement", explanation="none", constraints="uml::Package::nestedPackage elements on which PhysicalComponentPkg stereotype or any stereotype that inherits from it is applied
+Multiplicity must be [0..1]")
+	@"http://www.polarsys.org/capella/semantic"
+	val PhysicalComponentPkg ownedPhysicalComponentPkg;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="ownedAbstractCapabilityPkg")
+	@"http://www.polarsys.org/capella/semantic"(feature="ownedAbstractCapabilityPkg")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref la.CapabilityRealizationPkg containedCapabilityRealizationPkg;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="ownedFunctionPkg")
+	@"http://www.polarsys.org/capella/semantic"(feature="ownedFunctionPkg")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref PhysicalFunctionPkg containedPhysicalFunctionPkg;
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(featureName="packagedElement", featureOwner="Package")
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="ownedDeployments")
+	@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the various deployments associated with this physical architecture
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Package::packagedElement", explanation="none", constraints="uml::Package::packagedElement elements on which AbstractDeployment stereotype or any stereotype that inherits from it is applied
+Order must be computed")
+	@"http://www.polarsys.org/capella/semantic"
+	val cs.AbstractDeploymentLink[*] ownedDeployments;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the list of a relationships between physical architectures and the logical architectures that they realize, stored/owned by this architecture
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Package::packagedElement", explanation="none", constraints="uml::Package::packagedElement elements on which LogicalArchitectureRealisation stereotype or any stereotype that inherits from it is applied
+Order must be computed")
+	val LogicalArchitectureRealization[*] ownedLogicalArchitectureRealizations;
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(featureName="clientDependency", featureOwner="NamedElement")
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="allocatedLogicalArchitectureImplementations")
+	@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+	@"http://www.polarsys.org/capella/derived"(derive="self.ownedPartitions.representedElement.oclIsKindOf(PhysicalComponent) -> oclAsType(PhysicalComponent)", viatra.variant="alias", viatra.expression="provisionedArchitectureAllocations")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the list of relationships between this physical architecture and the logical architectures to which it is allocated
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref LogicalArchitectureRealization[*] allocatedLogicalArchitectureRealizations;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="allocatedArchitectures")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"
+	readonly volatile transient derived ref la.LogicalArchitecture[*]#allocatingPhysicalArchitectures allocatedLogicalArchitectures;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="allocatingArchitectures")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"(excludefrom="xmlpivot")
+	readonly volatile transient derived ref epbs.EPBSArchitecture[*]#allocatedPhysicalArchitectures allocatingEpbsArchitectures;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Function applied at physical level
+[source: Capella study]", "usage guideline"="this element is used in the \"functional approach\" usage, as the result of the flow down/refinement of the functions at the logical architecture level
+[source: Capella study]", "used in levels"="physical", "usage examples"="../img/usage_examples/example_physical_functions.png", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="uml::Activity", explanation="All functions are mapped to (empty) activities", constraints="none")
+@"http://www.polarsys.org/capella/semantic"
+class PhysicalFunction extends fa.AbstractFunction {
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the sub-(physical function) packages contained in this physical function", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Package::nestedPackage#uml::Package::packagedElement", explanation="none", constraints="uml::Package::nestedPackage elements on which PhysicalFunctionPkg stereotype or any stereotype that inherits from it is applied
+Order must be computed")
+	@"http://www.polarsys.org/capella/semantic"
+	val PhysicalFunctionPkg[*] ownedPhysicalFunctionPkgs;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="patternbody", viatra.expression="PhysicalFunction.incomingTraces(self, incomingTraces);
+ComponentFunctionalAllocation.sourceElement(incomingTraces, target);")
+	@"http://www.polarsys.org/capella/semantic"(excludefrom="xmlpivot")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref PhysicalComponent[*]#allocatedPhysicalFunctions allocatingPhysicalComponents;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="outFunctionRealizations.allocatedFunction")
+	@"http://www.polarsys.org/capella/semantic"
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref la.LogicalFunction[*]#realizingPhysicalFunctions realizedLogicalFunctions;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="ownedFunctions")
+	@"http://www.polarsys.org/capella/semantic"(feature="ownedFunctions")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref PhysicalFunction[*] containedPhysicalFunctions;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="subFunctions")
+	@"http://www.polarsys.org/capella/semantic"(excludefrom="xmlpivot")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="list of children physical functions
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref PhysicalFunction[*] childrenPhysicalFunctions;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="container for physical functions
+[source: Capella study]", "usage guideline"="Used to structure the storage of physical function elements inside a physical architecture
+", "used in levels"="physical", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="uml::Package", explanation="none", constraints="none")
+@"http://www.polarsys.org/capella/semantic"
+class PhysicalFunctionPkg extends fa.FunctionPkg {
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the physical functions contained in this package
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Package::packagedElement", explanation="none", constraints="uml::Package::packagedElement elements on which PhysicalFunction stereotype or any stereotype that inherits from it is applied
+Order must be computed")
+	@"http://www.polarsys.org/capella/semantic"
+	val PhysicalFunction[*] ownedPhysicalFunctions;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the sub-(physical function) packages contained in this package
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Package::nestedPackage#uml::Package::packagedElement", explanation="none", constraints="uml::Package::nestedPackage elements on which PhysicalFunctionPkg stereotype or any stereotype that inherits from it is applied
+Order must be computed")
+	@"http://www.polarsys.org/capella/semantic"
+	val PhysicalFunctionPkg[*] ownedPhysicalFunctionPkgs;
+}
+
+@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="PhysicalComponent")
+@"http://www.polarsys.org/capella/2007/UML2Mapping"(metaclass="Component", stereotype="eng.PhysicalComponent")
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Physical Components are the artifacts enabling to describe architectural solutions to satisfy the logical architecture identified at the upper abstraction level. Physical components are identified according to physical rationals (i.e. components reuse, available COTS, non functional constraints...)
+Examples: Software component, executable, hardware component (mechanical devices, electronical boards, equipments)", "usage guideline"="refer to description", arcadia_description="Physical Components are the artefacts enabling to describe the final physical decomposition of the system. Physical components are identified according to physical and development constraints.
+Two kinds of physical components exist: behavioural and implementation components.
+Two kinds of physical components are identified:
+- A behavioural component is a physical component in charge of implementing / realising part of the functions allocated to the system
+Example: software component, VHDL program (for a programmable device), hardware selector...
+- An implementation component  is a material physical component, resource embedding some behavioural components, and necessary to their expected behaviour.
+Example: Hardware computing board, computer, FPGA (programmable device), ...
+", "usage examples"="../img/usage_examples/example_physical_components.png", "used in levels"="physical", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="SysML::Blocks::Block", explanation="cannot map to uml::Component, which is not part of UML4SysML", constraints="none")
+@"http://www.polarsys.org/capella/semantic"
+class PhysicalComponent extends cs.AbstractPhysicalArtifact, cs.Component, capellacommon.CapabilityRealizationInvolvedElement, cs.DeployableElement, cs.DeploymentTarget {
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(featureName="type", fromStereotype="true", featureOwner="eng.AbstractPhysicalComponent")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="specifies the type of physical component (refer to PhysicalComponentKind for detailed description)
+[source: Capella study]", constraints="none", type="refer to PhysicalComponentKind definition", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"
+	attr PhysicalComponentKind kind;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="specifies the nature of this physical component, typically whether it is an actual execution node, or a behavioral component like a SW part
+[source: Capella study]", constraints="none", type="refer to PhysicalComponentNature definition", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"
+	attr PhysicalComponentNature nature;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the various deployments of this physical component
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::nearestpackage", explanation="SysML::Blocks::Block cannot contain AbstractDeployment's equivalent, hence we find the nearest available package to store them.", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"
+	val cs.AbstractDeploymentLink[*] ownedDeploymentLinks;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the physical components stored under this component
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Class::nestedClassifier", explanation="the nesting relation is just convenient to store sub-components under a component in the three, even though the hierachical relationship between componenets is not
+derived from this nesting : instead, it relies on the Parts present in the component, that are typed by the sub-components types.", constraints="uml::Class::nestedClassifier elements on which PhysicalComponent stereotype or any stereotype that inherits from it is applied
+Order must be computed")
+	@"http://www.polarsys.org/capella/semantic"
+	val PhysicalComponent[*] ownedPhysicalComponents;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the sub-(physical component) packages owned by this component
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::nearestpackage", explanation="SysML::Blocks::Block cannot contain packages, hence we find the nearest available package to store them.", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"
+	val PhysicalComponentPkg[*] ownedPhysicalComponentPkgs;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="provisionedInterfaceAllocations")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the list of logical interfaces that this physical component reallizes
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref LogicalInterfaceRealization[*] logicalInterfaceRealizations;
+
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="subActors")
+	@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="ownedPartitions.type")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the children components of this physical component
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"(excludefrom="xmlpivot")
+	readonly volatile transient derived ref PhysicalComponent[*] subPhysicalComponents;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="patternbody", viatra.expression="PhysicalComponent.outgoingTraces(self, lcr);
+	LogicalComponentRealization.targetElement(lcr, target);")
+	@"http://www.polarsys.org/capella/semantic"
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="(automatically computed) the list of realizations links coming from logical components, and in which this physical component is involved
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	!ordered readonly volatile transient derived ref la.LogicalComponent[*]#realizingPhysicalComponents realizedLogicalComponents;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="allocatedFunctions")
+	@"http://www.polarsys.org/capella/semantic"
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref PhysicalFunction[*]#allocatingPhysicalComponents allocatedPhysicalFunctions;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="patternbody", viatra.expression="Part.abstractType(part, self);
+	Part.deploymentLinks.deployedElement(part, deployedPart);
+	Part.abstractType(deployedPart, target);
+} or {
+	Part.abstractType(part, self);
+	Part.deploymentLinks.deployedElement(part, target);")
+	@"http://www.polarsys.org/capella/semantic"
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref PhysicalComponent[*] deployedPhysicalComponents;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="patternbody", viatra.expression="Part.abstractType(part, self);
+	Part.deployingLinks.location(part, deployedPart);
+	Part.abstractType(deployedPart, target);
+} or {
+	Part.abstractType(part, self);
+	Part.deploymentLinks.deployedElement(part, target);")
+	@"http://www.polarsys.org/capella/semantic"(excludefrom="xmlpivot")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref PhysicalComponent[*] deployingPhysicalComponents;
+}
+
+@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="PhysicalComponentPkg")
+@"http://www.polarsys.org/capella/2007/UML2Mapping"(metaclass="Package", stereotype="eng.PhysicalComponentPkg")
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="a container for physical component entities
+[source: Capella study]", "usage guideline"="n/a", "used in levels"="physical", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="uml::Package", explanation="none", constraints="none")
+@"http://www.polarsys.org/capella/semantic"
+class PhysicalComponentPkg extends cs.ComponentPkg, information.AssociationPkg {
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(featureName="packagedElement", featureOwner="Package")
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="ownedComponents")
+	@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the physical components stored in this package
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Package::packagedElement", explanation="none", constraints="uml::Package::packagedElement elements on which PhysicalComponent stereotype or any stereotype that inherits from it is applied
+Order must be computed")
+	@"http://www.polarsys.org/capella/semantic"
+	val PhysicalComponent[*] ownedPhysicalComponents;
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(featureName="packagedElement", featureOwner="Package")
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="subPhysicalComponentPkgs")
+	@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the sub-(physical component) packages contained in this package
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Package::nestedPackage#uml::Package::packagedElement", explanation="none", constraints="uml::Package::nestedPackage elements on which PhysicalComponentPkg stereotype or any stereotype that inherits from it is applied
+Order must be computed")
+	@"http://www.polarsys.org/capella/semantic"
+	val PhysicalComponentPkg[*] ownedPhysicalComponentPkgs;
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(featureName="packagedElement", featureOwner="Package")
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="ownedKeyParts")
+	@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the key parts contained in this package
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Package::packagedElement", explanation="none", constraints="uml::Package::packagedElement elements on which KeyPart stereotype or any stereotype that inherits from it is applied
+Order must be computed")
+	@"http://www.polarsys.org/capella/semantic"
+	!resolve val information.KeyPart[*] ownedKeyParts;
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(featureName="packagedElement", featureOwner="Package")
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="ownedDeployments")
+	@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the physical deployment definitions stored in this package
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Package::packagedElement", explanation="none", constraints="uml::Package::packagedElement elements on which AbstractDeployment stereotype or any stereotype that inherits from it is applied
+Order must be computed")
+	val cs.AbstractDeploymentLink[*] ownedDeployments;
+}
+
+@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="PhysicalNode")
+@"http://www.polarsys.org/capella/2007/UML2Mapping"(metaclass="Component", stereotype="eng.PhysicalNode")
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="a physical resource hosting behavioral components, and required for their execution or expected behavior
+[source: Arcadia encyclopedia]", "usage guideline"="n/a", "used in levels"="physical", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="uml::Node", explanation="none", constraints="none")
+@"http://www.polarsys.org/capella/semantic"
+class PhysicalNode extends PhysicalComponent {
+
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="subActors")
+	@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="ownedPartitions.type")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="all derived children of this physical node
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"(excludefrom="xmlpivot")
+	readonly volatile transient derived ref PhysicalNode[*] subPhysicalNodes;
+}
+
+@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="PhysicalComponentType")
+@"http://www.polarsys.org/capella/2007/UML2Mapping"("enum"="PhysicalComponentType")
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="allows to categorize a physical component, with respect to real life physical entities
+[source: Capella study]", constraints="none", "comment/notes"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+enum PhysicalComponentKind {
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="used when the physical component kind is not precised
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	UNSET = 0;
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(enumLiteral="HARDWARE")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="used when the physical component is a hardware resource
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	HARDWARE = 1;
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(enumLiteral="HARDWARE_COMPUTER")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="used when the physical component is a computing resource
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	HARDWARE_COMPUTER = 2;
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(enumLiteral="SOFTWARE")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="used when the physical component is a software entity
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	SOFTWARE = 3;
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(enumLiteral="SOFTWARE_DEPLOYMENT_UNIT")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="used when the physical component is a software deployment unit
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	SOFTWARE_DEPLOYMENT_UNIT = 4;
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(enumLiteral="SOFTWARE_EXECUTION_UNIT")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="used when the physical component is a software execution unit
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	SOFTWARE_EXECUTION_UNIT = 5;
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(enumLiteral="SOFTWARE_APPLICATION")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="used when the physical component is a software application
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	SOFTWARE_APPLICATION = 6;
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(enumLiteral="FIRMWARE")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="used when the physical component is a firmware part
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	FIRMWARE = 7;
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(enumLiteral="PERSON")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="used when the physical component is a person
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	PERSON = 8;
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(enumLiteral="FACILITIES")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="used when the physical component refers to Facilities
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	FACILITIES = 9;
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(enumLiteral="DATA")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="used when the physical component represents a set of data
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	DATA = 10;
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(enumLiteral="MATERIALS")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="used when the physical component represents a bunch of materials
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	MATERIALS = 11;
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(enumLiteral="SERVICES")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="used when the physical components represents a set of services
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	SERVICES = 12;
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(enumLiteral="PROCESSES")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="used when the physical component represents a set of processes
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	PROCESSES = 13;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="mediator class supporting the implementation of the allocation link between a physical architecture, and the logical architecture(s) that it realizes
+[source: Capella study]", "usage guideline"="n/a", "used in levels"="physical", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="uml::Realization", explanation="none", constraints="none")
+class LogicalArchitectureRealization extends cs.ArchitectureAllocation {
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="mediator class supporting the implementation of the allocation link between a physical interface, and the logical interface(s) that it realizes
+[source: Capella study]", "usage guideline"="n/a", "used in levels"="physical", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="uml::InterfaceRealization", explanation="none", constraints="none")
+class LogicalInterfaceRealization extends cs.InterfaceAllocation {
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="characterizes a physical component, with respect to its property of being a host of behavioral components, or a behavioral component
+[source: Capella study]", constraints="none", "comment/notes"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+enum PhysicalComponentNature {
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="used when the physical component nature is not precised
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	UNSET = 0;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="used when the physical component nature is behavioral (typically, a piece of software)
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	BEHAVIOR = 1;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="used when the physical component is a host for behavioral components (typically, a computing resource)
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	NODE = 2;
+}
+
+@"http://www.polarsys.org/kitalpha/emde/1.0.0/extension"(trackResourceModification="true", useUUIDs="false", useIDAttributes="true", extensibleProviderFactory="true", childCreationExtenders="true")
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="PhysicalArchitecture aims at defining the system's software, middleware and hardware architecture modelling language (close to the OMG's Platform Independent Model (PIM) in addition to OMG's Platform Model (PM)) using notions close to OMG's MARTE Resource concept. It adds the Deployment concern.
+This concern aggregates a lot of concepts regarding the others. A re-engineering of this concern should make sense.
+[source: Capella study]", "usage guideline"="none", "used in levels"="physical", "usage examples"="none", constraints="This package depends on the model CompositeStructure.ecore", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/semantic"
+@namespace(uri="http://www.polarsys.org/capella/core/pa/deployment/7.0.0", prefix="org.polarsys.capella.core.data.pa.deployment")
+package deployment {
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="An instance of a component for deployment purposes.", "usage guideline"="none", "used in levels"="physical", "usage examples"="none", constraints="none", "comment/notes"="none", "reference documentation"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="", explanation="none", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"
+	class ComponentInstance extends AbstractPhysicalInstance, cs.DeployableElement, cs.DeploymentTarget {
+
+		@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="ownedAbstractPhysicalInstances")
+		@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+		@"http://www.polarsys.org/capella/semantic"
+		readonly volatile transient derived ref PortInstance[*] portInstances;
+
+		@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+		@"http://www.polarsys.org/capella/semantic"
+		val AbstractPhysicalInstance[*] ownedAbstractPhysicalInstances;
+
+		@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+		@"http://www.polarsys.org/capella/semantic"
+		val InstanceDeploymentLink[*] ownedInstanceDeploymentLinks;
+
+		@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+		@"http://www.polarsys.org/capella/semantic"
+		ref PhysicalComponent type;
+	}
+
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="", explanation="none", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"
+	class ConnectionInstance extends AbstractPhysicalInstance {
+
+		@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+		@"http://www.polarsys.org/capella/semantic"(excludefrom="xmlpivot")
+		ref PortInstance[*]#connections connectionEnds;
+
+		@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+		@"http://www.polarsys.org/capella/semantic"
+		ref fa.ComponentExchange type;
+	}
+
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="DeploymentAspect")
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(metaclass="Package", stereotype="eng.DeploymentAspect")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="a grouping of deployment configurations, with a specific applicative meaning
+[source: Capella study]", "usage guideline"="n/a", "used in levels"="physical", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="uml::Package", explanation="none", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"
+	class DeploymentAspect extends capellacore.Structure {
+
+		@"http://www.polarsys.org/capella/2007/UML2Mapping"(featureName="packagedElement", featureOwner="Package")
+		@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="ownedConfigurations")
+		@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+		@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the deployment configurations associated to this deployment aspect
+[source: Capella study]", constraints="none", "comment/notes"="none")
+		@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Package::packagedElement", explanation="none", constraints="uml::Package::packagedElement elements on which DeploymentConfiguration stereotype or any stereotype that inherits from it is applied
+Order must be computed")
+		@"http://www.polarsys.org/capella/semantic"
+		val DeploymentConfiguration[*] ownedConfigurations;
+
+		@"http://www.polarsys.org/capella/2007/UML2Mapping"(featureName="packagedElement", featureOwner="Package")
+		@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="ownedAspects")
+		@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+		@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the sub packages contained under this package
+[source: Capella study]", constraints="none", "comment/notes"="none")
+		@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Package::nestedPackage#uml::Package::packagedElement", explanation="none", constraints="uml::Package::nestedPackage elements on which AbstractCapabilityPkg stereotype or any stereotype that inherits from it is applied
+Order must be computed")
+		@"http://www.polarsys.org/capella/semantic"
+		!resolve val DeploymentAspect[*] ownedDeploymentAspects;
+	}
+
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="DeploymentConfiguration")
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(metaclass="Package", stereotype="eng.DeploymentConfiguration")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="a consistent set of deployment specifications
+[source: Capella study]", "usage guideline"="n/a", "used in levels"="physical", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="uml::Package", explanation="none", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"
+	class DeploymentConfiguration extends capellacore.NamedElement {
+
+		@"http://www.polarsys.org/capella/2007/UML2Mapping"(featureName="elementImport", featureOwner="Namespace")
+		@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="deployments")
+		@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the deployment specifications that are part of this deployment configuration
+[source: Capella study]", constraints="none", "comment/notes"="none")
+		@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Namespace::elementImport", explanation="none", constraints="uml::Namespace::elementImport elements on which AbstractDeployment stereotype or any stereotype that inherits from it is applied
+Order must be computed")
+		@"http://www.polarsys.org/capella/semantic"
+		val cs.AbstractDeploymentLink[*] ownedDeploymentLinks;
+
+		@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+		@"http://www.polarsys.org/capella/semantic"
+		val AbstractPhysicalInstance[*] ownedPhysicalInstances;
+	}
+
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="InstanceDeploymentLink")
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(metaclass="Dependency", stereotype="eng.InstanceDeploymentLink")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="link between a physical object and its deployment element
+[source: Capella study]", "usage guideline"="n/a", "used in levels"="n/a", "usage examples"="n/a", constraints="n/a", "comment/notes"="none", "reference documentation"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="uml::Dependency", explanation="none", constraints="none")
+	class InstanceDeploymentLink extends cs.AbstractDeploymentLink {
+	}
+
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="PartDeploymentLink")
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(metaclass="Dependency", stereotype="none")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="link between a part and its deployment element", "usage guideline"="n/a", "used in levels"="n/a", "usage examples"="n/a", constraints="n/a", "comment/notes"="none", "reference documentation"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="uml::Dependency", explanation="none", constraints="none")
+	class PartDeploymentLink extends cs.AbstractDeploymentLink {
+	}
+
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="PhysicalObject")
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(metaclass="InstanceSpecification", stereotype="eng.PhysicalObject")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="an instance of a physical component
+[source: Capella study]", "usage guideline"="n/a", "used in levels"="physical", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="", explanation="none", constraints="none")
+	abstract class AbstractPhysicalInstance extends capellacore.CapellaElement {
+	}
+
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="", explanation="none", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"
+	class PortInstance extends AbstractPhysicalInstance {
+
+		@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+		@"http://www.polarsys.org/capella/semantic"
+		ref ConnectionInstance[*]#connectionEnds connections;
+
+		@"http://www.polarsys.org/capella/derived"(viatra.variant="opposite", viatra.expression="portInstances")
+		@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+		@"http://www.polarsys.org/capella/semantic"
+		readonly volatile transient derived ref ComponentInstance[1] component;
+
+		@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+		@"http://www.polarsys.org/capella/semantic"
+		ref fa.ComponentPort type;
+	}
+
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="TypeDeploymentLink")
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(metaclass="Dependency", stereotype="eng.TypeDeploymentLink")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="deployment link between a data type and the model element that deploys it
+[source: Capella study]", "usage guideline"="n/a", "used in levels"="n/a", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="uml::Dependency", explanation="none", constraints="none")
+	class TypeDeploymentLink extends cs.AbstractDeploymentLink {
+	}
+
+}
+

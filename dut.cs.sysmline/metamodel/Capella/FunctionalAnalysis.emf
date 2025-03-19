@@ -1,0 +1,1487 @@
+@"http://www.polarsys.org/kitalpha/emde/1.0.0/extension"(trackResourceModification="true", useUUIDs="false", useIDAttributes="true", extensibleProviderFactory="true", childCreationExtenders="true")
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="FunctionalAnalysis aims at defining the system engineering usual functional breakdown and functional data flow language (close to the UML Activity machine and SysML Activity as Block, partially).
+[source: Capella study]", "usage guideline"="none", "used in levels"="operational,system,logical,physical,epbs", "usage examples"="none", constraints="This package depends on the model CapellaCommon.ecore
+This package depends on the model Information.ecore", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/semantic"
+@namespace(uri="http://www.polarsys.org/capella/core/fa/7.0.0", prefix="org.polarsys.capella.core.data.fa")
+package fa;
+
+import "platform:/resource/dut.cs.sysmline/metamodel/Capella/Behavior.ecore";
+import "platform:/resource/dut.cs.sysmline/metamodel/Capella/CapellaCommon.ecore";
+import "platform:/resource/dut.cs.sysmline/metamodel/Capella/Activity.ecore";
+import "platform:/resource/dut.cs.sysmline/metamodel/Capella/CapellaCore.ecore";
+import "platform:/resource/dut.cs.sysmline/metamodel/Capella/LogicalArchitecture.ecore";
+import "platform:/resource/dut.cs.sysmline/metamodel/Capella/CompositeStructure.ecore";
+import "platform:/resource/dut.cs.sysmline/metamodel/Capella/ContextArchitecture.ecore";
+import "platform:/resource/dut.cs.sysmline/metamodel/Capella/Information.ecore";
+import "platform:/resource/dut.cs.sysmline/metamodel/Capella/ModellingCore.ecore";
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="a base class supporting the definition of architectures stating the functional interactions between entities
+[source: Capella study]", "usage guideline"="n/a", "used in levels"="operational,system,logical,physical,epbs", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="", explanation="uml::Package", constraints="none")
+abstract class AbstractFunctionalArchitecture extends capellacore.ModellingArchitecture {
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(featureName="packagedElement", featureOwner="Package")
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="ownedFunctionPkg")
+	@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the function packages contained in this functional architecture
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Package::nestedPackage#uml::Package::packagedElement", explanation="", constraints="uml::Package::nestedPackage elements on which FunctionPkg stereotype or any stereotype that inherits from it is applied
+Multiplicity must be [0..1]")
+	val FunctionPkg ownedFunctionPkg;
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(featureName="ownedConnector", featureOwner="StructuredClassifier")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the component exchanges contained directly under this functional architecture, e.g. exchanges between top level components
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Package::packagedElement", explanation="none", constraints="uml::Package::packagedElement elements on which ComponentExchange stereotype or any stereotype that inherits from it is applied
+Order must be computed")
+	@"http://www.polarsys.org/capella/semantic"
+	!resolve val ComponentExchange[*] ownedComponentExchanges;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="none", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/semantic"
+	!resolve val ComponentExchangeCategory[*] ownedComponentExchangeCategories;
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(featureName="packagedElement", featureOwner="Component")
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="ownedFunctionalLinks")
+	@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the exchange links contained directly under this functional architecture
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Package::packagedElement", explanation="none", constraints="uml::Package::packagedElement elements on which ExchangeLink stereotype or any stereotype that inherits from it is applied
+Order must be computed")
+	!resolve val ExchangeLink[*] ownedFunctionalLinks;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the list of component <=> functions allocation links contained directly under this functional architecture
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Package::packagedElement", explanation="none", constraints="uml::Package::packagedElement elements on which ComponentFunctionalAllocation stereotype or any stereotype that inherits from it is applied
+Order must be computed")
+	val ComponentFunctionalAllocation[*] ownedFunctionalAllocations;
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(featureName="ownedConnector", featureOwner="StructuredClassifier")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the list of component exchange realizations contained directly under this functional architecture
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Package::packagedElement", explanation="none", constraints="uml::Package::packagedElement elements on which ComponentExchangeRealisation stereotype or any stereotype that inherits from it is applied
+Order must be computed")
+	!resolve val ComponentExchangeRealization[*] ownedComponentExchangeRealizations;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="a specialization of a generic modelling block, with added ability to hold allocation links to functions
+[source: Capella study]", "usage guideline"="n/a", "used in levels"="operational,system,logical,physical,epbs", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="", explanation="none", constraints="none")
+abstract class AbstractFunctionalBlock extends capellacore.ModellingBlock {
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="allocation relationships between Functions and Blocks, that are owned by this Block
+[source: Capella study]
+", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::nearestpackage", explanation="none", constraints="Some elements on which ComponentFunctionalAllocation stereotype or any stereotype that inherits from it is applied
+Order must be computed")
+	val ComponentFunctionalAllocation[*] ownedFunctionalAllocation;
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(featureName="ownedConnector", featureOwner="StructuredClassifier")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the connections associated with this block
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::nearestpackage", explanation="none", constraints="In uml::Element::nearestPackage, exchanges between two elements contained by this block. Thoses exchanges are packaged elements on which ComponentExchange stereotype or any stereotype that inherits from it is applied
+Order must be computed")
+	@"http://www.polarsys.org/capella/semantic"
+	!resolve val ComponentExchange[*] ownedComponentExchanges;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="none", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/semantic"
+	!resolve val ComponentExchangeCategory[*] ownedComponentExchangeCategories;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="outgoingTraces")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="(automatically computed) the allocation links between this block, and the functions that are allocated to it.
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref ComponentFunctionalAllocation[*]#block functionalAllocations;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="functionalAllocations.function")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the list of functions allocated to this block
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref AbstractFunction[*]#allocationBlocks allocatedFunctions;
+
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="inFunctionalLinks")
+	@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the (functional) exchanges that have this block as their target/destination
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	ref ExchangeLink[*] inExchangeLinks;
+
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="outFunctionalLinks")
+	@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the (functional) exchanges that have this block as their source
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	ref ExchangeLink[*] outExchangeLinks;
+}
+
+@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="FunctionalAnalysis")
+@"http://www.polarsys.org/capella/2007/UML2Mapping"(metaclass="Package", stereotype="eng.sys.FunctionalAnalysis")
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="a base class for deriving packages aimed at containing functional entities (functions, exchanges between functions, ...)
+[source: Capella study]", "usage guideline"="n/a", "used in levels"="operational,system,logical,physical,epbs", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="", explanation="none", constraints="none")
+abstract class FunctionPkg extends capellacore.Structure {
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(featureName="packagedElement", featureOwner="Package")
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="ownedFunctionalLinks")
+	@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the (functional) exchange links contained in this package
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Package::packagedElement", explanation="none", constraints="uml::Package::packagedElement elements on which ExchangeLink stereotype or any stereotype that inherits from it is applied
+Order must be computed")
+	!resolve val ExchangeLink[*] ownedFunctionalLinks;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the exchanges specifications contained in this package
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Package::packagedElement", explanation="none", constraints="uml::Package::packagedElement elements on which FunctionalExchangeSpecification stereotype or any stereotype that inherits from it is applied
+Order must be computed")
+	!resolve val FunctionalExchangeSpecification[*] ownedExchanges;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the exchange realization links contained in this package
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Package::packagedElement", explanation="none", constraints="uml::Package::packagedElement elements on which ExchangeSpecificationRealisation stereotype or any stereotype that inherits from it is applied
+Order must be computed")
+	!resolve val ExchangeSpecificationRealization[*] ownedExchangeSpecificationRealizations;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the exchange categories (families) contained in this package
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Package::packagedElement", explanation="none", constraints="uml::Package::packagedElement elements on which ExchangeCategory stereotype or any stereotype that inherits from it is applied
+Order must be computed")
+	@"http://www.polarsys.org/capella/semantic"
+	val ExchangeCategory[*] ownedCategories;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the functions (specifications) included in this package
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Package::packagedElement", explanation="none", constraints="uml::Package::packagedElement elements on which FunctionSpecification stereotype or any stereotype that inherits from it is applied
+Order must be computed")
+	val FunctionSpecification[*] ownedFunctionSpecifications;
+}
+
+@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="Function Specification")
+@"http://www.polarsys.org/capella/2007/UML2Mapping"(metaclass="Component")
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="a function specification is to a function what a classifier is to an instance : it characterizes the common properties that all function instances will share
+[source: Capella study]", "usage guideline"="n/a", "used in levels"="system,logical,physical", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="uml::Activity", explanation="cannot be mapped to uml::Component since it is not part of UML4SysML", constraints="none")
+class FunctionSpecification extends capellacore.Namespace, activity.AbstractActivity {
+
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="inFunctionalLinks")
+	@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="inbound exchange links
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	ref ExchangeLink[*] inExchangeLinks;
+
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="outFunctionalLinks")
+	@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="outbound exchange links
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	ref ExchangeLink[*] outExchangeLinks;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="flow ports owned by functions instanciating this function specification
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::StructuredClassifier::ownedAttribute", explanation="none", constraints="uml::StructuredClassifier::ownedAttribute elements on which FlowPort stereotype or any stereotype that inherits from it is applied
+Order will not be preserved")
+	val FunctionPort[*] ownedFunctionPorts;
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(featureName="packagedElement", featureOwner="Component")
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="subFunctions")
+	@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="patternbody", viatra.expression="FunctionSpecification.ownedNodes(self, af);
+AbstractFunction.linkedFunctionSpecification(af, target); ")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="(automatically computed) list of sub-specifications of this function specification 
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived !resolve ref FunctionSpecification[*] subFunctionSpecifications;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="defines a family of exchanges, all associated to a common applicative criteria
+[source: Capella study]", "usage guideline"="could for example be used to declare a grouping of all physical exchanges sharing the same communication medium
+[source: Capella study]", "used in levels"="operational,system,logical,physical,epbs", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="uml::Package", explanation="none", constraints="none")
+@"http://www.polarsys.org/capella/semantic"
+class ExchangeCategory extends capellacore.NamedElement {
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the list of functional exchanges that are part of this exchange category
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="")
+	@"http://www.polarsys.org/capella/semantic"(excludefrom="xmlpivot")
+	ref FunctionalExchange[*] exchanges;
+}
+
+@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="FunctionalLink")
+@"http://www.polarsys.org/capella/2007/UML2Mapping"(metaclass="Component", stereotype="eng.sys.FunctionalLink")
+@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Ignore"
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="a grouping of functional exchanges, all participating in the same applicative link
+[source: Capella study]", "usage guideline"="n/a", "used in levels"="operational,system,logical,physical", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="uml::InformationFlow", explanation="none", constraints="none")
+class ExchangeLink extends capellacore.NamedRelationship {
+
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="exchanges")
+	@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="ownedExchangeContainments.exchange")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="(automatically computed) the exchanges involved in this exchange link
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref ExchangeSpecification[*] exchanges;
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(featureName="clientDependency", featureOwner="NamedElement")
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="exchangeContainmentLinks")
+	@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the exchange containments that are part of this exchange link 
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::NamedElement::clientDependency", explanation="none", constraints="uml::NamedElement::clientDependency elements on which ExchangeContainment stereotype or any stereotype that inherits from it is applied
+Order must be computed")
+	ref ExchangeContainment[*]#link exchangeContainmentLinks;
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(featureName="packagedElement", featureOwner="Component")
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="ownedExchangeContainments")
+	@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the exchange containments that are owned by this exchange link
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::nearestpackage", explanation="Elements are contained in the nearest possible parent container.", constraints="Some elements on which ExchangeContainment stereotype or any stereotype that inherits from it is applied")
+	!resolve val ExchangeContainment[*] ownedExchangeContainments;
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(featureName="clientDependency", featureOwner="NamedElement")
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="sources")
+	@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the functions that are at the starting point(s) of this exchange link
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::InformationFlow::informationSource", explanation="none", constraints="Order must be computed")
+	ref FunctionSpecification[*] sources;
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(featureName="clientDependency", featureOwner="NamedElement")
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="destinations")
+	@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the functions that are at the destination point(s) of this exchange link
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::InformationFlow::informationTarget", explanation="none", constraints="Order must be computed")
+	ref FunctionSpecification[*] destinations;
+}
+
+@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="ExchangeContainment")
+@"http://www.polarsys.org/capella/2007/UML2Mapping"(metaclass="Dependency", stereotype="eng.ExchangeContainment")
+@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Ignore"
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="a mediator class allowing to implement a referencing between an Exchange and an ExchangeLink
+[source: Capella study]", "usage guideline"="n/a", "used in levels"="operational,system,logical,physical", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="uml::Dependency", explanation="none", constraints="none")
+class ExchangeContainment extends capellacore.Relationship {
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(featureName="supplier", featureOwner="Dependency")
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="exchange")
+	@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the exchange (specification) involved in this relationship
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Dependency::supplier", explanation="none", constraints="Multiplicity must be [1..1]")
+	ref ExchangeSpecification[1]#link exchange;
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(featureName="client", featureOwner="Dependency")
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="link")
+	@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the exchange link involved in this relationship
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Dependency::client", explanation="none", constraints="Multiplicity must be [1..1]")
+	ref ExchangeLink[1]#exchangeContainmentLinks link;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="a high-level abstract class specifying a set of constraints that concrete exchanges might fulfill (e.g. implement this specification)
+[source: Capella study]", "usage guideline"="n/a", "used in levels"="operational,system,logical,physical,epbs", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="", explanation="uml::InformationFlow", constraints="none")
+abstract class ExchangeSpecification extends capellacore.NamedElement, activity.ActivityExchange {
+
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="containingLink")
+	@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="link.link")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the exchange link associated with this exchange specification
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref ExchangeLink containingLink;
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(umlOppositeReference="supplier", umlOppositeReferenceOwner="Dependency")
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="link")
+	@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the exchange containment associated with this exchange specification
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Opposite reference of uml::Dependency::supplier", constraints="none")
+	ref ExchangeContainment#exchange link;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="outgoingTraces")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the realization links between exchange specifications, for which this exchange specification is the origin of the link
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref ExchangeSpecificationRealization[*]#realizingExchangeSpecification outgoingExchangeSpecificationRealizations;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="incomingTraces")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the realization links between exchange specifications, for which this exchange specification is the destination of the link
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref ExchangeSpecificationRealization[*]#realizedExchangeSpecification incomingExchangeSpecificationRealizations;
+}
+
+@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="Functional Exchange Specification")
+@"http://www.polarsys.org/capella/2007/UML2Mapping"(metaclass="Connector", stereotype="eng.Exchange")
+@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Ignore"
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="a specialized version of an exchange specification, dedicated to specify exchanges between two functions of the system
+[source: Capella study]", "usage guideline"="n/a", "used in levels"="operational,system,logical,physical,epbs", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="uml::InformationFlow", explanation="none", constraints="none")
+class FunctionalExchangeSpecification extends ExchangeSpecification {
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="realizations")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the functional exchanges that fulfill this specification
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref FunctionalExchange[*] functionalExchanges;
+}
+
+@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="FunctionalChain")
+@"http://www.polarsys.org/capella/2007/UML2Mapping"(metaclass="StructuredActivityNode", stereotype="eng.FunctionalChain")
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="A functional chain is a set of Functions, activated through an activation graph (or path) and carrying non functional properties such as latency, criticity level ... 
+It provides a high-level description of a contribution of the system, users or external entities to an operational capability.", "usage guideline"="a functional chain is used highlight a specific path in the function flow, that is of particular interest in the context of the targeted application (performance constraint, safety path, ...)
+[source: Capella study]", "used in levels"="operational,system,logical,physical", "usage examples"="../img/usage_examples/example_functional_chain.png", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="uml::Package", explanation="none", constraints="none")
+@"http://www.polarsys.org/capella/semantic"
+class FunctionalChain extends capellacore.NamedElement, capellacore.InvolverElement, capellacore.InvolvedElement {
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Defines the kind of this FunctionalChain", constraints="none", type="refer to FunctionalChainKind definition", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"
+	attr FunctionalChainKind kind;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the list of involvement relationships owned by this functional chain", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::NamedElement::clientDependency::keyword::specific", explanation="Elements are contained in the nearest possible parent container.", constraints="uml::NamedElement::clientDependency elements on which FunctionalChain stereotype or any stereotype that inherits from it is applied")
+	@"http://www.polarsys.org/capella/semantic"
+	val FunctionalChainInvolvement[*] ownedFunctionalChainInvolvements;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the list of realization relationships owned by this functional chain", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::NamedElement::clientDependency::keyword::specific", explanation="Elements are contained in the nearest possible parent container.", constraints="uml::NamedElement::clientDependency elements on which FunctionalChainInvolvement stereotype or any stereotype that inherits from it is applied")
+	val FunctionalChainRealization[*] ownedFunctionalChainRealizations;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="ownedFunctionalChainInvolvements")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="(automatically computed) the list of involvement relationships included in this functional chain
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref FunctionalChainInvolvement[*] involvedFunctionalChainInvolvements;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="involvedElements")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="(automatically computed) the functions involved in this functional chain
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref AbstractFunction[*]#involvingFunctionalChains involvedFunctions;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="involvedElements")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="(automatically computed) the functional exchanges involved in this functional chain
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref FunctionalExchange[*]#involvingFunctionalChains involvedFunctionalExchanges;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="involvedFunctionalChainInvolvements.involved")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="(automatically computed) the list of model elements involved in this functional chain
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref capellacore.InvolvedElement[*] involvedElements;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="involvedFunctions")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="(automatically computed) the functions involved in this functional chain
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref AbstractFunction[*] enactedFunctions;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="enactedFunctions.allocationBlocks")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="(automatically computed) the functional blocks involved in this functional chain
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref AbstractFunctionalBlock[*] enactedFunctionalBlocks;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the list of (system) states in which this functional chain is actually available
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"
+	ref capellacommon.State[*] availableInStates;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="freeform", viatra.expression="pattern FunctionalChain__firstFunctionalChainInvolvements(self : FunctionalChain, target : FunctionalChainInvolvement) {
+	FunctionalChain.ownedFunctionalChainInvolvements(self, target);
+	FunctionalChainInvolvement.involved(target, _);
+	neg find _PreviousInvolvement(target, _);
+}
+private pattern _PreviousInvolvement(fci : FunctionalChainInvolvement, previous : FunctionalChainInvolvement) {
+	FunctionalChainInvolvement.previousFunctionalChainInvolvements(fci, previous);
+}
+")
+	@"http://www.polarsys.org/capella/semantic"
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref FunctionalChainInvolvement[*] firstFunctionalChainInvolvements;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="patternbody", viatra.expression="FunctionalChain.involvingInvolvements(self, fcaci);
+FunctionalChainAbstractCapabilityInvolvement.capability(fcaci, target);")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"(excludefrom="xmlpivot")
+	readonly volatile transient derived ref ctx.Capability[*] involvingCapabilities;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="patternbody", viatra.expression="FunctionalChain.involvingInvolvements(self, fcaci);
+FunctionalChainAbstractCapabilityInvolvement.capability(fcaci, target);")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"(excludefrom="xmlpivot")
+	readonly volatile transient derived ref la.CapabilityRealization[*] involvingCapabilityRealizations;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="patternbody", viatra.expression="FunctionalChainRealization.sourceElement(fcr, self);
+FunctionalChainRealization.targetElement(fcr, target);")
+	@"http://www.polarsys.org/capella/semantic"
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref FunctionalChain[*] realizedFunctionalChains;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="patternbody", viatra.expression="FunctionalChainRealization.targetElement(fcr, self);
+FunctionalChainRealization.sourceElement(fcr, target);")
+	@"http://www.polarsys.org/capella/semantic"(excludefrom="xmlpivot")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref FunctionalChain[*] realizingFunctionalChains;
+
+	@"http://www.polarsys.org/capella/semantic"
+	ref capellacore.Constraint preCondition;
+
+	@"http://www.polarsys.org/capella/semantic"
+	ref capellacore.Constraint postCondition;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="", "usage guideline"="n/a", "used in levels"="operational,system,logical,physical", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"
+	val ControlNode[*] ownedSequenceNodes;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="", "usage guideline"="n/a", "used in levels"="operational,system,logical,physical", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"
+	val SequenceLink[*] ownedSequenceLinks;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Enumeration of the different functional chains
+[source:Capella study]", constraints="none", "comment/notes"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+enum FunctionalChainKind {
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="simple functional chain", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	SIMPLE = 0;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="composite functional chain", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	COMPOSITE = 1;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="fragment functional chain", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	FRAGMENT = 2;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Base class for possible containers of functional chains (may be both functional or use case containers)
+[source: MBSD unified approach]", "usage guideline"="n/a", "used in levels"="operational,system,logical,physical", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="", explanation="", constraints="none")
+abstract class AbstractFunctionalChainContainer extends capellacore.CapellaElement {
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(featureName="packagedElement", featureOwner="Package")
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="ownedFunctionalChains")
+	@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the functional chains associated to this function, e.g. functional chains that involve only sub-functions of this function
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::nearestpackage", explanation="none", constraints="uml::Class::nestedClassifier elements on which FunctionalChain stereotype or any stereotype that inherits from it is applied")
+	@"http://www.polarsys.org/capella/semantic"
+	!resolve val FunctionalChain[*] ownedFunctionalChains;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="specifies the involvement of a model element in a functional chain
+[source: Capella study]", "usage guideline"="n/a", "used in levels"="operational,system,logical,physical", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="uml::Dependency", explanation="none", constraints="none")
+@"http://www.polarsys.org/capella/semantic"
+abstract class FunctionalChainInvolvement extends capellacore.Involvement {
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="freeform", viatra.expression="pattern FunctionalChainInvolvement_nextFunctionalChainInvolvements(self : FunctionalChainInvolvement, target : FunctionalChainInvolvement) {
+	FunctionalChainInvolvementLink.source(target, self);
+} or {
+	FunctionalChainInvolvementLink.target(self, target);
+}")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="none", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="", explanation="", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"
+	readonly volatile transient derived ref FunctionalChainInvolvement[*] nextFunctionalChainInvolvements;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="freeform", viatra.expression="pattern FunctionalChainInvolvement__previousFunctionalChainInvolvements(self : FunctionalChainInvolvement, target : FunctionalChainInvolvement) {
+	FunctionalChainInvolvementLink.target(target, self);
+} or {
+	FunctionalChainInvolvementLink.source(self, target);
+}")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"
+	readonly volatile transient derived ref FunctionalChainInvolvement[*] previousFunctionalChainInvolvements;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="involved")
+	@"http://www.polarsys.org/capella/semantic"
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref capellacore.InvolvedElement involvedElement;
+}
+
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="", explanation="none", constraints="none")
+@"http://www.polarsys.org/capella/semantic"
+class FunctionalChainReference extends FunctionalChainInvolvement {
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="involved")
+	@"http://www.polarsys.org/capella/semantic"
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref FunctionalChain referencedFunctionalChain;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="an input interface of its owning function, to receive functional exchanges from other functions
+[source: Capella study]", "usage guideline"="It is necessary to create a function input port on a function, to be able to set this function as the receiving end of a functional exchange. Note however that the Capella tool automatically creates a function input port on the destination function, when a functional exchange is created.
+[source: Capella study]", "used in levels"="system,logical,physical", "usage examples"="../img/usage_examples/ports_exchanges.png", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="uml::ActivityParameterNode", explanation="use ActivityParameterNodes, delegation will add uml::InputPin on callBeahviorAction
+", constraints="none")
+@"http://www.polarsys.org/capella/semantic"
+class FunctionInputPort extends FunctionPort, activity.InputPin {
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the exchange items that are declared as potential flowing into this port
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"
+	ref information.ExchangeItem[*] incomingExchangeItems;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="incoming")
+	@"http://www.polarsys.org/capella/semantic"(excludefrom="xmlpivot")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref FunctionalExchange[*] incomingFunctionalExchanges;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="an output interface of its owning function, to be the origin of functional exchanges towards other functions
+[source: Capella study]", "usage guideline"="It is necessary to create a function output port on a function, to be able to set this function as the origin of a functional exchange. Note however that the Capella tool automatically creates a function output port on the origin function, when a functional exchange is created.
+[source: Capella study]", "used in levels"="system,logical,physical", "usage examples"="../img/usage_examples/ports_exchanges.png", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="uml::ActivityParameterNode", explanation="use ActivityParameterNodes, delegation will add uml::OutputPin on call BehaviorAction", constraints="none")
+@"http://www.polarsys.org/capella/semantic"
+class FunctionOutputPort extends FunctionPort, activity.OutputPin {
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the exchange items that are declared as potentially flowing out of this port
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"
+	ref information.ExchangeItem[*] outgoingExchangeItems;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="outgoing")
+	@"http://www.polarsys.org/capella/semantic"(excludefrom="xmlpivot")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref FunctionalExchange[*] outgoingFunctionalExchanges;
+}
+
+@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="FunctionAllocation")
+@"http://www.polarsys.org/capella/2007/UML2Mapping"(metaclass="Dependency")
+@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Ignore"
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="a base class for deriving allocation relationships between a function, and some other model element
+[source: Capella study]", "usage guideline"="n/a", "used in levels"="operational,system,logical,physical", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="", explanation="none", constraints="none")
+abstract interface AbstractFunctionAllocation extends capellacore.Allocation {
+}
+
+@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="FunctionAllocationToLogicalComponent")
+@"http://www.polarsys.org/capella/2007/UML2Mapping"(metaclass="Dependency", stereotype="eng.FunctionAllocationToLogicalComponent")
+@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Ignore"
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="a allocation link between a function and a component
+[source: Capella study]", "usage guideline"="n/a", "used in levels"="operational,system,logical,physical", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="SysML::Allocations::Allocate", explanation="none", constraints="none")
+class ComponentFunctionalAllocation extends AbstractFunctionAllocation {
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="targetElement")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the function involved in this allocation link
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref AbstractFunction[1]#componentFunctionalAllocations function;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="sourceElement")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the block involved in this allocation link
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref AbstractFunctionalBlock[1]#functionalAllocations block;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="an allocation link between two Functional Chains", "usage guideline"="this link is typically generated by the Capella tool during automated transitions between design levels", "used in levels"="operational,system,logical,physical", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="uml::Realization", explanation="none", constraints="none")
+class FunctionalChainRealization extends capellacore.Allocation {
+}
+
+@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="FunctionAllocationToLogicalComponent")
+@"http://www.polarsys.org/capella/2007/UML2Mapping"(metaclass="Dependency", stereotype="eng.FunctionAllocationToLogicalComponent")
+@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Ignore"
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Base class for deriving specific realization links between exchange specifications and the model elements that realize them.
+[source: Capella study]", "usage guideline"="n/a", "used in levels"="operational,system,logical,physical", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="", explanation="none", constraints="none")
+abstract class ExchangeSpecificationRealization extends capellacore.Allocation {
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="targetElement")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the exchange specification that is being realized by the other (typically lower level) exchange specification involved in this link
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref ExchangeSpecification[1]#incomingExchangeSpecificationRealizations realizedExchangeSpecification;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="sourceElement")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the exchange specification that performs the realization of the other exchange specification involved in this link
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref ExchangeSpecification[1]#outgoingExchangeSpecificationRealizations realizingExchangeSpecification;
+}
+
+@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="Functional Exchange Realization")
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="a realization link between a functional exchange, and the (typically higher level) functional exchange that it realizes
+[source: Capella study]", "usage guideline"="n/a", "used in levels"="operational,system,logical,physical", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="uml::Realization", explanation="none", constraints="none")
+class FunctionalExchangeRealization extends capellacore.Allocation {
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="targetElement")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the functional exchange that is being realized by the other functional exchange involved in this relationship
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref FunctionalExchange[1]#incomingFunctionalExchangeRealizations realizedFunctionalExchange;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="sourceElement")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the functional exchange that is realising the other functional exchange involved in this relationship
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref FunctionalExchange[1]#outgoingFunctionalExchangeRealizations realizingFunctionalExchange;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="an allocation link between a function, and the function that it realizes
+[source: Capella study]", "usage guideline"="this link is typically generated by the Capella tool during automated transitions between design levels", "used in levels"="operational,system,logical,physical", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="uml::Realization", explanation="none", constraints="none")
+class FunctionRealization extends AbstractFunctionAllocation {
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="targetElement")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the function that is being allocated by/from the other function
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref AbstractFunction[1]#inFunctionRealizations allocatedFunction;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="sourceElement")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the function that allocates (to) the other function
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref AbstractFunction[1]#outFunctionRealizations allocatingFunction;
+}
+
+@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="Transition")
+@"http://www.polarsys.org/capella/2007/UML2Mapping"(metaclass="ObjectFlow", stereotype="eng.Transition")
+@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Ignore"
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="an exchange between two functions of the system
+[source: Capella study]", "usage guideline"="a functional exchange is used between two functions whenever there is an interaction between these two functions, be it the providing of some data or just the transition of control from/to a function.", "used in levels"="operational,system,logical,physical", "usage examples"="../img/usage_examples/ports_exchanges.png", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="uml::ObjectFlow", explanation="none", constraints="none")
+@"http://www.polarsys.org/capella/semantic"
+class FunctionalExchange extends capellacore.NamedElement, capellacore.Relationship, capellacore.InvolvedElement, activity.ObjectFlow, behavior.AbstractEvent, information.AbstractEventOperation {
+
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="exchanges")
+	@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the exchange specification(s) that this exchange complies to
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	ref FunctionalExchangeSpecification[*] exchangeSpecifications;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="patternbody", viatra.expression="FunctionalExchange.involvingInvolvements(self, fci);
+FunctionalChainInvolvement.involver(fci, target);")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the functional chains in which this exchange is involved
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"(excludefrom="xmlpivot")
+	readonly volatile transient derived ref FunctionalChain[*]#involvedFunctionalExchanges involvingFunctionalChains;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the exchange items that are carried along this functional exchange
+[source: Capella study]
+
+Specifies the information items that may circulate on this information flow.
+[source: UML Superstructure v2.2]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="")
+	@"http://www.polarsys.org/capella/semantic"
+	ref information.ExchangeItem[*] exchangedItems;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="incomingComponentExchangeFunctionalExchangeRealizations.allocatingComponentExchange")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the component exchanges associated to this functional exchange, e.g. the exchanges between the components to which the source/destination of this functional exchange are allocated.
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"(excludefrom="xmlpivot")
+	readonly volatile transient derived ref ComponentExchange[*]#allocatedFunctionalExchanges allocatingComponentExchanges;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="incomingTraces")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the allocation links between component exchanges and functional exchanges, that have this functional exchange as their destination
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref ComponentExchangeFunctionalExchangeAllocation[*]#allocatedFunctionalExchange incomingComponentExchangeFunctionalExchangeRealizations;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="incomingTraces")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="(automatically computed) the realization links between functional exchanges, that have this functional exchange as their destination
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref FunctionalExchangeRealization[*]#realizedFunctionalExchange incomingFunctionalExchangeRealizations;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="outgoingTraces")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the realization links between functional exchanges, that have this functional exchange as their origin
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref FunctionalExchangeRealization[*]#realizingFunctionalExchange outgoingFunctionalExchangeRealizations;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="opposite", viatra.expression="exchanges")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the exchange categories (families) to which this functional exchange belongs
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"
+	readonly volatile transient derived ref ExchangeCategory[*] categories;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the realization links between functional exchanges, that are owned by this functional exchange
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::nearestpackage", explanation="Elements are contained in the nearest possible parent container.", constraints="Some elements on which FunctionalExchangeRealization stereotype or any stereotype that inherits from it is applied")
+	val FunctionalExchangeRealization[*] ownedFunctionalExchangeRealizations;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="source")
+	@"http://www.polarsys.org/capella/semantic"
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref FunctionOutputPort sourceFunctionOutputPort;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="target")
+	@"http://www.polarsys.org/capella/semantic"
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref FunctionInputPort targetFunctionInputPort;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="patternbody", viatra.expression="FunctionalExchangeRealization.sourceElement(fer, self);
+FunctionalExchangeRealization.targetElement(fer, target);")
+	@"http://www.polarsys.org/capella/semantic"
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref FunctionalExchange[*]#realizingFunctionalExchanges realizedFunctionalExchanges;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="patternbody", viatra.expression="FunctionalExchangeRealization.targetElement(fer, self);
+FunctionalExchangeRealization.sourceElement(fer, target);")
+	@"http://www.polarsys.org/capella/semantic"(excludefrom="xmlpivot")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref FunctionalExchange[*]#realizedFunctionalExchanges realizingFunctionalExchanges;
+}
+
+@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="Action")
+@"http://www.polarsys.org/capella/2007/UML2Mapping"(metaclass="OpaqueAction", stereotype="eng.Action")
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Specifies an operation or an action that is performed by an entity.
+
+A transformation of inputs to outputs that may include the creation, monitoring, modification or destruction of elements, or a null transformation.
+[source: SysML glossary for SysML v1.0]
+
+This is an abstract base class for the derivation of specific function types at each design level
+[source: Capella study]", "usage guideline"="n/a (Abstract)", "used in levels"="operational,system,logical,physical", arcadia_description="A function is an action, an operation or a service fulfilled by the system or by an actor when interacting with the system. Example: tune radio frequency, display radio name...", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="", explanation="uml::Activity", constraints="none")
+abstract class AbstractFunction extends capellacore.Namespace, capellacore.InvolvedElement, information.AbstractInstance, AbstractFunctionalChainContainer, activity.CallBehaviorAction, behavior.AbstractEvent {
+
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"
+	attr FunctionKind kind;
+
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"
+	attr String condition;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the functions that are owned (in terms of model structure) by this function
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::nearestpackage", explanation="the nesting relation is not representing the hierarchy of functions, but helps storing the functions in a structured way", constraints="none")
+	val AbstractFunction[*] ownedFunctions;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the function realisation links that are associated to this function
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::nearestpackage", explanation="Elements are contained in the nearest possible parent container.", constraints="Some elements on which FunctionRealization stereotype or any stereotype that inherits from it is applied")
+	val FunctionRealization[*] ownedFunctionRealizations;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the functional exchanges that are owned by this function, e.g. that have their source and destination on sub-functions of this function.
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Activity::edge", explanation="Elements are contained in the nearest possible parent container.", constraints="uml::Activity::edge elements on which FunctionalExchange stereotype or any stereotype that inherits from it is applied")
+	@"http://www.polarsys.org/capella/semantic"
+	val FunctionalExchange[*] ownedFunctionalExchanges;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="freeform", viatra.expression="pattern AbstractFunction__subFunctions(self : AbstractFunction, target : AbstractFunction) {
+	// sub function directly in function
+	AbstractFunction.ownedFunctions(self, target);
+} or { // sub function in function first level package
+	find _AbstractFunction__ownedFunctionPkgs(self, pkg);
+	find _FunctionPkg__ownedFunctions(pkg, target);
+}
+or { // sub function in function first level package sub packages
+	find _AbstractFunction__ownedFunctionPkgs(self, pkg);
+	find _FunctionPkg__ownedFunctionPkgs+(pkg, subpkg);
+	find _FunctionPkg__ownedFunctions(subpkg, target);
+}
+
+private pattern _AbstractFunction__ownedFunctionPkgs(af : AbstractFunction, ownedpkg : FunctionPkg) {
+	OperationalActivity.ownedOperationalActivityPkgs(af, ownedpkg);
+} or {
+	SystemFunction.ownedSystemFunctionPkgs(af, ownedpkg);
+} or {
+	LogicalFunction.ownedLogicalFunctionPkgs(af, ownedpkg);
+} or {
+	PhysicalFunction.ownedPhysicalFunctionPkgs(af, ownedpkg);
+}
+
+private pattern _FunctionPkg__ownedFunctionPkgs(pkg : FunctionPkg, ownedpkg : FunctionPkg) {
+	OperationalActivityPkg.ownedOperationalActivityPkgs(pkg, ownedpkg);
+} or {
+	SystemFunctionPkg.ownedSystemFunctionPkgs(pkg, ownedpkg);
+} or {
+	LogicalFunctionPkg.ownedLogicalFunctionPkgs(pkg, ownedpkg);
+} or {
+	PhysicalFunctionPkg.ownedPhysicalFunctionPkgs(pkg, ownedpkg);
+}
+
+private pattern _FunctionPkg__ownedFunctions(pkg : FunctionPkg, af : AbstractFunction) {
+	OperationalActivityPkg.ownedOperationalActivities(pkg, af);
+} or {
+	SystemFunctionPkg.ownedSystemFunctions(pkg, af);
+} or {
+	LogicalFunctionPkg.ownedLogicalFunctions(pkg, af);
+} or {
+	PhysicalFunctionPkg.ownedPhysicalFunctions(pkg, af);
+}
+")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="(automatically computed) the children functions of this function
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref AbstractFunction[*] subFunctions;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="outgoingTraces")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="function realization links that have this function as their origin
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref FunctionRealization[*]#allocatingFunction outFunctionRealizations;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="incomingTraces")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the function realisation links that have this function as their destination
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref FunctionRealization[*]#allocatedFunction inFunctionRealizations;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="incomingTraces")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the mediator classes that implement the allocation of this function to/from components (blocks)
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref ComponentFunctionalAllocation[*]#function componentFunctionalAllocations;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="componentFunctionalAllocations.block")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the blocks to/from which this function is allocated
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref AbstractFunctionalBlock[*]#allocatedFunctions allocationBlocks;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the list of (system) states in which this function is actually available
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"
+	ref capellacommon.State[*] availableInStates;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="patternbody", viatra.expression="AbstractFunction.involvingInvolvements(self, afaci);
+AbstractFunctionAbstractCapabilityInvolvement.capability(afaci, target);")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"(excludefrom="xmlpivot")
+	readonly volatile transient derived ref ctx.Capability[*] involvingCapabilities;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="patternbody", viatra.expression="AbstractFunction.involvingInvolvements(self, afaci);
+AbstractFunctionAbstractCapabilityInvolvement.capability(afaci, target);")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"(excludefrom="xmlpivot")
+	readonly volatile transient derived ref la.CapabilityRealization[*] involvingCapabilityRealizations;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="patternbody", viatra.expression="AbstractFunction.involvingInvolvements(self, fci);
+FunctionalChainInvolvement.involver(fci, target);")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the functional chains that involve this function
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"(excludefrom="xmlpivot")
+	readonly volatile transient derived ref FunctionalChain[*]#involvedFunctions involvingFunctionalChains;
+
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="linkedFunction")
+	@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="behavior")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the state machine associated to this function
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"
+	readonly volatile transient derived !resolve ref capellacommon.StateMachine linkedStateMachine;
+
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="linkedFunctionSpecification")
+	@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="behavior")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the function specification with which this function complies
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived !resolve ref FunctionSpecification linkedFunctionSpecification;
+}
+
+enum FunctionKind {
+	FUNCTION = 0;
+	DUPLICATE = 1;
+	GATHER = 2;
+	SELECT = 3;
+	SPLIT = 4;
+	ROUTE = 5;
+}
+
+@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="Function Port")
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="A port is an interaction point between a block or part and its environment that is connected with other ports via connectors
+[source: SysML specification v1.1]
+
+Base abstract class for actual port implementations
+[source: Capella study]", "usage guideline"="n/a (Abstract)", "used in levels"="operational,system,logical,physical", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="", explanation="", constraints="none")
+abstract class FunctionPort extends information.Port, capellacore.TypedElement, behavior.AbstractEvent {
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the ComponentPort that this function port represents
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	@GenModel(documentation="@deprecated : 'representedComponentPort' shall not be used anymore")
+	ref ComponentPort representedComponentPort;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="incomingPortAllocations.allocatingPort")
+	@"http://www.polarsys.org/capella/semantic"(excludefrom="xmlpivot")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref ComponentPort[*]#allocatedFunctionPorts allocatorComponentPorts;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="outgoingPortRealizations.realizedPort")
+	@"http://www.polarsys.org/capella/semantic"
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref FunctionPort[*] realizedFunctionPorts;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="incomingPortRealizations.realizingPort")
+	@"http://www.polarsys.org/capella/semantic"(excludefrom="xmlpivot")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref FunctionPort[*] realizingFunctionPorts;
+}
+
+@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="ConnectionKind")
+@"http://www.polarsys.org/capella/2007/UML2Mapping"("enum"="ConnectorKind")
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="ConnectorKind is an enumeration of the following literal values:
+- assembly
+Indicates that the connector is an assembly connector.
+- delegation
+Indicates that the connector is a delegation connector.
+[source: UML superstructure v2.2]", constraints="none", "comment/notes"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::ConnectorKind", explanation="none", constraints="none")
+enum ComponentExchangeKind {
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Communication kind is not set
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="", constraints="This value does not exist for uml::ConnectorKind")
+	UNSET = 0;
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(enumLiteral="DELEGATION")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Indicates that the connector is a delegation connector.
+[source: UML superstructure v2.2]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::ConnectorKind::delegation", explanation="none", constraints="none")
+	DELEGATION = 1;
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(enumLiteral="ASSEMBLY")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Indicates that the connector is an assembly connector.
+[source: UML superstructure v2.2]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::ConnectorKind::assembly", explanation="none", constraints="none")
+	ASSEMBLY = 2;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Describes a flow communication", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="", constraints="This value does not exist for uml::ConnectorKind")
+	FLOW = 3;
+}
+
+@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="ComponentPortKind")
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="ComponentPortKind is an enumeration of the following literal values:
+standard:
+A port is an interaction point between a Block or sub-Block and its environment that supports Exchanges with other ports.
+flow:
+A FlowPorts is an interaction point through which input and/or output of items such as data, material, or energy may flow", constraints="none", "comment/notes"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+enum ComponentPortKind {
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Describes a standard port : 
+A port is an interaction point between a Block or sub-Block and its environment that supports Exchanges with other ports.
+[source: SysML glossary for SysML v1.0]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="", constraints="")
+	STANDARD = 0;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Describes a flow port : 
+A FlowPorts is an interaction point through which input and/or output of items such as data, material, or energy may flow
+[source: SysML specification v1.1]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="", constraints="")
+	FLOW = 1;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="ComponentPortKind is an enumeration of the following literal values:
+standard:
+A port is an interaction point between a Block or sub-Block and its environment that supports Exchanges with other ports.
+flow:
+A FlowPorts is an interaction point through which input and/or output of items such as data, material, or energy may flow", constraints="none", "comment/notes"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+enum OrientationPortKind {
+
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="", constraints="")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="used when the port orientation is undefined", constraints="none", "comment/notes"="none")
+	UNSET = 0;
+
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="", constraints="")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="used when the port represents an input of the component it is used in", constraints="none", "comment/notes"="none")
+	IN = 1;
+
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="", constraints="")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="used when the port represents an output of the component it is used in", constraints="none", "comment/notes"="none")
+	OUT = 2;
+
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="", constraints="")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="used when the port represents both an input and on output of the component it is used in", constraints="none", "comment/notes"="none")
+	INOUT = 3;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="a specialized version of an exchange specification, dedicated to characterize exchanges between components
+[source: Capella study]", "usage guideline"="n/a", "used in levels"="operational,system,logical,physical,epbs", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none", arcadia_description="An Exchange is an interaction between some entities such as actors, the system, functions or components, which is likely to influence their behaviour. Example: tuning frequency, radio selection command...")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="uml::InformationFlow", explanation="none", constraints="none")
+@"http://www.polarsys.org/capella/semantic"
+class ComponentExchange extends behavior.AbstractEvent, information.AbstractEventOperation, capellacore.NamedElement, ExchangeSpecification {
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Kind of the connection", constraints="none", type="refer to ConnectionKind definition", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"
+	attr ComponentExchangeKind kind;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="describes the orientation of the connection. The connection can be oriented or not", constraints="none", type="refer to OrientationConnectionKind definition", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"
+	attr boolean oriented = false;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="outgoingComponentExchangeFunctionalExchangeAllocations.allocatedFunctionalExchange")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the functional exchanges associated with this component exchange (e.g. the functional exchanges that happen between functions allocated to the two components involved in this component exchange)
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"
+	readonly volatile transient derived ref FunctionalExchange[*]#allocatingComponentExchanges allocatedFunctionalExchanges;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="incomingTraces")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the component exchange realization links that have this component exchange as their destination
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref ComponentExchangeRealization[*]#allocatedComponentExchange incomingComponentExchangeRealizations;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="outgoingTraces")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="(automatically computed) the component exchange realization links that have this component exchange as their source
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref ComponentExchangeRealization[*]#allocatingComponentExchange outgoingComponentExchangeRealizations;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="outgoingTraces")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="(automatically computed) the allocation links between functional exchanges and component exchanges, for which this component exchange is the source
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref ComponentExchangeFunctionalExchangeAllocation[*]#allocatingComponentExchange outgoingComponentExchangeFunctionalExchangeAllocations;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the allocation links between functional exchanges and component exchanges, owned by this component exchange
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::nearestpackage", explanation="Elements are contained in the nearest possible parent container.", constraints="Some elements on which ComponentFunctionalExchangeAllocation stereotype or any stereotype that inherits from it is applied")
+	val ComponentExchangeFunctionalExchangeAllocation[*] ownedComponentExchangeFunctionalExchangeAllocations;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the component exchange realization links that are owned by this component exchange
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::nearestpackage", explanation="Elements are contained in the nearest possible parent container.", constraints="Some elements on which ComponentExchangeRealization stereotype or any stereotype that inherits from it is applied")
+	val ComponentExchangeRealization[*] ownedComponentExchangeRealizations;
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(featureName="end", featureOwner="Connector")
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="ownedConnectionEnds")
+	@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the connection endpoints involved in this link (potentially, an arbitrary number of them can be present)
+[source: Capella study]
+
+A connector consists of at least two connector ends, each representing the participation of instances of the classifiers
+typing the connectable elements attached to this end. The set of connector ends is ordered.
+[source: UML superstructure v2.2]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Connector::end", explanation="none", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"
+	val ComponentExchangeEnd[*] ownedComponentExchangeEnds;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="patternbody", viatra.expression="ComponentExchange.source(self, target);
+} or {
+	ComponentExchange.source(self, cee);
+	ComponentExchangeEnd.port(cee, target);")
+	@"http://www.polarsys.org/capella/semantic"
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref information.Port sourcePort;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="patternbody", viatra.expression="ComponentExchange.source(self, target);
+} or {
+	ComponentExchange.source(self, cee);
+	ComponentExchangeEnd.part(cee, target);")
+	@"http://www.polarsys.org/capella/semantic"
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref cs.Part sourcePart;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="patternbody", viatra.expression="ComponentExchange.target(self, target);
+} or {
+	ComponentExchange.target(self, cee);
+	ComponentExchangeEnd.port(cee, target);")
+	@"http://www.polarsys.org/capella/semantic"
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref information.Port targetPort;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="patternbody", viatra.expression="ComponentExchange.target(self, target);
+} or {
+	ComponentExchange.target(self, cee);
+	ComponentExchangeEnd.part(cee, target);")
+	@"http://www.polarsys.org/capella/semantic"
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref cs.Part targetPart;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="opposite", viatra.expression="exchanges")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the exchange categories (families) to which this functional exchange belongs
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"
+	readonly volatile transient derived ref ComponentExchangeCategory[*] categories;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="patternbody", viatra.expression="ComponentExchange.incomingTraces(self, cea);
+ComponentExchangeAllocation.componentExchangeAllocator(cea, target);")
+	@"http://www.polarsys.org/capella/semantic"(excludefrom="xmlpivot")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref cs.PhysicalLink[*] allocatorPhysicalLinks;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="patternbody", viatra.expression="ComponentExchange.outgoingTraces(self, cer);
+ComponentExchangeRealization.allocatedComponentExchange(cer, target);")
+	@"http://www.polarsys.org/capella/semantic"
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref ComponentExchange[*]#realizingComponentExchanges realizedComponentExchanges;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="patternbody", viatra.expression="ComponentExchange.incomingTraces(self, cer);
+ComponentExchangeRealization.allocatingComponentExchange(cer, target);")
+	@"http://www.polarsys.org/capella/semantic"(excludefrom="xmlpivot")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref ComponentExchange[*]#realizedComponentExchanges realizingComponentExchanges;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Mediator class implementing an allocation relationship, between a component exchange, and the element that allocates it
+[source: Capella study]", "usage guideline"="n/a", "used in levels"="physical", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="SysML::Allocations::Allocate", explanation="none", constraints="none")
+class ComponentExchangeAllocation extends capellacore.Allocation {
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="targetElement")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="The connection being allocated
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref ComponentExchange[1] componentExchangeAllocated;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="sourceElement")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="The element that allocates the connection
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref ComponentExchangeAllocator[1] componentExchangeAllocator;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="Base class for elements that are intended to allocate to/from connections
+[source: Capella study]", "usage guideline"="n/a", "used in levels"="n/a", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="", explanation="none", constraints="none")
+abstract class ComponentExchangeAllocator extends capellacore.NamedElement {
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the component exchanges allocations contained in this element
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::nearestpackage", explanation="Elements are contained in the nearest possible parent container.", constraints="uml::NamedElement::clientDependency elements on which ConnectionAllocation stereotype or any stereotype that inherits from it is applied")
+	val ComponentExchangeAllocation[*] ownedComponentExchangeAllocations;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="patternbody", viatra.expression="ComponentExchangeAllocator.outgoingTraces(self, cea);
+ComponentExchangeAllocation.componentExchangeAllocated(cea, target);")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="(automatically computed) direct references to the component exchanges being allocated by this element
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"
+	readonly volatile transient derived ref ComponentExchange[*] allocatedComponentExchanges;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="defines a family of exchanges, all associated to a common applicative criteria
+[source: Capella study]", "usage guideline"="could for example be used to declare a grouping of all physical exchanges sharing the same communication medium
+[source: Capella study]", "used in levels"="operational,system,logical,physical,epbs", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="uml::Package", explanation="none", constraints="none")
+@"http://www.polarsys.org/capella/semantic"
+class ComponentExchangeCategory extends capellacore.NamedElement {
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the list of functional exchanges that are part of this exchange category
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="")
+	@"http://www.polarsys.org/capella/semantic"(excludefrom="xmlpivot")
+	ref ComponentExchange[*] exchanges;
+}
+
+@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="ConnectionEnd")
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="an endpoint of a connection link
+
+A connector end is an endpoint of a connector, which attaches the connector to a connectable element. Each connector
+end is part of one connector.
+[source: UML superstructure v2.2]", "usage guideline"="n/a", "used in levels"="operational,system,logical,physical", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="uml::ConnectorEnd", explanation="none", constraints="none")
+@"http://www.polarsys.org/capella/semantic"
+class ComponentExchangeEnd extends modellingcore.InformationsExchanger, capellacore.CapellaElement {
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(featureName="role", featureOwner="ConnectorEnd")
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="port")
+	@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the port to which this communication endpoint is attached
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::ConnectorEnd::role", explanation="none", constraints="uml::ConnectorEnd::role elements on which StandardPort stereotype or any stereotype that inherits from it is applied")
+	@"http://www.polarsys.org/capella/semantic"
+	ref information.Port port;
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(featureName="partWithPort", featureOwner="ConnectorEnd")
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="part")
+	@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the part to which this connect endpoint is attached
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::ConnectorEnd::partWithPort", explanation="none", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"
+	ref cs.Part part;
+}
+
+@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="Component Functional Exchange Allocation")
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="allocation link between a connection and a functional exchange
+[source: Capella study]", "usage guideline"="n/a", "used in levels"="operational,system,logical,physical", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="SysML::Allocations::Allocate", explanation="none", constraints="none")
+class ComponentExchangeFunctionalExchangeAllocation extends AbstractFunctionAllocation {
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="targetElement")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the functional exchange involved in this allocation link
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref FunctionalExchange[1]#incomingComponentExchangeFunctionalExchangeRealizations allocatedFunctionalExchange;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="sourceElement")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the connection involved in this allocation relationship
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref ComponentExchange[1]#outgoingComponentExchangeFunctionalExchangeAllocations allocatingComponentExchange;
+}
+
+@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="Connection Realization")
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="an allocation link between a connection, and another (typically lower level) connection that realizes it", "usage guideline"="this kind of link is typically generated automatically by the Capella tool when performing a transition between design levels", "used in levels"="operational,system,logical,physical", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="uml::Realization", explanation="none", constraints="none")
+class ComponentExchangeRealization extends ExchangeSpecificationRealization {
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="targetElement")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the connection that is being allocated by/from the other connection involved in this link
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref ComponentExchange[1]#incomingComponentExchangeRealizations allocatedComponentExchange;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="sourceElement")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the connection that is allocating that other connection involved in this link 
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref ComponentExchange[1]#outgoingComponentExchangeRealizations allocatingComponentExchange;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="A component port is the unification of the standard port and the flow port.", constraints="none", "comment/notes"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="", explanation="none", constraints="none")
+@"http://www.polarsys.org/capella/semantic"
+class ComponentPort extends information.Port, modellingcore.InformationsExchanger, information.Property {
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the orientation of a component port. ", constraints="should be set only when the component port is a flow port", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="none", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"
+	attr OrientationPortKind orientation;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="A component port is the unification of the standard port and the flow port.
+see the ComponentPortKind enumeration.
+", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="none", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"
+	attr ComponentPortKind kind;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="patternbody", viatra.expression="ComponentPort.informationFlows(self, target);
+} or {
+	ComponentExchangeEnd.port(cee, self);
+	ComponentExchange.ownedComponentExchangeEnds(target, cee);")
+	@"http://www.polarsys.org/capella/semantic"
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref ComponentExchange[*] componentExchanges;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="outgoingPortAllocations.allocatedPort")
+	@"http://www.polarsys.org/capella/semantic"
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref FunctionPort[*]#allocatorComponentPorts allocatedFunctionPorts;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="patternbody", viatra.expression="ComponentPort.outgoingInformationFlows(self, ce);
+ComponentExchange.kind(ce, ::DELEGATION);
+ComponentExchange.targetPort(ce, target);")
+	@"http://www.polarsys.org/capella/semantic"
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref ComponentPort[*]#delegatingComponentPorts delegatedComponentPorts;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="patternbody", viatra.expression="ComponentPort.incomingInformationFlows(self, ce);
+ComponentExchange.kind(ce, ::DELEGATION);
+ComponentExchange.sourcePort(ce, target);")
+	@"http://www.polarsys.org/capella/semantic"(excludefrom="xmlpivot")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref ComponentPort[*]#delegatedComponentPorts delegatingComponentPorts;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="patternbody", viatra.expression="ComponentPort.incomingTraces(self, cpa);
+ComponentPortAllocation.allocatingPort(cpa, target);")
+	@"http://www.polarsys.org/capella/semantic"(excludefrom="xmlpivot")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref cs.PhysicalPort[*]#allocatedComponentPorts allocatingPhysicalPorts;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="outgoingPortRealizations.realizedPort")
+	@"http://www.polarsys.org/capella/semantic"
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref ComponentPort[*]#realizingComponentPorts realizedComponentPorts;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="incomingPortRealizations.realizingPort")
+	@"http://www.polarsys.org/capella/semantic"(excludefrom="xmlpivot")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref ComponentPort[*]#realizedComponentPorts realizingComponentPorts;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="specific kind of allocation link, between two Ports.
+[source: Capella study]", "usage guideline"="n/a", "used in levels"="operational,system,logical,physical", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="SysML::Allocations::Allocate", explanation="none", constraints="none")
+class ComponentPortAllocation extends capellacore.Allocation {
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the component port allocation endpoints involved in this link
+
+A connector consists of at least two connector ends, each representing the participation of instances of the classifiers
+typing the connectable elements attached to this end. The set of connector ends is ordered.
+[source: UML superstructure v2.2]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::Connector::end", explanation="none", constraints="none")
+	val ComponentPortAllocationEnd[*] ownedComponentPortAllocationEnds;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="targetElement")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the \"destination\" of the allocation link : the port that is being allocated by another port
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref information.Port allocatedPort;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="alias", viatra.expression="sourceElement")
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the \"source\" of the allocation link : the port that is allocating the other port
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref information.Port allocatingPort;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="n/a", "usage guideline"="n/a", "used in levels"="operational,system,logical,physical", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", "base metaclass in UML/SysML profile "="uml::ConnectorEnd", explanation="none", constraints="none")
+class ComponentPortAllocationEnd extends capellacore.CapellaElement {
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(featureName="role", featureOwner="ConnectorEnd")
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="port")
+	@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the port to which this communication endpoint is attached
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::ConnectorEnd::role", explanation="none", constraints="uml::ConnectorEnd::role elements on which PhysicalPort stereotype or any stereotype that inherits from it is applied")
+	ref information.Port port;
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(featureName="partWithPort", featureOwner="ConnectorEnd")
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="part")
+	@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the part to which this connect endpoint is attached
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="uml::ConnectorEnd::partWithPort", explanation="none", constraints="none")
+	ref cs.Part part;
+
+	@"http://www.polarsys.org/capella/2007/UML2Mapping"(umlOppositeReference="end", umlOppositeReferenceOwner="Connector")
+	@"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="owningComponentPortAllocation")
+	@"http://www.polarsys.org/capella/2007/ImpactAnalysis/Segment"
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the ComponentPortAllocation link that contains this endpoint
+[source: Capella study]", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Opposite reference of uml::Connector::end", constraints="none")
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="opposite", viatra.expression="ownedComponentPortAllocationEnds")
+	readonly volatile transient derived ref ComponentPortAllocation owningComponentPortAllocation;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="specifies the involvement of a model element in form of link in a functional chain
+[source: Capella study]", "usage guideline"="n/a", "used in levels"="operational,system,logical,physical", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+@"http://www.polarsys.org/capella/semantic"
+class FunctionalChainInvolvementLink extends FunctionalChainInvolvement, ReferenceHierarchyContext {
+
+	@"http://www.polarsys.org/capella/semantic"
+	ref capellacore.Constraint exchangeContext;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="the ExchangeItems carried by this Functional Chain Involvement Link", constraints="none", "comment/notes"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"
+	ref information.ExchangeItem[*] exchangedItems;
+
+	@"http://www.polarsys.org/capella/semantic"
+	ref FunctionalChainInvolvementFunction source;
+
+	@"http://www.polarsys.org/capella/semantic"
+	ref FunctionalChainInvolvementFunction target;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="express precedence between executions of represented functions
+[source: Capella study]", "usage guideline"="n/a", "used in levels"="operational,system,logical,physical", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+@"http://www.polarsys.org/capella/semantic"
+class SequenceLink extends capellacore.CapellaElement, ReferenceHierarchyContext {
+
+	@"http://www.polarsys.org/capella/semantic"
+	ref capellacore.Constraint condition;
+
+	@"http://www.polarsys.org/capella/semantic"
+	ref FunctionalChainInvolvementLink[*] links;
+
+	@"http://www.polarsys.org/capella/semantic"
+	ref SequenceLinkEnd source;
+
+	@"http://www.polarsys.org/capella/semantic"
+	ref SequenceLinkEnd target;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="", "usage guideline"="n/a", "used in levels"="operational,system,logical,physical", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+@"http://www.polarsys.org/capella/semantic"
+abstract interface SequenceLinkEnd extends capellacore.CapellaElement {
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="specifies the involvement of a model element in form of function in a functional chain
+[source: Capella study]", "usage guideline"="n/a", "used in levels"="operational,system,logical,physical", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+@"http://www.polarsys.org/capella/semantic"
+class FunctionalChainInvolvementFunction extends FunctionalChainInvolvement, SequenceLinkEnd {
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="opposite", viatra.expression="source")
+	@"http://www.polarsys.org/capella/semantic"
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref FunctionalChainInvolvementLink[*] outgoingInvolvementLinks;
+
+	@"http://www.polarsys.org/capella/derived"(viatra.variant="opposite", viatra.expression="target")
+	@"http://www.polarsys.org/capella/semantic"
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="keyword::none", explanation="Derived and transient", constraints="none")
+	readonly volatile transient derived ref FunctionalChainInvolvementLink[*] incomingInvolvementLinks;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="used to control the flow of executions of represented functions in a functional chain
+[source: Capella study]", "usage guideline"="n/a", "used in levels"="operational,system,logical,physical", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+@"http://www.polarsys.org/capella/semantic"
+class ControlNode extends SequenceLinkEnd {
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="", "usage guideline"="n/a", "used in levels"="operational,system,logical,physical", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	attr ControlNodeKind kind;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="", "usage guideline"="n/a", "used in levels"="operational,system,logical,physical", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+enum ControlNodeKind {
+	OR = 0;
+	AND = 1;
+	ITERATE = 2;
+}
+
+@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="used to uniquely identify a link between involvement functions when their functional chain is referenced more than once.
+[source: Capella study]", "usage guideline"="n/a", "used in levels"="operational,system,logical,physical", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+@"http://www.polarsys.org/capella/semantic"
+abstract interface ReferenceHierarchyContext {
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="used to uniquely identify the source of a link between involvement functions when their functional chain is referenced more than once.
+[source: Capella study]", "usage guideline"="n/a", "used in levels"="operational,system,logical,physical", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"
+	ref FunctionalChainReference[*] sourceReferenceHierarchy;
+
+	@"http://www.polarsys.org/kitalpha/ecore/documentation"(description="used to uniquely identify the target of a link between involvement functions when their functional chain is referenced more than once.
+[source: Capella study]", "usage guideline"="n/a", "used in levels"="operational,system,logical,physical", "usage examples"="n/a", constraints="none", "comment/notes"="none", "reference documentation"="none")
+	@"http://www.polarsys.org/capella/MNoE/CapellaLike/Mapping"("UML/SysML semantic equivalences"="", explanation="none", constraints="none")
+	@"http://www.polarsys.org/capella/semantic"
+	ref FunctionalChainReference[*] targetReferenceHierarchy;
+}
+

@@ -6,8 +6,8 @@
 @namespace(uri="http://www.polarsys.org/capella/core/core/7.0.0", prefix="org.polarsys.capella.core.data.capellacore")
 package capellacore;
 
-import "platform:/resource/dut.cs.sysmline/metamodel/Capella/Information.ecore";
 import "platform:/resource/dut.cs.sysmline/metamodel/Capella/CapellaCommon.ecore";
+import "platform:/resource/dut.cs.sysmline/metamodel/Capella/Information.ecore";
 import "platform:/resource/dut.cs.sysmline/metamodel/Capella/ModellingCore.ecore";
 
 @"http://www.polarsys.org/capella/2007/BusinessInformation"(Label="CapellaElement")

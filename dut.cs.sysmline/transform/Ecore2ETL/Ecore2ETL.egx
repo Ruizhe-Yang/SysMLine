@@ -1,6 +1,14 @@
+pre{
+	var ePackages = Ecore!EPackage.all;
+	ePackages.addExtendedPackages(E1!EPackage);
+}
+
 rule gen_sysmlv2
 	transform root : Ecore!EPackage{
 	guard : root.name == Ecore!EPackage.all.first().name
+	parameters : Map{
+		"ePackages" = Ecore!EPackage.all
+	}
 	template : "Ecore2ETL.egl"
 	target : root.getFileName()
 }
@@ -9,4 +17,21 @@ rule gen_sysmlv2
 operation Ecore!EPackage getFileName(){
 	("[EGX] Ecore2SysML >> transform/DSL2SysMLine/"+self.name+"2SysMLine.etl").println();
 	return "../DSL2SysMLine/"+self.name+"2SysMLine.etl";
+}
+
+operation Sequence addExtendedPackages(entendedPackages){
+	var ePackagesName = self.getPackagesName();
+	for (entendedPackage in entendedPackages){
+		if (not ePackagesName.includes(entendedPackage.name)){
+			self.add(entendedPackage);
+		}
+	}
+}
+
+operation Sequence getPackagesName(){
+	var nameSequence = new Sequence;
+	for (ePackage in self){
+		nameSequence.add(ePackage.name);
+	}
+	return nameSequence;
 }

@@ -1,6 +1,6 @@
 [%var fileName = root.name;%]
 [%root.name.println("[gen-ETL] root Package >> ");%]
-[%for (epackage in Ecore!EPackage.all){%]
+[%for (epackage in ePackages){%]
 [%if (root.name != epackage.name){%]
 [%epackage.name.println("[gen-ETL] referenced Package >> ");%]
 [%}%]
@@ -25,14 +25,14 @@ operation main_[%=fileName%](){
 	var rootPackage = new SysMLine!Package;
 	rootPackage.declaredName = "[%=fileName%]_model";
 	rootSysMLine.body.add(rootPackage);
-	[%for (epackage in Ecore!EPackage.all){%]
+	[%for (epackage in ePackages){%]
 	rootPackage.addNamespaceImport("[%=epackage.name%]");
 	[%}%]
 	rootEcore.addNodeTo(rootPackage);
 }
 
 operation init_[%=fileName%](){
-	[%for (epackage in Ecore!EPackage.all){%]
+	[%for (epackage in ePackages){%]
 	[%for (eClass in epackage.eClassifiers.select(s|s.type().name == "EClass")){%]
 	//[%=epackage.name%].[%=eClass.name%] -> Instantiation
 	var id[%=eClass.name%] = 0;
@@ -57,22 +57,22 @@ rule Base
 	}
 }
 
-[%for (epackage in Ecore!EPackage.all){%]
+[%for (epackage in ePackages){%]
 // [%=epackage.name%].ecore
 [%=epackage.main()%]
 [%}%]
-[% operation Ecore!EClass writeEClass(){%]
+[% operation Ecore!EClass writeEClass(ePackageName){%]
 @lazy
 rule [%=self.name%]
-	transform s : DSL![%=self.name%]
+	transform s : DSL![%=self.name%] //[%=ePackageName%].[%=self.name%]
 	to t : SysMLine!ItemUsage
 	extends Base{
 	[%	for (eAttribute in self.eAllAttributes){%]
-	//[%=self.name%].[%=self.name%] -> EAttribute : [%=eAttribute.name.clearKeyWord(0)%]
+	//[%=self.name%].[%=eAttribute.name%] -> EAttribute : [%=eAttribute.name.clearKeyWord(0)%]
 	if (s.[%=eAttribute.name.clearKeyWord(2)%].getEAttribute() != null) t.addNewAttribute("[%=eAttribute.name.clearKeyWord(0)%]", s.[%=eAttribute.name.clearKeyWord(2)%].getEAttribute());
 	[%}%]
 	[%	for (eReference in self.eAllReferences){%]
-	//[%=self.name%].[%=self.name%] -> EReference : [%=eReference.name.clearKeyWord(0)%]
+	//[%=self.name%].[%=eReference.name%] -> EReference : [%=eReference.name.clearKeyWord(0)%]
 	if (s.[%=eReference.name.clearKeyWord(2)%].getEReference() != null) t.addNewReference("[%=eReference.name.clearKeyWord(1)%]", s.[%=eReference.name.clearKeyWord(2)%].getEReference());
 	[%}%]
 }
@@ -83,7 +83,7 @@ rule [%=self.name%]
 operation Ecore!EPackage main(){ 
 	var eClassSequence = self.eClassifiers.select(s|s.type().name == "EClass");
 	for (eClass in eClassSequence){
-		eClass.writeEClass();
+		eClass.writeEClass(self.name);
 	} 
 }
 
