@@ -23,25 +23,25 @@ operation main_psl(){
 }
 
 operation init_psl(){
-	//Project -> Instantiation
+	//psl.Project -> Instantiation
 	var idProject = 0;
 	for (eProject in DSL!EObject.all.select(s|s.isTypeOf(DSL!Project))){
 		var eProjectTuple = Tuple{"key"=eProject.type().name.asString()+"_"+(idProject++).asString(),"value"= eProject};
 		eObjectSequence.add(eProjectTuple);
 	}
-	//Task -> Instantiation
+	//psl.Task -> Instantiation
 	var idTask = 0;
 	for (eTask in DSL!EObject.all.select(s|s.isTypeOf(DSL!Task))){
 		var eTaskTuple = Tuple{"key"=eTask.type().name.asString()+"_"+(idTask++).asString(),"value"= eTask};
 		eObjectSequence.add(eTaskTuple);
 	}
-	//Effort -> Instantiation
+	//psl.Effort -> Instantiation
 	var idEffort = 0;
 	for (eEffort in DSL!EObject.all.select(s|s.isTypeOf(DSL!Effort))){
 		var eEffortTuple = Tuple{"key"=eEffort.type().name.asString()+"_"+(idEffort++).asString(),"value"= eEffort};
 		eObjectSequence.add(eEffortTuple);
 	}
-	//Person -> Instantiation
+	//pslextended.Person -> Instantiation
 	var idPerson = 0;
 	for (ePerson in DSL!EObject.all.select(s|s.isTypeOf(DSL!Person))){
 		var ePersonTuple = Tuple{"key"=ePerson.type().name.asString()+"_"+(idPerson++).asString(),"value"= ePerson};
@@ -68,40 +68,14 @@ rule Project
 	transform s : DSL!Project
 	to t : SysMLine!ItemUsage
 	extends Base{
-	//Project -> EAttribute : title
-	if (s.title.getEAttribute() != null){
-		var title = new SysMLine!AttributeUsage;
-		title.featureNote.add(":>>");
-		title.featureSpecialization.add("title");
-		title.valuePart = s.title.getEAttribute();
-		t.body.add(title);
-	}
-	//Project -> EAttribute : description
-	if (s.description.getEAttribute() != null){
-		var description = new SysMLine!AttributeUsage;
-		description.featureNote.add(":>>");
-		description.featureSpecialization.add("description");
-		description.valuePart = s.description.getEAttribute();
-		t.body.add(description);
-	}
-	//Project -> EReference : tasks
-	if (s.tasks.getEReference() != null){
-		var tasks = new SysMLine!ItemUsage;
-		tasks.isReference = true;
-		tasks.featureNote.add(":>");
-		tasks.featureSpecialization.add("tasks");
-		tasks.valuePart = s.tasks.getEReference();
-		t.body.add(tasks);
-	}
-	//Project -> EReference : people
-	if (s.people.getEReference() != null){
-		var people = new SysMLine!ItemUsage;
-		people.isReference = true;
-		people.featureNote.add(":>");
-		people.featureSpecialization.add("people");
-		people.valuePart = s.people.getEReference();
-		t.body.add(people);
-	}
+	//Project.Project -> EAttribute : title
+	if (s.title.getEAttribute() != null) t.addNewAttribute("title", s.title.getEAttribute());
+	//Project.Project -> EAttribute : description
+	if (s.description.getEAttribute() != null) t.addNewAttribute("description", s.description.getEAttribute());
+	//Project.Project -> EReference : tasks
+	if (s.tasks.getEReference() != null) t.addNewReference("tasks", s.tasks.getEReference());
+	//Project.Project -> EReference : people
+	if (s.people.getEReference() != null) t.addNewReference("people", s.people.getEReference());
 }
 
 @lazy
@@ -109,39 +83,14 @@ rule Task
 	transform s : DSL!Task
 	to t : SysMLine!ItemUsage
 	extends Base{
-	//Task -> EAttribute : title
-	if (s.title.getEAttribute() != null){
-		var title = new SysMLine!AttributeUsage;
-		title.featureNote.add(":>>");
-		title.featureSpecialization.add("title");
-		title.valuePart = s.title.getEAttribute();
-		t.body.add(title);
-	}
-	//Task -> EAttribute : start
-	if (s.start.getEAttribute() != null){
-		var start = new SysMLine!AttributeUsage;
-		start.featureNote.add(":>>");
-		start.featureSpecialization.add("start");
-		start.valuePart = s.start.getEAttribute();
-		t.body.add(start);
-	}
-	//Task -> EAttribute : duration
-	if (s.duration.getEAttribute() != null){
-		var duration = new SysMLine!AttributeUsage;
-		duration.featureNote.add(":>>");
-		duration.featureSpecialization.add("duration");
-		duration.valuePart = s.duration.getEAttribute();
-		t.body.add(duration);
-	}
-	//Task -> EReference : effort
-	if (s.effort.getEReference() != null){
-		var effort = new SysMLine!ItemUsage;
-		effort.isReference = true;
-		effort.featureNote.add(":>");
-		effort.featureSpecialization.add("effort");
-		effort.valuePart = s.effort.getEReference();
-		t.body.add(effort);
-	}
+	//Task.Task -> EAttribute : title
+	if (s.title.getEAttribute() != null) t.addNewAttribute("title", s.title.getEAttribute());
+	//Task.Task -> EAttribute : start
+	if (s.start.getEAttribute() != null) t.addNewAttribute("start", s.start.getEAttribute());
+	//Task.Task -> EAttribute : duration
+	if (s.duration.getEAttribute() != null) t.addNewAttribute("duration", s.duration.getEAttribute());
+	//Task.Task -> EReference : effort
+	if (s.effort.getEReference() != null) t.addNewReference("effort", s.effort.getEReference());
 }
 
 @lazy
@@ -149,23 +98,10 @@ rule Effort
 	transform s : DSL!Effort
 	to t : SysMLine!ItemUsage
 	extends Base{
-	//Effort -> EAttribute : percentage
-	if (s.percentage.getEAttribute() != null){
-		var percentage = new SysMLine!AttributeUsage;
-		percentage.featureNote.add(":>>");
-		percentage.featureSpecialization.add("percentage");
-		percentage.valuePart = s.percentage.getEAttribute();
-		t.body.add(percentage);
-	}
-	//Effort -> EReference : person
-	if (s.person.getEReference() != null){
-		var person = new SysMLine!ItemUsage;
-		person.isReference = true;
-		person.featureNote.add(":>");
-		person.featureSpecialization.add("person");
-		person.valuePart = s.person.getEReference();
-		t.body.add(person);
-	}
+	//Effort.Effort -> EAttribute : percentage
+	if (s.percentage.getEAttribute() != null) t.addNewAttribute("percentage", s.percentage.getEAttribute());
+	//Effort.Effort -> EReference : person
+	if (s.person.getEReference() != null) t.addNewReference("person", s.person.getEReference());
 }
 
 
@@ -175,14 +111,8 @@ rule Person
 	transform s : DSL!Person
 	to t : SysMLine!ItemUsage
 	extends Base{
-	//Person -> EAttribute : name
-	if (s.name.getEAttribute() != null){
-		var name = new SysMLine!AttributeUsage;
-		name.featureNote.add(":>>");
-		name.featureSpecialization.add("name");
-		name.valuePart = s.name.getEAttribute();
-		t.body.add(name);
-	}
+	//Person.Person -> EAttribute : name
+	if (s.name.getEAttribute() != null) t.addNewAttribute("name", s.name.getEAttribute());
 }
 
 

@@ -53,8 +53,6 @@ operation Sequence getElementOf(typeName : String){
 }
 
 operation Any getEAttribute(){
-//	self.type().print();
-//	self.println(" ");
 	if (self == "" or self == null){
 		return null;
 	}
@@ -80,6 +78,23 @@ operation Any getEAttribute(){
 	else{
 		return self.asString();
 	}
+}
+
+operation SysMLine!ItemUsage addNewAttribute(name : String, valuePartString : String){
+	var attr = new SysMLine!AttributeUsage;
+	attr.featureNote.add(":>>");
+	attr.featureSpecialization.add(name);
+	attr.valuePart = valuePartString;
+	self.body.add(attr);
+}
+
+operation SysMLine!ItemUsage addNewReference(name : String, valuePartString : String){
+	var item = new SysMLine!ItemUsage;
+	item.isReference = true;
+	item.featureNote.add(":>");
+	item.featureSpecialization.add(name);
+	item.valuePart = valuePartString;
+	self.body.add(item);
 }
 
 operation Any getEReference(){

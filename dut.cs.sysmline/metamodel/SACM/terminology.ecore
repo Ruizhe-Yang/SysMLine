@@ -2,7 +2,7 @@
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="terminology" nsURI="http://omg.sacm/2.2/terminology" nsPrefix="terminology_">
   <eClassifiers xsi:type="ecore:EClass" name="TerminologyElement" abstract="true"
-      eSuperTypes="http://omg.sacm/2.2/base#//ArtifactElement"/>
+      eSuperTypes="base.ecore#//ArtifactElement"/>
   <eClassifiers xsi:type="ecore:EClass" name="TerminologyGroup" eSuperTypes="#//TerminologyElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="terminologyElement" upperBound="-1"
         eType="#//TerminologyElement"/>
@@ -35,6 +35,6 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Term" eSuperTypes="#//ExpressionElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="externalReference" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="origin" eType="ecore:EClass http://omg.sacm/2.2/base#//ModelElement"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="origin" eType="ecore:EClass base.ecore#//ModelElement"/>
   </eClassifiers>
 </ecore:EPackage>

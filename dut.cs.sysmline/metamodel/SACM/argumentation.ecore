@@ -10,7 +10,7 @@
     <eLiterals name="asCited" value="6"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ArgumentationElement" abstract="true"
-      eSuperTypes="http://omg.sacm/2.2/base#//ArtifactElement">
+      eSuperTypes="base.ecore#//ArtifactElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="uninstantiated" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="false"/>
   </eClassifiers>
@@ -31,7 +31,7 @@
         upperBound="-1" eType="#//ArgumentPackage"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ArgumentAsset" abstract="true" eSuperTypes="#//ArgumentationElement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="content" eType="ecore:EClass http://omg.sacm/2.2/base#//MultiLangString"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="content" eType="ecore:EClass base.ecore#//MultiLangString"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Assertion" abstract="true" eSuperTypes="#//ArgumentAsset">
@@ -58,7 +58,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ArtifactReference" eSuperTypes="#//ArgumentAsset">
     <eStructuralFeatures xsi:type="ecore:EReference" name="referencedArtifactElement"
-        upperBound="-1" eType="ecore:EClass http://omg.sacm/2.2/base#//ArtifactElement"/>
+        upperBound="-1" eType="ecore:EClass base.ecore#//ArtifactElement"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AssertedArtifactSupport" eSuperTypes="#//AssertedRelationship"/>
   <eClassifiers xsi:type="ecore:EClass" name="AssertedInference" eSuperTypes="#//AssertedRelationship"/>

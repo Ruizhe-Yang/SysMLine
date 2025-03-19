@@ -68,25 +68,12 @@ rule [%=self.name%]
 	to t : SysMLine!ItemUsage
 	extends Base{
 	[%	for (eAttribute in self.eAllAttributes){%]
-	//[%=self.name%].[%=self.name%] -> EAttribute : [%=eAttribute.name%]
-	if (s.[%=eAttribute.name%].getEAttribute() != null){
-		var [%=eAttribute.name%] = new SysMLine!AttributeUsage;
-		[%=eAttribute.name%].featureNote.add(":>>");
-		[%=eAttribute.name%].featureSpecialization.add("[%=eAttribute.name%]");
-		[%=eAttribute.name%].valuePart = s.[%=eAttribute.name%].getEAttribute();
-		t.body.add([%=eAttribute.name%]);
-	}
+	//[%=self.name%].[%=self.name%] -> EAttribute : [%=eAttribute.name.clearKeyWord(0)%]
+	if (s.[%=eAttribute.name.clearKeyWord(2)%].getEAttribute() != null) t.addNewAttribute("[%=eAttribute.name.clearKeyWord(0)%]", s.[%=eAttribute.name.clearKeyWord(2)%].getEAttribute());
 	[%}%]
 	[%	for (eReference in self.eAllReferences){%]
 	//[%=self.name%].[%=self.name%] -> EReference : [%=eReference.name.clearKeyWord(0)%]
-	if (s.[%=eReference.name.clearKeyWord(2)%].getEReference() != null){
-		var [%=eReference.name.clearKeyWord(0)%] = new SysMLine!ItemUsage;
-		[%=eReference.name.clearKeyWord(0)%].isReference = true;
-		[%=eReference.name.clearKeyWord(0)%].featureNote.add(":>");
-		[%=eReference.name.clearKeyWord(0)%].featureSpecialization.add("[%=eReference.name.clearKeyWord(1)%]");
-		[%=eReference.name.clearKeyWord(0)%].valuePart = s.[%=eReference.name.clearKeyWord(0)%].getEReference();
-		t.body.add([%=eReference.name.clearKeyWord(0)%]);
-	}
+	if (s.[%=eReference.name.clearKeyWord(2)%].getEReference() != null) t.addNewReference("[%=eReference.name.clearKeyWord(1)%]", s.[%=eReference.name.clearKeyWord(2)%].getEReference());
 	[%}%]
 }
 

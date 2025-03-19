@@ -1,7 +1,7 @@
 @namespace(uri="http://www.omg.org/spec/DD/20100524/DI-XMI", prefix="di")
 package di;
 
-import "platform:/resource/org.omg.sysmini/metamodel/BPMN/DC.ecore";
+import "platform:/resource/dut.cs.sysmline/metamodel/BPMN/DC.ecore";
 
 abstract class DiagramElement {
 	!ordered readonly transient derived !resolve ref Diagram#rootElement owningDiagram;

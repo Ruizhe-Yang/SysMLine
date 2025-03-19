@@ -1,9 +1,9 @@
 @namespace(uri="http://www.omg.org/spec/BPMN/20100524/DI-XMI", prefix="bpmndi")
 package bpmdi;
 
-import "platform:/resource/org.omg.sysmini/metamodel/BPMN/DC.ecore";
-import "platform:/resource/org.omg.sysmini/metamodel/BPMN/BPMN20.ecore";
-import "platform:/resource/org.omg.sysmini/metamodel/BPMN/DI.ecore";
+import "platform:/resource/dut.cs.sysmline/metamodel/BPMN/BPMN20.ecore";
+import "platform:/resource/dut.cs.sysmline/metamodel/BPMN/DC.ecore";
+import "platform:/resource/dut.cs.sysmline/metamodel/BPMN/DI.ecore";
 
 class BPMNPlane extends di.Plane {
 	!ordered ref bpmn2.BaseElement bpmnElement;

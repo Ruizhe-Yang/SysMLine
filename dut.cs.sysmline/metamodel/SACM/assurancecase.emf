@@ -1,0 +1,24 @@
+@namespace(uri="http://omg.sacm/2.2/assurancecase", prefix="assuranceCase_")
+package assuranceCase;
+
+import "platform:/resource/dut.cs.sysmline/metamodel/SACM/base.ecore";
+import "platform:/resource/dut.cs.sysmline/metamodel/SACM/artifact.ecore";
+import "platform:/resource/dut.cs.sysmline/metamodel/SACM/argumentation.ecore";
+import "platform:/resource/dut.cs.sysmline/metamodel/SACM/terminology.ecore";
+
+class AssuranceCasePackage extends base.ArtifactElement {
+	val AssuranceCasePackage[*] assuranceCasePackage;
+	ref AssuranceCasePackageInterface[*] ~interface;
+	val artifact.ArtifactPackage[*] artifactPackage;
+	val argumentation.ArgumentPackage[*] argumentPackage;
+	val terminology.TerminologyPackage[*] terminologyPackage;
+}
+
+class AssuranceCasePackageBinding extends AssuranceCasePackage {
+	ref AssuranceCasePackage[2..*] participantPackage;
+}
+
+class AssuranceCasePackageInterface extends AssuranceCasePackage {
+	ref AssuranceCasePackage[1] implements;
+}
+
