@@ -70,11 +70,11 @@ rule [%=self.name.clearKeyWord(2)%]
 	extends Base{
 	[%	for (eAttribute in self.eAllAttributes){%]
 	//[%=self.name%].[%=eAttribute.name%] -> EAttribute : [%=eAttribute.name.clearKeyWord(0)%]
-	if (s.[%=eAttribute.name.clearKeyWord(2)%].getEAttribute() != null) t.addNewAttribute("[%=eAttribute.name.clearKeyWord(0)%]", s.[%=eAttribute.name.clearKeyWord(2)%].getEAttribute());
+	if (s.[%=eAttribute.name.clearKeyWord(2)%].getEAttribute() != null) t.addNewAttribute(s.[%=eAttribute.name.clearKeyWord(2)%].asString().clearKeyWord(), s.[%=eAttribute.name.clearKeyWord(2)%].getEAttribute());
 	[%}%]
 	[%	for (eReference in self.eAllReferences){%]
 	//[%=self.name%].[%=eReference.name%] -> EReference : [%=eReference.name.clearKeyWord(0)%]
-	if (s.[%=eReference.name.clearKeyWord(2)%].getEReference() != null) t.addNewReference("[%=eReference.name.clearKeyWord(0)%]", s.[%=eReference.name.clearKeyWord(2)%].getEReference());
+	if (s.[%=eReference.name.clearKeyWord(2)%].getEReference() != null) t.addNewReference(s.[%=eReference.name.clearKeyWord(2)%].asString().clearKeyWord(), s.[%=eReference.name.clearKeyWord(2)%].getEReference());
 	[%}%]
 }
 

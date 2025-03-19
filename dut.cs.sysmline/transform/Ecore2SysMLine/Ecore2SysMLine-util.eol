@@ -23,7 +23,8 @@ operation baseKeyWords(){
 					"succession", "terminate", "then", "timeslice", "to",
 					"transition", "until", "use", "variant", "variation",
 					"verification", "verify", "via", "view", "viewpoint",
-					"when", "while", "xor", "value", "any"
+					"when", "while", "xor", "value", "any",
+					"library"
 	  				};
 }
 
