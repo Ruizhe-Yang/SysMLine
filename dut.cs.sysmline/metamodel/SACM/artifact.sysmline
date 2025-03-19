@@ -8,14 +8,14 @@
         <featureNote>:</featureNote>
         <featureSpecialization>ArtifactElement</featureSpecialization>
       </body>
-      <SubclassificationPart xsi:nil="true"/>
+      <SubclassificationPart>ArtifactElement</SubclassificationPart>
     </body>
     <body xsi:type="ItemDefinition" declaredName="ArtifactPackage">
       <body xsi:type="ItemUsage" declaredName="artifactElement" multiplicityRange="[*]">
         <featureNote>:</featureNote>
         <featureSpecialization>ArtifactElement</featureSpecialization>
       </body>
-      <SubclassificationPart xsi:nil="true"/>
+      <SubclassificationPart>ArtifactElement</SubclassificationPart>
     </body>
     <body xsi:type="ItemDefinition" declaredName="ArtifactPackageBinding">
       <body xsi:type="ItemUsage" declaredName="participantPackage" multiplicityRange="[2..*]" isReference="true">
@@ -36,7 +36,7 @@
         <featureNote>:</featureNote>
         <featureSpecialization>Property</featureSpecialization>
       </body>
-      <SubclassificationPart xsi:nil="true"/>
+      <SubclassificationPart>ArtifactElement</SubclassificationPart>
     </body>
     <body xsi:type="ItemDefinition" declaredName="Property">
       <SubclassificationPart>ArtifactAsset</SubclassificationPart>

@@ -4,7 +4,7 @@
     <body xsi:type="NamespaceImport" hasVisibility="true" declaredName="ecore"/>
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="base"/>
     <body xsi:type="ItemDefinition" declaredName="TerminologyElement" isAbstract="true">
-      <SubclassificationPart xsi:nil="true"/>
+      <SubclassificationPart>ArtifactElement</SubclassificationPart>
     </body>
     <body xsi:type="ItemDefinition" declaredName="TerminologyGroup">
       <body xsi:type="ItemUsage" declaredName="terminologyElement" multiplicityRange="[*]" isReference="true">

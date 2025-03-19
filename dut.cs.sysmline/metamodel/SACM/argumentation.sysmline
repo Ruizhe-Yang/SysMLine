@@ -16,7 +16,7 @@
         <featureNote>:</featureNote>
         <featureSpecialization>EBoolean</featureSpecialization>
       </body>
-      <SubclassificationPart xsi:nil="true"/>
+      <SubclassificationPart>ArtifactElement</SubclassificationPart>
     </body>
     <body xsi:type="ItemDefinition" declaredName="ArgumentGroup">
       <body xsi:type="ItemUsage" declaredName="argumentationElement" multiplicityRange="[*]" isReference="true">

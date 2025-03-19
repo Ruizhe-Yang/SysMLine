@@ -3,7 +3,7 @@ import "DSL2SysMLine-util.eol";
 pre{
 	var eObjectSequence = new Sequence;
 	var KeyWords = baseKeyWords();
-	init_assuranceCase();
+	eObjectSequence.init_assuranceCase();
 	main_assuranceCase();
 }
 
@@ -20,335 +20,432 @@ operation main_assuranceCase(){
 	rootPackage.addNamespaceImport("assuranceCase");
 	rootPackage.addNamespaceImport("base");
 	rootPackage.addNamespaceImport("artifact");
+	rootPackage.addNamespaceImport("argumentation");
 	rootPackage.addNamespaceImport("terminology");
 	rootPackage.addNamespaceImport("gsn");
 	rootEcore.addNodeTo(rootPackage);
 }
 
-operation init_assuranceCase(){
+operation Sequence init_assuranceCase(){
 	//assuranceCase.AssuranceCasePackage -> Instantiation
 	var idAssuranceCasePackage = 0;
 	for (eAssuranceCasePackage in DSL!EObject.all.select(s|s.isTypeOf(DSL!AssuranceCasePackage))){
-		var eAssuranceCasePackageTuple = Tuple{"key"=eAssuranceCasePackage.type().name.asString()+"_"+(idAssuranceCasePackage++).asString(),"value"= eAssuranceCasePackage};
-		eObjectSequence.add(eAssuranceCasePackageTuple);
+		var eAssuranceCasePackageTuple = Tuple{"key"="AssuranceCasePackage_"+(idAssuranceCasePackage++).asString(),"value"= eAssuranceCasePackage};
+		self.add(eAssuranceCasePackageTuple);
 	}
 	//assuranceCase.AssuranceCasePackageBinding -> Instantiation
 	var idAssuranceCasePackageBinding = 0;
 	for (eAssuranceCasePackageBinding in DSL!EObject.all.select(s|s.isTypeOf(DSL!AssuranceCasePackageBinding))){
-		var eAssuranceCasePackageBindingTuple = Tuple{"key"=eAssuranceCasePackageBinding.type().name.asString()+"_"+(idAssuranceCasePackageBinding++).asString(),"value"= eAssuranceCasePackageBinding};
-		eObjectSequence.add(eAssuranceCasePackageBindingTuple);
+		var eAssuranceCasePackageBindingTuple = Tuple{"key"="AssuranceCasePackageBinding_"+(idAssuranceCasePackageBinding++).asString(),"value"= eAssuranceCasePackageBinding};
+		self.add(eAssuranceCasePackageBindingTuple);
 	}
 	//assuranceCase.AssuranceCasePackageInterface -> Instantiation
 	var idAssuranceCasePackageInterface = 0;
 	for (eAssuranceCasePackageInterface in DSL!EObject.all.select(s|s.isTypeOf(DSL!AssuranceCasePackageInterface))){
-		var eAssuranceCasePackageInterfaceTuple = Tuple{"key"=eAssuranceCasePackageInterface.type().name.asString()+"_"+(idAssuranceCasePackageInterface++).asString(),"value"= eAssuranceCasePackageInterface};
-		eObjectSequence.add(eAssuranceCasePackageInterfaceTuple);
+		var eAssuranceCasePackageInterfaceTuple = Tuple{"key"="AssuranceCasePackageInterface_"+(idAssuranceCasePackageInterface++).asString(),"value"= eAssuranceCasePackageInterface};
+		self.add(eAssuranceCasePackageInterfaceTuple);
 	}
 	//base.Element -> Instantiation
 	var idElement = 0;
 	for (eElement in DSL!EObject.all.select(s|s.isTypeOf(DSL!Element))){
-		var eElementTuple = Tuple{"key"=eElement.type().name.asString()+"_"+(idElement++).asString(),"value"= eElement};
-		eObjectSequence.add(eElementTuple);
+		var eElementTuple = Tuple{"key"="Element_"+(idElement++).asString(),"value"= eElement};
+		self.add(eElementTuple);
 	}
 	//base.LangString -> Instantiation
 	var idLangString = 0;
 	for (eLangString in DSL!EObject.all.select(s|s.isTypeOf(DSL!LangString))){
-		var eLangStringTuple = Tuple{"key"=eLangString.type().name.asString()+"_"+(idLangString++).asString(),"value"= eLangString};
-		eObjectSequence.add(eLangStringTuple);
+		var eLangStringTuple = Tuple{"key"="LangString_"+(idLangString++).asString(),"value"= eLangString};
+		self.add(eLangStringTuple);
 	}
 	//base.ExpressionLangString -> Instantiation
 	var idExpressionLangString = 0;
 	for (eExpressionLangString in DSL!EObject.all.select(s|s.isTypeOf(DSL!ExpressionLangString))){
-		var eExpressionLangStringTuple = Tuple{"key"=eExpressionLangString.type().name.asString()+"_"+(idExpressionLangString++).asString(),"value"= eExpressionLangString};
-		eObjectSequence.add(eExpressionLangStringTuple);
+		var eExpressionLangStringTuple = Tuple{"key"="ExpressionLangString_"+(idExpressionLangString++).asString(),"value"= eExpressionLangString};
+		self.add(eExpressionLangStringTuple);
 	}
 	//base.MultiLangString -> Instantiation
 	var idMultiLangString = 0;
 	for (eMultiLangString in DSL!EObject.all.select(s|s.isTypeOf(DSL!MultiLangString))){
-		var eMultiLangStringTuple = Tuple{"key"=eMultiLangString.type().name.asString()+"_"+(idMultiLangString++).asString(),"value"= eMultiLangString};
-		eObjectSequence.add(eMultiLangStringTuple);
+		var eMultiLangStringTuple = Tuple{"key"="MultiLangString_"+(idMultiLangString++).asString(),"value"= eMultiLangString};
+		self.add(eMultiLangStringTuple);
 	}
 	//base.SACMElement -> Instantiation
 	var idSACMElement = 0;
 	for (eSACMElement in DSL!EObject.all.select(s|s.isTypeOf(DSL!SACMElement))){
-		var eSACMElementTuple = Tuple{"key"=eSACMElement.type().name.asString()+"_"+(idSACMElement++).asString(),"value"= eSACMElement};
-		eObjectSequence.add(eSACMElementTuple);
+		var eSACMElementTuple = Tuple{"key"="SACMElement_"+(idSACMElement++).asString(),"value"= eSACMElement};
+		self.add(eSACMElementTuple);
 	}
 	//base.UtilityElement -> Instantiation
 	var idUtilityElement = 0;
 	for (eUtilityElement in DSL!EObject.all.select(s|s.isTypeOf(DSL!UtilityElement))){
-		var eUtilityElementTuple = Tuple{"key"=eUtilityElement.type().name.asString()+"_"+(idUtilityElement++).asString(),"value"= eUtilityElement};
-		eObjectSequence.add(eUtilityElementTuple);
+		var eUtilityElementTuple = Tuple{"key"="UtilityElement_"+(idUtilityElement++).asString(),"value"= eUtilityElement};
+		self.add(eUtilityElementTuple);
 	}
 	//base.Description -> Instantiation
 	var idDescription = 0;
 	for (eDescription in DSL!EObject.all.select(s|s.isTypeOf(DSL!Description))){
-		var eDescriptionTuple = Tuple{"key"=eDescription.type().name.asString()+"_"+(idDescription++).asString(),"value"= eDescription};
-		eObjectSequence.add(eDescriptionTuple);
+		var eDescriptionTuple = Tuple{"key"="Description_"+(idDescription++).asString(),"value"= eDescription};
+		self.add(eDescriptionTuple);
 	}
 	//base.ImplementationConstraint -> Instantiation
 	var idImplementationConstraint = 0;
 	for (eImplementationConstraint in DSL!EObject.all.select(s|s.isTypeOf(DSL!ImplementationConstraint))){
-		var eImplementationConstraintTuple = Tuple{"key"=eImplementationConstraint.type().name.asString()+"_"+(idImplementationConstraint++).asString(),"value"= eImplementationConstraint};
-		eObjectSequence.add(eImplementationConstraintTuple);
+		var eImplementationConstraintTuple = Tuple{"key"="ImplementationConstraint_"+(idImplementationConstraint++).asString(),"value"= eImplementationConstraint};
+		self.add(eImplementationConstraintTuple);
 	}
 	//base.Note -> Instantiation
 	var idNote = 0;
 	for (eNote in DSL!EObject.all.select(s|s.isTypeOf(DSL!Note))){
-		var eNoteTuple = Tuple{"key"=eNote.type().name.asString()+"_"+(idNote++).asString(),"value"= eNote};
-		eObjectSequence.add(eNoteTuple);
+		var eNoteTuple = Tuple{"key"="Note_"+(idNote++).asString(),"value"= eNote};
+		self.add(eNoteTuple);
 	}
 	//base.TaggedValue -> Instantiation
 	var idTaggedValue = 0;
 	for (eTaggedValue in DSL!EObject.all.select(s|s.isTypeOf(DSL!TaggedValue))){
-		var eTaggedValueTuple = Tuple{"key"=eTaggedValue.type().name.asString()+"_"+(idTaggedValue++).asString(),"value"= eTaggedValue};
-		eObjectSequence.add(eTaggedValueTuple);
+		var eTaggedValueTuple = Tuple{"key"="TaggedValue_"+(idTaggedValue++).asString(),"value"= eTaggedValue};
+		self.add(eTaggedValueTuple);
 	}
 	//base.ModelElement -> Instantiation
 	var idModelElement = 0;
 	for (eModelElement in DSL!EObject.all.select(s|s.isTypeOf(DSL!ModelElement))){
-		var eModelElementTuple = Tuple{"key"=eModelElement.type().name.asString()+"_"+(idModelElement++).asString(),"value"= eModelElement};
-		eObjectSequence.add(eModelElementTuple);
+		var eModelElementTuple = Tuple{"key"="ModelElement_"+(idModelElement++).asString(),"value"= eModelElement};
+		self.add(eModelElementTuple);
 	}
 	//base.ArtifactElement -> Instantiation
 	var idArtifactElement = 0;
 	for (eArtifactElement in DSL!EObject.all.select(s|s.isTypeOf(DSL!ArtifactElement))){
-		var eArtifactElementTuple = Tuple{"key"=eArtifactElement.type().name.asString()+"_"+(idArtifactElement++).asString(),"value"= eArtifactElement};
-		eObjectSequence.add(eArtifactElementTuple);
+		var eArtifactElementTuple = Tuple{"key"="ArtifactElement_"+(idArtifactElement++).asString(),"value"= eArtifactElement};
+		self.add(eArtifactElementTuple);
 	}
 	//artifact.ArtifactGroup -> Instantiation
 	var idArtifactGroup = 0;
 	for (eArtifactGroup in DSL!EObject.all.select(s|s.isTypeOf(DSL!ArtifactGroup))){
-		var eArtifactGroupTuple = Tuple{"key"=eArtifactGroup.type().name.asString()+"_"+(idArtifactGroup++).asString(),"value"= eArtifactGroup};
-		eObjectSequence.add(eArtifactGroupTuple);
+		var eArtifactGroupTuple = Tuple{"key"="ArtifactGroup_"+(idArtifactGroup++).asString(),"value"= eArtifactGroup};
+		self.add(eArtifactGroupTuple);
 	}
 	//artifact.ArtifactPackage -> Instantiation
 	var idArtifactPackage = 0;
 	for (eArtifactPackage in DSL!EObject.all.select(s|s.isTypeOf(DSL!ArtifactPackage))){
-		var eArtifactPackageTuple = Tuple{"key"=eArtifactPackage.type().name.asString()+"_"+(idArtifactPackage++).asString(),"value"= eArtifactPackage};
-		eObjectSequence.add(eArtifactPackageTuple);
+		var eArtifactPackageTuple = Tuple{"key"="ArtifactPackage_"+(idArtifactPackage++).asString(),"value"= eArtifactPackage};
+		self.add(eArtifactPackageTuple);
 	}
 	//artifact.ArtifactPackageBinding -> Instantiation
 	var idArtifactPackageBinding = 0;
 	for (eArtifactPackageBinding in DSL!EObject.all.select(s|s.isTypeOf(DSL!ArtifactPackageBinding))){
-		var eArtifactPackageBindingTuple = Tuple{"key"=eArtifactPackageBinding.type().name.asString()+"_"+(idArtifactPackageBinding++).asString(),"value"= eArtifactPackageBinding};
-		eObjectSequence.add(eArtifactPackageBindingTuple);
+		var eArtifactPackageBindingTuple = Tuple{"key"="ArtifactPackageBinding_"+(idArtifactPackageBinding++).asString(),"value"= eArtifactPackageBinding};
+		self.add(eArtifactPackageBindingTuple);
 	}
 	//artifact.ArtifactPackageInterface -> Instantiation
 	var idArtifactPackageInterface = 0;
 	for (eArtifactPackageInterface in DSL!EObject.all.select(s|s.isTypeOf(DSL!ArtifactPackageInterface))){
-		var eArtifactPackageInterfaceTuple = Tuple{"key"=eArtifactPackageInterface.type().name.asString()+"_"+(idArtifactPackageInterface++).asString(),"value"= eArtifactPackageInterface};
-		eObjectSequence.add(eArtifactPackageInterfaceTuple);
+		var eArtifactPackageInterfaceTuple = Tuple{"key"="ArtifactPackageInterface_"+(idArtifactPackageInterface++).asString(),"value"= eArtifactPackageInterface};
+		self.add(eArtifactPackageInterfaceTuple);
 	}
 	//artifact.ArtifactAsset -> Instantiation
 	var idArtifactAsset = 0;
 	for (eArtifactAsset in DSL!EObject.all.select(s|s.isTypeOf(DSL!ArtifactAsset))){
-		var eArtifactAssetTuple = Tuple{"key"=eArtifactAsset.type().name.asString()+"_"+(idArtifactAsset++).asString(),"value"= eArtifactAsset};
-		eObjectSequence.add(eArtifactAssetTuple);
+		var eArtifactAssetTuple = Tuple{"key"="ArtifactAsset_"+(idArtifactAsset++).asString(),"value"= eArtifactAsset};
+		self.add(eArtifactAssetTuple);
 	}
 	//artifact.Property -> Instantiation
 	var idProperty = 0;
 	for (eProperty in DSL!EObject.all.select(s|s.isTypeOf(DSL!Property))){
-		var ePropertyTuple = Tuple{"key"=eProperty.type().name.asString()+"_"+(idProperty++).asString(),"value"= eProperty};
-		eObjectSequence.add(ePropertyTuple);
+		var ePropertyTuple = Tuple{"key"="Property_"+(idProperty++).asString(),"value"= eProperty};
+		self.add(ePropertyTuple);
 	}
 	//artifact.Technique -> Instantiation
 	var idTechnique = 0;
 	for (eTechnique in DSL!EObject.all.select(s|s.isTypeOf(DSL!Technique))){
-		var eTechniqueTuple = Tuple{"key"=eTechnique.type().name.asString()+"_"+(idTechnique++).asString(),"value"= eTechnique};
-		eObjectSequence.add(eTechniqueTuple);
+		var eTechniqueTuple = Tuple{"key"="Technique_"+(idTechnique++).asString(),"value"= eTechnique};
+		self.add(eTechniqueTuple);
 	}
 	//artifact.Participant -> Instantiation
 	var idParticipant = 0;
 	for (eParticipant in DSL!EObject.all.select(s|s.isTypeOf(DSL!Participant))){
-		var eParticipantTuple = Tuple{"key"=eParticipant.type().name.asString()+"_"+(idParticipant++).asString(),"value"= eParticipant};
-		eObjectSequence.add(eParticipantTuple);
+		var eParticipantTuple = Tuple{"key"="Participant_"+(idParticipant++).asString(),"value"= eParticipant};
+		self.add(eParticipantTuple);
 	}
 	//artifact.Activity -> Instantiation
 	var idActivity = 0;
 	for (eActivity in DSL!EObject.all.select(s|s.isTypeOf(DSL!Activity))){
-		var eActivityTuple = Tuple{"key"=eActivity.type().name.asString()+"_"+(idActivity++).asString(),"value"= eActivity};
-		eObjectSequence.add(eActivityTuple);
+		var eActivityTuple = Tuple{"key"="Activity_"+(idActivity++).asString(),"value"= eActivity};
+		self.add(eActivityTuple);
 	}
 	//artifact.Event -> Instantiation
 	var idEvent = 0;
 	for (eEvent in DSL!EObject.all.select(s|s.isTypeOf(DSL!Event))){
-		var eEventTuple = Tuple{"key"=eEvent.type().name.asString()+"_"+(idEvent++).asString(),"value"= eEvent};
-		eObjectSequence.add(eEventTuple);
+		var eEventTuple = Tuple{"key"="Event_"+(idEvent++).asString(),"value"= eEvent};
+		self.add(eEventTuple);
 	}
 	//artifact.Resource -> Instantiation
 	var idResource = 0;
 	for (eResource in DSL!EObject.all.select(s|s.isTypeOf(DSL!Resource))){
-		var eResourceTuple = Tuple{"key"=eResource.type().name.asString()+"_"+(idResource++).asString(),"value"= eResource};
-		eObjectSequence.add(eResourceTuple);
+		var eResourceTuple = Tuple{"key"="Resource_"+(idResource++).asString(),"value"= eResource};
+		self.add(eResourceTuple);
 	}
 	//artifact.Artifact -> Instantiation
 	var idArtifact = 0;
 	for (eArtifact in DSL!EObject.all.select(s|s.isTypeOf(DSL!Artifact))){
-		var eArtifactTuple = Tuple{"key"=eArtifact.type().name.asString()+"_"+(idArtifact++).asString(),"value"= eArtifact};
-		eObjectSequence.add(eArtifactTuple);
+		var eArtifactTuple = Tuple{"key"="Artifact_"+(idArtifact++).asString(),"value"= eArtifact};
+		self.add(eArtifactTuple);
 	}
 	//artifact.ArtifactAssetRelationship -> Instantiation
 	var idArtifactAssetRelationship = 0;
 	for (eArtifactAssetRelationship in DSL!EObject.all.select(s|s.isTypeOf(DSL!ArtifactAssetRelationship))){
-		var eArtifactAssetRelationshipTuple = Tuple{"key"=eArtifactAssetRelationship.type().name.asString()+"_"+(idArtifactAssetRelationship++).asString(),"value"= eArtifactAssetRelationship};
-		eObjectSequence.add(eArtifactAssetRelationshipTuple);
+		var eArtifactAssetRelationshipTuple = Tuple{"key"="ArtifactAssetRelationship_"+(idArtifactAssetRelationship++).asString(),"value"= eArtifactAssetRelationship};
+		self.add(eArtifactAssetRelationshipTuple);
+	}
+	//argumentation.ArgumentationElement -> Instantiation
+	var idArgumentationElement = 0;
+	for (eArgumentationElement in DSL!EObject.all.select(s|s.isTypeOf(DSL!ArgumentationElement))){
+		var eArgumentationElementTuple = Tuple{"key"="ArgumentationElement_"+(idArgumentationElement++).asString(),"value"= eArgumentationElement};
+		self.add(eArgumentationElementTuple);
+	}
+	//argumentation.ArgumentGroup -> Instantiation
+	var idArgumentGroup = 0;
+	for (eArgumentGroup in DSL!EObject.all.select(s|s.isTypeOf(DSL!ArgumentGroup))){
+		var eArgumentGroupTuple = Tuple{"key"="ArgumentGroup_"+(idArgumentGroup++).asString(),"value"= eArgumentGroup};
+		self.add(eArgumentGroupTuple);
+	}
+	//argumentation.ArgumentPackage -> Instantiation
+	var idArgumentPackage = 0;
+	for (eArgumentPackage in DSL!EObject.all.select(s|s.isTypeOf(DSL!ArgumentPackage))){
+		var eArgumentPackageTuple = Tuple{"key"="ArgumentPackage_"+(idArgumentPackage++).asString(),"value"= eArgumentPackage};
+		self.add(eArgumentPackageTuple);
+	}
+	//argumentation.ArgumentPackageInterface -> Instantiation
+	var idArgumentPackageInterface = 0;
+	for (eArgumentPackageInterface in DSL!EObject.all.select(s|s.isTypeOf(DSL!ArgumentPackageInterface))){
+		var eArgumentPackageInterfaceTuple = Tuple{"key"="ArgumentPackageInterface_"+(idArgumentPackageInterface++).asString(),"value"= eArgumentPackageInterface};
+		self.add(eArgumentPackageInterfaceTuple);
+	}
+	//argumentation.ArgumentPackageBinding -> Instantiation
+	var idArgumentPackageBinding = 0;
+	for (eArgumentPackageBinding in DSL!EObject.all.select(s|s.isTypeOf(DSL!ArgumentPackageBinding))){
+		var eArgumentPackageBindingTuple = Tuple{"key"="ArgumentPackageBinding_"+(idArgumentPackageBinding++).asString(),"value"= eArgumentPackageBinding};
+		self.add(eArgumentPackageBindingTuple);
+	}
+	//argumentation.ArgumentAsset -> Instantiation
+	var idArgumentAsset = 0;
+	for (eArgumentAsset in DSL!EObject.all.select(s|s.isTypeOf(DSL!ArgumentAsset))){
+		var eArgumentAssetTuple = Tuple{"key"="ArgumentAsset_"+(idArgumentAsset++).asString(),"value"= eArgumentAsset};
+		self.add(eArgumentAssetTuple);
+	}
+	//argumentation.Assertion -> Instantiation
+	var idAssertion = 0;
+	for (eAssertion in DSL!EObject.all.select(s|s.isTypeOf(DSL!Assertion))){
+		var eAssertionTuple = Tuple{"key"="Assertion_"+(idAssertion++).asString(),"value"= eAssertion};
+		self.add(eAssertionTuple);
+	}
+	//argumentation.ArgumentReasoning -> Instantiation
+	var idArgumentReasoning = 0;
+	for (eArgumentReasoning in DSL!EObject.all.select(s|s.isTypeOf(DSL!ArgumentReasoning))){
+		var eArgumentReasoningTuple = Tuple{"key"="ArgumentReasoning_"+(idArgumentReasoning++).asString(),"value"= eArgumentReasoning};
+		self.add(eArgumentReasoningTuple);
+	}
+	//argumentation.Claim -> Instantiation
+	var idClaim = 0;
+	for (eClaim in DSL!EObject.all.select(s|s.isTypeOf(DSL!Claim))){
+		var eClaimTuple = Tuple{"key"="Claim_"+(idClaim++).asString(),"value"= eClaim};
+		self.add(eClaimTuple);
+	}
+	//argumentation.AssertedRelationship -> Instantiation
+	var idAssertedRelationship = 0;
+	for (eAssertedRelationship in DSL!EObject.all.select(s|s.isTypeOf(DSL!AssertedRelationship))){
+		var eAssertedRelationshipTuple = Tuple{"key"="AssertedRelationship_"+(idAssertedRelationship++).asString(),"value"= eAssertedRelationship};
+		self.add(eAssertedRelationshipTuple);
+	}
+	//argumentation.ArtifactReference -> Instantiation
+	var idArtifactReference = 0;
+	for (eArtifactReference in DSL!EObject.all.select(s|s.isTypeOf(DSL!ArtifactReference))){
+		var eArtifactReferenceTuple = Tuple{"key"="ArtifactReference_"+(idArtifactReference++).asString(),"value"= eArtifactReference};
+		self.add(eArtifactReferenceTuple);
+	}
+	//argumentation.AssertedArtifactSupport -> Instantiation
+	var idAssertedArtifactSupport = 0;
+	for (eAssertedArtifactSupport in DSL!EObject.all.select(s|s.isTypeOf(DSL!AssertedArtifactSupport))){
+		var eAssertedArtifactSupportTuple = Tuple{"key"="AssertedArtifactSupport_"+(idAssertedArtifactSupport++).asString(),"value"= eAssertedArtifactSupport};
+		self.add(eAssertedArtifactSupportTuple);
+	}
+	//argumentation.AssertedInference -> Instantiation
+	var idAssertedInference = 0;
+	for (eAssertedInference in DSL!EObject.all.select(s|s.isTypeOf(DSL!AssertedInference))){
+		var eAssertedInferenceTuple = Tuple{"key"="AssertedInference_"+(idAssertedInference++).asString(),"value"= eAssertedInference};
+		self.add(eAssertedInferenceTuple);
+	}
+	//argumentation.AssertedEvidence -> Instantiation
+	var idAssertedEvidence = 0;
+	for (eAssertedEvidence in DSL!EObject.all.select(s|s.isTypeOf(DSL!AssertedEvidence))){
+		var eAssertedEvidenceTuple = Tuple{"key"="AssertedEvidence_"+(idAssertedEvidence++).asString(),"value"= eAssertedEvidence};
+		self.add(eAssertedEvidenceTuple);
+	}
+	//argumentation.AssertedContext -> Instantiation
+	var idAssertedContext = 0;
+	for (eAssertedContext in DSL!EObject.all.select(s|s.isTypeOf(DSL!AssertedContext))){
+		var eAssertedContextTuple = Tuple{"key"="AssertedContext_"+(idAssertedContext++).asString(),"value"= eAssertedContext};
+		self.add(eAssertedContextTuple);
+	}
+	//argumentation.AssertedArtifactContext -> Instantiation
+	var idAssertedArtifactContext = 0;
+	for (eAssertedArtifactContext in DSL!EObject.all.select(s|s.isTypeOf(DSL!AssertedArtifactContext))){
+		var eAssertedArtifactContextTuple = Tuple{"key"="AssertedArtifactContext_"+(idAssertedArtifactContext++).asString(),"value"= eAssertedArtifactContext};
+		self.add(eAssertedArtifactContextTuple);
 	}
 	//terminology.TerminologyElement -> Instantiation
 	var idTerminologyElement = 0;
 	for (eTerminologyElement in DSL!EObject.all.select(s|s.isTypeOf(DSL!TerminologyElement))){
-		var eTerminologyElementTuple = Tuple{"key"=eTerminologyElement.type().name.asString()+"_"+(idTerminologyElement++).asString(),"value"= eTerminologyElement};
-		eObjectSequence.add(eTerminologyElementTuple);
+		var eTerminologyElementTuple = Tuple{"key"="TerminologyElement_"+(idTerminologyElement++).asString(),"value"= eTerminologyElement};
+		self.add(eTerminologyElementTuple);
 	}
 	//terminology.TerminologyGroup -> Instantiation
 	var idTerminologyGroup = 0;
 	for (eTerminologyGroup in DSL!EObject.all.select(s|s.isTypeOf(DSL!TerminologyGroup))){
-		var eTerminologyGroupTuple = Tuple{"key"=eTerminologyGroup.type().name.asString()+"_"+(idTerminologyGroup++).asString(),"value"= eTerminologyGroup};
-		eObjectSequence.add(eTerminologyGroupTuple);
+		var eTerminologyGroupTuple = Tuple{"key"="TerminologyGroup_"+(idTerminologyGroup++).asString(),"value"= eTerminologyGroup};
+		self.add(eTerminologyGroupTuple);
 	}
 	//terminology.TerminologyPackage -> Instantiation
 	var idTerminologyPackage = 0;
 	for (eTerminologyPackage in DSL!EObject.all.select(s|s.isTypeOf(DSL!TerminologyPackage))){
-		var eTerminologyPackageTuple = Tuple{"key"=eTerminologyPackage.type().name.asString()+"_"+(idTerminologyPackage++).asString(),"value"= eTerminologyPackage};
-		eObjectSequence.add(eTerminologyPackageTuple);
+		var eTerminologyPackageTuple = Tuple{"key"="TerminologyPackage_"+(idTerminologyPackage++).asString(),"value"= eTerminologyPackage};
+		self.add(eTerminologyPackageTuple);
 	}
 	//terminology.TerminologyPackageBinding -> Instantiation
 	var idTerminologyPackageBinding = 0;
 	for (eTerminologyPackageBinding in DSL!EObject.all.select(s|s.isTypeOf(DSL!TerminologyPackageBinding))){
-		var eTerminologyPackageBindingTuple = Tuple{"key"=eTerminologyPackageBinding.type().name.asString()+"_"+(idTerminologyPackageBinding++).asString(),"value"= eTerminologyPackageBinding};
-		eObjectSequence.add(eTerminologyPackageBindingTuple);
+		var eTerminologyPackageBindingTuple = Tuple{"key"="TerminologyPackageBinding_"+(idTerminologyPackageBinding++).asString(),"value"= eTerminologyPackageBinding};
+		self.add(eTerminologyPackageBindingTuple);
 	}
 	//terminology.TerminologyPackageInterface -> Instantiation
 	var idTerminologyPackageInterface = 0;
 	for (eTerminologyPackageInterface in DSL!EObject.all.select(s|s.isTypeOf(DSL!TerminologyPackageInterface))){
-		var eTerminologyPackageInterfaceTuple = Tuple{"key"=eTerminologyPackageInterface.type().name.asString()+"_"+(idTerminologyPackageInterface++).asString(),"value"= eTerminologyPackageInterface};
-		eObjectSequence.add(eTerminologyPackageInterfaceTuple);
+		var eTerminologyPackageInterfaceTuple = Tuple{"key"="TerminologyPackageInterface_"+(idTerminologyPackageInterface++).asString(),"value"= eTerminologyPackageInterface};
+		self.add(eTerminologyPackageInterfaceTuple);
 	}
 	//terminology.TerminologyAsset -> Instantiation
 	var idTerminologyAsset = 0;
 	for (eTerminologyAsset in DSL!EObject.all.select(s|s.isTypeOf(DSL!TerminologyAsset))){
-		var eTerminologyAssetTuple = Tuple{"key"=eTerminologyAsset.type().name.asString()+"_"+(idTerminologyAsset++).asString(),"value"= eTerminologyAsset};
-		eObjectSequence.add(eTerminologyAssetTuple);
+		var eTerminologyAssetTuple = Tuple{"key"="TerminologyAsset_"+(idTerminologyAsset++).asString(),"value"= eTerminologyAsset};
+		self.add(eTerminologyAssetTuple);
 	}
 	//terminology.Category -> Instantiation
 	var idCategory = 0;
 	for (eCategory in DSL!EObject.all.select(s|s.isTypeOf(DSL!Category))){
-		var eCategoryTuple = Tuple{"key"=eCategory.type().name.asString()+"_"+(idCategory++).asString(),"value"= eCategory};
-		eObjectSequence.add(eCategoryTuple);
+		var eCategoryTuple = Tuple{"key"="Category_"+(idCategory++).asString(),"value"= eCategory};
+		self.add(eCategoryTuple);
 	}
 	//terminology.ExpressionElement -> Instantiation
 	var idExpressionElement = 0;
 	for (eExpressionElement in DSL!EObject.all.select(s|s.isTypeOf(DSL!ExpressionElement))){
-		var eExpressionElementTuple = Tuple{"key"=eExpressionElement.type().name.asString()+"_"+(idExpressionElement++).asString(),"value"= eExpressionElement};
-		eObjectSequence.add(eExpressionElementTuple);
+		var eExpressionElementTuple = Tuple{"key"="ExpressionElement_"+(idExpressionElement++).asString(),"value"= eExpressionElement};
+		self.add(eExpressionElementTuple);
 	}
 	//terminology.Expression -> Instantiation
 	var idExpression = 0;
 	for (eExpression in DSL!EObject.all.select(s|s.isTypeOf(DSL!Expression))){
-		var eExpressionTuple = Tuple{"key"=eExpression.type().name.asString()+"_"+(idExpression++).asString(),"value"= eExpression};
-		eObjectSequence.add(eExpressionTuple);
+		var eExpressionTuple = Tuple{"key"="Expression_"+(idExpression++).asString(),"value"= eExpression};
+		self.add(eExpressionTuple);
 	}
 	//terminology.Term -> Instantiation
 	var idTerm = 0;
 	for (eTerm in DSL!EObject.all.select(s|s.isTypeOf(DSL!Term))){
-		var eTermTuple = Tuple{"key"=eTerm.type().name.asString()+"_"+(idTerm++).asString(),"value"= eTerm};
-		eObjectSequence.add(eTermTuple);
+		var eTermTuple = Tuple{"key"="Term_"+(idTerm++).asString(),"value"= eTerm};
+		self.add(eTermTuple);
 	}
 	//gsn.Module -> Instantiation
 	var idModule = 0;
 	for (eModule in DSL!EObject.all.select(s|s.isTypeOf(DSL!Module))){
-		var eModuleTuple = Tuple{"key"=eModule.type().name.asString()+"_"+(idModule++).asString(),"value"= eModule};
-		eObjectSequence.add(eModuleTuple);
+		var eModuleTuple = Tuple{"key"="Module_"+(idModule++).asString(),"value"= eModule};
+		self.add(eModuleTuple);
 	}
 	//gsn.ContractModule -> Instantiation
 	var idContractModule = 0;
 	for (eContractModule in DSL!EObject.all.select(s|s.isTypeOf(DSL!ContractModule))){
-		var eContractModuleTuple = Tuple{"key"=eContractModule.type().name.asString()+"_"+(idContractModule++).asString(),"value"= eContractModule};
-		eObjectSequence.add(eContractModuleTuple);
+		var eContractModuleTuple = Tuple{"key"="ContractModule_"+(idContractModule++).asString(),"value"= eContractModule};
+		self.add(eContractModuleTuple);
 	}
 	//gsn.ChoiceNode -> Instantiation
 	var idChoiceNode = 0;
 	for (eChoiceNode in DSL!EObject.all.select(s|s.isTypeOf(DSL!ChoiceNode))){
-		var eChoiceNodeTuple = Tuple{"key"=eChoiceNode.type().name.asString()+"_"+(idChoiceNode++).asString(),"value"= eChoiceNode};
-		eObjectSequence.add(eChoiceNodeTuple);
+		var eChoiceNodeTuple = Tuple{"key"="ChoiceNode_"+(idChoiceNode++).asString(),"value"= eChoiceNode};
+		self.add(eChoiceNodeTuple);
 	}
 	//gsn.Context -> Instantiation
 	var idContext = 0;
 	for (eContext in DSL!EObject.all.select(s|s.isTypeOf(DSL!Context))){
-		var eContextTuple = Tuple{"key"=eContext.type().name.asString()+"_"+(idContext++).asString(),"value"= eContext};
-		eObjectSequence.add(eContextTuple);
+		var eContextTuple = Tuple{"key"="Context_"+(idContext++).asString(),"value"= eContext};
+		self.add(eContextTuple);
 	}
 	//gsn.Strategy -> Instantiation
 	var idStrategy = 0;
 	for (eStrategy in DSL!EObject.all.select(s|s.isTypeOf(DSL!Strategy))){
-		var eStrategyTuple = Tuple{"key"=eStrategy.type().name.asString()+"_"+(idStrategy++).asString(),"value"= eStrategy};
-		eObjectSequence.add(eStrategyTuple);
+		var eStrategyTuple = Tuple{"key"="Strategy_"+(idStrategy++).asString(),"value"= eStrategy};
+		self.add(eStrategyTuple);
 	}
 	//gsn.Goal -> Instantiation
 	var idGoal = 0;
 	for (eGoal in DSL!EObject.all.select(s|s.isTypeOf(DSL!Goal))){
-		var eGoalTuple = Tuple{"key"=eGoal.type().name.asString()+"_"+(idGoal++).asString(),"value"= eGoal};
-		eObjectSequence.add(eGoalTuple);
+		var eGoalTuple = Tuple{"key"="Goal_"+(idGoal++).asString(),"value"= eGoal};
+		self.add(eGoalTuple);
 	}
 	//gsn.Justification -> Instantiation
 	var idJustification = 0;
 	for (eJustification in DSL!EObject.all.select(s|s.isTypeOf(DSL!Justification))){
-		var eJustificationTuple = Tuple{"key"=eJustification.type().name.asString()+"_"+(idJustification++).asString(),"value"= eJustification};
-		eObjectSequence.add(eJustificationTuple);
+		var eJustificationTuple = Tuple{"key"="Justification_"+(idJustification++).asString(),"value"= eJustification};
+		self.add(eJustificationTuple);
 	}
 	//gsn.Assumption -> Instantiation
 	var idAssumption = 0;
 	for (eAssumption in DSL!EObject.all.select(s|s.isTypeOf(DSL!Assumption))){
-		var eAssumptionTuple = Tuple{"key"=eAssumption.type().name.asString()+"_"+(idAssumption++).asString(),"value"= eAssumption};
-		eObjectSequence.add(eAssumptionTuple);
+		var eAssumptionTuple = Tuple{"key"="Assumption_"+(idAssumption++).asString(),"value"= eAssumption};
+		self.add(eAssumptionTuple);
 	}
 	//gsn.AwayGoal -> Instantiation
 	var idAwayGoal = 0;
 	for (eAwayGoal in DSL!EObject.all.select(s|s.isTypeOf(DSL!AwayGoal))){
-		var eAwayGoalTuple = Tuple{"key"=eAwayGoal.type().name.asString()+"_"+(idAwayGoal++).asString(),"value"= eAwayGoal};
-		eObjectSequence.add(eAwayGoalTuple);
+		var eAwayGoalTuple = Tuple{"key"="AwayGoal_"+(idAwayGoal++).asString(),"value"= eAwayGoal};
+		self.add(eAwayGoalTuple);
 	}
 	//gsn.AwaySolution -> Instantiation
 	var idAwaySolution = 0;
 	for (eAwaySolution in DSL!EObject.all.select(s|s.isTypeOf(DSL!AwaySolution))){
-		var eAwaySolutionTuple = Tuple{"key"=eAwaySolution.type().name.asString()+"_"+(idAwaySolution++).asString(),"value"= eAwaySolution};
-		eObjectSequence.add(eAwaySolutionTuple);
+		var eAwaySolutionTuple = Tuple{"key"="AwaySolution_"+(idAwaySolution++).asString(),"value"= eAwaySolution};
+		self.add(eAwaySolutionTuple);
 	}
 	//gsn.AwayContext -> Instantiation
 	var idAwayContext = 0;
 	for (eAwayContext in DSL!EObject.all.select(s|s.isTypeOf(DSL!AwayContext))){
-		var eAwayContextTuple = Tuple{"key"=eAwayContext.type().name.asString()+"_"+(idAwayContext++).asString(),"value"= eAwayContext};
-		eObjectSequence.add(eAwayContextTuple);
+		var eAwayContextTuple = Tuple{"key"="AwayContext_"+(idAwayContext++).asString(),"value"= eAwayContext};
+		self.add(eAwayContextTuple);
 	}
 	//gsn.ModuleReference -> Instantiation
 	var idModuleReference = 0;
 	for (eModuleReference in DSL!EObject.all.select(s|s.isTypeOf(DSL!ModuleReference))){
-		var eModuleReferenceTuple = Tuple{"key"=eModuleReference.type().name.asString()+"_"+(idModuleReference++).asString(),"value"= eModuleReference};
-		eObjectSequence.add(eModuleReferenceTuple);
+		var eModuleReferenceTuple = Tuple{"key"="ModuleReference_"+(idModuleReference++).asString(),"value"= eModuleReference};
+		self.add(eModuleReferenceTuple);
 	}
 	//gsn.ContractModuleReference -> Instantiation
 	var idContractModuleReference = 0;
 	for (eContractModuleReference in DSL!EObject.all.select(s|s.isTypeOf(DSL!ContractModuleReference))){
-		var eContractModuleReferenceTuple = Tuple{"key"=eContractModuleReference.type().name.asString()+"_"+(idContractModuleReference++).asString(),"value"= eContractModuleReference};
-		eObjectSequence.add(eContractModuleReferenceTuple);
+		var eContractModuleReferenceTuple = Tuple{"key"="ContractModuleReference_"+(idContractModuleReference++).asString(),"value"= eContractModuleReference};
+		self.add(eContractModuleReferenceTuple);
 	}
 	//gsn.Solution -> Instantiation
 	var idSolution = 0;
 	for (eSolution in DSL!EObject.all.select(s|s.isTypeOf(DSL!Solution))){
-		var eSolutionTuple = Tuple{"key"=eSolution.type().name.asString()+"_"+(idSolution++).asString(),"value"= eSolution};
-		eObjectSequence.add(eSolutionTuple);
+		var eSolutionTuple = Tuple{"key"="Solution_"+(idSolution++).asString(),"value"= eSolution};
+		self.add(eSolutionTuple);
 	}
 	//gsn.SupportedBy -> Instantiation
 	var idSupportedBy = 0;
 	for (eSupportedBy in DSL!EObject.all.select(s|s.isTypeOf(DSL!SupportedBy))){
-		var eSupportedByTuple = Tuple{"key"=eSupportedBy.type().name.asString()+"_"+(idSupportedBy++).asString(),"value"= eSupportedBy};
-		eObjectSequence.add(eSupportedByTuple);
+		var eSupportedByTuple = Tuple{"key"="SupportedBy_"+(idSupportedBy++).asString(),"value"= eSupportedBy};
+		self.add(eSupportedByTuple);
 	}
 	//gsn.InContextOf -> Instantiation
 	var idInContextOf = 0;
 	for (eInContextOf in DSL!EObject.all.select(s|s.isTypeOf(DSL!InContextOf))){
-		var eInContextOfTuple = Tuple{"key"=eInContextOf.type().name.asString()+"_"+(idInContextOf++).asString(),"value"= eInContextOf};
-		eObjectSequence.add(eInContextOfTuple);
+		var eInContextOfTuple = Tuple{"key"="InContextOf_"+(idInContextOf++).asString(),"value"= eInContextOf};
+		self.add(eInContextOfTuple);
 	}
 }
 
@@ -1086,6 +1183,602 @@ rule ArtifactAssetRelationship
 	if (s.source.getEReference() != null) t.addNewReference("source", s.source.getEReference());
 	//ArtifactAssetRelationship.target -> EReference : target
 	if (s.target.getEReference() != null) t.addNewReference("target", s.target.getEReference());
+}
+
+
+// argumentation.ecore
+@lazy
+rule ArgumentationElement
+	transform s : DSL!ArgumentationElement //argumentation.ArgumentationElement
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//ArgumentationElement.gid -> EAttribute : gid
+	if (s.gid.getEAttribute() != null) t.addNewAttribute("gid", s.gid.getEAttribute());
+	//ArgumentationElement.isCitation -> EAttribute : isCitation
+	if (s.isCitation.getEAttribute() != null) t.addNewAttribute("isCitation", s.isCitation.getEAttribute());
+	//ArgumentationElement.isAbstract -> EAttribute : isAbstract
+	if (s.isAbstract.getEAttribute() != null) t.addNewAttribute("isAbstract", s.isAbstract.getEAttribute());
+	//ArgumentationElement.uninstantiated -> EAttribute : uninstantiated
+	if (s.uninstantiated.getEAttribute() != null) t.addNewAttribute("uninstantiated", s.uninstantiated.getEAttribute());
+	//ArgumentationElement.citedElement -> EReference : citedElement
+	if (s.citedElement.getEReference() != null) t.addNewReference("citedElement", s.citedElement.getEReference());
+	//ArgumentationElement.abstractForm -> EReference : abstractForm
+	if (s.abstractForm.getEReference() != null) t.addNewReference("abstractForm", s.abstractForm.getEReference());
+	//ArgumentationElement.name -> EReference : name
+	if (s.name.getEReference() != null) t.addNewReference("name", s.name.getEReference());
+	//ArgumentationElement.description -> EReference : description
+	if (s.description.getEReference() != null) t.addNewReference("description", s.description.getEReference());
+	//ArgumentationElement.implementationConstraint -> EReference : implementationConstraint
+	if (s.implementationConstraint.getEReference() != null) t.addNewReference("implementationConstraint", s.implementationConstraint.getEReference());
+	//ArgumentationElement.note -> EReference : note
+	if (s.note.getEReference() != null) t.addNewReference("note", s.note.getEReference());
+	//ArgumentationElement.taggedValue -> EReference : taggedValue
+	if (s.taggedValue.getEReference() != null) t.addNewReference("taggedValue", s.taggedValue.getEReference());
+}
+
+@lazy
+rule ArgumentGroup
+	transform s : DSL!ArgumentGroup //argumentation.ArgumentGroup
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//ArgumentGroup.gid -> EAttribute : gid
+	if (s.gid.getEAttribute() != null) t.addNewAttribute("gid", s.gid.getEAttribute());
+	//ArgumentGroup.isCitation -> EAttribute : isCitation
+	if (s.isCitation.getEAttribute() != null) t.addNewAttribute("isCitation", s.isCitation.getEAttribute());
+	//ArgumentGroup.isAbstract -> EAttribute : isAbstract
+	if (s.isAbstract.getEAttribute() != null) t.addNewAttribute("isAbstract", s.isAbstract.getEAttribute());
+	//ArgumentGroup.uninstantiated -> EAttribute : uninstantiated
+	if (s.uninstantiated.getEAttribute() != null) t.addNewAttribute("uninstantiated", s.uninstantiated.getEAttribute());
+	//ArgumentGroup.citedElement -> EReference : citedElement
+	if (s.citedElement.getEReference() != null) t.addNewReference("citedElement", s.citedElement.getEReference());
+	//ArgumentGroup.abstractForm -> EReference : abstractForm
+	if (s.abstractForm.getEReference() != null) t.addNewReference("abstractForm", s.abstractForm.getEReference());
+	//ArgumentGroup.name -> EReference : name
+	if (s.name.getEReference() != null) t.addNewReference("name", s.name.getEReference());
+	//ArgumentGroup.description -> EReference : description
+	if (s.description.getEReference() != null) t.addNewReference("description", s.description.getEReference());
+	//ArgumentGroup.implementationConstraint -> EReference : implementationConstraint
+	if (s.implementationConstraint.getEReference() != null) t.addNewReference("implementationConstraint", s.implementationConstraint.getEReference());
+	//ArgumentGroup.note -> EReference : note
+	if (s.note.getEReference() != null) t.addNewReference("note", s.note.getEReference());
+	//ArgumentGroup.taggedValue -> EReference : taggedValue
+	if (s.taggedValue.getEReference() != null) t.addNewReference("taggedValue", s.taggedValue.getEReference());
+	//ArgumentGroup.argumentationElement -> EReference : argumentationElement
+	if (s.argumentationElement.getEReference() != null) t.addNewReference("argumentationElement", s.argumentationElement.getEReference());
+}
+
+@lazy
+rule ArgumentPackage
+	transform s : DSL!ArgumentPackage //argumentation.ArgumentPackage
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//ArgumentPackage.gid -> EAttribute : gid
+	if (s.gid.getEAttribute() != null) t.addNewAttribute("gid", s.gid.getEAttribute());
+	//ArgumentPackage.isCitation -> EAttribute : isCitation
+	if (s.isCitation.getEAttribute() != null) t.addNewAttribute("isCitation", s.isCitation.getEAttribute());
+	//ArgumentPackage.isAbstract -> EAttribute : isAbstract
+	if (s.isAbstract.getEAttribute() != null) t.addNewAttribute("isAbstract", s.isAbstract.getEAttribute());
+	//ArgumentPackage.uninstantiated -> EAttribute : uninstantiated
+	if (s.uninstantiated.getEAttribute() != null) t.addNewAttribute("uninstantiated", s.uninstantiated.getEAttribute());
+	//ArgumentPackage.citedElement -> EReference : citedElement
+	if (s.citedElement.getEReference() != null) t.addNewReference("citedElement", s.citedElement.getEReference());
+	//ArgumentPackage.abstractForm -> EReference : abstractForm
+	if (s.abstractForm.getEReference() != null) t.addNewReference("abstractForm", s.abstractForm.getEReference());
+	//ArgumentPackage.name -> EReference : name
+	if (s.name.getEReference() != null) t.addNewReference("name", s.name.getEReference());
+	//ArgumentPackage.description -> EReference : description
+	if (s.description.getEReference() != null) t.addNewReference("description", s.description.getEReference());
+	//ArgumentPackage.implementationConstraint -> EReference : implementationConstraint
+	if (s.implementationConstraint.getEReference() != null) t.addNewReference("implementationConstraint", s.implementationConstraint.getEReference());
+	//ArgumentPackage.note -> EReference : note
+	if (s.note.getEReference() != null) t.addNewReference("note", s.note.getEReference());
+	//ArgumentPackage.taggedValue -> EReference : taggedValue
+	if (s.taggedValue.getEReference() != null) t.addNewReference("taggedValue", s.taggedValue.getEReference());
+	//ArgumentPackage.argumentationElement -> EReference : argumentationElement
+	if (s.argumentationElement.getEReference() != null) t.addNewReference("argumentationElement", s.argumentationElement.getEReference());
+}
+
+@lazy
+rule ArgumentPackageInterface
+	transform s : DSL!ArgumentPackageInterface //argumentation.ArgumentPackageInterface
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//ArgumentPackageInterface.gid -> EAttribute : gid
+	if (s.gid.getEAttribute() != null) t.addNewAttribute("gid", s.gid.getEAttribute());
+	//ArgumentPackageInterface.isCitation -> EAttribute : isCitation
+	if (s.isCitation.getEAttribute() != null) t.addNewAttribute("isCitation", s.isCitation.getEAttribute());
+	//ArgumentPackageInterface.isAbstract -> EAttribute : isAbstract
+	if (s.isAbstract.getEAttribute() != null) t.addNewAttribute("isAbstract", s.isAbstract.getEAttribute());
+	//ArgumentPackageInterface.uninstantiated -> EAttribute : uninstantiated
+	if (s.uninstantiated.getEAttribute() != null) t.addNewAttribute("uninstantiated", s.uninstantiated.getEAttribute());
+	//ArgumentPackageInterface.citedElement -> EReference : citedElement
+	if (s.citedElement.getEReference() != null) t.addNewReference("citedElement", s.citedElement.getEReference());
+	//ArgumentPackageInterface.abstractForm -> EReference : abstractForm
+	if (s.abstractForm.getEReference() != null) t.addNewReference("abstractForm", s.abstractForm.getEReference());
+	//ArgumentPackageInterface.name -> EReference : name
+	if (s.name.getEReference() != null) t.addNewReference("name", s.name.getEReference());
+	//ArgumentPackageInterface.description -> EReference : description
+	if (s.description.getEReference() != null) t.addNewReference("description", s.description.getEReference());
+	//ArgumentPackageInterface.implementationConstraint -> EReference : implementationConstraint
+	if (s.implementationConstraint.getEReference() != null) t.addNewReference("implementationConstraint", s.implementationConstraint.getEReference());
+	//ArgumentPackageInterface.note -> EReference : note
+	if (s.note.getEReference() != null) t.addNewReference("note", s.note.getEReference());
+	//ArgumentPackageInterface.taggedValue -> EReference : taggedValue
+	if (s.taggedValue.getEReference() != null) t.addNewReference("taggedValue", s.taggedValue.getEReference());
+	//ArgumentPackageInterface.argumentationElement -> EReference : argumentationElement
+	if (s.argumentationElement.getEReference() != null) t.addNewReference("argumentationElement", s.argumentationElement.getEReference());
+	//ArgumentPackageInterface.implements -> EReference : implements
+	if (s.implements.getEReference() != null) t.addNewReference("implements", s.implements.getEReference());
+}
+
+@lazy
+rule ArgumentPackageBinding
+	transform s : DSL!ArgumentPackageBinding //argumentation.ArgumentPackageBinding
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//ArgumentPackageBinding.gid -> EAttribute : gid
+	if (s.gid.getEAttribute() != null) t.addNewAttribute("gid", s.gid.getEAttribute());
+	//ArgumentPackageBinding.isCitation -> EAttribute : isCitation
+	if (s.isCitation.getEAttribute() != null) t.addNewAttribute("isCitation", s.isCitation.getEAttribute());
+	//ArgumentPackageBinding.isAbstract -> EAttribute : isAbstract
+	if (s.isAbstract.getEAttribute() != null) t.addNewAttribute("isAbstract", s.isAbstract.getEAttribute());
+	//ArgumentPackageBinding.uninstantiated -> EAttribute : uninstantiated
+	if (s.uninstantiated.getEAttribute() != null) t.addNewAttribute("uninstantiated", s.uninstantiated.getEAttribute());
+	//ArgumentPackageBinding.citedElement -> EReference : citedElement
+	if (s.citedElement.getEReference() != null) t.addNewReference("citedElement", s.citedElement.getEReference());
+	//ArgumentPackageBinding.abstractForm -> EReference : abstractForm
+	if (s.abstractForm.getEReference() != null) t.addNewReference("abstractForm", s.abstractForm.getEReference());
+	//ArgumentPackageBinding.name -> EReference : name
+	if (s.name.getEReference() != null) t.addNewReference("name", s.name.getEReference());
+	//ArgumentPackageBinding.description -> EReference : description
+	if (s.description.getEReference() != null) t.addNewReference("description", s.description.getEReference());
+	//ArgumentPackageBinding.implementationConstraint -> EReference : implementationConstraint
+	if (s.implementationConstraint.getEReference() != null) t.addNewReference("implementationConstraint", s.implementationConstraint.getEReference());
+	//ArgumentPackageBinding.note -> EReference : note
+	if (s.note.getEReference() != null) t.addNewReference("note", s.note.getEReference());
+	//ArgumentPackageBinding.taggedValue -> EReference : taggedValue
+	if (s.taggedValue.getEReference() != null) t.addNewReference("taggedValue", s.taggedValue.getEReference());
+	//ArgumentPackageBinding.argumentationElement -> EReference : argumentationElement
+	if (s.argumentationElement.getEReference() != null) t.addNewReference("argumentationElement", s.argumentationElement.getEReference());
+	//ArgumentPackageBinding.participantPackage -> EReference : participantPackage
+	if (s.participantPackage.getEReference() != null) t.addNewReference("participantPackage", s.participantPackage.getEReference());
+}
+
+@lazy
+rule ArgumentAsset
+	transform s : DSL!ArgumentAsset //argumentation.ArgumentAsset
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//ArgumentAsset.gid -> EAttribute : gid
+	if (s.gid.getEAttribute() != null) t.addNewAttribute("gid", s.gid.getEAttribute());
+	//ArgumentAsset.isCitation -> EAttribute : isCitation
+	if (s.isCitation.getEAttribute() != null) t.addNewAttribute("isCitation", s.isCitation.getEAttribute());
+	//ArgumentAsset.isAbstract -> EAttribute : isAbstract
+	if (s.isAbstract.getEAttribute() != null) t.addNewAttribute("isAbstract", s.isAbstract.getEAttribute());
+	//ArgumentAsset.uninstantiated -> EAttribute : uninstantiated
+	if (s.uninstantiated.getEAttribute() != null) t.addNewAttribute("uninstantiated", s.uninstantiated.getEAttribute());
+	//ArgumentAsset.citedElement -> EReference : citedElement
+	if (s.citedElement.getEReference() != null) t.addNewReference("citedElement", s.citedElement.getEReference());
+	//ArgumentAsset.abstractForm -> EReference : abstractForm
+	if (s.abstractForm.getEReference() != null) t.addNewReference("abstractForm", s.abstractForm.getEReference());
+	//ArgumentAsset.name -> EReference : name
+	if (s.name.getEReference() != null) t.addNewReference("name", s.name.getEReference());
+	//ArgumentAsset.description -> EReference : description
+	if (s.description.getEReference() != null) t.addNewReference("description", s.description.getEReference());
+	//ArgumentAsset.implementationConstraint -> EReference : implementationConstraint
+	if (s.implementationConstraint.getEReference() != null) t.addNewReference("implementationConstraint", s.implementationConstraint.getEReference());
+	//ArgumentAsset.note -> EReference : note
+	if (s.note.getEReference() != null) t.addNewReference("note", s.note.getEReference());
+	//ArgumentAsset.taggedValue -> EReference : taggedValue
+	if (s.taggedValue.getEReference() != null) t.addNewReference("taggedValue", s.taggedValue.getEReference());
+	//ArgumentAsset.content -> EReference : content
+	if (s.content.getEReference() != null) t.addNewReference("content", s.content.getEReference());
+}
+
+@lazy
+rule Assertion
+	transform s : DSL!Assertion //argumentation.Assertion
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//Assertion.gid -> EAttribute : gid
+	if (s.gid.getEAttribute() != null) t.addNewAttribute("gid", s.gid.getEAttribute());
+	//Assertion.isCitation -> EAttribute : isCitation
+	if (s.isCitation.getEAttribute() != null) t.addNewAttribute("isCitation", s.isCitation.getEAttribute());
+	//Assertion.isAbstract -> EAttribute : isAbstract
+	if (s.isAbstract.getEAttribute() != null) t.addNewAttribute("isAbstract", s.isAbstract.getEAttribute());
+	//Assertion.uninstantiated -> EAttribute : uninstantiated
+	if (s.uninstantiated.getEAttribute() != null) t.addNewAttribute("uninstantiated", s.uninstantiated.getEAttribute());
+	//Assertion.assertionDeclaration -> EAttribute : assertionDeclaration
+	if (s.assertionDeclaration.getEAttribute() != null) t.addNewAttribute("assertionDeclaration", s.assertionDeclaration.getEAttribute());
+	//Assertion.citedElement -> EReference : citedElement
+	if (s.citedElement.getEReference() != null) t.addNewReference("citedElement", s.citedElement.getEReference());
+	//Assertion.abstractForm -> EReference : abstractForm
+	if (s.abstractForm.getEReference() != null) t.addNewReference("abstractForm", s.abstractForm.getEReference());
+	//Assertion.name -> EReference : name
+	if (s.name.getEReference() != null) t.addNewReference("name", s.name.getEReference());
+	//Assertion.description -> EReference : description
+	if (s.description.getEReference() != null) t.addNewReference("description", s.description.getEReference());
+	//Assertion.implementationConstraint -> EReference : implementationConstraint
+	if (s.implementationConstraint.getEReference() != null) t.addNewReference("implementationConstraint", s.implementationConstraint.getEReference());
+	//Assertion.note -> EReference : note
+	if (s.note.getEReference() != null) t.addNewReference("note", s.note.getEReference());
+	//Assertion.taggedValue -> EReference : taggedValue
+	if (s.taggedValue.getEReference() != null) t.addNewReference("taggedValue", s.taggedValue.getEReference());
+	//Assertion.content -> EReference : content
+	if (s.content.getEReference() != null) t.addNewReference("content", s.content.getEReference());
+	//Assertion.metaClaim -> EReference : metaClaim
+	if (s.metaClaim.getEReference() != null) t.addNewReference("metaClaim", s.metaClaim.getEReference());
+}
+
+@lazy
+rule ArgumentReasoning
+	transform s : DSL!ArgumentReasoning //argumentation.ArgumentReasoning
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//ArgumentReasoning.gid -> EAttribute : gid
+	if (s.gid.getEAttribute() != null) t.addNewAttribute("gid", s.gid.getEAttribute());
+	//ArgumentReasoning.isCitation -> EAttribute : isCitation
+	if (s.isCitation.getEAttribute() != null) t.addNewAttribute("isCitation", s.isCitation.getEAttribute());
+	//ArgumentReasoning.isAbstract -> EAttribute : isAbstract
+	if (s.isAbstract.getEAttribute() != null) t.addNewAttribute("isAbstract", s.isAbstract.getEAttribute());
+	//ArgumentReasoning.uninstantiated -> EAttribute : uninstantiated
+	if (s.uninstantiated.getEAttribute() != null) t.addNewAttribute("uninstantiated", s.uninstantiated.getEAttribute());
+	//ArgumentReasoning.citedElement -> EReference : citedElement
+	if (s.citedElement.getEReference() != null) t.addNewReference("citedElement", s.citedElement.getEReference());
+	//ArgumentReasoning.abstractForm -> EReference : abstractForm
+	if (s.abstractForm.getEReference() != null) t.addNewReference("abstractForm", s.abstractForm.getEReference());
+	//ArgumentReasoning.name -> EReference : name
+	if (s.name.getEReference() != null) t.addNewReference("name", s.name.getEReference());
+	//ArgumentReasoning.description -> EReference : description
+	if (s.description.getEReference() != null) t.addNewReference("description", s.description.getEReference());
+	//ArgumentReasoning.implementationConstraint -> EReference : implementationConstraint
+	if (s.implementationConstraint.getEReference() != null) t.addNewReference("implementationConstraint", s.implementationConstraint.getEReference());
+	//ArgumentReasoning.note -> EReference : note
+	if (s.note.getEReference() != null) t.addNewReference("note", s.note.getEReference());
+	//ArgumentReasoning.taggedValue -> EReference : taggedValue
+	if (s.taggedValue.getEReference() != null) t.addNewReference("taggedValue", s.taggedValue.getEReference());
+	//ArgumentReasoning.content -> EReference : content
+	if (s.content.getEReference() != null) t.addNewReference("content", s.content.getEReference());
+	//ArgumentReasoning.structure -> EReference : structure
+	if (s.structure.getEReference() != null) t.addNewReference("structure", s.structure.getEReference());
+}
+
+@lazy
+rule Claim
+	transform s : DSL!Claim //argumentation.Claim
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//Claim.gid -> EAttribute : gid
+	if (s.gid.getEAttribute() != null) t.addNewAttribute("gid", s.gid.getEAttribute());
+	//Claim.isCitation -> EAttribute : isCitation
+	if (s.isCitation.getEAttribute() != null) t.addNewAttribute("isCitation", s.isCitation.getEAttribute());
+	//Claim.isAbstract -> EAttribute : isAbstract
+	if (s.isAbstract.getEAttribute() != null) t.addNewAttribute("isAbstract", s.isAbstract.getEAttribute());
+	//Claim.uninstantiated -> EAttribute : uninstantiated
+	if (s.uninstantiated.getEAttribute() != null) t.addNewAttribute("uninstantiated", s.uninstantiated.getEAttribute());
+	//Claim.assertionDeclaration -> EAttribute : assertionDeclaration
+	if (s.assertionDeclaration.getEAttribute() != null) t.addNewAttribute("assertionDeclaration", s.assertionDeclaration.getEAttribute());
+	//Claim.citedElement -> EReference : citedElement
+	if (s.citedElement.getEReference() != null) t.addNewReference("citedElement", s.citedElement.getEReference());
+	//Claim.abstractForm -> EReference : abstractForm
+	if (s.abstractForm.getEReference() != null) t.addNewReference("abstractForm", s.abstractForm.getEReference());
+	//Claim.name -> EReference : name
+	if (s.name.getEReference() != null) t.addNewReference("name", s.name.getEReference());
+	//Claim.description -> EReference : description
+	if (s.description.getEReference() != null) t.addNewReference("description", s.description.getEReference());
+	//Claim.implementationConstraint -> EReference : implementationConstraint
+	if (s.implementationConstraint.getEReference() != null) t.addNewReference("implementationConstraint", s.implementationConstraint.getEReference());
+	//Claim.note -> EReference : note
+	if (s.note.getEReference() != null) t.addNewReference("note", s.note.getEReference());
+	//Claim.taggedValue -> EReference : taggedValue
+	if (s.taggedValue.getEReference() != null) t.addNewReference("taggedValue", s.taggedValue.getEReference());
+	//Claim.content -> EReference : content
+	if (s.content.getEReference() != null) t.addNewReference("content", s.content.getEReference());
+	//Claim.metaClaim -> EReference : metaClaim
+	if (s.metaClaim.getEReference() != null) t.addNewReference("metaClaim", s.metaClaim.getEReference());
+}
+
+@lazy
+rule AssertedRelationship
+	transform s : DSL!AssertedRelationship //argumentation.AssertedRelationship
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//AssertedRelationship.gid -> EAttribute : gid
+	if (s.gid.getEAttribute() != null) t.addNewAttribute("gid", s.gid.getEAttribute());
+	//AssertedRelationship.isCitation -> EAttribute : isCitation
+	if (s.isCitation.getEAttribute() != null) t.addNewAttribute("isCitation", s.isCitation.getEAttribute());
+	//AssertedRelationship.isAbstract -> EAttribute : isAbstract
+	if (s.isAbstract.getEAttribute() != null) t.addNewAttribute("isAbstract", s.isAbstract.getEAttribute());
+	//AssertedRelationship.uninstantiated -> EAttribute : uninstantiated
+	if (s.uninstantiated.getEAttribute() != null) t.addNewAttribute("uninstantiated", s.uninstantiated.getEAttribute());
+	//AssertedRelationship.assertionDeclaration -> EAttribute : assertionDeclaration
+	if (s.assertionDeclaration.getEAttribute() != null) t.addNewAttribute("assertionDeclaration", s.assertionDeclaration.getEAttribute());
+	//AssertedRelationship.isCounter -> EAttribute : isCounter
+	if (s.isCounter.getEAttribute() != null) t.addNewAttribute("isCounter", s.isCounter.getEAttribute());
+	//AssertedRelationship.requies -> EAttribute : requies
+	if (s.requies.getEAttribute() != null) t.addNewAttribute("requies", s.requies.getEAttribute());
+	//AssertedRelationship.citedElement -> EReference : citedElement
+	if (s.citedElement.getEReference() != null) t.addNewReference("citedElement", s.citedElement.getEReference());
+	//AssertedRelationship.abstractForm -> EReference : abstractForm
+	if (s.abstractForm.getEReference() != null) t.addNewReference("abstractForm", s.abstractForm.getEReference());
+	//AssertedRelationship.name -> EReference : name
+	if (s.name.getEReference() != null) t.addNewReference("name", s.name.getEReference());
+	//AssertedRelationship.description -> EReference : description
+	if (s.description.getEReference() != null) t.addNewReference("description", s.description.getEReference());
+	//AssertedRelationship.implementationConstraint -> EReference : implementationConstraint
+	if (s.implementationConstraint.getEReference() != null) t.addNewReference("implementationConstraint", s.implementationConstraint.getEReference());
+	//AssertedRelationship.note -> EReference : note
+	if (s.note.getEReference() != null) t.addNewReference("note", s.note.getEReference());
+	//AssertedRelationship.taggedValue -> EReference : taggedValue
+	if (s.taggedValue.getEReference() != null) t.addNewReference("taggedValue", s.taggedValue.getEReference());
+	//AssertedRelationship.content -> EReference : content
+	if (s.content.getEReference() != null) t.addNewReference("content", s.content.getEReference());
+	//AssertedRelationship.metaClaim -> EReference : metaClaim
+	if (s.metaClaim.getEReference() != null) t.addNewReference("metaClaim", s.metaClaim.getEReference());
+	//AssertedRelationship.source -> EReference : source
+	if (s.source.getEReference() != null) t.addNewReference("source", s.source.getEReference());
+	//AssertedRelationship.target -> EReference : target
+	if (s.target.getEReference() != null) t.addNewReference("target", s.target.getEReference());
+	//AssertedRelationship.reasoning -> EReference : reasoning
+	if (s.reasoning.getEReference() != null) t.addNewReference("reasoning", s.reasoning.getEReference());
+}
+
+@lazy
+rule ArtifactReference
+	transform s : DSL!ArtifactReference //argumentation.ArtifactReference
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//ArtifactReference.gid -> EAttribute : gid
+	if (s.gid.getEAttribute() != null) t.addNewAttribute("gid", s.gid.getEAttribute());
+	//ArtifactReference.isCitation -> EAttribute : isCitation
+	if (s.isCitation.getEAttribute() != null) t.addNewAttribute("isCitation", s.isCitation.getEAttribute());
+	//ArtifactReference.isAbstract -> EAttribute : isAbstract
+	if (s.isAbstract.getEAttribute() != null) t.addNewAttribute("isAbstract", s.isAbstract.getEAttribute());
+	//ArtifactReference.uninstantiated -> EAttribute : uninstantiated
+	if (s.uninstantiated.getEAttribute() != null) t.addNewAttribute("uninstantiated", s.uninstantiated.getEAttribute());
+	//ArtifactReference.citedElement -> EReference : citedElement
+	if (s.citedElement.getEReference() != null) t.addNewReference("citedElement", s.citedElement.getEReference());
+	//ArtifactReference.abstractForm -> EReference : abstractForm
+	if (s.abstractForm.getEReference() != null) t.addNewReference("abstractForm", s.abstractForm.getEReference());
+	//ArtifactReference.name -> EReference : name
+	if (s.name.getEReference() != null) t.addNewReference("name", s.name.getEReference());
+	//ArtifactReference.description -> EReference : description
+	if (s.description.getEReference() != null) t.addNewReference("description", s.description.getEReference());
+	//ArtifactReference.implementationConstraint -> EReference : implementationConstraint
+	if (s.implementationConstraint.getEReference() != null) t.addNewReference("implementationConstraint", s.implementationConstraint.getEReference());
+	//ArtifactReference.note -> EReference : note
+	if (s.note.getEReference() != null) t.addNewReference("note", s.note.getEReference());
+	//ArtifactReference.taggedValue -> EReference : taggedValue
+	if (s.taggedValue.getEReference() != null) t.addNewReference("taggedValue", s.taggedValue.getEReference());
+	//ArtifactReference.content -> EReference : content
+	if (s.content.getEReference() != null) t.addNewReference("content", s.content.getEReference());
+	//ArtifactReference.referencedArtifactElement -> EReference : referencedArtifactElement
+	if (s.referencedArtifactElement.getEReference() != null) t.addNewReference("referencedArtifactElement", s.referencedArtifactElement.getEReference());
+}
+
+@lazy
+rule AssertedArtifactSupport
+	transform s : DSL!AssertedArtifactSupport //argumentation.AssertedArtifactSupport
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//AssertedArtifactSupport.gid -> EAttribute : gid
+	if (s.gid.getEAttribute() != null) t.addNewAttribute("gid", s.gid.getEAttribute());
+	//AssertedArtifactSupport.isCitation -> EAttribute : isCitation
+	if (s.isCitation.getEAttribute() != null) t.addNewAttribute("isCitation", s.isCitation.getEAttribute());
+	//AssertedArtifactSupport.isAbstract -> EAttribute : isAbstract
+	if (s.isAbstract.getEAttribute() != null) t.addNewAttribute("isAbstract", s.isAbstract.getEAttribute());
+	//AssertedArtifactSupport.uninstantiated -> EAttribute : uninstantiated
+	if (s.uninstantiated.getEAttribute() != null) t.addNewAttribute("uninstantiated", s.uninstantiated.getEAttribute());
+	//AssertedArtifactSupport.assertionDeclaration -> EAttribute : assertionDeclaration
+	if (s.assertionDeclaration.getEAttribute() != null) t.addNewAttribute("assertionDeclaration", s.assertionDeclaration.getEAttribute());
+	//AssertedArtifactSupport.isCounter -> EAttribute : isCounter
+	if (s.isCounter.getEAttribute() != null) t.addNewAttribute("isCounter", s.isCounter.getEAttribute());
+	//AssertedArtifactSupport.requies -> EAttribute : requies
+	if (s.requies.getEAttribute() != null) t.addNewAttribute("requies", s.requies.getEAttribute());
+	//AssertedArtifactSupport.citedElement -> EReference : citedElement
+	if (s.citedElement.getEReference() != null) t.addNewReference("citedElement", s.citedElement.getEReference());
+	//AssertedArtifactSupport.abstractForm -> EReference : abstractForm
+	if (s.abstractForm.getEReference() != null) t.addNewReference("abstractForm", s.abstractForm.getEReference());
+	//AssertedArtifactSupport.name -> EReference : name
+	if (s.name.getEReference() != null) t.addNewReference("name", s.name.getEReference());
+	//AssertedArtifactSupport.description -> EReference : description
+	if (s.description.getEReference() != null) t.addNewReference("description", s.description.getEReference());
+	//AssertedArtifactSupport.implementationConstraint -> EReference : implementationConstraint
+	if (s.implementationConstraint.getEReference() != null) t.addNewReference("implementationConstraint", s.implementationConstraint.getEReference());
+	//AssertedArtifactSupport.note -> EReference : note
+	if (s.note.getEReference() != null) t.addNewReference("note", s.note.getEReference());
+	//AssertedArtifactSupport.taggedValue -> EReference : taggedValue
+	if (s.taggedValue.getEReference() != null) t.addNewReference("taggedValue", s.taggedValue.getEReference());
+	//AssertedArtifactSupport.content -> EReference : content
+	if (s.content.getEReference() != null) t.addNewReference("content", s.content.getEReference());
+	//AssertedArtifactSupport.metaClaim -> EReference : metaClaim
+	if (s.metaClaim.getEReference() != null) t.addNewReference("metaClaim", s.metaClaim.getEReference());
+	//AssertedArtifactSupport.source -> EReference : source
+	if (s.source.getEReference() != null) t.addNewReference("source", s.source.getEReference());
+	//AssertedArtifactSupport.target -> EReference : target
+	if (s.target.getEReference() != null) t.addNewReference("target", s.target.getEReference());
+	//AssertedArtifactSupport.reasoning -> EReference : reasoning
+	if (s.reasoning.getEReference() != null) t.addNewReference("reasoning", s.reasoning.getEReference());
+}
+
+@lazy
+rule AssertedInference
+	transform s : DSL!AssertedInference //argumentation.AssertedInference
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//AssertedInference.gid -> EAttribute : gid
+	if (s.gid.getEAttribute() != null) t.addNewAttribute("gid", s.gid.getEAttribute());
+	//AssertedInference.isCitation -> EAttribute : isCitation
+	if (s.isCitation.getEAttribute() != null) t.addNewAttribute("isCitation", s.isCitation.getEAttribute());
+	//AssertedInference.isAbstract -> EAttribute : isAbstract
+	if (s.isAbstract.getEAttribute() != null) t.addNewAttribute("isAbstract", s.isAbstract.getEAttribute());
+	//AssertedInference.uninstantiated -> EAttribute : uninstantiated
+	if (s.uninstantiated.getEAttribute() != null) t.addNewAttribute("uninstantiated", s.uninstantiated.getEAttribute());
+	//AssertedInference.assertionDeclaration -> EAttribute : assertionDeclaration
+	if (s.assertionDeclaration.getEAttribute() != null) t.addNewAttribute("assertionDeclaration", s.assertionDeclaration.getEAttribute());
+	//AssertedInference.isCounter -> EAttribute : isCounter
+	if (s.isCounter.getEAttribute() != null) t.addNewAttribute("isCounter", s.isCounter.getEAttribute());
+	//AssertedInference.requies -> EAttribute : requies
+	if (s.requies.getEAttribute() != null) t.addNewAttribute("requies", s.requies.getEAttribute());
+	//AssertedInference.citedElement -> EReference : citedElement
+	if (s.citedElement.getEReference() != null) t.addNewReference("citedElement", s.citedElement.getEReference());
+	//AssertedInference.abstractForm -> EReference : abstractForm
+	if (s.abstractForm.getEReference() != null) t.addNewReference("abstractForm", s.abstractForm.getEReference());
+	//AssertedInference.name -> EReference : name
+	if (s.name.getEReference() != null) t.addNewReference("name", s.name.getEReference());
+	//AssertedInference.description -> EReference : description
+	if (s.description.getEReference() != null) t.addNewReference("description", s.description.getEReference());
+	//AssertedInference.implementationConstraint -> EReference : implementationConstraint
+	if (s.implementationConstraint.getEReference() != null) t.addNewReference("implementationConstraint", s.implementationConstraint.getEReference());
+	//AssertedInference.note -> EReference : note
+	if (s.note.getEReference() != null) t.addNewReference("note", s.note.getEReference());
+	//AssertedInference.taggedValue -> EReference : taggedValue
+	if (s.taggedValue.getEReference() != null) t.addNewReference("taggedValue", s.taggedValue.getEReference());
+	//AssertedInference.content -> EReference : content
+	if (s.content.getEReference() != null) t.addNewReference("content", s.content.getEReference());
+	//AssertedInference.metaClaim -> EReference : metaClaim
+	if (s.metaClaim.getEReference() != null) t.addNewReference("metaClaim", s.metaClaim.getEReference());
+	//AssertedInference.source -> EReference : source
+	if (s.source.getEReference() != null) t.addNewReference("source", s.source.getEReference());
+	//AssertedInference.target -> EReference : target
+	if (s.target.getEReference() != null) t.addNewReference("target", s.target.getEReference());
+	//AssertedInference.reasoning -> EReference : reasoning
+	if (s.reasoning.getEReference() != null) t.addNewReference("reasoning", s.reasoning.getEReference());
+}
+
+@lazy
+rule AssertedEvidence
+	transform s : DSL!AssertedEvidence //argumentation.AssertedEvidence
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//AssertedEvidence.gid -> EAttribute : gid
+	if (s.gid.getEAttribute() != null) t.addNewAttribute("gid", s.gid.getEAttribute());
+	//AssertedEvidence.isCitation -> EAttribute : isCitation
+	if (s.isCitation.getEAttribute() != null) t.addNewAttribute("isCitation", s.isCitation.getEAttribute());
+	//AssertedEvidence.isAbstract -> EAttribute : isAbstract
+	if (s.isAbstract.getEAttribute() != null) t.addNewAttribute("isAbstract", s.isAbstract.getEAttribute());
+	//AssertedEvidence.uninstantiated -> EAttribute : uninstantiated
+	if (s.uninstantiated.getEAttribute() != null) t.addNewAttribute("uninstantiated", s.uninstantiated.getEAttribute());
+	//AssertedEvidence.assertionDeclaration -> EAttribute : assertionDeclaration
+	if (s.assertionDeclaration.getEAttribute() != null) t.addNewAttribute("assertionDeclaration", s.assertionDeclaration.getEAttribute());
+	//AssertedEvidence.isCounter -> EAttribute : isCounter
+	if (s.isCounter.getEAttribute() != null) t.addNewAttribute("isCounter", s.isCounter.getEAttribute());
+	//AssertedEvidence.requies -> EAttribute : requies
+	if (s.requies.getEAttribute() != null) t.addNewAttribute("requies", s.requies.getEAttribute());
+	//AssertedEvidence.citedElement -> EReference : citedElement
+	if (s.citedElement.getEReference() != null) t.addNewReference("citedElement", s.citedElement.getEReference());
+	//AssertedEvidence.abstractForm -> EReference : abstractForm
+	if (s.abstractForm.getEReference() != null) t.addNewReference("abstractForm", s.abstractForm.getEReference());
+	//AssertedEvidence.name -> EReference : name
+	if (s.name.getEReference() != null) t.addNewReference("name", s.name.getEReference());
+	//AssertedEvidence.description -> EReference : description
+	if (s.description.getEReference() != null) t.addNewReference("description", s.description.getEReference());
+	//AssertedEvidence.implementationConstraint -> EReference : implementationConstraint
+	if (s.implementationConstraint.getEReference() != null) t.addNewReference("implementationConstraint", s.implementationConstraint.getEReference());
+	//AssertedEvidence.note -> EReference : note
+	if (s.note.getEReference() != null) t.addNewReference("note", s.note.getEReference());
+	//AssertedEvidence.taggedValue -> EReference : taggedValue
+	if (s.taggedValue.getEReference() != null) t.addNewReference("taggedValue", s.taggedValue.getEReference());
+	//AssertedEvidence.content -> EReference : content
+	if (s.content.getEReference() != null) t.addNewReference("content", s.content.getEReference());
+	//AssertedEvidence.metaClaim -> EReference : metaClaim
+	if (s.metaClaim.getEReference() != null) t.addNewReference("metaClaim", s.metaClaim.getEReference());
+	//AssertedEvidence.source -> EReference : source
+	if (s.source.getEReference() != null) t.addNewReference("source", s.source.getEReference());
+	//AssertedEvidence.target -> EReference : target
+	if (s.target.getEReference() != null) t.addNewReference("target", s.target.getEReference());
+	//AssertedEvidence.reasoning -> EReference : reasoning
+	if (s.reasoning.getEReference() != null) t.addNewReference("reasoning", s.reasoning.getEReference());
+}
+
+@lazy
+rule AssertedContext
+	transform s : DSL!AssertedContext //argumentation.AssertedContext
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//AssertedContext.gid -> EAttribute : gid
+	if (s.gid.getEAttribute() != null) t.addNewAttribute("gid", s.gid.getEAttribute());
+	//AssertedContext.isCitation -> EAttribute : isCitation
+	if (s.isCitation.getEAttribute() != null) t.addNewAttribute("isCitation", s.isCitation.getEAttribute());
+	//AssertedContext.isAbstract -> EAttribute : isAbstract
+	if (s.isAbstract.getEAttribute() != null) t.addNewAttribute("isAbstract", s.isAbstract.getEAttribute());
+	//AssertedContext.uninstantiated -> EAttribute : uninstantiated
+	if (s.uninstantiated.getEAttribute() != null) t.addNewAttribute("uninstantiated", s.uninstantiated.getEAttribute());
+	//AssertedContext.assertionDeclaration -> EAttribute : assertionDeclaration
+	if (s.assertionDeclaration.getEAttribute() != null) t.addNewAttribute("assertionDeclaration", s.assertionDeclaration.getEAttribute());
+	//AssertedContext.isCounter -> EAttribute : isCounter
+	if (s.isCounter.getEAttribute() != null) t.addNewAttribute("isCounter", s.isCounter.getEAttribute());
+	//AssertedContext.requies -> EAttribute : requies
+	if (s.requies.getEAttribute() != null) t.addNewAttribute("requies", s.requies.getEAttribute());
+	//AssertedContext.citedElement -> EReference : citedElement
+	if (s.citedElement.getEReference() != null) t.addNewReference("citedElement", s.citedElement.getEReference());
+	//AssertedContext.abstractForm -> EReference : abstractForm
+	if (s.abstractForm.getEReference() != null) t.addNewReference("abstractForm", s.abstractForm.getEReference());
+	//AssertedContext.name -> EReference : name
+	if (s.name.getEReference() != null) t.addNewReference("name", s.name.getEReference());
+	//AssertedContext.description -> EReference : description
+	if (s.description.getEReference() != null) t.addNewReference("description", s.description.getEReference());
+	//AssertedContext.implementationConstraint -> EReference : implementationConstraint
+	if (s.implementationConstraint.getEReference() != null) t.addNewReference("implementationConstraint", s.implementationConstraint.getEReference());
+	//AssertedContext.note -> EReference : note
+	if (s.note.getEReference() != null) t.addNewReference("note", s.note.getEReference());
+	//AssertedContext.taggedValue -> EReference : taggedValue
+	if (s.taggedValue.getEReference() != null) t.addNewReference("taggedValue", s.taggedValue.getEReference());
+	//AssertedContext.content -> EReference : content
+	if (s.content.getEReference() != null) t.addNewReference("content", s.content.getEReference());
+	//AssertedContext.metaClaim -> EReference : metaClaim
+	if (s.metaClaim.getEReference() != null) t.addNewReference("metaClaim", s.metaClaim.getEReference());
+	//AssertedContext.source -> EReference : source
+	if (s.source.getEReference() != null) t.addNewReference("source", s.source.getEReference());
+	//AssertedContext.target -> EReference : target
+	if (s.target.getEReference() != null) t.addNewReference("target", s.target.getEReference());
+	//AssertedContext.reasoning -> EReference : reasoning
+	if (s.reasoning.getEReference() != null) t.addNewReference("reasoning", s.reasoning.getEReference());
+}
+
+@lazy
+rule AssertedArtifactContext
+	transform s : DSL!AssertedArtifactContext //argumentation.AssertedArtifactContext
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//AssertedArtifactContext.gid -> EAttribute : gid
+	if (s.gid.getEAttribute() != null) t.addNewAttribute("gid", s.gid.getEAttribute());
+	//AssertedArtifactContext.isCitation -> EAttribute : isCitation
+	if (s.isCitation.getEAttribute() != null) t.addNewAttribute("isCitation", s.isCitation.getEAttribute());
+	//AssertedArtifactContext.isAbstract -> EAttribute : isAbstract
+	if (s.isAbstract.getEAttribute() != null) t.addNewAttribute("isAbstract", s.isAbstract.getEAttribute());
+	//AssertedArtifactContext.uninstantiated -> EAttribute : uninstantiated
+	if (s.uninstantiated.getEAttribute() != null) t.addNewAttribute("uninstantiated", s.uninstantiated.getEAttribute());
+	//AssertedArtifactContext.assertionDeclaration -> EAttribute : assertionDeclaration
+	if (s.assertionDeclaration.getEAttribute() != null) t.addNewAttribute("assertionDeclaration", s.assertionDeclaration.getEAttribute());
+	//AssertedArtifactContext.isCounter -> EAttribute : isCounter
+	if (s.isCounter.getEAttribute() != null) t.addNewAttribute("isCounter", s.isCounter.getEAttribute());
+	//AssertedArtifactContext.requies -> EAttribute : requies
+	if (s.requies.getEAttribute() != null) t.addNewAttribute("requies", s.requies.getEAttribute());
+	//AssertedArtifactContext.citedElement -> EReference : citedElement
+	if (s.citedElement.getEReference() != null) t.addNewReference("citedElement", s.citedElement.getEReference());
+	//AssertedArtifactContext.abstractForm -> EReference : abstractForm
+	if (s.abstractForm.getEReference() != null) t.addNewReference("abstractForm", s.abstractForm.getEReference());
+	//AssertedArtifactContext.name -> EReference : name
+	if (s.name.getEReference() != null) t.addNewReference("name", s.name.getEReference());
+	//AssertedArtifactContext.description -> EReference : description
+	if (s.description.getEReference() != null) t.addNewReference("description", s.description.getEReference());
+	//AssertedArtifactContext.implementationConstraint -> EReference : implementationConstraint
+	if (s.implementationConstraint.getEReference() != null) t.addNewReference("implementationConstraint", s.implementationConstraint.getEReference());
+	//AssertedArtifactContext.note -> EReference : note
+	if (s.note.getEReference() != null) t.addNewReference("note", s.note.getEReference());
+	//AssertedArtifactContext.taggedValue -> EReference : taggedValue
+	if (s.taggedValue.getEReference() != null) t.addNewReference("taggedValue", s.taggedValue.getEReference());
+	//AssertedArtifactContext.content -> EReference : content
+	if (s.content.getEReference() != null) t.addNewReference("content", s.content.getEReference());
+	//AssertedArtifactContext.metaClaim -> EReference : metaClaim
+	if (s.metaClaim.getEReference() != null) t.addNewReference("metaClaim", s.metaClaim.getEReference());
+	//AssertedArtifactContext.source -> EReference : source
+	if (s.source.getEReference() != null) t.addNewReference("source", s.source.getEReference());
+	//AssertedArtifactContext.target -> EReference : target
+	if (s.target.getEReference() != null) t.addNewReference("target", s.target.getEReference());
+	//AssertedArtifactContext.reasoning -> EReference : reasoning
+	if (s.reasoning.getEReference() != null) t.addNewReference("reasoning", s.reasoning.getEReference());
 }
 
 

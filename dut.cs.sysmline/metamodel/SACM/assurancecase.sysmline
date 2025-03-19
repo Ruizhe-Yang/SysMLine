@@ -27,7 +27,7 @@
         <featureNote>:</featureNote>
         <featureSpecialization>TerminologyPackage</featureSpecialization>
       </body>
-      <SubclassificationPart xsi:nil="true"/>
+      <SubclassificationPart>ArtifactElement</SubclassificationPart>
     </body>
     <body xsi:type="ItemDefinition" declaredName="AssuranceCasePackageBinding">
       <body xsi:type="ItemUsage" declaredName="participantPackage" multiplicityRange="[2..*]" isReference="true">

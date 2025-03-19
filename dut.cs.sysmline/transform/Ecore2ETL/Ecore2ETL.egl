@@ -11,7 +11,7 @@ import "DSL2SysMLine-util.eol";
 pre{
 	var eObjectSequence = new Sequence;
 	var KeyWords = baseKeyWords();
-	init_[%=fileName%]();
+	eObjectSequence.init_[%=fileName%]();
 	main_[%=fileName%]();
 }
 
@@ -31,14 +31,14 @@ operation main_[%=fileName%](){
 	rootEcore.addNodeTo(rootPackage);
 }
 
-operation init_[%=fileName%](){
+operation Sequence init_[%=fileName%](){
 	[%for (epackage in ePackages){%]
 	[%for (eClass in epackage.eClassifiers.select(s|s.type().name == "EClass")){%]
 	//[%=epackage.name%].[%=eClass.name%] -> Instantiation
 	var id[%=eClass.name%] = 0;
 	for (e[%=eClass.name%] in DSL!EObject.all.select(s|s.isTypeOf(DSL![%=eClass.name%]))){
-		var e[%=eClass.name%]Tuple = Tuple{"key"=e[%=eClass.name%].type().name.asString()+"_"+(id[%=eClass.name%]++).asString(),"value"= e[%=eClass.name%]};
-		eObjectSequence.add(e[%=eClass.name%]Tuple);
+		var e[%=eClass.name%]Tuple = Tuple{"key"="[%=eClass.name%]_"+(id[%=eClass.name%]++).asString(),"value"= e[%=eClass.name%]};
+		self.add(e[%=eClass.name%]Tuple);
 	}
 	[%}%]
 	[%}%]
