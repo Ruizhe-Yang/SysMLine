@@ -22,9 +22,6 @@ SysMLine: Model-Driven Bidirectional Transformation for SysML v2 and EMF
 ### 未解决的BUG
 
 - SysML2XMIni；
-- 一个Ecore包含多个Package的情况；
-- 尝试转换Capella.ecore发生外部文件夹引用ecore问题；
-- 一次性对一个文件夹进行转换的代码存在问题，SysML2XMI中的函数一次只能执行一个；
 - 一些引用会使用缩写，缩写目前无法被检索，如550、551行；
 - MetadataBodyUsage不对，ReferenceUsage未处理清楚，如240行；
 - ConjugatedPort引用外部模型为空的问题，本质上是SysML v2自己的信息缺失。
