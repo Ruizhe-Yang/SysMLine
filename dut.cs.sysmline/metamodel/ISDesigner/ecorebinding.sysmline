@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="ASCII"?>
+<Namespace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="sysmline" xsi:schemaLocation="sysmline metamodel/sysmline/sysmline.ecore">
+  <body xsi:type="Package" declaredName="ecorebinding">
+    <body xsi:type="NamespaceImport" hasVisibility="true" declaredName="ecore"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="org.eclipse.emf"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="environment"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="metadatadef"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="technicalid"/>
+    <body xsi:type="ItemDefinition" declaredName="BBase" isAbstract="true">
+      <SubclassificationPart>BoundableElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="BModel">
+      <body xsi:type="ItemUsage" declaredName="bPackages" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>BPackage</featureSpecialization>
+      </body>
+      <SubclassificationPart>BBase</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="BPackage">
+      <body xsi:type="ItemUsage" declaredName="ecorePackage" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EPackage</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="bModel" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>BModel</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="bEnums" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>BEnum</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="bDataTypes" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>BDataType</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="bClasses" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>BClass</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="nestedBPackages" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>BPackage</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="bClassifiers" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>BClassifier</featureSpecialization>
+      </body>
+      <SubclassificationPart>BBase</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="BClass">
+      <body xsi:type="ItemUsage" declaredName="ecoreClass" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EClass</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="bFeatures" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>BFeature</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="bOperations" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>BOperation</featureSpecialization>
+      </body>
+      <SubclassificationPart>BClassifier</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="BFeature">
+      <body xsi:type="ItemUsage" declaredName="bClass" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>BClass</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ecoreFeature" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EStructuralFeature</featureSpecialization>
+      </body>
+      <SubclassificationPart>BTypedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="BEnum">
+      <body xsi:type="ItemUsage" declaredName="ecoreEnum" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EEnum</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="bEnumLiterals" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>BEnumLiteral</featureSpecialization>
+      </body>
+      <SubclassificationPart>BDataType</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="BEnumLiteral">
+      <body xsi:type="ItemUsage" declaredName="bEnum" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>BEnum</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ecoreEnumLiteral" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EEnumLiteral</featureSpecialization>
+      </body>
+      <SubclassificationPart>BBase</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="BClassifier">
+      <body xsi:type="ItemUsage" declaredName="bTypeParameters" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>BTypeParameter</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="bPackage" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>BPackage</featureSpecialization>
+      </body>
+      <SubclassificationPart>BBase</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="BDataType">
+      <body xsi:type="ItemUsage" declaredName="ecoreDataType" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EDataType</featureSpecialization>
+      </body>
+      <SubclassificationPart>BClassifier</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="BOperation">
+      <body xsi:type="ItemUsage" declaredName="bClass" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>BClass</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ecoreOperation" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EOperation</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="bParameters" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>BParameter</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="bTypeParameters" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>BTypeParameter</featureSpecialization>
+      </body>
+      <SubclassificationPart>BTypedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="BParameter">
+      <body xsi:type="ItemUsage" declaredName="bOperation" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>BOperation</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ecoreParameter" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EParameter</featureSpecialization>
+      </body>
+      <SubclassificationPart>BTypedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="BTypedElement">
+      <SubclassificationPart>BBase</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="BTypeParameter">
+      <body xsi:type="ItemUsage" declaredName="ecoreTypeParameter" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ETypeParameter</featureSpecialization>
+      </body>
+      <SubclassificationPart>BBase</SubclassificationPart>
+    </body>
+  </body>
+</Namespace>

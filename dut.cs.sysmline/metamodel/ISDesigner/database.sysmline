@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="ASCII"?>
+<Namespace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="sysmline" xsi:schemaLocation="sysmline metamodel/sysmline/sysmline.ecore">
+  <body xsi:type="Package" declaredName="database">
+    <body xsi:type="NamespaceImport" hasVisibility="true" declaredName="ecore"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="typeslibrary"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="environment"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="metadatadef"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="technicalid"/>
+    <body xsi:type="ItemDefinition" declaredName="NamedElement" isAbstract="true">
+      <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <SubclassificationPart>DatabaseElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="DataBase">
+      <body xsi:type="AttributeUsage" declaredName="url" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="schemas" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Schema</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="defines" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>UserDefinedTypesLibrary</featureSpecialization>
+      </body>
+      <SubclassificationPart>TableContainer</SubclassificationPart>
+      <SubclassificationPart>TypesLibraryUser</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="AbstractTable" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="owner" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>TableContainer</featureSpecialization>
+      </body>
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Column">
+      <body xsi:type="AttributeUsage" declaredName="nullable" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="defaultValue" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="indexes" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Index</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="indexElements" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>IndexElement</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="primaryKey" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>PrimaryKey</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="foreignKeys" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ForeignKey</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="foreignKeyElements" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ForeignKeyElement</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="type" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Type</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="sequence" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Sequence</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="owner" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Table</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="autoincrement" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="inPrimaryKey" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="inForeignKey" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="unique" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Index">
+      <body xsi:type="AttributeUsage" declaredName="qualifier" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="elements" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>IndexElement</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="unique" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="cardinality" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EInt</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="indexType" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="owner" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Table</featureSpecialization>
+      </body>
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="View">
+      <body xsi:type="AttributeUsage" declaredName="query" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="columns" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ViewColumn</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="tables" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ViewTable</featureSpecialization>
+      </body>
+      <SubclassificationPart>AbstractTable</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Table">
+      <body xsi:type="ItemUsage" declaredName="primaryKey" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>PrimaryKey</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="foreignKeys" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ForeignKey</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="constraints" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Constraint</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="indexes" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Index</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="columns" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Column</featureSpecialization>
+      </body>
+      <SubclassificationPart>AbstractTable</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="PrimaryKey">
+      <body xsi:type="ItemUsage" declaredName="columns" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Column</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="owner" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Table</featureSpecialization>
+      </body>
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ForeignKey">
+      <body xsi:type="ItemUsage" declaredName="elements" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ForeignKeyElement</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="owner" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Table</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="target" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Table</featureSpecialization>
+      </body>
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ForeignKeyElement">
+      <body xsi:type="ItemUsage" declaredName="fkColumn" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Column</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="pkColumn" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Column</featureSpecialization>
+      </body>
+      <SubclassificationPart>DatabaseElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="IndexElement">
+      <body xsi:type="ItemUsage" declaredName="column" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Column</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="asc" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <SubclassificationPart>DatabaseElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Constraint">
+      <body xsi:type="AttributeUsage" declaredName="expression" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="owner" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Table</featureSpecialization>
+      </body>
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="DatabaseElement" isAbstract="true">
+      <body xsi:type="AttributeUsage" declaredName="ID" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="comments" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="techID" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <SubclassificationPart>ObeoDSMObject</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Schema">
+      <SubclassificationPart>TableContainer</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Sequence">
+      <body xsi:type="AttributeUsage" declaredName="start" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBigInteger</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="increment" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBigInteger</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="minValue" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBigInteger</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="maxValue" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBigInteger</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="cacheSize" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBigInteger</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="cycle" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="columns" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Column</featureSpecialization>
+      </body>
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="TableContainer" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="tables" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>AbstractTable</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="sequences" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Sequence</featureSpecialization>
+      </body>
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ViewElement">
+      <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="'alias'" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ViewColumn">
+      <body xsi:type="ItemUsage" declaredName="'from'" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ViewTable</featureSpecialization>
+      </body>
+      <SubclassificationPart>ViewElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ViewTable">
+      <SubclassificationPart>ViewElement</SubclassificationPart>
+    </body>
+  </body>
+</Namespace>

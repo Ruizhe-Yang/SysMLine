@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="ASCII"?>
+<Namespace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="sysmline" xsi:schemaLocation="sysmline metamodel/sysmline/sysmline.ecore">
+  <body xsi:type="Package" declaredName="overview">
+    <body xsi:type="NamespaceImport" hasVisibility="true" declaredName="ecore"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="environment"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="metadatadef"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="technicalid"/>
+    <body xsi:type="ItemDefinition" declaredName="Root">
+      <body xsi:type="ItemUsage" declaredName="ownedElements" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EObject</featureSpecialization>
+      </body>
+      <SubclassificationPart>ObeoDSMObject</SubclassificationPart>
+    </body>
+  </body>
+</Namespace>

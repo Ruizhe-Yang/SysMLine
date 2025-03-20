@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="ASCII"?>
+<Namespace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="sysmline" xsi:schemaLocation="sysmline metamodel/sysmline/sysmline.ecore">
+  <body xsi:type="Package" declaredName="graal">
+    <body xsi:type="NamespaceImport" hasVisibility="true" declaredName="ecore"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="environment"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="metadatadef"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="technicalid"/>
+    <body xsi:type="ItemDefinition" declaredName="Task">
+      <body xsi:type="ItemUsage" declaredName="uses" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Task</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="preconditions" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="postconditions" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="actors" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Actor</featureSpecialization>
+      </body>
+      <SubclassificationPart>Activity</SubclassificationPart>
+      <SubclassificationPart>AbstractTask</SubclassificationPart>
+      <SubclassificationPart>UserStoryElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="System">
+      <body xsi:type="ItemUsage" declaredName="subSystems" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>System</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="actors" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Actor</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="useCases" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>UseCase</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="userStories" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>UserStory</featureSpecialization>
+      </body>
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+      <SubclassificationPart>DomainModelRegistry</SubclassificationPart>
+      <SubclassificationPart>TasksContainer</SubclassificationPart>
+      <SubclassificationPart>NamespacesContainer</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Activity" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="nodes" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Node</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="transitions" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Transition</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="subActivities" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Loop</featureSpecialization>
+      </body>
+      <SubclassificationPart>GraalObject</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Operator">
+      <body xsi:type="AttributeUsage" declaredName="kind" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>OperatorKind</featureSpecialization>
+      </body>
+      <SubclassificationPart>Node</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Node" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="outgoingTransitions" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Transition</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="incomingTransitions" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Transition</featureSpecialization>
+      </body>
+      <SubclassificationPart>GraalObject</SubclassificationPart>
+      <SubclassificationPart>UserStoryElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Transition">
+      <body xsi:type="AttributeUsage" declaredName="guard" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="source" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Node</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="target" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Node</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="kind" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>TransitionKind</featureSpecialization>
+      </body>
+      <SubclassificationPart>GraalObject</SubclassificationPart>
+      <SubclassificationPart>UserStoryElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="TaskReference">
+      <body xsi:type="ItemUsage" declaredName="task" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Task</featureSpecialization>
+      </body>
+      <SubclassificationPart>Node</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="UserView">
+      <SubclassificationPart>NamedNode</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="UserAction">
+      <SubclassificationPart>NamedNode</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="AppliEvent">
+      <SubclassificationPart>NamedNode</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="AppliAction">
+      <SubclassificationPart>NamedNode</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="InitialNode">
+      <SubclassificationPart>Node</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="FinalNode">
+      <SubclassificationPart>Node</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="AbortNode">
+      <SubclassificationPart>Node</SubclassificationPart>
+    </body>
+    <body xsi:type="EnumerationDefinition" declaredName="TransitionKind">
+      <body xsi:type="EnumerationUsage" declaredName="normal"/>
+      <body xsi:type="EnumerationUsage" declaredName="interrupt"/>
+      <body xsi:type="EnumerationUsage" declaredName="abort"/>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Loop">
+      <body xsi:type="AttributeUsage" declaredName="lowerBound" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EInt</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="upperBound" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EInt</featureSpecialization>
+      </body>
+      <SubclassificationPart>Activity</SubclassificationPart>
+    </body>
+    <body xsi:type="EnumerationDefinition" declaredName="OperatorKind">
+      <body xsi:type="EnumerationUsage" declaredName="'and'"/>
+      <body xsi:type="EnumerationUsage" declaredName="'or'"/>
+      <body xsi:type="EnumerationUsage" declaredName="'xor'"/>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Actor">
+      <body xsi:type="ItemUsage" declaredName="subActors" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Actor</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="superActor" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Actor</featureSpecialization>
+      </body>
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="AbstractTask" isAbstract="true">
+      <body xsi:type="AttributeUsage" declaredName="id" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="TasksGroup">
+      <SubclassificationPart>AbstractTask</SubclassificationPart>
+      <SubclassificationPart>TasksContainer</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="UseCase">
+      <body xsi:type="ItemUsage" declaredName="actors" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Actor</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="tasks" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>AbstractTask</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="includes" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>UseCase</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="extends" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>UseCase</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="domainClasses" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>DomainClass</featureSpecialization>
+      </body>
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+      <SubclassificationPart>DomainModelRegistry</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="NamedElement" isAbstract="true">
+      <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <SubclassificationPart>GraalObject</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="NamedNode" isAbstract="true">
+      <SubclassificationPart>Node</SubclassificationPart>
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="DomainModelRegistry" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="namespaces" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Namespace</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="types" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>StructuredType</featureSpecialization>
+      </body>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="TasksContainer" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="tasks" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>AbstractTask</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedTasks" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Task</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedGroups" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>TasksGroup</featureSpecialization>
+      </body>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="UserStory">
+      <body xsi:type="ItemUsage" declaredName="elements" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>UserStoryElement</featureSpecialization>
+      </body>
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="UserStoryElement" isAbstract="true"/>
+    <body xsi:type="ItemDefinition" declaredName="GraalObject" isAbstract="true">
+      <SubclassificationPart>ObeoDSMObject</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="DomainClass">
+      <body xsi:type="AttributeUsage" declaredName="estimatedVolumetry" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EInt</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="historized" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <SubclassificationPart>StructuredType</SubclassificationPart>
+    </body>
+  </body>
+</Namespace>

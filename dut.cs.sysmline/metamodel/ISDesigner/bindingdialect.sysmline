@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="ASCII"?>
+<Namespace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="sysmline" xsi:schemaLocation="sysmline metamodel/sysmline/sysmline.ecore">
+  <body xsi:type="Package" declaredName="bindingdialect">
+    <body xsi:type="NamespaceImport" hasVisibility="true" declaredName="ecore"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="description"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="viewpoint"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="org.eclipse.emf"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="style"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="tool"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="validation"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="audit"/>
+    <body xsi:type="ItemDefinition" declaredName="DBindingEditor">
+      <body xsi:type="ItemUsage" declaredName="description" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>DBindingEditorDescription</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="boundElements" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>DBoundElement</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="bindingEdges" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>DBindingEdge</featureSpecialization>
+      </body>
+      <SubclassificationPart>DRepresentation</SubclassificationPart>
+      <SubclassificationPart>DSemanticDecorator</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="DBindingEdge">
+      <body xsi:type="ItemUsage" declaredName="left" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>DBoundElement</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="right" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>DBoundElement</featureSpecialization>
+      </body>
+      <SubclassificationPart>DRepresentationElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="DBoundElement">
+      <body xsi:type="ItemUsage" declaredName="parent" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>DBoundElement</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="children" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>DBoundElement</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="edgesAsLeft" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>DBindingEdge</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="edgesAsRight" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>DBindingEdge</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="edges" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>DBindingEdge</featureSpecialization>
+      </body>
+      <SubclassificationPart>DRepresentationElement</SubclassificationPart>
+    </body>
+    <body xsi:type="Package" declaredName="description">
+      <body xsi:type="ItemDefinition" declaredName="DBindingEditorDescription">
+        <SubclassificationPart>RepresentationDescription</SubclassificationPart>
+      </body>
+      <body xsi:type="ItemDefinition" declaredName="DBindingEditorCreationDescription">
+        <body xsi:type="ItemUsage" declaredName="description" multiplicityRange="[1]" isReference="true">
+          <featureNote>:</featureNote>
+          <featureSpecialization>DBindingEditorDescription</featureSpecialization>
+        </body>
+        <SubclassificationPart>RepresentationCreationDescription</SubclassificationPart>
+      </body>
+    </body>
+  </body>
+</Namespace>

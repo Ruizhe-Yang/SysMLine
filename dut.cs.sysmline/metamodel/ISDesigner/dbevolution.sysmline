@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="ASCII"?>
+<Namespace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="sysmline" xsi:schemaLocation="sysmline metamodel/sysmline/sysmline.ecore">
+  <body xsi:type="Package" declaredName="dbevolution">
+    <body xsi:type="NamespaceImport" hasVisibility="true" declaredName="ecore"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="database"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="org.eclipse.emf"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="typeslibrary"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="compare"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="environment"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="technicalid"/>
+    <body xsi:type="ItemDefinition" declaredName="DatabaseChangeSet">
+      <SubclassificationPart xsi:nil="true"/>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="TableChange" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="table" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Table</featureSpecialization>
+      </body>
+      <SubclassificationPart>DBDiff</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="AddTable">
+      <SubclassificationPart>TableChange</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="RemoveTable">
+      <SubclassificationPart>TableChange</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="AlterTable">
+      <SubclassificationPart>TableChange</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="RenameTableChange">
+      <body xsi:type="ItemUsage" declaredName="newTable" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Table</featureSpecialization>
+      </body>
+      <SubclassificationPart>TableChange</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="UpdateTableCommentChange">
+      <body xsi:type="ItemUsage" declaredName="newTable" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Table</featureSpecialization>
+      </body>
+      <SubclassificationPart>TableChange</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ColumnChange" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="column" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Column</featureSpecialization>
+      </body>
+      <SubclassificationPart>DBDiff</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="AddColumnChange">
+      <SubclassificationPart>ColumnChange</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="RemoveColumnChange">
+      <SubclassificationPart>ColumnChange</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="RenameColumnChange">
+      <body xsi:type="ItemUsage" declaredName="newColumn" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Column</featureSpecialization>
+      </body>
+      <SubclassificationPart>ColumnChange</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="UpdateColumnChange">
+      <SubclassificationPart>ColumnChange</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="UpdateColumnCommentChange">
+      <SubclassificationPart>ColumnChange</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="PrimaryKeyChange" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="primaryKey" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>PrimaryKey</featureSpecialization>
+      </body>
+      <SubclassificationPart>DBDiff</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="AddPrimaryKey">
+      <SubclassificationPart>PrimaryKeyChange</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="RemovePrimaryKey">
+      <SubclassificationPart>PrimaryKeyChange</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="UpdatePrimaryKey">
+      <body xsi:type="ItemUsage" declaredName="newPrimaryKey" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>PrimaryKey</featureSpecialization>
+      </body>
+      <SubclassificationPart>PrimaryKeyChange</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="IndexChange" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="index" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Index</featureSpecialization>
+      </body>
+      <SubclassificationPart>DBDiff</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="AddIndex">
+      <SubclassificationPart>IndexChange</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="RemoveIndex">
+      <SubclassificationPart>IndexChange</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="UpdateIndex">
+      <body xsi:type="ItemUsage" declaredName="newIndex" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Index</featureSpecialization>
+      </body>
+      <SubclassificationPart>IndexChange</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ForeignKeyChange" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="foreignKey" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ForeignKey</featureSpecialization>
+      </body>
+      <SubclassificationPart>DBDiff</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="AddForeignKey">
+      <SubclassificationPart>ForeignKeyChange</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="RemoveForeignKey">
+      <SubclassificationPart>ForeignKeyChange</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="UpdateForeignKey">
+      <body xsi:type="ItemUsage" declaredName="newForeignKey" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ForeignKey</featureSpecialization>
+      </body>
+      <SubclassificationPart>ForeignKeyChange</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ConstraintChange" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="'constraint'" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Constraint</featureSpecialization>
+      </body>
+      <SubclassificationPart>DBDiff</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="AddConstraint">
+      <SubclassificationPart>ConstraintChange</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="RemoveConstraint">
+      <SubclassificationPart>ConstraintChange</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="UpdateConstraint">
+      <body xsi:type="ItemUsage" declaredName="newConstraint" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Constraint</featureSpecialization>
+      </body>
+      <SubclassificationPart>ConstraintChange</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="SequenceChange" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="sequence" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Sequence</featureSpecialization>
+      </body>
+      <SubclassificationPart>DBDiff</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="AddSequence">
+      <SubclassificationPart>SequenceChange</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="RemoveSequence">
+      <SubclassificationPart>SequenceChange</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="UpdateSequence">
+      <body xsi:type="ItemUsage" declaredName="newSequence" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Sequence</featureSpecialization>
+      </body>
+      <SubclassificationPart>SequenceChange</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="SchemaChange">
+      <body xsi:type="ItemUsage" declaredName="schema" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Schema</featureSpecialization>
+      </body>
+      <SubclassificationPart>DBDiff</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="AddSchema">
+      <SubclassificationPart>SchemaChange</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="RemoveSchema">
+      <SubclassificationPart>SchemaChange</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="AlterSchema">
+      <SubclassificationPart>SchemaChange</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="RenameSchemaChange">
+      <body xsi:type="ItemUsage" declaredName="newSchema" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Schema</featureSpecialization>
+      </body>
+      <SubclassificationPart>SchemaChange</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="UpdateSchemaCommentChange">
+      <body xsi:type="ItemUsage" declaredName="newSchema" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Schema</featureSpecialization>
+      </body>
+      <SubclassificationPart>SchemaChange</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="DBDiff" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="target" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EObject</featureSpecialization>
+      </body>
+      <SubclassificationPart xsi:nil="true"/>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ViewChange" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="'view'" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>View</featureSpecialization>
+      </body>
+      <SubclassificationPart>DBDiff</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="AddView">
+      <SubclassificationPart>ViewChange</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="RemoveView">
+      <SubclassificationPart>ViewChange</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="AlterView">
+      <SubclassificationPart>ViewChange</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="RenameViewChange">
+      <body xsi:type="ItemUsage" declaredName="newView" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>View</featureSpecialization>
+      </body>
+      <SubclassificationPart>ViewChange</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="UpdateViewCommentChange">
+      <body xsi:type="ItemUsage" declaredName="newView" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>View</featureSpecialization>
+      </body>
+      <SubclassificationPart>ViewChange</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="UpdateViewQueryChange">
+      <body xsi:type="ItemUsage" declaredName="newView" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>View</featureSpecialization>
+      </body>
+      <SubclassificationPart>ViewChange</SubclassificationPart>
+    </body>
+  </body>
+</Namespace>

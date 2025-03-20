@@ -1,0 +1,2122 @@
+import "DSL2SysMLine-util.eol";
+
+pre{
+	var eObjectSequence = new Sequence;
+	var KeyWords = baseKeyWords();
+	var i = 0;
+	eObjectSequence.init_graal();
+	main_graal();
+}
+
+post{
+	("[ETL] graal2SysMLine >> " + SysMLine!Package.all.first().declaredName + ".sysmline").println();
+}
+
+operation main_graal(){
+	var rootEcore = DSL!EObject.all.first();
+	var rootSysMLine = new SysMLine!Namespace;
+	var rootPackage = new SysMLine!Package;
+	rootPackage.declaredName = "graal_model";
+	rootSysMLine.body.add(rootPackage);
+	rootPackage.addNamespaceImport("graal");
+	rootPackage.addNamespaceImport("environment");
+	rootPackage.addNamespaceImport("metadatadef");
+	rootPackage.addNamespaceImport("technicalid");
+	rootEcore.addNodeTo(rootPackage);
+}
+
+operation Sequence init_graal(){
+	//graal.Task -> Instantiation
+	var idTask = 0;
+	for (eTask in DSL!EObject.all.select(s|s.isTypeOf(DSL!Task))){
+		var eTaskTuple = Tuple{"key"="Task_"+(idTask++).asString(),"value"= eTask};
+		self.add(eTaskTuple);
+	}
+	//graal.System -> Instantiation
+	var idSystem = 0;
+	for (eSystem in DSL!EObject.all.select(s|s.isTypeOf(DSL!System))){
+		var eSystemTuple = Tuple{"key"="System_"+(idSystem++).asString(),"value"= eSystem};
+		self.add(eSystemTuple);
+	}
+	//graal.Activity -> Instantiation
+	var idActivity = 0;
+	for (eActivity in DSL!EObject.all.select(s|s.isTypeOf(DSL!Activity))){
+		var eActivityTuple = Tuple{"key"="Activity_"+(idActivity++).asString(),"value"= eActivity};
+		self.add(eActivityTuple);
+	}
+	//graal.Operator -> Instantiation
+	var idOperator = 0;
+	for (eOperator in DSL!EObject.all.select(s|s.isTypeOf(DSL!Operator))){
+		var eOperatorTuple = Tuple{"key"="Operator_"+(idOperator++).asString(),"value"= eOperator};
+		self.add(eOperatorTuple);
+	}
+	//graal.Node -> Instantiation
+	var idNode = 0;
+	for (eNode in DSL!EObject.all.select(s|s.isTypeOf(DSL!Node))){
+		var eNodeTuple = Tuple{"key"="Node_"+(idNode++).asString(),"value"= eNode};
+		self.add(eNodeTuple);
+	}
+	//graal.Transition -> Instantiation
+	var idTransition = 0;
+	for (eTransition in DSL!EObject.all.select(s|s.isTypeOf(DSL!Transition))){
+		var eTransitionTuple = Tuple{"key"="Transition_"+(idTransition++).asString(),"value"= eTransition};
+		self.add(eTransitionTuple);
+	}
+	//graal.TaskReference -> Instantiation
+	var idTaskReference = 0;
+	for (eTaskReference in DSL!EObject.all.select(s|s.isTypeOf(DSL!TaskReference))){
+		var eTaskReferenceTuple = Tuple{"key"="TaskReference_"+(idTaskReference++).asString(),"value"= eTaskReference};
+		self.add(eTaskReferenceTuple);
+	}
+	//graal.UserView -> Instantiation
+	var idUserView = 0;
+	for (eUserView in DSL!EObject.all.select(s|s.isTypeOf(DSL!UserView))){
+		var eUserViewTuple = Tuple{"key"="UserView_"+(idUserView++).asString(),"value"= eUserView};
+		self.add(eUserViewTuple);
+	}
+	//graal.UserAction -> Instantiation
+	var idUserAction = 0;
+	for (eUserAction in DSL!EObject.all.select(s|s.isTypeOf(DSL!UserAction))){
+		var eUserActionTuple = Tuple{"key"="UserAction_"+(idUserAction++).asString(),"value"= eUserAction};
+		self.add(eUserActionTuple);
+	}
+	//graal.AppliEvent -> Instantiation
+	var idAppliEvent = 0;
+	for (eAppliEvent in DSL!EObject.all.select(s|s.isTypeOf(DSL!AppliEvent))){
+		var eAppliEventTuple = Tuple{"key"="AppliEvent_"+(idAppliEvent++).asString(),"value"= eAppliEvent};
+		self.add(eAppliEventTuple);
+	}
+	//graal.AppliAction -> Instantiation
+	var idAppliAction = 0;
+	for (eAppliAction in DSL!EObject.all.select(s|s.isTypeOf(DSL!AppliAction))){
+		var eAppliActionTuple = Tuple{"key"="AppliAction_"+(idAppliAction++).asString(),"value"= eAppliAction};
+		self.add(eAppliActionTuple);
+	}
+	//graal.InitialNode -> Instantiation
+	var idInitialNode = 0;
+	for (eInitialNode in DSL!EObject.all.select(s|s.isTypeOf(DSL!InitialNode))){
+		var eInitialNodeTuple = Tuple{"key"="InitialNode_"+(idInitialNode++).asString(),"value"= eInitialNode};
+		self.add(eInitialNodeTuple);
+	}
+	//graal.FinalNode -> Instantiation
+	var idFinalNode = 0;
+	for (eFinalNode in DSL!EObject.all.select(s|s.isTypeOf(DSL!FinalNode))){
+		var eFinalNodeTuple = Tuple{"key"="FinalNode_"+(idFinalNode++).asString(),"value"= eFinalNode};
+		self.add(eFinalNodeTuple);
+	}
+	//graal.AbortNode -> Instantiation
+	var idAbortNode = 0;
+	for (eAbortNode in DSL!EObject.all.select(s|s.isTypeOf(DSL!AbortNode))){
+		var eAbortNodeTuple = Tuple{"key"="AbortNode_"+(idAbortNode++).asString(),"value"= eAbortNode};
+		self.add(eAbortNodeTuple);
+	}
+	//graal.Loop -> Instantiation
+	var idLoop = 0;
+	for (eLoop in DSL!EObject.all.select(s|s.isTypeOf(DSL!Loop))){
+		var eLoopTuple = Tuple{"key"="Loop_"+(idLoop++).asString(),"value"= eLoop};
+		self.add(eLoopTuple);
+	}
+	//graal.Actor -> Instantiation
+	var idActor = 0;
+	for (eActor in DSL!EObject.all.select(s|s.isTypeOf(DSL!Actor))){
+		var eActorTuple = Tuple{"key"="Actor_"+(idActor++).asString(),"value"= eActor};
+		self.add(eActorTuple);
+	}
+	//graal.AbstractTask -> Instantiation
+	var idAbstractTask = 0;
+	for (eAbstractTask in DSL!EObject.all.select(s|s.isTypeOf(DSL!AbstractTask))){
+		var eAbstractTaskTuple = Tuple{"key"="AbstractTask_"+(idAbstractTask++).asString(),"value"= eAbstractTask};
+		self.add(eAbstractTaskTuple);
+	}
+	//graal.TasksGroup -> Instantiation
+	var idTasksGroup = 0;
+	for (eTasksGroup in DSL!EObject.all.select(s|s.isTypeOf(DSL!TasksGroup))){
+		var eTasksGroupTuple = Tuple{"key"="TasksGroup_"+(idTasksGroup++).asString(),"value"= eTasksGroup};
+		self.add(eTasksGroupTuple);
+	}
+	//graal.UseCase -> Instantiation
+	var idUseCase = 0;
+	for (eUseCase in DSL!EObject.all.select(s|s.isTypeOf(DSL!UseCase))){
+		var eUseCaseTuple = Tuple{"key"="UseCase_"+(idUseCase++).asString(),"value"= eUseCase};
+		self.add(eUseCaseTuple);
+	}
+	//graal.NamedElement -> Instantiation
+	var idNamedElement = 0;
+	for (eNamedElement in DSL!EObject.all.select(s|s.isTypeOf(DSL!NamedElement))){
+		var eNamedElementTuple = Tuple{"key"="NamedElement_"+(idNamedElement++).asString(),"value"= eNamedElement};
+		self.add(eNamedElementTuple);
+	}
+	//graal.NamedNode -> Instantiation
+	var idNamedNode = 0;
+	for (eNamedNode in DSL!EObject.all.select(s|s.isTypeOf(DSL!NamedNode))){
+		var eNamedNodeTuple = Tuple{"key"="NamedNode_"+(idNamedNode++).asString(),"value"= eNamedNode};
+		self.add(eNamedNodeTuple);
+	}
+	//graal.DomainModelRegistry -> Instantiation
+	var idDomainModelRegistry = 0;
+	for (eDomainModelRegistry in DSL!EObject.all.select(s|s.isTypeOf(DSL!DomainModelRegistry))){
+		var eDomainModelRegistryTuple = Tuple{"key"="DomainModelRegistry_"+(idDomainModelRegistry++).asString(),"value"= eDomainModelRegistry};
+		self.add(eDomainModelRegistryTuple);
+	}
+	//graal.TasksContainer -> Instantiation
+	var idTasksContainer = 0;
+	for (eTasksContainer in DSL!EObject.all.select(s|s.isTypeOf(DSL!TasksContainer))){
+		var eTasksContainerTuple = Tuple{"key"="TasksContainer_"+(idTasksContainer++).asString(),"value"= eTasksContainer};
+		self.add(eTasksContainerTuple);
+	}
+	//graal.UserStory -> Instantiation
+	var idUserStory = 0;
+	for (eUserStory in DSL!EObject.all.select(s|s.isTypeOf(DSL!UserStory))){
+		var eUserStoryTuple = Tuple{"key"="UserStory_"+(idUserStory++).asString(),"value"= eUserStory};
+		self.add(eUserStoryTuple);
+	}
+	//graal.UserStoryElement -> Instantiation
+	var idUserStoryElement = 0;
+	for (eUserStoryElement in DSL!EObject.all.select(s|s.isTypeOf(DSL!UserStoryElement))){
+		var eUserStoryElementTuple = Tuple{"key"="UserStoryElement_"+(idUserStoryElement++).asString(),"value"= eUserStoryElement};
+		self.add(eUserStoryElementTuple);
+	}
+	//graal.GraalObject -> Instantiation
+	var idGraalObject = 0;
+	for (eGraalObject in DSL!EObject.all.select(s|s.isTypeOf(DSL!GraalObject))){
+		var eGraalObjectTuple = Tuple{"key"="GraalObject_"+(idGraalObject++).asString(),"value"= eGraalObject};
+		self.add(eGraalObjectTuple);
+	}
+	//graal.DomainClass -> Instantiation
+	var idDomainClass = 0;
+	for (eDomainClass in DSL!EObject.all.select(s|s.isTypeOf(DSL!DomainClass))){
+		var eDomainClassTuple = Tuple{"key"="DomainClass_"+(idDomainClass++).asString(),"value"= eDomainClass};
+		self.add(eDomainClassTuple);
+	}
+	//environment.Environment -> Instantiation
+	var idEnvironment = 0;
+	for (eEnvironment in DSL!EObject.all.select(s|s.isTypeOf(DSL!Environment))){
+		var eEnvironmentTuple = Tuple{"key"="Environment_"+(idEnvironment++).asString(),"value"= eEnvironment};
+		self.add(eEnvironmentTuple);
+	}
+	//environment.Type -> Instantiation
+	var idType = 0;
+	for (eType in DSL!EObject.all.select(s|s.isTypeOf(DSL!Type))){
+		var eTypeTuple = Tuple{"key"="Type_"+(idType++).asString(),"value"= eType};
+		self.add(eTypeTuple);
+	}
+	//environment.PrimitiveType -> Instantiation
+	var idPrimitiveType = 0;
+	for (ePrimitiveType in DSL!EObject.all.select(s|s.isTypeOf(DSL!PrimitiveType))){
+		var ePrimitiveTypeTuple = Tuple{"key"="PrimitiveType_"+(idPrimitiveType++).asString(),"value"= ePrimitiveType};
+		self.add(ePrimitiveTypeTuple);
+	}
+	//environment.Enumeration -> Instantiation
+	var idEnumeration = 0;
+	for (eEnumeration in DSL!EObject.all.select(s|s.isTypeOf(DSL!Enumeration))){
+		var eEnumerationTuple = Tuple{"key"="Enumeration_"+(idEnumeration++).asString(),"value"= eEnumeration};
+		self.add(eEnumerationTuple);
+	}
+	//environment.Literal -> Instantiation
+	var idLiteral = 0;
+	for (eLiteral in DSL!EObject.all.select(s|s.isTypeOf(DSL!Literal))){
+		var eLiteralTuple = Tuple{"key"="Literal_"+(idLiteral++).asString(),"value"= eLiteral};
+		self.add(eLiteralTuple);
+	}
+	//environment.Action -> Instantiation
+	var idAction = 0;
+	for (eAction in DSL!EObject.all.select(s|s.isTypeOf(DSL!Action))){
+		var eActionTuple = Tuple{"key"="Action_"+(idAction++).asString(),"value"= eAction};
+		self.add(eActionTuple);
+	}
+	//environment.InterDSMLink -> Instantiation
+	var idInterDSMLink = 0;
+	for (eInterDSMLink in DSL!EObject.all.select(s|s.isTypeOf(DSL!InterDSMLink))){
+		var eInterDSMLinkTuple = Tuple{"key"="InterDSMLink_"+(idInterDSMLink++).asString(),"value"= eInterDSMLink};
+		self.add(eInterDSMLinkTuple);
+	}
+	//environment.ObeoDSMObject -> Instantiation
+	var idObeoDSMObject = 0;
+	for (eObeoDSMObject in DSL!EObject.all.select(s|s.isTypeOf(DSL!ObeoDSMObject))){
+		var eObeoDSMObjectTuple = Tuple{"key"="ObeoDSMObject_"+(idObeoDSMObject++).asString(),"value"= eObeoDSMObject};
+		self.add(eObeoDSMObjectTuple);
+	}
+	//environment.MetaDataContainer -> Instantiation
+	var idMetaDataContainer = 0;
+	for (eMetaDataContainer in DSL!EObject.all.select(s|s.isTypeOf(DSL!MetaDataContainer))){
+		var eMetaDataContainerTuple = Tuple{"key"="MetaDataContainer_"+(idMetaDataContainer++).asString(),"value"= eMetaDataContainer};
+		self.add(eMetaDataContainerTuple);
+	}
+	//environment.Annotation -> Instantiation
+	var idAnnotation = 0;
+	for (eAnnotation in DSL!EObject.all.select(s|s.isTypeOf(DSL!Annotation))){
+		var eAnnotationTuple = Tuple{"key"="Annotation_"+(idAnnotation++).asString(),"value"= eAnnotation};
+		self.add(eAnnotationTuple);
+	}
+	//environment.PriorityDefinition -> Instantiation
+	var idPriorityDefinition = 0;
+	for (ePriorityDefinition in DSL!EObject.all.select(s|s.isTypeOf(DSL!PriorityDefinition))){
+		var ePriorityDefinitionTuple = Tuple{"key"="PriorityDefinition_"+(idPriorityDefinition++).asString(),"value"= ePriorityDefinition};
+		self.add(ePriorityDefinitionTuple);
+	}
+	//environment.Priority -> Instantiation
+	var idPriority = 0;
+	for (ePriority in DSL!EObject.all.select(s|s.isTypeOf(DSL!Priority))){
+		var ePriorityTuple = Tuple{"key"="Priority_"+(idPriority++).asString(),"value"= ePriority};
+		self.add(ePriorityTuple);
+	}
+	//environment.MetaData -> Instantiation
+	var idMetaData = 0;
+	for (eMetaData in DSL!EObject.all.select(s|s.isTypeOf(DSL!MetaData))){
+		var eMetaDataTuple = Tuple{"key"="MetaData_"+(idMetaData++).asString(),"value"= eMetaData};
+		self.add(eMetaDataTuple);
+	}
+	//environment.TypesDefinition -> Instantiation
+	var idTypesDefinition = 0;
+	for (eTypesDefinition in DSL!EObject.all.select(s|s.isTypeOf(DSL!TypesDefinition))){
+		var eTypesDefinitionTuple = Tuple{"key"="TypesDefinition_"+(idTypesDefinition++).asString(),"value"= eTypesDefinition};
+		self.add(eTypesDefinitionTuple);
+	}
+	//environment.Behaviour -> Instantiation
+	var idBehaviour = 0;
+	for (eBehaviour in DSL!EObject.all.select(s|s.isTypeOf(DSL!Behaviour))){
+		var eBehaviourTuple = Tuple{"key"="Behaviour_"+(idBehaviour++).asString(),"value"= eBehaviour};
+		self.add(eBehaviourTuple);
+	}
+	//environment.StructuredType -> Instantiation
+	var idStructuredType = 0;
+	for (eStructuredType in DSL!EObject.all.select(s|s.isTypeOf(DSL!StructuredType))){
+		var eStructuredTypeTuple = Tuple{"key"="StructuredType_"+(idStructuredType++).asString(),"value"= eStructuredType};
+		self.add(eStructuredTypeTuple);
+	}
+	//environment.DTO -> Instantiation
+	var idDTO = 0;
+	for (eDTO in DSL!EObject.all.select(s|s.isTypeOf(DSL!DTO))){
+		var eDTOTuple = Tuple{"key"="DTO_"+(idDTO++).asString(),"value"= eDTO};
+		self.add(eDTOTuple);
+	}
+	//environment.FilterContainer -> Instantiation
+	var idFilterContainer = 0;
+	for (eFilterContainer in DSL!EObject.all.select(s|s.isTypeOf(DSL!FilterContainer))){
+		var eFilterContainerTuple = Tuple{"key"="FilterContainer_"+(idFilterContainer++).asString(),"value"= eFilterContainer};
+		self.add(eFilterContainerTuple);
+	}
+	//environment.Filter -> Instantiation
+	var idFilter = 0;
+	for (eFilter in DSL!EObject.all.select(s|s.isTypeOf(DSL!Filter))){
+		var eFilterTuple = Tuple{"key"="Filter_"+(idFilter++).asString(),"value"= eFilter};
+		self.add(eFilterTuple);
+	}
+	//environment.Namespace -> Instantiation
+	var idNamespace = 0;
+	for (eNamespace in DSL!EObject.all.select(s|s.isTypeOf(DSL!Namespace))){
+		var eNamespaceTuple = Tuple{"key"="Namespace_"+(idNamespace++).asString(),"value"= eNamespace};
+		self.add(eNamespaceTuple);
+	}
+	//environment.Attribute -> Instantiation
+	var idAttribute = 0;
+	for (eAttribute in DSL!EObject.all.select(s|s.isTypeOf(DSL!Attribute))){
+		var eAttributeTuple = Tuple{"key"="Attribute_"+(idAttribute++).asString(),"value"= eAttribute};
+		self.add(eAttributeTuple);
+	}
+	//environment.Reference -> Instantiation
+	var idReference = 0;
+	for (eReference in DSL!EObject.all.select(s|s.isTypeOf(DSL!Reference))){
+		var eReferenceTuple = Tuple{"key"="Reference_"+(idReference++).asString(),"value"= eReference};
+		self.add(eReferenceTuple);
+	}
+	//environment.Property -> Instantiation
+	var idProperty = 0;
+	for (eProperty in DSL!EObject.all.select(s|s.isTypeOf(DSL!Property))){
+		var ePropertyTuple = Tuple{"key"="Property_"+(idProperty++).asString(),"value"= eProperty};
+		self.add(ePropertyTuple);
+	}
+	//environment.BindingInfo -> Instantiation
+	var idBindingInfo = 0;
+	for (eBindingInfo in DSL!EObject.all.select(s|s.isTypeOf(DSL!BindingInfo))){
+		var eBindingInfoTuple = Tuple{"key"="BindingInfo_"+(idBindingInfo++).asString(),"value"= eBindingInfo};
+		self.add(eBindingInfoTuple);
+	}
+	//environment.BindingReference -> Instantiation
+	var idBindingReference = 0;
+	for (eBindingReference in DSL!EObject.all.select(s|s.isTypeOf(DSL!BindingReference))){
+		var eBindingReferenceTuple = Tuple{"key"="BindingReference_"+(idBindingReference++).asString(),"value"= eBindingReference};
+		self.add(eBindingReferenceTuple);
+	}
+	//environment.BindingElement -> Instantiation
+	var idBindingElement = 0;
+	for (eBindingElement in DSL!EObject.all.select(s|s.isTypeOf(DSL!BindingElement))){
+		var eBindingElementTuple = Tuple{"key"="BindingElement_"+(idBindingElement++).asString(),"value"= eBindingElement};
+		self.add(eBindingElementTuple);
+	}
+	//environment.BindingRegistry -> Instantiation
+	var idBindingRegistry = 0;
+	for (eBindingRegistry in DSL!EObject.all.select(s|s.isTypeOf(DSL!BindingRegistry))){
+		var eBindingRegistryTuple = Tuple{"key"="BindingRegistry_"+(idBindingRegistry++).asString(),"value"= eBindingRegistry};
+		self.add(eBindingRegistryTuple);
+	}
+	//environment.BoundableElement -> Instantiation
+	var idBoundableElement = 0;
+	for (eBoundableElement in DSL!EObject.all.select(s|s.isTypeOf(DSL!BoundableElement))){
+		var eBoundableElementTuple = Tuple{"key"="BoundableElement_"+(idBoundableElement++).asString(),"value"= eBoundableElement};
+		self.add(eBoundableElementTuple);
+	}
+	//environment.DataType -> Instantiation
+	var idDataType = 0;
+	for (eDataType in DSL!EObject.all.select(s|s.isTypeOf(DSL!DataType))){
+		var eDataTypeTuple = Tuple{"key"="DataType_"+(idDataType++).asString(),"value"= eDataType};
+		self.add(eDataTypeTuple);
+	}
+	//environment.NamespacesContainer -> Instantiation
+	var idNamespacesContainer = 0;
+	for (eNamespacesContainer in DSL!EObject.all.select(s|s.isTypeOf(DSL!NamespacesContainer))){
+		var eNamespacesContainerTuple = Tuple{"key"="NamespacesContainer_"+(idNamespacesContainer++).asString(),"value"= eNamespacesContainer};
+		self.add(eNamespacesContainerTuple);
+	}
+	//environment.ConstrainableElement -> Instantiation
+	var idConstrainableElement = 0;
+	for (eConstrainableElement in DSL!EObject.all.select(s|s.isTypeOf(DSL!ConstrainableElement))){
+		var eConstrainableElementTuple = Tuple{"key"="ConstrainableElement_"+(idConstrainableElement++).asString(),"value"= eConstrainableElement};
+		self.add(eConstrainableElementTuple);
+	}
+	//metadatadef.MetaDataDefinitions -> Instantiation
+	var idMetaDataDefinitions = 0;
+	for (eMetaDataDefinitions in DSL!EObject.all.select(s|s.isTypeOf(DSL!MetaDataDefinitions))){
+		var eMetaDataDefinitionsTuple = Tuple{"key"="MetaDataDefinitions_"+(idMetaDataDefinitions++).asString(),"value"= eMetaDataDefinitions};
+		self.add(eMetaDataDefinitionsTuple);
+	}
+	//metadatadef.MetaDataDefinition -> Instantiation
+	var idMetaDataDefinition = 0;
+	for (eMetaDataDefinition in DSL!EObject.all.select(s|s.isTypeOf(DSL!MetaDataDefinition))){
+		var eMetaDataDefinitionTuple = Tuple{"key"="MetaDataDefinition_"+(idMetaDataDefinition++).asString(),"value"= eMetaDataDefinition};
+		self.add(eMetaDataDefinitionTuple);
+	}
+	//technicalid.Identifiable -> Instantiation
+	var idIdentifiable = 0;
+	for (eIdentifiable in DSL!EObject.all.select(s|s.isTypeOf(DSL!Identifiable))){
+		var eIdentifiableTuple = Tuple{"key"="Identifiable_"+(idIdentifiable++).asString(),"value"= eIdentifiable};
+		self.add(eIdentifiableTuple);
+	}
+}
+
+@abstract
+rule Base
+	transform s : DSL!EObject
+	to t : SysMLine!ItemUsage{
+	t.declaredName = s.getDeclaredName();
+	t.featureNote.add(":");
+	t.featureSpecialization.add(s.getfeatureSpecialization());
+	if (s.eContainingFeature != null and s.eContainingFeature.name != null){
+		t.featureNote.add(":>");
+		t.featureSpecialization.add(s.eContainingFeature().name);
+	}
+}
+
+// graal.ecore
+@lazy
+rule Task
+	transform s : DSL!Task //graal.Task
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//Task.technicalid -> EAttribute : technicalid
+	if (s.technicalid.getEAttribute() != null) t.addNewAttribute("technicalid".clearKeyWord(), s.technicalid.getEAttribute());
+	//Task.description -> EAttribute : description
+	if (s.description.getEAttribute() != null) t.addNewAttribute("description".clearKeyWord(), s.description.getEAttribute());
+	//Task.keywords -> EAttribute : keywords
+	if (s.keywords.getEAttribute() != null) t.addNewAttribute("keywords".clearKeyWord(), s.keywords.getEAttribute());
+	//Task.version -> EAttribute : version
+	if (s.version.getEAttribute() != null) t.addNewAttribute("version".clearKeyWord(), s.version.getEAttribute());
+	//Task.createdOn -> EAttribute : createdOn
+	if (s.createdOn.getEAttribute() != null) t.addNewAttribute("createdOn".clearKeyWord(), s.createdOn.getEAttribute());
+	//Task.modifiedOn -> EAttribute : modifiedOn
+	if (s.modifiedOn.getEAttribute() != null) t.addNewAttribute("modifiedOn".clearKeyWord(), s.modifiedOn.getEAttribute());
+	//Task.name -> EAttribute : name
+	if (s.name.getEAttribute() != null) t.addNewAttribute("name".clearKeyWord(), s.name.getEAttribute());
+	//Task.id -> EAttribute : id
+	if (s.id.getEAttribute() != null) t.addNewAttribute("id".clearKeyWord(), s.id.getEAttribute());
+	//Task.preconditions -> EAttribute : preconditions
+	if (s.preconditions.getEAttribute() != null) t.addNewAttribute("preconditions".clearKeyWord(), s.preconditions.getEAttribute());
+	//Task.postconditions -> EAttribute : postconditions
+	if (s.postconditions.getEAttribute() != null) t.addNewAttribute("postconditions".clearKeyWord(), s.postconditions.getEAttribute());
+	//Task.metadatas -> EReference : metadatas
+	if (s.metadatas.getEReference() != null) t.addNewReference("metadatas".clearKeyWord(), s.metadatas.getEReference());
+	//Task.behaviours -> EReference : behaviours
+	if (s.behaviours.getEReference() != null) t.addNewReference("behaviours".clearKeyWord(), s.behaviours.getEReference());
+	//Task.bindingRegistries -> EReference : bindingRegistries
+	if (s.bindingRegistries.getEReference() != null) t.addNewReference("bindingRegistries".clearKeyWord(), s.bindingRegistries.getEReference());
+	//Task.nodes -> EReference : nodes
+	if (s.nodes.getEReference() != null) t.addNewReference("nodes".clearKeyWord(), s.nodes.getEReference());
+	//Task.transitions -> EReference : transitions
+	if (s.transitions.getEReference() != null) t.addNewReference("transitions".clearKeyWord(), s.transitions.getEReference());
+	//Task.subActivities -> EReference : subActivities
+	if (s.subActivities.getEReference() != null) t.addNewReference("subActivities".clearKeyWord(), s.subActivities.getEReference());
+	//Task.uses -> EReference : uses
+	if (s.uses.getEReference() != null) t.addNewReference("uses".clearKeyWord(), s.uses.getEReference());
+	//Task.actors -> EReference : actors
+	if (s.actors.getEReference() != null) t.addNewReference("actors".clearKeyWord(), s.actors.getEReference());
+}
+
+@lazy
+rule System
+	transform s : DSL!System //graal.System
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//System.technicalid -> EAttribute : technicalid
+	if (s.technicalid.getEAttribute() != null) t.addNewAttribute("technicalid".clearKeyWord(), s.technicalid.getEAttribute());
+	//System.description -> EAttribute : description
+	if (s.description.getEAttribute() != null) t.addNewAttribute("description".clearKeyWord(), s.description.getEAttribute());
+	//System.keywords -> EAttribute : keywords
+	if (s.keywords.getEAttribute() != null) t.addNewAttribute("keywords".clearKeyWord(), s.keywords.getEAttribute());
+	//System.version -> EAttribute : version
+	if (s.version.getEAttribute() != null) t.addNewAttribute("version".clearKeyWord(), s.version.getEAttribute());
+	//System.createdOn -> EAttribute : createdOn
+	if (s.createdOn.getEAttribute() != null) t.addNewAttribute("createdOn".clearKeyWord(), s.createdOn.getEAttribute());
+	//System.modifiedOn -> EAttribute : modifiedOn
+	if (s.modifiedOn.getEAttribute() != null) t.addNewAttribute("modifiedOn".clearKeyWord(), s.modifiedOn.getEAttribute());
+	//System.name -> EAttribute : name
+	if (s.name.getEAttribute() != null) t.addNewAttribute("name".clearKeyWord(), s.name.getEAttribute());
+	//System.metadatas -> EReference : metadatas
+	if (s.metadatas.getEReference() != null) t.addNewReference("metadatas".clearKeyWord(), s.metadatas.getEReference());
+	//System.behaviours -> EReference : behaviours
+	if (s.behaviours.getEReference() != null) t.addNewReference("behaviours".clearKeyWord(), s.behaviours.getEReference());
+	//System.bindingRegistries -> EReference : bindingRegistries
+	if (s.bindingRegistries.getEReference() != null) t.addNewReference("bindingRegistries".clearKeyWord(), s.bindingRegistries.getEReference());
+	//System.namespaces -> EReference : namespaces
+	if (s.namespaces.getEReference() != null) t.addNewReference("namespaces".clearKeyWord(), s.namespaces.getEReference());
+	//System.types -> EReference : types
+	if (s.types.getEReference() != null) t.addNewReference("types".clearKeyWord(), s.types.getEReference());
+	//System.tasks -> EReference : tasks
+	if (s.tasks.getEReference() != null) t.addNewReference("tasks".clearKeyWord(), s.tasks.getEReference());
+	//System.ownedTasks -> EReference : ownedTasks
+	if (s.ownedTasks.getEReference() != null) t.addNewReference("ownedTasks".clearKeyWord(), s.ownedTasks.getEReference());
+	//System.ownedGroups -> EReference : ownedGroups
+	if (s.ownedGroups.getEReference() != null) t.addNewReference("ownedGroups".clearKeyWord(), s.ownedGroups.getEReference());
+	//System.ownedNamespaces -> EReference : ownedNamespaces
+	if (s.ownedNamespaces.getEReference() != null) t.addNewReference("ownedNamespaces".clearKeyWord(), s.ownedNamespaces.getEReference());
+	//System.subSystems -> EReference : subSystems
+	if (s.subSystems.getEReference() != null) t.addNewReference("subSystems".clearKeyWord(), s.subSystems.getEReference());
+	//System.actors -> EReference : actors
+	if (s.actors.getEReference() != null) t.addNewReference("actors".clearKeyWord(), s.actors.getEReference());
+	//System.useCases -> EReference : useCases
+	if (s.useCases.getEReference() != null) t.addNewReference("useCases".clearKeyWord(), s.useCases.getEReference());
+	//System.userStories -> EReference : userStories
+	if (s.userStories.getEReference() != null) t.addNewReference("userStories".clearKeyWord(), s.userStories.getEReference());
+}
+
+@lazy
+rule Activity
+	transform s : DSL!Activity //graal.Activity
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//Activity.technicalid -> EAttribute : technicalid
+	if (s.technicalid.getEAttribute() != null) t.addNewAttribute("technicalid".clearKeyWord(), s.technicalid.getEAttribute());
+	//Activity.description -> EAttribute : description
+	if (s.description.getEAttribute() != null) t.addNewAttribute("description".clearKeyWord(), s.description.getEAttribute());
+	//Activity.keywords -> EAttribute : keywords
+	if (s.keywords.getEAttribute() != null) t.addNewAttribute("keywords".clearKeyWord(), s.keywords.getEAttribute());
+	//Activity.version -> EAttribute : version
+	if (s.version.getEAttribute() != null) t.addNewAttribute("version".clearKeyWord(), s.version.getEAttribute());
+	//Activity.createdOn -> EAttribute : createdOn
+	if (s.createdOn.getEAttribute() != null) t.addNewAttribute("createdOn".clearKeyWord(), s.createdOn.getEAttribute());
+	//Activity.modifiedOn -> EAttribute : modifiedOn
+	if (s.modifiedOn.getEAttribute() != null) t.addNewAttribute("modifiedOn".clearKeyWord(), s.modifiedOn.getEAttribute());
+	//Activity.metadatas -> EReference : metadatas
+	if (s.metadatas.getEReference() != null) t.addNewReference("metadatas".clearKeyWord(), s.metadatas.getEReference());
+	//Activity.behaviours -> EReference : behaviours
+	if (s.behaviours.getEReference() != null) t.addNewReference("behaviours".clearKeyWord(), s.behaviours.getEReference());
+	//Activity.bindingRegistries -> EReference : bindingRegistries
+	if (s.bindingRegistries.getEReference() != null) t.addNewReference("bindingRegistries".clearKeyWord(), s.bindingRegistries.getEReference());
+	//Activity.nodes -> EReference : nodes
+	if (s.nodes.getEReference() != null) t.addNewReference("nodes".clearKeyWord(), s.nodes.getEReference());
+	//Activity.transitions -> EReference : transitions
+	if (s.transitions.getEReference() != null) t.addNewReference("transitions".clearKeyWord(), s.transitions.getEReference());
+	//Activity.subActivities -> EReference : subActivities
+	if (s.subActivities.getEReference() != null) t.addNewReference("subActivities".clearKeyWord(), s.subActivities.getEReference());
+}
+
+@lazy
+rule Operator
+	transform s : DSL!Operator //graal.Operator
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//Operator.technicalid -> EAttribute : technicalid
+	if (s.technicalid.getEAttribute() != null) t.addNewAttribute("technicalid".clearKeyWord(), s.technicalid.getEAttribute());
+	//Operator.description -> EAttribute : description
+	if (s.description.getEAttribute() != null) t.addNewAttribute("description".clearKeyWord(), s.description.getEAttribute());
+	//Operator.keywords -> EAttribute : keywords
+	if (s.keywords.getEAttribute() != null) t.addNewAttribute("keywords".clearKeyWord(), s.keywords.getEAttribute());
+	//Operator.version -> EAttribute : version
+	if (s.version.getEAttribute() != null) t.addNewAttribute("version".clearKeyWord(), s.version.getEAttribute());
+	//Operator.createdOn -> EAttribute : createdOn
+	if (s.createdOn.getEAttribute() != null) t.addNewAttribute("createdOn".clearKeyWord(), s.createdOn.getEAttribute());
+	//Operator.modifiedOn -> EAttribute : modifiedOn
+	if (s.modifiedOn.getEAttribute() != null) t.addNewAttribute("modifiedOn".clearKeyWord(), s.modifiedOn.getEAttribute());
+	//Operator.kind -> EAttribute : kind
+	if (s.kind.getEAttribute() != null) t.addNewAttribute("kind".clearKeyWord(), s.kind.getEAttribute());
+	//Operator.metadatas -> EReference : metadatas
+	if (s.metadatas.getEReference() != null) t.addNewReference("metadatas".clearKeyWord(), s.metadatas.getEReference());
+	//Operator.behaviours -> EReference : behaviours
+	if (s.behaviours.getEReference() != null) t.addNewReference("behaviours".clearKeyWord(), s.behaviours.getEReference());
+	//Operator.bindingRegistries -> EReference : bindingRegistries
+	if (s.bindingRegistries.getEReference() != null) t.addNewReference("bindingRegistries".clearKeyWord(), s.bindingRegistries.getEReference());
+	//Operator.outgoingTransitions -> EReference : outgoingTransitions
+	if (s.outgoingTransitions.getEReference() != null) t.addNewReference("outgoingTransitions".clearKeyWord(), s.outgoingTransitions.getEReference());
+	//Operator.incomingTransitions -> EReference : incomingTransitions
+	if (s.incomingTransitions.getEReference() != null) t.addNewReference("incomingTransitions".clearKeyWord(), s.incomingTransitions.getEReference());
+}
+
+@lazy
+rule Node
+	transform s : DSL!Node //graal.Node
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//Node.technicalid -> EAttribute : technicalid
+	if (s.technicalid.getEAttribute() != null) t.addNewAttribute("technicalid".clearKeyWord(), s.technicalid.getEAttribute());
+	//Node.description -> EAttribute : description
+	if (s.description.getEAttribute() != null) t.addNewAttribute("description".clearKeyWord(), s.description.getEAttribute());
+	//Node.keywords -> EAttribute : keywords
+	if (s.keywords.getEAttribute() != null) t.addNewAttribute("keywords".clearKeyWord(), s.keywords.getEAttribute());
+	//Node.version -> EAttribute : version
+	if (s.version.getEAttribute() != null) t.addNewAttribute("version".clearKeyWord(), s.version.getEAttribute());
+	//Node.createdOn -> EAttribute : createdOn
+	if (s.createdOn.getEAttribute() != null) t.addNewAttribute("createdOn".clearKeyWord(), s.createdOn.getEAttribute());
+	//Node.modifiedOn -> EAttribute : modifiedOn
+	if (s.modifiedOn.getEAttribute() != null) t.addNewAttribute("modifiedOn".clearKeyWord(), s.modifiedOn.getEAttribute());
+	//Node.metadatas -> EReference : metadatas
+	if (s.metadatas.getEReference() != null) t.addNewReference("metadatas".clearKeyWord(), s.metadatas.getEReference());
+	//Node.behaviours -> EReference : behaviours
+	if (s.behaviours.getEReference() != null) t.addNewReference("behaviours".clearKeyWord(), s.behaviours.getEReference());
+	//Node.bindingRegistries -> EReference : bindingRegistries
+	if (s.bindingRegistries.getEReference() != null) t.addNewReference("bindingRegistries".clearKeyWord(), s.bindingRegistries.getEReference());
+	//Node.outgoingTransitions -> EReference : outgoingTransitions
+	if (s.outgoingTransitions.getEReference() != null) t.addNewReference("outgoingTransitions".clearKeyWord(), s.outgoingTransitions.getEReference());
+	//Node.incomingTransitions -> EReference : incomingTransitions
+	if (s.incomingTransitions.getEReference() != null) t.addNewReference("incomingTransitions".clearKeyWord(), s.incomingTransitions.getEReference());
+}
+
+@lazy
+rule Transition
+	transform s : DSL!Transition //graal.Transition
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//Transition.technicalid -> EAttribute : technicalid
+	if (s.technicalid.getEAttribute() != null) t.addNewAttribute("technicalid".clearKeyWord(), s.technicalid.getEAttribute());
+	//Transition.description -> EAttribute : description
+	if (s.description.getEAttribute() != null) t.addNewAttribute("description".clearKeyWord(), s.description.getEAttribute());
+	//Transition.keywords -> EAttribute : keywords
+	if (s.keywords.getEAttribute() != null) t.addNewAttribute("keywords".clearKeyWord(), s.keywords.getEAttribute());
+	//Transition.version -> EAttribute : version
+	if (s.version.getEAttribute() != null) t.addNewAttribute("version".clearKeyWord(), s.version.getEAttribute());
+	//Transition.createdOn -> EAttribute : createdOn
+	if (s.createdOn.getEAttribute() != null) t.addNewAttribute("createdOn".clearKeyWord(), s.createdOn.getEAttribute());
+	//Transition.modifiedOn -> EAttribute : modifiedOn
+	if (s.modifiedOn.getEAttribute() != null) t.addNewAttribute("modifiedOn".clearKeyWord(), s.modifiedOn.getEAttribute());
+	//Transition.guard -> EAttribute : guard_
+	if (s.`guard`.getEAttribute() != null) t.addNewAttribute("guard".clearKeyWord(), s.`guard`.getEAttribute());
+	//Transition.kind -> EAttribute : kind
+	if (s.kind.getEAttribute() != null) t.addNewAttribute("kind".clearKeyWord(), s.kind.getEAttribute());
+	//Transition.metadatas -> EReference : metadatas
+	if (s.metadatas.getEReference() != null) t.addNewReference("metadatas".clearKeyWord(), s.metadatas.getEReference());
+	//Transition.behaviours -> EReference : behaviours
+	if (s.behaviours.getEReference() != null) t.addNewReference("behaviours".clearKeyWord(), s.behaviours.getEReference());
+	//Transition.bindingRegistries -> EReference : bindingRegistries
+	if (s.bindingRegistries.getEReference() != null) t.addNewReference("bindingRegistries".clearKeyWord(), s.bindingRegistries.getEReference());
+	//Transition.source -> EReference : source
+	if (s.source.getEReference() != null) t.addNewReference("source".clearKeyWord(), s.source.getEReference());
+	//Transition.target -> EReference : target
+	if (s.target.getEReference() != null) t.addNewReference("target".clearKeyWord(), s.target.getEReference());
+}
+
+@lazy
+rule TaskReference
+	transform s : DSL!TaskReference //graal.TaskReference
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//TaskReference.technicalid -> EAttribute : technicalid
+	if (s.technicalid.getEAttribute() != null) t.addNewAttribute("technicalid".clearKeyWord(), s.technicalid.getEAttribute());
+	//TaskReference.description -> EAttribute : description
+	if (s.description.getEAttribute() != null) t.addNewAttribute("description".clearKeyWord(), s.description.getEAttribute());
+	//TaskReference.keywords -> EAttribute : keywords
+	if (s.keywords.getEAttribute() != null) t.addNewAttribute("keywords".clearKeyWord(), s.keywords.getEAttribute());
+	//TaskReference.version -> EAttribute : version
+	if (s.version.getEAttribute() != null) t.addNewAttribute("version".clearKeyWord(), s.version.getEAttribute());
+	//TaskReference.createdOn -> EAttribute : createdOn
+	if (s.createdOn.getEAttribute() != null) t.addNewAttribute("createdOn".clearKeyWord(), s.createdOn.getEAttribute());
+	//TaskReference.modifiedOn -> EAttribute : modifiedOn
+	if (s.modifiedOn.getEAttribute() != null) t.addNewAttribute("modifiedOn".clearKeyWord(), s.modifiedOn.getEAttribute());
+	//TaskReference.metadatas -> EReference : metadatas
+	if (s.metadatas.getEReference() != null) t.addNewReference("metadatas".clearKeyWord(), s.metadatas.getEReference());
+	//TaskReference.behaviours -> EReference : behaviours
+	if (s.behaviours.getEReference() != null) t.addNewReference("behaviours".clearKeyWord(), s.behaviours.getEReference());
+	//TaskReference.bindingRegistries -> EReference : bindingRegistries
+	if (s.bindingRegistries.getEReference() != null) t.addNewReference("bindingRegistries".clearKeyWord(), s.bindingRegistries.getEReference());
+	//TaskReference.outgoingTransitions -> EReference : outgoingTransitions
+	if (s.outgoingTransitions.getEReference() != null) t.addNewReference("outgoingTransitions".clearKeyWord(), s.outgoingTransitions.getEReference());
+	//TaskReference.incomingTransitions -> EReference : incomingTransitions
+	if (s.incomingTransitions.getEReference() != null) t.addNewReference("incomingTransitions".clearKeyWord(), s.incomingTransitions.getEReference());
+	//TaskReference.task -> EReference : task
+	if (s.task.getEReference() != null) t.addNewReference("task".clearKeyWord(), s.task.getEReference());
+}
+
+@lazy
+rule UserView
+	transform s : DSL!UserView //graal.UserView
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//UserView.technicalid -> EAttribute : technicalid
+	if (s.technicalid.getEAttribute() != null) t.addNewAttribute("technicalid".clearKeyWord(), s.technicalid.getEAttribute());
+	//UserView.description -> EAttribute : description
+	if (s.description.getEAttribute() != null) t.addNewAttribute("description".clearKeyWord(), s.description.getEAttribute());
+	//UserView.keywords -> EAttribute : keywords
+	if (s.keywords.getEAttribute() != null) t.addNewAttribute("keywords".clearKeyWord(), s.keywords.getEAttribute());
+	//UserView.version -> EAttribute : version
+	if (s.version.getEAttribute() != null) t.addNewAttribute("version".clearKeyWord(), s.version.getEAttribute());
+	//UserView.createdOn -> EAttribute : createdOn
+	if (s.createdOn.getEAttribute() != null) t.addNewAttribute("createdOn".clearKeyWord(), s.createdOn.getEAttribute());
+	//UserView.modifiedOn -> EAttribute : modifiedOn
+	if (s.modifiedOn.getEAttribute() != null) t.addNewAttribute("modifiedOn".clearKeyWord(), s.modifiedOn.getEAttribute());
+	//UserView.name -> EAttribute : name
+	if (s.name.getEAttribute() != null) t.addNewAttribute("name".clearKeyWord(), s.name.getEAttribute());
+	//UserView.metadatas -> EReference : metadatas
+	if (s.metadatas.getEReference() != null) t.addNewReference("metadatas".clearKeyWord(), s.metadatas.getEReference());
+	//UserView.behaviours -> EReference : behaviours
+	if (s.behaviours.getEReference() != null) t.addNewReference("behaviours".clearKeyWord(), s.behaviours.getEReference());
+	//UserView.bindingRegistries -> EReference : bindingRegistries
+	if (s.bindingRegistries.getEReference() != null) t.addNewReference("bindingRegistries".clearKeyWord(), s.bindingRegistries.getEReference());
+	//UserView.outgoingTransitions -> EReference : outgoingTransitions
+	if (s.outgoingTransitions.getEReference() != null) t.addNewReference("outgoingTransitions".clearKeyWord(), s.outgoingTransitions.getEReference());
+	//UserView.incomingTransitions -> EReference : incomingTransitions
+	if (s.incomingTransitions.getEReference() != null) t.addNewReference("incomingTransitions".clearKeyWord(), s.incomingTransitions.getEReference());
+}
+
+@lazy
+rule UserAction
+	transform s : DSL!UserAction //graal.UserAction
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//UserAction.technicalid -> EAttribute : technicalid
+	if (s.technicalid.getEAttribute() != null) t.addNewAttribute("technicalid".clearKeyWord(), s.technicalid.getEAttribute());
+	//UserAction.description -> EAttribute : description
+	if (s.description.getEAttribute() != null) t.addNewAttribute("description".clearKeyWord(), s.description.getEAttribute());
+	//UserAction.keywords -> EAttribute : keywords
+	if (s.keywords.getEAttribute() != null) t.addNewAttribute("keywords".clearKeyWord(), s.keywords.getEAttribute());
+	//UserAction.version -> EAttribute : version
+	if (s.version.getEAttribute() != null) t.addNewAttribute("version".clearKeyWord(), s.version.getEAttribute());
+	//UserAction.createdOn -> EAttribute : createdOn
+	if (s.createdOn.getEAttribute() != null) t.addNewAttribute("createdOn".clearKeyWord(), s.createdOn.getEAttribute());
+	//UserAction.modifiedOn -> EAttribute : modifiedOn
+	if (s.modifiedOn.getEAttribute() != null) t.addNewAttribute("modifiedOn".clearKeyWord(), s.modifiedOn.getEAttribute());
+	//UserAction.name -> EAttribute : name
+	if (s.name.getEAttribute() != null) t.addNewAttribute("name".clearKeyWord(), s.name.getEAttribute());
+	//UserAction.metadatas -> EReference : metadatas
+	if (s.metadatas.getEReference() != null) t.addNewReference("metadatas".clearKeyWord(), s.metadatas.getEReference());
+	//UserAction.behaviours -> EReference : behaviours
+	if (s.behaviours.getEReference() != null) t.addNewReference("behaviours".clearKeyWord(), s.behaviours.getEReference());
+	//UserAction.bindingRegistries -> EReference : bindingRegistries
+	if (s.bindingRegistries.getEReference() != null) t.addNewReference("bindingRegistries".clearKeyWord(), s.bindingRegistries.getEReference());
+	//UserAction.outgoingTransitions -> EReference : outgoingTransitions
+	if (s.outgoingTransitions.getEReference() != null) t.addNewReference("outgoingTransitions".clearKeyWord(), s.outgoingTransitions.getEReference());
+	//UserAction.incomingTransitions -> EReference : incomingTransitions
+	if (s.incomingTransitions.getEReference() != null) t.addNewReference("incomingTransitions".clearKeyWord(), s.incomingTransitions.getEReference());
+}
+
+@lazy
+rule AppliEvent
+	transform s : DSL!AppliEvent //graal.AppliEvent
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//AppliEvent.technicalid -> EAttribute : technicalid
+	if (s.technicalid.getEAttribute() != null) t.addNewAttribute("technicalid".clearKeyWord(), s.technicalid.getEAttribute());
+	//AppliEvent.description -> EAttribute : description
+	if (s.description.getEAttribute() != null) t.addNewAttribute("description".clearKeyWord(), s.description.getEAttribute());
+	//AppliEvent.keywords -> EAttribute : keywords
+	if (s.keywords.getEAttribute() != null) t.addNewAttribute("keywords".clearKeyWord(), s.keywords.getEAttribute());
+	//AppliEvent.version -> EAttribute : version
+	if (s.version.getEAttribute() != null) t.addNewAttribute("version".clearKeyWord(), s.version.getEAttribute());
+	//AppliEvent.createdOn -> EAttribute : createdOn
+	if (s.createdOn.getEAttribute() != null) t.addNewAttribute("createdOn".clearKeyWord(), s.createdOn.getEAttribute());
+	//AppliEvent.modifiedOn -> EAttribute : modifiedOn
+	if (s.modifiedOn.getEAttribute() != null) t.addNewAttribute("modifiedOn".clearKeyWord(), s.modifiedOn.getEAttribute());
+	//AppliEvent.name -> EAttribute : name
+	if (s.name.getEAttribute() != null) t.addNewAttribute("name".clearKeyWord(), s.name.getEAttribute());
+	//AppliEvent.metadatas -> EReference : metadatas
+	if (s.metadatas.getEReference() != null) t.addNewReference("metadatas".clearKeyWord(), s.metadatas.getEReference());
+	//AppliEvent.behaviours -> EReference : behaviours
+	if (s.behaviours.getEReference() != null) t.addNewReference("behaviours".clearKeyWord(), s.behaviours.getEReference());
+	//AppliEvent.bindingRegistries -> EReference : bindingRegistries
+	if (s.bindingRegistries.getEReference() != null) t.addNewReference("bindingRegistries".clearKeyWord(), s.bindingRegistries.getEReference());
+	//AppliEvent.outgoingTransitions -> EReference : outgoingTransitions
+	if (s.outgoingTransitions.getEReference() != null) t.addNewReference("outgoingTransitions".clearKeyWord(), s.outgoingTransitions.getEReference());
+	//AppliEvent.incomingTransitions -> EReference : incomingTransitions
+	if (s.incomingTransitions.getEReference() != null) t.addNewReference("incomingTransitions".clearKeyWord(), s.incomingTransitions.getEReference());
+}
+
+@lazy
+rule AppliAction
+	transform s : DSL!AppliAction //graal.AppliAction
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//AppliAction.technicalid -> EAttribute : technicalid
+	if (s.technicalid.getEAttribute() != null) t.addNewAttribute("technicalid".clearKeyWord(), s.technicalid.getEAttribute());
+	//AppliAction.description -> EAttribute : description
+	if (s.description.getEAttribute() != null) t.addNewAttribute("description".clearKeyWord(), s.description.getEAttribute());
+	//AppliAction.keywords -> EAttribute : keywords
+	if (s.keywords.getEAttribute() != null) t.addNewAttribute("keywords".clearKeyWord(), s.keywords.getEAttribute());
+	//AppliAction.version -> EAttribute : version
+	if (s.version.getEAttribute() != null) t.addNewAttribute("version".clearKeyWord(), s.version.getEAttribute());
+	//AppliAction.createdOn -> EAttribute : createdOn
+	if (s.createdOn.getEAttribute() != null) t.addNewAttribute("createdOn".clearKeyWord(), s.createdOn.getEAttribute());
+	//AppliAction.modifiedOn -> EAttribute : modifiedOn
+	if (s.modifiedOn.getEAttribute() != null) t.addNewAttribute("modifiedOn".clearKeyWord(), s.modifiedOn.getEAttribute());
+	//AppliAction.name -> EAttribute : name
+	if (s.name.getEAttribute() != null) t.addNewAttribute("name".clearKeyWord(), s.name.getEAttribute());
+	//AppliAction.metadatas -> EReference : metadatas
+	if (s.metadatas.getEReference() != null) t.addNewReference("metadatas".clearKeyWord(), s.metadatas.getEReference());
+	//AppliAction.behaviours -> EReference : behaviours
+	if (s.behaviours.getEReference() != null) t.addNewReference("behaviours".clearKeyWord(), s.behaviours.getEReference());
+	//AppliAction.bindingRegistries -> EReference : bindingRegistries
+	if (s.bindingRegistries.getEReference() != null) t.addNewReference("bindingRegistries".clearKeyWord(), s.bindingRegistries.getEReference());
+	//AppliAction.outgoingTransitions -> EReference : outgoingTransitions
+	if (s.outgoingTransitions.getEReference() != null) t.addNewReference("outgoingTransitions".clearKeyWord(), s.outgoingTransitions.getEReference());
+	//AppliAction.incomingTransitions -> EReference : incomingTransitions
+	if (s.incomingTransitions.getEReference() != null) t.addNewReference("incomingTransitions".clearKeyWord(), s.incomingTransitions.getEReference());
+}
+
+@lazy
+rule InitialNode
+	transform s : DSL!InitialNode //graal.InitialNode
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//InitialNode.technicalid -> EAttribute : technicalid
+	if (s.technicalid.getEAttribute() != null) t.addNewAttribute("technicalid".clearKeyWord(), s.technicalid.getEAttribute());
+	//InitialNode.description -> EAttribute : description
+	if (s.description.getEAttribute() != null) t.addNewAttribute("description".clearKeyWord(), s.description.getEAttribute());
+	//InitialNode.keywords -> EAttribute : keywords
+	if (s.keywords.getEAttribute() != null) t.addNewAttribute("keywords".clearKeyWord(), s.keywords.getEAttribute());
+	//InitialNode.version -> EAttribute : version
+	if (s.version.getEAttribute() != null) t.addNewAttribute("version".clearKeyWord(), s.version.getEAttribute());
+	//InitialNode.createdOn -> EAttribute : createdOn
+	if (s.createdOn.getEAttribute() != null) t.addNewAttribute("createdOn".clearKeyWord(), s.createdOn.getEAttribute());
+	//InitialNode.modifiedOn -> EAttribute : modifiedOn
+	if (s.modifiedOn.getEAttribute() != null) t.addNewAttribute("modifiedOn".clearKeyWord(), s.modifiedOn.getEAttribute());
+	//InitialNode.metadatas -> EReference : metadatas
+	if (s.metadatas.getEReference() != null) t.addNewReference("metadatas".clearKeyWord(), s.metadatas.getEReference());
+	//InitialNode.behaviours -> EReference : behaviours
+	if (s.behaviours.getEReference() != null) t.addNewReference("behaviours".clearKeyWord(), s.behaviours.getEReference());
+	//InitialNode.bindingRegistries -> EReference : bindingRegistries
+	if (s.bindingRegistries.getEReference() != null) t.addNewReference("bindingRegistries".clearKeyWord(), s.bindingRegistries.getEReference());
+	//InitialNode.outgoingTransitions -> EReference : outgoingTransitions
+	if (s.outgoingTransitions.getEReference() != null) t.addNewReference("outgoingTransitions".clearKeyWord(), s.outgoingTransitions.getEReference());
+	//InitialNode.incomingTransitions -> EReference : incomingTransitions
+	if (s.incomingTransitions.getEReference() != null) t.addNewReference("incomingTransitions".clearKeyWord(), s.incomingTransitions.getEReference());
+}
+
+@lazy
+rule FinalNode
+	transform s : DSL!FinalNode //graal.FinalNode
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//FinalNode.technicalid -> EAttribute : technicalid
+	if (s.technicalid.getEAttribute() != null) t.addNewAttribute("technicalid".clearKeyWord(), s.technicalid.getEAttribute());
+	//FinalNode.description -> EAttribute : description
+	if (s.description.getEAttribute() != null) t.addNewAttribute("description".clearKeyWord(), s.description.getEAttribute());
+	//FinalNode.keywords -> EAttribute : keywords
+	if (s.keywords.getEAttribute() != null) t.addNewAttribute("keywords".clearKeyWord(), s.keywords.getEAttribute());
+	//FinalNode.version -> EAttribute : version
+	if (s.version.getEAttribute() != null) t.addNewAttribute("version".clearKeyWord(), s.version.getEAttribute());
+	//FinalNode.createdOn -> EAttribute : createdOn
+	if (s.createdOn.getEAttribute() != null) t.addNewAttribute("createdOn".clearKeyWord(), s.createdOn.getEAttribute());
+	//FinalNode.modifiedOn -> EAttribute : modifiedOn
+	if (s.modifiedOn.getEAttribute() != null) t.addNewAttribute("modifiedOn".clearKeyWord(), s.modifiedOn.getEAttribute());
+	//FinalNode.metadatas -> EReference : metadatas
+	if (s.metadatas.getEReference() != null) t.addNewReference("metadatas".clearKeyWord(), s.metadatas.getEReference());
+	//FinalNode.behaviours -> EReference : behaviours
+	if (s.behaviours.getEReference() != null) t.addNewReference("behaviours".clearKeyWord(), s.behaviours.getEReference());
+	//FinalNode.bindingRegistries -> EReference : bindingRegistries
+	if (s.bindingRegistries.getEReference() != null) t.addNewReference("bindingRegistries".clearKeyWord(), s.bindingRegistries.getEReference());
+	//FinalNode.outgoingTransitions -> EReference : outgoingTransitions
+	if (s.outgoingTransitions.getEReference() != null) t.addNewReference("outgoingTransitions".clearKeyWord(), s.outgoingTransitions.getEReference());
+	//FinalNode.incomingTransitions -> EReference : incomingTransitions
+	if (s.incomingTransitions.getEReference() != null) t.addNewReference("incomingTransitions".clearKeyWord(), s.incomingTransitions.getEReference());
+}
+
+@lazy
+rule AbortNode
+	transform s : DSL!AbortNode //graal.AbortNode
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//AbortNode.technicalid -> EAttribute : technicalid
+	if (s.technicalid.getEAttribute() != null) t.addNewAttribute("technicalid".clearKeyWord(), s.technicalid.getEAttribute());
+	//AbortNode.description -> EAttribute : description
+	if (s.description.getEAttribute() != null) t.addNewAttribute("description".clearKeyWord(), s.description.getEAttribute());
+	//AbortNode.keywords -> EAttribute : keywords
+	if (s.keywords.getEAttribute() != null) t.addNewAttribute("keywords".clearKeyWord(), s.keywords.getEAttribute());
+	//AbortNode.version -> EAttribute : version
+	if (s.version.getEAttribute() != null) t.addNewAttribute("version".clearKeyWord(), s.version.getEAttribute());
+	//AbortNode.createdOn -> EAttribute : createdOn
+	if (s.createdOn.getEAttribute() != null) t.addNewAttribute("createdOn".clearKeyWord(), s.createdOn.getEAttribute());
+	//AbortNode.modifiedOn -> EAttribute : modifiedOn
+	if (s.modifiedOn.getEAttribute() != null) t.addNewAttribute("modifiedOn".clearKeyWord(), s.modifiedOn.getEAttribute());
+	//AbortNode.metadatas -> EReference : metadatas
+	if (s.metadatas.getEReference() != null) t.addNewReference("metadatas".clearKeyWord(), s.metadatas.getEReference());
+	//AbortNode.behaviours -> EReference : behaviours
+	if (s.behaviours.getEReference() != null) t.addNewReference("behaviours".clearKeyWord(), s.behaviours.getEReference());
+	//AbortNode.bindingRegistries -> EReference : bindingRegistries
+	if (s.bindingRegistries.getEReference() != null) t.addNewReference("bindingRegistries".clearKeyWord(), s.bindingRegistries.getEReference());
+	//AbortNode.outgoingTransitions -> EReference : outgoingTransitions
+	if (s.outgoingTransitions.getEReference() != null) t.addNewReference("outgoingTransitions".clearKeyWord(), s.outgoingTransitions.getEReference());
+	//AbortNode.incomingTransitions -> EReference : incomingTransitions
+	if (s.incomingTransitions.getEReference() != null) t.addNewReference("incomingTransitions".clearKeyWord(), s.incomingTransitions.getEReference());
+}
+
+@lazy
+rule Loop
+	transform s : DSL!Loop //graal.Loop
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//Loop.technicalid -> EAttribute : technicalid
+	if (s.technicalid.getEAttribute() != null) t.addNewAttribute("technicalid".clearKeyWord(), s.technicalid.getEAttribute());
+	//Loop.description -> EAttribute : description
+	if (s.description.getEAttribute() != null) t.addNewAttribute("description".clearKeyWord(), s.description.getEAttribute());
+	//Loop.keywords -> EAttribute : keywords
+	if (s.keywords.getEAttribute() != null) t.addNewAttribute("keywords".clearKeyWord(), s.keywords.getEAttribute());
+	//Loop.version -> EAttribute : version
+	if (s.version.getEAttribute() != null) t.addNewAttribute("version".clearKeyWord(), s.version.getEAttribute());
+	//Loop.createdOn -> EAttribute : createdOn
+	if (s.createdOn.getEAttribute() != null) t.addNewAttribute("createdOn".clearKeyWord(), s.createdOn.getEAttribute());
+	//Loop.modifiedOn -> EAttribute : modifiedOn
+	if (s.modifiedOn.getEAttribute() != null) t.addNewAttribute("modifiedOn".clearKeyWord(), s.modifiedOn.getEAttribute());
+	//Loop.lowerBound -> EAttribute : lowerBound
+	if (s.lowerBound.getEAttribute() != null) t.addNewAttribute("lowerBound".clearKeyWord(), s.lowerBound.getEAttribute());
+	//Loop.upperBound -> EAttribute : upperBound
+	if (s.upperBound.getEAttribute() != null) t.addNewAttribute("upperBound".clearKeyWord(), s.upperBound.getEAttribute());
+	//Loop.metadatas -> EReference : metadatas
+	if (s.metadatas.getEReference() != null) t.addNewReference("metadatas".clearKeyWord(), s.metadatas.getEReference());
+	//Loop.behaviours -> EReference : behaviours
+	if (s.behaviours.getEReference() != null) t.addNewReference("behaviours".clearKeyWord(), s.behaviours.getEReference());
+	//Loop.bindingRegistries -> EReference : bindingRegistries
+	if (s.bindingRegistries.getEReference() != null) t.addNewReference("bindingRegistries".clearKeyWord(), s.bindingRegistries.getEReference());
+	//Loop.nodes -> EReference : nodes
+	if (s.nodes.getEReference() != null) t.addNewReference("nodes".clearKeyWord(), s.nodes.getEReference());
+	//Loop.transitions -> EReference : transitions
+	if (s.transitions.getEReference() != null) t.addNewReference("transitions".clearKeyWord(), s.transitions.getEReference());
+	//Loop.subActivities -> EReference : subActivities
+	if (s.subActivities.getEReference() != null) t.addNewReference("subActivities".clearKeyWord(), s.subActivities.getEReference());
+}
+
+@lazy
+rule Actor
+	transform s : DSL!Actor //graal.Actor
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//Actor.technicalid -> EAttribute : technicalid
+	if (s.technicalid.getEAttribute() != null) t.addNewAttribute("technicalid".clearKeyWord(), s.technicalid.getEAttribute());
+	//Actor.description -> EAttribute : description
+	if (s.description.getEAttribute() != null) t.addNewAttribute("description".clearKeyWord(), s.description.getEAttribute());
+	//Actor.keywords -> EAttribute : keywords
+	if (s.keywords.getEAttribute() != null) t.addNewAttribute("keywords".clearKeyWord(), s.keywords.getEAttribute());
+	//Actor.version -> EAttribute : version
+	if (s.version.getEAttribute() != null) t.addNewAttribute("version".clearKeyWord(), s.version.getEAttribute());
+	//Actor.createdOn -> EAttribute : createdOn
+	if (s.createdOn.getEAttribute() != null) t.addNewAttribute("createdOn".clearKeyWord(), s.createdOn.getEAttribute());
+	//Actor.modifiedOn -> EAttribute : modifiedOn
+	if (s.modifiedOn.getEAttribute() != null) t.addNewAttribute("modifiedOn".clearKeyWord(), s.modifiedOn.getEAttribute());
+	//Actor.name -> EAttribute : name
+	if (s.name.getEAttribute() != null) t.addNewAttribute("name".clearKeyWord(), s.name.getEAttribute());
+	//Actor.metadatas -> EReference : metadatas
+	if (s.metadatas.getEReference() != null) t.addNewReference("metadatas".clearKeyWord(), s.metadatas.getEReference());
+	//Actor.behaviours -> EReference : behaviours
+	if (s.behaviours.getEReference() != null) t.addNewReference("behaviours".clearKeyWord(), s.behaviours.getEReference());
+	//Actor.bindingRegistries -> EReference : bindingRegistries
+	if (s.bindingRegistries.getEReference() != null) t.addNewReference("bindingRegistries".clearKeyWord(), s.bindingRegistries.getEReference());
+	//Actor.subActors -> EReference : subActors
+	if (s.subActors.getEReference() != null) t.addNewReference("subActors".clearKeyWord(), s.subActors.getEReference());
+	//Actor.superActor -> EReference : superActor
+	if (s.superActor.getEReference() != null) t.addNewReference("superActor".clearKeyWord(), s.superActor.getEReference());
+}
+
+@lazy
+rule AbstractTask
+	transform s : DSL!AbstractTask //graal.AbstractTask
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//AbstractTask.technicalid -> EAttribute : technicalid
+	if (s.technicalid.getEAttribute() != null) t.addNewAttribute("technicalid".clearKeyWord(), s.technicalid.getEAttribute());
+	//AbstractTask.description -> EAttribute : description
+	if (s.description.getEAttribute() != null) t.addNewAttribute("description".clearKeyWord(), s.description.getEAttribute());
+	//AbstractTask.keywords -> EAttribute : keywords
+	if (s.keywords.getEAttribute() != null) t.addNewAttribute("keywords".clearKeyWord(), s.keywords.getEAttribute());
+	//AbstractTask.version -> EAttribute : version
+	if (s.version.getEAttribute() != null) t.addNewAttribute("version".clearKeyWord(), s.version.getEAttribute());
+	//AbstractTask.createdOn -> EAttribute : createdOn
+	if (s.createdOn.getEAttribute() != null) t.addNewAttribute("createdOn".clearKeyWord(), s.createdOn.getEAttribute());
+	//AbstractTask.modifiedOn -> EAttribute : modifiedOn
+	if (s.modifiedOn.getEAttribute() != null) t.addNewAttribute("modifiedOn".clearKeyWord(), s.modifiedOn.getEAttribute());
+	//AbstractTask.name -> EAttribute : name
+	if (s.name.getEAttribute() != null) t.addNewAttribute("name".clearKeyWord(), s.name.getEAttribute());
+	//AbstractTask.id -> EAttribute : id
+	if (s.id.getEAttribute() != null) t.addNewAttribute("id".clearKeyWord(), s.id.getEAttribute());
+	//AbstractTask.metadatas -> EReference : metadatas
+	if (s.metadatas.getEReference() != null) t.addNewReference("metadatas".clearKeyWord(), s.metadatas.getEReference());
+	//AbstractTask.behaviours -> EReference : behaviours
+	if (s.behaviours.getEReference() != null) t.addNewReference("behaviours".clearKeyWord(), s.behaviours.getEReference());
+	//AbstractTask.bindingRegistries -> EReference : bindingRegistries
+	if (s.bindingRegistries.getEReference() != null) t.addNewReference("bindingRegistries".clearKeyWord(), s.bindingRegistries.getEReference());
+}
+
+@lazy
+rule TasksGroup
+	transform s : DSL!TasksGroup //graal.TasksGroup
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//TasksGroup.technicalid -> EAttribute : technicalid
+	if (s.technicalid.getEAttribute() != null) t.addNewAttribute("technicalid".clearKeyWord(), s.technicalid.getEAttribute());
+	//TasksGroup.description -> EAttribute : description
+	if (s.description.getEAttribute() != null) t.addNewAttribute("description".clearKeyWord(), s.description.getEAttribute());
+	//TasksGroup.keywords -> EAttribute : keywords
+	if (s.keywords.getEAttribute() != null) t.addNewAttribute("keywords".clearKeyWord(), s.keywords.getEAttribute());
+	//TasksGroup.version -> EAttribute : version
+	if (s.version.getEAttribute() != null) t.addNewAttribute("version".clearKeyWord(), s.version.getEAttribute());
+	//TasksGroup.createdOn -> EAttribute : createdOn
+	if (s.createdOn.getEAttribute() != null) t.addNewAttribute("createdOn".clearKeyWord(), s.createdOn.getEAttribute());
+	//TasksGroup.modifiedOn -> EAttribute : modifiedOn
+	if (s.modifiedOn.getEAttribute() != null) t.addNewAttribute("modifiedOn".clearKeyWord(), s.modifiedOn.getEAttribute());
+	//TasksGroup.name -> EAttribute : name
+	if (s.name.getEAttribute() != null) t.addNewAttribute("name".clearKeyWord(), s.name.getEAttribute());
+	//TasksGroup.id -> EAttribute : id
+	if (s.id.getEAttribute() != null) t.addNewAttribute("id".clearKeyWord(), s.id.getEAttribute());
+	//TasksGroup.metadatas -> EReference : metadatas
+	if (s.metadatas.getEReference() != null) t.addNewReference("metadatas".clearKeyWord(), s.metadatas.getEReference());
+	//TasksGroup.behaviours -> EReference : behaviours
+	if (s.behaviours.getEReference() != null) t.addNewReference("behaviours".clearKeyWord(), s.behaviours.getEReference());
+	//TasksGroup.bindingRegistries -> EReference : bindingRegistries
+	if (s.bindingRegistries.getEReference() != null) t.addNewReference("bindingRegistries".clearKeyWord(), s.bindingRegistries.getEReference());
+	//TasksGroup.tasks -> EReference : tasks
+	if (s.tasks.getEReference() != null) t.addNewReference("tasks".clearKeyWord(), s.tasks.getEReference());
+	//TasksGroup.ownedTasks -> EReference : ownedTasks
+	if (s.ownedTasks.getEReference() != null) t.addNewReference("ownedTasks".clearKeyWord(), s.ownedTasks.getEReference());
+	//TasksGroup.ownedGroups -> EReference : ownedGroups
+	if (s.ownedGroups.getEReference() != null) t.addNewReference("ownedGroups".clearKeyWord(), s.ownedGroups.getEReference());
+}
+
+@lazy
+rule UseCase
+	transform s : DSL!UseCase //graal.UseCase
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//UseCase.technicalid -> EAttribute : technicalid
+	if (s.technicalid.getEAttribute() != null) t.addNewAttribute("technicalid".clearKeyWord(), s.technicalid.getEAttribute());
+	//UseCase.description -> EAttribute : description
+	if (s.description.getEAttribute() != null) t.addNewAttribute("description".clearKeyWord(), s.description.getEAttribute());
+	//UseCase.keywords -> EAttribute : keywords
+	if (s.keywords.getEAttribute() != null) t.addNewAttribute("keywords".clearKeyWord(), s.keywords.getEAttribute());
+	//UseCase.version -> EAttribute : version
+	if (s.version.getEAttribute() != null) t.addNewAttribute("version".clearKeyWord(), s.version.getEAttribute());
+	//UseCase.createdOn -> EAttribute : createdOn
+	if (s.createdOn.getEAttribute() != null) t.addNewAttribute("createdOn".clearKeyWord(), s.createdOn.getEAttribute());
+	//UseCase.modifiedOn -> EAttribute : modifiedOn
+	if (s.modifiedOn.getEAttribute() != null) t.addNewAttribute("modifiedOn".clearKeyWord(), s.modifiedOn.getEAttribute());
+	//UseCase.name -> EAttribute : name
+	if (s.name.getEAttribute() != null) t.addNewAttribute("name".clearKeyWord(), s.name.getEAttribute());
+	//UseCase.metadatas -> EReference : metadatas
+	if (s.metadatas.getEReference() != null) t.addNewReference("metadatas".clearKeyWord(), s.metadatas.getEReference());
+	//UseCase.behaviours -> EReference : behaviours
+	if (s.behaviours.getEReference() != null) t.addNewReference("behaviours".clearKeyWord(), s.behaviours.getEReference());
+	//UseCase.bindingRegistries -> EReference : bindingRegistries
+	if (s.bindingRegistries.getEReference() != null) t.addNewReference("bindingRegistries".clearKeyWord(), s.bindingRegistries.getEReference());
+	//UseCase.namespaces -> EReference : namespaces
+	if (s.namespaces.getEReference() != null) t.addNewReference("namespaces".clearKeyWord(), s.namespaces.getEReference());
+	//UseCase.types -> EReference : types
+	if (s.types.getEReference() != null) t.addNewReference("types".clearKeyWord(), s.types.getEReference());
+	//UseCase.actors -> EReference : actors
+	if (s.actors.getEReference() != null) t.addNewReference("actors".clearKeyWord(), s.actors.getEReference());
+	//UseCase.tasks -> EReference : tasks
+	if (s.tasks.getEReference() != null) t.addNewReference("tasks".clearKeyWord(), s.tasks.getEReference());
+	//UseCase.includes -> EReference : includes
+	if (s.includes.getEReference() != null) t.addNewReference("includes".clearKeyWord(), s.includes.getEReference());
+	//UseCase.extends -> EReference : extends_
+	if (s.`extends`.getEReference() != null) t.addNewReference("extends".clearKeyWord(), s.`extends`.getEReference());
+	//UseCase.domainClasses -> EReference : domainClasses
+	if (s.domainClasses.getEReference() != null) t.addNewReference("domainClasses".clearKeyWord(), s.domainClasses.getEReference());
+}
+
+@lazy
+rule NamedElement
+	transform s : DSL!NamedElement //graal.NamedElement
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//NamedElement.technicalid -> EAttribute : technicalid
+	if (s.technicalid.getEAttribute() != null) t.addNewAttribute("technicalid".clearKeyWord(), s.technicalid.getEAttribute());
+	//NamedElement.description -> EAttribute : description
+	if (s.description.getEAttribute() != null) t.addNewAttribute("description".clearKeyWord(), s.description.getEAttribute());
+	//NamedElement.keywords -> EAttribute : keywords
+	if (s.keywords.getEAttribute() != null) t.addNewAttribute("keywords".clearKeyWord(), s.keywords.getEAttribute());
+	//NamedElement.version -> EAttribute : version
+	if (s.version.getEAttribute() != null) t.addNewAttribute("version".clearKeyWord(), s.version.getEAttribute());
+	//NamedElement.createdOn -> EAttribute : createdOn
+	if (s.createdOn.getEAttribute() != null) t.addNewAttribute("createdOn".clearKeyWord(), s.createdOn.getEAttribute());
+	//NamedElement.modifiedOn -> EAttribute : modifiedOn
+	if (s.modifiedOn.getEAttribute() != null) t.addNewAttribute("modifiedOn".clearKeyWord(), s.modifiedOn.getEAttribute());
+	//NamedElement.name -> EAttribute : name
+	if (s.name.getEAttribute() != null) t.addNewAttribute("name".clearKeyWord(), s.name.getEAttribute());
+	//NamedElement.metadatas -> EReference : metadatas
+	if (s.metadatas.getEReference() != null) t.addNewReference("metadatas".clearKeyWord(), s.metadatas.getEReference());
+	//NamedElement.behaviours -> EReference : behaviours
+	if (s.behaviours.getEReference() != null) t.addNewReference("behaviours".clearKeyWord(), s.behaviours.getEReference());
+	//NamedElement.bindingRegistries -> EReference : bindingRegistries
+	if (s.bindingRegistries.getEReference() != null) t.addNewReference("bindingRegistries".clearKeyWord(), s.bindingRegistries.getEReference());
+}
+
+@lazy
+rule NamedNode
+	transform s : DSL!NamedNode //graal.NamedNode
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//NamedNode.technicalid -> EAttribute : technicalid
+	if (s.technicalid.getEAttribute() != null) t.addNewAttribute("technicalid".clearKeyWord(), s.technicalid.getEAttribute());
+	//NamedNode.description -> EAttribute : description
+	if (s.description.getEAttribute() != null) t.addNewAttribute("description".clearKeyWord(), s.description.getEAttribute());
+	//NamedNode.keywords -> EAttribute : keywords
+	if (s.keywords.getEAttribute() != null) t.addNewAttribute("keywords".clearKeyWord(), s.keywords.getEAttribute());
+	//NamedNode.version -> EAttribute : version
+	if (s.version.getEAttribute() != null) t.addNewAttribute("version".clearKeyWord(), s.version.getEAttribute());
+	//NamedNode.createdOn -> EAttribute : createdOn
+	if (s.createdOn.getEAttribute() != null) t.addNewAttribute("createdOn".clearKeyWord(), s.createdOn.getEAttribute());
+	//NamedNode.modifiedOn -> EAttribute : modifiedOn
+	if (s.modifiedOn.getEAttribute() != null) t.addNewAttribute("modifiedOn".clearKeyWord(), s.modifiedOn.getEAttribute());
+	//NamedNode.name -> EAttribute : name
+	if (s.name.getEAttribute() != null) t.addNewAttribute("name".clearKeyWord(), s.name.getEAttribute());
+	//NamedNode.metadatas -> EReference : metadatas
+	if (s.metadatas.getEReference() != null) t.addNewReference("metadatas".clearKeyWord(), s.metadatas.getEReference());
+	//NamedNode.behaviours -> EReference : behaviours
+	if (s.behaviours.getEReference() != null) t.addNewReference("behaviours".clearKeyWord(), s.behaviours.getEReference());
+	//NamedNode.bindingRegistries -> EReference : bindingRegistries
+	if (s.bindingRegistries.getEReference() != null) t.addNewReference("bindingRegistries".clearKeyWord(), s.bindingRegistries.getEReference());
+	//NamedNode.outgoingTransitions -> EReference : outgoingTransitions
+	if (s.outgoingTransitions.getEReference() != null) t.addNewReference("outgoingTransitions".clearKeyWord(), s.outgoingTransitions.getEReference());
+	//NamedNode.incomingTransitions -> EReference : incomingTransitions
+	if (s.incomingTransitions.getEReference() != null) t.addNewReference("incomingTransitions".clearKeyWord(), s.incomingTransitions.getEReference());
+}
+
+@lazy
+rule DomainModelRegistry
+	transform s : DSL!DomainModelRegistry //graal.DomainModelRegistry
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//DomainModelRegistry.namespaces -> EReference : namespaces
+	if (s.namespaces.getEReference() != null) t.addNewReference("namespaces".clearKeyWord(), s.namespaces.getEReference());
+	//DomainModelRegistry.types -> EReference : types
+	if (s.types.getEReference() != null) t.addNewReference("types".clearKeyWord(), s.types.getEReference());
+}
+
+@lazy
+rule TasksContainer
+	transform s : DSL!TasksContainer //graal.TasksContainer
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//TasksContainer.tasks -> EReference : tasks
+	if (s.tasks.getEReference() != null) t.addNewReference("tasks".clearKeyWord(), s.tasks.getEReference());
+	//TasksContainer.ownedTasks -> EReference : ownedTasks
+	if (s.ownedTasks.getEReference() != null) t.addNewReference("ownedTasks".clearKeyWord(), s.ownedTasks.getEReference());
+	//TasksContainer.ownedGroups -> EReference : ownedGroups
+	if (s.ownedGroups.getEReference() != null) t.addNewReference("ownedGroups".clearKeyWord(), s.ownedGroups.getEReference());
+}
+
+@lazy
+rule UserStory
+	transform s : DSL!UserStory //graal.UserStory
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//UserStory.technicalid -> EAttribute : technicalid
+	if (s.technicalid.getEAttribute() != null) t.addNewAttribute("technicalid".clearKeyWord(), s.technicalid.getEAttribute());
+	//UserStory.description -> EAttribute : description
+	if (s.description.getEAttribute() != null) t.addNewAttribute("description".clearKeyWord(), s.description.getEAttribute());
+	//UserStory.keywords -> EAttribute : keywords
+	if (s.keywords.getEAttribute() != null) t.addNewAttribute("keywords".clearKeyWord(), s.keywords.getEAttribute());
+	//UserStory.version -> EAttribute : version
+	if (s.version.getEAttribute() != null) t.addNewAttribute("version".clearKeyWord(), s.version.getEAttribute());
+	//UserStory.createdOn -> EAttribute : createdOn
+	if (s.createdOn.getEAttribute() != null) t.addNewAttribute("createdOn".clearKeyWord(), s.createdOn.getEAttribute());
+	//UserStory.modifiedOn -> EAttribute : modifiedOn
+	if (s.modifiedOn.getEAttribute() != null) t.addNewAttribute("modifiedOn".clearKeyWord(), s.modifiedOn.getEAttribute());
+	//UserStory.name -> EAttribute : name
+	if (s.name.getEAttribute() != null) t.addNewAttribute("name".clearKeyWord(), s.name.getEAttribute());
+	//UserStory.metadatas -> EReference : metadatas
+	if (s.metadatas.getEReference() != null) t.addNewReference("metadatas".clearKeyWord(), s.metadatas.getEReference());
+	//UserStory.behaviours -> EReference : behaviours
+	if (s.behaviours.getEReference() != null) t.addNewReference("behaviours".clearKeyWord(), s.behaviours.getEReference());
+	//UserStory.bindingRegistries -> EReference : bindingRegistries
+	if (s.bindingRegistries.getEReference() != null) t.addNewReference("bindingRegistries".clearKeyWord(), s.bindingRegistries.getEReference());
+	//UserStory.elements -> EReference : elements
+	if (s.elements.getEReference() != null) t.addNewReference("elements".clearKeyWord(), s.elements.getEReference());
+}
+
+@lazy
+rule UserStoryElement
+	transform s : DSL!UserStoryElement //graal.UserStoryElement
+	to t : SysMLine!ItemUsage
+	extends Base{
+}
+
+@lazy
+rule GraalObject
+	transform s : DSL!GraalObject //graal.GraalObject
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//GraalObject.technicalid -> EAttribute : technicalid
+	if (s.technicalid.getEAttribute() != null) t.addNewAttribute("technicalid".clearKeyWord(), s.technicalid.getEAttribute());
+	//GraalObject.description -> EAttribute : description
+	if (s.description.getEAttribute() != null) t.addNewAttribute("description".clearKeyWord(), s.description.getEAttribute());
+	//GraalObject.keywords -> EAttribute : keywords
+	if (s.keywords.getEAttribute() != null) t.addNewAttribute("keywords".clearKeyWord(), s.keywords.getEAttribute());
+	//GraalObject.version -> EAttribute : version
+	if (s.version.getEAttribute() != null) t.addNewAttribute("version".clearKeyWord(), s.version.getEAttribute());
+	//GraalObject.createdOn -> EAttribute : createdOn
+	if (s.createdOn.getEAttribute() != null) t.addNewAttribute("createdOn".clearKeyWord(), s.createdOn.getEAttribute());
+	//GraalObject.modifiedOn -> EAttribute : modifiedOn
+	if (s.modifiedOn.getEAttribute() != null) t.addNewAttribute("modifiedOn".clearKeyWord(), s.modifiedOn.getEAttribute());
+	//GraalObject.metadatas -> EReference : metadatas
+	if (s.metadatas.getEReference() != null) t.addNewReference("metadatas".clearKeyWord(), s.metadatas.getEReference());
+	//GraalObject.behaviours -> EReference : behaviours
+	if (s.behaviours.getEReference() != null) t.addNewReference("behaviours".clearKeyWord(), s.behaviours.getEReference());
+	//GraalObject.bindingRegistries -> EReference : bindingRegistries
+	if (s.bindingRegistries.getEReference() != null) t.addNewReference("bindingRegistries".clearKeyWord(), s.bindingRegistries.getEReference());
+}
+
+@lazy
+rule DomainClass
+	transform s : DSL!DomainClass //graal.DomainClass
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//DomainClass.technicalid -> EAttribute : technicalid
+	if (s.technicalid.getEAttribute() != null) t.addNewAttribute("technicalid".clearKeyWord(), s.technicalid.getEAttribute());
+	//DomainClass.description -> EAttribute : description
+	if (s.description.getEAttribute() != null) t.addNewAttribute("description".clearKeyWord(), s.description.getEAttribute());
+	//DomainClass.keywords -> EAttribute : keywords
+	if (s.keywords.getEAttribute() != null) t.addNewAttribute("keywords".clearKeyWord(), s.keywords.getEAttribute());
+	//DomainClass.version -> EAttribute : version
+	if (s.version.getEAttribute() != null) t.addNewAttribute("version".clearKeyWord(), s.version.getEAttribute());
+	//DomainClass.createdOn -> EAttribute : createdOn
+	if (s.createdOn.getEAttribute() != null) t.addNewAttribute("createdOn".clearKeyWord(), s.createdOn.getEAttribute());
+	//DomainClass.modifiedOn -> EAttribute : modifiedOn
+	if (s.modifiedOn.getEAttribute() != null) t.addNewAttribute("modifiedOn".clearKeyWord(), s.modifiedOn.getEAttribute());
+	//DomainClass.name -> EAttribute : name
+	if (s.name.getEAttribute() != null) t.addNewAttribute("name".clearKeyWord(), s.name.getEAttribute());
+	//DomainClass.estimatedVolumetry -> EAttribute : estimatedVolumetry
+	if (s.estimatedVolumetry.getEAttribute() != null) t.addNewAttribute("estimatedVolumetry".clearKeyWord(), s.estimatedVolumetry.getEAttribute());
+	//DomainClass.historized -> EAttribute : historized
+	if (s.historized.getEAttribute() != null) t.addNewAttribute("historized".clearKeyWord(), s.historized.getEAttribute());
+	//DomainClass.metadatas -> EReference : metadatas
+	if (s.metadatas.getEReference() != null) t.addNewReference("metadatas".clearKeyWord(), s.metadatas.getEReference());
+	//DomainClass.behaviours -> EReference : behaviours
+	if (s.behaviours.getEReference() != null) t.addNewReference("behaviours".clearKeyWord(), s.behaviours.getEReference());
+	//DomainClass.bindingRegistries -> EReference : bindingRegistries
+	if (s.bindingRegistries.getEReference() != null) t.addNewReference("bindingRegistries".clearKeyWord(), s.bindingRegistries.getEReference());
+	//DomainClass.typeDefinition -> EReference : typeDefinition
+	if (s.typeDefinition.getEReference() != null) t.addNewReference("typeDefinition".clearKeyWord(), s.typeDefinition.getEReference());
+	//DomainClass.supertype -> EReference : supertype
+	if (s.supertype.getEReference() != null) t.addNewReference("supertype".clearKeyWord(), s.supertype.getEReference());
+	//DomainClass.associatedTypes -> EReference : associatedTypes
+	if (s.associatedTypes.getEReference() != null) t.addNewReference("associatedTypes".clearKeyWord(), s.associatedTypes.getEReference());
+	//DomainClass.ownedAttributes -> EReference : ownedAttributes
+	if (s.ownedAttributes.getEReference() != null) t.addNewReference("ownedAttributes".clearKeyWord(), s.ownedAttributes.getEReference());
+	//DomainClass.attributes -> EReference : attributes
+	if (s.attributes.getEReference() != null) t.addNewReference("attributes".clearKeyWord(), s.attributes.getEReference());
+	//DomainClass.ownedReferences -> EReference : ownedReferences
+	if (s.ownedReferences.getEReference() != null) t.addNewReference("ownedReferences".clearKeyWord(), s.ownedReferences.getEReference());
+	//DomainClass.references -> EReference : references
+	if (s.references.getEReference() != null) t.addNewReference("references".clearKeyWord(), s.references.getEReference());
+	//DomainClass.properties -> EReference : properties
+	if (s.properties.getEReference() != null) t.addNewReference("properties".clearKeyWord(), s.properties.getEReference());
+}
+
+
+// environment.ecore
+@lazy
+rule Environment
+	transform s : DSL!Environment //environment.Environment
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//Environment.technicalid -> EAttribute : technicalid
+	if (s.technicalid.getEAttribute() != null) t.addNewAttribute("technicalid".clearKeyWord(), s.technicalid.getEAttribute());
+	//Environment.description -> EAttribute : description
+	if (s.description.getEAttribute() != null) t.addNewAttribute("description".clearKeyWord(), s.description.getEAttribute());
+	//Environment.keywords -> EAttribute : keywords
+	if (s.keywords.getEAttribute() != null) t.addNewAttribute("keywords".clearKeyWord(), s.keywords.getEAttribute());
+	//Environment.version -> EAttribute : version
+	if (s.version.getEAttribute() != null) t.addNewAttribute("version".clearKeyWord(), s.version.getEAttribute());
+	//Environment.createdOn -> EAttribute : createdOn
+	if (s.createdOn.getEAttribute() != null) t.addNewAttribute("createdOn".clearKeyWord(), s.createdOn.getEAttribute());
+	//Environment.modifiedOn -> EAttribute : modifiedOn
+	if (s.modifiedOn.getEAttribute() != null) t.addNewAttribute("modifiedOn".clearKeyWord(), s.modifiedOn.getEAttribute());
+	//Environment.name -> EAttribute : name
+	if (s.name.getEAttribute() != null) t.addNewAttribute("name".clearKeyWord(), s.name.getEAttribute());
+	//Environment.metadatas -> EReference : metadatas
+	if (s.metadatas.getEReference() != null) t.addNewReference("metadatas".clearKeyWord(), s.metadatas.getEReference());
+	//Environment.behaviours -> EReference : behaviours
+	if (s.behaviours.getEReference() != null) t.addNewReference("behaviours".clearKeyWord(), s.behaviours.getEReference());
+	//Environment.bindingRegistries -> EReference : bindingRegistries
+	if (s.bindingRegistries.getEReference() != null) t.addNewReference("bindingRegistries".clearKeyWord(), s.bindingRegistries.getEReference());
+	//Environment.ownedNamespaces -> EReference : ownedNamespaces
+	if (s.ownedNamespaces.getEReference() != null) t.addNewReference("ownedNamespaces".clearKeyWord(), s.ownedNamespaces.getEReference());
+	//Environment.actions -> EReference : actions
+	if (s.actions.getEReference() != null) t.addNewReference("actions".clearKeyWord(), s.actions.getEReference());
+	//Environment.links -> EReference : links
+	if (s.links.getEReference() != null) t.addNewReference("links".clearKeyWord(), s.links.getEReference());
+	//Environment.priorityDefinitions -> EReference : priorityDefinitions
+	if (s.priorityDefinitions.getEReference() != null) t.addNewReference("priorityDefinitions".clearKeyWord(), s.priorityDefinitions.getEReference());
+	//Environment.typesDefinition -> EReference : typesDefinition
+	if (s.typesDefinition.getEReference() != null) t.addNewReference("typesDefinition".clearKeyWord(), s.typesDefinition.getEReference());
+}
+
+@lazy
+rule Type
+	transform s : DSL!Type //environment.Type
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//Type.technicalid -> EAttribute : technicalid
+	if (s.technicalid.getEAttribute() != null) t.addNewAttribute("technicalid".clearKeyWord(), s.technicalid.getEAttribute());
+	//Type.description -> EAttribute : description
+	if (s.description.getEAttribute() != null) t.addNewAttribute("description".clearKeyWord(), s.description.getEAttribute());
+	//Type.keywords -> EAttribute : keywords
+	if (s.keywords.getEAttribute() != null) t.addNewAttribute("keywords".clearKeyWord(), s.keywords.getEAttribute());
+	//Type.version -> EAttribute : version
+	if (s.version.getEAttribute() != null) t.addNewAttribute("version".clearKeyWord(), s.version.getEAttribute());
+	//Type.createdOn -> EAttribute : createdOn
+	if (s.createdOn.getEAttribute() != null) t.addNewAttribute("createdOn".clearKeyWord(), s.createdOn.getEAttribute());
+	//Type.modifiedOn -> EAttribute : modifiedOn
+	if (s.modifiedOn.getEAttribute() != null) t.addNewAttribute("modifiedOn".clearKeyWord(), s.modifiedOn.getEAttribute());
+	//Type.name -> EAttribute : name
+	if (s.name.getEAttribute() != null) t.addNewAttribute("name".clearKeyWord(), s.name.getEAttribute());
+	//Type.metadatas -> EReference : metadatas
+	if (s.metadatas.getEReference() != null) t.addNewReference("metadatas".clearKeyWord(), s.metadatas.getEReference());
+	//Type.behaviours -> EReference : behaviours
+	if (s.behaviours.getEReference() != null) t.addNewReference("behaviours".clearKeyWord(), s.behaviours.getEReference());
+	//Type.bindingRegistries -> EReference : bindingRegistries
+	if (s.bindingRegistries.getEReference() != null) t.addNewReference("bindingRegistries".clearKeyWord(), s.bindingRegistries.getEReference());
+	//Type.typeDefinition -> EReference : typeDefinition
+	if (s.typeDefinition.getEReference() != null) t.addNewReference("typeDefinition".clearKeyWord(), s.typeDefinition.getEReference());
+}
+
+@lazy
+rule PrimitiveType
+	transform s : DSL!PrimitiveType //environment.PrimitiveType
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//PrimitiveType.technicalid -> EAttribute : technicalid
+	if (s.technicalid.getEAttribute() != null) t.addNewAttribute("technicalid".clearKeyWord(), s.technicalid.getEAttribute());
+	//PrimitiveType.description -> EAttribute : description
+	if (s.description.getEAttribute() != null) t.addNewAttribute("description".clearKeyWord(), s.description.getEAttribute());
+	//PrimitiveType.keywords -> EAttribute : keywords
+	if (s.keywords.getEAttribute() != null) t.addNewAttribute("keywords".clearKeyWord(), s.keywords.getEAttribute());
+	//PrimitiveType.version -> EAttribute : version
+	if (s.version.getEAttribute() != null) t.addNewAttribute("version".clearKeyWord(), s.version.getEAttribute());
+	//PrimitiveType.createdOn -> EAttribute : createdOn
+	if (s.createdOn.getEAttribute() != null) t.addNewAttribute("createdOn".clearKeyWord(), s.createdOn.getEAttribute());
+	//PrimitiveType.modifiedOn -> EAttribute : modifiedOn
+	if (s.modifiedOn.getEAttribute() != null) t.addNewAttribute("modifiedOn".clearKeyWord(), s.modifiedOn.getEAttribute());
+	//PrimitiveType.name -> EAttribute : name
+	if (s.name.getEAttribute() != null) t.addNewAttribute("name".clearKeyWord(), s.name.getEAttribute());
+	//PrimitiveType.kind -> EAttribute : kind
+	if (s.kind.getEAttribute() != null) t.addNewAttribute("kind".clearKeyWord(), s.kind.getEAttribute());
+	//PrimitiveType.metadatas -> EReference : metadatas
+	if (s.metadatas.getEReference() != null) t.addNewReference("metadatas".clearKeyWord(), s.metadatas.getEReference());
+	//PrimitiveType.behaviours -> EReference : behaviours
+	if (s.behaviours.getEReference() != null) t.addNewReference("behaviours".clearKeyWord(), s.behaviours.getEReference());
+	//PrimitiveType.bindingRegistries -> EReference : bindingRegistries
+	if (s.bindingRegistries.getEReference() != null) t.addNewReference("bindingRegistries".clearKeyWord(), s.bindingRegistries.getEReference());
+	//PrimitiveType.typeDefinition -> EReference : typeDefinition
+	if (s.typeDefinition.getEReference() != null) t.addNewReference("typeDefinition".clearKeyWord(), s.typeDefinition.getEReference());
+}
+
+@lazy
+rule Enumeration
+	transform s : DSL!Enumeration //environment.Enumeration
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//Enumeration.technicalid -> EAttribute : technicalid
+	if (s.technicalid.getEAttribute() != null) t.addNewAttribute("technicalid".clearKeyWord(), s.technicalid.getEAttribute());
+	//Enumeration.description -> EAttribute : description
+	if (s.description.getEAttribute() != null) t.addNewAttribute("description".clearKeyWord(), s.description.getEAttribute());
+	//Enumeration.keywords -> EAttribute : keywords
+	if (s.keywords.getEAttribute() != null) t.addNewAttribute("keywords".clearKeyWord(), s.keywords.getEAttribute());
+	//Enumeration.version -> EAttribute : version
+	if (s.version.getEAttribute() != null) t.addNewAttribute("version".clearKeyWord(), s.version.getEAttribute());
+	//Enumeration.createdOn -> EAttribute : createdOn
+	if (s.createdOn.getEAttribute() != null) t.addNewAttribute("createdOn".clearKeyWord(), s.createdOn.getEAttribute());
+	//Enumeration.modifiedOn -> EAttribute : modifiedOn
+	if (s.modifiedOn.getEAttribute() != null) t.addNewAttribute("modifiedOn".clearKeyWord(), s.modifiedOn.getEAttribute());
+	//Enumeration.name -> EAttribute : name
+	if (s.name.getEAttribute() != null) t.addNewAttribute("name".clearKeyWord(), s.name.getEAttribute());
+	//Enumeration.metadatas -> EReference : metadatas
+	if (s.metadatas.getEReference() != null) t.addNewReference("metadatas".clearKeyWord(), s.metadatas.getEReference());
+	//Enumeration.behaviours -> EReference : behaviours
+	if (s.behaviours.getEReference() != null) t.addNewReference("behaviours".clearKeyWord(), s.behaviours.getEReference());
+	//Enumeration.bindingRegistries -> EReference : bindingRegistries
+	if (s.bindingRegistries.getEReference() != null) t.addNewReference("bindingRegistries".clearKeyWord(), s.bindingRegistries.getEReference());
+	//Enumeration.typeDefinition -> EReference : typeDefinition
+	if (s.typeDefinition.getEReference() != null) t.addNewReference("typeDefinition".clearKeyWord(), s.typeDefinition.getEReference());
+	//Enumeration.literals -> EReference : literals
+	if (s.literals.getEReference() != null) t.addNewReference("literals".clearKeyWord(), s.literals.getEReference());
+}
+
+@lazy
+rule Literal
+	transform s : DSL!Literal //environment.Literal
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//Literal.technicalid -> EAttribute : technicalid
+	if (s.technicalid.getEAttribute() != null) t.addNewAttribute("technicalid".clearKeyWord(), s.technicalid.getEAttribute());
+	//Literal.description -> EAttribute : description
+	if (s.description.getEAttribute() != null) t.addNewAttribute("description".clearKeyWord(), s.description.getEAttribute());
+	//Literal.keywords -> EAttribute : keywords
+	if (s.keywords.getEAttribute() != null) t.addNewAttribute("keywords".clearKeyWord(), s.keywords.getEAttribute());
+	//Literal.version -> EAttribute : version
+	if (s.version.getEAttribute() != null) t.addNewAttribute("version".clearKeyWord(), s.version.getEAttribute());
+	//Literal.createdOn -> EAttribute : createdOn
+	if (s.createdOn.getEAttribute() != null) t.addNewAttribute("createdOn".clearKeyWord(), s.createdOn.getEAttribute());
+	//Literal.modifiedOn -> EAttribute : modifiedOn
+	if (s.modifiedOn.getEAttribute() != null) t.addNewAttribute("modifiedOn".clearKeyWord(), s.modifiedOn.getEAttribute());
+	//Literal.name -> EAttribute : name
+	if (s.name.getEAttribute() != null) t.addNewAttribute("name".clearKeyWord(), s.name.getEAttribute());
+	//Literal.metadatas -> EReference : metadatas
+	if (s.metadatas.getEReference() != null) t.addNewReference("metadatas".clearKeyWord(), s.metadatas.getEReference());
+	//Literal.behaviours -> EReference : behaviours
+	if (s.behaviours.getEReference() != null) t.addNewReference("behaviours".clearKeyWord(), s.behaviours.getEReference());
+	//Literal.bindingRegistries -> EReference : bindingRegistries
+	if (s.bindingRegistries.getEReference() != null) t.addNewReference("bindingRegistries".clearKeyWord(), s.bindingRegistries.getEReference());
+}
+
+@lazy
+rule Action
+	transform s : DSL!Action //environment.Action
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//Action.technicalid -> EAttribute : technicalid
+	if (s.technicalid.getEAttribute() != null) t.addNewAttribute("technicalid".clearKeyWord(), s.technicalid.getEAttribute());
+	//Action.description -> EAttribute : description
+	if (s.description.getEAttribute() != null) t.addNewAttribute("description".clearKeyWord(), s.description.getEAttribute());
+	//Action.keywords -> EAttribute : keywords
+	if (s.keywords.getEAttribute() != null) t.addNewAttribute("keywords".clearKeyWord(), s.keywords.getEAttribute());
+	//Action.version -> EAttribute : version
+	if (s.version.getEAttribute() != null) t.addNewAttribute("version".clearKeyWord(), s.version.getEAttribute());
+	//Action.createdOn -> EAttribute : createdOn
+	if (s.createdOn.getEAttribute() != null) t.addNewAttribute("createdOn".clearKeyWord(), s.createdOn.getEAttribute());
+	//Action.modifiedOn -> EAttribute : modifiedOn
+	if (s.modifiedOn.getEAttribute() != null) t.addNewAttribute("modifiedOn".clearKeyWord(), s.modifiedOn.getEAttribute());
+	//Action.name -> EAttribute : name
+	if (s.name.getEAttribute() != null) t.addNewAttribute("name".clearKeyWord(), s.name.getEAttribute());
+	//Action.metadatas -> EReference : metadatas
+	if (s.metadatas.getEReference() != null) t.addNewReference("metadatas".clearKeyWord(), s.metadatas.getEReference());
+	//Action.behaviours -> EReference : behaviours
+	if (s.behaviours.getEReference() != null) t.addNewReference("behaviours".clearKeyWord(), s.behaviours.getEReference());
+	//Action.bindingRegistries -> EReference : bindingRegistries
+	if (s.bindingRegistries.getEReference() != null) t.addNewReference("bindingRegistries".clearKeyWord(), s.bindingRegistries.getEReference());
+}
+
+@lazy
+rule InterDSMLink
+	transform s : DSL!InterDSMLink //environment.InterDSMLink
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//InterDSMLink.technicalid -> EAttribute : technicalid
+	if (s.technicalid.getEAttribute() != null) t.addNewAttribute("technicalid".clearKeyWord(), s.technicalid.getEAttribute());
+	//InterDSMLink.description -> EAttribute : description
+	if (s.description.getEAttribute() != null) t.addNewAttribute("description".clearKeyWord(), s.description.getEAttribute());
+	//InterDSMLink.keywords -> EAttribute : keywords
+	if (s.keywords.getEAttribute() != null) t.addNewAttribute("keywords".clearKeyWord(), s.keywords.getEAttribute());
+	//InterDSMLink.version -> EAttribute : version
+	if (s.version.getEAttribute() != null) t.addNewAttribute("version".clearKeyWord(), s.version.getEAttribute());
+	//InterDSMLink.createdOn -> EAttribute : createdOn
+	if (s.createdOn.getEAttribute() != null) t.addNewAttribute("createdOn".clearKeyWord(), s.createdOn.getEAttribute());
+	//InterDSMLink.modifiedOn -> EAttribute : modifiedOn
+	if (s.modifiedOn.getEAttribute() != null) t.addNewAttribute("modifiedOn".clearKeyWord(), s.modifiedOn.getEAttribute());
+	//InterDSMLink.name -> EAttribute : name
+	if (s.name.getEAttribute() != null) t.addNewAttribute("name".clearKeyWord(), s.name.getEAttribute());
+	//InterDSMLink.metadatas -> EReference : metadatas
+	if (s.metadatas.getEReference() != null) t.addNewReference("metadatas".clearKeyWord(), s.metadatas.getEReference());
+	//InterDSMLink.behaviours -> EReference : behaviours
+	if (s.behaviours.getEReference() != null) t.addNewReference("behaviours".clearKeyWord(), s.behaviours.getEReference());
+	//InterDSMLink.bindingRegistries -> EReference : bindingRegistries
+	if (s.bindingRegistries.getEReference() != null) t.addNewReference("bindingRegistries".clearKeyWord(), s.bindingRegistries.getEReference());
+	//InterDSMLink.target -> EReference : target
+	if (s.target.getEReference() != null) t.addNewReference("target".clearKeyWord(), s.target.getEReference());
+}
+
+@lazy
+rule ObeoDSMObject
+	transform s : DSL!ObeoDSMObject //environment.ObeoDSMObject
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//ObeoDSMObject.technicalid -> EAttribute : technicalid
+	if (s.technicalid.getEAttribute() != null) t.addNewAttribute("technicalid".clearKeyWord(), s.technicalid.getEAttribute());
+	//ObeoDSMObject.description -> EAttribute : description
+	if (s.description.getEAttribute() != null) t.addNewAttribute("description".clearKeyWord(), s.description.getEAttribute());
+	//ObeoDSMObject.keywords -> EAttribute : keywords
+	if (s.keywords.getEAttribute() != null) t.addNewAttribute("keywords".clearKeyWord(), s.keywords.getEAttribute());
+	//ObeoDSMObject.version -> EAttribute : version
+	if (s.version.getEAttribute() != null) t.addNewAttribute("version".clearKeyWord(), s.version.getEAttribute());
+	//ObeoDSMObject.createdOn -> EAttribute : createdOn
+	if (s.createdOn.getEAttribute() != null) t.addNewAttribute("createdOn".clearKeyWord(), s.createdOn.getEAttribute());
+	//ObeoDSMObject.modifiedOn -> EAttribute : modifiedOn
+	if (s.modifiedOn.getEAttribute() != null) t.addNewAttribute("modifiedOn".clearKeyWord(), s.modifiedOn.getEAttribute());
+	//ObeoDSMObject.metadatas -> EReference : metadatas
+	if (s.metadatas.getEReference() != null) t.addNewReference("metadatas".clearKeyWord(), s.metadatas.getEReference());
+	//ObeoDSMObject.behaviours -> EReference : behaviours
+	if (s.behaviours.getEReference() != null) t.addNewReference("behaviours".clearKeyWord(), s.behaviours.getEReference());
+	//ObeoDSMObject.bindingRegistries -> EReference : bindingRegistries
+	if (s.bindingRegistries.getEReference() != null) t.addNewReference("bindingRegistries".clearKeyWord(), s.bindingRegistries.getEReference());
+}
+
+@lazy
+rule MetaDataContainer
+	transform s : DSL!MetaDataContainer //environment.MetaDataContainer
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//MetaDataContainer.technicalid -> EAttribute : technicalid
+	if (s.technicalid.getEAttribute() != null) t.addNewAttribute("technicalid".clearKeyWord(), s.technicalid.getEAttribute());
+	//MetaDataContainer.metadatas -> EReference : metadatas
+	if (s.metadatas.getEReference() != null) t.addNewReference("metadatas".clearKeyWord(), s.metadatas.getEReference());
+}
+
+@lazy
+rule Annotation
+	transform s : DSL!Annotation //environment.Annotation
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//Annotation.technicalid -> EAttribute : technicalid
+	if (s.technicalid.getEAttribute() != null) t.addNewAttribute("technicalid".clearKeyWord(), s.technicalid.getEAttribute());
+	//Annotation.title -> EAttribute : title
+	if (s.title.getEAttribute() != null) t.addNewAttribute("title".clearKeyWord(), s.title.getEAttribute());
+	//Annotation.body -> EAttribute : body
+	if (s.body.getEAttribute() != null) t.addNewAttribute("body".clearKeyWord(), s.body.getEAttribute());
+}
+
+@lazy
+rule PriorityDefinition
+	transform s : DSL!PriorityDefinition //environment.PriorityDefinition
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//PriorityDefinition.technicalid -> EAttribute : technicalid
+	if (s.technicalid.getEAttribute() != null) t.addNewAttribute("technicalid".clearKeyWord(), s.technicalid.getEAttribute());
+	//PriorityDefinition.description -> EAttribute : description
+	if (s.description.getEAttribute() != null) t.addNewAttribute("description".clearKeyWord(), s.description.getEAttribute());
+	//PriorityDefinition.keywords -> EAttribute : keywords
+	if (s.keywords.getEAttribute() != null) t.addNewAttribute("keywords".clearKeyWord(), s.keywords.getEAttribute());
+	//PriorityDefinition.version -> EAttribute : version
+	if (s.version.getEAttribute() != null) t.addNewAttribute("version".clearKeyWord(), s.version.getEAttribute());
+	//PriorityDefinition.createdOn -> EAttribute : createdOn
+	if (s.createdOn.getEAttribute() != null) t.addNewAttribute("createdOn".clearKeyWord(), s.createdOn.getEAttribute());
+	//PriorityDefinition.modifiedOn -> EAttribute : modifiedOn
+	if (s.modifiedOn.getEAttribute() != null) t.addNewAttribute("modifiedOn".clearKeyWord(), s.modifiedOn.getEAttribute());
+	//PriorityDefinition.metadatas -> EReference : metadatas
+	if (s.metadatas.getEReference() != null) t.addNewReference("metadatas".clearKeyWord(), s.metadatas.getEReference());
+	//PriorityDefinition.behaviours -> EReference : behaviours
+	if (s.behaviours.getEReference() != null) t.addNewReference("behaviours".clearKeyWord(), s.behaviours.getEReference());
+	//PriorityDefinition.bindingRegistries -> EReference : bindingRegistries
+	if (s.bindingRegistries.getEReference() != null) t.addNewReference("bindingRegistries".clearKeyWord(), s.bindingRegistries.getEReference());
+	//PriorityDefinition.priorities -> EReference : priorities
+	if (s.priorities.getEReference() != null) t.addNewReference("priorities".clearKeyWord(), s.priorities.getEReference());
+}
+
+@lazy
+rule Priority
+	transform s : DSL!Priority //environment.Priority
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//Priority.technicalid -> EAttribute : technicalid
+	if (s.technicalid.getEAttribute() != null) t.addNewAttribute("technicalid".clearKeyWord(), s.technicalid.getEAttribute());
+	//Priority.description -> EAttribute : description
+	if (s.description.getEAttribute() != null) t.addNewAttribute("description".clearKeyWord(), s.description.getEAttribute());
+	//Priority.keywords -> EAttribute : keywords
+	if (s.keywords.getEAttribute() != null) t.addNewAttribute("keywords".clearKeyWord(), s.keywords.getEAttribute());
+	//Priority.version -> EAttribute : version
+	if (s.version.getEAttribute() != null) t.addNewAttribute("version".clearKeyWord(), s.version.getEAttribute());
+	//Priority.createdOn -> EAttribute : createdOn
+	if (s.createdOn.getEAttribute() != null) t.addNewAttribute("createdOn".clearKeyWord(), s.createdOn.getEAttribute());
+	//Priority.modifiedOn -> EAttribute : modifiedOn
+	if (s.modifiedOn.getEAttribute() != null) t.addNewAttribute("modifiedOn".clearKeyWord(), s.modifiedOn.getEAttribute());
+	//Priority.name -> EAttribute : name
+	if (s.name.getEAttribute() != null) t.addNewAttribute("name".clearKeyWord(), s.name.getEAttribute());
+	//Priority.metadatas -> EReference : metadatas
+	if (s.metadatas.getEReference() != null) t.addNewReference("metadatas".clearKeyWord(), s.metadatas.getEReference());
+	//Priority.behaviours -> EReference : behaviours
+	if (s.behaviours.getEReference() != null) t.addNewReference("behaviours".clearKeyWord(), s.behaviours.getEReference());
+	//Priority.bindingRegistries -> EReference : bindingRegistries
+	if (s.bindingRegistries.getEReference() != null) t.addNewReference("bindingRegistries".clearKeyWord(), s.bindingRegistries.getEReference());
+}
+
+@lazy
+rule MetaData
+	transform s : DSL!MetaData //environment.MetaData
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//MetaData.technicalid -> EAttribute : technicalid
+	if (s.technicalid.getEAttribute() != null) t.addNewAttribute("technicalid".clearKeyWord(), s.technicalid.getEAttribute());
+}
+
+@lazy
+rule TypesDefinition
+	transform s : DSL!TypesDefinition //environment.TypesDefinition
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//TypesDefinition.technicalid -> EAttribute : technicalid
+	if (s.technicalid.getEAttribute() != null) t.addNewAttribute("technicalid".clearKeyWord(), s.technicalid.getEAttribute());
+	//TypesDefinition.description -> EAttribute : description
+	if (s.description.getEAttribute() != null) t.addNewAttribute("description".clearKeyWord(), s.description.getEAttribute());
+	//TypesDefinition.keywords -> EAttribute : keywords
+	if (s.keywords.getEAttribute() != null) t.addNewAttribute("keywords".clearKeyWord(), s.keywords.getEAttribute());
+	//TypesDefinition.version -> EAttribute : version
+	if (s.version.getEAttribute() != null) t.addNewAttribute("version".clearKeyWord(), s.version.getEAttribute());
+	//TypesDefinition.createdOn -> EAttribute : createdOn
+	if (s.createdOn.getEAttribute() != null) t.addNewAttribute("createdOn".clearKeyWord(), s.createdOn.getEAttribute());
+	//TypesDefinition.modifiedOn -> EAttribute : modifiedOn
+	if (s.modifiedOn.getEAttribute() != null) t.addNewAttribute("modifiedOn".clearKeyWord(), s.modifiedOn.getEAttribute());
+	//TypesDefinition.metadatas -> EReference : metadatas
+	if (s.metadatas.getEReference() != null) t.addNewReference("metadatas".clearKeyWord(), s.metadatas.getEReference());
+	//TypesDefinition.behaviours -> EReference : behaviours
+	if (s.behaviours.getEReference() != null) t.addNewReference("behaviours".clearKeyWord(), s.behaviours.getEReference());
+	//TypesDefinition.bindingRegistries -> EReference : bindingRegistries
+	if (s.bindingRegistries.getEReference() != null) t.addNewReference("bindingRegistries".clearKeyWord(), s.bindingRegistries.getEReference());
+	//TypesDefinition.types -> EReference : types
+	if (s.types.getEReference() != null) t.addNewReference("types".clearKeyWord(), s.types.getEReference());
+}
+
+@lazy
+rule Behaviour
+	transform s : DSL!Behaviour //environment.Behaviour
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//Behaviour.technicalid -> EAttribute : technicalid
+	if (s.technicalid.getEAttribute() != null) t.addNewAttribute("technicalid".clearKeyWord(), s.technicalid.getEAttribute());
+	//Behaviour.description -> EAttribute : description
+	if (s.description.getEAttribute() != null) t.addNewAttribute("description".clearKeyWord(), s.description.getEAttribute());
+	//Behaviour.keywords -> EAttribute : keywords
+	if (s.keywords.getEAttribute() != null) t.addNewAttribute("keywords".clearKeyWord(), s.keywords.getEAttribute());
+	//Behaviour.version -> EAttribute : version
+	if (s.version.getEAttribute() != null) t.addNewAttribute("version".clearKeyWord(), s.version.getEAttribute());
+	//Behaviour.createdOn -> EAttribute : createdOn
+	if (s.createdOn.getEAttribute() != null) t.addNewAttribute("createdOn".clearKeyWord(), s.createdOn.getEAttribute());
+	//Behaviour.modifiedOn -> EAttribute : modifiedOn
+	if (s.modifiedOn.getEAttribute() != null) t.addNewAttribute("modifiedOn".clearKeyWord(), s.modifiedOn.getEAttribute());
+	//Behaviour.metadatas -> EReference : metadatas
+	if (s.metadatas.getEReference() != null) t.addNewReference("metadatas".clearKeyWord(), s.metadatas.getEReference());
+	//Behaviour.behaviours -> EReference : behaviours
+	if (s.behaviours.getEReference() != null) t.addNewReference("behaviours".clearKeyWord(), s.behaviours.getEReference());
+	//Behaviour.bindingRegistries -> EReference : bindingRegistries
+	if (s.bindingRegistries.getEReference() != null) t.addNewReference("bindingRegistries".clearKeyWord(), s.bindingRegistries.getEReference());
+}
+
+@lazy
+rule StructuredType
+	transform s : DSL!StructuredType //environment.StructuredType
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//StructuredType.technicalid -> EAttribute : technicalid
+	if (s.technicalid.getEAttribute() != null) t.addNewAttribute("technicalid".clearKeyWord(), s.technicalid.getEAttribute());
+	//StructuredType.description -> EAttribute : description
+	if (s.description.getEAttribute() != null) t.addNewAttribute("description".clearKeyWord(), s.description.getEAttribute());
+	//StructuredType.keywords -> EAttribute : keywords
+	if (s.keywords.getEAttribute() != null) t.addNewAttribute("keywords".clearKeyWord(), s.keywords.getEAttribute());
+	//StructuredType.version -> EAttribute : version
+	if (s.version.getEAttribute() != null) t.addNewAttribute("version".clearKeyWord(), s.version.getEAttribute());
+	//StructuredType.createdOn -> EAttribute : createdOn
+	if (s.createdOn.getEAttribute() != null) t.addNewAttribute("createdOn".clearKeyWord(), s.createdOn.getEAttribute());
+	//StructuredType.modifiedOn -> EAttribute : modifiedOn
+	if (s.modifiedOn.getEAttribute() != null) t.addNewAttribute("modifiedOn".clearKeyWord(), s.modifiedOn.getEAttribute());
+	//StructuredType.name -> EAttribute : name
+	if (s.name.getEAttribute() != null) t.addNewAttribute("name".clearKeyWord(), s.name.getEAttribute());
+	//StructuredType.metadatas -> EReference : metadatas
+	if (s.metadatas.getEReference() != null) t.addNewReference("metadatas".clearKeyWord(), s.metadatas.getEReference());
+	//StructuredType.behaviours -> EReference : behaviours
+	if (s.behaviours.getEReference() != null) t.addNewReference("behaviours".clearKeyWord(), s.behaviours.getEReference());
+	//StructuredType.bindingRegistries -> EReference : bindingRegistries
+	if (s.bindingRegistries.getEReference() != null) t.addNewReference("bindingRegistries".clearKeyWord(), s.bindingRegistries.getEReference());
+	//StructuredType.typeDefinition -> EReference : typeDefinition
+	if (s.typeDefinition.getEReference() != null) t.addNewReference("typeDefinition".clearKeyWord(), s.typeDefinition.getEReference());
+	//StructuredType.supertype -> EReference : supertype
+	if (s.supertype.getEReference() != null) t.addNewReference("supertype".clearKeyWord(), s.supertype.getEReference());
+	//StructuredType.associatedTypes -> EReference : associatedTypes
+	if (s.associatedTypes.getEReference() != null) t.addNewReference("associatedTypes".clearKeyWord(), s.associatedTypes.getEReference());
+	//StructuredType.ownedAttributes -> EReference : ownedAttributes
+	if (s.ownedAttributes.getEReference() != null) t.addNewReference("ownedAttributes".clearKeyWord(), s.ownedAttributes.getEReference());
+	//StructuredType.attributes -> EReference : attributes
+	if (s.attributes.getEReference() != null) t.addNewReference("attributes".clearKeyWord(), s.attributes.getEReference());
+	//StructuredType.ownedReferences -> EReference : ownedReferences
+	if (s.ownedReferences.getEReference() != null) t.addNewReference("ownedReferences".clearKeyWord(), s.ownedReferences.getEReference());
+	//StructuredType.references -> EReference : references
+	if (s.references.getEReference() != null) t.addNewReference("references".clearKeyWord(), s.references.getEReference());
+	//StructuredType.properties -> EReference : properties
+	if (s.properties.getEReference() != null) t.addNewReference("properties".clearKeyWord(), s.properties.getEReference());
+}
+
+@lazy
+rule DTO
+	transform s : DSL!DTO //environment.DTO
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//DTO.technicalid -> EAttribute : technicalid
+	if (s.technicalid.getEAttribute() != null) t.addNewAttribute("technicalid".clearKeyWord(), s.technicalid.getEAttribute());
+	//DTO.description -> EAttribute : description
+	if (s.description.getEAttribute() != null) t.addNewAttribute("description".clearKeyWord(), s.description.getEAttribute());
+	//DTO.keywords -> EAttribute : keywords
+	if (s.keywords.getEAttribute() != null) t.addNewAttribute("keywords".clearKeyWord(), s.keywords.getEAttribute());
+	//DTO.version -> EAttribute : version
+	if (s.version.getEAttribute() != null) t.addNewAttribute("version".clearKeyWord(), s.version.getEAttribute());
+	//DTO.createdOn -> EAttribute : createdOn
+	if (s.createdOn.getEAttribute() != null) t.addNewAttribute("createdOn".clearKeyWord(), s.createdOn.getEAttribute());
+	//DTO.modifiedOn -> EAttribute : modifiedOn
+	if (s.modifiedOn.getEAttribute() != null) t.addNewAttribute("modifiedOn".clearKeyWord(), s.modifiedOn.getEAttribute());
+	//DTO.name -> EAttribute : name
+	if (s.name.getEAttribute() != null) t.addNewAttribute("name".clearKeyWord(), s.name.getEAttribute());
+	//DTO.metadatas -> EReference : metadatas
+	if (s.metadatas.getEReference() != null) t.addNewReference("metadatas".clearKeyWord(), s.metadatas.getEReference());
+	//DTO.behaviours -> EReference : behaviours
+	if (s.behaviours.getEReference() != null) t.addNewReference("behaviours".clearKeyWord(), s.behaviours.getEReference());
+	//DTO.bindingRegistries -> EReference : bindingRegistries
+	if (s.bindingRegistries.getEReference() != null) t.addNewReference("bindingRegistries".clearKeyWord(), s.bindingRegistries.getEReference());
+	//DTO.typeDefinition -> EReference : typeDefinition
+	if (s.typeDefinition.getEReference() != null) t.addNewReference("typeDefinition".clearKeyWord(), s.typeDefinition.getEReference());
+	//DTO.supertype -> EReference : supertype
+	if (s.supertype.getEReference() != null) t.addNewReference("supertype".clearKeyWord(), s.supertype.getEReference());
+	//DTO.associatedTypes -> EReference : associatedTypes
+	if (s.associatedTypes.getEReference() != null) t.addNewReference("associatedTypes".clearKeyWord(), s.associatedTypes.getEReference());
+	//DTO.ownedAttributes -> EReference : ownedAttributes
+	if (s.ownedAttributes.getEReference() != null) t.addNewReference("ownedAttributes".clearKeyWord(), s.ownedAttributes.getEReference());
+	//DTO.attributes -> EReference : attributes
+	if (s.attributes.getEReference() != null) t.addNewReference("attributes".clearKeyWord(), s.attributes.getEReference());
+	//DTO.ownedReferences -> EReference : ownedReferences
+	if (s.ownedReferences.getEReference() != null) t.addNewReference("ownedReferences".clearKeyWord(), s.ownedReferences.getEReference());
+	//DTO.references -> EReference : references
+	if (s.references.getEReference() != null) t.addNewReference("references".clearKeyWord(), s.references.getEReference());
+	//DTO.properties -> EReference : properties
+	if (s.properties.getEReference() != null) t.addNewReference("properties".clearKeyWord(), s.properties.getEReference());
+	//DTO.ownedContainer -> EReference : ownedContainer
+	if (s.ownedContainer.getEReference() != null) t.addNewReference("ownedContainer".clearKeyWord(), s.ownedContainer.getEReference());
+}
+
+@lazy
+rule FilterContainer
+	transform s : DSL!FilterContainer //environment.FilterContainer
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//FilterContainer.technicalid -> EAttribute : technicalid
+	if (s.technicalid.getEAttribute() != null) t.addNewAttribute("technicalid".clearKeyWord(), s.technicalid.getEAttribute());
+	//FilterContainer.description -> EAttribute : description
+	if (s.description.getEAttribute() != null) t.addNewAttribute("description".clearKeyWord(), s.description.getEAttribute());
+	//FilterContainer.keywords -> EAttribute : keywords
+	if (s.keywords.getEAttribute() != null) t.addNewAttribute("keywords".clearKeyWord(), s.keywords.getEAttribute());
+	//FilterContainer.version -> EAttribute : version
+	if (s.version.getEAttribute() != null) t.addNewAttribute("version".clearKeyWord(), s.version.getEAttribute());
+	//FilterContainer.createdOn -> EAttribute : createdOn
+	if (s.createdOn.getEAttribute() != null) t.addNewAttribute("createdOn".clearKeyWord(), s.createdOn.getEAttribute());
+	//FilterContainer.modifiedOn -> EAttribute : modifiedOn
+	if (s.modifiedOn.getEAttribute() != null) t.addNewAttribute("modifiedOn".clearKeyWord(), s.modifiedOn.getEAttribute());
+	//FilterContainer.metadatas -> EReference : metadatas
+	if (s.metadatas.getEReference() != null) t.addNewReference("metadatas".clearKeyWord(), s.metadatas.getEReference());
+	//FilterContainer.behaviours -> EReference : behaviours
+	if (s.behaviours.getEReference() != null) t.addNewReference("behaviours".clearKeyWord(), s.behaviours.getEReference());
+	//FilterContainer.bindingRegistries -> EReference : bindingRegistries
+	if (s.bindingRegistries.getEReference() != null) t.addNewReference("bindingRegistries".clearKeyWord(), s.bindingRegistries.getEReference());
+	//FilterContainer.ownedFilters -> EReference : ownedFilters
+	if (s.ownedFilters.getEReference() != null) t.addNewReference("ownedFilters".clearKeyWord(), s.ownedFilters.getEReference());
+}
+
+@lazy
+rule Filter
+	transform s : DSL!Filter //environment.Filter
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//Filter.technicalid -> EAttribute : technicalid
+	if (s.technicalid.getEAttribute() != null) t.addNewAttribute("technicalid".clearKeyWord(), s.technicalid.getEAttribute());
+	//Filter.description -> EAttribute : description
+	if (s.description.getEAttribute() != null) t.addNewAttribute("description".clearKeyWord(), s.description.getEAttribute());
+	//Filter.keywords -> EAttribute : keywords
+	if (s.keywords.getEAttribute() != null) t.addNewAttribute("keywords".clearKeyWord(), s.keywords.getEAttribute());
+	//Filter.version -> EAttribute : version
+	if (s.version.getEAttribute() != null) t.addNewAttribute("version".clearKeyWord(), s.version.getEAttribute());
+	//Filter.createdOn -> EAttribute : createdOn
+	if (s.createdOn.getEAttribute() != null) t.addNewAttribute("createdOn".clearKeyWord(), s.createdOn.getEAttribute());
+	//Filter.modifiedOn -> EAttribute : modifiedOn
+	if (s.modifiedOn.getEAttribute() != null) t.addNewAttribute("modifiedOn".clearKeyWord(), s.modifiedOn.getEAttribute());
+	//Filter.metadatas -> EReference : metadatas
+	if (s.metadatas.getEReference() != null) t.addNewReference("metadatas".clearKeyWord(), s.metadatas.getEReference());
+	//Filter.behaviours -> EReference : behaviours
+	if (s.behaviours.getEReference() != null) t.addNewReference("behaviours".clearKeyWord(), s.behaviours.getEReference());
+	//Filter.bindingRegistries -> EReference : bindingRegistries
+	if (s.bindingRegistries.getEReference() != null) t.addNewReference("bindingRegistries".clearKeyWord(), s.bindingRegistries.getEReference());
+}
+
+@lazy
+rule Namespace
+	transform s : DSL!Namespace //environment.Namespace
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//Namespace.technicalid -> EAttribute : technicalid
+	if (s.technicalid.getEAttribute() != null) t.addNewAttribute("technicalid".clearKeyWord(), s.technicalid.getEAttribute());
+	//Namespace.description -> EAttribute : description
+	if (s.description.getEAttribute() != null) t.addNewAttribute("description".clearKeyWord(), s.description.getEAttribute());
+	//Namespace.keywords -> EAttribute : keywords
+	if (s.keywords.getEAttribute() != null) t.addNewAttribute("keywords".clearKeyWord(), s.keywords.getEAttribute());
+	//Namespace.version -> EAttribute : version
+	if (s.version.getEAttribute() != null) t.addNewAttribute("version".clearKeyWord(), s.version.getEAttribute());
+	//Namespace.createdOn -> EAttribute : createdOn
+	if (s.createdOn.getEAttribute() != null) t.addNewAttribute("createdOn".clearKeyWord(), s.createdOn.getEAttribute());
+	//Namespace.modifiedOn -> EAttribute : modifiedOn
+	if (s.modifiedOn.getEAttribute() != null) t.addNewAttribute("modifiedOn".clearKeyWord(), s.modifiedOn.getEAttribute());
+	//Namespace.name -> EAttribute : name
+	if (s.name.getEAttribute() != null) t.addNewAttribute("name".clearKeyWord(), s.name.getEAttribute());
+	//Namespace.metadatas -> EReference : metadatas
+	if (s.metadatas.getEReference() != null) t.addNewReference("metadatas".clearKeyWord(), s.metadatas.getEReference());
+	//Namespace.behaviours -> EReference : behaviours
+	if (s.behaviours.getEReference() != null) t.addNewReference("behaviours".clearKeyWord(), s.behaviours.getEReference());
+	//Namespace.bindingRegistries -> EReference : bindingRegistries
+	if (s.bindingRegistries.getEReference() != null) t.addNewReference("bindingRegistries".clearKeyWord(), s.bindingRegistries.getEReference());
+	//Namespace.types -> EReference : types
+	if (s.types.getEReference() != null) t.addNewReference("types".clearKeyWord(), s.types.getEReference());
+	//Namespace.ownedNamespaces -> EReference : ownedNamespaces
+	if (s.ownedNamespaces.getEReference() != null) t.addNewReference("ownedNamespaces".clearKeyWord(), s.ownedNamespaces.getEReference());
+	//Namespace.owner -> EReference : owner
+	if (s.owner.getEReference() != null) t.addNewReference("owner".clearKeyWord(), s.owner.getEReference());
+}
+
+@lazy
+rule Attribute
+	transform s : DSL!Attribute //environment.Attribute
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//Attribute.technicalid -> EAttribute : technicalid
+	if (s.technicalid.getEAttribute() != null) t.addNewAttribute("technicalid".clearKeyWord(), s.technicalid.getEAttribute());
+	//Attribute.description -> EAttribute : description
+	if (s.description.getEAttribute() != null) t.addNewAttribute("description".clearKeyWord(), s.description.getEAttribute());
+	//Attribute.keywords -> EAttribute : keywords
+	if (s.keywords.getEAttribute() != null) t.addNewAttribute("keywords".clearKeyWord(), s.keywords.getEAttribute());
+	//Attribute.version -> EAttribute : version
+	if (s.version.getEAttribute() != null) t.addNewAttribute("version".clearKeyWord(), s.version.getEAttribute());
+	//Attribute.createdOn -> EAttribute : createdOn
+	if (s.createdOn.getEAttribute() != null) t.addNewAttribute("createdOn".clearKeyWord(), s.createdOn.getEAttribute());
+	//Attribute.modifiedOn -> EAttribute : modifiedOn
+	if (s.modifiedOn.getEAttribute() != null) t.addNewAttribute("modifiedOn".clearKeyWord(), s.modifiedOn.getEAttribute());
+	//Attribute.name -> EAttribute : name
+	if (s.name.getEAttribute() != null) t.addNewAttribute("name".clearKeyWord(), s.name.getEAttribute());
+	//Attribute.multiplicity -> EAttribute : multiplicity
+	if (s.multiplicity.getEAttribute() != null) t.addNewAttribute("multiplicity".clearKeyWord(), s.multiplicity.getEAttribute());
+	//Attribute.isIdentifier -> EAttribute : isIdentifier
+	if (s.isIdentifier.getEAttribute() != null) t.addNewAttribute("isIdentifier".clearKeyWord(), s.isIdentifier.getEAttribute());
+	//Attribute.maximum -> EAttribute : maximum
+	if (s.maximum.getEAttribute() != null) t.addNewAttribute("maximum".clearKeyWord(), s.maximum.getEAttribute());
+	//Attribute.minimum -> EAttribute : minimum
+	if (s.minimum.getEAttribute() != null) t.addNewAttribute("minimum".clearKeyWord(), s.minimum.getEAttribute());
+	//Attribute.pattern -> EAttribute : pattern
+	if (s.pattern.getEAttribute() != null) t.addNewAttribute("pattern".clearKeyWord(), s.pattern.getEAttribute());
+	//Attribute.metadatas -> EReference : metadatas
+	if (s.metadatas.getEReference() != null) t.addNewReference("metadatas".clearKeyWord(), s.metadatas.getEReference());
+	//Attribute.behaviours -> EReference : behaviours
+	if (s.behaviours.getEReference() != null) t.addNewReference("behaviours".clearKeyWord(), s.behaviours.getEReference());
+	//Attribute.bindingRegistries -> EReference : bindingRegistries
+	if (s.bindingRegistries.getEReference() != null) t.addNewReference("bindingRegistries".clearKeyWord(), s.bindingRegistries.getEReference());
+	//Attribute.type -> EReference : type
+	if (s.type.getEReference() != null) t.addNewReference("type".clearKeyWord(), s.type.getEReference());
+	//Attribute.containingType -> EReference : containingType
+	if (s.containingType.getEReference() != null) t.addNewReference("containingType".clearKeyWord(), s.containingType.getEReference());
+}
+
+@lazy
+rule Reference
+	transform s : DSL!Reference //environment.Reference
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//Reference.technicalid -> EAttribute : technicalid
+	if (s.technicalid.getEAttribute() != null) t.addNewAttribute("technicalid".clearKeyWord(), s.technicalid.getEAttribute());
+	//Reference.description -> EAttribute : description
+	if (s.description.getEAttribute() != null) t.addNewAttribute("description".clearKeyWord(), s.description.getEAttribute());
+	//Reference.keywords -> EAttribute : keywords
+	if (s.keywords.getEAttribute() != null) t.addNewAttribute("keywords".clearKeyWord(), s.keywords.getEAttribute());
+	//Reference.version -> EAttribute : version
+	if (s.version.getEAttribute() != null) t.addNewAttribute("version".clearKeyWord(), s.version.getEAttribute());
+	//Reference.createdOn -> EAttribute : createdOn
+	if (s.createdOn.getEAttribute() != null) t.addNewAttribute("createdOn".clearKeyWord(), s.createdOn.getEAttribute());
+	//Reference.modifiedOn -> EAttribute : modifiedOn
+	if (s.modifiedOn.getEAttribute() != null) t.addNewAttribute("modifiedOn".clearKeyWord(), s.modifiedOn.getEAttribute());
+	//Reference.name -> EAttribute : name
+	if (s.name.getEAttribute() != null) t.addNewAttribute("name".clearKeyWord(), s.name.getEAttribute());
+	//Reference.multiplicity -> EAttribute : multiplicity
+	if (s.multiplicity.getEAttribute() != null) t.addNewAttribute("multiplicity".clearKeyWord(), s.multiplicity.getEAttribute());
+	//Reference.isIdentifier -> EAttribute : isIdentifier
+	if (s.isIdentifier.getEAttribute() != null) t.addNewAttribute("isIdentifier".clearKeyWord(), s.isIdentifier.getEAttribute());
+	//Reference.isComposite -> EAttribute : isComposite
+	if (s.isComposite.getEAttribute() != null) t.addNewAttribute("isComposite".clearKeyWord(), s.isComposite.getEAttribute());
+	//Reference.navigable -> EAttribute : navigable
+	if (s.navigable.getEAttribute() != null) t.addNewAttribute("navigable".clearKeyWord(), s.navigable.getEAttribute());
+	//Reference.metadatas -> EReference : metadatas
+	if (s.metadatas.getEReference() != null) t.addNewReference("metadatas".clearKeyWord(), s.metadatas.getEReference());
+	//Reference.behaviours -> EReference : behaviours
+	if (s.behaviours.getEReference() != null) t.addNewReference("behaviours".clearKeyWord(), s.behaviours.getEReference());
+	//Reference.bindingRegistries -> EReference : bindingRegistries
+	if (s.bindingRegistries.getEReference() != null) t.addNewReference("bindingRegistries".clearKeyWord(), s.bindingRegistries.getEReference());
+	//Reference.oppositeOf -> EReference : oppositeOf
+	if (s.oppositeOf.getEReference() != null) t.addNewReference("oppositeOf".clearKeyWord(), s.oppositeOf.getEReference());
+	//Reference.containingType -> EReference : containingType
+	if (s.containingType.getEReference() != null) t.addNewReference("containingType".clearKeyWord(), s.containingType.getEReference());
+	//Reference.referencedType -> EReference : referencedType
+	if (s.referencedType.getEReference() != null) t.addNewReference("referencedType".clearKeyWord(), s.referencedType.getEReference());
+}
+
+@lazy
+rule Property
+	transform s : DSL!Property //environment.Property
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//Property.technicalid -> EAttribute : technicalid
+	if (s.technicalid.getEAttribute() != null) t.addNewAttribute("technicalid".clearKeyWord(), s.technicalid.getEAttribute());
+	//Property.description -> EAttribute : description
+	if (s.description.getEAttribute() != null) t.addNewAttribute("description".clearKeyWord(), s.description.getEAttribute());
+	//Property.keywords -> EAttribute : keywords
+	if (s.keywords.getEAttribute() != null) t.addNewAttribute("keywords".clearKeyWord(), s.keywords.getEAttribute());
+	//Property.version -> EAttribute : version
+	if (s.version.getEAttribute() != null) t.addNewAttribute("version".clearKeyWord(), s.version.getEAttribute());
+	//Property.createdOn -> EAttribute : createdOn
+	if (s.createdOn.getEAttribute() != null) t.addNewAttribute("createdOn".clearKeyWord(), s.createdOn.getEAttribute());
+	//Property.modifiedOn -> EAttribute : modifiedOn
+	if (s.modifiedOn.getEAttribute() != null) t.addNewAttribute("modifiedOn".clearKeyWord(), s.modifiedOn.getEAttribute());
+	//Property.name -> EAttribute : name
+	if (s.name.getEAttribute() != null) t.addNewAttribute("name".clearKeyWord(), s.name.getEAttribute());
+	//Property.multiplicity -> EAttribute : multiplicity
+	if (s.multiplicity.getEAttribute() != null) t.addNewAttribute("multiplicity".clearKeyWord(), s.multiplicity.getEAttribute());
+	//Property.isIdentifier -> EAttribute : isIdentifier
+	if (s.isIdentifier.getEAttribute() != null) t.addNewAttribute("isIdentifier".clearKeyWord(), s.isIdentifier.getEAttribute());
+	//Property.metadatas -> EReference : metadatas
+	if (s.metadatas.getEReference() != null) t.addNewReference("metadatas".clearKeyWord(), s.metadatas.getEReference());
+	//Property.behaviours -> EReference : behaviours
+	if (s.behaviours.getEReference() != null) t.addNewReference("behaviours".clearKeyWord(), s.behaviours.getEReference());
+	//Property.bindingRegistries -> EReference : bindingRegistries
+	if (s.bindingRegistries.getEReference() != null) t.addNewReference("bindingRegistries".clearKeyWord(), s.bindingRegistries.getEReference());
+}
+
+@lazy
+rule BindingInfo
+	transform s : DSL!BindingInfo //environment.BindingInfo
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//BindingInfo.technicalid -> EAttribute : technicalid
+	if (s.technicalid.getEAttribute() != null) t.addNewAttribute("technicalid".clearKeyWord(), s.technicalid.getEAttribute());
+	//BindingInfo.description -> EAttribute : description
+	if (s.description.getEAttribute() != null) t.addNewAttribute("description".clearKeyWord(), s.description.getEAttribute());
+	//BindingInfo.keywords -> EAttribute : keywords
+	if (s.keywords.getEAttribute() != null) t.addNewAttribute("keywords".clearKeyWord(), s.keywords.getEAttribute());
+	//BindingInfo.version -> EAttribute : version
+	if (s.version.getEAttribute() != null) t.addNewAttribute("version".clearKeyWord(), s.version.getEAttribute());
+	//BindingInfo.createdOn -> EAttribute : createdOn
+	if (s.createdOn.getEAttribute() != null) t.addNewAttribute("createdOn".clearKeyWord(), s.createdOn.getEAttribute());
+	//BindingInfo.modifiedOn -> EAttribute : modifiedOn
+	if (s.modifiedOn.getEAttribute() != null) t.addNewAttribute("modifiedOn".clearKeyWord(), s.modifiedOn.getEAttribute());
+	//BindingInfo.metadatas -> EReference : metadatas
+	if (s.metadatas.getEReference() != null) t.addNewReference("metadatas".clearKeyWord(), s.metadatas.getEReference());
+	//BindingInfo.behaviours -> EReference : behaviours
+	if (s.behaviours.getEReference() != null) t.addNewReference("behaviours".clearKeyWord(), s.behaviours.getEReference());
+	//BindingInfo.bindingRegistries -> EReference : bindingRegistries
+	if (s.bindingRegistries.getEReference() != null) t.addNewReference("bindingRegistries".clearKeyWord(), s.bindingRegistries.getEReference());
+	//BindingInfo.references -> EReference : references
+	if (s.references.getEReference() != null) t.addNewReference("references".clearKeyWord(), s.references.getEReference());
+	//BindingInfo.left -> EReference : left
+	if (s.left.getEReference() != null) t.addNewReference("left".clearKeyWord(), s.left.getEReference());
+	//BindingInfo.right -> EReference : right
+	if (s.right.getEReference() != null) t.addNewReference("right".clearKeyWord(), s.right.getEReference());
+	//BindingInfo.subBindingInfos -> EReference : subBindingInfos
+	if (s.subBindingInfos.getEReference() != null) t.addNewReference("subBindingInfos".clearKeyWord(), s.subBindingInfos.getEReference());
+	//BindingInfo.targets -> EReference : targets
+	if (s.targets.getEReference() != null) t.addNewReference("targets".clearKeyWord(), s.targets.getEReference());
+	//BindingInfo.elements -> EReference : elements
+	if (s.elements.getEReference() != null) t.addNewReference("elements".clearKeyWord(), s.elements.getEReference());
+}
+
+@lazy
+rule BindingReference
+	transform s : DSL!BindingReference //environment.BindingReference
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//BindingReference.technicalid -> EAttribute : technicalid
+	if (s.technicalid.getEAttribute() != null) t.addNewAttribute("technicalid".clearKeyWord(), s.technicalid.getEAttribute());
+	//BindingReference.description -> EAttribute : description
+	if (s.description.getEAttribute() != null) t.addNewAttribute("description".clearKeyWord(), s.description.getEAttribute());
+	//BindingReference.keywords -> EAttribute : keywords
+	if (s.keywords.getEAttribute() != null) t.addNewAttribute("keywords".clearKeyWord(), s.keywords.getEAttribute());
+	//BindingReference.version -> EAttribute : version
+	if (s.version.getEAttribute() != null) t.addNewAttribute("version".clearKeyWord(), s.version.getEAttribute());
+	//BindingReference.createdOn -> EAttribute : createdOn
+	if (s.createdOn.getEAttribute() != null) t.addNewAttribute("createdOn".clearKeyWord(), s.createdOn.getEAttribute());
+	//BindingReference.modifiedOn -> EAttribute : modifiedOn
+	if (s.modifiedOn.getEAttribute() != null) t.addNewAttribute("modifiedOn".clearKeyWord(), s.modifiedOn.getEAttribute());
+	//BindingReference.metadatas -> EReference : metadatas
+	if (s.metadatas.getEReference() != null) t.addNewReference("metadatas".clearKeyWord(), s.metadatas.getEReference());
+	//BindingReference.behaviours -> EReference : behaviours
+	if (s.behaviours.getEReference() != null) t.addNewReference("behaviours".clearKeyWord(), s.behaviours.getEReference());
+	//BindingReference.bindingRegistries -> EReference : bindingRegistries
+	if (s.bindingRegistries.getEReference() != null) t.addNewReference("bindingRegistries".clearKeyWord(), s.bindingRegistries.getEReference());
+	//BindingReference.left -> EReference : left
+	if (s.left.getEReference() != null) t.addNewReference("left".clearKeyWord(), s.left.getEReference());
+	//BindingReference.right -> EReference : right
+	if (s.right.getEReference() != null) t.addNewReference("right".clearKeyWord(), s.right.getEReference());
+}
+
+@lazy
+rule BindingElement
+	transform s : DSL!BindingElement //environment.BindingElement
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//BindingElement.technicalid -> EAttribute : technicalid
+	if (s.technicalid.getEAttribute() != null) t.addNewAttribute("technicalid".clearKeyWord(), s.technicalid.getEAttribute());
+	//BindingElement.description -> EAttribute : description
+	if (s.description.getEAttribute() != null) t.addNewAttribute("description".clearKeyWord(), s.description.getEAttribute());
+	//BindingElement.keywords -> EAttribute : keywords
+	if (s.keywords.getEAttribute() != null) t.addNewAttribute("keywords".clearKeyWord(), s.keywords.getEAttribute());
+	//BindingElement.version -> EAttribute : version
+	if (s.version.getEAttribute() != null) t.addNewAttribute("version".clearKeyWord(), s.version.getEAttribute());
+	//BindingElement.createdOn -> EAttribute : createdOn
+	if (s.createdOn.getEAttribute() != null) t.addNewAttribute("createdOn".clearKeyWord(), s.createdOn.getEAttribute());
+	//BindingElement.modifiedOn -> EAttribute : modifiedOn
+	if (s.modifiedOn.getEAttribute() != null) t.addNewAttribute("modifiedOn".clearKeyWord(), s.modifiedOn.getEAttribute());
+	//BindingElement.bindingExpression -> EAttribute : bindingExpression
+	if (s.bindingExpression.getEAttribute() != null) t.addNewAttribute("bindingExpression".clearKeyWord(), s.bindingExpression.getEAttribute());
+	//BindingElement.metadatas -> EReference : metadatas
+	if (s.metadatas.getEReference() != null) t.addNewReference("metadatas".clearKeyWord(), s.metadatas.getEReference());
+	//BindingElement.behaviours -> EReference : behaviours
+	if (s.behaviours.getEReference() != null) t.addNewReference("behaviours".clearKeyWord(), s.behaviours.getEReference());
+	//BindingElement.bindingRegistries -> EReference : bindingRegistries
+	if (s.bindingRegistries.getEReference() != null) t.addNewReference("bindingRegistries".clearKeyWord(), s.bindingRegistries.getEReference());
+	//BindingElement.boundElement -> EReference : boundElement
+	if (s.boundElement.getEReference() != null) t.addNewReference("boundElement".clearKeyWord(), s.boundElement.getEReference());
+	//BindingElement.referencedByAsLeft -> EReference : referencedByAsLeft
+	if (s.referencedByAsLeft.getEReference() != null) t.addNewReference("referencedByAsLeft".clearKeyWord(), s.referencedByAsLeft.getEReference());
+	//BindingElement.referencedByAsRight -> EReference : referencedByAsRight
+	if (s.referencedByAsRight.getEReference() != null) t.addNewReference("referencedByAsRight".clearKeyWord(), s.referencedByAsRight.getEReference());
+	//BindingElement.referencedBy -> EReference : referencedBy
+	if (s.referencedBy.getEReference() != null) t.addNewReference("referencedBy".clearKeyWord(), s.referencedBy.getEReference());
+	//BindingElement.pathReferences -> EReference : pathReferences
+	if (s.pathReferences.getEReference() != null) t.addNewReference("pathReferences".clearKeyWord(), s.pathReferences.getEReference());
+}
+
+@lazy
+rule BindingRegistry
+	transform s : DSL!BindingRegistry //environment.BindingRegistry
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//BindingRegistry.technicalid -> EAttribute : technicalid
+	if (s.technicalid.getEAttribute() != null) t.addNewAttribute("technicalid".clearKeyWord(), s.technicalid.getEAttribute());
+	//BindingRegistry.description -> EAttribute : description
+	if (s.description.getEAttribute() != null) t.addNewAttribute("description".clearKeyWord(), s.description.getEAttribute());
+	//BindingRegistry.keywords -> EAttribute : keywords
+	if (s.keywords.getEAttribute() != null) t.addNewAttribute("keywords".clearKeyWord(), s.keywords.getEAttribute());
+	//BindingRegistry.version -> EAttribute : version
+	if (s.version.getEAttribute() != null) t.addNewAttribute("version".clearKeyWord(), s.version.getEAttribute());
+	//BindingRegistry.createdOn -> EAttribute : createdOn
+	if (s.createdOn.getEAttribute() != null) t.addNewAttribute("createdOn".clearKeyWord(), s.createdOn.getEAttribute());
+	//BindingRegistry.modifiedOn -> EAttribute : modifiedOn
+	if (s.modifiedOn.getEAttribute() != null) t.addNewAttribute("modifiedOn".clearKeyWord(), s.modifiedOn.getEAttribute());
+	//BindingRegistry.metadatas -> EReference : metadatas
+	if (s.metadatas.getEReference() != null) t.addNewReference("metadatas".clearKeyWord(), s.metadatas.getEReference());
+	//BindingRegistry.behaviours -> EReference : behaviours
+	if (s.behaviours.getEReference() != null) t.addNewReference("behaviours".clearKeyWord(), s.behaviours.getEReference());
+	//BindingRegistry.bindingRegistries -> EReference : bindingRegistries
+	if (s.bindingRegistries.getEReference() != null) t.addNewReference("bindingRegistries".clearKeyWord(), s.bindingRegistries.getEReference());
+	//BindingRegistry.bindingInfos -> EReference : bindingInfos
+	if (s.bindingInfos.getEReference() != null) t.addNewReference("bindingInfos".clearKeyWord(), s.bindingInfos.getEReference());
+}
+
+@lazy
+rule BoundableElement
+	transform s : DSL!BoundableElement //environment.BoundableElement
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//BoundableElement.technicalid -> EAttribute : technicalid
+	if (s.technicalid.getEAttribute() != null) t.addNewAttribute("technicalid".clearKeyWord(), s.technicalid.getEAttribute());
+}
+
+@lazy
+rule DataType
+	transform s : DSL!DataType //environment.DataType
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//DataType.technicalid -> EAttribute : technicalid
+	if (s.technicalid.getEAttribute() != null) t.addNewAttribute("technicalid".clearKeyWord(), s.technicalid.getEAttribute());
+	//DataType.description -> EAttribute : description
+	if (s.description.getEAttribute() != null) t.addNewAttribute("description".clearKeyWord(), s.description.getEAttribute());
+	//DataType.keywords -> EAttribute : keywords
+	if (s.keywords.getEAttribute() != null) t.addNewAttribute("keywords".clearKeyWord(), s.keywords.getEAttribute());
+	//DataType.version -> EAttribute : version
+	if (s.version.getEAttribute() != null) t.addNewAttribute("version".clearKeyWord(), s.version.getEAttribute());
+	//DataType.createdOn -> EAttribute : createdOn
+	if (s.createdOn.getEAttribute() != null) t.addNewAttribute("createdOn".clearKeyWord(), s.createdOn.getEAttribute());
+	//DataType.modifiedOn -> EAttribute : modifiedOn
+	if (s.modifiedOn.getEAttribute() != null) t.addNewAttribute("modifiedOn".clearKeyWord(), s.modifiedOn.getEAttribute());
+	//DataType.name -> EAttribute : name
+	if (s.name.getEAttribute() != null) t.addNewAttribute("name".clearKeyWord(), s.name.getEAttribute());
+	//DataType.metadatas -> EReference : metadatas
+	if (s.metadatas.getEReference() != null) t.addNewReference("metadatas".clearKeyWord(), s.metadatas.getEReference());
+	//DataType.behaviours -> EReference : behaviours
+	if (s.behaviours.getEReference() != null) t.addNewReference("behaviours".clearKeyWord(), s.behaviours.getEReference());
+	//DataType.bindingRegistries -> EReference : bindingRegistries
+	if (s.bindingRegistries.getEReference() != null) t.addNewReference("bindingRegistries".clearKeyWord(), s.bindingRegistries.getEReference());
+	//DataType.typeDefinition -> EReference : typeDefinition
+	if (s.typeDefinition.getEReference() != null) t.addNewReference("typeDefinition".clearKeyWord(), s.typeDefinition.getEReference());
+}
+
+@lazy
+rule NamespacesContainer
+	transform s : DSL!NamespacesContainer //environment.NamespacesContainer
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//NamespacesContainer.technicalid -> EAttribute : technicalid
+	if (s.technicalid.getEAttribute() != null) t.addNewAttribute("technicalid".clearKeyWord(), s.technicalid.getEAttribute());
+	//NamespacesContainer.ownedNamespaces -> EReference : ownedNamespaces
+	if (s.ownedNamespaces.getEReference() != null) t.addNewReference("ownedNamespaces".clearKeyWord(), s.ownedNamespaces.getEReference());
+}
+
+@lazy
+rule ConstrainableElement
+	transform s : DSL!ConstrainableElement //environment.ConstrainableElement
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//ConstrainableElement.maximum -> EAttribute : maximum
+	if (s.maximum.getEAttribute() != null) t.addNewAttribute("maximum".clearKeyWord(), s.maximum.getEAttribute());
+	//ConstrainableElement.minimum -> EAttribute : minimum
+	if (s.minimum.getEAttribute() != null) t.addNewAttribute("minimum".clearKeyWord(), s.minimum.getEAttribute());
+	//ConstrainableElement.pattern -> EAttribute : pattern
+	if (s.pattern.getEAttribute() != null) t.addNewAttribute("pattern".clearKeyWord(), s.pattern.getEAttribute());
+}
+
+
+// metadatadef.ecore
+@lazy
+rule MetaDataDefinitions
+	transform s : DSL!MetaDataDefinitions //metadatadef.MetaDataDefinitions
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//MetaDataDefinitions.technicalid -> EAttribute : technicalid
+	if (s.technicalid.getEAttribute() != null) t.addNewAttribute("technicalid".clearKeyWord(), s.technicalid.getEAttribute());
+	//MetaDataDefinitions.metaDataDefinitions -> EReference : metaDataDefinitions
+	if (s.metaDataDefinitions.getEReference() != null) t.addNewReference("metaDataDefinitions".clearKeyWord(), s.metaDataDefinitions.getEReference());
+}
+
+@lazy
+rule MetaDataDefinition
+	transform s : DSL!MetaDataDefinition //metadatadef.MetaDataDefinition
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//MetaDataDefinition.technicalid -> EAttribute : technicalid
+	if (s.technicalid.getEAttribute() != null) t.addNewAttribute("technicalid".clearKeyWord(), s.technicalid.getEAttribute());
+	//MetaDataDefinition.title -> EAttribute : title
+	if (s.title.getEAttribute() != null) t.addNewAttribute("title".clearKeyWord(), s.title.getEAttribute());
+	//MetaDataDefinition.body -> EAttribute : body
+	if (s.body.getEAttribute() != null) t.addNewAttribute("body".clearKeyWord(), s.body.getEAttribute());
+	//MetaDataDefinition.condition -> EAttribute : condition
+	if (s.condition.getEAttribute() != null) t.addNewAttribute("condition".clearKeyWord(), s.condition.getEAttribute());
+}
+
+
+// technicalid.ecore
+@lazy
+rule Identifiable
+	transform s : DSL!Identifiable //technicalid.Identifiable
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//Identifiable.technicalid -> EAttribute : technicalid
+	if (s.technicalid.getEAttribute() != null) t.addNewAttribute("technicalid".clearKeyWord(), s.technicalid.getEAttribute());
+}
+
+

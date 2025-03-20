@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="ASCII"?>
+<Namespace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="sysmline" xsi:schemaLocation="sysmline metamodel/sysmline/sysmline.ecore">
+  <body xsi:type="Package" declaredName="'requirement'">
+    <body xsi:type="NamespaceImport" hasVisibility="true" declaredName="ecore"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="requirement"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="technicalid"/>
+    <body xsi:type="ItemDefinition" declaredName="Repository">
+      <body xsi:type="ItemUsage" declaredName="mainCategories" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Category</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="referencedObject" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EObject</featureSpecialization>
+      </body>
+      <SubclassificationPart>CategoriesContainer</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Category">
+      <body xsi:type="ItemUsage" declaredName="requirements" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Requirement</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="subCategories" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Category</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="id" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="repository" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Repository</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="parentCategory" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Category</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="referencedObject" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EObject</featureSpecialization>
+      </body>
+      <SubclassificationPart>CategoriesContainer</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Requirement">
+      <body xsi:type="AttributeUsage" declaredName="id" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="version" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EInt</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="referencedObject" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EObject</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="statement" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="rationale" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="acceptanceCriteria" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="type" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>RequirementType</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="category" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Category</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="subtype" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="status" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="createdOn" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EDate</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="modifiedOn" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EDate</featureSpecialization>
+      </body>
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="NamedElement" isAbstract="true">
+      <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <SubclassificationPart>Identifiable</SubclassificationPart>
+    </body>
+    <body xsi:type="EnumerationDefinition" declaredName="RequirementType">
+      <body xsi:type="EnumerationUsage" declaredName="functional"/>
+      <body xsi:type="EnumerationUsage" declaredName="technical"/>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="CategoriesContainer" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="ownedCategories" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Category</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedRequirements" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Requirement</featureSpecialization>
+      </body>
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+    </body>
+  </body>
+</Namespace>

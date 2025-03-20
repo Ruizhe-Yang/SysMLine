@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="ASCII"?>
+<Namespace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="sysmline" xsi:schemaLocation="sysmline metamodel/sysmline/sysmline.ecore">
+  <body xsi:type="Package" declaredName="environment">
+    <body xsi:type="NamespaceImport" hasVisibility="true" declaredName="ecore"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="metadatadef"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="technicalid"/>
+    <body xsi:type="ItemDefinition" declaredName="Environment">
+      <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="actions" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Action</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="links" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>InterDSMLink</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="priorityDefinitions" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>PriorityDefinition</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="typesDefinition" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>TypesDefinition</featureSpecialization>
+      </body>
+      <SubclassificationPart>ObeoDSMObject</SubclassificationPart>
+      <SubclassificationPart>NamespacesContainer</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Type" isAbstract="true">
+      <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="typeDefinition" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>TypesDefinition</featureSpecialization>
+      </body>
+      <SubclassificationPart>ObeoDSMObject</SubclassificationPart>
+      <SubclassificationPart>BoundableElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="PrimitiveType">
+      <body xsi:type="AttributeUsage" declaredName="kind" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>PrimitiveTypeKind</featureSpecialization>
+      </body>
+      <SubclassificationPart>DataType</SubclassificationPart>
+    </body>
+    <body xsi:type="EnumerationDefinition" declaredName="PrimitiveTypeKind">
+      <body xsi:type="EnumerationUsage" declaredName="OTHER"/>
+      <body xsi:type="EnumerationUsage" declaredName="NUMBER"/>
+      <body xsi:type="EnumerationUsage" declaredName="TEXT"/>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Enumeration">
+      <body xsi:type="ItemUsage" declaredName="literals" multiplicityRange="[1..*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Literal</featureSpecialization>
+      </body>
+      <SubclassificationPart>DataType</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Literal">
+      <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <SubclassificationPart>ObeoDSMObject</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Action" isAbstract="true">
+      <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <SubclassificationPart>ObeoDSMObject</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="InterDSMLink">
+      <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="target" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EObject</featureSpecialization>
+      </body>
+      <SubclassificationPart>ObeoDSMObject</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ObeoDSMObject" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="metadatas" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>MetaDataContainer</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="description" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="keywords" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="behaviours" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Behaviour</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="bindingRegistries" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>BindingRegistry</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="version" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EInt</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="createdOn" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EDate</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="modifiedOn" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EDate</featureSpecialization>
+      </body>
+      <SubclassificationPart>Identifiable</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="MetaDataContainer">
+      <body xsi:type="ItemUsage" declaredName="metadatas" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>MetaData</featureSpecialization>
+      </body>
+      <SubclassificationPart>Identifiable</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Annotation">
+      <body xsi:type="AttributeUsage" declaredName="title" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="body" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <SubclassificationPart>MetaData</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="PriorityDefinition">
+      <body xsi:type="ItemUsage" declaredName="priorities" multiplicityRange="[1..*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Priority</featureSpecialization>
+      </body>
+      <SubclassificationPart>ObeoDSMObject</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Priority">
+      <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <SubclassificationPart>ObeoDSMObject</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="MetaData" isAbstract="true">
+      <SubclassificationPart>Identifiable</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="TypesDefinition">
+      <body xsi:type="ItemUsage" declaredName="types" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Type</featureSpecialization>
+      </body>
+      <SubclassificationPart>ObeoDSMObject</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Behaviour" isAbstract="true">
+      <SubclassificationPart>ObeoDSMObject</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="StructuredType" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="supertype" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>StructuredType</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="associatedTypes" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>StructuredType</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedAttributes" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Attribute</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="attributes" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Attribute</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedReferences" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Reference</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="'references'" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Reference</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="properties" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Property</featureSpecialization>
+      </body>
+      <SubclassificationPart>Type</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="DTO">
+      <body xsi:type="ItemUsage" declaredName="ownedContainer" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FilterContainer</featureSpecialization>
+      </body>
+      <SubclassificationPart>StructuredType</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="FilterContainer">
+      <body xsi:type="ItemUsage" declaredName="ownedFilters" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Filter</featureSpecialization>
+      </body>
+      <SubclassificationPart>ObeoDSMObject</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Filter" isAbstract="true">
+      <SubclassificationPart>ObeoDSMObject</SubclassificationPart>
+    </body>
+    <body xsi:type="EnumerationDefinition" declaredName="MultiplicityKind">
+      <body xsi:type="EnumerationUsage" declaredName="ZERO_ONE"/>
+      <body xsi:type="EnumerationUsage" declaredName="ONE"/>
+      <body xsi:type="EnumerationUsage" declaredName="ZERO_STAR"/>
+      <body xsi:type="EnumerationUsage" declaredName="ONE_STAR"/>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Namespace">
+      <body xsi:type="ItemUsage" declaredName="owner" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>NamespacesContainer</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <SubclassificationPart>TypesDefinition</SubclassificationPart>
+      <SubclassificationPart>NamespacesContainer</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Attribute">
+      <body xsi:type="ItemUsage" declaredName="type" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>DataType</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="containingType" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>StructuredType</featureSpecialization>
+      </body>
+      <SubclassificationPart>Property</SubclassificationPart>
+      <SubclassificationPart>ConstrainableElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Reference">
+      <body xsi:type="AttributeUsage" declaredName="isComposite" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="navigable" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="oppositeOf" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Reference</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="containingType" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>StructuredType</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="referencedType" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>StructuredType</featureSpecialization>
+      </body>
+      <SubclassificationPart>Property</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Property" isAbstract="true">
+      <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="multiplicity" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>MultiplicityKind</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="isIdentifier" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <SubclassificationPart>ObeoDSMObject</SubclassificationPart>
+      <SubclassificationPart>BoundableElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="BindingInfo">
+      <body xsi:type="ItemUsage" declaredName="'references'" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>BindingReference</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="left" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>BoundableElement</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="right" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>BoundableElement</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="subBindingInfos" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>BindingInfo</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="targets" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>BoundableElement</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="elements" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>BindingElement</featureSpecialization>
+      </body>
+      <SubclassificationPart>ObeoDSMObject</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="BindingReference">
+      <body xsi:type="ItemUsage" declaredName="left" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>BindingElement</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="right" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>BindingElement</featureSpecialization>
+      </body>
+      <SubclassificationPart>ObeoDSMObject</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="BindingElement">
+      <body xsi:type="ItemUsage" declaredName="boundElement" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>BoundableElement</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="bindingExpression" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="referencedByAsLeft" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>BindingReference</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="referencedByAsRight" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>BindingReference</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="referencedBy" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>BindingReference</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="pathReferences" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>BoundableElement</featureSpecialization>
+      </body>
+      <SubclassificationPart>ObeoDSMObject</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="BindingRegistry">
+      <body xsi:type="ItemUsage" declaredName="bindingInfos" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>BindingInfo</featureSpecialization>
+      </body>
+      <SubclassificationPart>ObeoDSMObject</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="BoundableElement" isAbstract="true">
+      <SubclassificationPart>Identifiable</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="DataType" isAbstract="true">
+      <SubclassificationPart>Type</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="NamespacesContainer" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="ownedNamespaces" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Namespace</featureSpecialization>
+      </body>
+      <SubclassificationPart>Identifiable</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ConstrainableElement" isAbstract="true">
+      <body xsi:type="AttributeUsage" declaredName="maximum" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="minimum" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="pattern" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+    </body>
+    <body xsi:type="Package" declaredName="metadatadef">
+      <body xsi:type="ItemDefinition" declaredName="MetaDataDefinitions">
+        <body xsi:type="ItemUsage" declaredName="metaDataDefinitions" multiplicityRange="[*]">
+          <featureNote>:</featureNote>
+          <featureSpecialization>MetaDataDefinition</featureSpecialization>
+        </body>
+        <SubclassificationPart>Identifiable</SubclassificationPart>
+      </body>
+      <body xsi:type="ItemDefinition" declaredName="MetaDataDefinition">
+        <body xsi:type="AttributeUsage" declaredName="title" multiplicityRange="[1]">
+          <featureNote>:</featureNote>
+          <featureSpecialization>EString</featureSpecialization>
+        </body>
+        <body xsi:type="AttributeUsage" declaredName="body" multiplicityRange="[1]">
+          <featureNote>:</featureNote>
+          <featureSpecialization>EString</featureSpecialization>
+        </body>
+        <body xsi:type="AttributeUsage" declaredName="condition" multiplicityRange="[1]">
+          <featureNote>:</featureNote>
+          <featureSpecialization>EString</featureSpecialization>
+        </body>
+        <SubclassificationPart>Identifiable</SubclassificationPart>
+      </body>
+    </body>
+  </body>
+</Namespace>

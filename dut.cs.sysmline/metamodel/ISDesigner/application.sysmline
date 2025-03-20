@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="ASCII"?>
+<Namespace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="sysmline" xsi:schemaLocation="sysmline metamodel/sysmline/sysmline.ecore">
+  <body xsi:type="Package" declaredName="application">
+    <body xsi:type="NamespaceImport" hasVisibility="true" declaredName="ecore"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="environment"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="org.eclipse.emf"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="cinematic"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="ecorebinding"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="metadatadef"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="flow"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="view"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="toolkits"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="technicalid"/>
+    <body xsi:type="ItemDefinition" declaredName="Configuration">
+      <body xsi:type="ItemUsage" declaredName="bindingRegistries" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>BindingRegistry</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ecoreModel" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EPackage</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="cinematicModel" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>CinematicRoot</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ecoreBindingModel" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>BModel</featureSpecialization>
+      </body>
+      <SubclassificationPart>Identifiable</SubclassificationPart>
+    </body>
+  </body>
+</Namespace>

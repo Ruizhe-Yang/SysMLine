@@ -1,9 +1,0 @@
-<?nsuri psl?>
-<project title="ACME">
-	<task title="Analysis" start="1" dur="3">
-	</task>
-	<task title="Design" start="4" dur="6">
-	</task>
-	<task title="Implementation" start="7" dur="3">
-	</task>
-</project>

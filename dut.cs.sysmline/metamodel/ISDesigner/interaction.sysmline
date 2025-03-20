@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="ASCII"?>
+<Namespace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="sysmline" xsi:schemaLocation="sysmline metamodel/sysmline/sysmline.ecore">
+  <body xsi:type="Package" declaredName="interaction">
+    <body xsi:type="NamespaceImport" hasVisibility="true" declaredName="ecore"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="environment"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="metadatadef"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="technicalid"/>
+    <body xsi:type="ItemDefinition" declaredName="NamedElement" isAbstract="true">
+      <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <SubclassificationPart>ObeoDSMObject</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Interaction">
+      <body xsi:type="ItemUsage" declaredName="participants" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Participant</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="messages" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Message</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="executions" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Execution</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="stateInvariants" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>StateInvariant</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="interactionUses" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>InteractionUse</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ends" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>End</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="combinedFragments" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>CombinedFragment</featureSpecialization>
+      </body>
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+      <SubclassificationPart>Behaviour</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Participant">
+      <body xsi:type="ItemUsage" declaredName="type" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ObeoDSMObject</featureSpecialization>
+      </body>
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Message" isAbstract="true">
+      <SubclassificationPart>InteractionFragment</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Execution">
+      <body xsi:type="ItemUsage" declaredName="owner" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Participant</featureSpecialization>
+      </body>
+      <SubclassificationPart>InteractionFragment</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="CreateParticipantMessage">
+      <SubclassificationPart>Message</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="DestroyParticipantMessage">
+      <SubclassificationPart>Message</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ReturnMessage">
+      <body xsi:type="ItemUsage" declaredName="invocationMessage" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Message</featureSpecialization>
+      </body>
+      <SubclassificationPart>Message</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="StateInvariant">
+      <body xsi:type="ItemUsage" declaredName="owner" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Participant</featureSpecialization>
+      </body>
+      <SubclassificationPart>InteractionFragment</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="InteractionUse">
+      <body xsi:type="AttributeUsage" declaredName="type" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="interaction" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Interaction</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="coveredParticipants" multiplicityRange="[1..*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Participant</featureSpecialization>
+      </body>
+      <SubclassificationPart>InteractionFragment</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="End">
+      <body xsi:type="ItemUsage" declaredName="context" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Participant</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="owner" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>InteractionFragment</featureSpecialization>
+      </body>
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="InteractionFragment" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="startingEnd" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>End</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="finishingEnd" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>End</featureSpecialization>
+      </body>
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="CombinedFragment">
+      <body xsi:type="AttributeUsage" declaredName="operator" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="coveredParticipants" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Participant</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedOperands" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Operand</featureSpecialization>
+      </body>
+      <SubclassificationPart>InteractionFragment</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Operand">
+      <SubclassificationPart>InteractionFragment</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="CallMessage">
+      <SubclassificationPart>Message</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="CompoundEnd">
+      <body xsi:type="ItemUsage" declaredName="otherOwner" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Message</featureSpecialization>
+      </body>
+      <SubclassificationPart>End</SubclassificationPart>
+    </body>
+  </body>
+</Namespace>

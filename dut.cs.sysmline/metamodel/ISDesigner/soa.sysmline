@@ -1,0 +1,499 @@
+<?xml version="1.0" encoding="ASCII"?>
+<Namespace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="sysmline" xsi:schemaLocation="sysmline metamodel/sysmline/sysmline.ecore">
+  <body xsi:type="Package" declaredName="soa">
+    <body xsi:type="NamespaceImport" hasVisibility="true" declaredName="ecore"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="environment"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="metadatadef"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="technicalid"/>
+    <body xsi:type="ItemDefinition" declaredName="System">
+      <body xsi:type="ItemUsage" declaredName="ownedComponents" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Component</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedWires" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Wire</featureSpecialization>
+      </body>
+      <SubclassificationPart>Namespace</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Component">
+      <body xsi:type="ItemUsage" declaredName="ownedServices" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Service</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="requiredServices" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Service</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="providedServices" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Service</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="implementations" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ImplementationComponent</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedBinding" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Binding</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="'block'" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>TypesDefinition</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="URI" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="apiVersion" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="deprecated" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="securitySchemes" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>SecurityScheme</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="license" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>License</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="information" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Information</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="contact" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Contact</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="servers" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Server</featureSpecialization>
+      </body>
+      <SubclassificationPart>ObeoDSMObject</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Service">
+      <body xsi:type="ItemUsage" declaredName="ownedInterface" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Interface</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="synchronization" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>SynchronizationKind</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="kind" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>InterfaceKind</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="referencedInterface" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Interface</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="bindings" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Binding</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="usedTypes" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Type</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="URI" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <SubclassificationPart>ObeoDSMObject</SubclassificationPart>
+      <SubclassificationPart>Securable</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Wire">
+      <body xsi:type="ItemUsage" declaredName="source" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Service</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="dest" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Service</featureSpecialization>
+      </body>
+      <SubclassificationPart>ObeoDSMObject</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Binding">
+      <body xsi:type="AttributeUsage" declaredName="technology" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>BindingKind</featureSpecialization>
+      </body>
+      <SubclassificationPart>ObeoDSMObject</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Interface">
+      <body xsi:type="ItemUsage" declaredName="ownedOperations" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Operation</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <SubclassificationPart>ObeoDSMObject</SubclassificationPart>
+    </body>
+    <body xsi:type="EnumerationDefinition" declaredName="InterfaceKind">
+      <body xsi:type="EnumerationUsage" declaredName="provided"/>
+      <body xsi:type="EnumerationUsage" declaredName="required"/>
+    </body>
+    <body xsi:type="EnumerationDefinition" declaredName="SynchronizationKind">
+      <body xsi:type="EnumerationUsage" declaredName="synchronous"/>
+      <body xsi:type="EnumerationUsage" declaredName="asynchronous"/>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Operation">
+      <body xsi:type="ItemUsage" declaredName="input" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Parameter</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="output" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Parameter</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="kind" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>OperationKind</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="'public'" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="fault" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Parameter</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="URI" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="verb" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Verb</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="exposition" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ExpositionKind</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="paged" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="servers" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Server</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="size" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Parameter</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="page" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Parameter</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="paginationExtension" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>PropertiesExtension</featureSpecialization>
+      </body>
+      <SubclassificationPart>Action</SubclassificationPart>
+      <SubclassificationPart>Securable</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ImplementationComponent">
+      <body xsi:type="ItemUsage" declaredName="implement" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Interface</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="entities" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>TypesDefinition</featureSpecialization>
+      </body>
+      <SubclassificationPart>ObeoDSMObject</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Parameter">
+      <body xsi:type="ItemUsage" declaredName="type" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Type</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="mediaType" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>MediaType</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="multiplicity" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>MultiplicityKind</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="isUnique" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="isOrdered" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="statusCode" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="statusMessage" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="restData" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ParameterRestData</featureSpecialization>
+      </body>
+      <SubclassificationPart>ObeoDSMObject</SubclassificationPart>
+      <SubclassificationPart>ConstrainableElement</SubclassificationPart>
+    </body>
+    <body xsi:type="EnumerationDefinition" declaredName="BindingKind">
+      <body xsi:type="EnumerationUsage" declaredName="webservice"/>
+      <body xsi:type="EnumerationUsage" declaredName="rmi"/>
+      <body xsi:type="EnumerationUsage" declaredName="corba"/>
+      <body xsi:type="EnumerationUsage" declaredName="ejb"/>
+      <body xsi:type="EnumerationUsage" declaredName="java"/>
+    </body>
+    <body xsi:type="EnumerationDefinition" declaredName="OperationKind">
+      <body xsi:type="EnumerationUsage" declaredName="REQUEST_RESPONSE"/>
+      <body xsi:type="EnumerationUsage" declaredName="ONE_WAY"/>
+    </body>
+    <body xsi:type="EnumerationDefinition" declaredName="Verb">
+      <body xsi:type="EnumerationUsage" declaredName="GET"/>
+      <body xsi:type="EnumerationUsage" declaredName="POST"/>
+      <body xsi:type="EnumerationUsage" declaredName="PUT"/>
+      <body xsi:type="EnumerationUsage" declaredName="DELETE"/>
+      <body xsi:type="EnumerationUsage" declaredName="HEAD"/>
+      <body xsi:type="EnumerationUsage" declaredName="OPTIONS"/>
+      <body xsi:type="EnumerationUsage" declaredName="PATCH"/>
+      <body xsi:type="EnumerationUsage" declaredName="TRACE"/>
+    </body>
+    <body xsi:type="EnumerationDefinition" declaredName="ParameterPassingMode">
+      <body xsi:type="EnumerationUsage" declaredName="BODY"/>
+      <body xsi:type="EnumerationUsage" declaredName="PATH"/>
+      <body xsi:type="EnumerationUsage" declaredName="QUERY"/>
+      <body xsi:type="EnumerationUsage" declaredName="COOKIE"/>
+      <body xsi:type="EnumerationUsage" declaredName="HEADER"/>
+    </body>
+    <body xsi:type="EnumerationDefinition" declaredName="ExpositionKind">
+      <body xsi:type="EnumerationUsage" declaredName="NONE"/>
+      <body xsi:type="EnumerationUsage" declaredName="REST"/>
+      <body xsi:type="EnumerationUsage" declaredName="SOAP"/>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ParameterRestData">
+      <body xsi:type="AttributeUsage" declaredName="passingMode" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ParameterPassingMode</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="restId" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <SubclassificationPart>Identifiable</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="SecurityScheme">
+      <body xsi:type="AttributeUsage" declaredName="key" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="type" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>SecuritySchemeType</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="apiKeyLocation" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ApiKeyLocation</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="connectURL" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="flows" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Flow</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="httpScheme" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>HttpScheme</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="format" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <SubclassificationPart>ObeoDSMObject</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Flow">
+      <body xsi:type="AttributeUsage" declaredName="flowType" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FlowType</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="authorizationURL" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="tokenURL" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="refreshURL" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="scopes" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Scope</featureSpecialization>
+      </body>
+      <SubclassificationPart>ObeoDSMObject</SubclassificationPart>
+    </body>
+    <body xsi:type="EnumerationDefinition" declaredName="SecuritySchemeType">
+      <body xsi:type="EnumerationUsage" declaredName="API_KEY"/>
+      <body xsi:type="EnumerationUsage" declaredName="HTTP"/>
+      <body xsi:type="EnumerationUsage" declaredName="OAUTH2"/>
+      <body xsi:type="EnumerationUsage" declaredName="OPEN_ID_CONNECT"/>
+    </body>
+    <body xsi:type="EnumerationDefinition" declaredName="ApiKeyLocation">
+      <body xsi:type="EnumerationUsage" declaredName="QUERY"/>
+      <body xsi:type="EnumerationUsage" declaredName="HEADER"/>
+      <body xsi:type="EnumerationUsage" declaredName="COOKIE"/>
+    </body>
+    <body xsi:type="EnumerationDefinition" declaredName="HttpScheme">
+      <body xsi:type="EnumerationUsage" declaredName="BASIC"/>
+      <body xsi:type="EnumerationUsage" declaredName="BEARER"/>
+    </body>
+    <body xsi:type="EnumerationDefinition" declaredName="FlowType">
+      <body xsi:type="EnumerationUsage" declaredName="IMPLICIT"/>
+      <body xsi:type="EnumerationUsage" declaredName="PASSWORD"/>
+      <body xsi:type="EnumerationUsage" declaredName="CREDENTIALS"/>
+      <body xsi:type="EnumerationUsage" declaredName="AUTHORIZATIONCODE"/>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Information">
+      <body xsi:type="AttributeUsage" declaredName="apiVersion" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="termsOfService" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <SubclassificationPart>ObeoDSMObject</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Contact">
+      <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="URL" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="email" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <SubclassificationPart>ObeoDSMObject</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="License">
+      <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="URL" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="identifier" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <SubclassificationPart>ObeoDSMObject</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="MediaType">
+      <body xsi:type="AttributeUsage" declaredName="identifier" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="examples" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Example</featureSpecialization>
+      </body>
+      <SubclassificationPart>ObeoDSMObject</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Example">
+      <body xsi:type="AttributeUsage" declaredName="summary" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="'value'" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <SubclassificationPart>ObeoDSMObject</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="PropertiesExtension">
+      <body xsi:type="AttributeUsage" declaredName="context" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <SubclassificationPart>Annotation</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Server">
+      <body xsi:type="AttributeUsage" declaredName="URL" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <SubclassificationPart>ObeoDSMObject</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Scope">
+      <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="summary" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <SubclassificationPart>ObeoDSMObject</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="SecurityApplication">
+      <body xsi:type="ItemUsage" declaredName="securityScheme" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>SecurityScheme</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="scopes" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Scope</featureSpecialization>
+      </body>
+      <SubclassificationPart>Identifiable</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Securable" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="securityApplications" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>SecurityApplication</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="securitySchemes" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>SecurityScheme</featureSpecialization>
+      </body>
+    </body>
+  </body>
+</Namespace>

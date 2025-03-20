@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="ASCII"?>
+<Namespace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="sysmline" xsi:schemaLocation="sysmline metamodel/sysmline/sysmline.ecore">
+  <body xsi:type="Package" declaredName="entity">
+    <body xsi:type="NamespaceImport" hasVisibility="true" declaredName="ecore"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="environment"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="metadatadef"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="technicalid"/>
+    <body xsi:type="ItemDefinition" declaredName="Root">
+      <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <SubclassificationPart>TypesDefinition</SubclassificationPart>
+      <SubclassificationPart>NamespacesContainer</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Entity">
+      <body xsi:type="AttributeUsage" declaredName="estimatedVolumetry" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EInt</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="estimatedAccess" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EInt</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="historized" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedFinders" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Finder</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="inheritanceKind" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>InheritanceKind</featureSpecialization>
+      </body>
+      <SubclassificationPart>StructuredType</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Finder">
+      <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="entity" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Entity</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="customizedName" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="criterions" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Criterion</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="multiplicity" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>MultiplicityKind</featureSpecialization>
+      </body>
+      <SubclassificationPart>ObeoDSMObject</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="InternalCriterion">
+      <body xsi:type="ItemUsage" declaredName="target" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Attribute</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <SubclassificationPart>Criterion</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Criterion" isAbstract="true">
+      <SubclassificationPart>ObeoDSMObject</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ExternalCriterion">
+      <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="type" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Type</featureSpecialization>
+      </body>
+      <SubclassificationPart>Criterion</SubclassificationPart>
+    </body>
+    <body xsi:type="EnumerationDefinition" declaredName="InheritanceKind">
+      <body xsi:type="EnumerationUsage" declaredName="TABLE_PER_SUBCLASS"/>
+      <body xsi:type="EnumerationUsage" declaredName="TABLE_PER_CLASS_HIERARCHY"/>
+    </body>
+    <body xsi:type="Package" declaredName="extensionUtilities">
+      <body xsi:type="ItemDefinition" declaredName="EntityFilter">
+        <body xsi:type="ItemUsage" declaredName="attributeReferences" multiplicityRange="[*]" isReference="true">
+          <featureNote>:</featureNote>
+          <featureSpecialization>Attribute</featureSpecialization>
+        </body>
+        <body xsi:type="ItemUsage" declaredName="referenceReferences" multiplicityRange="[*]" isReference="true">
+          <featureNote>:</featureNote>
+          <featureSpecialization>Reference</featureSpecialization>
+        </body>
+        <body xsi:type="ItemUsage" declaredName="ownedPropertyReferences" multiplicityRange="[*]" isReference="true">
+          <featureNote>:</featureNote>
+          <featureSpecialization>Property</featureSpecialization>
+        </body>
+        <body xsi:type="ItemUsage" declaredName="entity" multiplicityRange="[1]" isReference="true">
+          <featureNote>:</featureNote>
+          <featureSpecialization>Entity</featureSpecialization>
+        </body>
+        <SubclassificationPart>Filter</SubclassificationPart>
+      </body>
+    </body>
+  </body>
+</Namespace>

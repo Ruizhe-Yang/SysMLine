@@ -1,0 +1,1666 @@
+<?xml version="1.0" encoding="ASCII"?>
+<Namespace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="sysmline" xsi:schemaLocation="sysmline metamodel/sysmline/sysmline.ecore">
+  <body xsi:type="Package" declaredName="'viewpoint'">
+    <body xsi:type="NamespaceImport" hasVisibility="true" declaredName="ecore"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="viewpoint"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="org.eclipse.emf"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="description"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="style"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="tool"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="validation"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="audit"/>
+    <body xsi:type="ItemDefinition" declaredName="IdentifiedElement" isAbstract="true">
+      <body xsi:type="AttributeUsage" declaredName="uid" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="DAnalysis">
+      <body xsi:type="ItemUsage" declaredName="referencedAnalysis" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>DAnalysis</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="semanticResources" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ResourceDescriptor</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="models" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EObject</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="eAnnotations" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>DAnnotationEntry</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedViews" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>DView</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="selectedViews" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>DView</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedFeatureExtensions" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>DFeatureExtension</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="version" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <SubclassificationPart>IdentifiedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="DFeatureExtension" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="description" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FeatureExtensionDescription</featureSpecialization>
+      </body>
+      <SubclassificationPart>IdentifiedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="DStylizable" isAbstract="true"/>
+    <body xsi:type="ItemDefinition" declaredName="DRefreshable" isAbstract="true"/>
+    <body xsi:type="ItemDefinition" declaredName="DMappingBased" isAbstract="true"/>
+    <body xsi:type="ItemDefinition" declaredName="DSemanticDecorator" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="target" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EObject</featureSpecialization>
+      </body>
+      <SubclassificationPart>IdentifiedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="DRepresentationDescriptor">
+      <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="description" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>RepresentationDescription</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="target" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EObject</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="representation" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>DRepresentation</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="repPath" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ResourceDescriptor</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="changeId" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <SubclassificationPart>IdentifiedElement</SubclassificationPart>
+      <SubclassificationPart>DModelElement</SubclassificationPart>
+      <SubclassificationPart>DocumentedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="DRepresentation" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="ownedRepresentationElements" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>DRepresentationElement</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="representationElements" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>DRepresentationElement</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedAnnotationEntries" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>AnnotationEntry</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="uiState" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>UIState</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="documentation" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <SubclassificationPart>IdentifiedElement</SubclassificationPart>
+      <SubclassificationPart>DModelElement</SubclassificationPart>
+      <SubclassificationPart>DRefreshable</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="DRepresentationElement" isAbstract="true">
+      <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="semanticElements" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EObject</featureSpecialization>
+      </body>
+      <SubclassificationPart>IdentifiedElement</SubclassificationPart>
+      <SubclassificationPart>DMappingBased</SubclassificationPart>
+      <SubclassificationPart>DStylizable</SubclassificationPart>
+      <SubclassificationPart>DRefreshable</SubclassificationPart>
+      <SubclassificationPart>DSemanticDecorator</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="DView">
+      <body xsi:type="ItemUsage" declaredName="'viewpoint'" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Viewpoint</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedRepresentationDescriptors" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>DRepresentationDescriptor</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedExtensions" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>MetaModelExtension</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="models" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EObject</featureSpecialization>
+      </body>
+      <SubclassificationPart>IdentifiedElement</SubclassificationPart>
+      <SubclassificationPart>DRefreshable</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="MetaModelExtension">
+      <body xsi:type="ItemUsage" declaredName="extensionGroup" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EObject</featureSpecialization>
+      </body>
+      <SubclassificationPart>IdentifiedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Decoration">
+      <body xsi:type="ItemUsage" declaredName="description" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>DecorationDescription</featureSpecialization>
+      </body>
+      <SubclassificationPart>IdentifiedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="DAnalysisCustomData">
+      <body xsi:type="AttributeUsage" declaredName="key" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="data" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EObject</featureSpecialization>
+      </body>
+      <SubclassificationPart>IdentifiedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="LabelStyle">
+      <body xsi:type="AttributeUsage" declaredName="labelAlignment" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>LabelAlignment</featureSpecialization>
+      </body>
+      <SubclassificationPart>BasicLabelStyle</SubclassificationPart>
+    </body>
+    <body xsi:type="EnumerationDefinition" declaredName="FontFormat">
+      <body xsi:type="EnumerationUsage" declaredName="italic"/>
+      <body xsi:type="EnumerationUsage" declaredName="bold"/>
+      <body xsi:type="EnumerationUsage" declaredName="underline"/>
+      <body xsi:type="EnumerationUsage" declaredName="strike_through"/>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Style" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="description" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>StyleDescription</featureSpecialization>
+      </body>
+      <SubclassificationPart>IdentifiedElement</SubclassificationPart>
+      <SubclassificationPart>DRefreshable</SubclassificationPart>
+      <SubclassificationPart>Customizable</SubclassificationPart>
+    </body>
+    <body xsi:type="EnumerationDefinition" declaredName="LabelAlignment">
+      <body xsi:type="EnumerationUsage" declaredName="CENTER"/>
+      <body xsi:type="EnumerationUsage" declaredName="LEFT"/>
+      <body xsi:type="EnumerationUsage" declaredName="RIGHT"/>
+    </body>
+    <body xsi:type="AttributeDefinition" declaredName="RGBValues"/>
+    <body xsi:type="ItemDefinition" declaredName="DAnalysisSessionEObject">
+      <body xsi:type="AttributeUsage" declaredName="open" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="resources" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EResource</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="controlledResources" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EResource</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="activatedViewpoints" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Viewpoint</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="analyses" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>DAnalysis</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="synchronizationStatus" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>SyncStatus</featureSpecialization>
+      </body>
+    </body>
+    <body xsi:type="EnumerationDefinition" declaredName="SyncStatus">
+      <body xsi:type="EnumerationUsage" declaredName="dirty"/>
+      <body xsi:type="EnumerationUsage" declaredName="sync"/>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="SessionManagerEObject">
+      <body xsi:type="ItemUsage" declaredName="ownedSessions" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>DAnalysisSessionEObject</featureSpecialization>
+      </body>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="DResource" isAbstract="true">
+      <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="path" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="DFile">
+      <SubclassificationPart>IdentifiedElement</SubclassificationPart>
+      <SubclassificationPart>DResource</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="DResourceContainer">
+      <body xsi:type="ItemUsage" declaredName="members" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>DResource</featureSpecialization>
+      </body>
+      <SubclassificationPart>IdentifiedElement</SubclassificationPart>
+      <SubclassificationPart>DResource</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="DProject">
+      <SubclassificationPart>DResourceContainer</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="DFolder">
+      <SubclassificationPart>DResourceContainer</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="DModel">
+      <SubclassificationPart>DFile</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="BasicLabelStyle">
+      <body xsi:type="AttributeUsage" declaredName="labelSize" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EInt</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="labelFormat" multiplicityRange="[0..4]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FontFormat</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="showIcon" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="iconPath" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="labelColor" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>RGBValues</featureSpecialization>
+      </body>
+      <SubclassificationPart>Customizable</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Customizable" isAbstract="true">
+      <body xsi:type="AttributeUsage" declaredName="customFeatures" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <SubclassificationPart>IdentifiedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="AttributeDefinition" declaredName="ResourceDescriptor"/>
+    <body xsi:type="ItemDefinition" declaredName="UIState">
+      <body xsi:type="AttributeUsage" declaredName="inverseSelectionOrder" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="elementsToSelect" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EObject</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="decorationImage" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EMap</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="toolSections" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ToolSectionInstance</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="subDiagramDecorationDescriptors" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EMap</featureSpecialization>
+      </body>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ToolInstance">
+      <body xsi:type="AttributeUsage" declaredName="id" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="enabled" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="visible" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="toolEntry" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ToolEntry</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="filtered" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ToolGroupInstance">
+      <body xsi:type="ItemUsage" declaredName="tools" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ToolInstance</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="group" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EObject</featureSpecialization>
+      </body>
+      <SubclassificationPart>ToolInstance</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ToolSectionInstance">
+      <body xsi:type="ItemUsage" declaredName="tools" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ToolInstance</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="section" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EObject</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="subSections" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ToolSectionInstance</featureSpecialization>
+      </body>
+      <SubclassificationPart>ToolInstance</SubclassificationPart>
+    </body>
+    <body xsi:type="Package" declaredName="description">
+      <body xsi:type="ItemDefinition" declaredName="Group">
+        <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+          <featureNote>:</featureNote>
+          <featureSpecialization>EString</featureSpecialization>
+        </body>
+        <body xsi:type="ItemUsage" declaredName="ownedViewpoints" multiplicityRange="[*]">
+          <featureNote>:</featureNote>
+          <featureSpecialization>Viewpoint</featureSpecialization>
+        </body>
+        <body xsi:type="ItemUsage" declaredName="systemColorsPalette" multiplicityRange="[1]" isReference="true">
+          <featureNote>:</featureNote>
+          <featureSpecialization>SytemColorsPalette</featureSpecialization>
+        </body>
+        <body xsi:type="ItemUsage" declaredName="userColorsPalettes" multiplicityRange="[*]">
+          <featureNote>:</featureNote>
+          <featureSpecialization>UserColorsPalette</featureSpecialization>
+        </body>
+        <body xsi:type="AttributeUsage" declaredName="version" multiplicityRange="[1]">
+          <featureNote>:</featureNote>
+          <featureSpecialization>EString</featureSpecialization>
+        </body>
+        <body xsi:type="ItemUsage" declaredName="extensions" multiplicityRange="[*]">
+          <featureNote>:</featureNote>
+          <featureSpecialization>Extension</featureSpecialization>
+        </body>
+        <SubclassificationPart>DModelElement</SubclassificationPart>
+        <SubclassificationPart>DocumentedElement</SubclassificationPart>
+      </body>
+      <body xsi:type="ItemDefinition" declaredName="Extension" isAbstract="true"/>
+      <body xsi:type="ItemDefinition" declaredName="Component" isAbstract="true"/>
+      <body xsi:type="ItemDefinition" declaredName="Viewpoint">
+        <body xsi:type="AttributeUsage" declaredName="modelFileExtension" multiplicityRange="[1]">
+          <featureNote>:</featureNote>
+          <featureSpecialization>EString</featureSpecialization>
+        </body>
+        <body xsi:type="ItemUsage" declaredName="validationSet" multiplicityRange="[1]">
+          <featureNote>:</featureNote>
+          <featureSpecialization>ValidationSet</featureSpecialization>
+        </body>
+        <body xsi:type="ItemUsage" declaredName="ownedRepresentations" multiplicityRange="[*]">
+          <featureNote>:</featureNote>
+          <featureSpecialization>RepresentationDescription</featureSpecialization>
+        </body>
+        <body xsi:type="ItemUsage" declaredName="ownedRepresentationExtensions" multiplicityRange="[*]">
+          <featureNote>:</featureNote>
+          <featureSpecialization>RepresentationExtensionDescription</featureSpecialization>
+        </body>
+        <body xsi:type="ItemUsage" declaredName="ownedJavaExtensions" multiplicityRange="[*]">
+          <featureNote>:</featureNote>
+          <featureSpecialization>JavaExtension</featureSpecialization>
+        </body>
+        <body xsi:type="ItemUsage" declaredName="ownedMMExtensions" multiplicityRange="[*]">
+          <featureNote>:</featureNote>
+          <featureSpecialization>MetamodelExtensionSetting</featureSpecialization>
+        </body>
+        <body xsi:type="ItemUsage" declaredName="ownedFeatureExtensions" multiplicityRange="[*]">
+          <featureNote>:</featureNote>
+          <featureSpecialization>FeatureExtensionDescription</featureSpecialization>
+        </body>
+        <body xsi:type="AttributeUsage" declaredName="icon" multiplicityRange="[1]">
+          <featureNote>:</featureNote>
+          <featureSpecialization>ImagePath</featureSpecialization>
+        </body>
+        <body xsi:type="ItemUsage" declaredName="ownedTemplates" multiplicityRange="[*]">
+          <featureNote>:</featureNote>
+          <featureSpecialization>RepresentationTemplate</featureSpecialization>
+        </body>
+        <body xsi:type="AttributeUsage" declaredName="conflicts" multiplicityRange="[*]">
+          <featureNote>:</featureNote>
+          <featureSpecialization>URI</featureSpecialization>
+        </body>
+        <body xsi:type="AttributeUsage" declaredName="reuses" multiplicityRange="[*]">
+          <featureNote>:</featureNote>
+          <featureSpecialization>URI</featureSpecialization>
+        </body>
+        <body xsi:type="AttributeUsage" declaredName="customizes" multiplicityRange="[*]">
+          <featureNote>:</featureNote>
+          <featureSpecialization>URI</featureSpecialization>
+        </body>
+        <SubclassificationPart>DocumentedElement</SubclassificationPart>
+        <SubclassificationPart>Component</SubclassificationPart>
+        <SubclassificationPart>EndUserDocumentedElement</SubclassificationPart>
+        <SubclassificationPart>IdentifiedElement</SubclassificationPart>
+      </body>
+      <body xsi:type="ItemDefinition" declaredName="FeatureExtensionDescription" isAbstract="true"/>
+      <body xsi:type="ItemDefinition" declaredName="RepresentationDescription" isAbstract="true">
+        <body xsi:type="AttributeUsage" declaredName="titleExpression" multiplicityRange="[1]">
+          <featureNote>:</featureNote>
+          <featureSpecialization>InterpretedExpression</featureSpecialization>
+        </body>
+        <body xsi:type="AttributeUsage" declaredName="initialisation" multiplicityRange="[1]">
+          <featureNote>:</featureNote>
+          <featureSpecialization>EBoolean</featureSpecialization>
+        </body>
+        <body xsi:type="ItemUsage" declaredName="metamodel" multiplicityRange="[*]" isReference="true">
+          <featureNote>:</featureNote>
+          <featureSpecialization>EPackage</featureSpecialization>
+        </body>
+        <body xsi:type="AttributeUsage" declaredName="showOnStartup" multiplicityRange="[1]">
+          <featureNote>:</featureNote>
+          <featureSpecialization>EBoolean</featureSpecialization>
+        </body>
+        <SubclassificationPart>DocumentedElement</SubclassificationPart>
+        <SubclassificationPart>EndUserDocumentedElement</SubclassificationPart>
+        <SubclassificationPart>IdentifiedElement</SubclassificationPart>
+      </body>
+      <body xsi:type="ItemDefinition" declaredName="RepresentationTemplate" isAbstract="true">
+        <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+          <featureNote>:</featureNote>
+          <featureSpecialization>EString</featureSpecialization>
+        </body>
+        <body xsi:type="ItemUsage" declaredName="ownedRepresentations" multiplicityRange="[*]">
+          <featureNote>:</featureNote>
+          <featureSpecialization>RepresentationDescription</featureSpecialization>
+        </body>
+      </body>
+      <body xsi:type="ItemDefinition" declaredName="RepresentationImportDescription" isAbstract="true">
+        <SubclassificationPart>RepresentationDescription</SubclassificationPart>
+      </body>
+      <body xsi:type="ItemDefinition" declaredName="RepresentationExtensionDescription" isAbstract="true">
+        <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+          <featureNote>:</featureNote>
+          <featureSpecialization>EString</featureSpecialization>
+        </body>
+        <body xsi:type="AttributeUsage" declaredName="viewpointURI" multiplicityRange="[1]">
+          <featureNote>:</featureNote>
+          <featureSpecialization>EString</featureSpecialization>
+        </body>
+        <body xsi:type="AttributeUsage" declaredName="representationName" multiplicityRange="[1]">
+          <featureNote>:</featureNote>
+          <featureSpecialization>EString</featureSpecialization>
+        </body>
+        <body xsi:type="ItemUsage" declaredName="metamodel" multiplicityRange="[*]" isReference="true">
+          <featureNote>:</featureNote>
+          <featureSpecialization>EPackage</featureSpecialization>
+        </body>
+      </body>
+      <body xsi:type="ItemDefinition" declaredName="MetamodelExtensionSetting">
+        <body xsi:type="ItemUsage" declaredName="extensionGroup" multiplicityRange="[1]" isReference="true">
+          <featureNote>:</featureNote>
+          <featureSpecialization>EObject</featureSpecialization>
+        </body>
+      </body>
+      <body xsi:type="ItemDefinition" declaredName="JavaExtension">
+        <body xsi:type="AttributeUsage" declaredName="qualifiedClassName" multiplicityRange="[1]">
+          <featureNote>:</featureNote>
+          <featureSpecialization>EString</featureSpecialization>
+        </body>
+      </body>
+      <body xsi:type="ItemDefinition" declaredName="RepresentationElementMapping" isAbstract="true">
+        <body xsi:type="ItemUsage" declaredName="detailDescriptions" multiplicityRange="[*]" isReference="true">
+          <featureNote>:</featureNote>
+          <featureSpecialization>RepresentationCreationDescription</featureSpecialization>
+        </body>
+        <body xsi:type="ItemUsage" declaredName="navigationDescriptions" multiplicityRange="[*]" isReference="true">
+          <featureNote>:</featureNote>
+          <featureSpecialization>RepresentationNavigationDescription</featureSpecialization>
+        </body>
+        <SubclassificationPart>IdentifiedElement</SubclassificationPart>
+      </body>
+      <body xsi:type="ItemDefinition" declaredName="AbstractMappingImport" isAbstract="true">
+        <body xsi:type="AttributeUsage" declaredName="hideSubMappings" multiplicityRange="[1]">
+          <featureNote>:</featureNote>
+          <featureSpecialization>EBoolean</featureSpecialization>
+        </body>
+        <body xsi:type="AttributeUsage" declaredName="inheritsAncestorFilters" multiplicityRange="[1]">
+          <featureNote>:</featureNote>
+          <featureSpecialization>EBoolean</featureSpecialization>
+        </body>
+      </body>
+      <body xsi:type="ItemDefinition" declaredName="DocumentedElement" isAbstract="true">
+        <body xsi:type="AttributeUsage" declaredName="documentation" multiplicityRange="[1]">
+          <featureNote>:</featureNote>
+          <featureSpecialization>EString</featureSpecialization>
+        </body>
+      </body>
+      <body xsi:type="ItemDefinition" declaredName="DModelElement" isAbstract="true">
+        <body xsi:type="ItemUsage" declaredName="eAnnotations" multiplicityRange="[*]">
+          <featureNote>:</featureNote>
+          <featureSpecialization>DAnnotation</featureSpecialization>
+        </body>
+      </body>
+      <body xsi:type="ItemDefinition" declaredName="DAnnotation">
+        <body xsi:type="AttributeUsage" declaredName="source" multiplicityRange="[1]">
+          <featureNote>:</featureNote>
+          <featureSpecialization>EString</featureSpecialization>
+        </body>
+        <body xsi:type="ItemUsage" declaredName="details" multiplicityRange="[*]">
+          <featureNote>:</featureNote>
+          <featureSpecialization>EStringToStringMapEntry</featureSpecialization>
+        </body>
+        <body xsi:type="ItemUsage" declaredName="'references'" multiplicityRange="[*]" isReference="true">
+          <featureNote>:</featureNote>
+          <featureSpecialization>EObject</featureSpecialization>
+        </body>
+        <SubclassificationPart>IdentifiedElement</SubclassificationPart>
+      </body>
+      <body xsi:type="ItemDefinition" declaredName="ConditionalStyleDescription" isAbstract="true">
+        <body xsi:type="AttributeUsage" declaredName="predicateExpression" multiplicityRange="[1]">
+          <featureNote>:</featureNote>
+          <featureSpecialization>InterpretedExpression</featureSpecialization>
+        </body>
+      </body>
+      <body xsi:type="AttributeDefinition" declaredName="TypeName"/>
+      <body xsi:type="AttributeDefinition" declaredName="InterpretedExpression"/>
+      <body xsi:type="AttributeDefinition" declaredName="FeatureName"/>
+      <body xsi:type="AttributeDefinition" declaredName="ImagePath"/>
+      <body xsi:type="ItemDefinition" declaredName="PasteTargetDescription" isAbstract="true">
+        <body xsi:type="ItemUsage" declaredName="pasteDescriptions" multiplicityRange="[*]" isReference="true">
+          <featureNote>:</featureNote>
+          <featureSpecialization>PasteDescription</featureSpecialization>
+        </body>
+      </body>
+      <body xsi:type="ItemDefinition" declaredName="DecorationDescriptionsSet">
+        <body xsi:type="ItemUsage" declaredName="decorationDescriptions" multiplicityRange="[*]">
+          <featureNote>:</featureNote>
+          <featureSpecialization>DecorationDescription</featureSpecialization>
+        </body>
+      </body>
+      <body xsi:type="ItemDefinition" declaredName="DecorationDescription" isAbstract="true">
+        <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+          <featureNote>:</featureNote>
+          <featureSpecialization>EString</featureSpecialization>
+        </body>
+        <body xsi:type="AttributeUsage" declaredName="position" multiplicityRange="[1]">
+          <featureNote>:</featureNote>
+          <featureSpecialization>Position</featureSpecialization>
+        </body>
+        <body xsi:type="AttributeUsage" declaredName="distributionDirection" multiplicityRange="[1]">
+          <featureNote>:</featureNote>
+          <featureSpecialization>DecorationDistributionDirection</featureSpecialization>
+        </body>
+        <body xsi:type="AttributeUsage" declaredName="preconditionExpression" multiplicityRange="[1]">
+          <featureNote>:</featureNote>
+          <featureSpecialization>InterpretedExpression</featureSpecialization>
+        </body>
+        <body xsi:type="AttributeUsage" declaredName="imageExpression" multiplicityRange="[1]">
+          <featureNote>:</featureNote>
+          <featureSpecialization>InterpretedExpression</featureSpecialization>
+        </body>
+        <body xsi:type="AttributeUsage" declaredName="tooltipExpression" multiplicityRange="[1]">
+          <featureNote>:</featureNote>
+          <featureSpecialization>InterpretedExpression</featureSpecialization>
+        </body>
+      </body>
+      <body xsi:type="EnumerationDefinition" declaredName="Position">
+        <body xsi:type="EnumerationUsage" declaredName="NORTH"/>
+        <body xsi:type="EnumerationUsage" declaredName="WEST"/>
+        <body xsi:type="EnumerationUsage" declaredName="SOUTH"/>
+        <body xsi:type="EnumerationUsage" declaredName="EAST"/>
+        <body xsi:type="EnumerationUsage" declaredName="NORTH_WEST"/>
+        <body xsi:type="EnumerationUsage" declaredName="NORTH_EAST"/>
+        <body xsi:type="EnumerationUsage" declaredName="SOUTH_WEST"/>
+        <body xsi:type="EnumerationUsage" declaredName="SOUTH_EAST"/>
+        <body xsi:type="EnumerationUsage" declaredName="CENTER"/>
+      </body>
+      <body xsi:type="EnumerationDefinition" declaredName="DecorationDistributionDirection">
+        <body xsi:type="EnumerationUsage" declaredName="VERTICAL"/>
+        <body xsi:type="EnumerationUsage" declaredName="HORIZONTAL"/>
+      </body>
+      <body xsi:type="ItemDefinition" declaredName="SemanticBasedDecoration">
+        <body xsi:type="AttributeUsage" declaredName="domainClass" multiplicityRange="[1]">
+          <featureNote>:</featureNote>
+          <featureSpecialization>TypeName</featureSpecialization>
+        </body>
+        <SubclassificationPart>DecorationDescription</SubclassificationPart>
+      </body>
+      <body xsi:type="ItemDefinition" declaredName="GenericDecorationDescription">
+        <SubclassificationPart>DecorationDescription</SubclassificationPart>
+      </body>
+      <body xsi:type="ItemDefinition" declaredName="Customization">
+        <body xsi:type="ItemUsage" declaredName="vsmElementCustomizations" multiplicityRange="[1..*]">
+          <featureNote>:</featureNote>
+          <featureSpecialization>IVSMElementCustomization</featureSpecialization>
+        </body>
+      </body>
+      <body xsi:type="ItemDefinition" declaredName="IVSMElementCustomization" isAbstract="true"/>
+      <body xsi:type="ItemDefinition" declaredName="VSMElementCustomization">
+        <body xsi:type="AttributeUsage" declaredName="predicateExpression" multiplicityRange="[1]">
+          <featureNote>:</featureNote>
+          <featureSpecialization>InterpretedExpression</featureSpecialization>
+        </body>
+        <body xsi:type="ItemUsage" declaredName="featureCustomizations" multiplicityRange="[1..*]">
+          <featureNote>:</featureNote>
+          <featureSpecialization>EStructuralFeatureCustomization</featureSpecialization>
+        </body>
+        <SubclassificationPart>IVSMElementCustomization</SubclassificationPart>
+      </body>
+      <body xsi:type="ItemDefinition" declaredName="VSMElementCustomizationReuse">
+        <body xsi:type="ItemUsage" declaredName="reuse" multiplicityRange="[1..*]" isReference="true">
+          <featureNote>:</featureNote>
+          <featureSpecialization>EStructuralFeatureCustomization</featureSpecialization>
+        </body>
+        <body xsi:type="ItemUsage" declaredName="appliedOn" multiplicityRange="[1..*]" isReference="true">
+          <featureNote>:</featureNote>
+          <featureSpecialization>EObject</featureSpecialization>
+        </body>
+        <SubclassificationPart>IVSMElementCustomization</SubclassificationPart>
+      </body>
+      <body xsi:type="ItemDefinition" declaredName="EStructuralFeatureCustomization" isAbstract="true">
+        <body xsi:type="ItemUsage" declaredName="appliedOn" multiplicityRange="[*]" isReference="true">
+          <featureNote>:</featureNote>
+          <featureSpecialization>EObject</featureSpecialization>
+        </body>
+        <body xsi:type="AttributeUsage" declaredName="applyOnAll" multiplicityRange="[1]">
+          <featureNote>:</featureNote>
+          <featureSpecialization>EBoolean</featureSpecialization>
+        </body>
+      </body>
+      <body xsi:type="ItemDefinition" declaredName="EAttributeCustomization">
+        <body xsi:type="AttributeUsage" declaredName="attributeName" multiplicityRange="[1]">
+          <featureNote>:</featureNote>
+          <featureSpecialization>EString</featureSpecialization>
+        </body>
+        <body xsi:type="AttributeUsage" declaredName="'value'" multiplicityRange="[1]">
+          <featureNote>:</featureNote>
+          <featureSpecialization>InterpretedExpression</featureSpecialization>
+        </body>
+        <SubclassificationPart>EStructuralFeatureCustomization</SubclassificationPart>
+      </body>
+      <body xsi:type="ItemDefinition" declaredName="EReferenceCustomization">
+        <body xsi:type="AttributeUsage" declaredName="referenceName" multiplicityRange="[1]">
+          <featureNote>:</featureNote>
+          <featureSpecialization>EString</featureSpecialization>
+        </body>
+        <body xsi:type="ItemUsage" declaredName="'value'" multiplicityRange="[1]" isReference="true">
+          <featureNote>:</featureNote>
+          <featureSpecialization>EObject</featureSpecialization>
+        </body>
+        <SubclassificationPart>EStructuralFeatureCustomization</SubclassificationPart>
+      </body>
+      <body xsi:type="ItemDefinition" declaredName="SelectionDescription" isAbstract="true">
+        <body xsi:type="AttributeUsage" declaredName="candidatesExpression" multiplicityRange="[1]">
+          <featureNote>:</featureNote>
+          <featureSpecialization>InterpretedExpression</featureSpecialization>
+        </body>
+        <body xsi:type="AttributeUsage" declaredName="multiple" multiplicityRange="[1]">
+          <featureNote>:</featureNote>
+          <featureSpecialization>EBoolean</featureSpecialization>
+        </body>
+        <body xsi:type="AttributeUsage" declaredName="tree" multiplicityRange="[1]">
+          <featureNote>:</featureNote>
+          <featureSpecialization>EBoolean</featureSpecialization>
+        </body>
+        <body xsi:type="AttributeUsage" declaredName="rootExpression" multiplicityRange="[1]">
+          <featureNote>:</featureNote>
+          <featureSpecialization>InterpretedExpression</featureSpecialization>
+        </body>
+        <body xsi:type="AttributeUsage" declaredName="childrenExpression" multiplicityRange="[1]">
+          <featureNote>:</featureNote>
+          <featureSpecialization>InterpretedExpression</featureSpecialization>
+        </body>
+        <body xsi:type="AttributeUsage" declaredName="'message'" multiplicityRange="[1]">
+          <featureNote>:</featureNote>
+          <featureSpecialization>TranslatableMessage</featureSpecialization>
+        </body>
+      </body>
+      <body xsi:type="ItemDefinition" declaredName="ColorDescription" isAbstract="true"/>
+      <body xsi:type="ItemDefinition" declaredName="SystemColor">
+        <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+          <featureNote>:</featureNote>
+          <featureSpecialization>EString</featureSpecialization>
+        </body>
+        <SubclassificationPart>FixedColor</SubclassificationPart>
+      </body>
+      <body xsi:type="ItemDefinition" declaredName="InterpolatedColor">
+        <body xsi:type="AttributeUsage" declaredName="colorValueComputationExpression" multiplicityRange="[1]">
+          <featureNote>:</featureNote>
+          <featureSpecialization>InterpretedExpression</featureSpecialization>
+        </body>
+        <body xsi:type="AttributeUsage" declaredName="minValueComputationExpression" multiplicityRange="[1]">
+          <featureNote>:</featureNote>
+          <featureSpecialization>InterpretedExpression</featureSpecialization>
+        </body>
+        <body xsi:type="AttributeUsage" declaredName="maxValueComputationExpression" multiplicityRange="[1]">
+          <featureNote>:</featureNote>
+          <featureSpecialization>InterpretedExpression</featureSpecialization>
+        </body>
+        <body xsi:type="ItemUsage" declaredName="colorSteps" multiplicityRange="[*]">
+          <featureNote>:</featureNote>
+          <featureSpecialization>ColorStep</featureSpecialization>
+        </body>
+        <SubclassificationPart>ColorDescription</SubclassificationPart>
+        <SubclassificationPart>UserColor</SubclassificationPart>
+      </body>
+      <body xsi:type="ItemDefinition" declaredName="ColorStep">
+        <body xsi:type="AttributeUsage" declaredName="associatedValue" multiplicityRange="[1]">
+          <featureNote>:</featureNote>
+          <featureSpecialization>InterpretedExpression</featureSpecialization>
+        </body>
+        <body xsi:type="ItemUsage" declaredName="associatedColor" multiplicityRange="[1]" isReference="true">
+          <featureNote>:</featureNote>
+          <featureSpecialization>FixedColor</featureSpecialization>
+        </body>
+      </body>
+      <body xsi:type="ItemDefinition" declaredName="FixedColor">
+        <body xsi:type="AttributeUsage" declaredName="red" multiplicityRange="[1]">
+          <featureNote>:</featureNote>
+          <featureSpecialization>EInt</featureSpecialization>
+        </body>
+        <body xsi:type="AttributeUsage" declaredName="green" multiplicityRange="[1]">
+          <featureNote>:</featureNote>
+          <featureSpecialization>EInt</featureSpecialization>
+        </body>
+        <body xsi:type="AttributeUsage" declaredName="blue" multiplicityRange="[1]">
+          <featureNote>:</featureNote>
+          <featureSpecialization>EInt</featureSpecialization>
+        </body>
+        <SubclassificationPart>ColorDescription</SubclassificationPart>
+      </body>
+      <body xsi:type="ItemDefinition" declaredName="UserFixedColor">
+        <SubclassificationPart>FixedColor</SubclassificationPart>
+        <SubclassificationPart>UserColor</SubclassificationPart>
+      </body>
+      <body xsi:type="ItemDefinition" declaredName="UserColor" isAbstract="true">
+        <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+          <featureNote>:</featureNote>
+          <featureSpecialization>EString</featureSpecialization>
+        </body>
+      </body>
+      <body xsi:type="EnumerationDefinition" declaredName="SystemColors">
+        <body xsi:type="EnumerationUsage" declaredName="black"/>
+        <body xsi:type="EnumerationUsage" declaredName="blue"/>
+        <body xsi:type="EnumerationUsage" declaredName="red"/>
+        <body xsi:type="EnumerationUsage" declaredName="green"/>
+        <body xsi:type="EnumerationUsage" declaredName="yellow"/>
+        <body xsi:type="EnumerationUsage" declaredName="purple"/>
+        <body xsi:type="EnumerationUsage" declaredName="orange"/>
+        <body xsi:type="EnumerationUsage" declaredName="chocolate"/>
+        <body xsi:type="EnumerationUsage" declaredName="gray"/>
+        <body xsi:type="EnumerationUsage" declaredName="white"/>
+        <body xsi:type="EnumerationUsage" declaredName="dark_blue"/>
+        <body xsi:type="EnumerationUsage" declaredName="dark_red"/>
+        <body xsi:type="EnumerationUsage" declaredName="dark_green"/>
+        <body xsi:type="EnumerationUsage" declaredName="dark_yellow"/>
+        <body xsi:type="EnumerationUsage" declaredName="dark_purple"/>
+        <body xsi:type="EnumerationUsage" declaredName="dark_orange"/>
+        <body xsi:type="EnumerationUsage" declaredName="dark_chocolate"/>
+        <body xsi:type="EnumerationUsage" declaredName="dark_gray"/>
+        <body xsi:type="EnumerationUsage" declaredName="light_blue"/>
+        <body xsi:type="EnumerationUsage" declaredName="light_red"/>
+        <body xsi:type="EnumerationUsage" declaredName="light_green"/>
+        <body xsi:type="EnumerationUsage" declaredName="light_yellow"/>
+        <body xsi:type="EnumerationUsage" declaredName="light_purple"/>
+        <body xsi:type="EnumerationUsage" declaredName="light_orange"/>
+        <body xsi:type="EnumerationUsage" declaredName="light_chocolate"/>
+        <body xsi:type="EnumerationUsage" declaredName="light_gray"/>
+      </body>
+      <body xsi:type="ItemDefinition" declaredName="Environment">
+        <body xsi:type="ItemUsage" declaredName="systemColors" multiplicityRange="[1]">
+          <featureNote>:</featureNote>
+          <featureSpecialization>SytemColorsPalette</featureSpecialization>
+        </body>
+        <body xsi:type="ItemUsage" declaredName="defaultTools" multiplicityRange="[*]">
+          <featureNote>:</featureNote>
+          <featureSpecialization>ToolEntry</featureSpecialization>
+        </body>
+        <body xsi:type="ItemUsage" declaredName="labelBorderStyles" multiplicityRange="[1]">
+          <featureNote>:</featureNote>
+          <featureSpecialization>LabelBorderStyles</featureSpecialization>
+        </body>
+      </body>
+      <body xsi:type="ItemDefinition" declaredName="SytemColorsPalette">
+        <body xsi:type="ItemUsage" declaredName="entries" multiplicityRange="[*]">
+          <featureNote>:</featureNote>
+          <featureSpecialization>SystemColor</featureSpecialization>
+        </body>
+      </body>
+      <body xsi:type="ItemDefinition" declaredName="UserColorsPalette">
+        <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+          <featureNote>:</featureNote>
+          <featureSpecialization>EString</featureSpecialization>
+        </body>
+        <body xsi:type="ItemUsage" declaredName="entries" multiplicityRange="[*]">
+          <featureNote>:</featureNote>
+          <featureSpecialization>UserColor</featureSpecialization>
+        </body>
+      </body>
+      <body xsi:type="ItemDefinition" declaredName="AnnotationEntry">
+        <body xsi:type="AttributeUsage" declaredName="source" multiplicityRange="[1]">
+          <featureNote>:</featureNote>
+          <featureSpecialization>EString</featureSpecialization>
+        </body>
+        <body xsi:type="ItemUsage" declaredName="data" multiplicityRange="[1]">
+          <featureNote>:</featureNote>
+          <featureSpecialization>EObject</featureSpecialization>
+        </body>
+        <SubclassificationPart>IdentifiedElement</SubclassificationPart>
+      </body>
+      <body xsi:type="ItemDefinition" declaredName="EndUserDocumentedElement" isAbstract="true">
+        <body xsi:type="AttributeUsage" declaredName="endUserDocumentation" multiplicityRange="[1]">
+          <featureNote>:</featureNote>
+          <featureSpecialization>EString</featureSpecialization>
+        </body>
+      </body>
+      <body xsi:type="ItemDefinition" declaredName="IdentifiedElement">
+        <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+          <featureNote>:</featureNote>
+          <featureSpecialization>EString</featureSpecialization>
+        </body>
+        <body xsi:type="AttributeUsage" declaredName="label" multiplicityRange="[1]">
+          <featureNote>:</featureNote>
+          <featureSpecialization>TranslatableMessage</featureSpecialization>
+        </body>
+      </body>
+      <body xsi:type="ItemDefinition" declaredName="ComputedColor">
+        <body xsi:type="AttributeUsage" declaredName="red" multiplicityRange="[1]">
+          <featureNote>:</featureNote>
+          <featureSpecialization>InterpretedExpression</featureSpecialization>
+        </body>
+        <body xsi:type="AttributeUsage" declaredName="green" multiplicityRange="[1]">
+          <featureNote>:</featureNote>
+          <featureSpecialization>InterpretedExpression</featureSpecialization>
+        </body>
+        <body xsi:type="AttributeUsage" declaredName="blue" multiplicityRange="[1]">
+          <featureNote>:</featureNote>
+          <featureSpecialization>InterpretedExpression</featureSpecialization>
+        </body>
+        <SubclassificationPart>UserColor</SubclassificationPart>
+        <SubclassificationPart>ColorDescription</SubclassificationPart>
+      </body>
+      <body xsi:type="ItemDefinition" declaredName="DAnnotationEntry">
+        <body xsi:type="AttributeUsage" declaredName="source" multiplicityRange="[1]">
+          <featureNote>:</featureNote>
+          <featureSpecialization>EString</featureSpecialization>
+        </body>
+        <body xsi:type="AttributeUsage" declaredName="details" multiplicityRange="[*]">
+          <featureNote>:</featureNote>
+          <featureSpecialization>EString</featureSpecialization>
+        </body>
+        <SubclassificationPart>IdentifiedElement</SubclassificationPart>
+      </body>
+      <body xsi:type="AttributeDefinition" declaredName="URI"/>
+      <body xsi:type="ItemDefinition" declaredName="AbstractVariable" isAbstract="true">
+        <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+          <featureNote>:</featureNote>
+          <featureSpecialization>EString</featureSpecialization>
+        </body>
+      </body>
+      <body xsi:type="ItemDefinition" declaredName="SubVariable" isAbstract="true">
+        <SubclassificationPart>AbstractVariable</SubclassificationPart>
+      </body>
+      <body xsi:type="ItemDefinition" declaredName="InteractiveVariableDescription" isAbstract="true">
+        <body xsi:type="AttributeUsage" declaredName="userDocumentation" multiplicityRange="[1]">
+          <featureNote>:</featureNote>
+          <featureSpecialization>EString</featureSpecialization>
+        </body>
+      </body>
+      <body xsi:type="ItemDefinition" declaredName="TypedVariable">
+        <body xsi:type="AttributeUsage" declaredName="defaultValueExpression" multiplicityRange="[1]">
+          <featureNote>:</featureNote>
+          <featureSpecialization>InterpretedExpression</featureSpecialization>
+        </body>
+        <body xsi:type="ItemUsage" declaredName="valueType" multiplicityRange="[1]" isReference="true">
+          <featureNote>:</featureNote>
+          <featureSpecialization>EDataType</featureSpecialization>
+        </body>
+        <SubclassificationPart>InteractiveVariableDescription</SubclassificationPart>
+        <SubclassificationPart>SubVariable</SubclassificationPart>
+      </body>
+      <body xsi:type="AttributeDefinition" declaredName="TranslatableMessage"/>
+      <body xsi:type="Package" declaredName="style">
+        <body xsi:type="ItemDefinition" declaredName="StyleDescription" isAbstract="true"/>
+        <body xsi:type="ItemDefinition" declaredName="BasicLabelStyleDescription">
+          <body xsi:type="AttributeUsage" declaredName="labelSize" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>EInt</featureSpecialization>
+          </body>
+          <body xsi:type="AttributeUsage" declaredName="labelFormat" multiplicityRange="[0..4]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>FontFormat</featureSpecialization>
+          </body>
+          <body xsi:type="AttributeUsage" declaredName="showIcon" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>EBoolean</featureSpecialization>
+          </body>
+          <body xsi:type="AttributeUsage" declaredName="labelExpression" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>InterpretedExpression</featureSpecialization>
+          </body>
+          <body xsi:type="ItemUsage" declaredName="labelColor" multiplicityRange="[1]" isReference="true">
+            <featureNote>:</featureNote>
+            <featureSpecialization>ColorDescription</featureSpecialization>
+          </body>
+          <body xsi:type="AttributeUsage" declaredName="iconPath" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>ImagePath</featureSpecialization>
+          </body>
+        </body>
+        <body xsi:type="ItemDefinition" declaredName="LabelStyleDescription">
+          <body xsi:type="AttributeUsage" declaredName="labelAlignment" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>LabelAlignment</featureSpecialization>
+          </body>
+          <SubclassificationPart>BasicLabelStyleDescription</SubclassificationPart>
+        </body>
+        <body xsi:type="ItemDefinition" declaredName="LabelBorderStyles">
+          <body xsi:type="ItemUsage" declaredName="labelBorderStyleDescriptions" multiplicityRange="[*]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>LabelBorderStyleDescription</featureSpecialization>
+          </body>
+        </body>
+        <body xsi:type="ItemDefinition" declaredName="LabelBorderStyleDescription">
+          <body xsi:type="AttributeUsage" declaredName="id" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>EString</featureSpecialization>
+          </body>
+          <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>EString</featureSpecialization>
+          </body>
+          <body xsi:type="AttributeUsage" declaredName="cornerHeight" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>EInt</featureSpecialization>
+          </body>
+          <body xsi:type="AttributeUsage" declaredName="cornerWidth" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>EInt</featureSpecialization>
+          </body>
+        </body>
+        <body xsi:type="ItemDefinition" declaredName="TooltipStyleDescription">
+          <body xsi:type="AttributeUsage" declaredName="tooltipExpression" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>InterpretedExpression</featureSpecialization>
+          </body>
+        </body>
+      </body>
+      <body xsi:type="Package" declaredName="tool">
+        <body xsi:type="ItemDefinition" declaredName="ToolEntry" isAbstract="true">
+          <SubclassificationPart>DocumentedElement</SubclassificationPart>
+          <SubclassificationPart>IdentifiedElement</SubclassificationPart>
+        </body>
+        <body xsi:type="ItemDefinition" declaredName="AbstractToolDescription" isAbstract="true">
+          <body xsi:type="AttributeUsage" declaredName="precondition" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>InterpretedExpression</featureSpecialization>
+          </body>
+          <body xsi:type="AttributeUsage" declaredName="forceRefresh" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>EBoolean</featureSpecialization>
+          </body>
+          <body xsi:type="ItemUsage" declaredName="filters" multiplicityRange="[*]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>ToolFilterDescription</featureSpecialization>
+          </body>
+          <body xsi:type="AttributeUsage" declaredName="elementsToSelect" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>InterpretedExpression</featureSpecialization>
+          </body>
+          <body xsi:type="AttributeUsage" declaredName="inverseSelectionOrder" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>EBoolean</featureSpecialization>
+          </body>
+          <SubclassificationPart>ToolEntry</SubclassificationPart>
+        </body>
+        <body xsi:type="ItemDefinition" declaredName="MappingBasedToolDescription" isAbstract="true">
+          <SubclassificationPart>AbstractToolDescription</SubclassificationPart>
+        </body>
+        <body xsi:type="ItemDefinition" declaredName="ToolDescription">
+          <body xsi:type="AttributeUsage" declaredName="iconPath" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>ImagePath</featureSpecialization>
+          </body>
+          <body xsi:type="ItemUsage" declaredName="element" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>ElementVariable</featureSpecialization>
+          </body>
+          <body xsi:type="ItemUsage" declaredName="elementView" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>ElementViewVariable</featureSpecialization>
+          </body>
+          <body xsi:type="ItemUsage" declaredName="initialOperation" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>InitialOperation</featureSpecialization>
+          </body>
+          <SubclassificationPart>MappingBasedToolDescription</SubclassificationPart>
+        </body>
+        <body xsi:type="ItemDefinition" declaredName="PasteDescription">
+          <body xsi:type="ItemUsage" declaredName="container" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>DropContainerVariable</featureSpecialization>
+          </body>
+          <body xsi:type="ItemUsage" declaredName="containerView" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>ContainerViewVariable</featureSpecialization>
+          </body>
+          <body xsi:type="ItemUsage" declaredName="copiedView" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>ElementViewVariable</featureSpecialization>
+          </body>
+          <body xsi:type="ItemUsage" declaredName="copiedElement" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>ElementVariable</featureSpecialization>
+          </body>
+          <body xsi:type="ItemUsage" declaredName="initialOperation" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>InitialOperation</featureSpecialization>
+          </body>
+          <SubclassificationPart>MappingBasedToolDescription</SubclassificationPart>
+        </body>
+        <body xsi:type="ItemDefinition" declaredName="SelectionWizardDescription">
+          <body xsi:type="ItemUsage" declaredName="element" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>ElementSelectVariable</featureSpecialization>
+          </body>
+          <body xsi:type="ItemUsage" declaredName="containerView" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>ContainerViewVariable</featureSpecialization>
+          </body>
+          <body xsi:type="ItemUsage" declaredName="container" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>SelectContainerVariable</featureSpecialization>
+          </body>
+          <body xsi:type="ItemUsage" declaredName="initialOperation" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>InitialOperation</featureSpecialization>
+          </body>
+          <body xsi:type="AttributeUsage" declaredName="iconPath" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>ImagePath</featureSpecialization>
+          </body>
+          <body xsi:type="AttributeUsage" declaredName="windowTitle" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>TranslatableMessage</featureSpecialization>
+          </body>
+          <body xsi:type="AttributeUsage" declaredName="windowImagePath" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>ImagePath</featureSpecialization>
+          </body>
+          <SubclassificationPart>AbstractToolDescription</SubclassificationPart>
+          <SubclassificationPart>SelectionDescription</SubclassificationPart>
+        </body>
+        <body xsi:type="ItemDefinition" declaredName="PaneBasedSelectionWizardDescription">
+          <body xsi:type="ItemUsage" declaredName="element" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>ElementSelectVariable</featureSpecialization>
+          </body>
+          <body xsi:type="ItemUsage" declaredName="containerView" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>ContainerViewVariable</featureSpecialization>
+          </body>
+          <body xsi:type="ItemUsage" declaredName="container" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>SelectContainerVariable</featureSpecialization>
+          </body>
+          <body xsi:type="ItemUsage" declaredName="initialOperation" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>InitialOperation</featureSpecialization>
+          </body>
+          <body xsi:type="AttributeUsage" declaredName="iconPath" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>ImagePath</featureSpecialization>
+          </body>
+          <body xsi:type="AttributeUsage" declaredName="windowTitle" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>TranslatableMessage</featureSpecialization>
+          </body>
+          <body xsi:type="AttributeUsage" declaredName="windowImagePath" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>ImagePath</featureSpecialization>
+          </body>
+          <body xsi:type="AttributeUsage" declaredName="'message'" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>TranslatableMessage</featureSpecialization>
+          </body>
+          <body xsi:type="AttributeUsage" declaredName="choiceOfValuesMessage" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>TranslatableMessage</featureSpecialization>
+          </body>
+          <body xsi:type="AttributeUsage" declaredName="candidatesExpression" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>InterpretedExpression</featureSpecialization>
+          </body>
+          <body xsi:type="AttributeUsage" declaredName="tree" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>EBoolean</featureSpecialization>
+          </body>
+          <body xsi:type="AttributeUsage" declaredName="rootExpression" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>InterpretedExpression</featureSpecialization>
+          </body>
+          <body xsi:type="AttributeUsage" declaredName="childrenExpression" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>InterpretedExpression</featureSpecialization>
+          </body>
+          <body xsi:type="AttributeUsage" declaredName="selectedValuesMessage" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>TranslatableMessage</featureSpecialization>
+          </body>
+          <body xsi:type="AttributeUsage" declaredName="preSelectedCandidatesExpression" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>InterpretedExpression</featureSpecialization>
+          </body>
+          <SubclassificationPart>AbstractToolDescription</SubclassificationPart>
+        </body>
+        <body xsi:type="ItemDefinition" declaredName="RepresentationCreationDescription" isAbstract="true">
+          <body xsi:type="AttributeUsage" declaredName="titleExpression" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>InterpretedExpression</featureSpecialization>
+          </body>
+          <body xsi:type="AttributeUsage" declaredName="browseExpression" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>InterpretedExpression</featureSpecialization>
+          </body>
+          <body xsi:type="ItemUsage" declaredName="representationDescription" multiplicityRange="[1]" isReference="true">
+            <featureNote>:</featureNote>
+            <featureSpecialization>RepresentationDescription</featureSpecialization>
+          </body>
+          <body xsi:type="ItemUsage" declaredName="initialOperation" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>InitialOperation</featureSpecialization>
+          </body>
+          <body xsi:type="ItemUsage" declaredName="containerViewVariable" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>ContainerViewVariable</featureSpecialization>
+          </body>
+          <body xsi:type="ItemUsage" declaredName="representationNameVariable" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>NameVariable</featureSpecialization>
+          </body>
+          <SubclassificationPart>AbstractToolDescription</SubclassificationPart>
+        </body>
+        <body xsi:type="ItemDefinition" declaredName="RepresentationNavigationDescription" isAbstract="true">
+          <body xsi:type="AttributeUsage" declaredName="browseExpression" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>InterpretedExpression</featureSpecialization>
+          </body>
+          <body xsi:type="AttributeUsage" declaredName="navigationNameExpression" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>InterpretedExpression</featureSpecialization>
+          </body>
+          <body xsi:type="ItemUsage" declaredName="representationDescription" multiplicityRange="[1]" isReference="true">
+            <featureNote>:</featureNote>
+            <featureSpecialization>RepresentationDescription</featureSpecialization>
+          </body>
+          <body xsi:type="ItemUsage" declaredName="containerViewVariable" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>ContainerViewVariable</featureSpecialization>
+          </body>
+          <body xsi:type="ItemUsage" declaredName="containerVariable" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>ElementSelectVariable</featureSpecialization>
+          </body>
+          <body xsi:type="ItemUsage" declaredName="representationNameVariable" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>NameVariable</featureSpecialization>
+          </body>
+          <SubclassificationPart>AbstractToolDescription</SubclassificationPart>
+        </body>
+        <body xsi:type="ItemDefinition" declaredName="MenuItemOrRef" isAbstract="true"/>
+        <body xsi:type="ItemDefinition" declaredName="MenuItemDescription" isAbstract="true">
+          <SubclassificationPart>AbstractToolDescription</SubclassificationPart>
+          <SubclassificationPart>MenuItemOrRef</SubclassificationPart>
+        </body>
+        <body xsi:type="ItemDefinition" declaredName="MenuItemDescriptionReference">
+          <body xsi:type="ItemUsage" declaredName="'item'" multiplicityRange="[1]" isReference="true">
+            <featureNote>:</featureNote>
+            <featureSpecialization>MenuItemDescription</featureSpecialization>
+          </body>
+          <SubclassificationPart>MenuItemOrRef</SubclassificationPart>
+        </body>
+        <body xsi:type="ItemDefinition" declaredName="OperationAction">
+          <body xsi:type="ItemUsage" declaredName="'view'" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>ContainerViewVariable</featureSpecialization>
+          </body>
+          <body xsi:type="ItemUsage" declaredName="initialOperation" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>InitialOperation</featureSpecialization>
+          </body>
+          <SubclassificationPart>MenuItemDescriptionWithIcon</SubclassificationPart>
+          <SubclassificationPart>GroupMenuItem</SubclassificationPart>
+        </body>
+        <body xsi:type="ItemDefinition" declaredName="ExternalJavaAction">
+          <body xsi:type="AttributeUsage" declaredName="id" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>EString</featureSpecialization>
+          </body>
+          <body xsi:type="ItemUsage" declaredName="parameters" multiplicityRange="[*]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>ExternalJavaActionParameter</featureSpecialization>
+          </body>
+          <SubclassificationPart>MenuItemDescriptionWithIcon</SubclassificationPart>
+          <SubclassificationPart>ContainerModelOperation</SubclassificationPart>
+          <SubclassificationPart>GroupMenuItem</SubclassificationPart>
+        </body>
+        <body xsi:type="ItemDefinition" declaredName="ExternalJavaActionCall">
+          <body xsi:type="ItemUsage" declaredName="'action'" multiplicityRange="[1]" isReference="true">
+            <featureNote>:</featureNote>
+            <featureSpecialization>ExternalJavaAction</featureSpecialization>
+          </body>
+          <SubclassificationPart>MenuItemDescriptionWithIcon</SubclassificationPart>
+          <SubclassificationPart>ContainerModelOperation</SubclassificationPart>
+          <SubclassificationPart>GroupMenuItem</SubclassificationPart>
+        </body>
+        <body xsi:type="ItemDefinition" declaredName="PopupMenu">
+          <body xsi:type="ItemUsage" declaredName="menuItemDescription" multiplicityRange="[1..*]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>MenuItemDescription</featureSpecialization>
+          </body>
+          <SubclassificationPart>AbstractToolDescription</SubclassificationPart>
+          <SubclassificationPart>GroupMenuItem</SubclassificationPart>
+        </body>
+        <body xsi:type="ItemDefinition" declaredName="VariableContainer" isAbstract="true">
+          <body xsi:type="ItemUsage" declaredName="subVariables" multiplicityRange="[*]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>SubVariable</featureSpecialization>
+          </body>
+        </body>
+        <body xsi:type="ItemDefinition" declaredName="AcceleoVariable">
+          <body xsi:type="AttributeUsage" declaredName="computationExpression" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>InterpretedExpression</featureSpecialization>
+          </body>
+          <SubclassificationPart>VariableContainer</SubclassificationPart>
+          <SubclassificationPart>SubVariable</SubclassificationPart>
+        </body>
+        <body xsi:type="ItemDefinition" declaredName="DialogVariable" isAbstract="true">
+          <body xsi:type="AttributeUsage" declaredName="dialogPrompt" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>EString</featureSpecialization>
+          </body>
+          <SubclassificationPart>AbstractVariable</SubclassificationPart>
+        </body>
+        <body xsi:type="ItemDefinition" declaredName="ElementDropVariable">
+          <SubclassificationPart>AbstractVariable</SubclassificationPart>
+          <SubclassificationPart>VariableContainer</SubclassificationPart>
+        </body>
+        <body xsi:type="ItemDefinition" declaredName="ElementSelectVariable">
+          <SubclassificationPart>AbstractVariable</SubclassificationPart>
+        </body>
+        <body xsi:type="ItemDefinition" declaredName="ElementVariable">
+          <SubclassificationPart>AbstractVariable</SubclassificationPart>
+          <SubclassificationPart>VariableContainer</SubclassificationPart>
+        </body>
+        <body xsi:type="ItemDefinition" declaredName="ElementViewVariable">
+          <SubclassificationPart>AbstractVariable</SubclassificationPart>
+          <SubclassificationPart>VariableContainer</SubclassificationPart>
+        </body>
+        <body xsi:type="ItemDefinition" declaredName="ElementDeleteVariable">
+          <SubclassificationPart>AbstractVariable</SubclassificationPart>
+          <SubclassificationPart>VariableContainer</SubclassificationPart>
+        </body>
+        <body xsi:type="ItemDefinition" declaredName="DropContainerVariable">
+          <SubclassificationPart>AbstractVariable</SubclassificationPart>
+          <SubclassificationPart>VariableContainer</SubclassificationPart>
+        </body>
+        <body xsi:type="ItemDefinition" declaredName="SelectContainerVariable">
+          <SubclassificationPart>AbstractVariable</SubclassificationPart>
+          <SubclassificationPart>VariableContainer</SubclassificationPart>
+        </body>
+        <body xsi:type="ItemDefinition" declaredName="ContainerViewVariable">
+          <SubclassificationPart>AbstractVariable</SubclassificationPart>
+          <SubclassificationPart>VariableContainer</SubclassificationPart>
+        </body>
+        <body xsi:type="ItemDefinition" declaredName="SelectModelElementVariable">
+          <SubclassificationPart>SubVariable</SubclassificationPart>
+          <SubclassificationPart>SelectionDescription</SubclassificationPart>
+          <SubclassificationPart>InteractiveVariableDescription</SubclassificationPart>
+        </body>
+        <body xsi:type="ItemDefinition" declaredName="EditMaskVariables">
+          <body xsi:type="AttributeUsage" declaredName="mask" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>EString</featureSpecialization>
+          </body>
+        </body>
+        <body xsi:type="ItemDefinition" declaredName="ContainerModelOperation" isAbstract="true">
+          <body xsi:type="ItemUsage" declaredName="subModelOperations" multiplicityRange="[*]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>ModelOperation</featureSpecialization>
+          </body>
+          <SubclassificationPart>ModelOperation</SubclassificationPart>
+        </body>
+        <body xsi:type="ItemDefinition" declaredName="ModelOperation" isAbstract="true"/>
+        <body xsi:type="ItemDefinition" declaredName="InitialNodeCreationOperation">
+          <body xsi:type="ItemUsage" declaredName="firstModelOperations" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>ModelOperation</featureSpecialization>
+          </body>
+        </body>
+        <body xsi:type="ItemDefinition" declaredName="InitialOperation">
+          <body xsi:type="ItemUsage" declaredName="firstModelOperations" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>ModelOperation</featureSpecialization>
+          </body>
+        </body>
+        <body xsi:type="ItemDefinition" declaredName="InitEdgeCreationOperation">
+          <body xsi:type="ItemUsage" declaredName="firstModelOperations" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>ModelOperation</featureSpecialization>
+          </body>
+        </body>
+        <body xsi:type="ItemDefinition" declaredName="InitialContainerDropOperation">
+          <body xsi:type="ItemUsage" declaredName="firstModelOperations" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>ModelOperation</featureSpecialization>
+          </body>
+        </body>
+        <body xsi:type="ItemDefinition" declaredName="CreateInstance">
+          <body xsi:type="AttributeUsage" declaredName="typeName" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>TypeName</featureSpecialization>
+          </body>
+          <body xsi:type="AttributeUsage" declaredName="referenceName" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>FeatureName</featureSpecialization>
+          </body>
+          <body xsi:type="AttributeUsage" declaredName="variableName" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>EString</featureSpecialization>
+          </body>
+          <SubclassificationPart>ContainerModelOperation</SubclassificationPart>
+        </body>
+        <body xsi:type="ItemDefinition" declaredName="ChangeContext">
+          <body xsi:type="AttributeUsage" declaredName="browseExpression" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>InterpretedExpression</featureSpecialization>
+          </body>
+          <SubclassificationPart>ContainerModelOperation</SubclassificationPart>
+        </body>
+        <body xsi:type="ItemDefinition" declaredName="SetValue">
+          <body xsi:type="AttributeUsage" declaredName="featureName" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>FeatureName</featureSpecialization>
+          </body>
+          <body xsi:type="AttributeUsage" declaredName="valueExpression" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>InterpretedExpression</featureSpecialization>
+          </body>
+          <SubclassificationPart>ContainerModelOperation</SubclassificationPart>
+        </body>
+        <body xsi:type="ItemDefinition" declaredName="SetObject">
+          <body xsi:type="AttributeUsage" declaredName="featureName" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>FeatureName</featureSpecialization>
+          </body>
+          <body xsi:type="ItemUsage" declaredName="object" multiplicityRange="[1]" isReference="true">
+            <featureNote>:</featureNote>
+            <featureSpecialization>EObject</featureSpecialization>
+          </body>
+          <SubclassificationPart>ContainerModelOperation</SubclassificationPart>
+        </body>
+        <body xsi:type="ItemDefinition" declaredName="Unset">
+          <body xsi:type="AttributeUsage" declaredName="featureName" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>FeatureName</featureSpecialization>
+          </body>
+          <body xsi:type="AttributeUsage" declaredName="elementExpression" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>InterpretedExpression</featureSpecialization>
+          </body>
+          <SubclassificationPart>ContainerModelOperation</SubclassificationPart>
+        </body>
+        <body xsi:type="ItemDefinition" declaredName="MoveElement">
+          <body xsi:type="AttributeUsage" declaredName="newContainerExpression" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>InterpretedExpression</featureSpecialization>
+          </body>
+          <body xsi:type="AttributeUsage" declaredName="featureName" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>FeatureName</featureSpecialization>
+          </body>
+          <SubclassificationPart>ContainerModelOperation</SubclassificationPart>
+        </body>
+        <body xsi:type="ItemDefinition" declaredName="RemoveElement">
+          <SubclassificationPart>ContainerModelOperation</SubclassificationPart>
+        </body>
+        <body xsi:type="ItemDefinition" declaredName="For">
+          <body xsi:type="AttributeUsage" declaredName="expression" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>InterpretedExpression</featureSpecialization>
+          </body>
+          <body xsi:type="AttributeUsage" declaredName="iteratorName" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>EString</featureSpecialization>
+          </body>
+          <SubclassificationPart>ContainerModelOperation</SubclassificationPart>
+        </body>
+        <body xsi:type="EnumerationDefinition" declaredName="DragSource">
+          <body xsi:type="EnumerationUsage" declaredName="DIAGRAM"/>
+          <body xsi:type="EnumerationUsage" declaredName="PROJECT_EXPLORER"/>
+          <body xsi:type="EnumerationUsage" declaredName="BOTH"/>
+        </body>
+        <body xsi:type="ItemDefinition" declaredName="If">
+          <body xsi:type="AttributeUsage" declaredName="conditionExpression" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>InterpretedExpression</featureSpecialization>
+          </body>
+          <SubclassificationPart>ContainerModelOperation</SubclassificationPart>
+        </body>
+        <body xsi:type="ItemDefinition" declaredName="DeleteView">
+          <SubclassificationPart>ContainerModelOperation</SubclassificationPart>
+        </body>
+        <body xsi:type="ItemDefinition" declaredName="NameVariable">
+          <SubclassificationPart>AbstractVariable</SubclassificationPart>
+        </body>
+        <body xsi:type="ItemDefinition" declaredName="ExternalJavaActionParameter">
+          <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>EString</featureSpecialization>
+          </body>
+          <body xsi:type="AttributeUsage" declaredName="'value'" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>InterpretedExpression</featureSpecialization>
+          </body>
+        </body>
+        <body xsi:type="ItemDefinition" declaredName="ToolFilterDescription">
+          <body xsi:type="AttributeUsage" declaredName="precondition" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>InterpretedExpression</featureSpecialization>
+          </body>
+          <body xsi:type="AttributeUsage" declaredName="elementsToListen" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>InterpretedExpression</featureSpecialization>
+          </body>
+          <body xsi:type="ItemUsage" declaredName="listeners" multiplicityRange="[1..*]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>FeatureChangeListener</featureSpecialization>
+          </body>
+        </body>
+        <body xsi:type="ItemDefinition" declaredName="FeatureChangeListener">
+          <body xsi:type="AttributeUsage" declaredName="domainClass" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>TypeName</featureSpecialization>
+          </body>
+          <body xsi:type="AttributeUsage" declaredName="featureName" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>FeatureName</featureSpecialization>
+          </body>
+        </body>
+        <body xsi:type="ItemDefinition" declaredName="Case">
+          <body xsi:type="AttributeUsage" declaredName="conditionExpression" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>InterpretedExpression</featureSpecialization>
+          </body>
+          <SubclassificationPart>SwitchChild</SubclassificationPart>
+        </body>
+        <body xsi:type="ItemDefinition" declaredName="SwitchChild" isAbstract="true">
+          <body xsi:type="ItemUsage" declaredName="subModelOperations" multiplicityRange="[*]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>ModelOperation</featureSpecialization>
+          </body>
+        </body>
+        <body xsi:type="ItemDefinition" declaredName="Default">
+          <SubclassificationPart>SwitchChild</SubclassificationPart>
+        </body>
+        <body xsi:type="ItemDefinition" declaredName="Switch">
+          <body xsi:type="ItemUsage" declaredName="cases" multiplicityRange="[1..*]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>Case</featureSpecialization>
+          </body>
+          <body xsi:type="ItemUsage" declaredName="'default'" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>Default</featureSpecialization>
+          </body>
+          <SubclassificationPart>ModelOperation</SubclassificationPart>
+        </body>
+        <body xsi:type="ItemDefinition" declaredName="Let">
+          <body xsi:type="AttributeUsage" declaredName="variableName" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>EString</featureSpecialization>
+          </body>
+          <body xsi:type="AttributeUsage" declaredName="valueExpression" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>InterpretedExpression</featureSpecialization>
+          </body>
+          <SubclassificationPart>ContainerModelOperation</SubclassificationPart>
+        </body>
+        <body xsi:type="ItemDefinition" declaredName="GroupMenu">
+          <body xsi:type="AttributeUsage" declaredName="locationURI" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>EString</featureSpecialization>
+          </body>
+          <body xsi:type="ItemUsage" declaredName="popupMenus" multiplicityRange="[*]" isReference="true">
+            <featureNote>:</featureNote>
+            <featureSpecialization>PopupMenu</featureSpecialization>
+          </body>
+          <body xsi:type="ItemUsage" declaredName="itemDescriptions" multiplicityRange="[*]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>GroupMenuItem</featureSpecialization>
+          </body>
+          <SubclassificationPart>MenuItemDescription</SubclassificationPart>
+        </body>
+        <body xsi:type="ItemDefinition" declaredName="GroupMenuItem" isAbstract="true">
+          <SubclassificationPart>AbstractToolDescription</SubclassificationPart>
+        </body>
+        <body xsi:type="ItemDefinition" declaredName="MenuItemDescriptionWithIcon" isAbstract="true">
+          <body xsi:type="AttributeUsage" declaredName="icon" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>ImagePath</featureSpecialization>
+          </body>
+          <SubclassificationPart>MenuItemDescription</SubclassificationPart>
+        </body>
+      </body>
+      <body xsi:type="Package" declaredName="validation">
+        <body xsi:type="ItemDefinition" declaredName="ValidationSet">
+          <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>EString</featureSpecialization>
+          </body>
+          <body xsi:type="ItemUsage" declaredName="ownedRules" multiplicityRange="[*]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>ValidationRule</featureSpecialization>
+          </body>
+          <body xsi:type="ItemUsage" declaredName="reusedRules" multiplicityRange="[*]" isReference="true">
+            <featureNote>:</featureNote>
+            <featureSpecialization>ValidationRule</featureSpecialization>
+          </body>
+          <body xsi:type="ItemUsage" declaredName="allRules" multiplicityRange="[*]" isReference="true">
+            <featureNote>:</featureNote>
+            <featureSpecialization>ValidationRule</featureSpecialization>
+          </body>
+          <SubclassificationPart>DocumentedElement</SubclassificationPart>
+        </body>
+        <body xsi:type="ItemDefinition" declaredName="ValidationRule" isAbstract="true">
+          <body xsi:type="AttributeUsage" declaredName="level" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>ERROR_LEVEL</featureSpecialization>
+          </body>
+          <body xsi:type="AttributeUsage" declaredName="'message'" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>InterpretedExpression</featureSpecialization>
+          </body>
+          <body xsi:type="ItemUsage" declaredName="audits" multiplicityRange="[*]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>RuleAudit</featureSpecialization>
+          </body>
+          <body xsi:type="ItemUsage" declaredName="fixes" multiplicityRange="[*]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>ValidationFix</featureSpecialization>
+          </body>
+          <SubclassificationPart>IdentifiedElement</SubclassificationPart>
+        </body>
+        <body xsi:type="ItemDefinition" declaredName="SemanticValidationRule">
+          <body xsi:type="AttributeUsage" declaredName="targetClass" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>TypeName</featureSpecialization>
+          </body>
+          <SubclassificationPart>ValidationRule</SubclassificationPart>
+        </body>
+        <body xsi:type="ItemDefinition" declaredName="ViewValidationRule">
+          <body xsi:type="ItemUsage" declaredName="targets" multiplicityRange="[*]" isReference="true">
+            <featureNote>:</featureNote>
+            <featureSpecialization>RepresentationElementMapping</featureSpecialization>
+          </body>
+          <SubclassificationPart>ValidationRule</SubclassificationPart>
+        </body>
+        <body xsi:type="ItemDefinition" declaredName="RuleAudit">
+          <body xsi:type="AttributeUsage" declaredName="auditExpression" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>InterpretedExpression</featureSpecialization>
+          </body>
+        </body>
+        <body xsi:type="EnumerationDefinition" declaredName="ERROR_LEVEL">
+          <body xsi:type="EnumerationUsage" declaredName="INFO"/>
+          <body xsi:type="EnumerationUsage" declaredName="WARNING"/>
+          <body xsi:type="EnumerationUsage" declaredName="ERROR"/>
+        </body>
+        <body xsi:type="ItemDefinition" declaredName="ValidationFix">
+          <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>EString</featureSpecialization>
+          </body>
+          <body xsi:type="ItemUsage" declaredName="initialOperation" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>InitialOperation</featureSpecialization>
+          </body>
+        </body>
+      </body>
+      <body xsi:type="Package" declaredName="audit">
+        <body xsi:type="ItemDefinition" declaredName="InformationSection" isAbstract="true"/>
+        <body xsi:type="ItemDefinition" declaredName="TemplateInformationSection">
+          <body xsi:type="AttributeUsage" declaredName="templatePath" multiplicityRange="[1]">
+            <featureNote>:</featureNote>
+            <featureSpecialization>EString</featureSpecialization>
+          </body>
+          <SubclassificationPart>InformationSection</SubclassificationPart>
+        </body>
+      </body>
+    </body>
+  </body>
+</Namespace>

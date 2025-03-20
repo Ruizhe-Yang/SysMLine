@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="ASCII"?>
+<Namespace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="sysmline" xsi:schemaLocation="sysmline metamodel/sysmline/sysmline.ecore">
+  <body xsi:type="Package" declaredName="scaffold">
+    <body xsi:type="NamespaceImport" hasVisibility="true" declaredName="ecore"/>
+    <body xsi:type="ItemDefinition" declaredName="ScaffoldInfo">
+      <body xsi:type="ItemUsage" declaredName="leftObject" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EObject</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="rightObject" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EObject</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="leftToRightAdditionalObjects" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EObject</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="rightToLeftAdditionalObjects" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EObject</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="traceabilityInfos" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>TraceabilityInfo</featureSpecialization>
+      </body>
+    </body>
+    <body xsi:type="EnumerationDefinition" declaredName="ScaffoldType">
+      <body xsi:type="EnumerationUsage" declaredName="EntityToMld"/>
+      <body xsi:type="EnumerationUsage" declaredName="MldToEntity"/>
+      <body xsi:type="EnumerationUsage" declaredName="MpdToMld"/>
+      <body xsi:type="EnumerationUsage" declaredName="MldToMpd"/>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="TraceabilityInfo">
+      <body xsi:type="ItemUsage" declaredName="left" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EObject</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="right" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EObject</featureSpecialization>
+      </body>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="EObjectToEObjectMap">
+      <body xsi:type="ItemUsage" declaredName="key" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EObject</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="'value'" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EObject</featureSpecialization>
+      </body>
+    </body>
+  </body>
+</Namespace>

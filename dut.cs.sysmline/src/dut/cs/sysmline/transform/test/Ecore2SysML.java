@@ -11,7 +11,8 @@ public class Ecore2SysML {
 	public static void main(String[] args) throws IOException {
 //		run("metamodel\\Capella\\Interaction");
 //		testSACM();
-		testCapellaEcore();
+//		testCapellaEcore();
+		testISDesigner();
 //		run("model\\PlayGround\\psl");
 //		run("metamodel\\HSUV\\HSUV");
 //		testBPMNEcore();
@@ -37,7 +38,13 @@ public class Ecore2SysML {
 	public static void testSACM() {
 		String[] sysmlFilePaths = findFiles("E:\\GitYang\\SysMLine\\dut.cs.sysmline\\metamodel\\SACM");
 		for (String FilePath : sysmlFilePaths) {
-//			System.out.println(FilePath);
+			run(FilePath);
+		}
+	}
+	
+	public static void testISDesigner() {
+		String[] sysmlFilePaths = findFiles("E:\\GitYang\\SysMLine\\dut.cs.sysmline\\metamodel\\ISDesigner");
+		for (String FilePath : sysmlFilePaths) {
 			run(FilePath);
 		}
 	}
