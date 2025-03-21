@@ -1,0 +1,37 @@
+@namespace(uri="http://www.aadl.info/PropagationGraph", prefix="PropagationGraph")
+package PropagationGraph;
+
+import "platform:/resource/dut.cs.sysmline/metamodel/AADL/instance.ecore";
+import "platform:/resource/dut.cs.sysmline/metamodel/AADL/ErrorModel.ecore";
+
+class PropagationGraph {
+	attr String name;
+	attr String description;
+	ref instance.ComponentInstance[*] components;
+	val PropagationGraphPath[*] propagationGraphPaths;
+	ref instance.ConnectionInstance[*] connections;
+	ref instance.ComponentInstance root;
+}
+
+class PropagationGraphPath {
+	attr String name;
+	val PropagationPathEnd pathSrc;
+	val PropagationPathEnd pathDst;
+	transient attr boolean highlight;
+	attr PropagationType type;
+	ref instance.ConnectionInstance connection;
+}
+
+class PropagationPathEnd {
+	ref instance.ConnectionInstance connectionInstance;
+	ref errorModel.ErrorPropagation errorPropagation;
+	ref instance.ComponentInstance componentInstance;
+	transient attr boolean highlight;
+}
+
+enum PropagationType {
+	connection = 0;
+	binding = 1;
+	userDefined = 2;
+}
+

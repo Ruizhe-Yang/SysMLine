@@ -1,0 +1,747 @@
+<?xml version="1.0" encoding="ASCII"?>
+<Namespace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="sysmline" xsi:schemaLocation="sysmline metamodel/sysmline/sysmline.ecore">
+  <body xsi:type="Package" declaredName="errorModel">
+    <body xsi:type="NamespaceImport" hasVisibility="true" declaredName="ecore"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="aadl2"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="org.eclipse.emf"/>
+    <body xsi:type="ItemDefinition" declaredName="ErrorModelSubclause">
+      <body xsi:type="ItemUsage" declaredName="useTypes" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ErrorModelLibrary</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="typeEquivalence" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>TypeMappingSet</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="typeMappingSet" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>TypeMappingSet</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="useBehavior" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ErrorBehaviorStateMachine</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="propagations" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ErrorPropagation</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="flows" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ErrorFlow</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="useTransformation" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>TypeTransformationSet</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="events" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ErrorBehaviorEvent</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="transitions" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ErrorBehaviorTransition</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="outgoingPropagationConditions" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>OutgoingPropagationCondition</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="errorDetections" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ErrorDetection</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="errorStateToModeMappings" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ErrorStateToModeMapping</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="states" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>CompositeState</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="typeTransformationSet" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>TypeTransformationSet</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="connectionErrorSources" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ErrorSource</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="points" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>PropagationPoint</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="paths" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>PropagationPath</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="properties" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EMV2PropertyAssociation</featureSpecialization>
+      </body>
+      <SubclassificationPart>AnnexSubclause</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ErrorModelLibrary">
+      <body xsi:type="ItemUsage" declaredName="useTypes" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ErrorModelLibrary</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="extends" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ErrorModelLibrary</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="types" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ErrorType</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="typesets" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>TypeSet</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="properties" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EMV2PropertyAssociation</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="behaviors" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ErrorBehaviorStateMachine</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="mappings" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>TypeMappingSet</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="transformations" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>TypeTransformationSet</featureSpecialization>
+      </body>
+      <SubclassificationPart>AnnexLibrary</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="EMV2PropertyAssociation">
+      <body xsi:type="ItemUsage" declaredName="property" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Property</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedValues" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ModalPropertyValue</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="emv2Path" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EMV2Path</featureSpecialization>
+      </body>
+      <SubclassificationPart>Element</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="EMV2Path">
+      <body xsi:type="ItemUsage" declaredName="containmentPath" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ContainmentPathElement</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="emv2Target" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EMV2PathElement</featureSpecialization>
+      </body>
+      <SubclassificationPart>Element</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="EMV2PathElement">
+      <body xsi:type="AttributeUsage" declaredName="emv2PropagationKind" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="errorType" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ErrorTypes</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="namedElement" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>NamedElement</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="path" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EMV2PathElement</featureSpecialization>
+      </body>
+      <SubclassificationPart>Element</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ErrorTypes">
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ErrorType">
+      <body xsi:type="ItemUsage" declaredName="superType" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ErrorType</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="aliasedType" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ErrorType</featureSpecialization>
+      </body>
+      <SubclassificationPart>ErrorTypes</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="TypeSet">
+      <body xsi:type="ItemUsage" declaredName="typeTokens" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>TypeToken</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="aliasedType" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>TypeSet</featureSpecialization>
+      </body>
+      <SubclassificationPart>ErrorTypes</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="TypeToken">
+      <body xsi:type="ItemUsage" declaredName="type" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ErrorTypes</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="noError" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <SubclassificationPart>Element</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="TypeTransformationSet">
+      <body xsi:type="ItemUsage" declaredName="useTypes" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ErrorModelLibrary</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="transformation" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>TypeTransformation</featureSpecialization>
+      </body>
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="TypeTransformation">
+      <body xsi:type="ItemUsage" declaredName="source" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>TypeSet</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="allSources" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="contributor" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>TypeSet</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="target" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>TypeSet</featureSpecialization>
+      </body>
+      <SubclassificationPart>Element</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="TypeMappingSet">
+      <body xsi:type="ItemUsage" declaredName="useTypes" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ErrorModelLibrary</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="mapping" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>TypeMapping</featureSpecialization>
+      </body>
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="TypeMapping">
+      <body xsi:type="ItemUsage" declaredName="source" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>TypeSet</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="target" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>TypeSet</featureSpecialization>
+      </body>
+      <SubclassificationPart>Element</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ErrorPropagation">
+      <body xsi:type="AttributeUsage" declaredName="kind" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="featureorPPRef" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FeatureorPPReference</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="'not'" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="direction" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>DirectionType</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="typeSet" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>TypeSet</featureSpecialization>
+      </body>
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+      <SubclassificationPart>EventOrPropagation</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="FeatureorPPReference">
+      <body xsi:type="ItemUsage" declaredName="featureorPP" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>NamedElement</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="next" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FeatureorPPReference</featureSpecialization>
+      </body>
+      <SubclassificationPart>Element</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ErrorFlow">
+      <body xsi:type="ItemUsage" declaredName="typeTokenConstraint" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>TypeSet</featureSpecialization>
+      </body>
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ErrorSource">
+      <body xsi:type="ItemUsage" declaredName="sourceModelElement" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>NamedElement</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="'all'" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="failureModeReference" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ErrorBehaviorState</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="failureModeType" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>TypeSet</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="failureModeDescription" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="condition" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <SubclassificationPart>ErrorFlow</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ErrorSink">
+      <body xsi:type="ItemUsage" declaredName="incoming" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ErrorPropagation</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="allIncoming" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <SubclassificationPart>ErrorFlow</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ErrorPath">
+      <body xsi:type="ItemUsage" declaredName="incoming" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ErrorPropagation</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="allIncoming" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="outgoing" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ErrorPropagation</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="allOutgoing" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="targetToken" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>TypeSet</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="typeMappingSet" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>TypeMappingSet</featureSpecialization>
+      </body>
+      <SubclassificationPart>ErrorFlow</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="PropagationPoint">
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="PropagationPath">
+      <body xsi:type="ItemUsage" declaredName="source" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>QualifiedPropagationPoint</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="target" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>QualifiedPropagationPoint</featureSpecialization>
+      </body>
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="QualifiedPropagationPoint">
+      <body xsi:type="ItemUsage" declaredName="subcomponent" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>SubcomponentElement</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="next" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>QualifiedPropagationPoint</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="propagationPoint" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>NamedElement</featureSpecialization>
+      </body>
+      <SubclassificationPart>Element</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ErrorBehaviorStateMachine">
+      <body xsi:type="ItemUsage" declaredName="useTypes" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ErrorModelLibrary</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="useTransformation" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>TypeTransformationSet</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="events" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ErrorBehaviorEvent</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="states" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ErrorBehaviorState</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="transitions" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ErrorBehaviorTransition</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="properties" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EMV2PropertyAssociation</featureSpecialization>
+      </body>
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ErrorBehaviorEvent">
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+      <SubclassificationPart>EventOrPropagation</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ErrorEvent">
+      <body xsi:type="ItemUsage" declaredName="typeSet" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>TypeSet</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="condition" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <SubclassificationPart>ErrorBehaviorEvent</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="RepairEvent">
+      <body xsi:type="ItemUsage" declaredName="eventInitiator" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>NamedElement</featureSpecialization>
+      </body>
+      <SubclassificationPart>ErrorBehaviorEvent</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="RecoverEvent">
+      <body xsi:type="ItemUsage" declaredName="eventInitiator" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>NamedElement</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="condition" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <SubclassificationPart>ErrorBehaviorEvent</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ErrorBehaviorState">
+      <body xsi:type="AttributeUsage" declaredName="intial" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="typeSet" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>TypeSet</featureSpecialization>
+      </body>
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ErrorBehaviorTransition">
+      <body xsi:type="ItemUsage" declaredName="source" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ErrorBehaviorState</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="typeTokenConstraint" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>TypeSet</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="allStates" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="condition" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ConditionExpression</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="target" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ErrorBehaviorState</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="targetToken" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>TypeSet</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="steadyState" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="destinationBranches" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>TransitionBranch</featureSpecialization>
+      </body>
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="TransitionBranch">
+      <body xsi:type="ItemUsage" declaredName="target" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ErrorBehaviorState</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="targetToken" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>TypeSet</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="steadyState" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="'value'" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>BranchValue</featureSpecialization>
+      </body>
+      <SubclassificationPart>Element</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="BranchValue">
+      <body xsi:type="AttributeUsage" declaredName="realvalue" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="symboliclabel" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Property</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="others" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <SubclassificationPart>Element</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ConditionExpression">
+      <SubclassificationPart>Element</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="OrmoreExpression">
+      <body xsi:type="AttributeUsage" declaredName="count" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Integer</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="operands" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ConditionExpression</featureSpecialization>
+      </body>
+      <SubclassificationPart>Element</SubclassificationPart>
+      <SubclassificationPart>ConditionExpression</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="OrlessExpression">
+      <body xsi:type="AttributeUsage" declaredName="count" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Integer</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="operands" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ConditionExpression</featureSpecialization>
+      </body>
+      <SubclassificationPart>Element</SubclassificationPart>
+      <SubclassificationPart>ConditionExpression</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ConditionElement">
+      <body xsi:type="ItemUsage" declaredName="qualifiedErrorPropagationReference" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EMV2Path</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="'constraint'" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>TypeSet</featureSpecialization>
+      </body>
+      <SubclassificationPart>Element</SubclassificationPart>
+      <SubclassificationPart>ConditionExpression</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="EventOrPropagation">
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="OutgoingPropagationCondition">
+      <body xsi:type="ItemUsage" declaredName="'state'" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ErrorBehaviorState</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="typeTokenConstraint" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>TypeSet</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="allStates" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="condition" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ConditionExpression</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="outgoing" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ErrorPropagation</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="allPropagations" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="typeToken" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>TypeSet</featureSpecialization>
+      </body>
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ErrorDetection">
+      <body xsi:type="ItemUsage" declaredName="'state'" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ErrorBehaviorState</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="typeTokenConstraint" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>TypeSet</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="allStates" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="condition" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ConditionExpression</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="detectionReportingPort" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>TriggerPort</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="errorCode" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ErrorCodeValue</featureSpecialization>
+      </body>
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ErrorCodeValue">
+      <body xsi:type="AttributeUsage" declaredName="intValue" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="constant" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>PropertyConstant</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="enumLiteral" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <SubclassificationPart>Element</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ErrorStateToModeMapping">
+      <body xsi:type="ItemUsage" declaredName="errorState" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ErrorBehaviorState</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="typeToken" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>TypeSet</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="mappedModes" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Mode</featureSpecialization>
+      </body>
+      <SubclassificationPart>Element</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="CompositeState">
+      <body xsi:type="ItemUsage" declaredName="condition" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ConditionExpression</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="others" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="'state'" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ErrorBehaviorState</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="typedToken" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>TypeSet</featureSpecialization>
+      </body>
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="QualifiedErrorBehaviorState">
+      <body xsi:type="ItemUsage" declaredName="subcomponent" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>SubcomponentElement</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="next" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>QualifiedErrorBehaviorState</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="'state'" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ErrorBehaviorState</featureSpecialization>
+      </body>
+      <SubclassificationPart>Element</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="SubcomponentElement">
+      <body xsi:type="ItemUsage" declaredName="subcomponent" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Subcomponent</featureSpecialization>
+      </body>
+      <SubclassificationPart>Element</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="EMV2Root">
+      <body xsi:type="ItemUsage" declaredName="'library'" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ErrorModelLibrary</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="subclauses" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ErrorModelSubclause</featureSpecialization>
+      </body>
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="OrExpression">
+      <body xsi:type="ItemUsage" declaredName="operands" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ConditionExpression</featureSpecialization>
+      </body>
+      <SubclassificationPart>ConditionExpression</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="AndExpression">
+      <body xsi:type="ItemUsage" declaredName="operands" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ConditionExpression</featureSpecialization>
+      </body>
+      <SubclassificationPart>ConditionExpression</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="AllExpression">
+      <body xsi:type="AttributeUsage" declaredName="count" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Integer</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="operands" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ConditionElement</featureSpecialization>
+      </body>
+      <SubclassificationPart>ConditionExpression</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="QualifiedErrorEventOrPropagation">
+      <SubclassificationPart>EMV2Path</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="QualifiedErrorPropagation">
+      <SubclassificationPart>EMV2Path</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="SConditionElement">
+      <body xsi:type="ItemUsage" declaredName="qualifiedState" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>QualifiedErrorBehaviorState</featureSpecialization>
+      </body>
+      <SubclassificationPart>ConditionElement</SubclassificationPart>
+    </body>
+  </body>
+</Namespace>

@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="ASCII"?>
+<Namespace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="sysmline" xsi:schemaLocation="sysmline metamodel/sysmline/sysmline.ecore">
+  <body xsi:type="Package" declaredName="instance">
+    <body xsi:type="NamespaceImport" hasVisibility="true" declaredName="ecore"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="aadl2"/>
+    <body xsi:type="ItemDefinition" declaredName="FeatureInstance">
+      <body xsi:type="ItemUsage" declaredName="srcFlowSpec" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FlowSpecificationInstance</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="dstFlowSpec" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FlowSpecificationInstance</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="featureInstance" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FeatureInstance</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="category" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FeatureCategory</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="direction" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>DirectionType</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="feature" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Feature</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="index" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Integer</featureSpecialization>
+      </body>
+      <SubclassificationPart>ConnectionInstanceEnd</SubclassificationPart>
+      <SubclassificationPart>InstanceObject</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="InstanceObject" isAbstract="true">
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ConnectionInstanceEnd" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="srcConnectionInstance" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ConnectionInstance</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="dstConnectionInstance" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ConnectionInstance</featureSpecialization>
+      </body>
+      <SubclassificationPart>InstanceObject</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ConnectionInstance">
+      <body xsi:type="ItemUsage" declaredName="inSystemOperationMode" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>SystemOperationMode</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="inModeTransitions" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ModeTransitionInstance</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="complete" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Boolean</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="kind" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ConnectionKind</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="destination" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ConnectionInstanceEnd</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="connectionReference" multiplicityRange="[1..*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ConnectionReference</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="source" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ConnectionInstanceEnd</featureSpecialization>
+      </body>
+      <SubclassificationPart>FlowElementInstance</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="FlowElementInstance" isAbstract="true">
+      <SubclassificationPart>InstanceObject</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="SystemOperationMode">
+      <body xsi:type="ItemUsage" declaredName="currentMode" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ModeInstance</featureSpecialization>
+      </body>
+      <SubclassificationPart>Mode</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ModeInstance">
+      <body xsi:type="ItemUsage" declaredName="srcModeTransition" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ModeTransitionInstance</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="dstModeTransition" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ModeTransitionInstance</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="initial" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Boolean</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="mode" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Mode</featureSpecialization>
+      </body>
+      <SubclassificationPart>InstanceObject</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ModeTransitionInstance">
+      <body xsi:type="ItemUsage" declaredName="destination" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ModeInstance</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="modeTransition" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ModeTransition</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="source" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ModeInstance</featureSpecialization>
+      </body>
+      <SubclassificationPart>ConnectionInstanceEnd</SubclassificationPart>
+      <SubclassificationPart>InstanceObject</SubclassificationPart>
+    </body>
+    <body xsi:type="EnumerationDefinition" declaredName="ConnectionKind">
+      <body xsi:type="EnumerationUsage" declaredName="featureConnection"/>
+      <body xsi:type="EnumerationUsage" declaredName="accessConnection"/>
+      <body xsi:type="EnumerationUsage" declaredName="parameterConnection"/>
+      <body xsi:type="EnumerationUsage" declaredName="portConnection"/>
+      <body xsi:type="EnumerationUsage" declaredName="modeTransitionConnection"/>
+      <body xsi:type="EnumerationUsage" declaredName="featureGroupConnection"/>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ConnectionReference">
+      <body xsi:type="ItemUsage" declaredName="context" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ComponentInstance</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="'connection'" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Connection</featureSpecialization>
+      </body>
+      <SubclassificationPart>InstanceObject</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ComponentInstance">
+      <body xsi:type="ItemUsage" declaredName="featureInstance" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FeatureInstance</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="componentInstance" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ComponentInstance</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="modeInstance" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ModeInstance</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="modeTransitionInstance" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ModeTransitionInstance</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="category" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ComponentCategory</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="inModes" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ModeInstance</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="flowSpecification" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FlowSpecificationInstance</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="endToEndFlow" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EndToEndFlowInstance</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="connectionInstance" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ConnectionInstance</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="subcomponent" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Subcomponent</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="index" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Integer</featureSpecialization>
+      </body>
+      <SubclassificationPart>ConnectionInstanceEnd</SubclassificationPart>
+      <SubclassificationPart>FlowElementInstance</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="FlowSpecificationInstance">
+      <body xsi:type="ItemUsage" declaredName="source" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FeatureInstance</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="destination" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FeatureInstance</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="flowSpecification" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FlowSpecification</featureSpecialization>
+      </body>
+      <SubclassificationPart>FlowElementInstance</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="EndToEndFlowInstance">
+      <body xsi:type="ItemUsage" declaredName="flowElement" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FlowElementInstance</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="inModes" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ModeInstance</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="inSystemOperationMode" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>SystemOperationMode</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="endToEndFlow" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EndToEndFlow</featureSpecialization>
+      </body>
+      <SubclassificationPart>InstanceObject</SubclassificationPart>
+    </body>
+    <body xsi:type="EnumerationDefinition" declaredName="FeatureCategory">
+      <body xsi:type="EnumerationUsage" declaredName="dataPort"/>
+      <body xsi:type="EnumerationUsage" declaredName="eventPort"/>
+      <body xsi:type="EnumerationUsage" declaredName="eventDataPort"/>
+      <body xsi:type="EnumerationUsage" declaredName="parameter"/>
+      <body xsi:type="EnumerationUsage" declaredName="busAccess"/>
+      <body xsi:type="EnumerationUsage" declaredName="dataAccess"/>
+      <body xsi:type="EnumerationUsage" declaredName="subprogramAccess"/>
+      <body xsi:type="EnumerationUsage" declaredName="subprogramGroupAccess"/>
+      <body xsi:type="EnumerationUsage" declaredName="featureGroup"/>
+      <body xsi:type="EnumerationUsage" declaredName="abstractFeature"/>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="SystemInstance">
+      <body xsi:type="ItemUsage" declaredName="systemOperationMode" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>SystemOperationMode</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="systemImplementation" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>SystemImplementation</featureSpecialization>
+      </body>
+      <SubclassificationPart>ComponentInstance</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="InstanceReferenceValue">
+      <body xsi:type="ItemUsage" declaredName="referencedInstanceObject" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>InstanceObject</featureSpecialization>
+      </body>
+      <SubclassificationPart>PropertyValue</SubclassificationPart>
+    </body>
+  </body>
+</Namespace>

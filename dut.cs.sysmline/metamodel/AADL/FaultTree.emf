@@ -1,0 +1,53 @@
+@namespace(uri="http://www.aadl.info/FaultTree", prefix="FaultTree")
+package FaultTree;
+
+class FaultTree {
+	attr String name;
+	attr String message;
+	attr FaultTreeType faultTreeType;
+	ref Event root;
+	ref EObject instanceRoot;
+	val Event[*] events;
+}
+
+class Event {
+	op double getProbability();
+	attr String name;
+	attr String message;
+	ref Event[*] subEvents;
+	attr int k = 1;
+	attr double assignedProbability;
+	attr double computedProbability;
+	ref EObject relatedInstanceObject;
+	ref EObject relatedErrorType;
+	attr int referenceCount = 0;
+	attr EventType type;
+	attr LogicOperation subEventLogic;
+	ref EObject relatedEMV2Object;
+	attr boolean sharedEvent = false;
+}
+
+enum EventType {
+	Basic = 0;
+	External = 1;
+	Undeveloped = 2;
+	Intermediate = 3;
+}
+
+enum LogicOperation {
+	Or = 0;
+	And = 1;
+	Xor = 2;
+	PriorityAnd = 3;
+	kOf = 4;
+	kOrmore = 5;
+	kOrless = 6;
+}
+
+enum FaultTreeType {
+	FaultTree = 0;
+	FaultTrace = 1;
+	CompositeParts = 2;
+	MinimalCutSet = 3;
+}
+

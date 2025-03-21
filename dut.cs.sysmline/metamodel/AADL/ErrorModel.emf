@@ -1,0 +1,302 @@
+@namespace(uri="http://www.aadl.info/EMV2", prefix="errorModel")
+package errorModel;
+
+import "platform:/resource/dut.cs.sysmline/metamodel/AADL/aadl2.ecore";
+import "platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore";
+
+class ErrorModelSubclause extends aadl2.AnnexSubclause {
+	!unique ref ErrorModelLibrary[*] useTypes;
+	ref TypeMappingSet typeEquivalence;
+	ref TypeMappingSet typeMappingSet;
+	ref ErrorBehaviorStateMachine useBehavior;
+	val ErrorPropagation[*] propagations;
+	val ErrorFlow[*] flows;
+	ref TypeTransformationSet useTransformation;
+	val ErrorBehaviorEvent[*] events;
+	val ErrorBehaviorTransition[*] transitions;
+	val OutgoingPropagationCondition[*] outgoingPropagationConditions;
+	val ErrorDetection[*] errorDetections;
+	val ErrorStateToModeMapping[*] errorStateToModeMappings;
+	val CompositeState[*] states;
+	ref TypeTransformationSet typeTransformationSet;
+	val ErrorSource[*] connectionErrorSources;
+	val PropagationPoint[*] points;
+	val PropagationPath[*] paths;
+	val EMV2PropertyAssociation[*] properties;
+}
+
+class ErrorModelLibrary extends aadl2.AnnexLibrary {
+	!unique ref ErrorModelLibrary[*] useTypes;
+	!unique ref ErrorModelLibrary[*] ~extends;
+	val ErrorType[*] types;
+	val TypeSet[*] typesets;
+	val EMV2PropertyAssociation[*] properties;
+	val ErrorBehaviorStateMachine[*] behaviors;
+	val TypeMappingSet[*] mappings;
+	val TypeTransformationSet[*] transformations;
+}
+
+class EMV2PropertyAssociation extends aadl2.Element {
+	ref aadl2.Property property;
+	val aadl2.ModalPropertyValue[*] ownedValues;
+	val EMV2Path[*] emv2Path;
+}
+
+class EMV2Path extends aadl2.Element {
+	val aadl2.ContainmentPathElement containmentPath;
+	val EMV2PathElement emv2Target;
+}
+
+class EMV2PathElement extends aadl2.Element {
+	attr ecore.EString emv2PropagationKind;
+	ref ErrorTypes errorType;
+	ref aadl2.NamedElement namedElement;
+	val EMV2PathElement path;
+}
+
+class ErrorTypes extends aadl2.NamedElement {
+}
+
+class ErrorType extends ErrorTypes {
+	ref ErrorType superType;
+	ref ErrorType aliasedType;
+}
+
+class TypeSet extends ErrorTypes {
+	val TypeToken[*] typeTokens;
+	ref TypeSet aliasedType;
+}
+
+class TypeToken extends aadl2.Element {
+	!unique ref ErrorTypes[*] type;
+	attr ecore.EBoolean noError;
+}
+
+class TypeTransformationSet extends aadl2.NamedElement {
+	!unique ref ErrorModelLibrary[*] useTypes;
+	val TypeTransformation[*] transformation;
+}
+
+class TypeTransformation extends aadl2.Element {
+	val TypeSet source;
+	attr ecore.EBoolean allSources;
+	val TypeSet contributor;
+	val TypeSet target;
+}
+
+class TypeMappingSet extends aadl2.NamedElement {
+	!unique ref ErrorModelLibrary[*] useTypes;
+	val TypeMapping[*] mapping;
+}
+
+class TypeMapping extends aadl2.Element {
+	val TypeSet source;
+	val TypeSet target;
+}
+
+class ErrorPropagation extends aadl2.NamedElement, EventOrPropagation {
+	attr ecore.EString kind;
+	val FeatureorPPReference featureorPPRef;
+	attr ecore.EBoolean not;
+	attr aadl2.DirectionType direction;
+	val TypeSet typeSet;
+}
+
+class FeatureorPPReference extends aadl2.Element {
+	ref aadl2.NamedElement featureorPP;
+	val FeatureorPPReference next;
+}
+
+class ErrorFlow extends aadl2.NamedElement {
+	val TypeSet typeTokenConstraint;
+}
+
+class ErrorSource extends ErrorFlow {
+	ref aadl2.NamedElement sourceModelElement;
+	attr ecore.EBoolean all;
+	ref ErrorBehaviorState failureModeReference;
+	val TypeSet failureModeType;
+	attr ecore.EString failureModeDescription;
+	attr ecore.EString condition;
+}
+
+class ErrorSink extends ErrorFlow {
+	ref ErrorPropagation incoming;
+	attr ecore.EBoolean allIncoming;
+}
+
+class ErrorPath extends ErrorFlow {
+	ref ErrorPropagation incoming;
+	attr ecore.EBoolean allIncoming;
+	ref ErrorPropagation outgoing;
+	attr ecore.EBoolean allOutgoing;
+	val TypeSet targetToken;
+	ref TypeMappingSet typeMappingSet;
+}
+
+class PropagationPoint extends aadl2.NamedElement {
+}
+
+class PropagationPath extends aadl2.NamedElement {
+	val QualifiedPropagationPoint source;
+	val QualifiedPropagationPoint target;
+}
+
+class QualifiedPropagationPoint extends aadl2.Element {
+	val SubcomponentElement subcomponent;
+	val QualifiedPropagationPoint next;
+	ref aadl2.NamedElement propagationPoint;
+}
+
+class ErrorBehaviorStateMachine extends aadl2.NamedElement {
+	!unique ref ErrorModelLibrary[*] useTypes;
+	!unique ref TypeTransformationSet[*] useTransformation;
+	val ErrorBehaviorEvent[*] events;
+	val ErrorBehaviorState[*] states;
+	val ErrorBehaviorTransition[*] transitions;
+	val EMV2PropertyAssociation[*] properties;
+}
+
+class ErrorBehaviorEvent extends aadl2.NamedElement, EventOrPropagation {
+}
+
+class ErrorEvent extends ErrorBehaviorEvent {
+	val TypeSet typeSet;
+	attr ecore.EString condition;
+}
+
+class RepairEvent extends ErrorBehaviorEvent {
+	!unique ref aadl2.NamedElement[*] eventInitiator;
+}
+
+class RecoverEvent extends ErrorBehaviorEvent {
+	!unique ref aadl2.NamedElement[*] eventInitiator;
+	attr ecore.EString condition;
+}
+
+class ErrorBehaviorState extends aadl2.NamedElement {
+	attr ecore.EBoolean intial;
+	val TypeSet typeSet;
+}
+
+class ErrorBehaviorTransition extends aadl2.NamedElement {
+	ref ErrorBehaviorState source;
+	val TypeSet typeTokenConstraint;
+	attr ecore.EBoolean allStates;
+	val ConditionExpression condition;
+	ref ErrorBehaviorState target;
+	val TypeSet targetToken;
+	attr ecore.EBoolean steadyState;
+	val TransitionBranch[*] destinationBranches;
+}
+
+class TransitionBranch extends aadl2.Element {
+	ref ErrorBehaviorState target;
+	val TypeSet targetToken;
+	attr ecore.EBoolean steadyState;
+	val BranchValue value;
+}
+
+class BranchValue extends aadl2.Element {
+	attr ecore.EString realvalue;
+	ref aadl2.Property symboliclabel;
+	attr ecore.EBoolean others;
+}
+
+class ConditionExpression extends aadl2.Element {
+}
+
+class OrmoreExpression extends aadl2.Element, ConditionExpression {
+	attr aadl2.Integer count;
+	val ConditionExpression[*] operands;
+}
+
+class OrlessExpression extends aadl2.Element, ConditionExpression {
+	attr aadl2.Integer count;
+	val ConditionExpression[*] operands;
+}
+
+class ConditionElement extends aadl2.Element, ConditionExpression {
+	val EMV2Path qualifiedErrorPropagationReference;
+	val TypeSet constraint;
+}
+
+class EventOrPropagation extends aadl2.NamedElement {
+}
+
+class OutgoingPropagationCondition extends aadl2.NamedElement {
+	ref ErrorBehaviorState state;
+	val TypeSet typeTokenConstraint;
+	attr ecore.EBoolean allStates;
+	val ConditionExpression condition;
+	ref ErrorPropagation outgoing;
+	attr ecore.EBoolean allPropagations;
+	val TypeSet typeToken;
+}
+
+class ErrorDetection extends aadl2.NamedElement {
+	ref ErrorBehaviorState state;
+	val TypeSet typeTokenConstraint;
+	attr ecore.EBoolean allStates;
+	val ConditionExpression condition;
+	ref aadl2.TriggerPort detectionReportingPort;
+	val ErrorCodeValue errorCode;
+}
+
+class ErrorCodeValue extends aadl2.Element {
+	attr ecore.EString intValue;
+	ref aadl2.PropertyConstant constant;
+	attr ecore.EString enumLiteral;
+}
+
+class ErrorStateToModeMapping extends aadl2.Element {
+	ref ErrorBehaviorState errorState;
+	val TypeSet typeToken;
+	!unique ref aadl2.Mode[*] mappedModes;
+}
+
+class CompositeState extends aadl2.NamedElement {
+	val ConditionExpression condition;
+	attr ecore.EBoolean others;
+	ref ErrorBehaviorState state;
+	val TypeSet typedToken;
+}
+
+class QualifiedErrorBehaviorState extends aadl2.Element {
+	val SubcomponentElement subcomponent;
+	val QualifiedErrorBehaviorState next;
+	ref ErrorBehaviorState state;
+}
+
+class SubcomponentElement extends aadl2.Element {
+	ref aadl2.Subcomponent subcomponent;
+}
+
+class EMV2Root extends aadl2.NamedElement {
+	val ErrorModelLibrary library;
+	val ErrorModelSubclause[*] subclauses;
+}
+
+class OrExpression extends ConditionExpression {
+	val ConditionExpression[*] operands;
+}
+
+class AndExpression extends ConditionExpression {
+	val ConditionExpression[*] operands;
+}
+
+class AllExpression extends ConditionExpression {
+	attr aadl2.Integer count;
+	val ConditionElement[*] operands;
+}
+
+class QualifiedErrorEventOrPropagation extends EMV2Path {
+}
+
+class QualifiedErrorPropagation extends EMV2Path {
+}
+
+class SConditionElement extends ConditionElement {
+	val QualifiedErrorBehaviorState qualifiedState;
+}
+

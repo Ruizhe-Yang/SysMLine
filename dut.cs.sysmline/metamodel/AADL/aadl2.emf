@@ -1,0 +1,1953 @@
+@namespace(uri="http://aadl.info/AADL/2.0", prefix="aadl2")
+package aadl2;
+
+@GenModel(documentation="An element is a constituent of a model.
+An element is a constituent of a model. As such, it has the capability of owning other elements.")
+abstract class Element {
+
+	@"http://www.eclipse.org/uml2/1.1.0/GenModel"(body="not self.allOwnedElements()->includes(self)")
+	@GenModel(documentation="An element may not directly or indirectly own itself.")
+	op boolean not_own_self(@GenModel(documentation="The chain of diagnostics to which problems are to be appended.")
+ecore.EDiagnosticChain diagnostics, @GenModel(documentation="The cache of context-specific information.")
+ecore.EMap<EJavaObject, EJavaObject> context);
+
+	@"http://www.eclipse.org/uml2/1.1.0/GenModel"(body="self.mustBeOwned() implies owner->notEmpty()")
+	@GenModel(documentation="Elements that must be owned must have an owner.")
+	op boolean has_owner(@GenModel(documentation="The chain of diagnostics to which problems are to be appended.")
+ecore.EDiagnosticChain diagnostics, @GenModel(documentation="The cache of context-specific information.")
+ecore.EMap<EJavaObject, EJavaObject> context);
+	!ordered op Element[1] getOwner();
+
+	@GenModel(documentation="The query allOwnedElements() gives all of the direct and indirect owned elements of an element.")
+	@"http://www.eclipse.org/uml2/1.1.0/GenModel"(body="ownedElement->union(ownedElement->collect(e | e.allOwnedElements()))")
+	!ordered op Element[*] allOwnedElements();
+
+	@GenModel(documentation="The query mustBeOwned() indicates whether elements of this type must have an owner. Subclasses of Element that do not require an owner must override this operation.")
+	@"http://www.eclipse.org/uml2/1.1.0/GenModel"(body="true")
+	!ordered op Boolean[1] mustBeOwned();
+
+	@GenModel(documentation="The Elements owned by this element.")
+	@union
+	@"http://www.topcased.org/documentation"(documentation="The Elements owned by this element.")
+	!ordered readonly volatile transient derived val Element[*] ownedElement;
+
+	@GenModel(documentation="The Comments owned by this element.")
+	@subsets
+	@"http://www.topcased.org/documentation"(documentation="The Comments owned by this element.")
+	!ordered val Comment[*] ownedComment;
+}
+
+@GenModel(documentation="A comment is a textual annotation that can be attached to a set of elements.")
+class Comment extends Element {
+
+	@GenModel(documentation="Specifies a string that is the comment")
+	@"http://www.topcased.org/documentation"(documentation="Specifies a string that is the comment")
+	!ordered attr String body;
+}
+
+@"http://www.topcased.org/documentation"(documentation="A string is a sequence of characters in some suitable character set used to display information about the model. Character sets may include non-Roman alphabets and characters.")
+datatype String : java.lang.String;
+
+@"http://www.topcased.org/documentation"(documentation="A Boolean type is used for logical expression, consisting of the predefined values true and false.")
+datatype Boolean : boolean;
+
+@GenModel(documentation="A type constrains the values represented by a typed element.")
+abstract class Type extends NamedElement {
+
+	@GenModel(documentation="The query conformsTo() gives true for a type that conforms to another. By default, two types do not conform to each other. This query is intended to be redefined for specific conformance situations.")
+	@"http://www.eclipse.org/uml2/1.1.0/GenModel"(body="result = false")
+	!ordered op Boolean[1] conformsTo(!ordered Type[1] other);
+}
+
+@GenModel(documentation="A named element is an element in a model that may have a name.")
+abstract class NamedElement extends Element {
+
+	@"http://www.eclipse.org/uml2/1.1.0/GenModel"(body="(self.name->isEmpty() or self.allNamespaces()->select(ns | ns.name->isEmpty())->notEmpty()) implies self.qualifiedName->isEmpty()")
+	@GenModel(documentation="If there is no name, or one of the containing namespaces has no name, there is no qualified name.")
+	op boolean has_no_qualified_name(@GenModel(documentation="The chain of diagnostics to which problems are to be appended.")
+ecore.EDiagnosticChain diagnostics, @GenModel(documentation="The cache of context-specific information.")
+ecore.EMap<EJavaObject, EJavaObject> context);
+
+	@"http://www.eclipse.org/uml2/1.1.0/GenModel"(body="(self.name->notEmpty() and self.allNamespaces()->select(ns | ns.name->isEmpty())->isEmpty()) 
+implies 
+self.qualifiedName = self.allNamespaces()->iterate(ns: Namespace; result: String = self.name | ns.name.concat(self.separator()).concat(result))")
+	@GenModel(documentation="When there is a name, and all of the containing namespaces have a name, the qualified name is constructed from the names of the containing namespaces.")
+	op boolean has_qualified_name(@GenModel(documentation="The chain of diagnostics to which problems are to be appended.")
+ecore.EDiagnosticChain diagnostics, @GenModel(documentation="The cache of context-specific information.")
+ecore.EMap<EJavaObject, EJavaObject> context);
+	!ordered op Namespace[1] getNamespace();
+
+	@GenModel(documentation="The query allNamespaces() gives the sequence of namespaces in which the NamedElement is nested, working outwards.")
+	@"http://www.eclipse.org/uml2/1.1.0/GenModel"(body="if self.namespace->isEmpty() then 
+  Sequence{}
+else
+  self.namespace.allNamespaces()->prepend(self.namespace)
+endif")
+	op Namespace[*] allNamespaces();
+
+	@GenModel(documentation="The query isDistinguishableFrom() determines whether two NamedElements may logically co-exist within a Namespace. By default, two named elements are distinguishable if (a) they have unrelated types or (b) they have related types but different names.")
+	@"http://www.eclipse.org/uml2/1.1.0/GenModel"(body="if self.oclIsKindOf(n.oclType) or n.oclIsKindOf(self.oclType) then
+  ns.getNamesOfMember(self)->intersection(ns.getNamesOfMember(n))->isEmpty()
+else
+  true
+endif")
+	!ordered op Boolean[1] isDistinguishableFrom(!ordered NamedElement[1] n, !ordered Namespace[1] ns);
+
+	@GenModel(documentation="The query separator() gives the string that is used to separate names when constructing a qualified name.")
+	@"http://www.eclipse.org/uml2/1.1.0/GenModel"(body="'.'")
+	!ordered op String[1] separator();
+
+	@GenModel(documentation="When there is a name, and all of the containing namespaces have a name, the qualified name is constructed from the names of the containing namespaces.")
+	@"http://www.eclipse.org/uml2/1.1.0/GenModel"(body="if self.name->notEmpty() and self.allNamespaces()->select(ns | ns.name->isEmpty())->isEmpty() then
+  self.allNamespaces()->iterate(ns: Namespace; result: String = self.name | ns.name.concat(self.separator()).concat(result))
+else 
+  '' 
+endif")
+	!ordered op String[1] qualifiedName();
+
+	@GenModel(documentation="The name of the NamedElement.")
+	@"http://www.topcased.org/documentation"(documentation="The name of the NamedElement.")
+	!ordered attr String name;
+
+	@GenModel(documentation="A name which allows the NamedElement to be identified within a hierarchy of nested Namespaces. It is constructed from the names of the containing namespaces starting at the root of the hierarchy and ending with the name of the NamedElement itself.")
+	@"http://www.topcased.org/documentation"(documentation="A name which allows the NamedElement to be identified within a hierarchy of nested Namespaces. It is constructed from the names of the containing namespaces starting at the root of the hierarchy and ending with the name of the NamedElement itself.")
+	!ordered readonly volatile transient derived attr String qualifiedName;
+	!ordered val PropertyAssociation[*] ownedPropertyAssociation;
+}
+
+class PropertyAssociation extends Element {
+	!ordered ref Property[1] property;
+	!ordered val ContainedNamedElement[*] appliesTo;
+	!ordered ref Classifier[*] inBinding;
+	!ordered attr Boolean[1] append;
+	!ordered attr Boolean[1] constant;
+	!ordered val ModalPropertyValue[+] ownedValue;
+}
+
+class Property extends BasicProperty, AbstractNamedValue, ArraySizeProperty {
+	!ordered attr Boolean[1] inherit;
+	!ordered val PropertyExpression defaultValue;
+	!ordered volatile transient derived ref MetaclassReference[*] appliesToMetaclass;
+	!ordered volatile transient derived ref Classifier[*] appliesToClassifier;
+	!ordered val PropertyOwner[*] appliesTo;
+	!ordered attr Boolean[1] emptyListDefault;
+}
+
+class BasicProperty extends TypedElement {
+
+	@redefines
+	!ordered ref PropertyType[1] propertyType;
+
+	@subsets
+	!ordered val PropertyType ownedPropertyType;
+}
+
+@GenModel(documentation="A typed element has a type.")
+abstract class TypedElement extends NamedElement {
+
+	@GenModel(documentation="The type of the TypedElement.")
+	@"http://www.topcased.org/documentation"(documentation="The type of the TypedElement.")
+	!ordered ref Type type;
+}
+
+abstract class PropertyType extends Type {
+}
+
+abstract class AbstractNamedValue {
+}
+
+abstract class ArraySizeProperty {
+}
+
+abstract class PropertyExpression extends Element {
+}
+
+class MetaclassReference extends PropertyOwner {
+	!ordered attr String annexName;
+	!unique !ordered attr String[+] metaclassName;
+}
+
+abstract class PropertyOwner extends Element {
+}
+
+@GenModel(documentation="A classifier is a classification of instances - it describes a set of instances that have features in common.
+A classifier can specify a generalization hierarchy by referencing its general classifiers.")
+abstract class Classifier extends Namespace, Type {
+
+	@"http://www.eclipse.org/uml2/1.1.0/GenModel"(body="not self.allParents()->includes(self)")
+	@GenModel(documentation="Generalization hierarchies must be directed and acyclical. A classifier can not be both a transitively general and transitively specific classifier of the same classifier.")
+	op boolean no_cycles_in_generalization(@GenModel(documentation="The chain of diagnostics to which problems are to be appended.")
+ecore.EDiagnosticChain diagnostics, @GenModel(documentation="The cache of context-specific information.")
+ecore.EMap<EJavaObject, EJavaObject> context);
+
+	@"http://www.eclipse.org/uml2/1.1.0/GenModel"(body="self.parents()->forAll(c | self.maySpecializeType(c))")
+	@GenModel(documentation="A classifier may only specialize classifiers of a valid type.")
+	op boolean specialize_type(@GenModel(documentation="The chain of diagnostics to which problems are to be appended.")
+ecore.EDiagnosticChain diagnostics, @GenModel(documentation="The cache of context-specific information.")
+ecore.EMap<EJavaObject, EJavaObject> context);
+
+	@GenModel(documentation="The query allFeatures() gives all of the features in the namespace of the classifier. In general, through mechanisms such as inheritance, this will be a larger set than feature.")
+	@"http://www.eclipse.org/uml2/1.1.0/GenModel"(body="result = member->select(oclIsKindOf(Feature))")
+	!ordered op ClassifierFeature[*] allFeatures();
+
+	@GenModel(documentation="The inheritedMember association is derived by inheriting the inheritable members of the parents.")
+	@"http://www.eclipse.org/uml2/1.1.0/GenModel"(body="result = self.inherit(self.parents()->collect(p | p.inheritableMembers(self))")
+	!ordered op NamedElement[*] inheritedMember();
+
+	@GenModel(documentation="The query parents() gives all of the immediate ancestors of a generalized Classifier.")
+	@"http://www.eclipse.org/uml2/1.1.0/GenModel"(body="result = general")
+	!ordered op Classifier[*] parents();
+
+	@GenModel(documentation="The query allParents() gives all of the direct and indirect ancestors of a generalized Classifier.")
+	@"http://www.eclipse.org/uml2/1.1.0/GenModel"(body="result = self.parents()->union(self.parents()->collect(p | p.allParents())")
+	!ordered op Classifier[*] allParents();
+
+	@GenModel(documentation="The query inheritableMembers() gives all of the members of a classifier that may be inherited in one of its descendants, subject to whatever visibility restrictions apply.")
+	@"http://www.eclipse.org/uml2/1.1.0/GenModel"(body="result = member->select(m | c.hasVisibilityOf(m))")
+	!ordered op NamedElement[*] inheritableMembers(!ordered Classifier[1] c);
+
+	@GenModel(documentation="The query hasVisibilityOf() determines whether a named element is visible in the classifier. By default all are visible. It is only called when the argument is something owned by a parent.")
+	@"http://www.eclipse.org/uml2/1.1.0/GenModel"(body="result = if (self.inheritedMember->includes (n)) then (n.visibility <> #private) else true")
+	!ordered op Boolean[1] hasVisibilityOf(!ordered NamedElement[1] n);
+
+	@GenModel(documentation="The query inherit() defines how to inherit a set of elements. Here the operation is defined to inherit them all. It is intended to be redefined in circumstances where inheritance is affected by redefinition.")
+	@"http://www.eclipse.org/uml2/1.1.0/GenModel"(body="result = inhs")
+	!ordered op NamedElement[*] inherit(!ordered NamedElement[*] inhs);
+
+	@GenModel(documentation="The query maySpecializeType() determines whether this classifier may have a generalization relationship to classifiers of the specified type. By default a classifier may specialize classifiers of the same or a more general type. It is intended to be redefined by classifiers that have different specialization constraints.")
+	@"http://www.eclipse.org/uml2/1.1.0/GenModel"(body="result = self.oclIsKindOf(c.oclType)")
+	!ordered op Boolean[1] maySpecializeType(!ordered Classifier[1] c);
+
+	@GenModel(documentation="Specifies each feature defined in the classifier.")
+	@subsets
+	@union
+	!ordered readonly volatile transient derived ref ClassifierFeature[*]#featuringClassifier classifierFeature;
+
+	@GenModel(documentation="Specifies all elements inherited by this classifier from the general classifiers.")
+	@subsets
+	!ordered readonly volatile transient derived ref NamedElement[*] inheritedMember;
+
+	@GenModel(documentation="Specifies the Generalization relationships for this Classifier. These Generalizations navigate to more general classifiers in the generalization hierarchy.")
+	@subsets
+	@union
+	!ordered readonly volatile transient derived ref Generalization[*]#specific generalization;
+
+	@GenModel(documentation="Specifies the more general classifiers in the generalization hierarchy for this Classifier.")
+	@union
+	!ordered readonly volatile transient derived ref Classifier[*] general;
+
+	@subsets
+	!ordered val AnnexSubclause[*] ownedAnnexSubclause;
+
+	@subsets
+	!ordered val Prototype[*] ownedPrototype;
+	!ordered val PrototypeBinding[*] ownedPrototypeBinding;
+	!ordered attr Boolean[1] noPrototypes;
+	!ordered attr Boolean[1] noAnnexes;
+	!ordered attr Boolean[1] noProperties;
+}
+
+@GenModel(documentation="A namespace is an element in a model that contains a set of named elements that can be identified by name.")
+abstract class Namespace extends NamedElement {
+
+	@"http://www.eclipse.org/uml2/1.1.0/GenModel"(body="membersAreDistinguishable()")
+	@GenModel(documentation="All the members of a Namespace are distinguishable within it.")
+	op boolean members_distinguishable(@GenModel(documentation="The chain of diagnostics to which problems are to be appended.")
+ecore.EDiagnosticChain diagnostics, @GenModel(documentation="The cache of context-specific information.")
+ecore.EMap<EJavaObject, EJavaObject> context);
+
+	@GenModel(documentation="The query getNamesOfMember() gives a set of all of the names that a member would have in a Namespace. In general a member can have multiple names in a Namespace if it is imported more than once with different aliases. Those semantics are specified by overriding the getNamesOfMember operation. The specification here simply returns a set containing a single name, or the empty set if no name.")
+	@"http://www.eclipse.org/uml2/1.1.0/GenModel"(body="if member->includes(element) then
+  Set{}->including(element.name)
+else
+  Set{}
+endif")
+	!ordered op String[*] getNamesOfMember(!ordered NamedElement[1] element);
+
+	@GenModel(documentation="The Boolean query membersAreDistinguishable() determines whether all of the namespaces members are distinguishable within it.")
+	@"http://www.eclipse.org/uml2/1.1.0/GenModel"(body="self.member->forAll( memb | self.member->excluding(memb)->forAll(other | memb.isDistinguishableFrom(other, self)))")
+	!ordered op Boolean[1] membersAreDistinguishable();
+
+	@GenModel(documentation="A collection of NamedElements owned by the Namespace.")
+	@subsets
+	@union
+	@"http://www.topcased.org/documentation"(documentation="A collection of NamedElements owned by the Namespace.")
+	!ordered readonly volatile transient derived val NamedElement[*] ownedMember;
+
+	@GenModel(documentation="A collection of NamedElements identifiable within the Namespace, either by being owned or by being introduced by importing or inheritance.")
+	@union
+	@"http://www.topcased.org/documentation"(documentation="A collection of NamedElements identifiable within the Namespace, either by being owned or by being introduced by importing or inheritance.")
+	!ordered readonly volatile transient derived ref NamedElement[*] member;
+}
+
+@GenModel(documentation="A classifier feature declares a behavioral or structural characteristic of instances of classifiers.")
+abstract class ClassifierFeature extends NamedElement {
+
+	@GenModel(documentation="The Classifiers that have this ClassifierFeature as a feature.")
+	!ordered readonly volatile transient derived !resolve ref Classifier[*]#classifierFeature featuringClassifier;
+}
+
+@GenModel(documentation="A generalization is a taxonomic relationship between a more general classifier and a more specific classifier. Each instance of the specific classifier is also an instance of the general classifier. Thus, the specific classifier indirectly has features of the more general classifier.")
+abstract class Generalization extends DirectedRelationship {
+
+	@GenModel(documentation="References the general classifier in the Generalization relationship.")
+	@subsets
+	@union
+	!ordered readonly volatile transient derived ref Classifier[1] general;
+
+	@GenModel(documentation="References the specializing classifier in the Generalization relationship. ")
+	@subsets
+	!ordered volatile transient derived ref Classifier[1]#generalization specific;
+}
+
+@GenModel(documentation="A directed relationship represents a relationship between a collection of source model elements and a collection of target model elements.")
+abstract class DirectedRelationship extends Relationship {
+
+	@GenModel(documentation="Specifies the sources of the DirectedRelationship.")
+	@subsets
+	@union
+	!ordered readonly volatile transient derived ref Element[+] source;
+
+	@GenModel(documentation="Specifies the targets of the DirectedRelationship.")
+	@subsets
+	@union
+	!ordered readonly volatile transient derived ref Element[+] target;
+}
+
+@GenModel(documentation="Relationship is an abstract concept that specifies some kind of relationship between elements.")
+abstract class Relationship extends Element {
+
+	@GenModel(documentation="Specifies the elements related by the Relationship.")
+	@union
+	!ordered readonly volatile transient derived ref Element[+] relatedElement;
+}
+
+abstract class AnnexSubclause extends ModalElement {
+}
+
+class ModalElement extends NamedElement {
+	!ordered op Mode[*] getAllInModes();
+	!ordered ref Mode[*] inMode;
+}
+
+class Mode extends ModeFeature {
+	!ordered attr Boolean[1] initial;
+	!ordered attr Boolean[1] ~derived;
+}
+
+abstract class ModeFeature extends ClassifierFeature {
+}
+
+abstract class Prototype extends StructuralFeature, CalledSubprogram, FeatureClassifier {
+
+	@"http://www.eclipse.org/uml2/1.1.0/GenModel"(body="self.constrainingCategory.oclIsUndefined() implies self.constrainingClassifier = self.constrainingCategory")
+	op boolean categoryConstraint(@GenModel(documentation="The chain of diagnostics to which problems are to be appended.")
+ecore.EDiagnosticChain diagnostics, @GenModel(documentation="The cache of context-specific information.")
+ecore.EMap<EJavaObject, EJavaObject> context);
+
+	@subsets
+	!ordered ref Prototype refined;
+}
+
+abstract class StructuralFeature extends RefinableElement, ClassifierFeature {
+}
+
+abstract class RefinableElement extends NamedElement {
+
+	@GenModel(documentation="References the contexts that this element may be redefined from.
+A refinable element can be refined by another element. Refinement is limited to classifier features, which can be refined by a classifier feature of the same name in an extended classifier. A refining element can add detail to an incomplete declaration.")
+	!ordered readonly volatile transient derived ref Classifier refinementContext;
+
+	@GenModel(documentation="The refinable element that is being refined by this element.")
+	@union
+	!ordered readonly volatile transient derived ref RefinableElement refinedElement;
+}
+
+abstract class FeatureClassifier {
+}
+
+abstract class CalledSubprogram {
+}
+
+abstract class PrototypeBinding extends Element {
+	!ordered ref Prototype[1] formal;
+}
+
+class ContainedNamedElement extends Element {
+	val ContainmentPathElement[+] containmentPathElement;
+}
+
+class ContainmentPathElement extends Element {
+	val ArrayRange[*] arrayRange;
+	!ordered ref NamedElement[1] namedElement;
+}
+
+class ArrayRange extends Element {
+	!ordered attr Integer[1] lowerBound;
+	!ordered attr Integer[1] upperBound;
+}
+
+@"http://www.topcased.org/documentation"(documentation="An integer is a primitive type representing integer values.")
+datatype Integer : long;
+
+class ModalPropertyValue extends ModalElement {
+	!ordered val PropertyExpression[1] ownedValue;
+}
+
+abstract class BehavioralFeature extends ClassifierFeature {
+}
+
+@"http://www.topcased.org/documentation"(documentation="A real is a primitive type representing real numeric values.")
+datatype Real : double;
+
+class ArrayDimension extends Element {
+	val ArraySize size;
+}
+
+class ArraySize extends Element {
+	!ordered attr Integer[1] size;
+	!ordered ref ArraySizeProperty sizeProperty;
+}
+
+abstract class ArrayableElement extends Element {
+	val ArrayDimension[*] arrayDimension;
+}
+
+class ComponentImplementationReference extends Element {
+	!ordered ref ComponentImplementation[1] implementation;
+	!ordered val PrototypeBinding[*] ownedPrototypeBinding;
+}
+
+abstract class ComponentImplementation extends ComponentClassifier {
+
+	@subsets
+	!unique !ordered volatile transient derived ref ComponentType[1] type;
+
+	@subsets
+	@union
+	!ordered readonly volatile transient derived val Subcomponent[*] ownedSubcomponent;
+
+	@subsets
+	!ordered volatile transient derived ref ComponentImplementation extended;
+
+	@subsets
+	val FlowImplementation[*] ownedFlowImplementation;
+
+	@subsets
+	@union
+	!ordered readonly volatile transient derived val Connection[*] ownedConnection;
+
+	@subsets
+	!ordered val ImplementationExtension ownedExtension;
+
+	@subsets
+	!ordered val Realization[1] ownedRealization;
+
+	@subsets
+	!ordered val EndToEndFlow[*] ownedEndToEndFlow;
+
+	@subsets
+	!ordered val AbstractSubcomponent[*] ownedAbstractSubcomponent;
+
+	@subsets
+	!ordered val AccessConnection[*] ownedAccessConnection;
+
+	@subsets
+	!ordered val ParameterConnection[*] ownedParameterConnection;
+
+	@subsets
+	!ordered val PortConnection[*] ownedPortConnection;
+
+	@subsets
+	!ordered val FeatureConnection[*] ownedFeatureConnection;
+
+	@subsets
+	!ordered val FeatureGroupConnection[*] ownedFeatureGroupConnection;
+	!ordered attr Boolean[1] noSubcomponents;
+	!ordered attr Boolean[1] noConnections;
+	!ordered attr Boolean[1] noCalls;
+}
+
+abstract class ComponentClassifier extends Classifier, SubcomponentType, FeatureClassifier {
+
+	@subsets
+	!ordered val Mode[*] ownedMode;
+
+	@subsets
+	!ordered val ModeTransition[*] ownedModeTransition;
+	!ordered attr Boolean[1] noFlows;
+	!ordered attr Boolean[1] noModes;
+}
+
+abstract class SubcomponentType extends Type {
+}
+
+class ModeTransition extends ModeFeature {
+	!ordered ref Mode[1] source;
+	!ordered ref Mode[1] destination;
+	!ordered val ModeTransitionTrigger[+] ownedTrigger;
+}
+
+abstract class ModeTransitionTrigger extends Element {
+}
+
+abstract class ComponentType extends ComponentClassifier {
+
+	@subsets
+	@union
+	!ordered readonly volatile transient derived val Feature[*] ownedFeature;
+
+	@subsets
+	!ordered volatile transient derived ref ComponentType extended;
+
+	@subsets
+	val FlowSpecification[*] ownedFlowSpecification;
+
+	@subsets
+	!ordered val TypeExtension ownedExtension;
+
+	@subsets
+	!ordered val FeatureGroup[*] ownedFeatureGroup;
+
+	@subsets
+	!ordered val AbstractFeature[*] ownedAbstractFeature;
+	!ordered attr Boolean[1] noFeatures;
+}
+
+@duplicates
+abstract class Feature extends StructuralFeature, FeatureConnectionEnd, ArrayableElement {
+
+	@subsets
+	!ordered readonly volatile transient derived ref Prototype prototype;
+
+	@subsets
+	!ordered ref Feature refined;
+
+	@subsets
+	!ordered readonly volatile transient derived ref ComponentClassifier classifier;
+}
+
+abstract class FeatureConnectionEnd extends ConnectionEnd {
+}
+
+abstract class ConnectionEnd extends NamedElement {
+}
+
+class FlowSpecification extends Flow, ModalPath, FlowElement {
+
+	@subsets
+	!ordered ref FlowSpecification refined;
+	!ordered attr FlowKind[1] kind;
+	!ordered val FlowEnd outEnd;
+	!ordered val FlowEnd InEnd;
+}
+
+abstract class Flow extends StructuralFeature {
+}
+
+@duplicates
+abstract class ModalPath extends ModalElement {
+	!ordered op Mode[*] getInModes();
+	!ordered ref ModeFeature[*] inModeOrTransition;
+}
+
+abstract class FlowElement extends EndToEndFlowElement {
+}
+
+abstract class EndToEndFlowElement extends NamedElement {
+}
+
+enum FlowKind {
+	source = 0;
+	path = 1;
+	sink = 2;
+}
+
+class FlowEnd extends Element {
+	!ordered ref Context context;
+	!ordered ref Feature[1] feature;
+}
+
+abstract class Context extends NamedElement {
+}
+
+class TypeExtension extends Generalization {
+
+	@subsets
+	!ordered ref ComponentType[1] extended;
+}
+
+class FeatureGroup extends DirectedFeature, Context, FeatureGroupConnectionEnd, CallContext {
+	!ordered attr Boolean[1] inverse;
+	!ordered ref FeatureType[1] featureType;
+
+	@subsets
+	!ordered readonly volatile transient derived ref FeatureGroupType featureGroupType;
+
+	@subsets
+	!ordered readonly volatile transient derived ref FeatureGroupPrototype featureGroupPrototype;
+}
+
+abstract class CallContext {
+}
+
+abstract class DirectedFeature extends Feature {
+	!ordered attr DirectionType[1] direction = "inOut";
+}
+
+enum DirectionType {
+	in = 0;
+	out = 1;
+	inOut = 2;
+}
+
+abstract class FeatureGroupConnectionEnd extends ConnectionEnd {
+}
+
+abstract class FeatureType {
+}
+
+@"http://www.topcased.org/documentation"(documentation="To be merged with AADLConstructs::Features::FeatureGroupType")
+class FeatureGroupType extends Classifier, FeatureType {
+
+	@subsets
+	@union
+	readonly volatile transient derived val Feature[*] ownedFeature;
+
+	@subsets
+	!ordered volatile transient derived ref FeatureGroupType extended;
+	!ordered ref FeatureGroupType inverse;
+
+	@subsets
+	!ordered val GroupExtension ownedExtension;
+
+	@subsets
+	!ordered val BusAccess[*] ownedBusAccess;
+
+	@subsets
+	!ordered val DataAccess[*] ownedDataAccess;
+
+	@subsets
+	!ordered val DataPort[*] ownedDataPort;
+
+	@subsets
+	!ordered val EventDataPort[*] ownedEventDataPort;
+
+	@subsets
+	!ordered val EventPort[*] ownedEventPort;
+
+	@subsets
+	!ordered val FeatureGroup[*] ownedFeatureGroup;
+
+	@subsets
+	!ordered val Parameter[*] ownedParameter;
+
+	@subsets
+	!ordered val SubprogramAccess[*] ownedSubprogramAccess;
+
+	@subsets
+	!ordered val SubprogramGroupAccess[*] ownedSubprogramGroupAccess;
+
+	@subsets
+	!ordered val AbstractFeature[*] ownedAbstractFeature;
+}
+
+class GroupExtension extends Generalization {
+
+	@subsets
+	!ordered ref FeatureGroupType[1] extended;
+}
+
+class BusAccess extends Access {
+
+	@subsets
+	!ordered ref BusSubcomponentType busFeatureClassifier;
+}
+
+abstract class Access extends Feature, AccessConnectionEnd {
+	!ordered attr AccessType[1] kind;
+	!ordered volatile transient derived attr AccessCategory[1] category;
+}
+
+abstract class AccessConnectionEnd extends ConnectionEnd {
+}
+
+enum AccessType {
+	provided = 0;
+	required = 1;
+}
+
+enum AccessCategory {
+	bus = 0;
+	data = 1;
+	subprogram = 2;
+	subprogramGroup = 3;
+}
+
+abstract class BusSubcomponentType extends Bus, SubcomponentType, FeatureClassifier {
+}
+
+abstract class Bus extends NamedElement {
+}
+
+class DataAccess extends Access, FlowElement, ParameterConnectionEnd, PortConnectionEnd {
+
+	@subsets
+	!ordered ref DataSubcomponentType dataFeatureClassifier;
+}
+
+abstract class ParameterConnectionEnd extends ConnectionEnd {
+}
+
+abstract class PortConnectionEnd extends ConnectionEnd {
+}
+
+abstract class DataSubcomponentType extends Data, SubcomponentType, FeatureClassifier {
+}
+
+abstract class Data extends NamedElement {
+}
+
+class DataPort extends Port, Context, ParameterConnectionEnd {
+
+	@subsets
+	!ordered ref DataSubcomponentType dataFeatureClassifier;
+}
+
+abstract class Port extends DirectedFeature, PortConnectionEnd {
+	!ordered volatile transient derived attr PortCategory[1] category;
+}
+
+enum PortCategory {
+	data = 0;
+	event = 1;
+	eventData = 2;
+}
+
+class EventDataPort extends Port, Context, ParameterConnectionEnd {
+
+	@subsets
+	!ordered ref DataSubcomponentType dataFeatureClassifier;
+}
+
+class EventPort extends Port {
+}
+
+class Parameter extends DirectedFeature, Context, ParameterConnectionEnd {
+
+	@subsets
+	!ordered ref DataSubcomponentType dataFeatureClassifier;
+}
+
+class SubprogramAccess extends Access, CalledSubprogram {
+
+	@subsets
+	!ordered ref SubprogramSubcomponentType subprogramFeatureClassifier;
+}
+
+abstract class SubprogramSubcomponentType extends SubcomponentType, Subprogram, FeatureClassifier {
+}
+
+abstract class Subprogram extends NamedElement, CalledSubprogram {
+}
+
+class SubprogramGroupAccess extends Access, CallContext {
+
+	@subsets
+	!ordered ref SubprogramGroupSubcomponentType subprogramGroupFeatureClassifier;
+}
+
+abstract class SubprogramGroupSubcomponentType extends SubcomponentType, SubprogramGroup, FeatureClassifier {
+}
+
+abstract class SubprogramGroup extends NamedElement {
+}
+
+class AbstractFeature extends DirectedFeature {
+
+	@subsets
+	@redefines
+	!ordered ref FeatureClassifier featureClassifier;
+}
+
+class FeatureGroupPrototype extends Prototype, FeatureType {
+	!ordered ref FeatureGroupType constrainingFeatureGroupType;
+}
+
+@duplicates
+abstract class Subcomponent extends StructuralFeature, ModalElement, Context, FlowElement, ArrayableElement {
+
+	@union
+	!unique !ordered readonly volatile transient derived ref SubcomponentType subcomponentType;
+	!ordered val PrototypeBinding[*] ownedPrototypeBinding;
+
+	@subsets
+	!ordered readonly volatile transient derived ref ComponentPrototype prototype;
+	!ordered val ModeBinding[*] ownedModeBinding;
+	!ordered attr Boolean[1] allModes;
+	val ComponentImplementationReference[*] implementationReference;
+
+	@subsets
+	!ordered ref Subcomponent refined;
+
+	@subsets
+	!ordered readonly volatile transient derived ref ComponentClassifier classifier;
+}
+
+abstract class ComponentPrototype extends Prototype, SubcomponentType {
+	!ordered attr Boolean[1] array;
+	!ordered ref ComponentClassifier constrainingClassifier;
+}
+
+class ModeBinding extends Element {
+	!ordered ref Mode[1] parentMode;
+	!ordered ref Mode derivedMode;
+}
+
+class FlowImplementation extends ModalPath, ClassifierFeature {
+	!ordered volatile transient derived attr FlowKind[1] kind;
+	!ordered ref FlowSpecification[1] specification;
+	val FlowSegment[*] ownedFlowSegment;
+}
+
+class FlowSegment extends Element {
+	!unique !ordered ref FlowElement[1] flowElement;
+	!ordered ref Context context;
+}
+
+abstract class Connection extends StructuralFeature, ModalPath, FlowElement {
+	!ordered val AbstractConnectionEnd[1] destination;
+	!ordered val AbstractConnectionEnd[1] source;
+	!ordered attr Boolean[1] bidirectional;
+
+	@subsets
+	!ordered ref Connection refined;
+}
+
+abstract class AbstractConnectionEnd {
+}
+
+class ImplementationExtension extends Generalization {
+
+	@subsets
+	!ordered ref ComponentImplementation[1] extended;
+}
+
+class Realization extends Generalization {
+
+	@subsets
+	!ordered ref ComponentType[1] implemented;
+}
+
+class EndToEndFlow extends Flow, ModalPath, EndToEndFlowElement {
+
+	@subsets
+	!ordered ref EndToEndFlow refined;
+	!ordered val EndToEndFlowSegment[+] ownedEndToEndFlowSegment;
+}
+
+class EndToEndFlowSegment extends Element {
+	!unique ref EndToEndFlowElement[1] flowElement;
+	!ordered ref Context context;
+}
+
+class AbstractSubcomponent extends Subcomponent, Abstract {
+
+	@subsets
+	!ordered ref AbstractSubcomponentType abstractSubcomponentType;
+}
+
+abstract class Abstract extends NamedElement {
+}
+
+abstract class AbstractSubcomponentType extends Abstract, SubcomponentType {
+}
+
+class AccessConnection extends Connection {
+	!ordered attr AccessCategory[1] accessCategory;
+}
+
+class ParameterConnection extends Connection {
+}
+
+class PortConnection extends Connection {
+}
+
+class FeatureConnection extends Connection {
+}
+
+class FeatureGroupConnection extends Connection {
+}
+
+enum ComponentCategory {
+	~abstract = 0;
+	bus = 1;
+	data = 2;
+	device = 3;
+	memory = 4;
+	process = 5;
+	processor = 6;
+	subprogram = 7;
+	subprogramGroup = 8;
+	system = 9;
+	thread = 10;
+	threadGroup = 11;
+	virtualBus = 12;
+	virtualProcessor = 13;
+}
+
+enum ConnectionKind {
+	Access = 0;
+	Feature = 1;
+	FeatureGroup = 2;
+	Parameter = 3;
+	Port = 4;
+}
+
+class ConnectedElement extends Element, AbstractConnectionEnd {
+	!ordered ref Context context;
+	!ordered ref ConnectionEnd[1] connectionEnd;
+}
+
+class ElementName extends ConnectionEnd {
+	!ordered attr ElementNameKind[1] kind;
+}
+
+enum ElementNameKind {
+	InternalEvent = 0;
+	ProcessorPort = 1;
+	ProcessorSubprogram = 2;
+}
+
+abstract class AnnexLibrary extends NamedElement {
+}
+
+class DefaultAnnexLibrary extends AnnexLibrary {
+	!ordered attr String[1] sourceText;
+}
+
+class DefaultAnnexSubclause extends AnnexSubclause {
+	!ordered attr String[1] sourceText;
+}
+
+class TriggerPort extends ModeTransitionTrigger {
+	!ordered ref Context context;
+	!ordered ref Port[1] port;
+}
+
+class PublicPackageSection extends PackageSection {
+	!ordered readonly volatile transient derived ref PrivatePackageSection#publicSection privateSection;
+}
+
+@duplicates
+abstract class PackageSection extends Namespace {
+
+	@subsets
+	!ordered val PackageRename[*] ownedPackageRename;
+
+	@subsets
+	!ordered val ComponentTypeRename[*] ownedComponentTypeRename;
+
+	@subsets
+	!ordered val Classifier[*] ownedClassifier;
+
+	@subsets
+	!ordered val FeatureGroupTypeRename[*] ownedFeatureGroupTypeRename;
+
+	@subsets
+	!ordered val AnnexLibrary[*] ownedAnnexLibrary;
+	!ordered ref ModelUnit[*] importedUnit;
+	!ordered attr Boolean[1] noAnnexes;
+	!ordered attr Boolean[1] noProperties;
+}
+
+class PackageRename extends NamedElement {
+	!ordered ref AadlPackage[1] renamedPackage;
+	!ordered attr Boolean[1] renameAll;
+}
+
+@ExtendedMetaData(name="Package")
+class AadlPackage extends ModelUnit {
+
+	@subsets
+	!ordered val PublicPackageSection ownedPublicSection;
+
+	@subsets
+	!ordered val PrivatePackageSection ownedPrivateSection;
+	!ordered ref PublicPackageSection publicSection;
+	!ordered ref PrivatePackageSection privateSection;
+}
+
+abstract class ModelUnit extends NamedElement {
+}
+
+class PrivatePackageSection extends PackageSection {
+	!ordered readonly volatile transient derived ref PublicPackageSection#privateSection publicSection;
+}
+
+class ComponentTypeRename extends NamedElement {
+	!ordered attr ComponentCategory[1] category;
+	!ordered ref ComponentType[1] renamedComponentType;
+}
+
+class FeatureGroupTypeRename extends NamedElement {
+	!ordered ref FeatureGroupType[1] renamedFeatureGroupType;
+}
+
+@duplicates
+class ComponentPrototypeBinding extends PrototypeBinding {
+	val ComponentPrototypeActual[+] actual;
+}
+
+class ComponentPrototypeActual extends Element {
+	!ordered attr ComponentCategory[1] category;
+	!ordered val PrototypeBinding[*] binding;
+	!ordered ref SubcomponentType[1] subcomponentType;
+}
+
+@duplicates
+class FeatureGroupPrototypeBinding extends PrototypeBinding {
+	!ordered val FeatureGroupPrototypeActual[1] actual;
+}
+
+class FeatureGroupPrototypeActual extends FeaturePrototypeActual {
+	!ordered val PrototypeBinding[*] binding;
+	!ordered ref FeatureType[1] featureType;
+}
+
+abstract class FeaturePrototypeActual extends Element {
+}
+
+class FeaturePrototype extends Prototype {
+	!ordered attr DirectionType[1] direction;
+	!ordered ref ComponentClassifier constrainingClassifier;
+}
+
+@duplicates
+class FeaturePrototypeBinding extends PrototypeBinding {
+	!ordered val FeaturePrototypeActual[1] actual;
+}
+
+class AccessSpecification extends FeaturePrototypeActual {
+	!ordered attr AccessType[1] kind;
+	!ordered attr AccessCategory[1] category;
+	!ordered ref ComponentClassifier classifier;
+}
+
+class PortSpecification extends FeaturePrototypeActual {
+	!ordered attr DirectionType[1] direction;
+	!ordered attr PortCategory[1] category;
+	!ordered ref ComponentClassifier classifier;
+}
+
+class FeaturePrototypeReference extends FeaturePrototypeActual {
+	!ordered attr DirectionType[1] direction;
+	!ordered ref FeaturePrototype[1] prototype;
+}
+
+class SubprogramCallSequence extends BehavioralFeature, ModalElement {
+	val CallSpecification[*] ownedCallSpecification;
+}
+
+abstract class CallSpecification extends BehavioralFeature {
+}
+
+class ProcessorCall extends CallSpecification {
+	!ordered attr String[1] subprogramAccessName;
+}
+
+abstract class BehavioredImplementation extends ComponentImplementation {
+
+	@GenModel(documentation="Get all calls owned by owned call sequences.")
+	!ordered op CallSpecification[*] callSpecifications();
+
+	@subsets
+	!ordered volatile transient derived ref CallSpecification[*] callSpecification;
+
+	@subsets
+	!ordered val SubprogramCallSequence[*] ownedSubprogramCallSequence;
+}
+
+class SubprogramCall extends CallSpecification, Context {
+	!ordered ref CalledSubprogram calledSubprogram;
+	!ordered ref CallContext context;
+}
+
+class AbstractType extends ComponentType, AbstractClassifier, CallContext {
+
+	@subsets
+	!ordered val BusAccess[*] ownedBusAccess;
+
+	@subsets
+	!ordered val DataAccess[*] ownedDataAccess;
+
+	@subsets
+	!ordered val SubprogramAccess[*] ownedSubprogramAccess;
+
+	@subsets
+	!ordered val DataPort[*] ownedDataPort;
+
+	@subsets
+	!ordered val EventPort[*] ownedEventPort;
+
+	@subsets
+	!ordered val EventDataPort[*] ownedEventDataPort;
+
+	@subsets
+	!ordered val SubprogramGroupAccess[*] ownedSubprogramGroupAccess;
+}
+
+abstract class AbstractClassifier extends ComponentClassifier, AbstractSubcomponentType, BusSubcomponentType, DataSubcomponentType, DeviceSubcomponentType, MemorySubcomponentType, ProcessorSubcomponentType, ProcessSubcomponentType, SubprogramGroupSubcomponentType, SubprogramSubcomponentType, SystemSubcomponentType, ThreadGroupSubcomponentType, ThreadSubcomponentType, VirtualProcessorSubcomponentType, VitualBusSubcomponentType {
+}
+
+abstract class VirtualProcessorSubcomponentType extends SubcomponentType, VirtualProcessor {
+}
+
+abstract class VirtualProcessor extends NamedElement {
+}
+
+abstract class VitualBusSubcomponentType extends SubcomponentType, VirtualBus {
+}
+
+abstract class VirtualBus extends NamedElement {
+}
+
+abstract class ThreadGroupSubcomponentType extends SubcomponentType, ThreadGroup {
+}
+
+abstract class ThreadGroup extends NamedElement {
+}
+
+abstract class ThreadSubcomponentType extends SubcomponentType, Thread {
+}
+
+abstract class Thread extends NamedElement {
+}
+
+abstract class SystemSubcomponentType extends SubcomponentType, System {
+}
+
+abstract class System extends NamedElement {
+}
+
+abstract class ProcessSubcomponentType extends Process, SubcomponentType {
+}
+
+abstract class Process extends NamedElement {
+}
+
+abstract class MemorySubcomponentType extends Memory, SubcomponentType {
+}
+
+abstract class Memory extends NamedElement {
+}
+
+abstract class DeviceSubcomponentType extends Device, SubcomponentType {
+}
+
+abstract class Device extends NamedElement {
+}
+
+abstract class ProcessorSubcomponentType extends Processor, SubcomponentType {
+}
+
+abstract class Processor extends NamedElement {
+}
+
+@duplicates
+class AbstractImplementation extends BehavioredImplementation, AbstractClassifier {
+
+	@subsets
+	!ordered val BusSubcomponent[*] ownedBusSubcomponent;
+
+	@subsets
+	!ordered val DataSubcomponent[*] ownedDataSubcomponent;
+
+	@subsets
+	!ordered val DeviceSubcomponent[*] ownedDeviceSubcomponent;
+
+	@subsets
+	!ordered val MemorySubcomponent[*] ownedMemorySubcomponent;
+
+	@subsets
+	!ordered val ProcessSubcomponent[*] ownedProcessSubcomponent;
+
+	@subsets
+	!ordered val ProcessorSubcomponent[*] ownedProcessorSubcomponent;
+
+	@subsets
+	!ordered val SystemSubcomponent[*] ownedSystemSubcomponent;
+
+	@subsets
+	!ordered val SubprogramSubcomponent[*] ownedSubprogramSubcomponent;
+
+	@subsets
+	!ordered val SubprogramGroupSubcomponent[*] ownedSubprogramGroupSubcomponent;
+
+	@subsets
+	!ordered val ThreadSubcomponent[*] ownedThreadSubcomponent;
+
+	@subsets
+	!ordered val ThreadGroupSubcomponent[*] ownedThreadGroupSubcomponent;
+
+	@subsets
+	!ordered val VirtualBusSubcomponent[*] ownedVirtualBusSubcomponent;
+
+	@subsets
+	!ordered val VirtualProcessorSubcomponent[*] ownedVirtualProcessorSubcomponent;
+}
+
+class BusSubcomponent extends Subcomponent, AccessConnectionEnd, Bus {
+
+	@subsets
+	!ordered ref BusSubcomponentType busSubcomponentType;
+}
+
+class DataSubcomponent extends Subcomponent, AccessConnectionEnd, Data, ParameterConnectionEnd, PortConnectionEnd {
+
+	@subsets
+	!ordered ref DataSubcomponentType dataSubcomponentType;
+}
+
+class DeviceSubcomponent extends Subcomponent, Device {
+
+	@subsets
+	!ordered ref DeviceSubcomponentType deviceSubcomponentType;
+}
+
+class MemorySubcomponent extends Subcomponent, Memory {
+
+	@subsets
+	!ordered ref MemorySubcomponentType memorySubcomponentType;
+}
+
+class ProcessSubcomponent extends Subcomponent, Process {
+
+	@subsets
+	!ordered ref ProcessSubcomponentType processSubcomponentType;
+}
+
+class ProcessorSubcomponent extends Subcomponent, Processor {
+
+	@subsets
+	!ordered ref ProcessorSubcomponentType processorSubcomponentType;
+}
+
+class SystemSubcomponent extends Subcomponent, System {
+
+	@subsets
+	!ordered ref SystemSubcomponentType systemSubcomponentType;
+}
+
+class SubprogramSubcomponent extends Subcomponent, AccessConnectionEnd, Subprogram {
+
+	@subsets
+	!ordered ref SubprogramSubcomponentType subprogramSubcomponentType;
+}
+
+class SubprogramGroupSubcomponent extends Subcomponent, AccessConnectionEnd, SubprogramGroup, CallContext {
+
+	@subsets
+	!ordered ref SubprogramGroupSubcomponentType subprogramGroupSubcomponentType;
+}
+
+class ThreadSubcomponent extends Subcomponent, Thread {
+
+	@subsets
+	!ordered ref ThreadSubcomponentType threadSubcomponentType;
+}
+
+class ThreadGroupSubcomponent extends Subcomponent, ThreadGroup {
+
+	@subsets
+	!ordered ref ThreadGroupSubcomponentType threadGroupSubcomponentType;
+}
+
+class VirtualBusSubcomponent extends Subcomponent, VirtualBus {
+
+	@subsets
+	!ordered ref VitualBusSubcomponentType virtualBusSubcomponentType;
+}
+
+class VirtualProcessorSubcomponent extends Subcomponent, VirtualProcessor {
+
+	@subsets
+	!ordered ref VirtualProcessorSubcomponentType virtualProcessorSubcomponentType;
+}
+
+class AbstractPrototype extends ComponentPrototype, AbstractSubcomponentType, BusSubcomponentType, DataSubcomponentType, DeviceSubcomponentType, MemorySubcomponentType, ProcessorSubcomponentType, ProcessSubcomponentType, SubprogramGroupSubcomponentType, SubprogramSubcomponentType, SystemSubcomponentType, ThreadGroupSubcomponentType, ThreadSubcomponentType, VirtualProcessorSubcomponentType, VitualBusSubcomponentType {
+}
+
+abstract class BusClassifier extends ComponentClassifier, BusSubcomponentType {
+}
+
+class BusType extends ComponentType, BusClassifier {
+
+	@subsets
+	!ordered val BusAccess[*] ownedBusAccess;
+
+	@subsets
+	!ordered val DataPort[*] ownedDataPort;
+
+	@subsets
+	!ordered val EventDataPort[*] ownedEventDataPort;
+
+	@subsets
+	!ordered val EventPort[*] ownedEventPort;
+}
+
+@duplicates
+class BusImplementation extends ComponentImplementation, BusClassifier {
+
+	@subsets
+	!ordered val VirtualBusSubcomponent[*] ownedVirtualBusSubcomponent;
+}
+
+class BusPrototype extends ComponentPrototype, BusSubcomponentType {
+}
+
+abstract class DataClassifier extends ComponentClassifier, DataSubcomponentType {
+}
+
+class DataType extends ComponentType, DataClassifier, CallContext {
+
+	@subsets
+	!ordered val SubprogramAccess[*] ownedSubprogramAccess;
+
+	@subsets
+	!ordered val SubprogramGroupAccess[*] ownedSubprogramGroupAccess;
+}
+
+@duplicates
+class DataImplementation extends ComponentImplementation, DataClassifier {
+
+	@subsets
+	!ordered val DataSubcomponent[*] ownedDataSubcomponent;
+
+	@subsets
+	!ordered val SubprogramSubcomponent[*] ownedSubprogramSubcomponent;
+}
+
+class DataPrototype extends ComponentPrototype, DataSubcomponentType {
+}
+
+abstract class DeviceClassifier extends ComponentClassifier, DeviceSubcomponentType {
+}
+
+class DeviceType extends ComponentType, DeviceClassifier {
+
+	@subsets
+	!ordered val DataPort[*] ownedDataPort;
+
+	@subsets
+	!ordered val EventDataPort[*] ownedEventDataPort;
+
+	@subsets
+	!ordered val EventPort[*] ownedEventPort;
+
+	@subsets
+	!ordered val BusAccess[*] ownedBusAccess;
+
+	@subsets
+	!ordered val SubprogramAccess[*] ownedSubprogramAccess;
+
+	@subsets
+	!ordered val SubprogramGroupAccess[*] ownedSubprogramGroupAccess;
+}
+
+@duplicates
+class DeviceImplementation extends ComponentImplementation, DeviceClassifier {
+
+	@subsets
+	!ordered val BusSubcomponent[*] ownedBusSubcomponent;
+
+	@subsets
+	!ordered val DataSubcomponent[*] ownedDataSubcomponent;
+
+	@subsets
+	!ordered val VirtualBusSubcomponent[*] ownedVirtualBusSubcomponent;
+}
+
+class DevicePrototype extends ComponentPrototype, DeviceSubcomponentType {
+}
+
+abstract class MemoryClassifier extends ComponentClassifier, MemorySubcomponentType {
+}
+
+class MemoryType extends ComponentType, MemoryClassifier {
+
+	@subsets
+	!ordered val BusAccess[*] ownedBusAccess;
+
+	@subsets
+	!ordered val DataPort[*] ownedDataPort;
+
+	@subsets
+	!ordered val EventDataPort[*] ownedEventDataPort;
+
+	@subsets
+	!ordered val EventPort[*] ownedEventPort;
+}
+
+@duplicates
+class MemoryImplementation extends ComponentImplementation, MemoryClassifier {
+
+	@subsets
+	!ordered val BusSubcomponent[*] ownedBusSubcomponent;
+
+	@subsets
+	!ordered val MemorySubcomponent[*] ownedMemorySubcomponent;
+}
+
+class MemoryPrototype extends ComponentPrototype, MemorySubcomponentType {
+}
+
+abstract class SubprogramClassifier extends ComponentClassifier, SubprogramSubcomponentType {
+}
+
+class SubprogramType extends ComponentType, SubprogramClassifier {
+
+	@subsets
+	!ordered val EventDataPort[*] ownedEventDataPort;
+
+	@subsets
+	!ordered val EventPort[*] ownedEventPort;
+
+	@subsets
+	!ordered val Parameter[*] ownedParameter;
+
+	@subsets
+	!ordered val DataAccess[*] ownedDataAccess;
+
+	@subsets
+	!ordered val SubprogramAccess[*] ownedSubprogramAccess;
+
+	@subsets
+	!ordered val SubprogramGroupAccess[*] ownedSubprogramGroupAccess;
+}
+
+@duplicates
+class SubprogramImplementation extends BehavioredImplementation, SubprogramClassifier {
+
+	@subsets
+	!ordered val DataSubcomponent[*] ownedDataSubcomponent;
+}
+
+class SubprogramPrototype extends ComponentPrototype, SubprogramSubcomponentType {
+}
+
+abstract class SubprogramGroupClassifier extends ComponentClassifier, SubprogramGroupSubcomponentType {
+}
+
+class SubprogramGroupType extends ComponentType, SubprogramGroupClassifier, CallContext {
+
+	@subsets
+	!ordered val SubprogramAccess[*] ownedSubprogramAccess;
+
+	@subsets
+	!ordered val SubprogramGroupAccess[*] ownedSubprogramGroupAccess;
+}
+
+@duplicates
+class SubprogramGroupImplementation extends ComponentImplementation, SubprogramGroupClassifier {
+
+	@subsets
+	!ordered val SubprogramSubcomponent[*] ownedSubprogramSubcomponent;
+
+	@subsets
+	!ordered val SubprogramGroupSubcomponent[*] ownedSubprogramGroupSubcomponent;
+}
+
+class SubprogramGroupPrototype extends ComponentPrototype, SubprogramGroupSubcomponentType {
+}
+
+abstract class SystemClassifier extends ComponentClassifier, SystemSubcomponentType {
+}
+
+class SystemType extends ComponentType, SystemClassifier {
+
+	@subsets
+	!ordered val BusAccess[*] ownedBusAccess;
+
+	@subsets
+	!ordered val DataAccess[*] ownedDataAccess;
+
+	@subsets
+	!ordered val DataPort[*] ownedDataPort;
+
+	@subsets
+	!ordered val SubprogramGroupAccess[*] ownedSubprogramGroupAccess;
+
+	@subsets
+	!ordered val SubprogramAccess[*] ownedSubprogramAccess;
+
+	@subsets
+	!ordered val EventPort[*] ownedEventPort;
+
+	@subsets
+	!ordered val EventDataPort[*] ownedEventDataPort;
+}
+
+@duplicates
+class SystemImplementation extends ComponentImplementation, SystemClassifier {
+
+	@subsets
+	!ordered val BusSubcomponent[*] ownedBusSubcomponent;
+
+	@subsets
+	!ordered val DataSubcomponent[*] ownedDataSubcomponent;
+
+	@subsets
+	!ordered val DeviceSubcomponent[*] ownedDeviceSubcomponent;
+
+	@subsets
+	!ordered val MemorySubcomponent[*] ownedMemorySubcomponent;
+
+	@subsets
+	!ordered val ProcessSubcomponent[*] ownedProcessSubcomponent;
+
+	@subsets
+	!ordered val ProcessorSubcomponent[*] ownedProcessorSubcomponent;
+
+	@subsets
+	!ordered val SubprogramSubcomponent[*] ownedSubprogramSubcomponent;
+
+	@subsets
+	!ordered val SubprogramGroupSubcomponent[*] ownedSubprogramGroupSubcomponent;
+
+	@subsets
+	!ordered val SystemSubcomponent[*] ownedSystemSubcomponent;
+
+	@subsets
+	!ordered val VirtualBusSubcomponent[*] ownedVirtualBusSubcomponent;
+
+	@subsets
+	!ordered val VirtualProcessorSubcomponent[*] ownedVirtualProcessorSubcomponent;
+}
+
+class SystemPrototype extends ComponentPrototype, SystemSubcomponentType {
+}
+
+abstract class ProcessorClassifier extends ComponentClassifier, ProcessorSubcomponentType {
+}
+
+class ProcessorType extends ComponentType, ProcessorClassifier {
+
+	@subsets
+	!ordered val DataPort[*] ownedDataPort;
+
+	@subsets
+	!ordered val EventDataPort[*] ownedEventDataPort;
+
+	@subsets
+	!ordered val EventPort[*] ownedEventPort;
+
+	@subsets
+	!ordered val BusAccess[*] ownedBusAccess;
+
+	@subsets
+	!ordered val SubprogramAccess[*] ownedSubprogramAccess;
+
+	@subsets
+	!ordered val SubprogramGroupAccess[*] ownedSubprogramGroupAccess;
+}
+
+@duplicates
+class ProcessorImplementation extends ComponentImplementation, ProcessorClassifier {
+
+	@subsets
+	!ordered val BusSubcomponent[*] ownedBusSubcomponent;
+
+	@subsets
+	!ordered val MemorySubcomponent[*] ownedMemorySubcomponent;
+
+	@subsets
+	!ordered val VirtualBusSubcomponent[*] ownedVirtualBusSubcomponent;
+
+	@subsets
+	!ordered val VirtualProcessorSubcomponent[*] ownedVirtualProcessorSubcomponent;
+}
+
+class ProcessorPrototype extends ComponentPrototype, ProcessorSubcomponentType {
+}
+
+abstract class ProcessClassifier extends ComponentClassifier, ProcessSubcomponentType {
+}
+
+class ProcessType extends ComponentType, ProcessClassifier {
+
+	@subsets
+	!ordered val DataPort[*] ownedDataPort;
+
+	@subsets
+	!ordered val EventDataPort[*] ownedEventDataPort;
+
+	@subsets
+	!ordered val EventPort[*] ownedEventPort;
+
+	@subsets
+	!ordered val DataAccess[*] ownedDataAccess;
+
+	@subsets
+	!ordered val SubprogramAccess[*] ownedSubprogramAccess;
+
+	@subsets
+	!ordered val SubprogramGroupAccess[*] ownedSubprogramGroupAccess;
+}
+
+@duplicates
+class ProcessImplementation extends ComponentImplementation, ProcessClassifier {
+
+	@subsets
+	!ordered val DataSubcomponent[*] ownedDataSubcomponent;
+
+	@subsets
+	!ordered val SubprogramSubcomponent[*] ownedSubprogramSubcomponent;
+
+	@subsets
+	!ordered val SubprogramGroupSubcomponent[*] ownedSubprogramGroupSubcomponent;
+
+	@subsets
+	!ordered val ThreadSubcomponent[*] ownedThreadSubcomponent;
+
+	@subsets
+	!ordered val ThreadGroupSubcomponent[*] ownedThreadGroupSubcomponent;
+}
+
+class ProcessPrototype extends ComponentPrototype, ProcessSubcomponentType {
+}
+
+abstract class ThreadClassifier extends ComponentClassifier, ThreadSubcomponentType {
+}
+
+class ThreadType extends ComponentType, ThreadClassifier {
+
+	@subsets
+	!ordered val DataPort[*] ownedDataPort;
+
+	@subsets
+	!ordered val EventDataPort[*] ownedEventDataPort;
+
+	@subsets
+	!ordered val EventPort[*] ownedEventPort;
+
+	@subsets
+	!ordered val DataAccess[*] ownedDataAccess;
+
+	@subsets
+	!ordered val SubprogramAccess[*] ownedSubprogramAccess;
+
+	@subsets
+	!ordered val SubprogramGroupAccess[*] ownedSubprogramGroupAccess;
+}
+
+@duplicates
+class ThreadImplementation extends BehavioredImplementation, ThreadClassifier {
+
+	@subsets
+	!ordered val SubprogramGroupSubcomponent[*] ownedSubprogramGroupSubcomponent;
+
+	@subsets
+	!ordered val SubprogramSubcomponent[*] ownedSubprogramSubcomponent;
+
+	@subsets
+	!ordered val DataSubcomponent[*] ownedDataSubcomponent;
+}
+
+class ThreadPrototype extends ComponentPrototype, ThreadSubcomponentType {
+}
+
+abstract class ThreadGroupClassifier extends ComponentClassifier, ThreadGroupSubcomponentType {
+}
+
+class ThreadGroupType extends ComponentType, ThreadGroupClassifier {
+
+	@subsets
+	!ordered val DataPort[*] ownedDataPort;
+
+	@subsets
+	!ordered val EventDataPort[*] ownedEventDataPort;
+
+	@subsets
+	!ordered val EventPort[*] ownedEventPort;
+
+	@subsets
+	!ordered val DataAccess[*] ownedDataAccess;
+
+	@subsets
+	!ordered val SubprogramAccess[*] ownedSubprogramAccess;
+
+	@subsets
+	!ordered val SubprogramGroupAccess[*] ownedSubprogramGroupAccess;
+}
+
+@duplicates
+class ThreadGroupImplementation extends ComponentImplementation, ThreadGroupClassifier {
+
+	@subsets
+	!ordered val DataSubcomponent[*] ownedDataSubcomponent;
+
+	@subsets
+	!ordered val ThreadSubcomponent[*] ownedThreadSubcomponent;
+
+	@subsets
+	!ordered val ThreadGroupSubcomponent[*] ownedThreadGroupSubcomponent;
+
+	@subsets
+	!ordered val SubprogramSubcomponent[*] ownedSubprogramSubcomponent;
+
+	@subsets
+	!ordered val SubprogramGroupSubcomponent[*] ownedSubprogramGroupSubcomponent;
+}
+
+class ThreadGroupPrototype extends ComponentPrototype, ThreadGroupSubcomponentType {
+}
+
+abstract class VirtualBusClassifier extends ComponentClassifier, VitualBusSubcomponentType {
+}
+
+class VirtualBusType extends ComponentType, VirtualBusClassifier {
+
+	@subsets
+	!ordered val DataPort[*] ownedDataPort;
+
+	@subsets
+	!ordered val EventDataPort[*] ownedEventDataPort;
+
+	@subsets
+	!ordered val EventPort[*] ownedEventPort;
+}
+
+@duplicates
+class VirtualBusImplementation extends ComponentImplementation, VirtualBusClassifier {
+
+	@subsets
+	!ordered val VirtualBusSubcomponent[*] ownedVirtualBusSubcomponent;
+}
+
+class VirtualBusPrototype extends ComponentPrototype, VitualBusSubcomponentType {
+}
+
+abstract class VirtualProcessorClassifier extends ComponentClassifier, VirtualProcessorSubcomponentType {
+}
+
+class VirtualProcessorType extends ComponentType, VirtualProcessorClassifier {
+
+	@subsets
+	!ordered val DataPort[*] ownedDataPort;
+
+	@subsets
+	!ordered val EventDataPort[*] ownedEventDataPort;
+
+	@subsets
+	!ordered val EventPort[*] ownedEventPort;
+
+	@subsets
+	!ordered val SubprogramAccess[*] ownedSubprogramAccess;
+
+	@subsets
+	!ordered val SubprogramGroupAccess[*] ownedSubprogramGroupAccess;
+}
+
+@duplicates
+class VirtualProcessorImplementation extends ComponentImplementation, VirtualProcessorClassifier {
+
+	@subsets
+	!ordered val VirtualBusSubcomponent[*] ownedVirtualBusSubcomponent;
+
+	@subsets
+	!ordered val VirtualProcessorSubcomponent[*] ownedVirtualProcessorSubcomponent;
+}
+
+class VirtualProcessorPrototype extends ComponentPrototype, VirtualProcessorSubcomponentType {
+}
+
+class BasicPropertyAssociation extends Element {
+	!ordered ref BasicProperty[1] property;
+	!ordered val PropertyExpression[1] ownedValue;
+}
+
+class PropertyConstant extends TypedElement, AbstractNamedValue, ArraySizeProperty {
+
+	@redefines
+	!ordered ref PropertyType[1] propertyType;
+
+	@subsets
+	!ordered val PropertyType ownedPropertyType;
+	!ordered val PropertyExpression constantValue;
+}
+
+class StringLiteral extends PropertyValue {
+	!ordered attr String[1] value;
+}
+
+abstract class PropertyValue extends PropertyExpression {
+}
+
+abstract class NumberValue extends PropertyValue {
+	!ordered ref UnitLiteral unit;
+}
+
+class UnitLiteral extends EnumerationLiteral {
+	!ordered ref UnitLiteral baseUnit;
+	!ordered val NumberValue factor;
+}
+
+class EnumerationLiteral extends NamedElement, AbstractNamedValue {
+}
+
+class ClassifierValue extends PropertyOwner, PropertyValue {
+	!ordered ref Classifier[1] classifier;
+}
+
+class ReferenceValue extends ContainedNamedElement, PropertyValue {
+}
+
+class BooleanLiteral extends PropertyValue {
+	!ordered attr Boolean[1] value;
+}
+
+class RangeValue extends PropertyValue {
+	!ordered val PropertyExpression[1] minimum;
+	!ordered val PropertyExpression[1] maximum;
+	!ordered val PropertyExpression delta;
+}
+
+class IntegerLiteral extends NumberValue {
+	!ordered attr Integer base;
+	!ordered attr Integer[1] value;
+}
+
+class RealLiteral extends NumberValue {
+	!ordered attr Real[1] value;
+}
+
+class Operation extends PropertyExpression {
+	!ordered attr OperationKind[1] ~op;
+	!ordered val PropertyExpression[+] ownedPropertyExpression;
+}
+
+enum OperationKind {
+	and = 0;
+	or = 1;
+	not = 2;
+	plus = 3;
+	minus = 4;
+}
+
+class RecordValue extends PropertyValue {
+	!ordered val BasicPropertyAssociation[*] ownedFieldValue;
+}
+
+class ComputedValue extends PropertyValue {
+	!ordered attr String[1] function;
+}
+
+class ListValue extends PropertyExpression {
+	val PropertyExpression[*] ownedListElement;
+}
+
+class NamedValue extends PropertyValue {
+	!ordered ref AbstractNamedValue[1] namedValue;
+}
+
+class PropertySet extends Namespace, ModelUnit {
+
+	@subsets
+	!ordered val PropertyType[*] ownedPropertyType;
+
+	@subsets
+	!ordered val Property[*] ownedProperty;
+
+	@subsets
+	!ordered val PropertyConstant[*] ownedPropertyConstant;
+	!ordered ref ModelUnit[*] importedUnit;
+}
+
+class GlobalNamespace extends Namespace {
+
+	@subsets
+	!ordered volatile transient ref PublicPackageSection[*] ~package;
+
+	@subsets
+	!ordered volatile transient ref PropertySet[*] propertySet;
+}
+
+abstract class NonListType extends PropertyType {
+}
+
+class AadlBoolean extends NonListType {
+}
+
+class AadlString extends NonListType {
+}
+
+class AadlInteger extends NumberType {
+}
+
+abstract class NumberType extends NonListType {
+
+	@subsets
+	!ordered val UnitsType ownedUnitsType;
+	!ordered ref UnitsType unitsType;
+	!ordered val NumericRange range;
+}
+
+@duplicates
+class UnitsType extends EnumerationType {
+}
+
+class EnumerationType extends Namespace, NonListType {
+
+	@subsets
+	!ordered val EnumerationLiteral[+] ownedLiteral;
+}
+
+class NumericRange extends Element {
+	!ordered val PropertyExpression[1] upperBound;
+	!ordered val PropertyExpression[1] lowerBound;
+}
+
+class AadlReal extends NumberType {
+}
+
+class ClassifierType extends NonListType {
+	!ordered val MetaclassReference[+] classifierReference;
+}
+
+class RangeType extends NonListType {
+
+	@subsets
+	!ordered val NumberType ownedNumberType;
+	!ordered ref NumberType[1] numberType;
+}
+
+class RecordType extends Namespace, NonListType {
+
+	@subsets
+	!ordered val BasicProperty[*] ownedField;
+}
+
+class RecordField extends BasicProperty {
+}
+
+class ReferenceType extends NonListType {
+	!ordered val MetaclassReference[+] namedElementReference;
+}
+
+class ListType extends PropertyType {
+
+	@subsets
+	!ordered val PropertyType ownedElementType;
+	!ordered ref PropertyType[1] elementType;
+}
+
+class ProcessorPort extends NamedElement, ModeTransitionTrigger, AbstractConnectionEnd {
+}
+
+class InternalEvent extends NamedElement, ModeTransitionTrigger, AbstractConnectionEnd {
+}
+
+class ProcessorSubprogram extends NamedElement, AbstractConnectionEnd {
+}
+

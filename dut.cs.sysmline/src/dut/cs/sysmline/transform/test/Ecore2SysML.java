@@ -12,7 +12,8 @@ public class Ecore2SysML {
 //		run("metamodel\\Capella\\Interaction");
 //		testSACM();
 //		testCapellaEcore();
-		testISDesigner();
+//		testISDesigner();
+		testAADLEcore();
 //		run("model\\PlayGround\\psl");
 //		run("metamodel\\HSUV\\HSUV");
 //		testBPMNEcore();
@@ -30,6 +31,14 @@ public class Ecore2SysML {
 		run("metamodel\\BPMN\\DC");
 		run("metamodel\\BPMN\\DI");
 	}
+	
+	public static void testAADLEcore() {
+		String[] sysmlFilePaths = findFiles("E:\\GitYang\\SysMLine\\dut.cs.sysmline\\metamodel\\AADL");
+		for (String FilePath : sysmlFilePaths) {
+			run(FilePath);
+		}
+	}
+	
 	
 	public static void testRoboChartEcore() {
 		run("metamodel\\RoboChart\\robochart");

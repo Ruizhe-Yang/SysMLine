@@ -1,5 +1,10 @@
 pre{
 	var ePackages = Ecore!EPackage.all;
+//	ePackages.addExtendedPackages(instance!EPackage);
+	ePackages.addExtendedPackages(emv!EPackage);
+//	ePackages.addExtendedPackages(ft!EPackage);
+//	ePackages.addExtendedPackages(pg!EPackage);
+	
 //	ePackages.addExtendedPackages(activity!EPackage);
 //	ePackages.addExtendedPackages(behavior!EPackage);
 //	ePackages.addExtendedPackages(capellacommmon!EPackage);
@@ -18,7 +23,8 @@ rule gen_sysmlv2
 	parameters : Map{
 		"ePackages" = Ecore!EPackage.all
 	}
-	template : "Ecore2ETL.egl"
+//	template : "Ecore2ETL.egl"
+	template : "Ecore2ETL_TypeName.egl"
 	target : root.getFileName()
 }
 

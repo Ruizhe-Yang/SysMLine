@@ -1,0 +1,116 @@
+@namespace(uri="http://aadl.info/AADL/2.0/instance", prefix="instance")
+package instance;
+
+import "platform:/resource/dut.cs.sysmline/metamodel/AADL/aadl2.ecore";
+
+class FeatureInstance extends ConnectionInstanceEnd, InstanceObject {
+	!ordered ref FlowSpecificationInstance[*]#source srcFlowSpec;
+	!ordered ref FlowSpecificationInstance[*]#destination dstFlowSpec;
+	!ordered val FeatureInstance[*] featureInstance;
+	!ordered attr FeatureCategory category;
+	!ordered attr aadl2.DirectionType[1] direction;
+	!ordered ref aadl2.Feature[1] feature;
+	!unique !ordered attr aadl2.Integer[*] index;
+}
+
+abstract class InstanceObject extends aadl2.NamedElement {
+}
+
+abstract class ConnectionInstanceEnd extends InstanceObject {
+	!ordered ref ConnectionInstance[*]#source srcConnectionInstance;
+	!ordered ref ConnectionInstance[*]#destination dstConnectionInstance;
+}
+
+class ConnectionInstance extends FlowElementInstance {
+	!ordered ref SystemOperationMode[*] inSystemOperationMode;
+	!ordered ref ModeTransitionInstance[*] inModeTransitions;
+	!ordered attr aadl2.Boolean[1] complete;
+	!ordered attr ConnectionKind[1] kind;
+	!ordered ref ConnectionInstanceEnd[1]#dstConnectionInstance destination;
+	val ConnectionReference[+] connectionReference;
+	!ordered ref ConnectionInstanceEnd[1]#srcConnectionInstance source;
+}
+
+abstract class FlowElementInstance extends InstanceObject {
+}
+
+class SystemOperationMode extends aadl2.Mode {
+	ref ModeInstance[*] currentMode;
+}
+
+class ModeInstance extends InstanceObject {
+	!ordered ref ModeTransitionInstance[*]#source srcModeTransition;
+	!ordered ref ModeTransitionInstance[*]#destination dstModeTransition;
+	!ordered attr aadl2.Boolean[1] initial;
+	!ordered ref aadl2.Mode[1] mode;
+}
+
+class ModeTransitionInstance extends ConnectionInstanceEnd, InstanceObject {
+	!ordered ref ModeInstance[1]#dstModeTransition destination;
+	!ordered ref aadl2.ModeTransition[1] modeTransition;
+	!ordered ref ModeInstance[1]#srcModeTransition source;
+}
+
+enum ConnectionKind {
+	featureConnection = 0;
+	accessConnection = 1;
+	parameterConnection = 2;
+	portConnection = 3;
+	modeTransitionConnection = 4;
+	featureGroupConnection = 5;
+}
+
+class ConnectionReference extends InstanceObject {
+	!unique !ordered ref ComponentInstance[1] context;
+	!unique !ordered ref aadl2.Connection[1] connection;
+}
+
+class ComponentInstance extends ConnectionInstanceEnd, FlowElementInstance {
+	!ordered val FeatureInstance[*] featureInstance;
+	val ComponentInstance[*] componentInstance;
+	!ordered val ModeInstance[*] modeInstance;
+	!ordered val ModeTransitionInstance[*] modeTransitionInstance;
+	!ordered attr aadl2.ComponentCategory category;
+	!ordered ref ModeInstance[*] inModes;
+	!ordered val FlowSpecificationInstance[*] flowSpecification;
+	!ordered val EndToEndFlowInstance[*] endToEndFlow;
+	!ordered val ConnectionInstance[*] connectionInstance;
+	!ordered ref aadl2.Subcomponent[1] subcomponent;
+	!unique !ordered attr aadl2.Integer[*] index;
+}
+
+class FlowSpecificationInstance extends FlowElementInstance {
+	!ordered ref FeatureInstance#srcFlowSpec source;
+	!ordered ref FeatureInstance#dstFlowSpec destination;
+	!ordered ref aadl2.FlowSpecification[1] flowSpecification;
+}
+
+class EndToEndFlowInstance extends InstanceObject {
+	ref FlowElementInstance[*] flowElement;
+	!ordered ref ModeInstance[*] inModes;
+	!ordered ref SystemOperationMode[*] inSystemOperationMode;
+	!ordered ref aadl2.EndToEndFlow[1] endToEndFlow;
+}
+
+enum FeatureCategory {
+	dataPort = 0;
+	eventPort = 1;
+	eventDataPort = 2;
+	parameter = 3;
+	busAccess = 4;
+	dataAccess = 5;
+	subprogramAccess = 6;
+	subprogramGroupAccess = 7;
+	featureGroup = 8;
+	abstractFeature = 9;
+}
+
+class SystemInstance extends ComponentInstance {
+	val SystemOperationMode[*] systemOperationMode;
+	!ordered ref aadl2.SystemImplementation[1] systemImplementation;
+}
+
+class InstanceReferenceValue extends aadl2.PropertyValue {
+	!ordered ref InstanceObject[1] referencedInstanceObject;
+}
+

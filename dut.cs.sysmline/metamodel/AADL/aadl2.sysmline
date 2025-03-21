@@ -1,0 +1,2585 @@
+<?xml version="1.0" encoding="ASCII"?>
+<Namespace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="sysmline" xsi:schemaLocation="sysmline metamodel/sysmline/sysmline.ecore">
+  <body xsi:type="Package" declaredName="aadl2">
+    <body xsi:type="NamespaceImport" hasVisibility="true" declaredName="ecore"/>
+    <body xsi:type="ItemDefinition" declaredName="Element" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="ownedElement" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Element</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedComment" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Comment</featureSpecialization>
+      </body>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Comment">
+      <body xsi:type="AttributeUsage" declaredName="body" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>String</featureSpecialization>
+      </body>
+      <SubclassificationPart>Element</SubclassificationPart>
+    </body>
+    <body xsi:type="AttributeDefinition" declaredName="String"/>
+    <body xsi:type="AttributeDefinition" declaredName="Boolean"/>
+    <body xsi:type="ItemDefinition" declaredName="Type" isAbstract="true">
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="NamedElement" isAbstract="true">
+      <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>String</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="qualifiedName" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>String</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedPropertyAssociation" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>PropertyAssociation</featureSpecialization>
+      </body>
+      <SubclassificationPart>Element</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="PropertyAssociation">
+      <body xsi:type="ItemUsage" declaredName="property" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Property</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="appliesTo" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ContainedNamedElement</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="inBinding" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Classifier</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="append" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Boolean</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="constant" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Boolean</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedValue" multiplicityRange="[1..*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ModalPropertyValue</featureSpecialization>
+      </body>
+      <SubclassificationPart>Element</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Property">
+      <body xsi:type="AttributeUsage" declaredName="inherit" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Boolean</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="defaultValue" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>PropertyExpression</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="appliesToMetaclass" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>MetaclassReference</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="appliesToClassifier" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Classifier</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="appliesTo" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>PropertyOwner</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="emptyListDefault" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Boolean</featureSpecialization>
+      </body>
+      <SubclassificationPart>BasicProperty</SubclassificationPart>
+      <SubclassificationPart>AbstractNamedValue</SubclassificationPart>
+      <SubclassificationPart>ArraySizeProperty</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="BasicProperty">
+      <body xsi:type="ItemUsage" declaredName="propertyType" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>PropertyType</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedPropertyType" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>PropertyType</featureSpecialization>
+      </body>
+      <SubclassificationPart>TypedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="TypedElement" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="type" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Type</featureSpecialization>
+      </body>
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="PropertyType" isAbstract="true">
+      <SubclassificationPart>Type</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="AbstractNamedValue" isAbstract="true"/>
+    <body xsi:type="ItemDefinition" declaredName="ArraySizeProperty" isAbstract="true"/>
+    <body xsi:type="ItemDefinition" declaredName="PropertyExpression" isAbstract="true">
+      <SubclassificationPart>Element</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="MetaclassReference">
+      <body xsi:type="AttributeUsage" declaredName="annexName" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>String</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="metaclassName" multiplicityRange="[1..*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>String</featureSpecialization>
+      </body>
+      <SubclassificationPart>PropertyOwner</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="PropertyOwner" isAbstract="true">
+      <SubclassificationPart>Element</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Classifier" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="classifierFeature" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ClassifierFeature</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="inheritedMember" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>NamedElement</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="generalization" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Generalization</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="general" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Classifier</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedAnnexSubclause" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>AnnexSubclause</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedPrototype" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Prototype</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedPrototypeBinding" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>PrototypeBinding</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="noPrototypes" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Boolean</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="noAnnexes" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Boolean</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="noProperties" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Boolean</featureSpecialization>
+      </body>
+      <SubclassificationPart>Namespace</SubclassificationPart>
+      <SubclassificationPart>Type</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Namespace" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="ownedMember" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>NamedElement</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="member" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>NamedElement</featureSpecialization>
+      </body>
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ClassifierFeature" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="featuringClassifier" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Classifier</featureSpecialization>
+      </body>
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Generalization" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="general" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Classifier</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="specific" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Classifier</featureSpecialization>
+      </body>
+      <SubclassificationPart>DirectedRelationship</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="DirectedRelationship" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="source" multiplicityRange="[1..*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Element</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="target" multiplicityRange="[1..*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Element</featureSpecialization>
+      </body>
+      <SubclassificationPart>Relationship</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Relationship" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="relatedElement" multiplicityRange="[1..*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Element</featureSpecialization>
+      </body>
+      <SubclassificationPart>Element</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="AnnexSubclause" isAbstract="true">
+      <SubclassificationPart>ModalElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ModalElement">
+      <body xsi:type="ItemUsage" declaredName="inMode" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Mode</featureSpecialization>
+      </body>
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Mode">
+      <body xsi:type="AttributeUsage" declaredName="initial" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Boolean</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="'derived'" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Boolean</featureSpecialization>
+      </body>
+      <SubclassificationPart>ModeFeature</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ModeFeature" isAbstract="true">
+      <SubclassificationPart>ClassifierFeature</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Prototype" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="refined" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Prototype</featureSpecialization>
+      </body>
+      <SubclassificationPart>StructuralFeature</SubclassificationPart>
+      <SubclassificationPart>CalledSubprogram</SubclassificationPart>
+      <SubclassificationPart>FeatureClassifier</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="StructuralFeature" isAbstract="true">
+      <SubclassificationPart>RefinableElement</SubclassificationPart>
+      <SubclassificationPart>ClassifierFeature</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="RefinableElement" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="refinementContext" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Classifier</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="refinedElement" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>RefinableElement</featureSpecialization>
+      </body>
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="FeatureClassifier" isAbstract="true"/>
+    <body xsi:type="ItemDefinition" declaredName="CalledSubprogram" isAbstract="true"/>
+    <body xsi:type="ItemDefinition" declaredName="PrototypeBinding" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="formal" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Prototype</featureSpecialization>
+      </body>
+      <SubclassificationPart>Element</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ContainedNamedElement">
+      <body xsi:type="ItemUsage" declaredName="containmentPathElement" multiplicityRange="[1..*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ContainmentPathElement</featureSpecialization>
+      </body>
+      <SubclassificationPart>Element</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ContainmentPathElement">
+      <body xsi:type="ItemUsage" declaredName="arrayRange" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ArrayRange</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="namedElement" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>NamedElement</featureSpecialization>
+      </body>
+      <SubclassificationPart>Element</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ArrayRange">
+      <body xsi:type="AttributeUsage" declaredName="lowerBound" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Integer</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="upperBound" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Integer</featureSpecialization>
+      </body>
+      <SubclassificationPart>Element</SubclassificationPart>
+    </body>
+    <body xsi:type="AttributeDefinition" declaredName="Integer"/>
+    <body xsi:type="ItemDefinition" declaredName="ModalPropertyValue">
+      <body xsi:type="ItemUsage" declaredName="ownedValue" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>PropertyExpression</featureSpecialization>
+      </body>
+      <SubclassificationPart>ModalElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="BehavioralFeature" isAbstract="true">
+      <SubclassificationPart>ClassifierFeature</SubclassificationPart>
+    </body>
+    <body xsi:type="AttributeDefinition" declaredName="Real"/>
+    <body xsi:type="ItemDefinition" declaredName="ArrayDimension">
+      <body xsi:type="ItemUsage" declaredName="size" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ArraySize</featureSpecialization>
+      </body>
+      <SubclassificationPart>Element</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ArraySize">
+      <body xsi:type="AttributeUsage" declaredName="size" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Integer</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="sizeProperty" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ArraySizeProperty</featureSpecialization>
+      </body>
+      <SubclassificationPart>Element</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ArrayableElement" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="arrayDimension" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ArrayDimension</featureSpecialization>
+      </body>
+      <SubclassificationPart>Element</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ComponentImplementationReference">
+      <body xsi:type="ItemUsage" declaredName="implementation" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ComponentImplementation</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedPrototypeBinding" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>PrototypeBinding</featureSpecialization>
+      </body>
+      <SubclassificationPart>Element</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ComponentImplementation" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="type" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ComponentType</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedSubcomponent" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Subcomponent</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="extended" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ComponentImplementation</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedFlowImplementation" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FlowImplementation</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedConnection" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Connection</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedExtension" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ImplementationExtension</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedRealization" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Realization</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedEndToEndFlow" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EndToEndFlow</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedAbstractSubcomponent" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>AbstractSubcomponent</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedAccessConnection" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>AccessConnection</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedParameterConnection" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ParameterConnection</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedPortConnection" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>PortConnection</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedFeatureConnection" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FeatureConnection</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedFeatureGroupConnection" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FeatureGroupConnection</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="noSubcomponents" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Boolean</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="noConnections" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Boolean</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="noCalls" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Boolean</featureSpecialization>
+      </body>
+      <SubclassificationPart>ComponentClassifier</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ComponentClassifier" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="ownedMode" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Mode</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedModeTransition" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ModeTransition</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="noFlows" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Boolean</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="noModes" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Boolean</featureSpecialization>
+      </body>
+      <SubclassificationPart>Classifier</SubclassificationPart>
+      <SubclassificationPart>SubcomponentType</SubclassificationPart>
+      <SubclassificationPart>FeatureClassifier</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="SubcomponentType" isAbstract="true">
+      <SubclassificationPart>Type</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ModeTransition">
+      <body xsi:type="ItemUsage" declaredName="source" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Mode</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="destination" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Mode</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedTrigger" multiplicityRange="[1..*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ModeTransitionTrigger</featureSpecialization>
+      </body>
+      <SubclassificationPart>ModeFeature</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ModeTransitionTrigger" isAbstract="true">
+      <SubclassificationPart>Element</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ComponentType" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="ownedFeature" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Feature</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="extended" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ComponentType</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedFlowSpecification" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FlowSpecification</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedExtension" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>TypeExtension</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedFeatureGroup" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FeatureGroup</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedAbstractFeature" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>AbstractFeature</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="noFeatures" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Boolean</featureSpecialization>
+      </body>
+      <SubclassificationPart>ComponentClassifier</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Feature" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="prototype" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Prototype</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="refined" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Feature</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="classifier" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ComponentClassifier</featureSpecialization>
+      </body>
+      <SubclassificationPart>StructuralFeature</SubclassificationPart>
+      <SubclassificationPart>FeatureConnectionEnd</SubclassificationPart>
+      <SubclassificationPart>ArrayableElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="FeatureConnectionEnd" isAbstract="true">
+      <SubclassificationPart>ConnectionEnd</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ConnectionEnd" isAbstract="true">
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="FlowSpecification">
+      <body xsi:type="ItemUsage" declaredName="refined" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FlowSpecification</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="kind" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FlowKind</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="outEnd" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FlowEnd</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="InEnd" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FlowEnd</featureSpecialization>
+      </body>
+      <SubclassificationPart>Flow</SubclassificationPart>
+      <SubclassificationPart>ModalPath</SubclassificationPart>
+      <SubclassificationPart>FlowElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Flow" isAbstract="true">
+      <SubclassificationPart>StructuralFeature</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ModalPath" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="inModeOrTransition" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ModeFeature</featureSpecialization>
+      </body>
+      <SubclassificationPart>ModalElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="FlowElement" isAbstract="true">
+      <SubclassificationPart>EndToEndFlowElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="EndToEndFlowElement" isAbstract="true">
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="EnumerationDefinition" declaredName="FlowKind">
+      <body xsi:type="EnumerationUsage" declaredName="source"/>
+      <body xsi:type="EnumerationUsage" declaredName="path"/>
+      <body xsi:type="EnumerationUsage" declaredName="sink"/>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="FlowEnd">
+      <body xsi:type="ItemUsage" declaredName="context" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Context</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="feature" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Feature</featureSpecialization>
+      </body>
+      <SubclassificationPart>Element</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Context" isAbstract="true">
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="TypeExtension">
+      <body xsi:type="ItemUsage" declaredName="extended" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ComponentType</featureSpecialization>
+      </body>
+      <SubclassificationPart>Generalization</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="FeatureGroup">
+      <body xsi:type="AttributeUsage" declaredName="inverse" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Boolean</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="featureType" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FeatureType</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="featureGroupType" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FeatureGroupType</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="featureGroupPrototype" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FeatureGroupPrototype</featureSpecialization>
+      </body>
+      <SubclassificationPart>DirectedFeature</SubclassificationPart>
+      <SubclassificationPart>Context</SubclassificationPart>
+      <SubclassificationPart>FeatureGroupConnectionEnd</SubclassificationPart>
+      <SubclassificationPart>CallContext</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="CallContext" isAbstract="true"/>
+    <body xsi:type="ItemDefinition" declaredName="DirectedFeature" isAbstract="true">
+      <body xsi:type="AttributeUsage" declaredName="direction" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>DirectionType</featureSpecialization>
+      </body>
+      <SubclassificationPart>Feature</SubclassificationPart>
+    </body>
+    <body xsi:type="EnumerationDefinition" declaredName="DirectionType">
+      <body xsi:type="EnumerationUsage" declaredName="'in'"/>
+      <body xsi:type="EnumerationUsage" declaredName="'out'"/>
+      <body xsi:type="EnumerationUsage" declaredName="inOut"/>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="FeatureGroupConnectionEnd" isAbstract="true">
+      <SubclassificationPart>ConnectionEnd</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="FeatureType" isAbstract="true"/>
+    <body xsi:type="ItemDefinition" declaredName="FeatureGroupType">
+      <body xsi:type="ItemUsage" declaredName="ownedFeature" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Feature</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="extended" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FeatureGroupType</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="inverse" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FeatureGroupType</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedExtension" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>GroupExtension</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedBusAccess" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>BusAccess</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedDataAccess" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>DataAccess</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedDataPort" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>DataPort</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedEventDataPort" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EventDataPort</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedEventPort" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EventPort</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedFeatureGroup" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FeatureGroup</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedParameter" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Parameter</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedSubprogramAccess" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>SubprogramAccess</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedSubprogramGroupAccess" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>SubprogramGroupAccess</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedAbstractFeature" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>AbstractFeature</featureSpecialization>
+      </body>
+      <SubclassificationPart>Classifier</SubclassificationPart>
+      <SubclassificationPart>FeatureType</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="GroupExtension">
+      <body xsi:type="ItemUsage" declaredName="extended" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FeatureGroupType</featureSpecialization>
+      </body>
+      <SubclassificationPart>Generalization</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="BusAccess">
+      <body xsi:type="ItemUsage" declaredName="busFeatureClassifier" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>BusSubcomponentType</featureSpecialization>
+      </body>
+      <SubclassificationPart>Access</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Access" isAbstract="true">
+      <body xsi:type="AttributeUsage" declaredName="kind" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>AccessType</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="category" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>AccessCategory</featureSpecialization>
+      </body>
+      <SubclassificationPart>Feature</SubclassificationPart>
+      <SubclassificationPart>AccessConnectionEnd</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="AccessConnectionEnd" isAbstract="true">
+      <SubclassificationPart>ConnectionEnd</SubclassificationPart>
+    </body>
+    <body xsi:type="EnumerationDefinition" declaredName="AccessType">
+      <body xsi:type="EnumerationUsage" declaredName="provided"/>
+      <body xsi:type="EnumerationUsage" declaredName="required"/>
+    </body>
+    <body xsi:type="EnumerationDefinition" declaredName="AccessCategory">
+      <body xsi:type="EnumerationUsage" declaredName="bus"/>
+      <body xsi:type="EnumerationUsage" declaredName="data"/>
+      <body xsi:type="EnumerationUsage" declaredName="subprogram"/>
+      <body xsi:type="EnumerationUsage" declaredName="subprogramGroup"/>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="BusSubcomponentType" isAbstract="true">
+      <SubclassificationPart>Bus</SubclassificationPart>
+      <SubclassificationPart>SubcomponentType</SubclassificationPart>
+      <SubclassificationPart>FeatureClassifier</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Bus" isAbstract="true">
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="DataAccess">
+      <body xsi:type="ItemUsage" declaredName="dataFeatureClassifier" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>DataSubcomponentType</featureSpecialization>
+      </body>
+      <SubclassificationPart>Access</SubclassificationPart>
+      <SubclassificationPart>FlowElement</SubclassificationPart>
+      <SubclassificationPart>ParameterConnectionEnd</SubclassificationPart>
+      <SubclassificationPart>PortConnectionEnd</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ParameterConnectionEnd" isAbstract="true">
+      <SubclassificationPart>ConnectionEnd</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="PortConnectionEnd" isAbstract="true">
+      <SubclassificationPart>ConnectionEnd</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="DataSubcomponentType" isAbstract="true">
+      <SubclassificationPart>Data</SubclassificationPart>
+      <SubclassificationPart>SubcomponentType</SubclassificationPart>
+      <SubclassificationPart>FeatureClassifier</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Data" isAbstract="true">
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="DataPort">
+      <body xsi:type="ItemUsage" declaredName="dataFeatureClassifier" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>DataSubcomponentType</featureSpecialization>
+      </body>
+      <SubclassificationPart>Port</SubclassificationPart>
+      <SubclassificationPart>Context</SubclassificationPart>
+      <SubclassificationPart>ParameterConnectionEnd</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Port" isAbstract="true">
+      <body xsi:type="AttributeUsage" declaredName="category" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>PortCategory</featureSpecialization>
+      </body>
+      <SubclassificationPart>DirectedFeature</SubclassificationPart>
+      <SubclassificationPart>PortConnectionEnd</SubclassificationPart>
+    </body>
+    <body xsi:type="EnumerationDefinition" declaredName="PortCategory">
+      <body xsi:type="EnumerationUsage" declaredName="data"/>
+      <body xsi:type="EnumerationUsage" declaredName="'event'"/>
+      <body xsi:type="EnumerationUsage" declaredName="eventData"/>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="EventDataPort">
+      <body xsi:type="ItemUsage" declaredName="dataFeatureClassifier" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>DataSubcomponentType</featureSpecialization>
+      </body>
+      <SubclassificationPart>Port</SubclassificationPart>
+      <SubclassificationPart>Context</SubclassificationPart>
+      <SubclassificationPart>ParameterConnectionEnd</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="EventPort">
+      <SubclassificationPart>Port</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Parameter">
+      <body xsi:type="ItemUsage" declaredName="dataFeatureClassifier" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>DataSubcomponentType</featureSpecialization>
+      </body>
+      <SubclassificationPart>DirectedFeature</SubclassificationPart>
+      <SubclassificationPart>Context</SubclassificationPart>
+      <SubclassificationPart>ParameterConnectionEnd</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="SubprogramAccess">
+      <body xsi:type="ItemUsage" declaredName="subprogramFeatureClassifier" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>SubprogramSubcomponentType</featureSpecialization>
+      </body>
+      <SubclassificationPart>Access</SubclassificationPart>
+      <SubclassificationPart>CalledSubprogram</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="SubprogramSubcomponentType" isAbstract="true">
+      <SubclassificationPart>SubcomponentType</SubclassificationPart>
+      <SubclassificationPart>Subprogram</SubclassificationPart>
+      <SubclassificationPart>FeatureClassifier</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Subprogram" isAbstract="true">
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+      <SubclassificationPart>CalledSubprogram</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="SubprogramGroupAccess">
+      <body xsi:type="ItemUsage" declaredName="subprogramGroupFeatureClassifier" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>SubprogramGroupSubcomponentType</featureSpecialization>
+      </body>
+      <SubclassificationPart>Access</SubclassificationPart>
+      <SubclassificationPart>CallContext</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="SubprogramGroupSubcomponentType" isAbstract="true">
+      <SubclassificationPart>SubcomponentType</SubclassificationPart>
+      <SubclassificationPart>SubprogramGroup</SubclassificationPart>
+      <SubclassificationPart>FeatureClassifier</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="SubprogramGroup" isAbstract="true">
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="AbstractFeature">
+      <body xsi:type="ItemUsage" declaredName="featureClassifier" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FeatureClassifier</featureSpecialization>
+      </body>
+      <SubclassificationPart>DirectedFeature</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="FeatureGroupPrototype">
+      <body xsi:type="ItemUsage" declaredName="constrainingFeatureGroupType" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FeatureGroupType</featureSpecialization>
+      </body>
+      <SubclassificationPart>Prototype</SubclassificationPart>
+      <SubclassificationPart>FeatureType</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Subcomponent" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="subcomponentType" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>SubcomponentType</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedPrototypeBinding" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>PrototypeBinding</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="prototype" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ComponentPrototype</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedModeBinding" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ModeBinding</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="allModes" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Boolean</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="implementationReference" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ComponentImplementationReference</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="refined" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Subcomponent</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="classifier" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ComponentClassifier</featureSpecialization>
+      </body>
+      <SubclassificationPart>StructuralFeature</SubclassificationPart>
+      <SubclassificationPart>ModalElement</SubclassificationPart>
+      <SubclassificationPart>Context</SubclassificationPart>
+      <SubclassificationPart>FlowElement</SubclassificationPart>
+      <SubclassificationPart>ArrayableElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ComponentPrototype" isAbstract="true">
+      <body xsi:type="AttributeUsage" declaredName="array" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Boolean</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="constrainingClassifier" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ComponentClassifier</featureSpecialization>
+      </body>
+      <SubclassificationPart>Prototype</SubclassificationPart>
+      <SubclassificationPart>SubcomponentType</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ModeBinding">
+      <body xsi:type="ItemUsage" declaredName="parentMode" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Mode</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="derivedMode" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Mode</featureSpecialization>
+      </body>
+      <SubclassificationPart>Element</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="FlowImplementation">
+      <body xsi:type="AttributeUsage" declaredName="kind" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FlowKind</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="specification" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FlowSpecification</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedFlowSegment" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FlowSegment</featureSpecialization>
+      </body>
+      <SubclassificationPart>ModalPath</SubclassificationPart>
+      <SubclassificationPart>ClassifierFeature</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="FlowSegment">
+      <body xsi:type="ItemUsage" declaredName="flowElement" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FlowElement</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="context" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Context</featureSpecialization>
+      </body>
+      <SubclassificationPart>Element</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Connection" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="destination" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>AbstractConnectionEnd</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="source" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>AbstractConnectionEnd</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="bidirectional" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Boolean</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="refined" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Connection</featureSpecialization>
+      </body>
+      <SubclassificationPart>StructuralFeature</SubclassificationPart>
+      <SubclassificationPart>ModalPath</SubclassificationPart>
+      <SubclassificationPart>FlowElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="AbstractConnectionEnd" isAbstract="true"/>
+    <body xsi:type="ItemDefinition" declaredName="ImplementationExtension">
+      <body xsi:type="ItemUsage" declaredName="extended" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ComponentImplementation</featureSpecialization>
+      </body>
+      <SubclassificationPart>Generalization</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Realization">
+      <body xsi:type="ItemUsage" declaredName="implemented" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ComponentType</featureSpecialization>
+      </body>
+      <SubclassificationPart>Generalization</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="EndToEndFlow">
+      <body xsi:type="ItemUsage" declaredName="refined" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EndToEndFlow</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedEndToEndFlowSegment" multiplicityRange="[1..*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EndToEndFlowSegment</featureSpecialization>
+      </body>
+      <SubclassificationPart>Flow</SubclassificationPart>
+      <SubclassificationPart>ModalPath</SubclassificationPart>
+      <SubclassificationPart>EndToEndFlowElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="EndToEndFlowSegment">
+      <body xsi:type="ItemUsage" declaredName="flowElement" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EndToEndFlowElement</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="context" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Context</featureSpecialization>
+      </body>
+      <SubclassificationPart>Element</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="AbstractSubcomponent">
+      <body xsi:type="ItemUsage" declaredName="abstractSubcomponentType" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>AbstractSubcomponentType</featureSpecialization>
+      </body>
+      <SubclassificationPart>Subcomponent</SubclassificationPart>
+      <SubclassificationPart>Abstract</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Abstract" isAbstract="true">
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="AbstractSubcomponentType" isAbstract="true">
+      <SubclassificationPart>Abstract</SubclassificationPart>
+      <SubclassificationPart>SubcomponentType</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="AccessConnection">
+      <body xsi:type="AttributeUsage" declaredName="accessCategory" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>AccessCategory</featureSpecialization>
+      </body>
+      <SubclassificationPart>Connection</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ParameterConnection">
+      <SubclassificationPart>Connection</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="PortConnection">
+      <SubclassificationPart>Connection</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="FeatureConnection">
+      <SubclassificationPart>Connection</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="FeatureGroupConnection">
+      <SubclassificationPart>Connection</SubclassificationPart>
+    </body>
+    <body xsi:type="EnumerationDefinition" declaredName="ComponentCategory">
+      <body xsi:type="EnumerationUsage" declaredName="'abstract'"/>
+      <body xsi:type="EnumerationUsage" declaredName="bus"/>
+      <body xsi:type="EnumerationUsage" declaredName="data"/>
+      <body xsi:type="EnumerationUsage" declaredName="device"/>
+      <body xsi:type="EnumerationUsage" declaredName="memory"/>
+      <body xsi:type="EnumerationUsage" declaredName="process"/>
+      <body xsi:type="EnumerationUsage" declaredName="processor"/>
+      <body xsi:type="EnumerationUsage" declaredName="subprogram"/>
+      <body xsi:type="EnumerationUsage" declaredName="subprogramGroup"/>
+      <body xsi:type="EnumerationUsage" declaredName="system"/>
+      <body xsi:type="EnumerationUsage" declaredName="thread"/>
+      <body xsi:type="EnumerationUsage" declaredName="threadGroup"/>
+      <body xsi:type="EnumerationUsage" declaredName="virtualBus"/>
+      <body xsi:type="EnumerationUsage" declaredName="virtualProcessor"/>
+    </body>
+    <body xsi:type="EnumerationDefinition" declaredName="ConnectionKind">
+      <body xsi:type="EnumerationUsage" declaredName="Access"/>
+      <body xsi:type="EnumerationUsage" declaredName="Feature"/>
+      <body xsi:type="EnumerationUsage" declaredName="FeatureGroup"/>
+      <body xsi:type="EnumerationUsage" declaredName="Parameter"/>
+      <body xsi:type="EnumerationUsage" declaredName="Port"/>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ConnectedElement">
+      <body xsi:type="ItemUsage" declaredName="context" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Context</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="connectionEnd" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ConnectionEnd</featureSpecialization>
+      </body>
+      <SubclassificationPart>Element</SubclassificationPart>
+      <SubclassificationPart>AbstractConnectionEnd</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ElementName">
+      <body xsi:type="AttributeUsage" declaredName="kind" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ElementNameKind</featureSpecialization>
+      </body>
+      <SubclassificationPart>ConnectionEnd</SubclassificationPart>
+    </body>
+    <body xsi:type="EnumerationDefinition" declaredName="ElementNameKind">
+      <body xsi:type="EnumerationUsage" declaredName="InternalEvent"/>
+      <body xsi:type="EnumerationUsage" declaredName="ProcessorPort"/>
+      <body xsi:type="EnumerationUsage" declaredName="ProcessorSubprogram"/>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="AnnexLibrary" isAbstract="true">
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="DefaultAnnexLibrary">
+      <body xsi:type="AttributeUsage" declaredName="sourceText" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>String</featureSpecialization>
+      </body>
+      <SubclassificationPart>AnnexLibrary</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="DefaultAnnexSubclause">
+      <body xsi:type="AttributeUsage" declaredName="sourceText" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>String</featureSpecialization>
+      </body>
+      <SubclassificationPart>AnnexSubclause</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="TriggerPort">
+      <body xsi:type="ItemUsage" declaredName="context" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Context</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="'port'" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Port</featureSpecialization>
+      </body>
+      <SubclassificationPart>ModeTransitionTrigger</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="PublicPackageSection">
+      <body xsi:type="ItemUsage" declaredName="privateSection" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>PrivatePackageSection</featureSpecialization>
+      </body>
+      <SubclassificationPart>PackageSection</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="PackageSection" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="ownedPackageRename" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>PackageRename</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedComponentTypeRename" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ComponentTypeRename</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedClassifier" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Classifier</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedFeatureGroupTypeRename" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FeatureGroupTypeRename</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedAnnexLibrary" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>AnnexLibrary</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="importedUnit" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ModelUnit</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="noAnnexes" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Boolean</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="noProperties" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Boolean</featureSpecialization>
+      </body>
+      <SubclassificationPart>Namespace</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="PackageRename">
+      <body xsi:type="ItemUsage" declaredName="renamedPackage" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>AadlPackage</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="renameAll" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Boolean</featureSpecialization>
+      </body>
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="AadlPackage">
+      <body xsi:type="ItemUsage" declaredName="ownedPublicSection" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>PublicPackageSection</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedPrivateSection" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>PrivatePackageSection</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="publicSection" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>PublicPackageSection</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="privateSection" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>PrivatePackageSection</featureSpecialization>
+      </body>
+      <SubclassificationPart>ModelUnit</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ModelUnit" isAbstract="true">
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="PrivatePackageSection">
+      <body xsi:type="ItemUsage" declaredName="publicSection" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>PublicPackageSection</featureSpecialization>
+      </body>
+      <SubclassificationPart>PackageSection</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ComponentTypeRename">
+      <body xsi:type="AttributeUsage" declaredName="category" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ComponentCategory</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="renamedComponentType" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ComponentType</featureSpecialization>
+      </body>
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="FeatureGroupTypeRename">
+      <body xsi:type="ItemUsage" declaredName="renamedFeatureGroupType" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FeatureGroupType</featureSpecialization>
+      </body>
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ComponentPrototypeBinding">
+      <body xsi:type="ItemUsage" declaredName="actual" multiplicityRange="[1..*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ComponentPrototypeActual</featureSpecialization>
+      </body>
+      <SubclassificationPart>PrototypeBinding</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ComponentPrototypeActual">
+      <body xsi:type="AttributeUsage" declaredName="category" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ComponentCategory</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="'binding'" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>PrototypeBinding</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="subcomponentType" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>SubcomponentType</featureSpecialization>
+      </body>
+      <SubclassificationPart>Element</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="FeatureGroupPrototypeBinding">
+      <body xsi:type="ItemUsage" declaredName="actual" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FeatureGroupPrototypeActual</featureSpecialization>
+      </body>
+      <SubclassificationPart>PrototypeBinding</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="FeatureGroupPrototypeActual">
+      <body xsi:type="ItemUsage" declaredName="'binding'" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>PrototypeBinding</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="featureType" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FeatureType</featureSpecialization>
+      </body>
+      <SubclassificationPart>FeaturePrototypeActual</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="FeaturePrototypeActual" isAbstract="true">
+      <SubclassificationPart>Element</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="FeaturePrototype">
+      <body xsi:type="AttributeUsage" declaredName="direction" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>DirectionType</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="constrainingClassifier" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ComponentClassifier</featureSpecialization>
+      </body>
+      <SubclassificationPart>Prototype</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="FeaturePrototypeBinding">
+      <body xsi:type="ItemUsage" declaredName="actual" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FeaturePrototypeActual</featureSpecialization>
+      </body>
+      <SubclassificationPart>PrototypeBinding</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="AccessSpecification">
+      <body xsi:type="AttributeUsage" declaredName="kind" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>AccessType</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="category" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>AccessCategory</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="classifier" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ComponentClassifier</featureSpecialization>
+      </body>
+      <SubclassificationPart>FeaturePrototypeActual</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="PortSpecification">
+      <body xsi:type="AttributeUsage" declaredName="direction" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>DirectionType</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="category" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>PortCategory</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="classifier" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ComponentClassifier</featureSpecialization>
+      </body>
+      <SubclassificationPart>FeaturePrototypeActual</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="FeaturePrototypeReference">
+      <body xsi:type="AttributeUsage" declaredName="direction" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>DirectionType</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="prototype" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FeaturePrototype</featureSpecialization>
+      </body>
+      <SubclassificationPart>FeaturePrototypeActual</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="SubprogramCallSequence">
+      <body xsi:type="ItemUsage" declaredName="ownedCallSpecification" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>CallSpecification</featureSpecialization>
+      </body>
+      <SubclassificationPart>BehavioralFeature</SubclassificationPart>
+      <SubclassificationPart>ModalElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="CallSpecification" isAbstract="true">
+      <SubclassificationPart>BehavioralFeature</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ProcessorCall">
+      <body xsi:type="AttributeUsage" declaredName="subprogramAccessName" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <SubclassificationPart>CallSpecification</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="BehavioredImplementation" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="callSpecification" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>CallSpecification</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedSubprogramCallSequence" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>SubprogramCallSequence</featureSpecialization>
+      </body>
+      <SubclassificationPart>ComponentImplementation</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="SubprogramCall">
+      <body xsi:type="ItemUsage" declaredName="calledSubprogram" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>CalledSubprogram</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="context" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>CallContext</featureSpecialization>
+      </body>
+      <SubclassificationPart>CallSpecification</SubclassificationPart>
+      <SubclassificationPart>Context</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="AbstractType">
+      <body xsi:type="ItemUsage" declaredName="ownedBusAccess" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>BusAccess</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedDataAccess" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>DataAccess</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedSubprogramAccess" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>SubprogramAccess</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedDataPort" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>DataPort</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedEventPort" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EventPort</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedEventDataPort" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EventDataPort</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedSubprogramGroupAccess" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>SubprogramGroupAccess</featureSpecialization>
+      </body>
+      <SubclassificationPart>ComponentType</SubclassificationPart>
+      <SubclassificationPart>AbstractClassifier</SubclassificationPart>
+      <SubclassificationPart>CallContext</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="AbstractClassifier" isAbstract="true">
+      <SubclassificationPart>ComponentClassifier</SubclassificationPart>
+      <SubclassificationPart>AbstractSubcomponentType</SubclassificationPart>
+      <SubclassificationPart>BusSubcomponentType</SubclassificationPart>
+      <SubclassificationPart>DataSubcomponentType</SubclassificationPart>
+      <SubclassificationPart>DeviceSubcomponentType</SubclassificationPart>
+      <SubclassificationPart>MemorySubcomponentType</SubclassificationPart>
+      <SubclassificationPart>ProcessorSubcomponentType</SubclassificationPart>
+      <SubclassificationPart>ProcessSubcomponentType</SubclassificationPart>
+      <SubclassificationPart>SubprogramGroupSubcomponentType</SubclassificationPart>
+      <SubclassificationPart>SubprogramSubcomponentType</SubclassificationPart>
+      <SubclassificationPart>SystemSubcomponentType</SubclassificationPart>
+      <SubclassificationPart>ThreadGroupSubcomponentType</SubclassificationPart>
+      <SubclassificationPart>ThreadSubcomponentType</SubclassificationPart>
+      <SubclassificationPart>VirtualProcessorSubcomponentType</SubclassificationPart>
+      <SubclassificationPart>VitualBusSubcomponentType</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="VirtualProcessorSubcomponentType" isAbstract="true">
+      <SubclassificationPart>SubcomponentType</SubclassificationPart>
+      <SubclassificationPart>VirtualProcessor</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="VirtualProcessor" isAbstract="true">
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="VitualBusSubcomponentType" isAbstract="true">
+      <SubclassificationPart>SubcomponentType</SubclassificationPart>
+      <SubclassificationPart>VirtualBus</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="VirtualBus" isAbstract="true">
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ThreadGroupSubcomponentType" isAbstract="true">
+      <SubclassificationPart>SubcomponentType</SubclassificationPart>
+      <SubclassificationPart>ThreadGroup</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ThreadGroup" isAbstract="true">
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ThreadSubcomponentType" isAbstract="true">
+      <SubclassificationPart>SubcomponentType</SubclassificationPart>
+      <SubclassificationPart>Thread</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Thread" isAbstract="true">
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="SystemSubcomponentType" isAbstract="true">
+      <SubclassificationPart>SubcomponentType</SubclassificationPart>
+      <SubclassificationPart>System</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="System" isAbstract="true">
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ProcessSubcomponentType" isAbstract="true">
+      <SubclassificationPart>Process</SubclassificationPart>
+      <SubclassificationPart>SubcomponentType</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Process" isAbstract="true">
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="MemorySubcomponentType" isAbstract="true">
+      <SubclassificationPart>Memory</SubclassificationPart>
+      <SubclassificationPart>SubcomponentType</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Memory" isAbstract="true">
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="DeviceSubcomponentType" isAbstract="true">
+      <SubclassificationPart>Device</SubclassificationPart>
+      <SubclassificationPart>SubcomponentType</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Device" isAbstract="true">
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ProcessorSubcomponentType" isAbstract="true">
+      <SubclassificationPart>Processor</SubclassificationPart>
+      <SubclassificationPart>SubcomponentType</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Processor" isAbstract="true">
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="AbstractImplementation">
+      <body xsi:type="ItemUsage" declaredName="ownedBusSubcomponent" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>BusSubcomponent</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedDataSubcomponent" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>DataSubcomponent</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedDeviceSubcomponent" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>DeviceSubcomponent</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedMemorySubcomponent" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>MemorySubcomponent</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedProcessSubcomponent" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ProcessSubcomponent</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedProcessorSubcomponent" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ProcessorSubcomponent</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedSystemSubcomponent" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>SystemSubcomponent</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedSubprogramSubcomponent" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>SubprogramSubcomponent</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedSubprogramGroupSubcomponent" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>SubprogramGroupSubcomponent</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedThreadSubcomponent" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ThreadSubcomponent</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedThreadGroupSubcomponent" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ThreadGroupSubcomponent</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedVirtualBusSubcomponent" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>VirtualBusSubcomponent</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedVirtualProcessorSubcomponent" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>VirtualProcessorSubcomponent</featureSpecialization>
+      </body>
+      <SubclassificationPart>BehavioredImplementation</SubclassificationPart>
+      <SubclassificationPart>AbstractClassifier</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="BusSubcomponent">
+      <body xsi:type="ItemUsage" declaredName="busSubcomponentType" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>BusSubcomponentType</featureSpecialization>
+      </body>
+      <SubclassificationPart>Subcomponent</SubclassificationPart>
+      <SubclassificationPart>AccessConnectionEnd</SubclassificationPart>
+      <SubclassificationPart>Bus</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="DataSubcomponent">
+      <body xsi:type="ItemUsage" declaredName="dataSubcomponentType" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>DataSubcomponentType</featureSpecialization>
+      </body>
+      <SubclassificationPart>Subcomponent</SubclassificationPart>
+      <SubclassificationPart>AccessConnectionEnd</SubclassificationPart>
+      <SubclassificationPart>Data</SubclassificationPart>
+      <SubclassificationPart>ParameterConnectionEnd</SubclassificationPart>
+      <SubclassificationPart>PortConnectionEnd</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="DeviceSubcomponent">
+      <body xsi:type="ItemUsage" declaredName="deviceSubcomponentType" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>DeviceSubcomponentType</featureSpecialization>
+      </body>
+      <SubclassificationPart>Subcomponent</SubclassificationPart>
+      <SubclassificationPart>Device</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="MemorySubcomponent">
+      <body xsi:type="ItemUsage" declaredName="memorySubcomponentType" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>MemorySubcomponentType</featureSpecialization>
+      </body>
+      <SubclassificationPart>Subcomponent</SubclassificationPart>
+      <SubclassificationPart>Memory</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ProcessSubcomponent">
+      <body xsi:type="ItemUsage" declaredName="processSubcomponentType" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ProcessSubcomponentType</featureSpecialization>
+      </body>
+      <SubclassificationPart>Subcomponent</SubclassificationPart>
+      <SubclassificationPart>Process</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ProcessorSubcomponent">
+      <body xsi:type="ItemUsage" declaredName="processorSubcomponentType" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ProcessorSubcomponentType</featureSpecialization>
+      </body>
+      <SubclassificationPart>Subcomponent</SubclassificationPart>
+      <SubclassificationPart>Processor</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="SystemSubcomponent">
+      <body xsi:type="ItemUsage" declaredName="systemSubcomponentType" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>SystemSubcomponentType</featureSpecialization>
+      </body>
+      <SubclassificationPart>Subcomponent</SubclassificationPart>
+      <SubclassificationPart>System</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="SubprogramSubcomponent">
+      <body xsi:type="ItemUsage" declaredName="subprogramSubcomponentType" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>SubprogramSubcomponentType</featureSpecialization>
+      </body>
+      <SubclassificationPart>Subcomponent</SubclassificationPart>
+      <SubclassificationPart>AccessConnectionEnd</SubclassificationPart>
+      <SubclassificationPart>Subprogram</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="SubprogramGroupSubcomponent">
+      <body xsi:type="ItemUsage" declaredName="subprogramGroupSubcomponentType" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>SubprogramGroupSubcomponentType</featureSpecialization>
+      </body>
+      <SubclassificationPart>Subcomponent</SubclassificationPart>
+      <SubclassificationPart>AccessConnectionEnd</SubclassificationPart>
+      <SubclassificationPart>SubprogramGroup</SubclassificationPart>
+      <SubclassificationPart>CallContext</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ThreadSubcomponent">
+      <body xsi:type="ItemUsage" declaredName="threadSubcomponentType" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ThreadSubcomponentType</featureSpecialization>
+      </body>
+      <SubclassificationPart>Subcomponent</SubclassificationPart>
+      <SubclassificationPart>Thread</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ThreadGroupSubcomponent">
+      <body xsi:type="ItemUsage" declaredName="threadGroupSubcomponentType" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ThreadGroupSubcomponentType</featureSpecialization>
+      </body>
+      <SubclassificationPart>Subcomponent</SubclassificationPart>
+      <SubclassificationPart>ThreadGroup</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="VirtualBusSubcomponent">
+      <body xsi:type="ItemUsage" declaredName="virtualBusSubcomponentType" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>VitualBusSubcomponentType</featureSpecialization>
+      </body>
+      <SubclassificationPart>Subcomponent</SubclassificationPart>
+      <SubclassificationPart>VirtualBus</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="VirtualProcessorSubcomponent">
+      <body xsi:type="ItemUsage" declaredName="virtualProcessorSubcomponentType" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>VirtualProcessorSubcomponentType</featureSpecialization>
+      </body>
+      <SubclassificationPart>Subcomponent</SubclassificationPart>
+      <SubclassificationPart>VirtualProcessor</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="AbstractPrototype">
+      <SubclassificationPart>ComponentPrototype</SubclassificationPart>
+      <SubclassificationPart>AbstractSubcomponentType</SubclassificationPart>
+      <SubclassificationPart>BusSubcomponentType</SubclassificationPart>
+      <SubclassificationPart>DataSubcomponentType</SubclassificationPart>
+      <SubclassificationPart>DeviceSubcomponentType</SubclassificationPart>
+      <SubclassificationPart>MemorySubcomponentType</SubclassificationPart>
+      <SubclassificationPart>ProcessorSubcomponentType</SubclassificationPart>
+      <SubclassificationPart>ProcessSubcomponentType</SubclassificationPart>
+      <SubclassificationPart>SubprogramGroupSubcomponentType</SubclassificationPart>
+      <SubclassificationPart>SubprogramSubcomponentType</SubclassificationPart>
+      <SubclassificationPart>SystemSubcomponentType</SubclassificationPart>
+      <SubclassificationPart>ThreadGroupSubcomponentType</SubclassificationPart>
+      <SubclassificationPart>ThreadSubcomponentType</SubclassificationPart>
+      <SubclassificationPart>VirtualProcessorSubcomponentType</SubclassificationPart>
+      <SubclassificationPart>VitualBusSubcomponentType</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="BusClassifier" isAbstract="true">
+      <SubclassificationPart>ComponentClassifier</SubclassificationPart>
+      <SubclassificationPart>BusSubcomponentType</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="BusType">
+      <body xsi:type="ItemUsage" declaredName="ownedBusAccess" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>BusAccess</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedDataPort" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>DataPort</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedEventDataPort" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EventDataPort</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedEventPort" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EventPort</featureSpecialization>
+      </body>
+      <SubclassificationPart>ComponentType</SubclassificationPart>
+      <SubclassificationPart>BusClassifier</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="BusImplementation">
+      <body xsi:type="ItemUsage" declaredName="ownedVirtualBusSubcomponent" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>VirtualBusSubcomponent</featureSpecialization>
+      </body>
+      <SubclassificationPart>ComponentImplementation</SubclassificationPart>
+      <SubclassificationPart>BusClassifier</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="BusPrototype">
+      <SubclassificationPart>ComponentPrototype</SubclassificationPart>
+      <SubclassificationPart>BusSubcomponentType</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="DataClassifier" isAbstract="true">
+      <SubclassificationPart>ComponentClassifier</SubclassificationPart>
+      <SubclassificationPart>DataSubcomponentType</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="DataType">
+      <body xsi:type="ItemUsage" declaredName="ownedSubprogramAccess" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>SubprogramAccess</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedSubprogramGroupAccess" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>SubprogramGroupAccess</featureSpecialization>
+      </body>
+      <SubclassificationPart>ComponentType</SubclassificationPart>
+      <SubclassificationPart>DataClassifier</SubclassificationPart>
+      <SubclassificationPart>CallContext</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="DataImplementation">
+      <body xsi:type="ItemUsage" declaredName="ownedDataSubcomponent" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>DataSubcomponent</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedSubprogramSubcomponent" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>SubprogramSubcomponent</featureSpecialization>
+      </body>
+      <SubclassificationPart>ComponentImplementation</SubclassificationPart>
+      <SubclassificationPart>DataClassifier</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="DataPrototype">
+      <SubclassificationPart>ComponentPrototype</SubclassificationPart>
+      <SubclassificationPart>DataSubcomponentType</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="DeviceClassifier" isAbstract="true">
+      <SubclassificationPart>ComponentClassifier</SubclassificationPart>
+      <SubclassificationPart>DeviceSubcomponentType</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="DeviceType">
+      <body xsi:type="ItemUsage" declaredName="ownedDataPort" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>DataPort</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedEventDataPort" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EventDataPort</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedEventPort" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EventPort</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedBusAccess" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>BusAccess</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedSubprogramAccess" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>SubprogramAccess</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedSubprogramGroupAccess" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>SubprogramGroupAccess</featureSpecialization>
+      </body>
+      <SubclassificationPart>ComponentType</SubclassificationPart>
+      <SubclassificationPart>DeviceClassifier</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="DeviceImplementation">
+      <body xsi:type="ItemUsage" declaredName="ownedBusSubcomponent" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>BusSubcomponent</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedDataSubcomponent" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>DataSubcomponent</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedVirtualBusSubcomponent" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>VirtualBusSubcomponent</featureSpecialization>
+      </body>
+      <SubclassificationPart>ComponentImplementation</SubclassificationPart>
+      <SubclassificationPart>DeviceClassifier</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="DevicePrototype">
+      <SubclassificationPart>ComponentPrototype</SubclassificationPart>
+      <SubclassificationPart>DeviceSubcomponentType</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="MemoryClassifier" isAbstract="true">
+      <SubclassificationPart>ComponentClassifier</SubclassificationPart>
+      <SubclassificationPart>MemorySubcomponentType</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="MemoryType">
+      <body xsi:type="ItemUsage" declaredName="ownedBusAccess" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>BusAccess</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedDataPort" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>DataPort</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedEventDataPort" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EventDataPort</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedEventPort" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EventPort</featureSpecialization>
+      </body>
+      <SubclassificationPart>ComponentType</SubclassificationPart>
+      <SubclassificationPart>MemoryClassifier</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="MemoryImplementation">
+      <body xsi:type="ItemUsage" declaredName="ownedBusSubcomponent" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>BusSubcomponent</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedMemorySubcomponent" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>MemorySubcomponent</featureSpecialization>
+      </body>
+      <SubclassificationPart>ComponentImplementation</SubclassificationPart>
+      <SubclassificationPart>MemoryClassifier</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="MemoryPrototype">
+      <SubclassificationPart>ComponentPrototype</SubclassificationPart>
+      <SubclassificationPart>MemorySubcomponentType</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="SubprogramClassifier" isAbstract="true">
+      <SubclassificationPart>ComponentClassifier</SubclassificationPart>
+      <SubclassificationPart>SubprogramSubcomponentType</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="SubprogramType">
+      <body xsi:type="ItemUsage" declaredName="ownedEventDataPort" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EventDataPort</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedEventPort" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EventPort</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedParameter" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Parameter</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedDataAccess" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>DataAccess</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedSubprogramAccess" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>SubprogramAccess</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedSubprogramGroupAccess" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>SubprogramGroupAccess</featureSpecialization>
+      </body>
+      <SubclassificationPart>ComponentType</SubclassificationPart>
+      <SubclassificationPart>SubprogramClassifier</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="SubprogramImplementation">
+      <body xsi:type="ItemUsage" declaredName="ownedDataSubcomponent" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>DataSubcomponent</featureSpecialization>
+      </body>
+      <SubclassificationPart>BehavioredImplementation</SubclassificationPart>
+      <SubclassificationPart>SubprogramClassifier</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="SubprogramPrototype">
+      <SubclassificationPart>ComponentPrototype</SubclassificationPart>
+      <SubclassificationPart>SubprogramSubcomponentType</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="SubprogramGroupClassifier" isAbstract="true">
+      <SubclassificationPart>ComponentClassifier</SubclassificationPart>
+      <SubclassificationPart>SubprogramGroupSubcomponentType</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="SubprogramGroupType">
+      <body xsi:type="ItemUsage" declaredName="ownedSubprogramAccess" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>SubprogramAccess</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedSubprogramGroupAccess" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>SubprogramGroupAccess</featureSpecialization>
+      </body>
+      <SubclassificationPart>ComponentType</SubclassificationPart>
+      <SubclassificationPart>SubprogramGroupClassifier</SubclassificationPart>
+      <SubclassificationPart>CallContext</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="SubprogramGroupImplementation">
+      <body xsi:type="ItemUsage" declaredName="ownedSubprogramSubcomponent" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>SubprogramSubcomponent</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedSubprogramGroupSubcomponent" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>SubprogramGroupSubcomponent</featureSpecialization>
+      </body>
+      <SubclassificationPart>ComponentImplementation</SubclassificationPart>
+      <SubclassificationPart>SubprogramGroupClassifier</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="SubprogramGroupPrototype">
+      <SubclassificationPart>ComponentPrototype</SubclassificationPart>
+      <SubclassificationPart>SubprogramGroupSubcomponentType</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="SystemClassifier" isAbstract="true">
+      <SubclassificationPart>ComponentClassifier</SubclassificationPart>
+      <SubclassificationPart>SystemSubcomponentType</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="SystemType">
+      <body xsi:type="ItemUsage" declaredName="ownedBusAccess" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>BusAccess</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedDataAccess" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>DataAccess</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedDataPort" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>DataPort</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedSubprogramGroupAccess" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>SubprogramGroupAccess</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedSubprogramAccess" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>SubprogramAccess</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedEventPort" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EventPort</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedEventDataPort" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EventDataPort</featureSpecialization>
+      </body>
+      <SubclassificationPart>ComponentType</SubclassificationPart>
+      <SubclassificationPart>SystemClassifier</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="SystemImplementation">
+      <body xsi:type="ItemUsage" declaredName="ownedBusSubcomponent" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>BusSubcomponent</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedDataSubcomponent" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>DataSubcomponent</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedDeviceSubcomponent" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>DeviceSubcomponent</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedMemorySubcomponent" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>MemorySubcomponent</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedProcessSubcomponent" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ProcessSubcomponent</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedProcessorSubcomponent" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ProcessorSubcomponent</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedSubprogramSubcomponent" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>SubprogramSubcomponent</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedSubprogramGroupSubcomponent" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>SubprogramGroupSubcomponent</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedSystemSubcomponent" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>SystemSubcomponent</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedVirtualBusSubcomponent" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>VirtualBusSubcomponent</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedVirtualProcessorSubcomponent" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>VirtualProcessorSubcomponent</featureSpecialization>
+      </body>
+      <SubclassificationPart>ComponentImplementation</SubclassificationPart>
+      <SubclassificationPart>SystemClassifier</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="SystemPrototype">
+      <SubclassificationPart>ComponentPrototype</SubclassificationPart>
+      <SubclassificationPart>SystemSubcomponentType</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ProcessorClassifier" isAbstract="true">
+      <SubclassificationPart>ComponentClassifier</SubclassificationPart>
+      <SubclassificationPart>ProcessorSubcomponentType</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ProcessorType">
+      <body xsi:type="ItemUsage" declaredName="ownedDataPort" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>DataPort</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedEventDataPort" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EventDataPort</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedEventPort" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EventPort</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedBusAccess" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>BusAccess</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedSubprogramAccess" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>SubprogramAccess</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedSubprogramGroupAccess" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>SubprogramGroupAccess</featureSpecialization>
+      </body>
+      <SubclassificationPart>ComponentType</SubclassificationPart>
+      <SubclassificationPart>ProcessorClassifier</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ProcessorImplementation">
+      <body xsi:type="ItemUsage" declaredName="ownedBusSubcomponent" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>BusSubcomponent</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedMemorySubcomponent" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>MemorySubcomponent</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedVirtualBusSubcomponent" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>VirtualBusSubcomponent</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedVirtualProcessorSubcomponent" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>VirtualProcessorSubcomponent</featureSpecialization>
+      </body>
+      <SubclassificationPart>ComponentImplementation</SubclassificationPart>
+      <SubclassificationPart>ProcessorClassifier</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ProcessorPrototype">
+      <SubclassificationPart>ComponentPrototype</SubclassificationPart>
+      <SubclassificationPart>ProcessorSubcomponentType</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ProcessClassifier" isAbstract="true">
+      <SubclassificationPart>ComponentClassifier</SubclassificationPart>
+      <SubclassificationPart>ProcessSubcomponentType</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ProcessType">
+      <body xsi:type="ItemUsage" declaredName="ownedDataPort" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>DataPort</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedEventDataPort" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EventDataPort</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedEventPort" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EventPort</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedDataAccess" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>DataAccess</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedSubprogramAccess" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>SubprogramAccess</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedSubprogramGroupAccess" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>SubprogramGroupAccess</featureSpecialization>
+      </body>
+      <SubclassificationPart>ComponentType</SubclassificationPart>
+      <SubclassificationPart>ProcessClassifier</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ProcessImplementation">
+      <body xsi:type="ItemUsage" declaredName="ownedDataSubcomponent" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>DataSubcomponent</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedSubprogramSubcomponent" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>SubprogramSubcomponent</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedSubprogramGroupSubcomponent" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>SubprogramGroupSubcomponent</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedThreadSubcomponent" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ThreadSubcomponent</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedThreadGroupSubcomponent" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ThreadGroupSubcomponent</featureSpecialization>
+      </body>
+      <SubclassificationPart>ComponentImplementation</SubclassificationPart>
+      <SubclassificationPart>ProcessClassifier</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ProcessPrototype">
+      <SubclassificationPart>ComponentPrototype</SubclassificationPart>
+      <SubclassificationPart>ProcessSubcomponentType</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ThreadClassifier" isAbstract="true">
+      <SubclassificationPart>ComponentClassifier</SubclassificationPart>
+      <SubclassificationPart>ThreadSubcomponentType</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ThreadType">
+      <body xsi:type="ItemUsage" declaredName="ownedDataPort" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>DataPort</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedEventDataPort" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EventDataPort</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedEventPort" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EventPort</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedDataAccess" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>DataAccess</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedSubprogramAccess" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>SubprogramAccess</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedSubprogramGroupAccess" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>SubprogramGroupAccess</featureSpecialization>
+      </body>
+      <SubclassificationPart>ComponentType</SubclassificationPart>
+      <SubclassificationPart>ThreadClassifier</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ThreadImplementation">
+      <body xsi:type="ItemUsage" declaredName="ownedSubprogramGroupSubcomponent" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>SubprogramGroupSubcomponent</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedSubprogramSubcomponent" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>SubprogramSubcomponent</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedDataSubcomponent" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>DataSubcomponent</featureSpecialization>
+      </body>
+      <SubclassificationPart>BehavioredImplementation</SubclassificationPart>
+      <SubclassificationPart>ThreadClassifier</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ThreadPrototype">
+      <SubclassificationPart>ComponentPrototype</SubclassificationPart>
+      <SubclassificationPart>ThreadSubcomponentType</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ThreadGroupClassifier" isAbstract="true">
+      <SubclassificationPart>ComponentClassifier</SubclassificationPart>
+      <SubclassificationPart>ThreadGroupSubcomponentType</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ThreadGroupType">
+      <body xsi:type="ItemUsage" declaredName="ownedDataPort" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>DataPort</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedEventDataPort" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EventDataPort</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedEventPort" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EventPort</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedDataAccess" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>DataAccess</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedSubprogramAccess" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>SubprogramAccess</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedSubprogramGroupAccess" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>SubprogramGroupAccess</featureSpecialization>
+      </body>
+      <SubclassificationPart>ComponentType</SubclassificationPart>
+      <SubclassificationPart>ThreadGroupClassifier</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ThreadGroupImplementation">
+      <body xsi:type="ItemUsage" declaredName="ownedDataSubcomponent" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>DataSubcomponent</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedThreadSubcomponent" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ThreadSubcomponent</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedThreadGroupSubcomponent" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ThreadGroupSubcomponent</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedSubprogramSubcomponent" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>SubprogramSubcomponent</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedSubprogramGroupSubcomponent" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>SubprogramGroupSubcomponent</featureSpecialization>
+      </body>
+      <SubclassificationPart>ComponentImplementation</SubclassificationPart>
+      <SubclassificationPart>ThreadGroupClassifier</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ThreadGroupPrototype">
+      <SubclassificationPart>ComponentPrototype</SubclassificationPart>
+      <SubclassificationPart>ThreadGroupSubcomponentType</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="VirtualBusClassifier" isAbstract="true">
+      <SubclassificationPart>ComponentClassifier</SubclassificationPart>
+      <SubclassificationPart>VitualBusSubcomponentType</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="VirtualBusType">
+      <body xsi:type="ItemUsage" declaredName="ownedDataPort" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>DataPort</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedEventDataPort" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EventDataPort</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedEventPort" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EventPort</featureSpecialization>
+      </body>
+      <SubclassificationPart>ComponentType</SubclassificationPart>
+      <SubclassificationPart>VirtualBusClassifier</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="VirtualBusImplementation">
+      <body xsi:type="ItemUsage" declaredName="ownedVirtualBusSubcomponent" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>VirtualBusSubcomponent</featureSpecialization>
+      </body>
+      <SubclassificationPart>ComponentImplementation</SubclassificationPart>
+      <SubclassificationPart>VirtualBusClassifier</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="VirtualBusPrototype">
+      <SubclassificationPart>ComponentPrototype</SubclassificationPart>
+      <SubclassificationPart>VitualBusSubcomponentType</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="VirtualProcessorClassifier" isAbstract="true">
+      <SubclassificationPart>ComponentClassifier</SubclassificationPart>
+      <SubclassificationPart>VirtualProcessorSubcomponentType</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="VirtualProcessorType">
+      <body xsi:type="ItemUsage" declaredName="ownedDataPort" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>DataPort</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedEventDataPort" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EventDataPort</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedEventPort" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EventPort</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedSubprogramAccess" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>SubprogramAccess</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedSubprogramGroupAccess" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>SubprogramGroupAccess</featureSpecialization>
+      </body>
+      <SubclassificationPart>ComponentType</SubclassificationPart>
+      <SubclassificationPart>VirtualProcessorClassifier</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="VirtualProcessorImplementation">
+      <body xsi:type="ItemUsage" declaredName="ownedVirtualBusSubcomponent" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>VirtualBusSubcomponent</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedVirtualProcessorSubcomponent" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>VirtualProcessorSubcomponent</featureSpecialization>
+      </body>
+      <SubclassificationPart>ComponentImplementation</SubclassificationPart>
+      <SubclassificationPart>VirtualProcessorClassifier</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="VirtualProcessorPrototype">
+      <SubclassificationPart>ComponentPrototype</SubclassificationPart>
+      <SubclassificationPart>VirtualProcessorSubcomponentType</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="BasicPropertyAssociation">
+      <body xsi:type="ItemUsage" declaredName="property" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>BasicProperty</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedValue" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>PropertyExpression</featureSpecialization>
+      </body>
+      <SubclassificationPart>Element</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="PropertyConstant">
+      <body xsi:type="ItemUsage" declaredName="propertyType" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>PropertyType</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedPropertyType" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>PropertyType</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="constantValue" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>PropertyExpression</featureSpecialization>
+      </body>
+      <SubclassificationPart>TypedElement</SubclassificationPart>
+      <SubclassificationPart>AbstractNamedValue</SubclassificationPart>
+      <SubclassificationPart>ArraySizeProperty</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="StringLiteral">
+      <body xsi:type="AttributeUsage" declaredName="'value'" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>String</featureSpecialization>
+      </body>
+      <SubclassificationPart>PropertyValue</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="PropertyValue" isAbstract="true">
+      <SubclassificationPart>PropertyExpression</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="NumberValue" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="unit" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>UnitLiteral</featureSpecialization>
+      </body>
+      <SubclassificationPart>PropertyValue</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="UnitLiteral">
+      <body xsi:type="ItemUsage" declaredName="baseUnit" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>UnitLiteral</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="factor" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>NumberValue</featureSpecialization>
+      </body>
+      <SubclassificationPart>EnumerationLiteral</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="EnumerationLiteral">
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+      <SubclassificationPart>AbstractNamedValue</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ClassifierValue">
+      <body xsi:type="ItemUsage" declaredName="classifier" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Classifier</featureSpecialization>
+      </body>
+      <SubclassificationPart>PropertyOwner</SubclassificationPart>
+      <SubclassificationPart>PropertyValue</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ReferenceValue">
+      <SubclassificationPart>ContainedNamedElement</SubclassificationPart>
+      <SubclassificationPart>PropertyValue</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="BooleanLiteral">
+      <body xsi:type="AttributeUsage" declaredName="'value'" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Boolean</featureSpecialization>
+      </body>
+      <SubclassificationPart>PropertyValue</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="RangeValue">
+      <body xsi:type="ItemUsage" declaredName="minimum" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>PropertyExpression</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="maximum" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>PropertyExpression</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="delta" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>PropertyExpression</featureSpecialization>
+      </body>
+      <SubclassificationPart>PropertyValue</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="IntegerLiteral">
+      <body xsi:type="AttributeUsage" declaredName="base" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Integer</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="'value'" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Integer</featureSpecialization>
+      </body>
+      <SubclassificationPart>NumberValue</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="RealLiteral">
+      <body xsi:type="AttributeUsage" declaredName="'value'" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Real</featureSpecialization>
+      </body>
+      <SubclassificationPart>NumberValue</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Operation">
+      <body xsi:type="AttributeUsage" declaredName="op" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>OperationKind</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedPropertyExpression" multiplicityRange="[1..*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>PropertyExpression</featureSpecialization>
+      </body>
+      <SubclassificationPart>PropertyExpression</SubclassificationPart>
+    </body>
+    <body xsi:type="EnumerationDefinition" declaredName="OperationKind">
+      <body xsi:type="EnumerationUsage" declaredName="'and'"/>
+      <body xsi:type="EnumerationUsage" declaredName="'or'"/>
+      <body xsi:type="EnumerationUsage" declaredName="'not'"/>
+      <body xsi:type="EnumerationUsage" declaredName="plus"/>
+      <body xsi:type="EnumerationUsage" declaredName="minus"/>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="RecordValue">
+      <body xsi:type="ItemUsage" declaredName="ownedFieldValue" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>BasicPropertyAssociation</featureSpecialization>
+      </body>
+      <SubclassificationPart>PropertyValue</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ComputedValue">
+      <body xsi:type="AttributeUsage" declaredName="function" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>String</featureSpecialization>
+      </body>
+      <SubclassificationPart>PropertyValue</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ListValue">
+      <body xsi:type="ItemUsage" declaredName="ownedListElement" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>PropertyExpression</featureSpecialization>
+      </body>
+      <SubclassificationPart>PropertyExpression</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="NamedValue">
+      <body xsi:type="ItemUsage" declaredName="namedValue" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>AbstractNamedValue</featureSpecialization>
+      </body>
+      <SubclassificationPart>PropertyValue</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="PropertySet">
+      <body xsi:type="ItemUsage" declaredName="ownedPropertyType" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>PropertyType</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedProperty" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Property</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ownedPropertyConstant" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>PropertyConstant</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="importedUnit" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ModelUnit</featureSpecialization>
+      </body>
+      <SubclassificationPart>Namespace</SubclassificationPart>
+      <SubclassificationPart>ModelUnit</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="GlobalNamespace">
+      <body xsi:type="ItemUsage" declaredName="'package'" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>PublicPackageSection</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="propertySet" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>PropertySet</featureSpecialization>
+      </body>
+      <SubclassificationPart>Namespace</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="NonListType" isAbstract="true">
+      <SubclassificationPart>PropertyType</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="AadlBoolean">
+      <SubclassificationPart>NonListType</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="AadlString">
+      <SubclassificationPart>NonListType</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="AadlInteger">
+      <SubclassificationPart>NumberType</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="NumberType" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="ownedUnitsType" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>UnitsType</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="unitsType" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>UnitsType</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="range" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>NumericRange</featureSpecialization>
+      </body>
+      <SubclassificationPart>NonListType</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="UnitsType">
+      <SubclassificationPart>EnumerationType</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="EnumerationType">
+      <body xsi:type="ItemUsage" declaredName="ownedLiteral" multiplicityRange="[1..*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EnumerationLiteral</featureSpecialization>
+      </body>
+      <SubclassificationPart>Namespace</SubclassificationPart>
+      <SubclassificationPart>NonListType</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="NumericRange">
+      <body xsi:type="ItemUsage" declaredName="upperBound" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>PropertyExpression</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="lowerBound" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>PropertyExpression</featureSpecialization>
+      </body>
+      <SubclassificationPart>Element</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="AadlReal">
+      <SubclassificationPart>NumberType</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ClassifierType">
+      <body xsi:type="ItemUsage" declaredName="classifierReference" multiplicityRange="[1..*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>MetaclassReference</featureSpecialization>
+      </body>
+      <SubclassificationPart>NonListType</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="RangeType">
+      <body xsi:type="ItemUsage" declaredName="ownedNumberType" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>NumberType</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="numberType" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>NumberType</featureSpecialization>
+      </body>
+      <SubclassificationPart>NonListType</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="RecordType">
+      <body xsi:type="ItemUsage" declaredName="ownedField" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>BasicProperty</featureSpecialization>
+      </body>
+      <SubclassificationPart>Namespace</SubclassificationPart>
+      <SubclassificationPart>NonListType</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="RecordField">
+      <SubclassificationPart>BasicProperty</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ReferenceType">
+      <body xsi:type="ItemUsage" declaredName="namedElementReference" multiplicityRange="[1..*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>MetaclassReference</featureSpecialization>
+      </body>
+      <SubclassificationPart>NonListType</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ListType">
+      <body xsi:type="ItemUsage" declaredName="ownedElementType" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>PropertyType</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="elementType" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>PropertyType</featureSpecialization>
+      </body>
+      <SubclassificationPart>PropertyType</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ProcessorPort">
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+      <SubclassificationPart>ModeTransitionTrigger</SubclassificationPart>
+      <SubclassificationPart>AbstractConnectionEnd</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="InternalEvent">
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+      <SubclassificationPart>ModeTransitionTrigger</SubclassificationPart>
+      <SubclassificationPart>AbstractConnectionEnd</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ProcessorSubprogram">
+      <SubclassificationPart>NamedElement</SubclassificationPart>
+      <SubclassificationPart>AbstractConnectionEnd</SubclassificationPart>
+    </body>
+  </body>
+</Namespace>

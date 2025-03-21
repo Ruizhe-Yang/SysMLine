@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="ASCII"?>
+<Namespace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="sysmline" xsi:schemaLocation="sysmline metamodel/sysmline/sysmline.ecore">
+  <body xsi:type="Package" declaredName="PropagationGraph">
+    <body xsi:type="NamespaceImport" hasVisibility="true" declaredName="ecore"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="instance"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="errorModel"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="aadl2"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="org.eclipse.emf"/>
+    <body xsi:type="ItemDefinition" declaredName="PropagationGraph">
+      <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="description" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="components" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ComponentInstance</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="propagationGraphPaths" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>PropagationGraphPath</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="connections" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ConnectionInstance</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="root" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ComponentInstance</featureSpecialization>
+      </body>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="PropagationGraphPath">
+      <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="pathSrc" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>PropagationPathEnd</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="pathDst" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>PropagationPathEnd</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="highlight" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="type" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>PropagationType</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="'connection'" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ConnectionInstance</featureSpecialization>
+      </body>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="PropagationPathEnd">
+      <body xsi:type="ItemUsage" declaredName="connectionInstance" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ConnectionInstance</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="errorPropagation" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ErrorPropagation</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="componentInstance" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ComponentInstance</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="highlight" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+    </body>
+    <body xsi:type="EnumerationDefinition" declaredName="PropagationType">
+      <body xsi:type="EnumerationUsage" declaredName="'connection'"/>
+      <body xsi:type="EnumerationUsage" declaredName="'binding'"/>
+      <body xsi:type="EnumerationUsage" declaredName="userDefined"/>
+    </body>
+  </body>
+</Namespace>

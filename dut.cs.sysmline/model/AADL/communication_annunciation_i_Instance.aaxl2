@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:EMV2Instance="http://www.osate.org/EMV2Instance" xmlns:aadl2="http://aadl.info/AADL/2.0" xmlns:instance="http://aadl.info/AADL/2.0/instance">
+  <instance:SystemInstance name="annunciation_i_Instance" category="device">
+    <annexInstance xsi:type="EMV2Instance:EMV2AnnexInstance" name="EMV2" initialState="/0/@annexInstance.0/@states.0">
+      <subclauses href="../communication.aadl#/0/@ownedPublicSection/@ownedClassifier.0/@ownedAnnexSubclause.0/@parsedAnnexSubclause"/>
+      <propagations xsi:type="EMV2Instance:FeaturePropagation" name="information" feature="/0/@featureInstance.0">
+        <outErrorPropagation href="../communication.aadl#/0/@ownedPublicSection/@ownedClassifier.0/@ownedAnnexSubclause.0/@parsedAnnexSubclause/@propagations.0"/>
+        <outTypeSet name="{NoService}">
+          <elements xsi:type="EMV2Instance:TypeInstance" name="NoService">
+            <type href="../error.aadl#emv2$error_library.NoService"/>
+          </elements>
+        </outTypeSet>
+      </propagations>
+      <errorFlows xsi:type="EMV2Instance:ErrorSourceInstance" name="f1" propagation="/0/@annexInstance.0/@propagations.0">
+        <errorSource href="../communication.aadl#/0/@ownedPublicSection/@ownedClassifier.0/@ownedAnnexSubclause.0/@parsedAnnexSubclause/@flows.0"/>
+        <typeSet name="{NoService}">
+          <elements xsi:type="EMV2Instance:TypeInstance" name="NoService">
+            <type href="../error.aadl#emv2$error_library.NoService"/>
+          </elements>
+        </typeSet>
+      </errorFlows>
+      <states name="Operational">
+        <state href="../error.aadl#/0/@ownedPublicSection/@ownedAnnexLibrary.0/@parsedAnnexLibrary/@behaviors.2/@states.0"/>
+      </states>
+      <states name="Failed">
+        <state href="../error.aadl#/0/@ownedPublicSection/@ownedAnnexLibrary.0/@parsedAnnexLibrary/@behaviors.2/@states.1"/>
+      </states>
+      <events xsi:type="EMV2Instance:ErrorEventInstance" name="LossAnnunciation">
+        <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+          <property href="platform:/plugin/org.osate.aadl2.errormodel.contrib/resources/properties/EMV2.aadl#EMV2.OccurrenceDistribution"/>
+          <ownedValue>
+            <ownedValue xsi:type="aadl2:RecordValue">
+              <ownedFieldValue>
+                <property href="platform:/plugin/org.osate.aadl2.errormodel.contrib/resources/properties/EMV2.aadl#/0/@ownedPropertyType.0/@ownedField.0"/>
+                <ownedValue xsi:type="aadl2:RealLiteral" value="1.0"/>
+              </ownedFieldValue>
+              <ownedFieldValue>
+                <property href="platform:/plugin/org.osate.aadl2.errormodel.contrib/resources/properties/EMV2.aadl#/0/@ownedPropertyType.0/@ownedField.9"/>
+                <ownedValue xsi:type="aadl2:NamedValue">
+                  <namedValue xsi:type="aadl2:EnumerationLiteral" href="platform:/plugin/org.osate.aadl2.errormodel.contrib/resources/properties/EMV2.aadl#/0/@ownedPropertyType.1/@ownedLiteral.0"/>
+                </ownedValue>
+              </ownedFieldValue>
+            </ownedValue>
+          </ownedValue>
+          <propertyAssociation href="../communication.aadl#/0/@ownedPublicSection/@ownedClassifier.0/@ownedAnnexSubclause.0/@parsedAnnexSubclause/@properties.0"/>
+        </ownedPropertyAssociation>
+        <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+          <property href="platform:/plugin/org.osate.aadl2.errormodel.contrib/resources/properties/ARP4761.aadl#ARP4761.Hazards"/>
+          <ownedValue>
+            <ownedValue xsi:type="aadl2:ListValue">
+              <ownedListElement xsi:type="aadl2:RecordValue">
+                <ownedFieldValue>
+                  <property href="platform:/plugin/org.osate.aadl2.errormodel.contrib/resources/properties/ARP4761.aadl#/0/@ownedProperty.0/@ownedPropertyType/@ownedElementType/@ownedField.0"/>
+                  <ownedValue xsi:type="aadl2:StringLiteral" value="AIR6110 and ARP4761 - see ARP4761 figure 3 page 199"/>
+                </ownedFieldValue>
+                <ownedFieldValue>
+                  <property href="platform:/plugin/org.osate.aadl2.errormodel.contrib/resources/properties/ARP4761.aadl#/0/@ownedProperty.0/@ownedPropertyType/@ownedElementType/@ownedField.3"/>
+                  <ownedValue xsi:type="aadl2:StringLiteral" value="Loss of Annunciation"/>
+                </ownedFieldValue>
+                <ownedFieldValue>
+                  <property href="platform:/plugin/org.osate.aadl2.errormodel.contrib/resources/properties/ARP4761.aadl#/0/@ownedProperty.0/@ownedPropertyType/@ownedElementType/@ownedField.5"/>
+                  <ownedValue xsi:type="aadl2:ListValue">
+                    <ownedListElement xsi:type="aadl2:StringLiteral" value="all"/>
+                  </ownedValue>
+                </ownedFieldValue>
+                <ownedFieldValue>
+                  <property href="platform:/plugin/org.osate.aadl2.errormodel.contrib/resources/properties/ARP4761.aadl#/0/@ownedProperty.0/@ownedPropertyType/@ownedElementType/@ownedField.2"/>
+                  <ownedValue xsi:type="aadl2:StringLiteral" value="The system cannot annunce an error"/>
+                </ownedFieldValue>
+                <ownedFieldValue>
+                  <property href="platform:/plugin/org.osate.aadl2.errormodel.contrib/resources/properties/ARP4761.aadl#/0/@ownedProperty.0/@ownedPropertyType/@ownedElementType/@ownedField.10"/>
+                  <ownedValue xsi:type="aadl2:NamedValue">
+                    <namedValue xsi:type="aadl2:EnumerationLiteral" href="platform:/plugin/org.osate.aadl2.errormodel.contrib/resources/properties/ARP4761.aadl#/0/@ownedPropertyType.0/@ownedLiteral.0"/>
+                  </ownedValue>
+                </ownedFieldValue>
+                <ownedFieldValue>
+                  <property href="platform:/plugin/org.osate.aadl2.errormodel.contrib/resources/properties/ARP4761.aadl#/0/@ownedProperty.0/@ownedPropertyType/@ownedElementType/@ownedField.13"/>
+                  <ownedValue xsi:type="aadl2:NamedValue">
+                    <namedValue xsi:type="aadl2:EnumerationLiteral" href="platform:/plugin/org.osate.aadl2.errormodel.contrib/resources/properties/ARP4761.aadl#/0/@ownedPropertyType.1/@ownedLiteral.4"/>
+                  </ownedValue>
+                </ownedFieldValue>
+                <ownedFieldValue>
+                  <property href="platform:/plugin/org.osate.aadl2.errormodel.contrib/resources/properties/ARP4761.aadl#/0/@ownedProperty.0/@ownedPropertyType/@ownedElementType/@ownedField.18"/>
+                  <ownedValue xsi:type="aadl2:StringLiteral" value=""/>
+                </ownedFieldValue>
+              </ownedListElement>
+            </ownedValue>
+          </ownedValue>
+          <propertyAssociation href="../communication.aadl#/0/@ownedPublicSection/@ownedClassifier.0/@ownedAnnexSubclause.0/@parsedAnnexSubclause/@properties.1"/>
+        </ownedPropertyAssociation>
+        <errorEvent href="../communication.aadl#/0/@ownedPublicSection/@ownedClassifier.0/@ownedAnnexSubclause.0/@parsedAnnexSubclause/@events.0"/>
+      </events>
+      <transitions name="t1">
+        <transition href="../communication.aadl#/0/@ownedPublicSection/@ownedClassifier.0/@ownedAnnexSubclause.0/@parsedAnnexSubclause/@transitions.0"/>
+        <source xsi:type="EMV2Instance:SourceStateReference" name="Operational" state="/0/@annexInstance.0/@states.0"/>
+        <condition xsi:type="EMV2Instance:EventReference" name="LossAnnunciation" event="/0/@annexInstance.0/@events.0"/>
+        <destination xsi:type="EMV2Instance:DestinationStateReference" name="Failed" state="/0/@annexInstance.0/@states.1"/>
+      </transitions>
+      <conditions name="p1">
+        <outgoingPropagationCondition href="../communication.aadl#/0/@ownedPublicSection/@ownedClassifier.0/@ownedAnnexSubclause.0/@parsedAnnexSubclause/@outgoingPropagationConditions.0"/>
+        <source xsi:type="EMV2Instance:SourceStateReference" name="Failed" state="/0/@annexInstance.0/@states.1"/>
+        <destination xsi:type="EMV2Instance:DestinationPropagationReference" name="information {NoService}" propagation="/0/@annexInstance.0/@propagations.0">
+          <typeSet name="{NoService}">
+            <elements xsi:type="EMV2Instance:TypeInstance" name="NoService">
+              <type href="../error.aadl#emv2$error_library.NoService"/>
+            </elements>
+          </typeSet>
+        </destination>
+      </conditions>
+    </annexInstance>
+    <featureInstance name="information" direction="out" type="/1">
+      <feature xsi:type="aadl2:DataPort" href="../communication.aadl#/0/@ownedPublicSection/@ownedClassifier.0/@ownedDataPort.0"/>
+    </featureInstance>
+    <classifier xsi:type="aadl2:DeviceImplementation" href="../communication.aadl#communication.annunciation.i"/>
+    <systemOperationMode name="No Modes"/>
+    <componentImplementation xsi:type="aadl2:DeviceImplementation" href="../communication.aadl#communication.annunciation.i"/>
+  </instance:SystemInstance>
+  <instance:ComponentInstance name="common::command.announce" category="data">
+    <classifier xsi:type="aadl2:DataImplementation" href="../common.aadl#common.command.announce"/>
+  </instance:ComponentInstance>
+</xmi:XMI>

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="ASCII"?>
+<Namespace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="sysmline" xsi:schemaLocation="sysmline metamodel/sysmline/sysmline.ecore">
+  <body xsi:type="Package" declaredName="FaultTree">
+    <body xsi:type="NamespaceImport" hasVisibility="true" declaredName="ecore"/>
+    <body xsi:type="ItemDefinition" declaredName="FaultTree">
+      <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="'message'" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="faultTreeType" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FaultTreeType</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="root" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Event</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="instanceRoot" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EObject</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="events" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Event</featureSpecialization>
+      </body>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Event">
+      <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="'message'" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="subEvents" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Event</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="k" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EInt</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="assignedProbability" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EDouble</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="computedProbability" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EDouble</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="relatedInstanceObject" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EObject</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="relatedErrorType" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EObject</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="referenceCount" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EInt</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="type" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EventType</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="subEventLogic" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>LogicOperation</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="relatedEMV2Object" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EObject</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="sharedEvent" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+    </body>
+    <body xsi:type="EnumerationDefinition" declaredName="EventType">
+      <body xsi:type="EnumerationUsage" declaredName="Basic"/>
+      <body xsi:type="EnumerationUsage" declaredName="External"/>
+      <body xsi:type="EnumerationUsage" declaredName="Undeveloped"/>
+      <body xsi:type="EnumerationUsage" declaredName="Intermediate"/>
+    </body>
+    <body xsi:type="EnumerationDefinition" declaredName="LogicOperation">
+      <body xsi:type="EnumerationUsage" declaredName="Or"/>
+      <body xsi:type="EnumerationUsage" declaredName="And"/>
+      <body xsi:type="EnumerationUsage" declaredName="Xor"/>
+      <body xsi:type="EnumerationUsage" declaredName="PriorityAnd"/>
+      <body xsi:type="EnumerationUsage" declaredName="kOf"/>
+      <body xsi:type="EnumerationUsage" declaredName="kOrmore"/>
+      <body xsi:type="EnumerationUsage" declaredName="kOrless"/>
+    </body>
+    <body xsi:type="EnumerationDefinition" declaredName="FaultTreeType">
+      <body xsi:type="EnumerationUsage" declaredName="FaultTree"/>
+      <body xsi:type="EnumerationUsage" declaredName="FaultTrace"/>
+      <body xsi:type="EnumerationUsage" declaredName="CompositeParts"/>
+      <body xsi:type="EnumerationUsage" declaredName="MinimalCutSet"/>
+    </body>
+  </body>
+</Namespace>
