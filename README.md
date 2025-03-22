@@ -1,6 +1,4 @@
-# SysMLine
-
-SysMLine: Model-Driven Bidirectional Transformation for SysML v2 and EMF
+# SysMLine: Model-Driven Bidirectional Transformation for SysML v2 and EMF
 
 ![Figure1](https://github.com/Ruizhe-Yang/SysMLine/blob/main/Figure1.png)
 
