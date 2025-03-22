@@ -5,7 +5,9 @@
 [%epackage.name.println("[gen-ETL] referenced Package >> ");%]
 [%}%]
 [%}%]
-[%var KeyWords = Sequence{"default", "import", "from", "to", "extends", "Collection", "guard", "function", "operation", "not"};%]
+[%var KeyWords = Sequence{"default", "import", "from", "to", "extends",
+ 							"Collection", "guard", "function", "operation", "not",
+ 							"and", "or", "delete"};%]
 import "DSL2SysMLine-util.eol";
 
 pre{

@@ -13,7 +13,9 @@ public class Ecore2SysML {
 //		testSACM();
 //		testCapellaEcore();
 //		testISDesigner();
-		testAADLEcore();
+//		testAADLEcore();
+//		run("metamodel\\petrinet\\petrinet");
+		run("metamodel\\JUDO-liquibase\\liquibase");
 //		run("model\\PlayGround\\psl");
 //		run("metamodel\\HSUV\\HSUV");
 //		testBPMNEcore();

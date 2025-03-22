@@ -1,0 +1,210 @@
+import "DSL2SysMLine-util.eol";
+
+pre{
+	var eObjectSequence = new Sequence;
+	var KeyWords = baseKeyWords();
+	var i = 0;
+	eObjectSequence.init_petrinet();
+	main_petrinet();
+}
+
+post{
+	("[ETL] petrinet2SysMLine >> " + SysMLine!Package.all.first().declaredName + ".sysmline").println();
+}
+
+operation main_petrinet(){
+	var rootEcore = DSL!EObject.all.first();
+	var rootSysMLine = new SysMLine!Namespace;
+	var rootPackage = new SysMLine!Package;
+	rootPackage.declaredName = "petrinet_model";
+	rootSysMLine.body.add(rootPackage);
+	rootPackage.addNamespaceImport("petrinet");
+	rootEcore.addNodeTo(rootPackage);
+}
+
+operation Sequence init_petrinet(){
+	//petrinet.System -> Instantiation
+	var idSystem = 0;
+	for (System_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!System))){
+		var System_Tuple = Tuple{"key"="System_"+(idSystem++).asString(),"value"= System_};
+		self.add(System_Tuple);
+	}
+	//petrinet.PetriNet -> Instantiation
+	var idPetriNet = 0;
+	for (PetriNet_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!PetriNet))){
+		var PetriNet_Tuple = Tuple{"key"="PetriNet_"+(idPetriNet++).asString(),"value"= PetriNet_};
+		self.add(PetriNet_Tuple);
+	}
+	//petrinet.PetriNetRelationship -> Instantiation
+	var idPetriNetRelationship = 0;
+	for (PetriNetRelationship_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!PetriNetRelationship))){
+		var PetriNetRelationship_Tuple = Tuple{"key"="PetriNetRelationship_"+(idPetriNetRelationship++).asString(),"value"= PetriNetRelationship_};
+		self.add(PetriNetRelationship_Tuple);
+	}
+	//petrinet.Node -> Instantiation
+	var idNode = 0;
+	for (Node_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!Node))){
+		var Node_Tuple = Tuple{"key"="Node_"+(idNode++).asString(),"value"= Node_};
+		self.add(Node_Tuple);
+	}
+	//petrinet.Element -> Instantiation
+	var idElement = 0;
+	for (Element_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!Element))){
+		var Element_Tuple = Tuple{"key"="Element_"+(idElement++).asString(),"value"= Element_};
+		self.add(Element_Tuple);
+	}
+	//petrinet.Arc -> Instantiation
+	var idArc = 0;
+	for (Arc_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!Arc))){
+		var Arc_Tuple = Tuple{"key"="Arc_"+(idArc++).asString(),"value"= Arc_};
+		self.add(Arc_Tuple);
+	}
+	//petrinet.Place -> Instantiation
+	var idPlace = 0;
+	for (Place_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!Place))){
+		var Place_Tuple = Tuple{"key"="Place_"+(idPlace++).asString(),"value"= Place_};
+		self.add(Place_Tuple);
+	}
+	//petrinet.Transition -> Instantiation
+	var idTransition = 0;
+	for (Transition_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!Transition))){
+		var Transition_Tuple = Tuple{"key"="Transition_"+(idTransition++).asString(),"value"= Transition_};
+		self.add(Transition_Tuple);
+	}
+	//petrinet.OutputArc -> Instantiation
+	var idOutputArc = 0;
+	for (OutputArc_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!OutputArc))){
+		var OutputArc_Tuple = Tuple{"key"="OutputArc_"+(idOutputArc++).asString(),"value"= OutputArc_};
+		self.add(OutputArc_Tuple);
+	}
+	//petrinet.InputArc -> Instantiation
+	var idInputArc = 0;
+	for (InputArc_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!InputArc))){
+		var InputArc_Tuple = Tuple{"key"="InputArc_"+(idInputArc++).asString(),"value"= InputArc_};
+		self.add(InputArc_Tuple);
+	}
+}
+
+@abstract
+rule Base
+	transform s : DSL!EObject
+	to t : SysMLine!ItemUsage{
+	t.declaredName = s.getDeclaredName();
+	t.featureNote.add(":");
+	t.featureSpecialization.add(s.getfeatureSpecialization());
+	if (s.eContainingFeature != null and s.eContainingFeature.name != null){
+		t.featureNote.add(":>");
+		t.featureSpecialization.add(s.eContainingFeature().name);
+	}
+}
+
+// petrinet.ecore
+@lazy
+rule System
+	transform s : DSL!System //petrinet.System
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//System.petrinets -> EReference : petrinets
+	if (s.petrinets.getEReference() != null) t.addNewReference("petrinets".clearKeyWord(), s.petrinets.getEReference());
+	//System.petrinetrelationships -> EReference : petrinetrelationships
+	if (s.petrinetrelationships.getEReference() != null) t.addNewReference("petrinetrelationships".clearKeyWord(), s.petrinetrelationships.getEReference());
+}
+
+@lazy
+rule PetriNet
+	transform s : DSL!PetriNet //petrinet.PetriNet
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//PetriNet.name -> EAttribute : name
+	if (s.name.getEAttribute() != null) t.addNewAttribute("name".clearKeyWord(), s.name.getEAttribute());
+	//PetriNet.elements -> EReference : elements
+	if (s.elements.getEReference() != null) t.addNewReference("elements".clearKeyWord(), s.elements.getEReference());
+}
+
+@lazy
+rule PetriNetRelationship
+	transform s : DSL!PetriNetRelationship //petrinet.PetriNetRelationship
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//PetriNetRelationship.from -> EReference : from_
+	if (s.`from`.getEReference() != null) t.addNewReference("from".clearKeyWord(), s.`from`.getEReference());
+	//PetriNetRelationship.to -> EReference : to_
+	if (s.`to`.getEReference() != null) t.addNewReference("to".clearKeyWord(), s.`to`.getEReference());
+}
+
+@lazy
+rule Node
+	transform s : DSL!Node //petrinet.Node
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//Node.minDelay -> EAttribute : minDelay
+	if (s.minDelay.getEAttribute() != null) t.addNewAttribute("minDelay".clearKeyWord(), s.minDelay.getEAttribute());
+	//Node.maxDelay -> EAttribute : maxDelay
+	if (s.maxDelay.getEAttribute() != null) t.addNewAttribute("maxDelay".clearKeyWord(), s.maxDelay.getEAttribute());
+	//Node.name -> EAttribute : name
+	if (s.name.getEAttribute() != null) t.addNewAttribute("name".clearKeyWord(), s.name.getEAttribute());
+}
+
+@lazy
+rule Element
+	transform s : DSL!Element //petrinet.Element
+	to t : SysMLine!ItemUsage
+	extends Base{
+}
+
+@lazy
+rule Arc
+	transform s : DSL!Arc //petrinet.Arc
+	to t : SysMLine!ItemUsage
+	extends Base{
+}
+
+@lazy
+rule Place
+	transform s : DSL!Place //petrinet.Place
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//Place.minDelay -> EAttribute : minDelay
+	if (s.minDelay.getEAttribute() != null) t.addNewAttribute("minDelay".clearKeyWord(), s.minDelay.getEAttribute());
+	//Place.maxDelay -> EAttribute : maxDelay
+	if (s.maxDelay.getEAttribute() != null) t.addNewAttribute("maxDelay".clearKeyWord(), s.maxDelay.getEAttribute());
+	//Place.name -> EAttribute : name
+	if (s.name.getEAttribute() != null) t.addNewAttribute("name".clearKeyWord(), s.name.getEAttribute());
+}
+
+@lazy
+rule Transition
+	transform s : DSL!Transition //petrinet.Transition
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//Transition.minDelay -> EAttribute : minDelay
+	if (s.minDelay.getEAttribute() != null) t.addNewAttribute("minDelay".clearKeyWord(), s.minDelay.getEAttribute());
+	//Transition.maxDelay -> EAttribute : maxDelay
+	if (s.maxDelay.getEAttribute() != null) t.addNewAttribute("maxDelay".clearKeyWord(), s.maxDelay.getEAttribute());
+	//Transition.name -> EAttribute : name
+	if (s.name.getEAttribute() != null) t.addNewAttribute("name".clearKeyWord(), s.name.getEAttribute());
+}
+
+@lazy
+rule OutputArc
+	transform s : DSL!OutputArc //petrinet.OutputArc
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//OutputArc.to -> EReference : to_
+	if (s.`to`.getEReference() != null) t.addNewReference("to".clearKeyWord(), s.`to`.getEReference());
+	//OutputArc.from -> EReference : from_
+	if (s.`from`.getEReference() != null) t.addNewReference("from".clearKeyWord(), s.`from`.getEReference());
+}
+
+@lazy
+rule InputArc
+	transform s : DSL!InputArc //petrinet.InputArc
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//InputArc.to -> EReference : to_
+	if (s.`to`.getEReference() != null) t.addNewReference("to".clearKeyWord(), s.`to`.getEReference());
+	//InputArc.from -> EReference : from_
+	if (s.`from`.getEReference() != null) t.addNewReference("from".clearKeyWord(), s.`from`.getEReference());
+}
+
+

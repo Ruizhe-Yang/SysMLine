@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmi:id="_j3mSsIssEeaMz8P8myXedA" name="petrinet" nsURI="sistemas.uniandes.edu.co/metamodels/petrinet"
+    nsPrefix="pnet">
+  <eClassifiers xsi:type="ecore:EClass" xmi:id="_j3mSs4ssEeaMz8P8myXedA" name="System">
+    <eStructuralFeatures xsi:type="ecore:EReference" xmi:id="_j3mStossEeaMz8P8myXedA"
+        name="petrinets" upperBound="-1" eType="#_j3mSvossEeaMz8P8myXedA" containment="true">
+      <eAnnotations xmi:id="_j3mSt4ssEeaMz8P8myXedA" source="genmymodel">
+        <details xmi:id="_j3mSuIssEeaMz8P8myXedA" key="uuid" value="_Hcb4UG1ZEDSyHe76t7Tw1A"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" xmi:id="_j3mSuossEeaMz8P8myXedA"
+        name="petrinetrelationships" upperBound="-1" eType="#_j3mSxYssEeaMz8P8myXedA"
+        containment="true">
+      <eAnnotations xmi:id="_j3mSu4ssEeaMz8P8myXedA" source="genmymodel">
+        <details xmi:id="_j3mSvIssEeaMz8P8myXedA" key="uuid" value="_O-tW8G1ZEDSyHe76t7Tw1A"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" xmi:id="_j3mSvossEeaMz8P8myXedA" name="PetriNet">
+    <eStructuralFeatures xsi:type="ecore:EReference" xmi:id="_j3mSwYssEeaMz8P8myXedA"
+        name="elements" upperBound="-1" eType="#_j3m5xossEeaMz8P8myXedA" containment="true">
+      <eAnnotations xmi:id="_j3mSwossEeaMz8P8myXedA" source="genmymodel">
+        <details xmi:id="_j3mSw4ssEeaMz8P8myXedA" key="uuid" value="_ESJtoG1ZEDSyHe76t7Tw1A"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" xmi:id="_j3mSxYssEeaMz8P8myXedA" name="PetriNetRelationship">
+    <eStructuralFeatures xsi:type="ecore:EReference" xmi:id="_j3mSyIssEeaMz8P8myXedA"
+        name="from" lowerBound="1" eType="#_j3mSvossEeaMz8P8myXedA">
+      <eAnnotations xmi:id="_j3mSyYssEeaMz8P8myXedA" source="genmymodel">
+        <details xmi:id="_j3mSyossEeaMz8P8myXedA" key="uuid" value="_K7xtAG1ZEDSyHe76t7Tw1A"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" xmi:id="_j3mSzIssEeaMz8P8myXedA"
+        name="to" lowerBound="1" eType="#_j3mSvossEeaMz8P8myXedA">
+      <eAnnotations xmi:id="_j3mSzYssEeaMz8P8myXedA" source="genmymodel">
+        <details xmi:id="_j3mSzossEeaMz8P8myXedA" key="uuid" value="_L7I4QG1ZEDSyHe76t7Tw1A"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" xmi:id="_j3mS0IssEeaMz8P8myXedA" name="Node"
+      abstract="true" eSuperTypes="#_j3m5xossEeaMz8P8myXedA">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" xmi:id="_j3mS04ssEeaMz8P8myXedA"
+        name="minDelay" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"
+        defaultValueLiteral="0.0">
+      <eAnnotations xmi:id="_j3mS1IssEeaMz8P8myXedA" source="genmymodel">
+        <details xmi:id="_j3mS1YssEeaMz8P8myXedA" key="uuid" value="_aLta4G1ZEDSyHe76t7Tw1A"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" xmi:id="_j3m5wYssEeaMz8P8myXedA"
+        name="maxDelay" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"
+        defaultValueLiteral="0.0">
+      <eAnnotations xmi:id="_j3m5wossEeaMz8P8myXedA" source="genmymodel">
+        <details xmi:id="_j3m5w4ssEeaMz8P8myXedA" key="uuid" value="_evZogG1ZEDSyHe76t7Tw1A"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" xmi:id="_j3m5xossEeaMz8P8myXedA" name="Element"
+      abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" xmi:id="_j3m5yYssEeaMz8P8myXedA" name="Arc"
+      abstract="true" eSuperTypes="#_j3m5xossEeaMz8P8myXedA"/>
+  <eClassifiers xsi:type="ecore:EClass" xmi:id="_j3m5zYssEeaMz8P8myXedA" name="Place"
+      eSuperTypes="#_j3mS0IssEeaMz8P8myXedA"/>
+  <eClassifiers xsi:type="ecore:EClass" xmi:id="_j3m50YssEeaMz8P8myXedA" name="Transition"
+      eSuperTypes="#_j3mS0IssEeaMz8P8myXedA"/>
+  <eClassifiers xsi:type="ecore:EClass" xmi:id="_j3m51YssEeaMz8P8myXedA" name="OutputArc"
+      eSuperTypes="#_j3m5yYssEeaMz8P8myXedA">
+    <eStructuralFeatures xsi:type="ecore:EReference" xmi:id="_j3m52IssEeaMz8P8myXedA"
+        name="to" lowerBound="1" eType="#_j3m5zYssEeaMz8P8myXedA">
+      <eAnnotations xmi:id="_j3m52YssEeaMz8P8myXedA" source="genmymodel">
+        <details xmi:id="_j3m52ossEeaMz8P8myXedA" key="uuid" value="_6Yay8G1ZEDSyHe76t7Tw1A"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" xmi:id="_j3m53IssEeaMz8P8myXedA"
+        name="from" lowerBound="1" eType="#_j3m50YssEeaMz8P8myXedA">
+      <eAnnotations xmi:id="_j3m53YssEeaMz8P8myXedA" source="genmymodel">
+        <details xmi:id="_j3m53ossEeaMz8P8myXedA" key="uuid" value="_Id-YYG1aEDSyHe76t7Tw1A"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" xmi:id="_j3m54YssEeaMz8P8myXedA" name="InputArc"
+      eSuperTypes="#_j3m5yYssEeaMz8P8myXedA">
+    <eStructuralFeatures xsi:type="ecore:EReference" xmi:id="_j3m55IssEeaMz8P8myXedA"
+        name="to" lowerBound="1" eType="#_j3m50YssEeaMz8P8myXedA">
+      <eAnnotations xmi:id="_j3m55YssEeaMz8P8myXedA" source="genmymodel">
+        <details xmi:id="_j3m55ossEeaMz8P8myXedA" key="uuid" value="_6uBPgG1ZEDSyHe76t7Tw1A"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" xmi:id="_j3m56IssEeaMz8P8myXedA"
+        name="from" lowerBound="1" eType="#_j3m5zYssEeaMz8P8myXedA">
+      <eAnnotations xmi:id="_j3m56YssEeaMz8P8myXedA" source="genmymodel">
+        <details xmi:id="_j3m56ossEeaMz8P8myXedA" key="uuid" value="_HIM4QG1aEDSyHe76t7Tw1A"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+</ecore:EPackage>

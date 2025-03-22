@@ -1,7 +1,7 @@
 pre{
 	var ePackages = Ecore!EPackage.all;
 //	ePackages.addExtendedPackages(instance!EPackage);
-	ePackages.addExtendedPackages(emv!EPackage);
+//	ePackages.addExtendedPackages(emv!EPackage);
 //	ePackages.addExtendedPackages(ft!EPackage);
 //	ePackages.addExtendedPackages(pg!EPackage);
 	
@@ -23,8 +23,8 @@ rule gen_sysmlv2
 	parameters : Map{
 		"ePackages" = Ecore!EPackage.all
 	}
-//	template : "Ecore2ETL.egl"
-	template : "Ecore2ETL_TypeName.egl"
+	template : "Ecore2ETL.egl"
+//	template : "Ecore2ETL_TypeName.egl"
 	target : root.getFileName()
 }
 
