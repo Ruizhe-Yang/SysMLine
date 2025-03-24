@@ -1,0 +1,2117 @@
+import "DSL2SysMLine-util.eol";
+
+pre{
+	var eObjectSequence = new Sequence;
+	var KeyWords = baseKeyWords();
+	var i = 0;
+	eObjectSequence.init_mO();
+	main_mO();
+}
+
+post{
+	("[ETL] mO2SysMLine >> " + SysMLine!Package.all.first().declaredName + ".sysmline").println();
+}
+
+operation main_mO(){
+	var rootEcore = DSL!EObject.all.first();
+	var rootSysMLine = new SysMLine!Namespace;
+	var rootPackage = new SysMLine!Package;
+	rootPackage.declaredName = "mO_model";
+	rootSysMLine.body.add(rootPackage);
+	rootPackage.addNamespaceImport("mO");
+	rootEcore.addNodeTo(rootPackage);
+}
+
+operation Sequence init_mO(){
+	//mO.StoredDefinition -> Instantiation
+	var idStoredDefinition = 0;
+	for (StoredDefinition_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!StoredDefinition))){
+		var StoredDefinition_Tuple = Tuple{"key"="StoredDefinition_"+(idStoredDefinition++).asString(),"value"= StoredDefinition_};
+		self.add(StoredDefinition_Tuple);
+	}
+	//mO.ClassDefinition -> Instantiation
+	var idClassDefinition = 0;
+	for (ClassDefinition_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!ClassDefinition))){
+		var ClassDefinition_Tuple = Tuple{"key"="ClassDefinition_"+(idClassDefinition++).asString(),"value"= ClassDefinition_};
+		self.add(ClassDefinition_Tuple);
+	}
+	//mO.ClassSpecifier -> Instantiation
+	var idClassSpecifier = 0;
+	for (ClassSpecifier_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!ClassSpecifier))){
+		var ClassSpecifier_Tuple = Tuple{"key"="ClassSpecifier_"+(idClassSpecifier++).asString(),"value"= ClassSpecifier_};
+		self.add(ClassSpecifier_Tuple);
+	}
+	//mO.EnumList -> Instantiation
+	var idEnumList = 0;
+	for (EnumList_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!EnumList))){
+		var EnumList_Tuple = Tuple{"key"="EnumList_"+(idEnumList++).asString(),"value"= EnumList_};
+		self.add(EnumList_Tuple);
+	}
+	//mO.EnumerationLiteral -> Instantiation
+	var idEnumerationLiteral = 0;
+	for (EnumerationLiteral_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!EnumerationLiteral))){
+		var EnumerationLiteral_Tuple = Tuple{"key"="EnumerationLiteral_"+(idEnumerationLiteral++).asString(),"value"= EnumerationLiteral_};
+		self.add(EnumerationLiteral_Tuple);
+	}
+	//mO.Composition -> Instantiation
+	var idComposition = 0;
+	for (Composition_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!Composition))){
+		var Composition_Tuple = Tuple{"key"="Composition_"+(idComposition++).asString(),"value"= Composition_};
+		self.add(Composition_Tuple);
+	}
+	//mO.ExternalFunctionCall -> Instantiation
+	var idExternalFunctionCall = 0;
+	for (ExternalFunctionCall_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!ExternalFunctionCall))){
+		var ExternalFunctionCall_Tuple = Tuple{"key"="ExternalFunctionCall_"+(idExternalFunctionCall++).asString(),"value"= ExternalFunctionCall_};
+		self.add(ExternalFunctionCall_Tuple);
+	}
+	//mO.ElementList -> Instantiation
+	var idElementList = 0;
+	for (ElementList_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!ElementList))){
+		var ElementList_Tuple = Tuple{"key"="ElementList_"+(idElementList++).asString(),"value"= ElementList_};
+		self.add(ElementList_Tuple);
+	}
+	//mO.Element -> Instantiation
+	var idElement = 0;
+	for (Element_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!Element))){
+		var Element_Tuple = Tuple{"key"="Element_"+(idElement++).asString(),"value"= Element_};
+		self.add(Element_Tuple);
+	}
+	//mO.ImportClause -> Instantiation
+	var idImportClause = 0;
+	for (ImportClause_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!ImportClause))){
+		var ImportClause_Tuple = Tuple{"key"="ImportClause_"+(idImportClause++).asString(),"value"= ImportClause_};
+		self.add(ImportClause_Tuple);
+	}
+	//mO.ImportList -> Instantiation
+	var idImportList = 0;
+	for (ImportList_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!ImportList))){
+		var ImportList_Tuple = Tuple{"key"="ImportList_"+(idImportList++).asString(),"value"= ImportList_};
+		self.add(ImportList_Tuple);
+	}
+	//mO.ExtendsClause -> Instantiation
+	var idExtendsClause = 0;
+	for (ExtendsClause_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!ExtendsClause))){
+		var ExtendsClause_Tuple = Tuple{"key"="ExtendsClause_"+(idExtendsClause++).asString(),"value"= ExtendsClause_};
+		self.add(ExtendsClause_Tuple);
+	}
+	//mO.typeClause -> Instantiation
+	var idtypeClause = 0;
+	for (typeClause_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!typeClause))){
+		var typeClause_Tuple = Tuple{"key"="typeClause_"+(idtypeClause++).asString(),"value"= typeClause_};
+		self.add(typeClause_Tuple);
+	}
+	//mO.ConstrainingClause -> Instantiation
+	var idConstrainingClause = 0;
+	for (ConstrainingClause_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!ConstrainingClause))){
+		var ConstrainingClause_Tuple = Tuple{"key"="ConstrainingClause_"+(idConstrainingClause++).asString(),"value"= ConstrainingClause_};
+		self.add(ConstrainingClause_Tuple);
+	}
+	//mO.ComponentClause -> Instantiation
+	var idComponentClause = 0;
+	for (ComponentClause_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!ComponentClause))){
+		var ComponentClause_Tuple = Tuple{"key"="ComponentClause_"+(idComponentClause++).asString(),"value"= ComponentClause_};
+		self.add(ComponentClause_Tuple);
+	}
+	//mO.TypeSpecifier -> Instantiation
+	var idTypeSpecifier = 0;
+	for (TypeSpecifier_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!TypeSpecifier))){
+		var TypeSpecifier_Tuple = Tuple{"key"="TypeSpecifier_"+(idTypeSpecifier++).asString(),"value"= TypeSpecifier_};
+		self.add(TypeSpecifier_Tuple);
+	}
+	//mO.ComponentList -> Instantiation
+	var idComponentList = 0;
+	for (ComponentList_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!ComponentList))){
+		var ComponentList_Tuple = Tuple{"key"="ComponentList_"+(idComponentList++).asString(),"value"= ComponentList_};
+		self.add(ComponentList_Tuple);
+	}
+	//mO.ComponentDeclaration -> Instantiation
+	var idComponentDeclaration = 0;
+	for (ComponentDeclaration_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!ComponentDeclaration))){
+		var ComponentDeclaration_Tuple = Tuple{"key"="ComponentDeclaration_"+(idComponentDeclaration++).asString(),"value"= ComponentDeclaration_};
+		self.add(ComponentDeclaration_Tuple);
+	}
+	//mO.ConditionAttribute -> Instantiation
+	var idConditionAttribute = 0;
+	for (ConditionAttribute_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!ConditionAttribute))){
+		var ConditionAttribute_Tuple = Tuple{"key"="ConditionAttribute_"+(idConditionAttribute++).asString(),"value"= ConditionAttribute_};
+		self.add(ConditionAttribute_Tuple);
+	}
+	//mO.Declaration -> Instantiation
+	var idDeclaration = 0;
+	for (Declaration_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!Declaration))){
+		var Declaration_Tuple = Tuple{"key"="Declaration_"+(idDeclaration++).asString(),"value"= Declaration_};
+		self.add(Declaration_Tuple);
+	}
+	//mO.Modification -> Instantiation
+	var idModification = 0;
+	for (Modification_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!Modification))){
+		var Modification_Tuple = Tuple{"key"="Modification_"+(idModification++).asString(),"value"= Modification_};
+		self.add(Modification_Tuple);
+	}
+	//mO.ClassModification -> Instantiation
+	var idClassModification = 0;
+	for (ClassModification_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!ClassModification))){
+		var ClassModification_Tuple = Tuple{"key"="ClassModification_"+(idClassModification++).asString(),"value"= ClassModification_};
+		self.add(ClassModification_Tuple);
+	}
+	//mO.ArgumentList -> Instantiation
+	var idArgumentList = 0;
+	for (ArgumentList_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!ArgumentList))){
+		var ArgumentList_Tuple = Tuple{"key"="ArgumentList_"+(idArgumentList++).asString(),"value"= ArgumentList_};
+		self.add(ArgumentList_Tuple);
+	}
+	//mO.Argument -> Instantiation
+	var idArgument = 0;
+	for (Argument_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!Argument))){
+		var Argument_Tuple = Tuple{"key"="Argument_"+(idArgument++).asString(),"value"= Argument_};
+		self.add(Argument_Tuple);
+	}
+	//mO.ElementModicationOrReplaceable -> Instantiation
+	var idElementModicationOrReplaceable = 0;
+	for (ElementModicationOrReplaceable_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!ElementModicationOrReplaceable))){
+		var ElementModicationOrReplaceable_Tuple = Tuple{"key"="ElementModicationOrReplaceable_"+(idElementModicationOrReplaceable++).asString(),"value"= ElementModicationOrReplaceable_};
+		self.add(ElementModicationOrReplaceable_Tuple);
+	}
+	//mO.ElementModification -> Instantiation
+	var idElementModification = 0;
+	for (ElementModification_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!ElementModification))){
+		var ElementModification_Tuple = Tuple{"key"="ElementModification_"+(idElementModification++).asString(),"value"= ElementModification_};
+		self.add(ElementModification_Tuple);
+	}
+	//mO.ElementRedeclaration -> Instantiation
+	var idElementRedeclaration = 0;
+	for (ElementRedeclaration_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!ElementRedeclaration))){
+		var ElementRedeclaration_Tuple = Tuple{"key"="ElementRedeclaration_"+(idElementRedeclaration++).asString(),"value"= ElementRedeclaration_};
+		self.add(ElementRedeclaration_Tuple);
+	}
+	//mO.ElementReplaceable -> Instantiation
+	var idElementReplaceable = 0;
+	for (ElementReplaceable_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!ElementReplaceable))){
+		var ElementReplaceable_Tuple = Tuple{"key"="ElementReplaceable_"+(idElementReplaceable++).asString(),"value"= ElementReplaceable_};
+		self.add(ElementReplaceable_Tuple);
+	}
+	//mO.ComponentClause1 -> Instantiation
+	var idComponentClause1 = 0;
+	for (ComponentClause1_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!ComponentClause1))){
+		var ComponentClause1_Tuple = Tuple{"key"="ComponentClause1_"+(idComponentClause1++).asString(),"value"= ComponentClause1_};
+		self.add(ComponentClause1_Tuple);
+	}
+	//mO.ComponentDeclaration1 -> Instantiation
+	var idComponentDeclaration1 = 0;
+	for (ComponentDeclaration1_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!ComponentDeclaration1))){
+		var ComponentDeclaration1_Tuple = Tuple{"key"="ComponentDeclaration1_"+(idComponentDeclaration1++).asString(),"value"= ComponentDeclaration1_};
+		self.add(ComponentDeclaration1_Tuple);
+	}
+	//mO.ShortClassDefinition -> Instantiation
+	var idShortClassDefinition = 0;
+	for (ShortClassDefinition_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!ShortClassDefinition))){
+		var ShortClassDefinition_Tuple = Tuple{"key"="ShortClassDefinition_"+(idShortClassDefinition++).asString(),"value"= ShortClassDefinition_};
+		self.add(ShortClassDefinition_Tuple);
+	}
+	//mO.EquationSection -> Instantiation
+	var idEquationSection = 0;
+	for (EquationSection_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!EquationSection))){
+		var EquationSection_Tuple = Tuple{"key"="EquationSection_"+(idEquationSection++).asString(),"value"= EquationSection_};
+		self.add(EquationSection_Tuple);
+	}
+	//mO.AlgorithmSection -> Instantiation
+	var idAlgorithmSection = 0;
+	for (AlgorithmSection_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!AlgorithmSection))){
+		var AlgorithmSection_Tuple = Tuple{"key"="AlgorithmSection_"+(idAlgorithmSection++).asString(),"value"= AlgorithmSection_};
+		self.add(AlgorithmSection_Tuple);
+	}
+	//mO.Equation -> Instantiation
+	var idEquation = 0;
+	for (Equation_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!Equation))){
+		var Equation_Tuple = Tuple{"key"="Equation_"+(idEquation++).asString(),"value"= Equation_};
+		self.add(Equation_Tuple);
+	}
+	//mO.Statement -> Instantiation
+	var idStatement = 0;
+	for (Statement_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!Statement))){
+		var Statement_Tuple = Tuple{"key"="Statement_"+(idStatement++).asString(),"value"= Statement_};
+		self.add(Statement_Tuple);
+	}
+	//mO.IfEquation -> Instantiation
+	var idIfEquation = 0;
+	for (IfEquation_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!IfEquation))){
+		var IfEquation_Tuple = Tuple{"key"="IfEquation_"+(idIfEquation++).asString(),"value"= IfEquation_};
+		self.add(IfEquation_Tuple);
+	}
+	//mO.IfStatement -> Instantiation
+	var idIfStatement = 0;
+	for (IfStatement_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!IfStatement))){
+		var IfStatement_Tuple = Tuple{"key"="IfStatement_"+(idIfStatement++).asString(),"value"= IfStatement_};
+		self.add(IfStatement_Tuple);
+	}
+	//mO.ForEquation -> Instantiation
+	var idForEquation = 0;
+	for (ForEquation_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!ForEquation))){
+		var ForEquation_Tuple = Tuple{"key"="ForEquation_"+(idForEquation++).asString(),"value"= ForEquation_};
+		self.add(ForEquation_Tuple);
+	}
+	//mO.ForStatement -> Instantiation
+	var idForStatement = 0;
+	for (ForStatement_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!ForStatement))){
+		var ForStatement_Tuple = Tuple{"key"="ForStatement_"+(idForStatement++).asString(),"value"= ForStatement_};
+		self.add(ForStatement_Tuple);
+	}
+	//mO.ForIndices -> Instantiation
+	var idForIndices = 0;
+	for (ForIndices_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!ForIndices))){
+		var ForIndices_Tuple = Tuple{"key"="ForIndices_"+(idForIndices++).asString(),"value"= ForIndices_};
+		self.add(ForIndices_Tuple);
+	}
+	//mO.ForIndex -> Instantiation
+	var idForIndex = 0;
+	for (ForIndex_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!ForIndex))){
+		var ForIndex_Tuple = Tuple{"key"="ForIndex_"+(idForIndex++).asString(),"value"= ForIndex_};
+		self.add(ForIndex_Tuple);
+	}
+	//mO.WhileStatement -> Instantiation
+	var idWhileStatement = 0;
+	for (WhileStatement_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!WhileStatement))){
+		var WhileStatement_Tuple = Tuple{"key"="WhileStatement_"+(idWhileStatement++).asString(),"value"= WhileStatement_};
+		self.add(WhileStatement_Tuple);
+	}
+	//mO.WhenEquation -> Instantiation
+	var idWhenEquation = 0;
+	for (WhenEquation_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!WhenEquation))){
+		var WhenEquation_Tuple = Tuple{"key"="WhenEquation_"+(idWhenEquation++).asString(),"value"= WhenEquation_};
+		self.add(WhenEquation_Tuple);
+	}
+	//mO.WhenStatement -> Instantiation
+	var idWhenStatement = 0;
+	for (WhenStatement_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!WhenStatement))){
+		var WhenStatement_Tuple = Tuple{"key"="WhenStatement_"+(idWhenStatement++).asString(),"value"= WhenStatement_};
+		self.add(WhenStatement_Tuple);
+	}
+	//mO.ConnectClause -> Instantiation
+	var idConnectClause = 0;
+	for (ConnectClause_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!ConnectClause))){
+		var ConnectClause_Tuple = Tuple{"key"="ConnectClause_"+(idConnectClause++).asString(),"value"= ConnectClause_};
+		self.add(ConnectClause_Tuple);
+	}
+	//mO.Expression -> Instantiation
+	var idExpression = 0;
+	for (Expression_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!Expression))){
+		var Expression_Tuple = Tuple{"key"="Expression_"+(idExpression++).asString(),"value"= Expression_};
+		self.add(Expression_Tuple);
+	}
+	//mO.SimpleExpression -> Instantiation
+	var idSimpleExpression = 0;
+	for (SimpleExpression_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!SimpleExpression))){
+		var SimpleExpression_Tuple = Tuple{"key"="SimpleExpression_"+(idSimpleExpression++).asString(),"value"= SimpleExpression_};
+		self.add(SimpleExpression_Tuple);
+	}
+	//mO.LogicalExpression -> Instantiation
+	var idLogicalExpression = 0;
+	for (LogicalExpression_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!LogicalExpression))){
+		var LogicalExpression_Tuple = Tuple{"key"="LogicalExpression_"+(idLogicalExpression++).asString(),"value"= LogicalExpression_};
+		self.add(LogicalExpression_Tuple);
+	}
+	//mO.LogicalTerm -> Instantiation
+	var idLogicalTerm = 0;
+	for (LogicalTerm_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!LogicalTerm))){
+		var LogicalTerm_Tuple = Tuple{"key"="LogicalTerm_"+(idLogicalTerm++).asString(),"value"= LogicalTerm_};
+		self.add(LogicalTerm_Tuple);
+	}
+	//mO.LogicalFactor -> Instantiation
+	var idLogicalFactor = 0;
+	for (LogicalFactor_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!LogicalFactor))){
+		var LogicalFactor_Tuple = Tuple{"key"="LogicalFactor_"+(idLogicalFactor++).asString(),"value"= LogicalFactor_};
+		self.add(LogicalFactor_Tuple);
+	}
+	//mO.Relation -> Instantiation
+	var idRelation = 0;
+	for (Relation_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!Relation))){
+		var Relation_Tuple = Tuple{"key"="Relation_"+(idRelation++).asString(),"value"= Relation_};
+		self.add(Relation_Tuple);
+	}
+	//mO.ArithmeticExpression -> Instantiation
+	var idArithmeticExpression = 0;
+	for (ArithmeticExpression_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!ArithmeticExpression))){
+		var ArithmeticExpression_Tuple = Tuple{"key"="ArithmeticExpression_"+(idArithmeticExpression++).asString(),"value"= ArithmeticExpression_};
+		self.add(ArithmeticExpression_Tuple);
+	}
+	//mO.Negation -> Instantiation
+	var idNegation = 0;
+	for (Negation_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!Negation))){
+		var Negation_Tuple = Tuple{"key"="Negation_"+(idNegation++).asString(),"value"= Negation_};
+		self.add(Negation_Tuple);
+	}
+	//mO.Term -> Instantiation
+	var idTerm = 0;
+	for (Term_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!Term))){
+		var Term_Tuple = Tuple{"key"="Term_"+(idTerm++).asString(),"value"= Term_};
+		self.add(Term_Tuple);
+	}
+	//mO.Factor -> Instantiation
+	var idFactor = 0;
+	for (Factor_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!Factor))){
+		var Factor_Tuple = Tuple{"key"="Factor_"+(idFactor++).asString(),"value"= Factor_};
+		self.add(Factor_Tuple);
+	}
+	//mO.FloatPrimary -> Instantiation
+	var idFloatPrimary = 0;
+	for (FloatPrimary_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!FloatPrimary))){
+		var FloatPrimary_Tuple = Tuple{"key"="FloatPrimary_"+(idFloatPrimary++).asString(),"value"= FloatPrimary_};
+		self.add(FloatPrimary_Tuple);
+	}
+	//mO.StringPrimary -> Instantiation
+	var idStringPrimary = 0;
+	for (StringPrimary_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!StringPrimary))){
+		var StringPrimary_Tuple = Tuple{"key"="StringPrimary_"+(idStringPrimary++).asString(),"value"= StringPrimary_};
+		self.add(StringPrimary_Tuple);
+	}
+	//mO.LogicalPrimary -> Instantiation
+	var idLogicalPrimary = 0;
+	for (LogicalPrimary_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!LogicalPrimary))){
+		var LogicalPrimary_Tuple = Tuple{"key"="LogicalPrimary_"+(idLogicalPrimary++).asString(),"value"= LogicalPrimary_};
+		self.add(LogicalPrimary_Tuple);
+	}
+	//mO.End -> Instantiation
+	var idEnd = 0;
+	for (End_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!End))){
+		var End_Tuple = Tuple{"key"="End_"+(idEnd++).asString(),"value"= End_};
+		self.add(End_Tuple);
+	}
+	//mO.Primary -> Instantiation
+	var idPrimary = 0;
+	for (Primary_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!Primary))){
+		var Primary_Tuple = Tuple{"key"="Primary_"+(idPrimary++).asString(),"value"= Primary_};
+		self.add(Primary_Tuple);
+	}
+	//mO.FunctionCall -> Instantiation
+	var idFunctionCall = 0;
+	for (FunctionCall_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!FunctionCall))){
+		var FunctionCall_Tuple = Tuple{"key"="FunctionCall_"+(idFunctionCall++).asString(),"value"= FunctionCall_};
+		self.add(FunctionCall_Tuple);
+	}
+	//mO.ComponentReference -> Instantiation
+	var idComponentReference = 0;
+	for (ComponentReference_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!ComponentReference))){
+		var ComponentReference_Tuple = Tuple{"key"="ComponentReference_"+(idComponentReference++).asString(),"value"= ComponentReference_};
+		self.add(ComponentReference_Tuple);
+	}
+	//mO.FunctionCallArgs -> Instantiation
+	var idFunctionCallArgs = 0;
+	for (FunctionCallArgs_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!FunctionCallArgs))){
+		var FunctionCallArgs_Tuple = Tuple{"key"="FunctionCallArgs_"+(idFunctionCallArgs++).asString(),"value"= FunctionCallArgs_};
+		self.add(FunctionCallArgs_Tuple);
+	}
+	//mO.FunctionArguments -> Instantiation
+	var idFunctionArguments = 0;
+	for (FunctionArguments_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!FunctionArguments))){
+		var FunctionArguments_Tuple = Tuple{"key"="FunctionArguments_"+(idFunctionArguments++).asString(),"value"= FunctionArguments_};
+		self.add(FunctionArguments_Tuple);
+	}
+	//mO.NamedArguments -> Instantiation
+	var idNamedArguments = 0;
+	for (NamedArguments_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!NamedArguments))){
+		var NamedArguments_Tuple = Tuple{"key"="NamedArguments_"+(idNamedArguments++).asString(),"value"= NamedArguments_};
+		self.add(NamedArguments_Tuple);
+	}
+	//mO.NamedArgument -> Instantiation
+	var idNamedArgument = 0;
+	for (NamedArgument_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!NamedArgument))){
+		var NamedArgument_Tuple = Tuple{"key"="NamedArgument_"+(idNamedArgument++).asString(),"value"= NamedArgument_};
+		self.add(NamedArgument_Tuple);
+	}
+	//mO.FunctionArgument -> Instantiation
+	var idFunctionArgument = 0;
+	for (FunctionArgument_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!FunctionArgument))){
+		var FunctionArgument_Tuple = Tuple{"key"="FunctionArgument_"+(idFunctionArgument++).asString(),"value"= FunctionArgument_};
+		self.add(FunctionArgument_Tuple);
+	}
+	//mO.FunctionDefinition -> Instantiation
+	var idFunctionDefinition = 0;
+	for (FunctionDefinition_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!FunctionDefinition))){
+		var FunctionDefinition_Tuple = Tuple{"key"="FunctionDefinition_"+(idFunctionDefinition++).asString(),"value"= FunctionDefinition_};
+		self.add(FunctionDefinition_Tuple);
+	}
+	//mO.OutputExpressionList -> Instantiation
+	var idOutputExpressionList = 0;
+	for (OutputExpressionList_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!OutputExpressionList))){
+		var OutputExpressionList_Tuple = Tuple{"key"="OutputExpressionList_"+(idOutputExpressionList++).asString(),"value"= OutputExpressionList_};
+		self.add(OutputExpressionList_Tuple);
+	}
+	//mO.ExpressionList -> Instantiation
+	var idExpressionList = 0;
+	for (ExpressionList_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!ExpressionList))){
+		var ExpressionList_Tuple = Tuple{"key"="ExpressionList_"+(idExpressionList++).asString(),"value"= ExpressionList_};
+		self.add(ExpressionList_Tuple);
+	}
+	//mO.ArraySubscripts -> Instantiation
+	var idArraySubscripts = 0;
+	for (ArraySubscripts_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!ArraySubscripts))){
+		var ArraySubscripts_Tuple = Tuple{"key"="ArraySubscripts_"+(idArraySubscripts++).asString(),"value"= ArraySubscripts_};
+		self.add(ArraySubscripts_Tuple);
+	}
+	//mO.Subscript -> Instantiation
+	var idSubscript = 0;
+	for (Subscript_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!Subscript))){
+		var Subscript_Tuple = Tuple{"key"="Subscript_"+(idSubscript++).asString(),"value"= Subscript_};
+		self.add(Subscript_Tuple);
+	}
+	//mO.Comment -> Instantiation
+	var idComment = 0;
+	for (Comment_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!Comment))){
+		var Comment_Tuple = Tuple{"key"="Comment_"+(idComment++).asString(),"value"= Comment_};
+		self.add(Comment_Tuple);
+	}
+	//mO.Annotation -> Instantiation
+	var idAnnotation = 0;
+	for (Annotation_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!Annotation))){
+		var Annotation_Tuple = Tuple{"key"="Annotation_"+(idAnnotation++).asString(),"value"= Annotation_};
+		self.add(Annotation_Tuple);
+	}
+	//mO.OuputExpressionList -> Instantiation
+	var idOuputExpressionList = 0;
+	for (OuputExpressionList_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!OuputExpressionList))){
+		var OuputExpressionList_Tuple = Tuple{"key"="OuputExpressionList_"+(idOuputExpressionList++).asString(),"value"= OuputExpressionList_};
+		self.add(OuputExpressionList_Tuple);
+	}
+}
+
+@abstract
+rule Base
+	transform s : DSL!EObject
+	to t : SysMLine!ItemUsage{
+	t.declaredName = s.getDeclaredName();
+	t.featureNote.add(":");
+	t.featureSpecialization.add(s.getfeatureSpecialization());
+	if (s.eContainingFeature != null and s.eContainingFeature.name != null){
+		t.featureNote.add(":>");
+		t.featureSpecialization.add(s.eContainingFeature().name);
+	}
+}
+
+// mO.ecore
+@lazy
+rule StoredDefinition
+	transform s : DSL!StoredDefinition //mO.StoredDefinition
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//StoredDefinition.within -> EAttribute : within
+	if (s.within.getEAttribute() != null) t.addNewAttribute("within".clearKeyWord(), s.within.getEAttribute());
+	//StoredDefinition.classes -> EReference : classes
+	if (s.classes.getEReference() != null) t.addNewReference("classes".clearKeyWord(), s.classes.getEReference());
+}
+
+@lazy
+rule ClassDefinition
+	transform s : DSL!ClassDefinition //mO.ClassDefinition
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//ClassDefinition.name -> EAttribute : name
+	if (s.name.getEAttribute() != null) t.addNewAttribute("name".clearKeyWord(), s.name.getEAttribute());
+	//ClassDefinition.str_comment -> EAttribute : str_comment
+	if (s.str_comment.getEAttribute() != null) t.addNewAttribute("str_comment".clearKeyWord(), s.str_comment.getEAttribute());
+	//ClassDefinition.name_end -> EAttribute : name_end
+	if (s.name_end.getEAttribute() != null) t.addNewAttribute("name_end".clearKeyWord(), s.name_end.getEAttribute());
+	//ClassDefinition.prefix -> EAttribute : prefix
+	if (s.prefix.getEAttribute() != null) t.addNewAttribute("prefix".clearKeyWord(), s.prefix.getEAttribute());
+	//ClassDefinition.name2 -> EAttribute : name2
+	if (s.name2.getEAttribute() != null) t.addNewAttribute("name2".clearKeyWord(), s.name2.getEAttribute());
+	//ClassDefinition.baseType -> EAttribute : baseType
+	if (s.baseType.getEAttribute() != null) t.addNewAttribute("baseType".clearKeyWord(), s.baseType.getEAttribute());
+	//ClassDefinition.final -> EAttribute : final
+	if (s.final.getEAttribute() != null) t.addNewAttribute("final".clearKeyWord(), s.final.getEAttribute());
+	//ClassDefinition.encapsulated -> EAttribute : encapsulated
+	if (s.encapsulated.getEAttribute() != null) t.addNewAttribute("encapsulated".clearKeyWord(), s.encapsulated.getEAttribute());
+	//ClassDefinition.composition -> EReference : composition
+	if (s.composition.getEReference() != null) t.addNewReference("composition".clearKeyWord(), s.composition.getEReference());
+	//ClassDefinition.subs -> EReference : subs
+	if (s.subs.getEReference() != null) t.addNewReference("subs".clearKeyWord(), s.subs.getEReference());
+	//ClassDefinition.mod -> EReference : mod
+	if (s.mod.getEReference() != null) t.addNewReference("mod".clearKeyWord(), s.mod.getEReference());
+	//ClassDefinition.comment -> EReference : comment
+	if (s.comment.getEReference() != null) t.addNewReference("comment".clearKeyWord(), s.comment.getEReference());
+	//ClassDefinition.list -> EReference : list
+	if (s.list.getEReference() != null) t.addNewReference("list".clearKeyWord(), s.list.getEReference());
+	//ClassDefinition.type -> EReference : type
+	if (s.type.getEReference() != null) t.addNewReference("type".clearKeyWord(), s.type.getEReference());
+	//ClassDefinition.constraining -> EReference : constraining
+	if (s.constraining.getEReference() != null) t.addNewReference("constraining".clearKeyWord(), s.constraining.getEReference());
+}
+
+@lazy
+rule ClassSpecifier
+	transform s : DSL!ClassSpecifier //mO.ClassSpecifier
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//ClassSpecifier.name -> EAttribute : name
+	if (s.name.getEAttribute() != null) t.addNewAttribute("name".clearKeyWord(), s.name.getEAttribute());
+	//ClassSpecifier.str_comment -> EAttribute : str_comment
+	if (s.str_comment.getEAttribute() != null) t.addNewAttribute("str_comment".clearKeyWord(), s.str_comment.getEAttribute());
+	//ClassSpecifier.name_end -> EAttribute : name_end
+	if (s.name_end.getEAttribute() != null) t.addNewAttribute("name_end".clearKeyWord(), s.name_end.getEAttribute());
+	//ClassSpecifier.prefix -> EAttribute : prefix
+	if (s.prefix.getEAttribute() != null) t.addNewAttribute("prefix".clearKeyWord(), s.prefix.getEAttribute());
+	//ClassSpecifier.name2 -> EAttribute : name2
+	if (s.name2.getEAttribute() != null) t.addNewAttribute("name2".clearKeyWord(), s.name2.getEAttribute());
+	//ClassSpecifier.baseType -> EAttribute : baseType
+	if (s.baseType.getEAttribute() != null) t.addNewAttribute("baseType".clearKeyWord(), s.baseType.getEAttribute());
+	//ClassSpecifier.composition -> EReference : composition
+	if (s.composition.getEReference() != null) t.addNewReference("composition".clearKeyWord(), s.composition.getEReference());
+	//ClassSpecifier.subs -> EReference : subs
+	if (s.subs.getEReference() != null) t.addNewReference("subs".clearKeyWord(), s.subs.getEReference());
+	//ClassSpecifier.mod -> EReference : mod
+	if (s.mod.getEReference() != null) t.addNewReference("mod".clearKeyWord(), s.mod.getEReference());
+	//ClassSpecifier.comment -> EReference : comment
+	if (s.comment.getEReference() != null) t.addNewReference("comment".clearKeyWord(), s.comment.getEReference());
+	//ClassSpecifier.list -> EReference : list
+	if (s.list.getEReference() != null) t.addNewReference("list".clearKeyWord(), s.list.getEReference());
+	//ClassSpecifier.type -> EReference : type
+	if (s.type.getEReference() != null) t.addNewReference("type".clearKeyWord(), s.type.getEReference());
+}
+
+@lazy
+rule EnumList
+	transform s : DSL!EnumList //mO.EnumList
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//EnumList.enums -> EReference : enums
+	if (s.enums.getEReference() != null) t.addNewReference("enums".clearKeyWord(), s.enums.getEReference());
+}
+
+@lazy
+rule EnumerationLiteral
+	transform s : DSL!EnumerationLiteral //mO.EnumerationLiteral
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//EnumerationLiteral.id -> EAttribute : id
+	if (s.id.getEAttribute() != null) t.addNewAttribute("id".clearKeyWord(), s.id.getEAttribute());
+	//EnumerationLiteral.comment -> EReference : comment
+	if (s.comment.getEReference() != null) t.addNewReference("comment".clearKeyWord(), s.comment.getEReference());
+}
+
+@lazy
+rule Composition
+	transform s : DSL!Composition //mO.Composition
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//Composition.ext_lang_spec -> EAttribute : ext_lang_spec
+	if (s.ext_lang_spec.getEAttribute() != null) t.addNewAttribute("ext_lang_spec".clearKeyWord(), s.ext_lang_spec.getEAttribute());
+	//Composition.priv_elist -> EReference : priv_elist
+	if (s.priv_elist.getEReference() != null) t.addNewReference("priv_elist".clearKeyWord(), s.priv_elist.getEReference());
+	//Composition.pub_elist -> EReference : pub_elist
+	if (s.pub_elist.getEReference() != null) t.addNewReference("pub_elist".clearKeyWord(), s.pub_elist.getEReference());
+	//Composition.protected_elist -> EReference : protected_elist
+	if (s.protected_elist.getEReference() != null) t.addNewReference("protected_elist".clearKeyWord(), s.protected_elist.getEReference());
+	//Composition.eq_secs -> EReference : eq_secs
+	if (s.eq_secs.getEReference() != null) t.addNewReference("eq_secs".clearKeyWord(), s.eq_secs.getEReference());
+	//Composition.alg_secs -> EReference : alg_secs
+	if (s.alg_secs.getEReference() != null) t.addNewReference("alg_secs".clearKeyWord(), s.alg_secs.getEReference());
+	//Composition.ext_func_call -> EReference : ext_func_call
+	if (s.ext_func_call.getEReference() != null) t.addNewReference("ext_func_call".clearKeyWord(), s.ext_func_call.getEReference());
+	//Composition.ext_anno -> EReference : ext_anno
+	if (s.ext_anno.getEReference() != null) t.addNewReference("ext_anno".clearKeyWord(), s.ext_anno.getEReference());
+	//Composition.anno -> EReference : anno
+	if (s.anno.getEReference() != null) t.addNewReference("anno".clearKeyWord(), s.anno.getEReference());
+}
+
+@lazy
+rule ExternalFunctionCall
+	transform s : DSL!ExternalFunctionCall //mO.ExternalFunctionCall
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//ExternalFunctionCall.name -> EAttribute : name
+	if (s.name.getEAttribute() != null) t.addNewAttribute("name".clearKeyWord(), s.name.getEAttribute());
+	//ExternalFunctionCall.lhs -> EReference : lhs
+	if (s.lhs.getEReference() != null) t.addNewReference("lhs".clearKeyWord(), s.lhs.getEReference());
+	//ExternalFunctionCall.args -> EReference : args
+	if (s.args.getEReference() != null) t.addNewReference("args".clearKeyWord(), s.args.getEReference());
+}
+
+@lazy
+rule ElementList
+	transform s : DSL!ElementList //mO.ElementList
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//ElementList.elem -> EReference : elem
+	if (s.elem.getEReference() != null) t.addNewReference("elem".clearKeyWord(), s.elem.getEReference());
+}
+
+@lazy
+rule Element
+	transform s : DSL!Element //mO.Element
+	to t : SysMLine!ItemUsage
+	extends Base{
+}
+
+@lazy
+rule ImportClause
+	transform s : DSL!ImportClause //mO.ImportClause
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//ImportClause.id -> EAttribute : id
+	if (s.id.getEAttribute() != null) t.addNewAttribute("id".clearKeyWord(), s.id.getEAttribute());
+	//ImportClause.name -> EAttribute : name
+	if (s.name.getEAttribute() != null) t.addNewAttribute("name".clearKeyWord(), s.name.getEAttribute());
+	//ImportClause.list -> EReference : list
+	if (s.list.getEReference() != null) t.addNewReference("list".clearKeyWord(), s.list.getEReference());
+	//ImportClause.comment -> EReference : comment
+	if (s.comment.getEReference() != null) t.addNewReference("comment".clearKeyWord(), s.comment.getEReference());
+}
+
+@lazy
+rule ImportList
+	transform s : DSL!ImportList //mO.ImportList
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//ImportList.id -> EAttribute : id
+	if (s.id.getEAttribute() != null) t.addNewAttribute("id".clearKeyWord(), s.id.getEAttribute());
+	//ImportList.list -> EReference : list
+	if (s.list.getEReference() != null) t.addNewReference("list".clearKeyWord(), s.list.getEReference());
+}
+
+@lazy
+rule ExtendsClause
+	transform s : DSL!ExtendsClause //mO.ExtendsClause
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//ExtendsClause.name -> EAttribute : name
+	if (s.name.getEAttribute() != null) t.addNewAttribute("name".clearKeyWord(), s.name.getEAttribute());
+	//ExtendsClause.mod -> EReference : mod
+	if (s.mod.getEReference() != null) t.addNewReference("mod".clearKeyWord(), s.mod.getEReference());
+	//ExtendsClause.anno -> EReference : anno
+	if (s.anno.getEReference() != null) t.addNewReference("anno".clearKeyWord(), s.anno.getEReference());
+}
+
+@lazy
+rule typeClause
+	transform s : DSL!typeClause //mO.typeClause
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//typeClause.name -> EAttribute : name
+	if (s.name.getEAttribute() != null) t.addNewAttribute("name".clearKeyWord(), s.name.getEAttribute());
+	//typeClause.baseType -> EAttribute : baseType
+	if (s.baseType.getEAttribute() != null) t.addNewAttribute("baseType".clearKeyWord(), s.baseType.getEAttribute());
+	//typeClause.mod -> EReference : mod
+	if (s.mod.getEReference() != null) t.addNewReference("mod".clearKeyWord(), s.mod.getEReference());
+	//typeClause.anno -> EReference : anno
+	if (s.anno.getEReference() != null) t.addNewReference("anno".clearKeyWord(), s.anno.getEReference());
+}
+
+@lazy
+rule ConstrainingClause
+	transform s : DSL!ConstrainingClause //mO.ConstrainingClause
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//ConstrainingClause.name -> EAttribute : name
+	if (s.name.getEAttribute() != null) t.addNewAttribute("name".clearKeyWord(), s.name.getEAttribute());
+	//ConstrainingClause.mod -> EReference : mod
+	if (s.mod.getEReference() != null) t.addNewReference("mod".clearKeyWord(), s.mod.getEReference());
+}
+
+@lazy
+rule ComponentClause
+	transform s : DSL!ComponentClause //mO.ComponentClause
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//ComponentClause.prefix -> EAttribute : prefix
+	if (s.prefix.getEAttribute() != null) t.addNewAttribute("prefix".clearKeyWord(), s.prefix.getEAttribute());
+	//ComponentClause.constraining -> EReference : constraining
+	if (s.constraining.getEReference() != null) t.addNewReference("constraining".clearKeyWord(), s.constraining.getEReference());
+	//ComponentClause.comment -> EReference : comment
+	if (s.comment.getEReference() != null) t.addNewReference("comment".clearKeyWord(), s.comment.getEReference());
+	//ComponentClause.type -> EReference : type
+	if (s.type.getEReference() != null) t.addNewReference("type".clearKeyWord(), s.type.getEReference());
+	//ComponentClause.subs -> EReference : subs
+	if (s.subs.getEReference() != null) t.addNewReference("subs".clearKeyWord(), s.subs.getEReference());
+	//ComponentClause.comps -> EReference : comps
+	if (s.comps.getEReference() != null) t.addNewReference("comps".clearKeyWord(), s.comps.getEReference());
+}
+
+@lazy
+rule TypeSpecifier
+	transform s : DSL!TypeSpecifier //mO.TypeSpecifier
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//TypeSpecifier.name -> EAttribute : name
+	if (s.name.getEAttribute() != null) t.addNewAttribute("name".clearKeyWord(), s.name.getEAttribute());
+	//TypeSpecifier.name1 -> EReference : name1
+	if (s.name1.getEReference() != null) t.addNewReference("name1".clearKeyWord(), s.name1.getEReference());
+}
+
+@lazy
+rule ComponentList
+	transform s : DSL!ComponentList //mO.ComponentList
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//ComponentList.comps -> EReference : comps
+	if (s.comps.getEReference() != null) t.addNewReference("comps".clearKeyWord(), s.comps.getEReference());
+}
+
+@lazy
+rule ComponentDeclaration
+	transform s : DSL!ComponentDeclaration //mO.ComponentDeclaration
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//ComponentDeclaration.decl -> EReference : decl
+	if (s.decl.getEReference() != null) t.addNewReference("decl".clearKeyWord(), s.decl.getEReference());
+	//ComponentDeclaration.cond -> EReference : cond
+	if (s.cond.getEReference() != null) t.addNewReference("cond".clearKeyWord(), s.cond.getEReference());
+	//ComponentDeclaration.comment -> EReference : comment
+	if (s.comment.getEReference() != null) t.addNewReference("comment".clearKeyWord(), s.comment.getEReference());
+}
+
+@lazy
+rule ConditionAttribute
+	transform s : DSL!ConditionAttribute //mO.ConditionAttribute
+	to t : SysMLine!ItemUsage
+	extends Base{
+}
+
+@lazy
+rule Declaration
+	transform s : DSL!Declaration //mO.Declaration
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//Declaration.name -> EAttribute : name
+	if (s.name.getEAttribute() != null) t.addNewAttribute("name".clearKeyWord(), s.name.getEAttribute());
+	//Declaration.type -> EReference : type
+	if (s.type.getEReference() != null) t.addNewReference("type".clearKeyWord(), s.type.getEReference());
+	//Declaration.subscripts -> EReference : subscripts
+	if (s.subscripts.getEReference() != null) t.addNewReference("subscripts".clearKeyWord(), s.subscripts.getEReference());
+	//Declaration.mod -> EReference : mod
+	if (s.mod.getEReference() != null) t.addNewReference("mod".clearKeyWord(), s.mod.getEReference());
+	//Declaration.comment -> EReference : comment
+	if (s.comment.getEReference() != null) t.addNewReference("comment".clearKeyWord(), s.comment.getEReference());
+}
+
+@lazy
+rule Modification
+	transform s : DSL!Modification //mO.Modification
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//Modification.mod -> EReference : mod
+	if (s.mod.getEReference() != null) t.addNewReference("mod".clearKeyWord(), s.mod.getEReference());
+	//Modification.expr -> EReference : expr
+	if (s.expr.getEReference() != null) t.addNewReference("expr".clearKeyWord(), s.expr.getEReference());
+}
+
+@lazy
+rule ClassModification
+	transform s : DSL!ClassModification //mO.ClassModification
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//ClassModification.args -> EReference : args
+	if (s.args.getEReference() != null) t.addNewReference("args".clearKeyWord(), s.args.getEReference());
+}
+
+@lazy
+rule ArgumentList
+	transform s : DSL!ArgumentList //mO.ArgumentList
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//ArgumentList.args -> EReference : args
+	if (s.args.getEReference() != null) t.addNewReference("args".clearKeyWord(), s.args.getEReference());
+}
+
+@lazy
+rule Argument
+	transform s : DSL!Argument //mO.Argument
+	to t : SysMLine!ItemUsage
+	extends Base{
+}
+
+@lazy
+rule ElementModicationOrReplaceable
+	transform s : DSL!ElementModicationOrReplaceable //mO.ElementModicationOrReplaceable
+	to t : SysMLine!ItemUsage
+	extends Base{
+}
+
+@lazy
+rule ElementModification
+	transform s : DSL!ElementModification //mO.ElementModification
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//ElementModification.name -> EAttribute : name
+	if (s.name.getEAttribute() != null) t.addNewAttribute("name".clearKeyWord(), s.name.getEAttribute());
+	//ElementModification.comment -> EAttribute : comment
+	if (s.comment.getEAttribute() != null) t.addNewAttribute("comment".clearKeyWord(), s.comment.getEAttribute());
+	//ElementModification.mod -> EReference : mod
+	if (s.mod.getEReference() != null) t.addNewReference("mod".clearKeyWord(), s.mod.getEReference());
+}
+
+@lazy
+rule ElementRedeclaration
+	transform s : DSL!ElementRedeclaration //mO.ElementRedeclaration
+	to t : SysMLine!ItemUsage
+	extends Base{
+}
+
+@lazy
+rule ElementReplaceable
+	transform s : DSL!ElementReplaceable //mO.ElementReplaceable
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//ElementReplaceable.const -> EReference : const
+	if (s.const.getEReference() != null) t.addNewReference("const".clearKeyWord(), s.const.getEReference());
+}
+
+@lazy
+rule ComponentClause1
+	transform s : DSL!ComponentClause1 //mO.ComponentClause1
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//ComponentClause1.prefix -> EAttribute : prefix
+	if (s.prefix.getEAttribute() != null) t.addNewAttribute("prefix".clearKeyWord(), s.prefix.getEAttribute());
+	//ComponentClause1.const -> EReference : const
+	if (s.const.getEReference() != null) t.addNewReference("const".clearKeyWord(), s.const.getEReference());
+	//ComponentClause1.type -> EReference : type
+	if (s.type.getEReference() != null) t.addNewReference("type".clearKeyWord(), s.type.getEReference());
+	//ComponentClause1.subs -> EReference : subs
+	if (s.subs.getEReference() != null) t.addNewReference("subs".clearKeyWord(), s.subs.getEReference());
+	//ComponentClause1.comp -> EReference : comp
+	if (s.comp.getEReference() != null) t.addNewReference("comp".clearKeyWord(), s.comp.getEReference());
+}
+
+@lazy
+rule ComponentDeclaration1
+	transform s : DSL!ComponentDeclaration1 //mO.ComponentDeclaration1
+	to t : SysMLine!ItemUsage
+	extends Base{
+}
+
+@lazy
+rule ShortClassDefinition
+	transform s : DSL!ShortClassDefinition //mO.ShortClassDefinition
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//ShortClassDefinition.const -> EReference : const
+	if (s.const.getEReference() != null) t.addNewReference("const".clearKeyWord(), s.const.getEReference());
+	//ShortClassDefinition.mode -> EReference : mode
+	if (s.mode.getEReference() != null) t.addNewReference("mode".clearKeyWord(), s.mode.getEReference());
+	//ShortClassDefinition.comment -> EReference : comment
+	if (s.comment.getEReference() != null) t.addNewReference("comment".clearKeyWord(), s.comment.getEReference());
+	//ShortClassDefinition.list -> EReference : list
+	if (s.list.getEReference() != null) t.addNewReference("list".clearKeyWord(), s.list.getEReference());
+}
+
+@lazy
+rule EquationSection
+	transform s : DSL!EquationSection //mO.EquationSection
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//EquationSection.initial -> EAttribute : initial
+	if (s.initial.getEAttribute() != null) t.addNewAttribute("initial".clearKeyWord(), s.initial.getEAttribute());
+	//EquationSection.equations -> EReference : equations
+	if (s.equations.getEReference() != null) t.addNewReference("equations".clearKeyWord(), s.equations.getEReference());
+}
+
+@lazy
+rule AlgorithmSection
+	transform s : DSL!AlgorithmSection //mO.AlgorithmSection
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//AlgorithmSection.initial -> EAttribute : initial
+	if (s.initial.getEAttribute() != null) t.addNewAttribute("initial".clearKeyWord(), s.initial.getEAttribute());
+	//AlgorithmSection.statements -> EReference : statements
+	if (s.statements.getEReference() != null) t.addNewReference("statements".clearKeyWord(), s.statements.getEReference());
+}
+
+@lazy
+rule Equation
+	transform s : DSL!Equation //mO.Equation
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//Equation.left -> EReference : left
+	if (s.left.getEReference() != null) t.addNewReference("left".clearKeyWord(), s.left.getEReference());
+	//Equation.right -> EReference : right
+	if (s.right.getEReference() != null) t.addNewReference("right".clearKeyWord(), s.right.getEReference());
+	//Equation.commment -> EReference : commment
+	if (s.commment.getEReference() != null) t.addNewReference("commment".clearKeyWord(), s.commment.getEReference());
+}
+
+@lazy
+rule Statement
+	transform s : DSL!Statement //mO.Statement
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//Statement.left -> EReference : left
+	if (s.left.getEReference() != null) t.addNewReference("left".clearKeyWord(), s.left.getEReference());
+	//Statement.right -> EReference : right
+	if (s.right.getEReference() != null) t.addNewReference("right".clearKeyWord(), s.right.getEReference());
+	//Statement.ref -> EReference : ref
+	if (s.ref.getEReference() != null) t.addNewReference("ref".clearKeyWord(), s.ref.getEReference());
+	//Statement.ref_call -> EReference : ref_call
+	if (s.ref_call.getEReference() != null) t.addNewReference("ref_call".clearKeyWord(), s.ref_call.getEReference());
+	//Statement.comment -> EReference : comment
+	if (s.comment.getEReference() != null) t.addNewReference("comment".clearKeyWord(), s.comment.getEReference());
+}
+
+@lazy
+rule IfEquation
+	transform s : DSL!IfEquation //mO.IfEquation
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//IfEquation.left -> EReference : left
+	if (s.left.getEReference() != null) t.addNewReference("left".clearKeyWord(), s.left.getEReference());
+	//IfEquation.right -> EReference : right
+	if (s.right.getEReference() != null) t.addNewReference("right".clearKeyWord(), s.right.getEReference());
+	//IfEquation.commment -> EReference : commment
+	if (s.commment.getEReference() != null) t.addNewReference("commment".clearKeyWord(), s.commment.getEReference());
+	//IfEquation.if_expr -> EReference : if_expr
+	if (s.if_expr.getEReference() != null) t.addNewReference("if_expr".clearKeyWord(), s.if_expr.getEReference());
+	//IfEquation.if_eqs -> EReference : if_eqs
+	if (s.if_eqs.getEReference() != null) t.addNewReference("if_eqs".clearKeyWord(), s.if_eqs.getEReference());
+	//IfEquation.elsif_exprs -> EReference : elsif_exprs
+	if (s.elsif_exprs.getEReference() != null) t.addNewReference("elsif_exprs".clearKeyWord(), s.elsif_exprs.getEReference());
+	//IfEquation.elseif_eqs -> EReference : elseif_eqs
+	if (s.elseif_eqs.getEReference() != null) t.addNewReference("elseif_eqs".clearKeyWord(), s.elseif_eqs.getEReference());
+	//IfEquation.else_eqs -> EReference : else_eqs
+	if (s.else_eqs.getEReference() != null) t.addNewReference("else_eqs".clearKeyWord(), s.else_eqs.getEReference());
+}
+
+@lazy
+rule IfStatement
+	transform s : DSL!IfStatement //mO.IfStatement
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//IfStatement.left -> EReference : left
+	if (s.left.getEReference() != null) t.addNewReference("left".clearKeyWord(), s.left.getEReference());
+	//IfStatement.right -> EReference : right
+	if (s.right.getEReference() != null) t.addNewReference("right".clearKeyWord(), s.right.getEReference());
+	//IfStatement.ref -> EReference : ref
+	if (s.ref.getEReference() != null) t.addNewReference("ref".clearKeyWord(), s.ref.getEReference());
+	//IfStatement.ref_call -> EReference : ref_call
+	if (s.ref_call.getEReference() != null) t.addNewReference("ref_call".clearKeyWord(), s.ref_call.getEReference());
+	//IfStatement.comment -> EReference : comment
+	if (s.comment.getEReference() != null) t.addNewReference("comment".clearKeyWord(), s.comment.getEReference());
+	//IfStatement.if_expr -> EReference : if_expr
+	if (s.if_expr.getEReference() != null) t.addNewReference("if_expr".clearKeyWord(), s.if_expr.getEReference());
+	//IfStatement.if_stmts -> EReference : if_stmts
+	if (s.if_stmts.getEReference() != null) t.addNewReference("if_stmts".clearKeyWord(), s.if_stmts.getEReference());
+	//IfStatement.elseif_exprs -> EReference : elseif_exprs
+	if (s.elseif_exprs.getEReference() != null) t.addNewReference("elseif_exprs".clearKeyWord(), s.elseif_exprs.getEReference());
+	//IfStatement.elseif_stmts -> EReference : elseif_stmts
+	if (s.elseif_stmts.getEReference() != null) t.addNewReference("elseif_stmts".clearKeyWord(), s.elseif_stmts.getEReference());
+	//IfStatement.else_stmts -> EReference : else_stmts
+	if (s.else_stmts.getEReference() != null) t.addNewReference("else_stmts".clearKeyWord(), s.else_stmts.getEReference());
+}
+
+@lazy
+rule ForEquation
+	transform s : DSL!ForEquation //mO.ForEquation
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//ForEquation.left -> EReference : left
+	if (s.left.getEReference() != null) t.addNewReference("left".clearKeyWord(), s.left.getEReference());
+	//ForEquation.right -> EReference : right
+	if (s.right.getEReference() != null) t.addNewReference("right".clearKeyWord(), s.right.getEReference());
+	//ForEquation.commment -> EReference : commment
+	if (s.commment.getEReference() != null) t.addNewReference("commment".clearKeyWord(), s.commment.getEReference());
+	//ForEquation.indices -> EReference : indices
+	if (s.indices.getEReference() != null) t.addNewReference("indices".clearKeyWord(), s.indices.getEReference());
+	//ForEquation.eqs -> EReference : eqs
+	if (s.eqs.getEReference() != null) t.addNewReference("eqs".clearKeyWord(), s.eqs.getEReference());
+}
+
+@lazy
+rule ForStatement
+	transform s : DSL!ForStatement //mO.ForStatement
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//ForStatement.left -> EReference : left
+	if (s.left.getEReference() != null) t.addNewReference("left".clearKeyWord(), s.left.getEReference());
+	//ForStatement.right -> EReference : right
+	if (s.right.getEReference() != null) t.addNewReference("right".clearKeyWord(), s.right.getEReference());
+	//ForStatement.ref -> EReference : ref
+	if (s.ref.getEReference() != null) t.addNewReference("ref".clearKeyWord(), s.ref.getEReference());
+	//ForStatement.ref_call -> EReference : ref_call
+	if (s.ref_call.getEReference() != null) t.addNewReference("ref_call".clearKeyWord(), s.ref_call.getEReference());
+	//ForStatement.comment -> EReference : comment
+	if (s.comment.getEReference() != null) t.addNewReference("comment".clearKeyWord(), s.comment.getEReference());
+	//ForStatement.indices -> EReference : indices
+	if (s.indices.getEReference() != null) t.addNewReference("indices".clearKeyWord(), s.indices.getEReference());
+	//ForStatement.stmts -> EReference : stmts
+	if (s.stmts.getEReference() != null) t.addNewReference("stmts".clearKeyWord(), s.stmts.getEReference());
+}
+
+@lazy
+rule ForIndices
+	transform s : DSL!ForIndices //mO.ForIndices
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//ForIndices.indices -> EReference : indices
+	if (s.indices.getEReference() != null) t.addNewReference("indices".clearKeyWord(), s.indices.getEReference());
+}
+
+@lazy
+rule ForIndex
+	transform s : DSL!ForIndex //mO.ForIndex
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//ForIndex.id -> EAttribute : id
+	if (s.id.getEAttribute() != null) t.addNewAttribute("id".clearKeyWord(), s.id.getEAttribute());
+	//ForIndex.expr -> EReference : expr
+	if (s.expr.getEReference() != null) t.addNewReference("expr".clearKeyWord(), s.expr.getEReference());
+}
+
+@lazy
+rule WhileStatement
+	transform s : DSL!WhileStatement //mO.WhileStatement
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//WhileStatement.left -> EReference : left
+	if (s.left.getEReference() != null) t.addNewReference("left".clearKeyWord(), s.left.getEReference());
+	//WhileStatement.right -> EReference : right
+	if (s.right.getEReference() != null) t.addNewReference("right".clearKeyWord(), s.right.getEReference());
+	//WhileStatement.ref -> EReference : ref
+	if (s.ref.getEReference() != null) t.addNewReference("ref".clearKeyWord(), s.ref.getEReference());
+	//WhileStatement.ref_call -> EReference : ref_call
+	if (s.ref_call.getEReference() != null) t.addNewReference("ref_call".clearKeyWord(), s.ref_call.getEReference());
+	//WhileStatement.comment -> EReference : comment
+	if (s.comment.getEReference() != null) t.addNewReference("comment".clearKeyWord(), s.comment.getEReference());
+	//WhileStatement.cond -> EReference : cond
+	if (s.cond.getEReference() != null) t.addNewReference("cond".clearKeyWord(), s.cond.getEReference());
+	//WhileStatement.stmts -> EReference : stmts
+	if (s.stmts.getEReference() != null) t.addNewReference("stmts".clearKeyWord(), s.stmts.getEReference());
+}
+
+@lazy
+rule WhenEquation
+	transform s : DSL!WhenEquation //mO.WhenEquation
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//WhenEquation.left -> EReference : left
+	if (s.left.getEReference() != null) t.addNewReference("left".clearKeyWord(), s.left.getEReference());
+	//WhenEquation.right -> EReference : right
+	if (s.right.getEReference() != null) t.addNewReference("right".clearKeyWord(), s.right.getEReference());
+	//WhenEquation.commment -> EReference : commment
+	if (s.commment.getEReference() != null) t.addNewReference("commment".clearKeyWord(), s.commment.getEReference());
+	//WhenEquation.when -> EReference : when
+	if (s.when.getEReference() != null) t.addNewReference("when".clearKeyWord(), s.when.getEReference());
+	//WhenEquation.when_eqs -> EReference : when_eqs
+	if (s.when_eqs.getEReference() != null) t.addNewReference("when_eqs".clearKeyWord(), s.when_eqs.getEReference());
+	//WhenEquation.elsehwhen -> EReference : elsehwhen
+	if (s.elsehwhen.getEReference() != null) t.addNewReference("elsehwhen".clearKeyWord(), s.elsehwhen.getEReference());
+	//WhenEquation.elsewhen_eqs -> EReference : elsewhen_eqs
+	if (s.elsewhen_eqs.getEReference() != null) t.addNewReference("elsewhen_eqs".clearKeyWord(), s.elsewhen_eqs.getEReference());
+}
+
+@lazy
+rule WhenStatement
+	transform s : DSL!WhenStatement //mO.WhenStatement
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//WhenStatement.left -> EReference : left
+	if (s.left.getEReference() != null) t.addNewReference("left".clearKeyWord(), s.left.getEReference());
+	//WhenStatement.right -> EReference : right
+	if (s.right.getEReference() != null) t.addNewReference("right".clearKeyWord(), s.right.getEReference());
+	//WhenStatement.ref -> EReference : ref
+	if (s.ref.getEReference() != null) t.addNewReference("ref".clearKeyWord(), s.ref.getEReference());
+	//WhenStatement.ref_call -> EReference : ref_call
+	if (s.ref_call.getEReference() != null) t.addNewReference("ref_call".clearKeyWord(), s.ref_call.getEReference());
+	//WhenStatement.comment -> EReference : comment
+	if (s.comment.getEReference() != null) t.addNewReference("comment".clearKeyWord(), s.comment.getEReference());
+	//WhenStatement.when -> EReference : when
+	if (s.when.getEReference() != null) t.addNewReference("when".clearKeyWord(), s.when.getEReference());
+	//WhenStatement.when_stmts -> EReference : when_stmts
+	if (s.when_stmts.getEReference() != null) t.addNewReference("when_stmts".clearKeyWord(), s.when_stmts.getEReference());
+	//WhenStatement.elsehwhen -> EReference : elsehwhen
+	if (s.elsehwhen.getEReference() != null) t.addNewReference("elsehwhen".clearKeyWord(), s.elsehwhen.getEReference());
+	//WhenStatement.elsewhen_stmts -> EReference : elsewhen_stmts
+	if (s.elsewhen_stmts.getEReference() != null) t.addNewReference("elsewhen_stmts".clearKeyWord(), s.elsewhen_stmts.getEReference());
+}
+
+@lazy
+rule ConnectClause
+	transform s : DSL!ConnectClause //mO.ConnectClause
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//ConnectClause.left -> EReference : left
+	if (s.left.getEReference() != null) t.addNewReference("left".clearKeyWord(), s.left.getEReference());
+	//ConnectClause.right -> EReference : right
+	if (s.right.getEReference() != null) t.addNewReference("right".clearKeyWord(), s.right.getEReference());
+	//ConnectClause.commment -> EReference : commment
+	if (s.commment.getEReference() != null) t.addNewReference("commment".clearKeyWord(), s.commment.getEReference());
+}
+
+@lazy
+rule Expression
+	transform s : DSL!Expression //mO.Expression
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//Expression.all -> EAttribute : all
+	if (s.all.getEAttribute() != null) t.addNewAttribute("all".clearKeyWord(), s.all.getEAttribute());
+	//Expression.if -> EReference : if_
+	if (s.`if`.getEReference() != null) t.addNewReference("if".clearKeyWord(), s.`if`.getEReference());
+	//Expression.then -> EReference : then
+	if (s.then.getEReference() != null) t.addNewReference("then".clearKeyWord(), s.then.getEReference());
+	//Expression.elseif -> EReference : elseif
+	if (s.elseif.getEReference() != null) t.addNewReference("elseif".clearKeyWord(), s.elseif.getEReference());
+	//Expression.elseifthen -> EReference : elseifthen
+	if (s.elseifthen.getEReference() != null) t.addNewReference("elseifthen".clearKeyWord(), s.elseifthen.getEReference());
+	//Expression.else -> EReference : else_
+	if (s.`else`.getEReference() != null) t.addNewReference("else".clearKeyWord(), s.`else`.getEReference());
+}
+
+@lazy
+rule SimpleExpression
+	transform s : DSL!SimpleExpression //mO.SimpleExpression
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//SimpleExpression.all -> EAttribute : all
+	if (s.all.getEAttribute() != null) t.addNewAttribute("all".clearKeyWord(), s.all.getEAttribute());
+	//SimpleExpression.if -> EReference : if_
+	if (s.`if`.getEReference() != null) t.addNewReference("if".clearKeyWord(), s.`if`.getEReference());
+	//SimpleExpression.then -> EReference : then
+	if (s.then.getEReference() != null) t.addNewReference("then".clearKeyWord(), s.then.getEReference());
+	//SimpleExpression.elseif -> EReference : elseif
+	if (s.elseif.getEReference() != null) t.addNewReference("elseif".clearKeyWord(), s.elseif.getEReference());
+	//SimpleExpression.elseifthen -> EReference : elseifthen
+	if (s.elseifthen.getEReference() != null) t.addNewReference("elseifthen".clearKeyWord(), s.elseifthen.getEReference());
+	//SimpleExpression.else -> EReference : else_
+	if (s.`else`.getEReference() != null) t.addNewReference("else".clearKeyWord(), s.`else`.getEReference());
+	//SimpleExpression.exprs -> EReference : exprs
+	if (s.exprs.getEReference() != null) t.addNewReference("exprs".clearKeyWord(), s.exprs.getEReference());
+}
+
+@lazy
+rule LogicalExpression
+	transform s : DSL!LogicalExpression //mO.LogicalExpression
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//LogicalExpression.all -> EAttribute : all
+	if (s.all.getEAttribute() != null) t.addNewAttribute("all".clearKeyWord(), s.all.getEAttribute());
+	//LogicalExpression.if -> EReference : if_
+	if (s.`if`.getEReference() != null) t.addNewReference("if".clearKeyWord(), s.`if`.getEReference());
+	//LogicalExpression.then -> EReference : then
+	if (s.then.getEReference() != null) t.addNewReference("then".clearKeyWord(), s.then.getEReference());
+	//LogicalExpression.elseif -> EReference : elseif
+	if (s.elseif.getEReference() != null) t.addNewReference("elseif".clearKeyWord(), s.elseif.getEReference());
+	//LogicalExpression.elseifthen -> EReference : elseifthen
+	if (s.elseifthen.getEReference() != null) t.addNewReference("elseifthen".clearKeyWord(), s.elseifthen.getEReference());
+	//LogicalExpression.else -> EReference : else_
+	if (s.`else`.getEReference() != null) t.addNewReference("else".clearKeyWord(), s.`else`.getEReference());
+	//LogicalExpression.exprs -> EReference : exprs
+	if (s.exprs.getEReference() != null) t.addNewReference("exprs".clearKeyWord(), s.exprs.getEReference());
+	//LogicalExpression.terms -> EReference : terms
+	if (s.terms.getEReference() != null) t.addNewReference("terms".clearKeyWord(), s.terms.getEReference());
+}
+
+@lazy
+rule LogicalTerm
+	transform s : DSL!LogicalTerm //mO.LogicalTerm
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//LogicalTerm.all -> EAttribute : all
+	if (s.all.getEAttribute() != null) t.addNewAttribute("all".clearKeyWord(), s.all.getEAttribute());
+	//LogicalTerm.if -> EReference : if_
+	if (s.`if`.getEReference() != null) t.addNewReference("if".clearKeyWord(), s.`if`.getEReference());
+	//LogicalTerm.then -> EReference : then
+	if (s.then.getEReference() != null) t.addNewReference("then".clearKeyWord(), s.then.getEReference());
+	//LogicalTerm.elseif -> EReference : elseif
+	if (s.elseif.getEReference() != null) t.addNewReference("elseif".clearKeyWord(), s.elseif.getEReference());
+	//LogicalTerm.elseifthen -> EReference : elseifthen
+	if (s.elseifthen.getEReference() != null) t.addNewReference("elseifthen".clearKeyWord(), s.elseifthen.getEReference());
+	//LogicalTerm.else -> EReference : else_
+	if (s.`else`.getEReference() != null) t.addNewReference("else".clearKeyWord(), s.`else`.getEReference());
+	//LogicalTerm.exprs -> EReference : exprs
+	if (s.exprs.getEReference() != null) t.addNewReference("exprs".clearKeyWord(), s.exprs.getEReference());
+	//LogicalTerm.terms -> EReference : terms
+	if (s.terms.getEReference() != null) t.addNewReference("terms".clearKeyWord(), s.terms.getEReference());
+}
+
+@lazy
+rule LogicalFactor
+	transform s : DSL!LogicalFactor //mO.LogicalFactor
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//LogicalFactor.all -> EAttribute : all
+	if (s.all.getEAttribute() != null) t.addNewAttribute("all".clearKeyWord(), s.all.getEAttribute());
+	//LogicalFactor.not -> EAttribute : not_
+	if (s.`not`.getEAttribute() != null) t.addNewAttribute("not".clearKeyWord(), s.`not`.getEAttribute());
+	//LogicalFactor.if -> EReference : if_
+	if (s.`if`.getEReference() != null) t.addNewReference("if".clearKeyWord(), s.`if`.getEReference());
+	//LogicalFactor.then -> EReference : then
+	if (s.then.getEReference() != null) t.addNewReference("then".clearKeyWord(), s.then.getEReference());
+	//LogicalFactor.elseif -> EReference : elseif
+	if (s.elseif.getEReference() != null) t.addNewReference("elseif".clearKeyWord(), s.elseif.getEReference());
+	//LogicalFactor.elseifthen -> EReference : elseifthen
+	if (s.elseifthen.getEReference() != null) t.addNewReference("elseifthen".clearKeyWord(), s.elseifthen.getEReference());
+	//LogicalFactor.else -> EReference : else_
+	if (s.`else`.getEReference() != null) t.addNewReference("else".clearKeyWord(), s.`else`.getEReference());
+	//LogicalFactor.exprs -> EReference : exprs
+	if (s.exprs.getEReference() != null) t.addNewReference("exprs".clearKeyWord(), s.exprs.getEReference());
+	//LogicalFactor.terms -> EReference : terms
+	if (s.terms.getEReference() != null) t.addNewReference("terms".clearKeyWord(), s.terms.getEReference());
+	//LogicalFactor.factors -> EReference : factors
+	if (s.factors.getEReference() != null) t.addNewReference("factors".clearKeyWord(), s.factors.getEReference());
+	//LogicalFactor.rel -> EReference : rel
+	if (s.rel.getEReference() != null) t.addNewReference("rel".clearKeyWord(), s.rel.getEReference());
+}
+
+@lazy
+rule Relation
+	transform s : DSL!Relation //mO.Relation
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//Relation.all -> EAttribute : all
+	if (s.all.getEAttribute() != null) t.addNewAttribute("all".clearKeyWord(), s.all.getEAttribute());
+	//Relation.not -> EAttribute : not_
+	if (s.`not`.getEAttribute() != null) t.addNewAttribute("not".clearKeyWord(), s.`not`.getEAttribute());
+	//Relation.rel_op -> EAttribute : rel_op
+	if (s.rel_op.getEAttribute() != null) t.addNewAttribute("rel_op".clearKeyWord(), s.rel_op.getEAttribute());
+	//Relation.if -> EReference : if_
+	if (s.`if`.getEReference() != null) t.addNewReference("if".clearKeyWord(), s.`if`.getEReference());
+	//Relation.then -> EReference : then
+	if (s.then.getEReference() != null) t.addNewReference("then".clearKeyWord(), s.then.getEReference());
+	//Relation.elseif -> EReference : elseif
+	if (s.elseif.getEReference() != null) t.addNewReference("elseif".clearKeyWord(), s.elseif.getEReference());
+	//Relation.elseifthen -> EReference : elseifthen
+	if (s.elseifthen.getEReference() != null) t.addNewReference("elseifthen".clearKeyWord(), s.elseifthen.getEReference());
+	//Relation.else -> EReference : else_
+	if (s.`else`.getEReference() != null) t.addNewReference("else".clearKeyWord(), s.`else`.getEReference());
+	//Relation.exprs -> EReference : exprs
+	if (s.exprs.getEReference() != null) t.addNewReference("exprs".clearKeyWord(), s.exprs.getEReference());
+	//Relation.terms -> EReference : terms
+	if (s.terms.getEReference() != null) t.addNewReference("terms".clearKeyWord(), s.terms.getEReference());
+	//Relation.factors -> EReference : factors
+	if (s.factors.getEReference() != null) t.addNewReference("factors".clearKeyWord(), s.factors.getEReference());
+	//Relation.rel -> EReference : rel
+	if (s.rel.getEReference() != null) t.addNewReference("rel".clearKeyWord(), s.rel.getEReference());
+	//Relation.left -> EReference : left
+	if (s.left.getEReference() != null) t.addNewReference("left".clearKeyWord(), s.left.getEReference());
+	//Relation.right -> EReference : right
+	if (s.right.getEReference() != null) t.addNewReference("right".clearKeyWord(), s.right.getEReference());
+}
+
+@lazy
+rule ArithmeticExpression
+	transform s : DSL!ArithmeticExpression //mO.ArithmeticExpression
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//ArithmeticExpression.all -> EAttribute : all
+	if (s.all.getEAttribute() != null) t.addNewAttribute("all".clearKeyWord(), s.all.getEAttribute());
+	//ArithmeticExpression.not -> EAttribute : not_
+	if (s.`not`.getEAttribute() != null) t.addNewAttribute("not".clearKeyWord(), s.`not`.getEAttribute());
+	//ArithmeticExpression.rel_op -> EAttribute : rel_op
+	if (s.rel_op.getEAttribute() != null) t.addNewAttribute("rel_op".clearKeyWord(), s.rel_op.getEAttribute());
+	//ArithmeticExpression.add_op -> EAttribute : add_op
+	if (s.add_op.getEAttribute() != null) t.addNewAttribute("add_op".clearKeyWord(), s.add_op.getEAttribute());
+	//ArithmeticExpression.if -> EReference : if_
+	if (s.`if`.getEReference() != null) t.addNewReference("if".clearKeyWord(), s.`if`.getEReference());
+	//ArithmeticExpression.then -> EReference : then
+	if (s.then.getEReference() != null) t.addNewReference("then".clearKeyWord(), s.then.getEReference());
+	//ArithmeticExpression.elseif -> EReference : elseif
+	if (s.elseif.getEReference() != null) t.addNewReference("elseif".clearKeyWord(), s.elseif.getEReference());
+	//ArithmeticExpression.elseifthen -> EReference : elseifthen
+	if (s.elseifthen.getEReference() != null) t.addNewReference("elseifthen".clearKeyWord(), s.elseifthen.getEReference());
+	//ArithmeticExpression.else -> EReference : else_
+	if (s.`else`.getEReference() != null) t.addNewReference("else".clearKeyWord(), s.`else`.getEReference());
+	//ArithmeticExpression.exprs -> EReference : exprs
+	if (s.exprs.getEReference() != null) t.addNewReference("exprs".clearKeyWord(), s.exprs.getEReference());
+	//ArithmeticExpression.terms -> EReference : terms
+	if (s.terms.getEReference() != null) t.addNewReference("terms".clearKeyWord(), s.terms.getEReference());
+	//ArithmeticExpression.factors -> EReference : factors
+	if (s.factors.getEReference() != null) t.addNewReference("factors".clearKeyWord(), s.factors.getEReference());
+	//ArithmeticExpression.rel -> EReference : rel
+	if (s.rel.getEReference() != null) t.addNewReference("rel".clearKeyWord(), s.rel.getEReference());
+	//ArithmeticExpression.left -> EReference : left
+	if (s.left.getEReference() != null) t.addNewReference("left".clearKeyWord(), s.left.getEReference());
+	//ArithmeticExpression.right -> EReference : right
+	if (s.right.getEReference() != null) t.addNewReference("right".clearKeyWord(), s.right.getEReference());
+}
+
+@lazy
+rule Negation
+	transform s : DSL!Negation //mO.Negation
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//Negation.all -> EAttribute : all
+	if (s.all.getEAttribute() != null) t.addNewAttribute("all".clearKeyWord(), s.all.getEAttribute());
+	//Negation.not -> EAttribute : not_
+	if (s.`not`.getEAttribute() != null) t.addNewAttribute("not".clearKeyWord(), s.`not`.getEAttribute());
+	//Negation.rel_op -> EAttribute : rel_op
+	if (s.rel_op.getEAttribute() != null) t.addNewAttribute("rel_op".clearKeyWord(), s.rel_op.getEAttribute());
+	//Negation.add_op -> EAttribute : add_op
+	if (s.add_op.getEAttribute() != null) t.addNewAttribute("add_op".clearKeyWord(), s.add_op.getEAttribute());
+	//Negation.neg_op -> EAttribute : neg_op
+	if (s.neg_op.getEAttribute() != null) t.addNewAttribute("neg_op".clearKeyWord(), s.neg_op.getEAttribute());
+	//Negation.if -> EReference : if_
+	if (s.`if`.getEReference() != null) t.addNewReference("if".clearKeyWord(), s.`if`.getEReference());
+	//Negation.then -> EReference : then
+	if (s.then.getEReference() != null) t.addNewReference("then".clearKeyWord(), s.then.getEReference());
+	//Negation.elseif -> EReference : elseif
+	if (s.elseif.getEReference() != null) t.addNewReference("elseif".clearKeyWord(), s.elseif.getEReference());
+	//Negation.elseifthen -> EReference : elseifthen
+	if (s.elseifthen.getEReference() != null) t.addNewReference("elseifthen".clearKeyWord(), s.elseifthen.getEReference());
+	//Negation.else -> EReference : else_
+	if (s.`else`.getEReference() != null) t.addNewReference("else".clearKeyWord(), s.`else`.getEReference());
+	//Negation.exprs -> EReference : exprs
+	if (s.exprs.getEReference() != null) t.addNewReference("exprs".clearKeyWord(), s.exprs.getEReference());
+	//Negation.terms -> EReference : terms
+	if (s.terms.getEReference() != null) t.addNewReference("terms".clearKeyWord(), s.terms.getEReference());
+	//Negation.factors -> EReference : factors
+	if (s.factors.getEReference() != null) t.addNewReference("factors".clearKeyWord(), s.factors.getEReference());
+	//Negation.rel -> EReference : rel
+	if (s.rel.getEReference() != null) t.addNewReference("rel".clearKeyWord(), s.rel.getEReference());
+	//Negation.left -> EReference : left
+	if (s.left.getEReference() != null) t.addNewReference("left".clearKeyWord(), s.left.getEReference());
+	//Negation.right -> EReference : right
+	if (s.right.getEReference() != null) t.addNewReference("right".clearKeyWord(), s.right.getEReference());
+	//Negation.term -> EReference : term
+	if (s.term.getEReference() != null) t.addNewReference("term".clearKeyWord(), s.term.getEReference());
+}
+
+@lazy
+rule Term
+	transform s : DSL!Term //mO.Term
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//Term.all -> EAttribute : all
+	if (s.all.getEAttribute() != null) t.addNewAttribute("all".clearKeyWord(), s.all.getEAttribute());
+	//Term.not -> EAttribute : not_
+	if (s.`not`.getEAttribute() != null) t.addNewAttribute("not".clearKeyWord(), s.`not`.getEAttribute());
+	//Term.rel_op -> EAttribute : rel_op
+	if (s.rel_op.getEAttribute() != null) t.addNewAttribute("rel_op".clearKeyWord(), s.rel_op.getEAttribute());
+	//Term.add_op -> EAttribute : add_op
+	if (s.add_op.getEAttribute() != null) t.addNewAttribute("add_op".clearKeyWord(), s.add_op.getEAttribute());
+	//Term.neg_op -> EAttribute : neg_op
+	if (s.neg_op.getEAttribute() != null) t.addNewAttribute("neg_op".clearKeyWord(), s.neg_op.getEAttribute());
+	//Term.mul_op -> EAttribute : mul_op
+	if (s.mul_op.getEAttribute() != null) t.addNewAttribute("mul_op".clearKeyWord(), s.mul_op.getEAttribute());
+	//Term.if -> EReference : if_
+	if (s.`if`.getEReference() != null) t.addNewReference("if".clearKeyWord(), s.`if`.getEReference());
+	//Term.then -> EReference : then
+	if (s.then.getEReference() != null) t.addNewReference("then".clearKeyWord(), s.then.getEReference());
+	//Term.elseif -> EReference : elseif
+	if (s.elseif.getEReference() != null) t.addNewReference("elseif".clearKeyWord(), s.elseif.getEReference());
+	//Term.elseifthen -> EReference : elseifthen
+	if (s.elseifthen.getEReference() != null) t.addNewReference("elseifthen".clearKeyWord(), s.elseifthen.getEReference());
+	//Term.else -> EReference : else_
+	if (s.`else`.getEReference() != null) t.addNewReference("else".clearKeyWord(), s.`else`.getEReference());
+	//Term.exprs -> EReference : exprs
+	if (s.exprs.getEReference() != null) t.addNewReference("exprs".clearKeyWord(), s.exprs.getEReference());
+	//Term.terms -> EReference : terms
+	if (s.terms.getEReference() != null) t.addNewReference("terms".clearKeyWord(), s.terms.getEReference());
+	//Term.factors -> EReference : factors
+	if (s.factors.getEReference() != null) t.addNewReference("factors".clearKeyWord(), s.factors.getEReference());
+	//Term.rel -> EReference : rel
+	if (s.rel.getEReference() != null) t.addNewReference("rel".clearKeyWord(), s.rel.getEReference());
+	//Term.left -> EReference : left
+	if (s.left.getEReference() != null) t.addNewReference("left".clearKeyWord(), s.left.getEReference());
+	//Term.right -> EReference : right
+	if (s.right.getEReference() != null) t.addNewReference("right".clearKeyWord(), s.right.getEReference());
+	//Term.term -> EReference : term
+	if (s.term.getEReference() != null) t.addNewReference("term".clearKeyWord(), s.term.getEReference());
+}
+
+@lazy
+rule Factor
+	transform s : DSL!Factor //mO.Factor
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//Factor.all -> EAttribute : all
+	if (s.all.getEAttribute() != null) t.addNewAttribute("all".clearKeyWord(), s.all.getEAttribute());
+	//Factor.not -> EAttribute : not_
+	if (s.`not`.getEAttribute() != null) t.addNewAttribute("not".clearKeyWord(), s.`not`.getEAttribute());
+	//Factor.rel_op -> EAttribute : rel_op
+	if (s.rel_op.getEAttribute() != null) t.addNewAttribute("rel_op".clearKeyWord(), s.rel_op.getEAttribute());
+	//Factor.add_op -> EAttribute : add_op
+	if (s.add_op.getEAttribute() != null) t.addNewAttribute("add_op".clearKeyWord(), s.add_op.getEAttribute());
+	//Factor.neg_op -> EAttribute : neg_op
+	if (s.neg_op.getEAttribute() != null) t.addNewAttribute("neg_op".clearKeyWord(), s.neg_op.getEAttribute());
+	//Factor.mul_op -> EAttribute : mul_op
+	if (s.mul_op.getEAttribute() != null) t.addNewAttribute("mul_op".clearKeyWord(), s.mul_op.getEAttribute());
+	//Factor.if -> EReference : if_
+	if (s.`if`.getEReference() != null) t.addNewReference("if".clearKeyWord(), s.`if`.getEReference());
+	//Factor.then -> EReference : then
+	if (s.then.getEReference() != null) t.addNewReference("then".clearKeyWord(), s.then.getEReference());
+	//Factor.elseif -> EReference : elseif
+	if (s.elseif.getEReference() != null) t.addNewReference("elseif".clearKeyWord(), s.elseif.getEReference());
+	//Factor.elseifthen -> EReference : elseifthen
+	if (s.elseifthen.getEReference() != null) t.addNewReference("elseifthen".clearKeyWord(), s.elseifthen.getEReference());
+	//Factor.else -> EReference : else_
+	if (s.`else`.getEReference() != null) t.addNewReference("else".clearKeyWord(), s.`else`.getEReference());
+	//Factor.exprs -> EReference : exprs
+	if (s.exprs.getEReference() != null) t.addNewReference("exprs".clearKeyWord(), s.exprs.getEReference());
+	//Factor.terms -> EReference : terms
+	if (s.terms.getEReference() != null) t.addNewReference("terms".clearKeyWord(), s.terms.getEReference());
+	//Factor.factors -> EReference : factors
+	if (s.factors.getEReference() != null) t.addNewReference("factors".clearKeyWord(), s.factors.getEReference());
+	//Factor.rel -> EReference : rel
+	if (s.rel.getEReference() != null) t.addNewReference("rel".clearKeyWord(), s.rel.getEReference());
+	//Factor.left -> EReference : left
+	if (s.left.getEReference() != null) t.addNewReference("left".clearKeyWord(), s.left.getEReference());
+	//Factor.right -> EReference : right
+	if (s.right.getEReference() != null) t.addNewReference("right".clearKeyWord(), s.right.getEReference());
+	//Factor.term -> EReference : term
+	if (s.term.getEReference() != null) t.addNewReference("term".clearKeyWord(), s.term.getEReference());
+	//Factor.base -> EReference : base
+	if (s.base.getEReference() != null) t.addNewReference("base".clearKeyWord(), s.base.getEReference());
+	//Factor.exp -> EReference : exp
+	if (s.exp.getEReference() != null) t.addNewReference("exp".clearKeyWord(), s.exp.getEReference());
+}
+
+@lazy
+rule FloatPrimary
+	transform s : DSL!FloatPrimary //mO.FloatPrimary
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//FloatPrimary.all -> EAttribute : all
+	if (s.all.getEAttribute() != null) t.addNewAttribute("all".clearKeyWord(), s.all.getEAttribute());
+	//FloatPrimary.not -> EAttribute : not_
+	if (s.`not`.getEAttribute() != null) t.addNewAttribute("not".clearKeyWord(), s.`not`.getEAttribute());
+	//FloatPrimary.rel_op -> EAttribute : rel_op
+	if (s.rel_op.getEAttribute() != null) t.addNewAttribute("rel_op".clearKeyWord(), s.rel_op.getEAttribute());
+	//FloatPrimary.add_op -> EAttribute : add_op
+	if (s.add_op.getEAttribute() != null) t.addNewAttribute("add_op".clearKeyWord(), s.add_op.getEAttribute());
+	//FloatPrimary.neg_op -> EAttribute : neg_op
+	if (s.neg_op.getEAttribute() != null) t.addNewAttribute("neg_op".clearKeyWord(), s.neg_op.getEAttribute());
+	//FloatPrimary.mul_op -> EAttribute : mul_op
+	if (s.mul_op.getEAttribute() != null) t.addNewAttribute("mul_op".clearKeyWord(), s.mul_op.getEAttribute());
+	//FloatPrimary.val -> EAttribute : val
+	if (s.val.getEAttribute() != null) t.addNewAttribute("val".clearKeyWord(), s.val.getEAttribute());
+	//FloatPrimary.if -> EReference : if_
+	if (s.`if`.getEReference() != null) t.addNewReference("if".clearKeyWord(), s.`if`.getEReference());
+	//FloatPrimary.then -> EReference : then
+	if (s.then.getEReference() != null) t.addNewReference("then".clearKeyWord(), s.then.getEReference());
+	//FloatPrimary.elseif -> EReference : elseif
+	if (s.elseif.getEReference() != null) t.addNewReference("elseif".clearKeyWord(), s.elseif.getEReference());
+	//FloatPrimary.elseifthen -> EReference : elseifthen
+	if (s.elseifthen.getEReference() != null) t.addNewReference("elseifthen".clearKeyWord(), s.elseifthen.getEReference());
+	//FloatPrimary.else -> EReference : else_
+	if (s.`else`.getEReference() != null) t.addNewReference("else".clearKeyWord(), s.`else`.getEReference());
+	//FloatPrimary.exprs -> EReference : exprs
+	if (s.exprs.getEReference() != null) t.addNewReference("exprs".clearKeyWord(), s.exprs.getEReference());
+	//FloatPrimary.terms -> EReference : terms
+	if (s.terms.getEReference() != null) t.addNewReference("terms".clearKeyWord(), s.terms.getEReference());
+	//FloatPrimary.factors -> EReference : factors
+	if (s.factors.getEReference() != null) t.addNewReference("factors".clearKeyWord(), s.factors.getEReference());
+	//FloatPrimary.rel -> EReference : rel
+	if (s.rel.getEReference() != null) t.addNewReference("rel".clearKeyWord(), s.rel.getEReference());
+	//FloatPrimary.left -> EReference : left
+	if (s.left.getEReference() != null) t.addNewReference("left".clearKeyWord(), s.left.getEReference());
+	//FloatPrimary.right -> EReference : right
+	if (s.right.getEReference() != null) t.addNewReference("right".clearKeyWord(), s.right.getEReference());
+	//FloatPrimary.term -> EReference : term
+	if (s.term.getEReference() != null) t.addNewReference("term".clearKeyWord(), s.term.getEReference());
+	//FloatPrimary.base -> EReference : base
+	if (s.base.getEReference() != null) t.addNewReference("base".clearKeyWord(), s.base.getEReference());
+	//FloatPrimary.exp -> EReference : exp
+	if (s.exp.getEReference() != null) t.addNewReference("exp".clearKeyWord(), s.exp.getEReference());
+	//FloatPrimary.res -> EReference : res
+	if (s.res.getEReference() != null) t.addNewReference("res".clearKeyWord(), s.res.getEReference());
+}
+
+@lazy
+rule StringPrimary
+	transform s : DSL!StringPrimary //mO.StringPrimary
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//StringPrimary.all -> EAttribute : all
+	if (s.all.getEAttribute() != null) t.addNewAttribute("all".clearKeyWord(), s.all.getEAttribute());
+	//StringPrimary.not -> EAttribute : not_
+	if (s.`not`.getEAttribute() != null) t.addNewAttribute("not".clearKeyWord(), s.`not`.getEAttribute());
+	//StringPrimary.rel_op -> EAttribute : rel_op
+	if (s.rel_op.getEAttribute() != null) t.addNewAttribute("rel_op".clearKeyWord(), s.rel_op.getEAttribute());
+	//StringPrimary.add_op -> EAttribute : add_op
+	if (s.add_op.getEAttribute() != null) t.addNewAttribute("add_op".clearKeyWord(), s.add_op.getEAttribute());
+	//StringPrimary.neg_op -> EAttribute : neg_op
+	if (s.neg_op.getEAttribute() != null) t.addNewAttribute("neg_op".clearKeyWord(), s.neg_op.getEAttribute());
+	//StringPrimary.mul_op -> EAttribute : mul_op
+	if (s.mul_op.getEAttribute() != null) t.addNewAttribute("mul_op".clearKeyWord(), s.mul_op.getEAttribute());
+	//StringPrimary.val -> EAttribute : val
+	if (s.val.getEAttribute() != null) t.addNewAttribute("val".clearKeyWord(), s.val.getEAttribute());
+	//StringPrimary.if -> EReference : if_
+	if (s.`if`.getEReference() != null) t.addNewReference("if".clearKeyWord(), s.`if`.getEReference());
+	//StringPrimary.then -> EReference : then
+	if (s.then.getEReference() != null) t.addNewReference("then".clearKeyWord(), s.then.getEReference());
+	//StringPrimary.elseif -> EReference : elseif
+	if (s.elseif.getEReference() != null) t.addNewReference("elseif".clearKeyWord(), s.elseif.getEReference());
+	//StringPrimary.elseifthen -> EReference : elseifthen
+	if (s.elseifthen.getEReference() != null) t.addNewReference("elseifthen".clearKeyWord(), s.elseifthen.getEReference());
+	//StringPrimary.else -> EReference : else_
+	if (s.`else`.getEReference() != null) t.addNewReference("else".clearKeyWord(), s.`else`.getEReference());
+	//StringPrimary.exprs -> EReference : exprs
+	if (s.exprs.getEReference() != null) t.addNewReference("exprs".clearKeyWord(), s.exprs.getEReference());
+	//StringPrimary.terms -> EReference : terms
+	if (s.terms.getEReference() != null) t.addNewReference("terms".clearKeyWord(), s.terms.getEReference());
+	//StringPrimary.factors -> EReference : factors
+	if (s.factors.getEReference() != null) t.addNewReference("factors".clearKeyWord(), s.factors.getEReference());
+	//StringPrimary.rel -> EReference : rel
+	if (s.rel.getEReference() != null) t.addNewReference("rel".clearKeyWord(), s.rel.getEReference());
+	//StringPrimary.left -> EReference : left
+	if (s.left.getEReference() != null) t.addNewReference("left".clearKeyWord(), s.left.getEReference());
+	//StringPrimary.right -> EReference : right
+	if (s.right.getEReference() != null) t.addNewReference("right".clearKeyWord(), s.right.getEReference());
+	//StringPrimary.term -> EReference : term
+	if (s.term.getEReference() != null) t.addNewReference("term".clearKeyWord(), s.term.getEReference());
+	//StringPrimary.base -> EReference : base
+	if (s.base.getEReference() != null) t.addNewReference("base".clearKeyWord(), s.base.getEReference());
+	//StringPrimary.exp -> EReference : exp
+	if (s.exp.getEReference() != null) t.addNewReference("exp".clearKeyWord(), s.exp.getEReference());
+	//StringPrimary.res -> EReference : res
+	if (s.res.getEReference() != null) t.addNewReference("res".clearKeyWord(), s.res.getEReference());
+}
+
+@lazy
+rule LogicalPrimary
+	transform s : DSL!LogicalPrimary //mO.LogicalPrimary
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//LogicalPrimary.all -> EAttribute : all
+	if (s.all.getEAttribute() != null) t.addNewAttribute("all".clearKeyWord(), s.all.getEAttribute());
+	//LogicalPrimary.not -> EAttribute : not_
+	if (s.`not`.getEAttribute() != null) t.addNewAttribute("not".clearKeyWord(), s.`not`.getEAttribute());
+	//LogicalPrimary.rel_op -> EAttribute : rel_op
+	if (s.rel_op.getEAttribute() != null) t.addNewAttribute("rel_op".clearKeyWord(), s.rel_op.getEAttribute());
+	//LogicalPrimary.add_op -> EAttribute : add_op
+	if (s.add_op.getEAttribute() != null) t.addNewAttribute("add_op".clearKeyWord(), s.add_op.getEAttribute());
+	//LogicalPrimary.neg_op -> EAttribute : neg_op
+	if (s.neg_op.getEAttribute() != null) t.addNewAttribute("neg_op".clearKeyWord(), s.neg_op.getEAttribute());
+	//LogicalPrimary.mul_op -> EAttribute : mul_op
+	if (s.mul_op.getEAttribute() != null) t.addNewAttribute("mul_op".clearKeyWord(), s.mul_op.getEAttribute());
+	//LogicalPrimary.val -> EAttribute : val
+	if (s.val.getEAttribute() != null) t.addNewAttribute("val".clearKeyWord(), s.val.getEAttribute());
+	//LogicalPrimary.if -> EReference : if_
+	if (s.`if`.getEReference() != null) t.addNewReference("if".clearKeyWord(), s.`if`.getEReference());
+	//LogicalPrimary.then -> EReference : then
+	if (s.then.getEReference() != null) t.addNewReference("then".clearKeyWord(), s.then.getEReference());
+	//LogicalPrimary.elseif -> EReference : elseif
+	if (s.elseif.getEReference() != null) t.addNewReference("elseif".clearKeyWord(), s.elseif.getEReference());
+	//LogicalPrimary.elseifthen -> EReference : elseifthen
+	if (s.elseifthen.getEReference() != null) t.addNewReference("elseifthen".clearKeyWord(), s.elseifthen.getEReference());
+	//LogicalPrimary.else -> EReference : else_
+	if (s.`else`.getEReference() != null) t.addNewReference("else".clearKeyWord(), s.`else`.getEReference());
+	//LogicalPrimary.exprs -> EReference : exprs
+	if (s.exprs.getEReference() != null) t.addNewReference("exprs".clearKeyWord(), s.exprs.getEReference());
+	//LogicalPrimary.terms -> EReference : terms
+	if (s.terms.getEReference() != null) t.addNewReference("terms".clearKeyWord(), s.terms.getEReference());
+	//LogicalPrimary.factors -> EReference : factors
+	if (s.factors.getEReference() != null) t.addNewReference("factors".clearKeyWord(), s.factors.getEReference());
+	//LogicalPrimary.rel -> EReference : rel
+	if (s.rel.getEReference() != null) t.addNewReference("rel".clearKeyWord(), s.rel.getEReference());
+	//LogicalPrimary.left -> EReference : left
+	if (s.left.getEReference() != null) t.addNewReference("left".clearKeyWord(), s.left.getEReference());
+	//LogicalPrimary.right -> EReference : right
+	if (s.right.getEReference() != null) t.addNewReference("right".clearKeyWord(), s.right.getEReference());
+	//LogicalPrimary.term -> EReference : term
+	if (s.term.getEReference() != null) t.addNewReference("term".clearKeyWord(), s.term.getEReference());
+	//LogicalPrimary.base -> EReference : base
+	if (s.base.getEReference() != null) t.addNewReference("base".clearKeyWord(), s.base.getEReference());
+	//LogicalPrimary.exp -> EReference : exp
+	if (s.exp.getEReference() != null) t.addNewReference("exp".clearKeyWord(), s.exp.getEReference());
+	//LogicalPrimary.res -> EReference : res
+	if (s.res.getEReference() != null) t.addNewReference("res".clearKeyWord(), s.res.getEReference());
+}
+
+@lazy
+rule End
+	transform s : DSL!End //mO.End
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//End.all -> EAttribute : all
+	if (s.all.getEAttribute() != null) t.addNewAttribute("all".clearKeyWord(), s.all.getEAttribute());
+	//End.not -> EAttribute : not_
+	if (s.`not`.getEAttribute() != null) t.addNewAttribute("not".clearKeyWord(), s.`not`.getEAttribute());
+	//End.rel_op -> EAttribute : rel_op
+	if (s.rel_op.getEAttribute() != null) t.addNewAttribute("rel_op".clearKeyWord(), s.rel_op.getEAttribute());
+	//End.add_op -> EAttribute : add_op
+	if (s.add_op.getEAttribute() != null) t.addNewAttribute("add_op".clearKeyWord(), s.add_op.getEAttribute());
+	//End.neg_op -> EAttribute : neg_op
+	if (s.neg_op.getEAttribute() != null) t.addNewAttribute("neg_op".clearKeyWord(), s.neg_op.getEAttribute());
+	//End.mul_op -> EAttribute : mul_op
+	if (s.mul_op.getEAttribute() != null) t.addNewAttribute("mul_op".clearKeyWord(), s.mul_op.getEAttribute());
+	//End.val -> EAttribute : val
+	if (s.val.getEAttribute() != null) t.addNewAttribute("val".clearKeyWord(), s.val.getEAttribute());
+	//End.if -> EReference : if_
+	if (s.`if`.getEReference() != null) t.addNewReference("if".clearKeyWord(), s.`if`.getEReference());
+	//End.then -> EReference : then
+	if (s.then.getEReference() != null) t.addNewReference("then".clearKeyWord(), s.then.getEReference());
+	//End.elseif -> EReference : elseif
+	if (s.elseif.getEReference() != null) t.addNewReference("elseif".clearKeyWord(), s.elseif.getEReference());
+	//End.elseifthen -> EReference : elseifthen
+	if (s.elseifthen.getEReference() != null) t.addNewReference("elseifthen".clearKeyWord(), s.elseifthen.getEReference());
+	//End.else -> EReference : else_
+	if (s.`else`.getEReference() != null) t.addNewReference("else".clearKeyWord(), s.`else`.getEReference());
+	//End.exprs -> EReference : exprs
+	if (s.exprs.getEReference() != null) t.addNewReference("exprs".clearKeyWord(), s.exprs.getEReference());
+	//End.terms -> EReference : terms
+	if (s.terms.getEReference() != null) t.addNewReference("terms".clearKeyWord(), s.terms.getEReference());
+	//End.factors -> EReference : factors
+	if (s.factors.getEReference() != null) t.addNewReference("factors".clearKeyWord(), s.factors.getEReference());
+	//End.rel -> EReference : rel
+	if (s.rel.getEReference() != null) t.addNewReference("rel".clearKeyWord(), s.rel.getEReference());
+	//End.left -> EReference : left
+	if (s.left.getEReference() != null) t.addNewReference("left".clearKeyWord(), s.left.getEReference());
+	//End.right -> EReference : right
+	if (s.right.getEReference() != null) t.addNewReference("right".clearKeyWord(), s.right.getEReference());
+	//End.term -> EReference : term
+	if (s.term.getEReference() != null) t.addNewReference("term".clearKeyWord(), s.term.getEReference());
+	//End.base -> EReference : base
+	if (s.base.getEReference() != null) t.addNewReference("base".clearKeyWord(), s.base.getEReference());
+	//End.exp -> EReference : exp
+	if (s.exp.getEReference() != null) t.addNewReference("exp".clearKeyWord(), s.exp.getEReference());
+	//End.res -> EReference : res
+	if (s.res.getEReference() != null) t.addNewReference("res".clearKeyWord(), s.res.getEReference());
+}
+
+@lazy
+rule Primary
+	transform s : DSL!Primary //mO.Primary
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//Primary.all -> EAttribute : all
+	if (s.all.getEAttribute() != null) t.addNewAttribute("all".clearKeyWord(), s.all.getEAttribute());
+	//Primary.not -> EAttribute : not_
+	if (s.`not`.getEAttribute() != null) t.addNewAttribute("not".clearKeyWord(), s.`not`.getEAttribute());
+	//Primary.rel_op -> EAttribute : rel_op
+	if (s.rel_op.getEAttribute() != null) t.addNewAttribute("rel_op".clearKeyWord(), s.rel_op.getEAttribute());
+	//Primary.add_op -> EAttribute : add_op
+	if (s.add_op.getEAttribute() != null) t.addNewAttribute("add_op".clearKeyWord(), s.add_op.getEAttribute());
+	//Primary.neg_op -> EAttribute : neg_op
+	if (s.neg_op.getEAttribute() != null) t.addNewAttribute("neg_op".clearKeyWord(), s.neg_op.getEAttribute());
+	//Primary.mul_op -> EAttribute : mul_op
+	if (s.mul_op.getEAttribute() != null) t.addNewAttribute("mul_op".clearKeyWord(), s.mul_op.getEAttribute());
+	//Primary.if -> EReference : if_
+	if (s.`if`.getEReference() != null) t.addNewReference("if".clearKeyWord(), s.`if`.getEReference());
+	//Primary.then -> EReference : then
+	if (s.then.getEReference() != null) t.addNewReference("then".clearKeyWord(), s.then.getEReference());
+	//Primary.elseif -> EReference : elseif
+	if (s.elseif.getEReference() != null) t.addNewReference("elseif".clearKeyWord(), s.elseif.getEReference());
+	//Primary.elseifthen -> EReference : elseifthen
+	if (s.elseifthen.getEReference() != null) t.addNewReference("elseifthen".clearKeyWord(), s.elseifthen.getEReference());
+	//Primary.else -> EReference : else_
+	if (s.`else`.getEReference() != null) t.addNewReference("else".clearKeyWord(), s.`else`.getEReference());
+	//Primary.exprs -> EReference : exprs
+	if (s.exprs.getEReference() != null) t.addNewReference("exprs".clearKeyWord(), s.exprs.getEReference());
+	//Primary.terms -> EReference : terms
+	if (s.terms.getEReference() != null) t.addNewReference("terms".clearKeyWord(), s.terms.getEReference());
+	//Primary.factors -> EReference : factors
+	if (s.factors.getEReference() != null) t.addNewReference("factors".clearKeyWord(), s.factors.getEReference());
+	//Primary.rel -> EReference : rel
+	if (s.rel.getEReference() != null) t.addNewReference("rel".clearKeyWord(), s.rel.getEReference());
+	//Primary.left -> EReference : left
+	if (s.left.getEReference() != null) t.addNewReference("left".clearKeyWord(), s.left.getEReference());
+	//Primary.right -> EReference : right
+	if (s.right.getEReference() != null) t.addNewReference("right".clearKeyWord(), s.right.getEReference());
+	//Primary.term -> EReference : term
+	if (s.term.getEReference() != null) t.addNewReference("term".clearKeyWord(), s.term.getEReference());
+	//Primary.base -> EReference : base
+	if (s.base.getEReference() != null) t.addNewReference("base".clearKeyWord(), s.base.getEReference());
+	//Primary.exp -> EReference : exp
+	if (s.exp.getEReference() != null) t.addNewReference("exp".clearKeyWord(), s.exp.getEReference());
+	//Primary.res -> EReference : res
+	if (s.res.getEReference() != null) t.addNewReference("res".clearKeyWord(), s.res.getEReference());
+}
+
+@lazy
+rule FunctionCall
+	transform s : DSL!FunctionCall //mO.FunctionCall
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//FunctionCall.all -> EAttribute : all
+	if (s.all.getEAttribute() != null) t.addNewAttribute("all".clearKeyWord(), s.all.getEAttribute());
+	//FunctionCall.not -> EAttribute : not_
+	if (s.`not`.getEAttribute() != null) t.addNewAttribute("not".clearKeyWord(), s.`not`.getEAttribute());
+	//FunctionCall.rel_op -> EAttribute : rel_op
+	if (s.rel_op.getEAttribute() != null) t.addNewAttribute("rel_op".clearKeyWord(), s.rel_op.getEAttribute());
+	//FunctionCall.add_op -> EAttribute : add_op
+	if (s.add_op.getEAttribute() != null) t.addNewAttribute("add_op".clearKeyWord(), s.add_op.getEAttribute());
+	//FunctionCall.neg_op -> EAttribute : neg_op
+	if (s.neg_op.getEAttribute() != null) t.addNewAttribute("neg_op".clearKeyWord(), s.neg_op.getEAttribute());
+	//FunctionCall.mul_op -> EAttribute : mul_op
+	if (s.mul_op.getEAttribute() != null) t.addNewAttribute("mul_op".clearKeyWord(), s.mul_op.getEAttribute());
+	//FunctionCall.if -> EReference : if_
+	if (s.`if`.getEReference() != null) t.addNewReference("if".clearKeyWord(), s.`if`.getEReference());
+	//FunctionCall.then -> EReference : then
+	if (s.then.getEReference() != null) t.addNewReference("then".clearKeyWord(), s.then.getEReference());
+	//FunctionCall.elseif -> EReference : elseif
+	if (s.elseif.getEReference() != null) t.addNewReference("elseif".clearKeyWord(), s.elseif.getEReference());
+	//FunctionCall.elseifthen -> EReference : elseifthen
+	if (s.elseifthen.getEReference() != null) t.addNewReference("elseifthen".clearKeyWord(), s.elseifthen.getEReference());
+	//FunctionCall.else -> EReference : else_
+	if (s.`else`.getEReference() != null) t.addNewReference("else".clearKeyWord(), s.`else`.getEReference());
+	//FunctionCall.exprs -> EReference : exprs
+	if (s.exprs.getEReference() != null) t.addNewReference("exprs".clearKeyWord(), s.exprs.getEReference());
+	//FunctionCall.terms -> EReference : terms
+	if (s.terms.getEReference() != null) t.addNewReference("terms".clearKeyWord(), s.terms.getEReference());
+	//FunctionCall.factors -> EReference : factors
+	if (s.factors.getEReference() != null) t.addNewReference("factors".clearKeyWord(), s.factors.getEReference());
+	//FunctionCall.rel -> EReference : rel
+	if (s.rel.getEReference() != null) t.addNewReference("rel".clearKeyWord(), s.rel.getEReference());
+	//FunctionCall.left -> EReference : left
+	if (s.left.getEReference() != null) t.addNewReference("left".clearKeyWord(), s.left.getEReference());
+	//FunctionCall.right -> EReference : right
+	if (s.right.getEReference() != null) t.addNewReference("right".clearKeyWord(), s.right.getEReference());
+	//FunctionCall.term -> EReference : term
+	if (s.term.getEReference() != null) t.addNewReference("term".clearKeyWord(), s.term.getEReference());
+	//FunctionCall.base -> EReference : base
+	if (s.base.getEReference() != null) t.addNewReference("base".clearKeyWord(), s.base.getEReference());
+	//FunctionCall.exp -> EReference : exp
+	if (s.exp.getEReference() != null) t.addNewReference("exp".clearKeyWord(), s.exp.getEReference());
+	//FunctionCall.res -> EReference : res
+	if (s.res.getEReference() != null) t.addNewReference("res".clearKeyWord(), s.res.getEReference());
+	//FunctionCall.comp_ref -> EReference : comp_ref
+	if (s.comp_ref.getEReference() != null) t.addNewReference("comp_ref".clearKeyWord(), s.comp_ref.getEReference());
+	//FunctionCall.args -> EReference : args
+	if (s.args.getEReference() != null) t.addNewReference("args".clearKeyWord(), s.args.getEReference());
+}
+
+@lazy
+rule ComponentReference
+	transform s : DSL!ComponentReference //mO.ComponentReference
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//ComponentReference.all -> EAttribute : all
+	if (s.all.getEAttribute() != null) t.addNewAttribute("all".clearKeyWord(), s.all.getEAttribute());
+	//ComponentReference.not -> EAttribute : not_
+	if (s.`not`.getEAttribute() != null) t.addNewAttribute("not".clearKeyWord(), s.`not`.getEAttribute());
+	//ComponentReference.rel_op -> EAttribute : rel_op
+	if (s.rel_op.getEAttribute() != null) t.addNewAttribute("rel_op".clearKeyWord(), s.rel_op.getEAttribute());
+	//ComponentReference.add_op -> EAttribute : add_op
+	if (s.add_op.getEAttribute() != null) t.addNewAttribute("add_op".clearKeyWord(), s.add_op.getEAttribute());
+	//ComponentReference.neg_op -> EAttribute : neg_op
+	if (s.neg_op.getEAttribute() != null) t.addNewAttribute("neg_op".clearKeyWord(), s.neg_op.getEAttribute());
+	//ComponentReference.mul_op -> EAttribute : mul_op
+	if (s.mul_op.getEAttribute() != null) t.addNewAttribute("mul_op".clearKeyWord(), s.mul_op.getEAttribute());
+	//ComponentReference.idents -> EAttribute : idents
+	if (s.idents.getEAttribute() != null) t.addNewAttribute("idents".clearKeyWord(), s.idents.getEAttribute());
+	//ComponentReference.if -> EReference : if_
+	if (s.`if`.getEReference() != null) t.addNewReference("if".clearKeyWord(), s.`if`.getEReference());
+	//ComponentReference.then -> EReference : then
+	if (s.then.getEReference() != null) t.addNewReference("then".clearKeyWord(), s.then.getEReference());
+	//ComponentReference.elseif -> EReference : elseif
+	if (s.elseif.getEReference() != null) t.addNewReference("elseif".clearKeyWord(), s.elseif.getEReference());
+	//ComponentReference.elseifthen -> EReference : elseifthen
+	if (s.elseifthen.getEReference() != null) t.addNewReference("elseifthen".clearKeyWord(), s.elseifthen.getEReference());
+	//ComponentReference.else -> EReference : else_
+	if (s.`else`.getEReference() != null) t.addNewReference("else".clearKeyWord(), s.`else`.getEReference());
+	//ComponentReference.exprs -> EReference : exprs
+	if (s.exprs.getEReference() != null) t.addNewReference("exprs".clearKeyWord(), s.exprs.getEReference());
+	//ComponentReference.terms -> EReference : terms
+	if (s.terms.getEReference() != null) t.addNewReference("terms".clearKeyWord(), s.terms.getEReference());
+	//ComponentReference.factors -> EReference : factors
+	if (s.factors.getEReference() != null) t.addNewReference("factors".clearKeyWord(), s.factors.getEReference());
+	//ComponentReference.rel -> EReference : rel
+	if (s.rel.getEReference() != null) t.addNewReference("rel".clearKeyWord(), s.rel.getEReference());
+	//ComponentReference.left -> EReference : left
+	if (s.left.getEReference() != null) t.addNewReference("left".clearKeyWord(), s.left.getEReference());
+	//ComponentReference.right -> EReference : right
+	if (s.right.getEReference() != null) t.addNewReference("right".clearKeyWord(), s.right.getEReference());
+	//ComponentReference.term -> EReference : term
+	if (s.term.getEReference() != null) t.addNewReference("term".clearKeyWord(), s.term.getEReference());
+	//ComponentReference.base -> EReference : base
+	if (s.base.getEReference() != null) t.addNewReference("base".clearKeyWord(), s.base.getEReference());
+	//ComponentReference.exp -> EReference : exp
+	if (s.exp.getEReference() != null) t.addNewReference("exp".clearKeyWord(), s.exp.getEReference());
+	//ComponentReference.res -> EReference : res
+	if (s.res.getEReference() != null) t.addNewReference("res".clearKeyWord(), s.res.getEReference());
+	//ComponentReference.subscripts -> EReference : subscripts
+	if (s.subscripts.getEReference() != null) t.addNewReference("subscripts".clearKeyWord(), s.subscripts.getEReference());
+}
+
+@lazy
+rule FunctionCallArgs
+	transform s : DSL!FunctionCallArgs //mO.FunctionCallArgs
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//FunctionCallArgs.left -> EReference : left
+	if (s.left.getEReference() != null) t.addNewReference("left".clearKeyWord(), s.left.getEReference());
+	//FunctionCallArgs.right -> EReference : right
+	if (s.right.getEReference() != null) t.addNewReference("right".clearKeyWord(), s.right.getEReference());
+	//FunctionCallArgs.commment -> EReference : commment
+	if (s.commment.getEReference() != null) t.addNewReference("commment".clearKeyWord(), s.commment.getEReference());
+	//FunctionCallArgs.res -> EReference : res
+	if (s.res.getEReference() != null) t.addNewReference("res".clearKeyWord(), s.res.getEReference());
+}
+
+@lazy
+rule FunctionArguments
+	transform s : DSL!FunctionArguments //mO.FunctionArguments
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//FunctionArguments.all -> EAttribute : all
+	if (s.all.getEAttribute() != null) t.addNewAttribute("all".clearKeyWord(), s.all.getEAttribute());
+	//FunctionArguments.not -> EAttribute : not_
+	if (s.`not`.getEAttribute() != null) t.addNewAttribute("not".clearKeyWord(), s.`not`.getEAttribute());
+	//FunctionArguments.rel_op -> EAttribute : rel_op
+	if (s.rel_op.getEAttribute() != null) t.addNewAttribute("rel_op".clearKeyWord(), s.rel_op.getEAttribute());
+	//FunctionArguments.add_op -> EAttribute : add_op
+	if (s.add_op.getEAttribute() != null) t.addNewAttribute("add_op".clearKeyWord(), s.add_op.getEAttribute());
+	//FunctionArguments.neg_op -> EAttribute : neg_op
+	if (s.neg_op.getEAttribute() != null) t.addNewAttribute("neg_op".clearKeyWord(), s.neg_op.getEAttribute());
+	//FunctionArguments.mul_op -> EAttribute : mul_op
+	if (s.mul_op.getEAttribute() != null) t.addNewAttribute("mul_op".clearKeyWord(), s.mul_op.getEAttribute());
+	//FunctionArguments.if -> EReference : if_
+	if (s.`if`.getEReference() != null) t.addNewReference("if".clearKeyWord(), s.`if`.getEReference());
+	//FunctionArguments.then -> EReference : then
+	if (s.then.getEReference() != null) t.addNewReference("then".clearKeyWord(), s.then.getEReference());
+	//FunctionArguments.elseif -> EReference : elseif
+	if (s.elseif.getEReference() != null) t.addNewReference("elseif".clearKeyWord(), s.elseif.getEReference());
+	//FunctionArguments.elseifthen -> EReference : elseifthen
+	if (s.elseifthen.getEReference() != null) t.addNewReference("elseifthen".clearKeyWord(), s.elseifthen.getEReference());
+	//FunctionArguments.else -> EReference : else_
+	if (s.`else`.getEReference() != null) t.addNewReference("else".clearKeyWord(), s.`else`.getEReference());
+	//FunctionArguments.exprs -> EReference : exprs
+	if (s.exprs.getEReference() != null) t.addNewReference("exprs".clearKeyWord(), s.exprs.getEReference());
+	//FunctionArguments.terms -> EReference : terms
+	if (s.terms.getEReference() != null) t.addNewReference("terms".clearKeyWord(), s.terms.getEReference());
+	//FunctionArguments.factors -> EReference : factors
+	if (s.factors.getEReference() != null) t.addNewReference("factors".clearKeyWord(), s.factors.getEReference());
+	//FunctionArguments.rel -> EReference : rel
+	if (s.rel.getEReference() != null) t.addNewReference("rel".clearKeyWord(), s.rel.getEReference());
+	//FunctionArguments.left -> EReference : left
+	if (s.left.getEReference() != null) t.addNewReference("left".clearKeyWord(), s.left.getEReference());
+	//FunctionArguments.right -> EReference : right
+	if (s.right.getEReference() != null) t.addNewReference("right".clearKeyWord(), s.right.getEReference());
+	//FunctionArguments.term -> EReference : term
+	if (s.term.getEReference() != null) t.addNewReference("term".clearKeyWord(), s.term.getEReference());
+	//FunctionArguments.base -> EReference : base
+	if (s.base.getEReference() != null) t.addNewReference("base".clearKeyWord(), s.base.getEReference());
+	//FunctionArguments.exp -> EReference : exp
+	if (s.exp.getEReference() != null) t.addNewReference("exp".clearKeyWord(), s.exp.getEReference());
+	//FunctionArguments.res -> EReference : res
+	if (s.res.getEReference() != null) t.addNewReference("res".clearKeyWord(), s.res.getEReference());
+	//FunctionArguments.args -> EReference : args
+	if (s.args.getEReference() != null) t.addNewReference("args".clearKeyWord(), s.args.getEReference());
+	//FunctionArguments.indices -> EReference : indices
+	if (s.indices.getEReference() != null) t.addNewReference("indices".clearKeyWord(), s.indices.getEReference());
+}
+
+@lazy
+rule NamedArguments
+	transform s : DSL!NamedArguments //mO.NamedArguments
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//NamedArguments.args -> EReference : args
+	if (s.args.getEReference() != null) t.addNewReference("args".clearKeyWord(), s.args.getEReference());
+}
+
+@lazy
+rule NamedArgument
+	transform s : DSL!NamedArgument //mO.NamedArgument
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//NamedArgument.all -> EAttribute : all
+	if (s.all.getEAttribute() != null) t.addNewAttribute("all".clearKeyWord(), s.all.getEAttribute());
+	//NamedArgument.not -> EAttribute : not_
+	if (s.`not`.getEAttribute() != null) t.addNewAttribute("not".clearKeyWord(), s.`not`.getEAttribute());
+	//NamedArgument.rel_op -> EAttribute : rel_op
+	if (s.rel_op.getEAttribute() != null) t.addNewAttribute("rel_op".clearKeyWord(), s.rel_op.getEAttribute());
+	//NamedArgument.add_op -> EAttribute : add_op
+	if (s.add_op.getEAttribute() != null) t.addNewAttribute("add_op".clearKeyWord(), s.add_op.getEAttribute());
+	//NamedArgument.neg_op -> EAttribute : neg_op
+	if (s.neg_op.getEAttribute() != null) t.addNewAttribute("neg_op".clearKeyWord(), s.neg_op.getEAttribute());
+	//NamedArgument.mul_op -> EAttribute : mul_op
+	if (s.mul_op.getEAttribute() != null) t.addNewAttribute("mul_op".clearKeyWord(), s.mul_op.getEAttribute());
+	//NamedArgument.id -> EAttribute : id
+	if (s.id.getEAttribute() != null) t.addNewAttribute("id".clearKeyWord(), s.id.getEAttribute());
+	//NamedArgument.if -> EReference : if_
+	if (s.`if`.getEReference() != null) t.addNewReference("if".clearKeyWord(), s.`if`.getEReference());
+	//NamedArgument.then -> EReference : then
+	if (s.then.getEReference() != null) t.addNewReference("then".clearKeyWord(), s.then.getEReference());
+	//NamedArgument.elseif -> EReference : elseif
+	if (s.elseif.getEReference() != null) t.addNewReference("elseif".clearKeyWord(), s.elseif.getEReference());
+	//NamedArgument.elseifthen -> EReference : elseifthen
+	if (s.elseifthen.getEReference() != null) t.addNewReference("elseifthen".clearKeyWord(), s.elseifthen.getEReference());
+	//NamedArgument.else -> EReference : else_
+	if (s.`else`.getEReference() != null) t.addNewReference("else".clearKeyWord(), s.`else`.getEReference());
+	//NamedArgument.exprs -> EReference : exprs
+	if (s.exprs.getEReference() != null) t.addNewReference("exprs".clearKeyWord(), s.exprs.getEReference());
+	//NamedArgument.terms -> EReference : terms
+	if (s.terms.getEReference() != null) t.addNewReference("terms".clearKeyWord(), s.terms.getEReference());
+	//NamedArgument.factors -> EReference : factors
+	if (s.factors.getEReference() != null) t.addNewReference("factors".clearKeyWord(), s.factors.getEReference());
+	//NamedArgument.rel -> EReference : rel
+	if (s.rel.getEReference() != null) t.addNewReference("rel".clearKeyWord(), s.rel.getEReference());
+	//NamedArgument.left -> EReference : left
+	if (s.left.getEReference() != null) t.addNewReference("left".clearKeyWord(), s.left.getEReference());
+	//NamedArgument.right -> EReference : right
+	if (s.right.getEReference() != null) t.addNewReference("right".clearKeyWord(), s.right.getEReference());
+	//NamedArgument.term -> EReference : term
+	if (s.term.getEReference() != null) t.addNewReference("term".clearKeyWord(), s.term.getEReference());
+	//NamedArgument.base -> EReference : base
+	if (s.base.getEReference() != null) t.addNewReference("base".clearKeyWord(), s.base.getEReference());
+	//NamedArgument.exp -> EReference : exp
+	if (s.exp.getEReference() != null) t.addNewReference("exp".clearKeyWord(), s.exp.getEReference());
+	//NamedArgument.res -> EReference : res
+	if (s.res.getEReference() != null) t.addNewReference("res".clearKeyWord(), s.res.getEReference());
+	//NamedArgument.args -> EReference : args
+	if (s.args.getEReference() != null) t.addNewReference("args".clearKeyWord(), s.args.getEReference());
+	//NamedArgument.indices -> EReference : indices
+	if (s.indices.getEReference() != null) t.addNewReference("indices".clearKeyWord(), s.indices.getEReference());
+	//NamedArgument.func -> EReference : func
+	if (s.func.getEReference() != null) t.addNewReference("func".clearKeyWord(), s.func.getEReference());
+}
+
+@lazy
+rule FunctionArgument
+	transform s : DSL!FunctionArgument //mO.FunctionArgument
+	to t : SysMLine!ItemUsage
+	extends Base{
+}
+
+@lazy
+rule FunctionDefinition
+	transform s : DSL!FunctionDefinition //mO.FunctionDefinition
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//FunctionDefinition.name -> EAttribute : name
+	if (s.name.getEAttribute() != null) t.addNewAttribute("name".clearKeyWord(), s.name.getEAttribute());
+	//FunctionDefinition.args -> EReference : args
+	if (s.args.getEReference() != null) t.addNewReference("args".clearKeyWord(), s.args.getEReference());
+}
+
+@lazy
+rule OutputExpressionList
+	transform s : DSL!OutputExpressionList //mO.OutputExpressionList
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//OutputExpressionList.all -> EAttribute : all
+	if (s.all.getEAttribute() != null) t.addNewAttribute("all".clearKeyWord(), s.all.getEAttribute());
+	//OutputExpressionList.not -> EAttribute : not_
+	if (s.`not`.getEAttribute() != null) t.addNewAttribute("not".clearKeyWord(), s.`not`.getEAttribute());
+	//OutputExpressionList.rel_op -> EAttribute : rel_op
+	if (s.rel_op.getEAttribute() != null) t.addNewAttribute("rel_op".clearKeyWord(), s.rel_op.getEAttribute());
+	//OutputExpressionList.add_op -> EAttribute : add_op
+	if (s.add_op.getEAttribute() != null) t.addNewAttribute("add_op".clearKeyWord(), s.add_op.getEAttribute());
+	//OutputExpressionList.neg_op -> EAttribute : neg_op
+	if (s.neg_op.getEAttribute() != null) t.addNewAttribute("neg_op".clearKeyWord(), s.neg_op.getEAttribute());
+	//OutputExpressionList.mul_op -> EAttribute : mul_op
+	if (s.mul_op.getEAttribute() != null) t.addNewAttribute("mul_op".clearKeyWord(), s.mul_op.getEAttribute());
+	//OutputExpressionList.if -> EReference : if_
+	if (s.`if`.getEReference() != null) t.addNewReference("if".clearKeyWord(), s.`if`.getEReference());
+	//OutputExpressionList.then -> EReference : then
+	if (s.then.getEReference() != null) t.addNewReference("then".clearKeyWord(), s.then.getEReference());
+	//OutputExpressionList.elseif -> EReference : elseif
+	if (s.elseif.getEReference() != null) t.addNewReference("elseif".clearKeyWord(), s.elseif.getEReference());
+	//OutputExpressionList.elseifthen -> EReference : elseifthen
+	if (s.elseifthen.getEReference() != null) t.addNewReference("elseifthen".clearKeyWord(), s.elseifthen.getEReference());
+	//OutputExpressionList.else -> EReference : else_
+	if (s.`else`.getEReference() != null) t.addNewReference("else".clearKeyWord(), s.`else`.getEReference());
+	//OutputExpressionList.exprs -> EReference : exprs
+	if (s.exprs.getEReference() != null) t.addNewReference("exprs".clearKeyWord(), s.exprs.getEReference());
+	//OutputExpressionList.terms -> EReference : terms
+	if (s.terms.getEReference() != null) t.addNewReference("terms".clearKeyWord(), s.terms.getEReference());
+	//OutputExpressionList.factors -> EReference : factors
+	if (s.factors.getEReference() != null) t.addNewReference("factors".clearKeyWord(), s.factors.getEReference());
+	//OutputExpressionList.rel -> EReference : rel
+	if (s.rel.getEReference() != null) t.addNewReference("rel".clearKeyWord(), s.rel.getEReference());
+	//OutputExpressionList.left -> EReference : left
+	if (s.left.getEReference() != null) t.addNewReference("left".clearKeyWord(), s.left.getEReference());
+	//OutputExpressionList.right -> EReference : right
+	if (s.right.getEReference() != null) t.addNewReference("right".clearKeyWord(), s.right.getEReference());
+	//OutputExpressionList.term -> EReference : term
+	if (s.term.getEReference() != null) t.addNewReference("term".clearKeyWord(), s.term.getEReference());
+	//OutputExpressionList.base -> EReference : base
+	if (s.base.getEReference() != null) t.addNewReference("base".clearKeyWord(), s.base.getEReference());
+	//OutputExpressionList.exp -> EReference : exp
+	if (s.exp.getEReference() != null) t.addNewReference("exp".clearKeyWord(), s.exp.getEReference());
+	//OutputExpressionList.res -> EReference : res
+	if (s.res.getEReference() != null) t.addNewReference("res".clearKeyWord(), s.res.getEReference());
+}
+
+@lazy
+rule ExpressionList
+	transform s : DSL!ExpressionList //mO.ExpressionList
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//ExpressionList.exprs -> EReference : exprs
+	if (s.exprs.getEReference() != null) t.addNewReference("exprs".clearKeyWord(), s.exprs.getEReference());
+}
+
+@lazy
+rule ArraySubscripts
+	transform s : DSL!ArraySubscripts //mO.ArraySubscripts
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//ArraySubscripts.const -> EReference : const
+	if (s.const.getEReference() != null) t.addNewReference("const".clearKeyWord(), s.const.getEReference());
+	//ArraySubscripts.mode -> EReference : mode
+	if (s.mode.getEReference() != null) t.addNewReference("mode".clearKeyWord(), s.mode.getEReference());
+	//ArraySubscripts.comment -> EReference : comment
+	if (s.comment.getEReference() != null) t.addNewReference("comment".clearKeyWord(), s.comment.getEReference());
+	//ArraySubscripts.list -> EReference : list
+	if (s.list.getEReference() != null) t.addNewReference("list".clearKeyWord(), s.list.getEReference());
+	//ArraySubscripts.subscripts -> EReference : subscripts
+	if (s.subscripts.getEReference() != null) t.addNewReference("subscripts".clearKeyWord(), s.subscripts.getEReference());
+}
+
+@lazy
+rule Subscript
+	transform s : DSL!Subscript //mO.Subscript
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//Subscript.all -> EAttribute : all
+	if (s.all.getEAttribute() != null) t.addNewAttribute("all".clearKeyWord(), s.all.getEAttribute());
+}
+
+@lazy
+rule Comment
+	transform s : DSL!Comment //mO.Comment
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//Comment.comment -> EAttribute : comment
+	if (s.comment.getEAttribute() != null) t.addNewAttribute("comment".clearKeyWord(), s.comment.getEAttribute());
+	//Comment.annotation -> EReference : annotation
+	if (s.annotation.getEReference() != null) t.addNewReference("annotation".clearKeyWord(), s.annotation.getEReference());
+}
+
+@lazy
+rule Annotation
+	transform s : DSL!Annotation //mO.Annotation
+	to t : SysMLine!ItemUsage
+	extends Base{
+}
+
+@lazy
+rule OuputExpressionList
+	transform s : DSL!OuputExpressionList //mO.OuputExpressionList
+	to t : SysMLine!ItemUsage
+	extends Base{
+	//OuputExpressionList.all -> EAttribute : all
+	if (s.all.getEAttribute() != null) t.addNewAttribute("all".clearKeyWord(), s.all.getEAttribute());
+	//OuputExpressionList.not -> EAttribute : not_
+	if (s.`not`.getEAttribute() != null) t.addNewAttribute("not".clearKeyWord(), s.`not`.getEAttribute());
+	//OuputExpressionList.rel_op -> EAttribute : rel_op
+	if (s.rel_op.getEAttribute() != null) t.addNewAttribute("rel_op".clearKeyWord(), s.rel_op.getEAttribute());
+	//OuputExpressionList.add_op -> EAttribute : add_op
+	if (s.add_op.getEAttribute() != null) t.addNewAttribute("add_op".clearKeyWord(), s.add_op.getEAttribute());
+	//OuputExpressionList.neg_op -> EAttribute : neg_op
+	if (s.neg_op.getEAttribute() != null) t.addNewAttribute("neg_op".clearKeyWord(), s.neg_op.getEAttribute());
+	//OuputExpressionList.mul_op -> EAttribute : mul_op
+	if (s.mul_op.getEAttribute() != null) t.addNewAttribute("mul_op".clearKeyWord(), s.mul_op.getEAttribute());
+	//OuputExpressionList.if -> EReference : if_
+	if (s.`if`.getEReference() != null) t.addNewReference("if".clearKeyWord(), s.`if`.getEReference());
+	//OuputExpressionList.then -> EReference : then
+	if (s.then.getEReference() != null) t.addNewReference("then".clearKeyWord(), s.then.getEReference());
+	//OuputExpressionList.elseif -> EReference : elseif
+	if (s.elseif.getEReference() != null) t.addNewReference("elseif".clearKeyWord(), s.elseif.getEReference());
+	//OuputExpressionList.elseifthen -> EReference : elseifthen
+	if (s.elseifthen.getEReference() != null) t.addNewReference("elseifthen".clearKeyWord(), s.elseifthen.getEReference());
+	//OuputExpressionList.else -> EReference : else_
+	if (s.`else`.getEReference() != null) t.addNewReference("else".clearKeyWord(), s.`else`.getEReference());
+	//OuputExpressionList.exprs -> EReference : exprs
+	if (s.exprs.getEReference() != null) t.addNewReference("exprs".clearKeyWord(), s.exprs.getEReference());
+	//OuputExpressionList.terms -> EReference : terms
+	if (s.terms.getEReference() != null) t.addNewReference("terms".clearKeyWord(), s.terms.getEReference());
+	//OuputExpressionList.factors -> EReference : factors
+	if (s.factors.getEReference() != null) t.addNewReference("factors".clearKeyWord(), s.factors.getEReference());
+	//OuputExpressionList.rel -> EReference : rel
+	if (s.rel.getEReference() != null) t.addNewReference("rel".clearKeyWord(), s.rel.getEReference());
+	//OuputExpressionList.left -> EReference : left
+	if (s.left.getEReference() != null) t.addNewReference("left".clearKeyWord(), s.left.getEReference());
+	//OuputExpressionList.right -> EReference : right
+	if (s.right.getEReference() != null) t.addNewReference("right".clearKeyWord(), s.right.getEReference());
+	//OuputExpressionList.term -> EReference : term
+	if (s.term.getEReference() != null) t.addNewReference("term".clearKeyWord(), s.term.getEReference());
+	//OuputExpressionList.base -> EReference : base
+	if (s.base.getEReference() != null) t.addNewReference("base".clearKeyWord(), s.base.getEReference());
+	//OuputExpressionList.exp -> EReference : exp
+	if (s.exp.getEReference() != null) t.addNewReference("exp".clearKeyWord(), s.exp.getEReference());
+	//OuputExpressionList.res -> EReference : res
+	if (s.res.getEReference() != null) t.addNewReference("res".clearKeyWord(), s.res.getEReference());
+}
+
+

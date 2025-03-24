@@ -15,7 +15,7 @@ public class Ecore2SysML {
 //		testISDesigner();
 //		testAADLEcore();
 //		run("metamodel\\petrinet\\petrinet");
-		run("metamodel\\JUDO-liquibase\\liquibase");
+		run("metamodel\\Modelica\\MO");
 //		run("model\\PlayGround\\psl");
 //		run("metamodel\\HSUV\\HSUV");
 //		testBPMNEcore();

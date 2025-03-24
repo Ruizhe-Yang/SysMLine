@@ -1,0 +1,841 @@
+<?xml version="1.0" encoding="ASCII"?>
+<Namespace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="sysmline" xsi:schemaLocation="sysmline metamodel/sysmline/sysmline.ecore">
+  <body xsi:type="Package" declaredName="mO">
+    <body xsi:type="NamespaceImport" hasVisibility="true" declaredName="ecore"/>
+    <body xsi:type="ItemDefinition" declaredName="StoredDefinition">
+      <body xsi:type="AttributeUsage" declaredName="within" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="classes" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ClassDefinition</featureSpecialization>
+      </body>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ClassDefinition">
+      <body xsi:type="AttributeUsage" declaredName="final" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="encapsulated" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="constraining" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ConstrainingClause</featureSpecialization>
+      </body>
+      <SubclassificationPart>ClassSpecifier</SubclassificationPart>
+      <SubclassificationPart>Element</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ClassSpecifier">
+      <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="str_comment" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="composition" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Composition</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="name_end" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="prefix" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="name2" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="subs" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ArraySubscripts</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="mod" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ClassModification</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="'comment'" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Comment</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="list" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EnumList</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="type" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ClassDefinition</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="baseType" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="EnumList">
+      <body xsi:type="ItemUsage" declaredName="enums" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EnumerationLiteral</featureSpecialization>
+      </body>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="EnumerationLiteral">
+      <body xsi:type="AttributeUsage" declaredName="id" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="'comment'" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Comment</featureSpecialization>
+      </body>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Composition">
+      <body xsi:type="ItemUsage" declaredName="priv_elist" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ElementList</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="pub_elist" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ElementList</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="protected_elist" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ElementList</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="eq_secs" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EquationSection</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="alg_secs" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>AlgorithmSection</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="ext_lang_spec" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ext_func_call" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ExternalFunctionCall</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ext_anno" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Annotation</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="anno" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Annotation</featureSpecialization>
+      </body>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ExternalFunctionCall">
+      <body xsi:type="ItemUsage" declaredName="lhs" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ComponentReference</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="args" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ExpressionList</featureSpecialization>
+      </body>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ElementList">
+      <body xsi:type="ItemUsage" declaredName="elem" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Element</featureSpecialization>
+      </body>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Element"/>
+    <body xsi:type="ItemDefinition" declaredName="ImportClause">
+      <body xsi:type="AttributeUsage" declaredName="id" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="list" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ImportList</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="'comment'" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Comment</featureSpecialization>
+      </body>
+      <SubclassificationPart>Element</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ImportList">
+      <body xsi:type="AttributeUsage" declaredName="id" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="list" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ImportList</featureSpecialization>
+      </body>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ExtendsClause">
+      <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="mod" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ClassModification</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="anno" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Annotation</featureSpecialization>
+      </body>
+      <SubclassificationPart>Element</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="typeClause">
+      <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="baseType" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="mod" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ClassModification</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="anno" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Annotation</featureSpecialization>
+      </body>
+      <SubclassificationPart>Element</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ConstrainingClause">
+      <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="mod" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ClassModification</featureSpecialization>
+      </body>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ComponentClause">
+      <body xsi:type="ItemUsage" declaredName="constraining" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ConstrainingClause</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="'comment'" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Comment</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="prefix" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="type" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>TypeSpecifier</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="subs" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ArraySubscripts</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="comps" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ComponentList</featureSpecialization>
+      </body>
+      <SubclassificationPart>Element</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="TypeSpecifier">
+      <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="name1" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ClassDefinition</featureSpecialization>
+      </body>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ComponentList">
+      <body xsi:type="ItemUsage" declaredName="comps" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ComponentDeclaration</featureSpecialization>
+      </body>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ComponentDeclaration">
+      <body xsi:type="ItemUsage" declaredName="decl" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Declaration</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="cond" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ConditionAttribute</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="'comment'" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Comment</featureSpecialization>
+      </body>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ConditionAttribute"/>
+    <body xsi:type="ItemDefinition" declaredName="Declaration">
+      <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="type" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>TypeSpecifier</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="subscripts" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ArraySubscripts</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="mod" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Modification</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="'comment'" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Comment</featureSpecialization>
+      </body>
+      <SubclassificationPart>ComponentDeclaration1</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Modification">
+      <body xsi:type="ItemUsage" declaredName="mod" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ClassModification</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="expr" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Expression</featureSpecialization>
+      </body>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ClassModification">
+      <body xsi:type="ItemUsage" declaredName="args" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ArgumentList</featureSpecialization>
+      </body>
+      <SubclassificationPart>Annotation</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ArgumentList">
+      <body xsi:type="ItemUsage" declaredName="args" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Argument</featureSpecialization>
+      </body>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Argument"/>
+    <body xsi:type="ItemDefinition" declaredName="ElementModicationOrReplaceable">
+      <SubclassificationPart>Argument</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ElementModification">
+      <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="mod" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Modification</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="'comment'" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <SubclassificationPart>ElementModicationOrReplaceable</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ElementRedeclaration">
+      <SubclassificationPart>Argument</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ElementReplaceable">
+      <body xsi:type="ItemUsage" declaredName="const" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ConstrainingClause</featureSpecialization>
+      </body>
+      <SubclassificationPart>ElementModicationOrReplaceable</SubclassificationPart>
+      <SubclassificationPart>ElementRedeclaration</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ComponentClause1">
+      <body xsi:type="AttributeUsage" declaredName="prefix" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="type" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>TypeSpecifier</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="subs" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ArraySubscripts</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="comp" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ComponentDeclaration1</featureSpecialization>
+      </body>
+      <SubclassificationPart>ElementRedeclaration</SubclassificationPart>
+      <SubclassificationPart>ElementReplaceable</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ComponentDeclaration1"/>
+    <body xsi:type="ItemDefinition" declaredName="ShortClassDefinition">
+      <body xsi:type="ItemUsage" declaredName="mode" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ClassModification</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="'comment'" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Comment</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="list" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EnumList</featureSpecialization>
+      </body>
+      <SubclassificationPart>ElementRedeclaration</SubclassificationPart>
+      <SubclassificationPart>ElementReplaceable</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="EquationSection">
+      <body xsi:type="AttributeUsage" declaredName="initial" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="equations" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Equation</featureSpecialization>
+      </body>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="AlgorithmSection">
+      <body xsi:type="AttributeUsage" declaredName="initial" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="statements" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Statement</featureSpecialization>
+      </body>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Equation">
+      <body xsi:type="ItemUsage" declaredName="left" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>SimpleExpression</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="right" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Expression</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="commment" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Comment</featureSpecialization>
+      </body>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Statement">
+      <body xsi:type="ItemUsage" declaredName="left" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Primary</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="right" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EObject</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="'ref'" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ComponentReference</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="ref_call" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FunctionCallArgs</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="'comment'" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Comment</featureSpecialization>
+      </body>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="IfEquation">
+      <body xsi:type="ItemUsage" declaredName="if_expr" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Expression</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="if_eqs" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Equation</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="elsif_exprs" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Expression</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="elseif_eqs" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Equation</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="else_eqs" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Equation</featureSpecialization>
+      </body>
+      <SubclassificationPart>Equation</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="IfStatement">
+      <body xsi:type="ItemUsage" declaredName="if_expr" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Expression</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="if_stmts" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Statement</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="elseif_exprs" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Expression</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="elseif_stmts" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Statement</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="else_stmts" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Statement</featureSpecialization>
+      </body>
+      <SubclassificationPart>Statement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ForEquation">
+      <body xsi:type="ItemUsage" declaredName="indices" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ForIndices</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="eqs" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Equation</featureSpecialization>
+      </body>
+      <SubclassificationPart>Equation</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ForStatement">
+      <body xsi:type="ItemUsage" declaredName="indices" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ForIndices</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="stmts" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Statement</featureSpecialization>
+      </body>
+      <SubclassificationPart>Statement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ForIndices">
+      <body xsi:type="ItemUsage" declaredName="indices" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ForIndex</featureSpecialization>
+      </body>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ForIndex">
+      <body xsi:type="AttributeUsage" declaredName="id" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="expr" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Expression</featureSpecialization>
+      </body>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="WhileStatement">
+      <body xsi:type="ItemUsage" declaredName="cond" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Expression</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="stmts" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Statement</featureSpecialization>
+      </body>
+      <SubclassificationPart>Statement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="WhenEquation">
+      <body xsi:type="ItemUsage" declaredName="'when'" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Expression</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="when_eqs" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Equation</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="elsehwhen" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Expression</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="elsewhen_eqs" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Equation</featureSpecialization>
+      </body>
+      <SubclassificationPart>Equation</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="WhenStatement">
+      <body xsi:type="ItemUsage" declaredName="'when'" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Expression</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="when_stmts" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Statement</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="elsehwhen" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Expression</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="elsewhen_stmts" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Statement</featureSpecialization>
+      </body>
+      <SubclassificationPart>Statement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ConnectClause">
+      <SubclassificationPart>Equation</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Expression">
+      <body xsi:type="ItemUsage" declaredName="'if'" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Expression</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="'then'" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Expression</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="elseif" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Expression</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="elseifthen" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Expression</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="'else'" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Expression</featureSpecialization>
+      </body>
+      <SubclassificationPart>ConditionAttribute</SubclassificationPart>
+      <SubclassificationPart>FunctionArgument</SubclassificationPart>
+      <SubclassificationPart>Subscript</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="SimpleExpression">
+      <body xsi:type="ItemUsage" declaredName="exprs" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Expression</featureSpecialization>
+      </body>
+      <SubclassificationPart>Expression</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="LogicalExpression">
+      <body xsi:type="ItemUsage" declaredName="terms" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>LogicalExpression</featureSpecialization>
+      </body>
+      <SubclassificationPart>SimpleExpression</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="LogicalTerm">
+      <SubclassificationPart>LogicalExpression</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="LogicalFactor">
+      <body xsi:type="ItemUsage" declaredName="factors" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>LogicalFactor</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="'not'" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="rel" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Relation</featureSpecialization>
+      </body>
+      <SubclassificationPart>LogicalTerm</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Relation">
+      <body xsi:type="ItemUsage" declaredName="left" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ArithmeticExpression</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="rel_op" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="right" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ArithmeticExpression</featureSpecialization>
+      </body>
+      <SubclassificationPart>LogicalFactor</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ArithmeticExpression">
+      <body xsi:type="AttributeUsage" declaredName="add_op" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <SubclassificationPart>Relation</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Negation">
+      <body xsi:type="AttributeUsage" declaredName="neg_op" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="term" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Term</featureSpecialization>
+      </body>
+      <SubclassificationPart>ArithmeticExpression</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Term">
+      <body xsi:type="AttributeUsage" declaredName="mul_op" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <SubclassificationPart>Negation</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Factor">
+      <body xsi:type="ItemUsage" declaredName="base" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Primary</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="exp" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Primary</featureSpecialization>
+      </body>
+      <SubclassificationPart>Term</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="FloatPrimary">
+      <body xsi:type="AttributeUsage" declaredName="val" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EFloat</featureSpecialization>
+      </body>
+      <SubclassificationPart>Primary</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="StringPrimary">
+      <body xsi:type="AttributeUsage" declaredName="val" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <SubclassificationPart>Primary</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="LogicalPrimary">
+      <body xsi:type="AttributeUsage" declaredName="val" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <SubclassificationPart>Primary</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="End">
+      <body xsi:type="AttributeUsage" declaredName="val" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <SubclassificationPart>Primary</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Primary">
+      <body xsi:type="ItemUsage" declaredName="res" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ExpressionList</featureSpecialization>
+      </body>
+      <SubclassificationPart>Factor</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="FunctionCall">
+      <body xsi:type="ItemUsage" declaredName="comp_ref" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ClassDefinition</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="args" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FunctionCallArgs</featureSpecialization>
+      </body>
+      <SubclassificationPart>Primary</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ComponentReference">
+      <body xsi:type="AttributeUsage" declaredName="idents" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="subscripts" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ArraySubscripts</featureSpecialization>
+      </body>
+      <SubclassificationPart>Primary</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="FunctionCallArgs">
+      <body xsi:type="ItemUsage" declaredName="res" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FunctionArguments</featureSpecialization>
+      </body>
+      <SubclassificationPart>Equation</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="FunctionArguments">
+      <body xsi:type="ItemUsage" declaredName="args" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FunctionArgument</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="indices" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ForIndices</featureSpecialization>
+      </body>
+      <SubclassificationPart>Primary</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="NamedArguments">
+      <body xsi:type="ItemUsage" declaredName="args" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EObject</featureSpecialization>
+      </body>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="NamedArgument">
+      <body xsi:type="AttributeUsage" declaredName="id" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="func" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FunctionArgument</featureSpecialization>
+      </body>
+      <SubclassificationPart>FunctionArguments</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="FunctionArgument"/>
+    <body xsi:type="ItemDefinition" declaredName="FunctionDefinition">
+      <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="args" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>NamedArguments</featureSpecialization>
+      </body>
+      <SubclassificationPart>FunctionArgument</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="OutputExpressionList">
+      <SubclassificationPart>Primary</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ExpressionList">
+      <body xsi:type="ItemUsage" declaredName="exprs" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Expression</featureSpecialization>
+      </body>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ArraySubscripts">
+      <body xsi:type="ItemUsage" declaredName="subscripts" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Subscript</featureSpecialization>
+      </body>
+      <SubclassificationPart>ShortClassDefinition</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Subscript">
+      <body xsi:type="AttributeUsage" declaredName="'all'" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Comment">
+      <body xsi:type="AttributeUsage" declaredName="'comment'" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="annotation" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Annotation</featureSpecialization>
+      </body>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Annotation"/>
+    <body xsi:type="ItemDefinition" declaredName="OuputExpressionList">
+      <SubclassificationPart>OutputExpressionList</SubclassificationPart>
+    </body>
+  </body>
+</Namespace>

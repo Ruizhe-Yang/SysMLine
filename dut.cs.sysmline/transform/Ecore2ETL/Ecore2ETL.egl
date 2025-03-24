@@ -7,7 +7,7 @@
 [%}%]
 [%var KeyWords = Sequence{"default", "import", "from", "to", "extends",
  							"Collection", "guard", "function", "operation", "not",
- 							"and", "or", "delete"};%]
+ 							"and", "or", "delete", "if", "else"};%]
 import "DSL2SysMLine-util.eol";
 
 pre{

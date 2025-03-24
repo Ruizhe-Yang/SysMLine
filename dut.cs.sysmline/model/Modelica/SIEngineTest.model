@@ -1,0 +1,625 @@
+<?xml version="1.0" encoding="ASCII"?>
+<mO:StoredDefinition xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mO="http://www.xtext.org/m2e/mo/MO" within="MVEMLib.Examples">
+  <classes name="Model1" name_end="Model1">
+    <composition>
+      <priv_elist>
+        <elem xsi:type="mO:ComponentClause">
+          <type name="Engines.Combustion.SIEngine"/>
+          <comps>
+            <comps>
+              <decl name="sIEngine"/>
+              <comment>
+                <annotation xsi:type="mO:ClassModification">
+                  <args>
+                    <args xsi:type="mO:ElementModification" name="Placement">
+                      <mod>
+                        <mod>
+                          <args>
+                            <args xsi:type="mO:ElementModification" name="transformation">
+                              <mod>
+                                <mod>
+                                  <args>
+                                    <args xsi:type="mO:ElementModification" name="extent">
+                                      <mod>
+                                        <expr xsi:type="mO:FunctionArguments">
+                                          <args xsi:type="mO:FunctionArguments">
+                                            <args xsi:type="mO:FloatPrimary" val="2.0"/>
+                                            <args xsi:type="mO:FunctionArguments">
+                                              <args xsi:type="mO:FloatPrimary"/>
+                                            </args>
+                                          </args>
+                                          <args xsi:type="mO:FunctionArguments">
+                                            <args xsi:type="mO:FunctionArguments">
+                                              <args xsi:type="mO:FloatPrimary" val="22.0"/>
+                                              <args xsi:type="mO:FunctionArguments">
+                                                <args xsi:type="mO:FloatPrimary" val="20.0"/>
+                                              </args>
+                                            </args>
+                                          </args>
+                                        </expr>
+                                      </mod>
+                                    </args>
+                                  </args>
+                                </mod>
+                              </mod>
+                            </args>
+                          </args>
+                        </mod>
+                      </mod>
+                    </args>
+                  </args>
+                </annotation>
+              </comment>
+            </comps>
+          </comps>
+        </elem>
+        <elem xsi:type="mO:ComponentClause">
+          <type name="Modelica.Mechanics.Rotational.Sources.Speed"/>
+          <comps>
+            <comps>
+              <decl name="ForcedSpeed"/>
+              <comment>
+                <annotation xsi:type="mO:ClassModification">
+                  <args>
+                    <args xsi:type="mO:ElementModification" name="Placement">
+                      <mod>
+                        <mod>
+                          <args>
+                            <args xsi:type="mO:ElementModification" name="transformation">
+                              <mod>
+                                <mod>
+                                  <args>
+                                    <args xsi:type="mO:ElementModification" name="extent">
+                                      <mod>
+                                        <expr xsi:type="mO:FunctionArguments">
+                                          <args xsi:type="mO:FunctionArguments">
+                                            <args xsi:type="mO:FloatPrimary" val="2.0"/>
+                                            <args xsi:type="mO:FunctionArguments">
+                                              <args xsi:type="mO:FloatPrimary" val="40.0"/>
+                                            </args>
+                                          </args>
+                                          <args xsi:type="mO:FunctionArguments">
+                                            <args xsi:type="mO:FunctionArguments">
+                                              <args xsi:type="mO:FloatPrimary" val="22.0"/>
+                                              <args xsi:type="mO:FunctionArguments">
+                                                <args xsi:type="mO:FloatPrimary" val="60.0"/>
+                                              </args>
+                                            </args>
+                                          </args>
+                                        </expr>
+                                      </mod>
+                                    </args>
+                                  </args>
+                                </mod>
+                              </mod>
+                            </args>
+                          </args>
+                        </mod>
+                      </mod>
+                    </args>
+                  </args>
+                </annotation>
+              </comment>
+            </comps>
+          </comps>
+        </elem>
+        <elem xsi:type="mO:ComponentClause">
+          <type name="Modelica.Blocks.Sources.Constant"/>
+          <comps>
+            <comps>
+              <decl name="EngineSpeed">
+                <mod>
+                  <mod>
+                    <args>
+                      <args xsi:type="mO:ElementModification" name="k">
+                        <mod>
+                          <expr xsi:type="mO:FloatPrimary" val="1500.0"/>
+                        </mod>
+                      </args>
+                    </args>
+                  </mod>
+                </mod>
+              </decl>
+              <comment comment="&quot;Speed in RPM&quot;">
+                <annotation xsi:type="mO:ClassModification">
+                  <args>
+                    <args xsi:type="mO:ElementModification" name="Placement">
+                      <mod>
+                        <mod>
+                          <args>
+                            <args xsi:type="mO:ElementModification" name="transformation">
+                              <mod>
+                                <mod>
+                                  <args>
+                                    <args xsi:type="mO:ElementModification" name="extent">
+                                      <mod>
+                                        <expr xsi:type="mO:FunctionArguments">
+                                          <args xsi:type="mO:FunctionArguments">
+                                            <args xsi:type="mO:Negation" neg_op="-">
+                                              <term xsi:type="mO:FloatPrimary" val="60.0"/>
+                                            </args>
+                                            <args xsi:type="mO:FunctionArguments">
+                                              <args xsi:type="mO:FloatPrimary" val="40.0"/>
+                                            </args>
+                                          </args>
+                                          <args xsi:type="mO:FunctionArguments">
+                                            <args xsi:type="mO:FunctionArguments">
+                                              <args xsi:type="mO:Negation" neg_op="-">
+                                                <term xsi:type="mO:FloatPrimary" val="40.0"/>
+                                              </args>
+                                              <args xsi:type="mO:FunctionArguments">
+                                                <args xsi:type="mO:FloatPrimary" val="60.0"/>
+                                              </args>
+                                            </args>
+                                          </args>
+                                        </expr>
+                                      </mod>
+                                    </args>
+                                  </args>
+                                </mod>
+                              </mod>
+                            </args>
+                          </args>
+                        </mod>
+                      </mod>
+                    </args>
+                  </args>
+                </annotation>
+              </comment>
+            </comps>
+          </comps>
+        </elem>
+        <elem xsi:type="mO:ComponentClause">
+          <type name="Modelica.Blocks.Math.UnitConversions.From_rpm"/>
+          <comps>
+            <comps>
+              <decl name="from_rpm"/>
+              <comment>
+                <annotation xsi:type="mO:ClassModification">
+                  <args>
+                    <args xsi:type="mO:ElementModification" name="Placement">
+                      <mod>
+                        <mod>
+                          <args>
+                            <args xsi:type="mO:ElementModification" name="transformation">
+                              <mod>
+                                <mod>
+                                  <args>
+                                    <args xsi:type="mO:ElementModification" name="extent">
+                                      <mod>
+                                        <expr xsi:type="mO:FunctionArguments">
+                                          <args xsi:type="mO:FunctionArguments">
+                                            <args xsi:type="mO:Negation" neg_op="-">
+                                              <term xsi:type="mO:FloatPrimary" val="30.0"/>
+                                            </args>
+                                            <args xsi:type="mO:FunctionArguments">
+                                              <args xsi:type="mO:FloatPrimary" val="40.0"/>
+                                            </args>
+                                          </args>
+                                          <args xsi:type="mO:FunctionArguments">
+                                            <args xsi:type="mO:FunctionArguments">
+                                              <args xsi:type="mO:Negation" neg_op="-">
+                                                <term xsi:type="mO:FloatPrimary" val="10.0"/>
+                                              </args>
+                                              <args xsi:type="mO:FunctionArguments">
+                                                <args xsi:type="mO:FloatPrimary" val="60.0"/>
+                                              </args>
+                                            </args>
+                                          </args>
+                                        </expr>
+                                      </mod>
+                                    </args>
+                                  </args>
+                                </mod>
+                              </mod>
+                            </args>
+                          </args>
+                        </mod>
+                      </mod>
+                    </args>
+                  </args>
+                </annotation>
+              </comment>
+            </comps>
+          </comps>
+        </elem>
+        <elem xsi:type="mO:ComponentClause">
+          <type name="Modelica.Blocks.Sources.Step"/>
+          <comps>
+            <comps>
+              <decl name="step">
+                <mod>
+                  <mod>
+                    <args>
+                      <args xsi:type="mO:ElementModification" name="startTime">
+                        <mod>
+                          <expr xsi:type="mO:FloatPrimary" val="5.0"/>
+                        </mod>
+                      </args>
+                      <args xsi:type="mO:ElementModification" name="height">
+                        <mod>
+                          <expr xsi:type="mO:FloatPrimary" val="0.3"/>
+                        </mod>
+                      </args>
+                      <args xsi:type="mO:ElementModification" name="offset">
+                        <mod>
+                          <expr xsi:type="mO:FloatPrimary" val="0.05"/>
+                        </mod>
+                      </args>
+                    </args>
+                  </mod>
+                </mod>
+              </decl>
+              <comment>
+                <annotation xsi:type="mO:ClassModification">
+                  <args>
+                    <args xsi:type="mO:ElementModification" name="Placement">
+                      <mod>
+                        <mod>
+                          <args>
+                            <args xsi:type="mO:ElementModification" name="transformation">
+                              <mod>
+                                <mod>
+                                  <args>
+                                    <args xsi:type="mO:ElementModification" name="extent">
+                                      <mod>
+                                        <expr xsi:type="mO:FunctionArguments">
+                                          <args xsi:type="mO:FunctionArguments">
+                                            <args xsi:type="mO:Negation" neg_op="-">
+                                              <term xsi:type="mO:FloatPrimary" val="38.0"/>
+                                            </args>
+                                            <args xsi:type="mO:FunctionArguments">
+                                              <args xsi:type="mO:FloatPrimary"/>
+                                            </args>
+                                          </args>
+                                          <args xsi:type="mO:FunctionArguments">
+                                            <args xsi:type="mO:FunctionArguments">
+                                              <args xsi:type="mO:Negation" neg_op="-">
+                                                <term xsi:type="mO:FloatPrimary" val="18.0"/>
+                                              </args>
+                                              <args xsi:type="mO:FunctionArguments">
+                                                <args xsi:type="mO:FloatPrimary" val="20.0"/>
+                                              </args>
+                                            </args>
+                                          </args>
+                                        </expr>
+                                      </mod>
+                                    </args>
+                                  </args>
+                                </mod>
+                              </mod>
+                            </args>
+                          </args>
+                        </mod>
+                      </mod>
+                    </args>
+                  </args>
+                </annotation>
+              </comment>
+            </comps>
+          </comps>
+        </elem>
+      </priv_elist>
+      <eq_secs>
+        <equations xsi:type="mO:ConnectClause">
+          <left xsi:type="mO:ComponentReference">
+            <idents>ForcedSpeed</idents>
+            <idents>flange</idents>
+          </left>
+          <right xsi:type="mO:ComponentReference">
+            <idents>sIEngine</idents>
+            <idents>CrankShaft</idents>
+          </right>
+          <commment>
+            <annotation xsi:type="mO:ClassModification">
+              <args>
+                <args xsi:type="mO:ElementModification" name="Line">
+                  <mod>
+                    <mod>
+                      <args>
+                        <args xsi:type="mO:ElementModification" name="points">
+                          <mod>
+                            <expr xsi:type="mO:FunctionArguments">
+                              <args xsi:type="mO:FunctionArguments">
+                                <args xsi:type="mO:FloatPrimary" val="22.0"/>
+                                <args xsi:type="mO:FunctionArguments">
+                                  <args xsi:type="mO:FloatPrimary" val="50.0"/>
+                                </args>
+                              </args>
+                              <args xsi:type="mO:FunctionArguments">
+                                <args xsi:type="mO:FunctionArguments">
+                                  <args xsi:type="mO:FloatPrimary" val="32.0"/>
+                                  <args xsi:type="mO:FunctionArguments">
+                                    <args xsi:type="mO:FloatPrimary" val="50.0"/>
+                                  </args>
+                                </args>
+                                <args xsi:type="mO:FunctionArguments">
+                                  <args xsi:type="mO:FunctionArguments">
+                                    <args xsi:type="mO:FloatPrimary" val="32.0"/>
+                                    <args xsi:type="mO:FunctionArguments">
+                                      <args xsi:type="mO:FloatPrimary" val="10.0"/>
+                                    </args>
+                                  </args>
+                                  <args xsi:type="mO:FunctionArguments">
+                                    <args xsi:type="mO:FunctionArguments">
+                                      <args xsi:type="mO:FloatPrimary" val="22.0"/>
+                                      <args xsi:type="mO:FunctionArguments">
+                                        <args xsi:type="mO:FloatPrimary" val="10.0"/>
+                                      </args>
+                                    </args>
+                                  </args>
+                                </args>
+                              </args>
+                            </expr>
+                          </mod>
+                        </args>
+                        <args xsi:type="mO:ElementModification" name="color">
+                          <mod>
+                            <expr xsi:type="mO:FunctionArguments">
+                              <args xsi:type="mO:FloatPrimary"/>
+                              <args xsi:type="mO:FunctionArguments">
+                                <args xsi:type="mO:FloatPrimary"/>
+                                <args xsi:type="mO:FunctionArguments">
+                                  <args xsi:type="mO:FloatPrimary"/>
+                                </args>
+                              </args>
+                            </expr>
+                          </mod>
+                        </args>
+                        <args xsi:type="mO:ElementModification" name="smooth">
+                          <mod>
+                            <expr xsi:type="mO:ComponentReference">
+                              <idents>Smooth</idents>
+                              <idents>None</idents>
+                            </expr>
+                          </mod>
+                        </args>
+                      </args>
+                    </mod>
+                  </mod>
+                </args>
+              </args>
+            </annotation>
+          </commment>
+        </equations>
+        <equations xsi:type="mO:ConnectClause">
+          <left xsi:type="mO:ComponentReference">
+            <idents>from_rpm</idents>
+            <idents>u</idents>
+          </left>
+          <right xsi:type="mO:ComponentReference">
+            <idents>EngineSpeed</idents>
+            <idents>y</idents>
+          </right>
+          <commment>
+            <annotation xsi:type="mO:ClassModification">
+              <args>
+                <args xsi:type="mO:ElementModification" name="Line">
+                  <mod>
+                    <mod>
+                      <args>
+                        <args xsi:type="mO:ElementModification" name="points">
+                          <mod>
+                            <expr xsi:type="mO:FunctionArguments">
+                              <args xsi:type="mO:FunctionArguments">
+                                <args xsi:type="mO:Negation" neg_op="-">
+                                  <term xsi:type="mO:FloatPrimary" val="32.0"/>
+                                </args>
+                                <args xsi:type="mO:FunctionArguments">
+                                  <args xsi:type="mO:FloatPrimary" val="50.0"/>
+                                </args>
+                              </args>
+                              <args xsi:type="mO:FunctionArguments">
+                                <args xsi:type="mO:FunctionArguments">
+                                  <args xsi:type="mO:Negation" neg_op="-">
+                                    <term xsi:type="mO:FloatPrimary" val="39.0"/>
+                                  </args>
+                                  <args xsi:type="mO:FunctionArguments">
+                                    <args xsi:type="mO:FloatPrimary" val="50.0"/>
+                                  </args>
+                                </args>
+                              </args>
+                            </expr>
+                          </mod>
+                        </args>
+                        <args xsi:type="mO:ElementModification" name="color">
+                          <mod>
+                            <expr xsi:type="mO:FunctionArguments">
+                              <args xsi:type="mO:FloatPrimary"/>
+                              <args xsi:type="mO:FunctionArguments">
+                                <args xsi:type="mO:FloatPrimary"/>
+                                <args xsi:type="mO:FunctionArguments">
+                                  <args xsi:type="mO:FloatPrimary" val="127.0"/>
+                                </args>
+                              </args>
+                            </expr>
+                          </mod>
+                        </args>
+                        <args xsi:type="mO:ElementModification" name="smooth">
+                          <mod>
+                            <expr xsi:type="mO:ComponentReference">
+                              <idents>Smooth</idents>
+                              <idents>None</idents>
+                            </expr>
+                          </mod>
+                        </args>
+                      </args>
+                    </mod>
+                  </mod>
+                </args>
+              </args>
+            </annotation>
+          </commment>
+        </equations>
+        <equations xsi:type="mO:ConnectClause">
+          <left xsi:type="mO:ComponentReference">
+            <idents>ForcedSpeed</idents>
+            <idents>w_ref</idents>
+          </left>
+          <right xsi:type="mO:ComponentReference">
+            <idents>from_rpm</idents>
+            <idents>y</idents>
+          </right>
+          <commment>
+            <annotation xsi:type="mO:ClassModification">
+              <args>
+                <args xsi:type="mO:ElementModification" name="Line">
+                  <mod>
+                    <mod>
+                      <args>
+                        <args xsi:type="mO:ElementModification" name="points">
+                          <mod>
+                            <expr xsi:type="mO:FunctionArguments">
+                              <args xsi:type="mO:FunctionArguments">
+                                <args xsi:type="mO:Negation" neg_op="-">
+                                  <term xsi:type="mO:FloatPrimary" val="6.66134E-16"/>
+                                </args>
+                                <args xsi:type="mO:FunctionArguments">
+                                  <args xsi:type="mO:FloatPrimary" val="50.0"/>
+                                </args>
+                              </args>
+                              <args xsi:type="mO:FunctionArguments">
+                                <args xsi:type="mO:FunctionArguments">
+                                  <args xsi:type="mO:Negation" neg_op="-">
+                                    <term xsi:type="mO:FloatPrimary" val="9.0"/>
+                                  </args>
+                                  <args xsi:type="mO:FunctionArguments">
+                                    <args xsi:type="mO:FloatPrimary" val="50.0"/>
+                                  </args>
+                                </args>
+                              </args>
+                            </expr>
+                          </mod>
+                        </args>
+                        <args xsi:type="mO:ElementModification" name="color">
+                          <mod>
+                            <expr xsi:type="mO:FunctionArguments">
+                              <args xsi:type="mO:FloatPrimary"/>
+                              <args xsi:type="mO:FunctionArguments">
+                                <args xsi:type="mO:FloatPrimary"/>
+                                <args xsi:type="mO:FunctionArguments">
+                                  <args xsi:type="mO:FloatPrimary" val="127.0"/>
+                                </args>
+                              </args>
+                            </expr>
+                          </mod>
+                        </args>
+                        <args xsi:type="mO:ElementModification" name="smooth">
+                          <mod>
+                            <expr xsi:type="mO:ComponentReference">
+                              <idents>Smooth</idents>
+                              <idents>None</idents>
+                            </expr>
+                          </mod>
+                        </args>
+                      </args>
+                    </mod>
+                  </mod>
+                </args>
+              </args>
+            </annotation>
+          </commment>
+        </equations>
+        <equations xsi:type="mO:ConnectClause">
+          <left xsi:type="mO:ComponentReference">
+            <idents>step</idents>
+            <idents>y</idents>
+          </left>
+          <right xsi:type="mO:ComponentReference">
+            <idents>sIEngine</idents>
+            <idents>TqRef</idents>
+          </right>
+          <commment>
+            <annotation xsi:type="mO:ClassModification">
+              <args>
+                <args xsi:type="mO:ElementModification" name="Line">
+                  <mod>
+                    <mod>
+                      <args>
+                        <args xsi:type="mO:ElementModification" name="points">
+                          <mod>
+                            <expr xsi:type="mO:FunctionArguments">
+                              <args xsi:type="mO:FunctionArguments">
+                                <args xsi:type="mO:Negation" neg_op="-">
+                                  <term xsi:type="mO:FloatPrimary" val="17.0"/>
+                                </args>
+                                <args xsi:type="mO:FunctionArguments">
+                                  <args xsi:type="mO:FloatPrimary" val="10.0"/>
+                                </args>
+                              </args>
+                              <args xsi:type="mO:FunctionArguments">
+                                <args xsi:type="mO:FunctionArguments">
+                                  <args xsi:type="mO:FloatPrimary" val="1.6"/>
+                                  <args xsi:type="mO:FunctionArguments">
+                                    <args xsi:type="mO:FloatPrimary" val="10.0"/>
+                                  </args>
+                                </args>
+                              </args>
+                            </expr>
+                          </mod>
+                        </args>
+                        <args xsi:type="mO:ElementModification" name="color">
+                          <mod>
+                            <expr xsi:type="mO:FunctionArguments">
+                              <args xsi:type="mO:FloatPrimary"/>
+                              <args xsi:type="mO:FunctionArguments">
+                                <args xsi:type="mO:FloatPrimary"/>
+                                <args xsi:type="mO:FunctionArguments">
+                                  <args xsi:type="mO:FloatPrimary" val="127.0"/>
+                                </args>
+                              </args>
+                            </expr>
+                          </mod>
+                        </args>
+                        <args xsi:type="mO:ElementModification" name="smooth">
+                          <mod>
+                            <expr xsi:type="mO:ComponentReference">
+                              <idents>Smooth</idents>
+                              <idents>None</idents>
+                            </expr>
+                          </mod>
+                        </args>
+                      </args>
+                    </mod>
+                  </mod>
+                </args>
+              </args>
+            </annotation>
+          </commment>
+        </equations>
+      </eq_secs>
+      <anno xsi:type="mO:ClassModification">
+        <args>
+          <args xsi:type="mO:ElementModification" name="Diagram">
+            <mod>
+              <mod>
+                <args>
+                  <args xsi:type="mO:ElementModification" name="graphics"/>
+                </args>
+              </mod>
+            </mod>
+          </args>
+          <args xsi:type="mO:ElementModification" name="experiment">
+            <mod>
+              <mod>
+                <args>
+                  <args xsi:type="mO:ElementModification" name="StopTime">
+                    <mod>
+                      <expr xsi:type="mO:FloatPrimary" val="15.0"/>
+                    </mod>
+                  </args>
+                  <args xsi:type="mO:ElementModification" name="Tolerance">
+                    <mod>
+                      <expr xsi:type="mO:FloatPrimary" val="1.0E-5"/>
+                    </mod>
+                  </args>
+                </args>
+              </mod>
+            </mod>
+          </args>
+          <args xsi:type="mO:ElementModification" name="experimentSetupOutput"/>
+        </args>
+      </anno>
+    </composition>
+  </classes>
+</mO:StoredDefinition>
