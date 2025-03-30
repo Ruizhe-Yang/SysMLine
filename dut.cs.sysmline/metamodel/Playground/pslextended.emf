@@ -1,6 +1,0 @@
-@namespace(uri="pslextended", prefix="")
-package pslextended;
-
-class Person {
-	attr String name;
-}

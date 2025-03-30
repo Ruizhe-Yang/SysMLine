@@ -50,7 +50,7 @@ operation Sequence init_[%=fileName%](){
 @abstract
 rule Base
 	transform s : DSL!EObject
-	to t : SysMLine!ItemUsage{
+	to t : SysMLine!PartUsage{
 	t.declaredName = s.getDeclaredName();
 	t.featureNote.add(":");
 	t.featureSpecialization.add(s.getfeatureSpecialization());
@@ -68,11 +68,17 @@ rule Base
 @lazy
 rule [%=self.name.clearKeyWord(2)%]
 	transform s : DSL![%=self.name.clearKeyWord(2)%] //[%=ePackageName%].[%=self.name%]
-	to t : SysMLine!ItemUsage
+	to t : SysMLine!PartUsage
 	extends Base{
 	[%	for (eAttribute in self.eAllAttributes){%]
+	[%if (eAttribute.eType.eClass.name.asString() == "EEnum"){%]
+	//[%=self.name%].[%=eAttribute.name%] -> EnumerationUsage : [%=eAttribute.name.clearKeyWord(0)%]
+	if (s.[%=eAttribute.name.clearKeyWord(2)%].getEEnumLiteral() != null) t.addNewEnumLiteral("[%=eAttribute.name%]".clearKeyWord(), s.[%=eAttribute.name.clearKeyWord(2)%].getEEnumLiteral());
+	[%}%]
+	[%else {%]
 	//[%=self.name%].[%=eAttribute.name%] -> EAttribute : [%=eAttribute.name.clearKeyWord(0)%]
 	if (s.[%=eAttribute.name.clearKeyWord(2)%].getEAttribute() != null) t.addNewAttribute("[%=eAttribute.name%]".clearKeyWord(), s.[%=eAttribute.name.clearKeyWord(2)%].getEAttribute());
+	[%}%]
 	[%}%]
 	[%	for (eReference in self.eAllReferences){%]
 	//[%=self.name%].[%=eReference.name%] -> EReference : [%=eReference.name.clearKeyWord(0)%]

@@ -27,7 +27,7 @@ rule Epackage
 @lazy
 rule EClass
 	transform s : Ecore!EClass
-	to t : SysMLine!ItemDefinition{
+	to t : SysMLine!PartDefinition{
 		t.declaredName = s.name.clearKeyWord();
 		t.isAbstract = s.Abstract;
 		if (s.eContents().getElementOf("EGenericType").size() > 0){
@@ -48,7 +48,7 @@ rule EAttribute
 @lazy
 rule EReference_val
 	transform s : Ecore!EReference
-	to t : SysMLine!ItemUsage{
+	to t : SysMLine!PartUsage{
 		guard : s.containment==true
 		eStructuralFeatureTransform(s, t);
 	}
@@ -56,7 +56,7 @@ rule EReference_val
 @lazy
 rule EReference_ref
 	transform s : Ecore!EReference
-	to t : SysMLine!ItemUsage{
+	to t : SysMLine!PartUsage{
 		guard : s.containment==false
 		t.isReference = true;
 		eStructuralFeatureTransform(s, t);

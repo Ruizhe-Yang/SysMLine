@@ -3,7 +3,8 @@ import "DSL2SysMLine-util.eol";
 pre{
 	var eObjectSequence = new Sequence;
 	var KeyWords = baseKeyWords();
-	init_psl();
+	var i = 0;
+	eObjectSequence.init_psl();
 	main_psl();
 }
 
@@ -18,41 +19,40 @@ operation main_psl(){
 	rootPackage.declaredName = "psl_model";
 	rootSysMLine.body.add(rootPackage);
 	rootPackage.addNamespaceImport("psl");
-	rootPackage.addNamespaceImport("pslextended");
 	rootEcore.addNodeTo(rootPackage);
 }
 
-operation init_psl(){
+operation Sequence init_psl(){
 	//psl.Project -> Instantiation
 	var idProject = 0;
-	for (eProject in DSL!EObject.all.select(s|s.isTypeOf(DSL!Project))){
-		var eProjectTuple = Tuple{"key"=eProject.type().name.asString()+"_"+(idProject++).asString(),"value"= eProject};
-		eObjectSequence.add(eProjectTuple);
+	for (Project_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!Project))){
+		var Project_Tuple = Tuple{"key"="Project_"+(idProject++).asString(),"value"= Project_};
+		self.add(Project_Tuple);
 	}
 	//psl.Task -> Instantiation
 	var idTask = 0;
-	for (eTask in DSL!EObject.all.select(s|s.isTypeOf(DSL!Task))){
-		var eTaskTuple = Tuple{"key"=eTask.type().name.asString()+"_"+(idTask++).asString(),"value"= eTask};
-		eObjectSequence.add(eTaskTuple);
+	for (Task_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!Task))){
+		var Task_Tuple = Tuple{"key"="Task_"+(idTask++).asString(),"value"= Task_};
+		self.add(Task_Tuple);
+	}
+	//psl.Person -> Instantiation
+	var idPerson = 0;
+	for (Person_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!Person))){
+		var Person_Tuple = Tuple{"key"="Person_"+(idPerson++).asString(),"value"= Person_};
+		self.add(Person_Tuple);
 	}
 	//psl.Effort -> Instantiation
 	var idEffort = 0;
-	for (eEffort in DSL!EObject.all.select(s|s.isTypeOf(DSL!Effort))){
-		var eEffortTuple = Tuple{"key"=eEffort.type().name.asString()+"_"+(idEffort++).asString(),"value"= eEffort};
-		eObjectSequence.add(eEffortTuple);
-	}
-	//pslextended.Person -> Instantiation
-	var idPerson = 0;
-	for (ePerson in DSL!EObject.all.select(s|s.isTypeOf(DSL!Person))){
-		var ePersonTuple = Tuple{"key"=ePerson.type().name.asString()+"_"+(idPerson++).asString(),"value"= ePerson};
-		eObjectSequence.add(ePersonTuple);
+	for (Effort_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!Effort))){
+		var Effort_Tuple = Tuple{"key"="Effort_"+(idEffort++).asString(),"value"= Effort_};
+		self.add(Effort_Tuple);
 	}
 }
 
 @abstract
 rule Base
 	transform s : DSL!EObject
-	to t : SysMLine!ItemUsage{
+	to t : SysMLine!PartUsage{
 	t.declaredName = s.getDeclaredName();
 	t.featureNote.add(":");
 	t.featureSpecialization.add(s.getfeatureSpecialization());
@@ -65,54 +65,54 @@ rule Base
 // psl.ecore
 @lazy
 rule Project
-	transform s : DSL!Project
-	to t : SysMLine!ItemUsage
+	transform s : DSL!Project //psl.Project
+	to t : SysMLine!PartUsage
 	extends Base{
-	//Project.Project -> EAttribute : title
-	if (s.title.getEAttribute() != null) t.addNewAttribute("title", s.title.getEAttribute());
-	//Project.Project -> EAttribute : description
-	if (s.description.getEAttribute() != null) t.addNewAttribute("description", s.description.getEAttribute());
-	//Project.Project -> EReference : tasks
-	if (s.tasks.getEReference() != null) t.addNewReference("tasks", s.tasks.getEReference());
-	//Project.Project -> EReference : people
-	if (s.people.getEReference() != null) t.addNewReference("people", s.people.getEReference());
+	//Project.title -> EAttribute : title
+	if (s.title.getEAttribute() != null) t.addNewAttribute("title".clearKeyWord(), s.title.getEAttribute());
+	//Project.description -> EAttribute : description
+	if (s.description.getEAttribute() != null) t.addNewAttribute("description".clearKeyWord(), s.description.getEAttribute());
+	//Project.tasks -> EReference : tasks
+	if (s.tasks.getEReference() != null) t.addNewReference("tasks".clearKeyWord(), s.tasks.getEReference());
+	//Project.people -> EReference : people
+	if (s.people.getEReference() != null) t.addNewReference("people".clearKeyWord(), s.people.getEReference());
 }
 
 @lazy
 rule Task
-	transform s : DSL!Task
-	to t : SysMLine!ItemUsage
+	transform s : DSL!Task //psl.Task
+	to t : SysMLine!PartUsage
 	extends Base{
-	//Task.Task -> EAttribute : title
-	if (s.title.getEAttribute() != null) t.addNewAttribute("title", s.title.getEAttribute());
-	//Task.Task -> EAttribute : start
-	if (s.start.getEAttribute() != null) t.addNewAttribute("start", s.start.getEAttribute());
-	//Task.Task -> EAttribute : duration
-	if (s.duration.getEAttribute() != null) t.addNewAttribute("duration", s.duration.getEAttribute());
-	//Task.Task -> EReference : effort
-	if (s.effort.getEReference() != null) t.addNewReference("effort", s.effort.getEReference());
+	//Task.title -> EAttribute : title
+	if (s.title.getEAttribute() != null) t.addNewAttribute("title".clearKeyWord(), s.title.getEAttribute());
+	//Task.start -> EAttribute : start
+	if (s.start.getEAttribute() != null) t.addNewAttribute("start".clearKeyWord(), s.start.getEAttribute());
+	//Task.duration -> EAttribute : duration
+	if (s.duration.getEAttribute() != null) t.addNewAttribute("duration".clearKeyWord(), s.duration.getEAttribute());
+	//Task.effort -> EReference : effort
+	if (s.effort.getEReference() != null) t.addNewReference("effort".clearKeyWord(), s.effort.getEReference());
+}
+
+@lazy
+rule Person
+	transform s : DSL!Person //psl.Person
+	to t : SysMLine!PartUsage
+	extends Base{
+	//Person.name -> EAttribute : name
+	if (s.name.getEAttribute() != null) t.addNewAttribute("name".clearKeyWord(), s.name.getEAttribute());
 }
 
 @lazy
 rule Effort
-	transform s : DSL!Effort
-	to t : SysMLine!ItemUsage
+	transform s : DSL!Effort //psl.Effort
+	to t : SysMLine!PartUsage
 	extends Base{
-	//Effort.Effort -> EAttribute : percentage
-	if (s.percentage.getEAttribute() != null) t.addNewAttribute("percentage", s.percentage.getEAttribute());
-	//Effort.Effort -> EReference : person
-	if (s.person.getEReference() != null) t.addNewReference("person", s.person.getEReference());
-}
-
-
-// pslextended.ecore
-@lazy
-rule Person
-	transform s : DSL!Person
-	to t : SysMLine!ItemUsage
-	extends Base{
-	//Person.Person -> EAttribute : name
-	if (s.name.getEAttribute() != null) t.addNewAttribute("name", s.name.getEAttribute());
+	//Effort.percentage -> EAttribute : percentage
+	if (s.percentage.getEAttribute() != null) t.addNewAttribute("percentage".clearKeyWord(), s.percentage.getEAttribute());
+	//Effort.status -> EAttribute : status
+	if (s.status.getEEnumLiteral() != null) t.addNewEnumLiteral("status".clearKeyWord(), s.status.getEEnumLiteral());
+	//Effort.person -> EReference : person
+	if (s.person.getEReference() != null) t.addNewReference("person".clearKeyWord(), s.person.getEReference());
 }
 
 

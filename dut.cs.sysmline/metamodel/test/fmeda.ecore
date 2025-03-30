@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="fmeda" nsURI="http://www.example.org/fmeda" nsPrefix="fmeda">
+  <eClassifiers xsi:type="ecore:EClass" name="ComponentElement" abstract="true" eSuperTypes="http://omg.sacm/2.2/base#//ArtifactElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ComponentPackage" eSuperTypes="#//ComponentElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="components" upperBound="-1"
+        eType="#//ComponentElement" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="interface" upperBound="-1"
+        eType="#//ComponentPackageInterface"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ComponentPackageInterface" eSuperTypes="#//ComponentElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="implements" lowerBound="1"
+        eType="#//ComponentPackage"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ComponentPackageBinding" eSuperTypes="#//ComponentElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="participantPackage" lowerBound="2"
+        upperBound="-1" eType="#//ComponentPackage"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Component" eSuperTypes="#//ComponentElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="component_name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="reuse" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="fit" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="safety_related" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="safety_goal_violationi"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="spf_rf" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="function" eType="#//Function"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="inputs" upperBound="-1"
+        eType="#//Input" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="outputs" upperBound="-1"
+        eType="#//Output" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lports" upperBound="-1"
+        eType="#//LPort" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rports" upperBound="-1"
+        eType="#//RPort" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sub_components" upperBound="-1"
+        eType="#//ComponentElement" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="failure_modes" upperBound="-1"
+        eType="#//FailureMode" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="safety_mechanisms" upperBound="-1"
+        eType="#//SafetyMechanism" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ComponentRelationship" abstract="true"
+      eSuperTypes="#//ComponentElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="label" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DirectedRelationship" eSuperTypes="#//ComponentRelationship">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//ComponentElement"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//ComponentElement"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="UndirectedRelationship" eSuperTypes="#//ComponentRelationship">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//ComponentElement"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//ComponentElement"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ComponentAsset" abstract="true" eSuperTypes="#//ComponentElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="UtilityNodes" abstract="true" eSuperTypes="#//ComponentAsset">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="reading" eType="#//Reading"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TransitionNode" abstract="true" eSuperTypes="#//UtilityNodes"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Fork" eSuperTypes="#//TransitionNode">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"
+        eType="#//ComponentElement"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" upperBound="-1"
+        eType="#//ComponentElement"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Switch" eSuperTypes="#//TransitionNode">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ports" upperBound="-1"
+        eType="#//ComponentElement"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IONode" abstract="true" eSuperTypes="#//UtilityNodes">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="upper" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="lower" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Input" eSuperTypes="#//IONode"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Output" eSuperTypes="#//IONode"/>
+  <eClassifiers xsi:type="ecore:EClass" name="LPort" eSuperTypes="#//IONode"/>
+  <eClassifiers xsi:type="ecore:EClass" name="RPort" eSuperTypes="#//IONode"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Function" eSuperTypes="#//ComponentAsset">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="func" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Reading" eSuperTypes="#//ComponentAsset">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="unit" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ComponentSafetyElement" abstract="true"
+      eSuperTypes="#//ComponentAsset">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="identity" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FailureMode" eSuperTypes="#//ComponentSafetyElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="mode" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="cause" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="probability" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="safety_related" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SafetyMechanism" eSuperTypes="#//ComponentSafetyElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="mechanism" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="coverage" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
+  </eClassifiers>
+</ecore:EPackage>

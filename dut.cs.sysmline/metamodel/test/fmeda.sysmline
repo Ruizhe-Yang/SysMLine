@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="ASCII"?>
+<Namespace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="sysmline" xsi:schemaLocation="sysmline metamodel/sysmline/sysmline.ecore">
+  <body xsi:type="Package" declaredName="fmeda">
+    <body xsi:type="NamespaceImport" hasVisibility="true" declaredName="ecore"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="base"/>
+    <body xsi:type="ItemDefinition" declaredName="ComponentElement" isAbstract="true">
+      <SubclassificationPart xsi:nil="true"/>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ComponentPackage">
+      <body xsi:type="ItemUsage" declaredName="components" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ComponentElement</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="'interface'" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ComponentPackageInterface</featureSpecialization>
+      </body>
+      <SubclassificationPart>ComponentElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ComponentPackageInterface">
+      <body xsi:type="ItemUsage" declaredName="implements" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ComponentPackage</featureSpecialization>
+      </body>
+      <SubclassificationPart>ComponentElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ComponentPackageBinding">
+      <body xsi:type="ItemUsage" declaredName="participantPackage" multiplicityRange="[2..*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ComponentPackage</featureSpecialization>
+      </body>
+      <SubclassificationPart>ComponentElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Component">
+      <body xsi:type="AttributeUsage" declaredName="component_name" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="reuse" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBooleanObject</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="fit" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EFloat</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="safety_related" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="safety_goal_violationi" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="spf_rf" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EFloat</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="function" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Function</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="inputs" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Input</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="outputs" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Output</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="lports" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>LPort</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="rports" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>RPort</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="sub_components" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ComponentElement</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="failure_modes" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>FailureMode</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="safety_mechanisms" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>SafetyMechanism</featureSpecialization>
+      </body>
+      <SubclassificationPart>ComponentElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ComponentRelationship" isAbstract="true">
+      <body xsi:type="AttributeUsage" declaredName="label" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <SubclassificationPart>ComponentElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="DirectedRelationship">
+      <body xsi:type="ItemUsage" declaredName="source" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ComponentElement</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="target" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ComponentElement</featureSpecialization>
+      </body>
+      <SubclassificationPart>ComponentRelationship</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="UndirectedRelationship">
+      <body xsi:type="ItemUsage" declaredName="source" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ComponentElement</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="target" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ComponentElement</featureSpecialization>
+      </body>
+      <SubclassificationPart>ComponentRelationship</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ComponentAsset" isAbstract="true">
+      <SubclassificationPart>ComponentElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="UtilityNodes" isAbstract="true">
+      <body xsi:type="ItemUsage" declaredName="reading" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Reading</featureSpecialization>
+      </body>
+      <SubclassificationPart>ComponentAsset</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="TransitionNode" isAbstract="true">
+      <SubclassificationPart>UtilityNodes</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Fork">
+      <body xsi:type="ItemUsage" declaredName="source" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ComponentElement</featureSpecialization>
+      </body>
+      <body xsi:type="ItemUsage" declaredName="target" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ComponentElement</featureSpecialization>
+      </body>
+      <SubclassificationPart>TransitionNode</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Switch">
+      <body xsi:type="ItemUsage" declaredName="ports" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>ComponentElement</featureSpecialization>
+      </body>
+      <SubclassificationPart>TransitionNode</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="IONode" isAbstract="true">
+      <body xsi:type="AttributeUsage" declaredName="upper" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EFloat</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="lower" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EFloat</featureSpecialization>
+      </body>
+      <SubclassificationPart>UtilityNodes</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Input">
+      <SubclassificationPart>IONode</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Output">
+      <SubclassificationPart>IONode</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="LPort">
+      <SubclassificationPart>IONode</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="RPort">
+      <SubclassificationPart>IONode</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Function">
+      <body xsi:type="AttributeUsage" declaredName="func" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <SubclassificationPart>ComponentAsset</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="Reading">
+      <body xsi:type="AttributeUsage" declaredName="'value'" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EDouble</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="unit" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <SubclassificationPart>ComponentAsset</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="ComponentSafetyElement" isAbstract="true">
+      <body xsi:type="AttributeUsage" declaredName="identity" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EInt</featureSpecialization>
+      </body>
+      <SubclassificationPart>ComponentAsset</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="FailureMode">
+      <body xsi:type="AttributeUsage" declaredName="mode" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="cause" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="probability" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EFloat</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="safety_related" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <SubclassificationPart>ComponentSafetyElement</SubclassificationPart>
+    </body>
+    <body xsi:type="ItemDefinition" declaredName="SafetyMechanism">
+      <body xsi:type="AttributeUsage" declaredName="mechanism" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="coverage" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EFloat</featureSpecialization>
+      </body>
+      <SubclassificationPart>ComponentSafetyElement</SubclassificationPart>
+    </body>
+  </body>
+</Namespace>

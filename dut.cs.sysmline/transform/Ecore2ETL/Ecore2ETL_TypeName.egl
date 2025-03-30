@@ -48,7 +48,7 @@ operation Sequence init_[%=fileName%](){
 @abstract
 rule Base
 	transform s : DSL!EObject
-	to t : SysMLine!ItemUsage{
+	to t : SysMLine!PartUsage{
 	t.declaredName = s.getDeclaredName();
 	t.featureNote.add(":");
 	t.featureSpecialization.add(s.getfeatureSpecialization());
@@ -66,7 +66,7 @@ rule Base
 @lazy
 rule [%=self.name.clearKeyWord(2)%]
 	transform s : DSL![%=self.name.clearKeyWord(2)%] //[%=ePackageName%].[%=self.name%]
-	to t : SysMLine!ItemUsage
+	to t : SysMLine!PartUsage
 	extends Base{
 	[%	for (eAttribute in self.eAllAttributes){%]
 	//[%=self.name%].[%=eAttribute.name%] -> EAttribute : [%=eAttribute.name.clearKeyWord(0)%]

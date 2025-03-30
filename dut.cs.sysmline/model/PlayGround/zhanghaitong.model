@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="ASCII"?>
-<Project xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns="psl" xmi:id="_VNl-8APWEfC-bKPkE9FI3Q" title="shujujiegou">
-  <tasks xmi:id="_YKJ2sAPWEfC-bKPkE9FI3Q" title="homework" start="2" duration="8">
-    <effort xmi:id="_ZoF0UAPWEfC-bKPkE9FI3Q" person="_bhwEoAPWEfC-bKPkE9FI3Q" percentage="80"/>
-    <effort xmi:id="_glH34APWEfC-bKPkE9FI3Q" person="_aQLvEAPWEfC-bKPkE9FI3Q" percentage="20"/>
-  </tasks>
-  <people xmi:id="_aQLvEAPWEfC-bKPkE9FI3Q" name="zhanghaitong"/>
-  <people xmi:id="_bhwEoAPWEfC-bKPkE9FI3Q" name="wangyingquan"/>
-</Project>

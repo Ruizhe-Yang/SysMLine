@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="ASCII"?>
+<Project xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns="psl" xmi:id="_VNl-8APWEfC-bKPkE9FI3Q" title="ACME">
+  <tasks xmi:id="_YKJ2sAPWEfC-bKPkE9FI3Q" title="Analysis" start="3" duration="1">
+    <effort xmi:id="_ZoF0UAPWEfC-bKPkE9FI3Q" person="_aQLvEAPWEfC-bKPkE9FI3Q" status="finished"/>
+  </tasks>
+  <tasks xmi:id="_mZJucA0KEfCpNZfp_eSb8g" title="Design" start="6" duration="4">
+    <effort xmi:id="_qrBMQA0KEfCpNZfp_eSb8g" person="_bhwEoAPWEfC-bKPkE9FI3Q"/>
+  </tasks>
+  <tasks xmi:id="_sFls0A0KEfCpNZfp_eSb8g" title="Implementation" start="3" duration="7">
+    <effort xmi:id="_uafusA0KEfCpNZfp_eSb8g" person="_bhwEoAPWEfC-bKPkE9FI3Q" percentage="50"/>
+    <effort xmi:id="_wUCqQA0KEfCpNZfp_eSb8g" person="_aQLvEAPWEfC-bKPkE9FI3Q" percentage="50"/>
+  </tasks>
+  <people xmi:id="_aQLvEAPWEfC-bKPkE9FI3Q" name="Alice"/>
+  <people xmi:id="_bhwEoAPWEfC-bKPkE9FI3Q" name="Bob"/>
+</Project>

@@ -9,14 +9,16 @@ import dut.cs.sysmline.transform.SysMLine2SysML;
 public class Ecore2SysML {
 	
 	public static void main(String[] args) throws IOException {
+//		run("metamodel\\PlayGround\\psl");
+//		run("metamodel\\test\\fmeda");
 //		run("metamodel\\Capella\\Interaction");
 //		testSACM();
 //		testCapellaEcore();
 //		testISDesigner();
 //		testAADLEcore();
 //		run("metamodel\\petrinet\\petrinet");
-		run("metamodel\\Modelica\\MO");
-//		run("model\\PlayGround\\psl");
+//		run("metamodel\\Modelica\\MO");
+		run("metamodel\\PlayGround\\psl");
 //		run("metamodel\\HSUV\\HSUV");
 //		testBPMNEcore();
 //		testRoboChartEcore();

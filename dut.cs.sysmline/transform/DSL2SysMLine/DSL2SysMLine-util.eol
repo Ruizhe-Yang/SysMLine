@@ -11,7 +11,7 @@ operation baseKeyWords(){
 					"exit", "expose", "filter", "first", "flow",
 					"for", "fork", "frame", "from", "hastype",
 					"if", "implies", "import", "in", "include",
-					"individual", "inout", "interface", "istype", "item",
+					"individual", "inout", "interface", "istype", "Part",
 					"join", "language", "loop", "merge", "message",
 					"metadata", "nonunique", "not", "objective", "occurrence",
 					"of", "or", "ordered", "out", "package",
@@ -91,7 +91,7 @@ operation Any getEAttribute(){
 			return null;
 		}
 		else{
-			return "\""+self.name+"\"";
+			return self.eEnum.name+"::"+self.name;
 		}
 	}
 	else{
@@ -99,7 +99,26 @@ operation Any getEAttribute(){
 	}
 }
 
-operation SysMLine!ItemUsage addNewAttribute(name : String, valuePartString : String){
+operation Any getEEnumLiteral(){
+	if (self.hasProperty("value") and self.hasProperty("eClass") and (self.eClass.name == "EEnumLiteral")){
+		if (self.value == 0){
+			return null;
+		}
+		else{
+			return self.eEnum.name+"::"+self.name;
+		}
+	}
+}
+
+operation SysMLine!PartUsage addNewEnumLiteral(name : String, valuePartString : String){
+	var attr = new SysMLine!EnumerationUsage;
+	attr.featureNote.add(":>");
+	attr.featureSpecialization.add(name);
+	attr.valuePart = valuePartString;
+	self.body.add(attr);
+}
+
+operation SysMLine!PartUsage addNewAttribute(name : String, valuePartString : String){
 	var attr = new SysMLine!AttributeUsage;
 	attr.featureNote.add(":>>");
 	attr.featureSpecialization.add(name);
@@ -107,13 +126,13 @@ operation SysMLine!ItemUsage addNewAttribute(name : String, valuePartString : St
 	self.body.add(attr);
 }
 
-operation SysMLine!ItemUsage addNewReference(name : String, valuePartString : String){
-	var item = new SysMLine!ItemUsage;
-	item.isReference = true;
-	item.featureNote.add(":>");
-	item.featureSpecialization.add(name);
-	item.valuePart = valuePartString;
-	self.body.add(item);
+operation SysMLine!PartUsage addNewReference(name : String, valuePartString : String){
+	var Part = new SysMLine!PartUsage;
+	Part.isReference = true;
+	Part.featureNote.add(":>");
+	Part.featureSpecialization.add(name);
+	Part.valuePart = valuePartString;
+	self.body.add(Part);
 }
 
 operation Any getEReference(){
