@@ -5,15 +5,15 @@
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="bpmn20"/>
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="dc"/>
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="di"/>
-    <body xsi:type="ItemDefinition" declaredName="BPMNPlane">
-      <body xsi:type="ItemUsage" declaredName="bpmnElement" multiplicityRange="[1]" isReference="true">
+    <body xsi:type="PartDefinition" declaredName="BPMNPlane">
+      <body xsi:type="PartUsage" declaredName="bpmnElement" multiplicityRange="[1]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>BaseElement</featureSpecialization>
       </body>
       <SubclassificationPart xsi:nil="true"/>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="BPMNShape">
-      <body xsi:type="ItemUsage" declaredName="bpmnElement" multiplicityRange="[1]" isReference="true">
+    <body xsi:type="PartDefinition" declaredName="BPMNShape">
+      <body xsi:type="PartUsage" declaredName="bpmnElement" multiplicityRange="[1]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>BaseElement</featureSpecialization>
       </body>
@@ -29,7 +29,7 @@
         <featureNote>:</featureNote>
         <featureSpecialization>EBoolean</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="label" multiplicityRange="[1]">
+      <body xsi:type="PartUsage" declaredName="label" multiplicityRange="[1]">
         <featureNote>:</featureNote>
         <featureSpecialization>BPMNLabel</featureSpecialization>
       </body>
@@ -41,21 +41,21 @@
         <featureNote>:</featureNote>
         <featureSpecialization>ParticipantBandKind</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="choreographyActivityShape" multiplicityRange="[1]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="choreographyActivityShape" multiplicityRange="[1]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>BPMNShape</featureSpecialization>
       </body>
       <SubclassificationPart xsi:nil="true"/>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="BPMNLabel">
-      <body xsi:type="ItemUsage" declaredName="labelStyle" multiplicityRange="[1]" isReference="true">
+    <body xsi:type="PartDefinition" declaredName="BPMNLabel">
+      <body xsi:type="PartUsage" declaredName="labelStyle" multiplicityRange="[1]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>BPMNLabelStyle</featureSpecialization>
       </body>
       <SubclassificationPart xsi:nil="true"/>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="BPMNLabelStyle">
-      <body xsi:type="ItemUsage" declaredName="font" multiplicityRange="[1]">
+    <body xsi:type="PartDefinition" declaredName="BPMNLabelStyle">
+      <body xsi:type="PartUsage" declaredName="font" multiplicityRange="[1]">
         <featureNote>:</featureNote>
         <featureSpecialization>Font</featureSpecialization>
       </body>
@@ -69,20 +69,20 @@
       <body xsi:type="EnumerationUsage" declaredName="middle_non_initiating"/>
       <body xsi:type="EnumerationUsage" declaredName="bottom_non_initiating"/>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="BPMNEdge">
-      <body xsi:type="ItemUsage" declaredName="label" multiplicityRange="[1]">
+    <body xsi:type="PartDefinition" declaredName="BPMNEdge">
+      <body xsi:type="PartUsage" declaredName="label" multiplicityRange="[1]">
         <featureNote>:</featureNote>
         <featureSpecialization>BPMNLabel</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="bpmnElement" multiplicityRange="[1]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="bpmnElement" multiplicityRange="[1]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>BaseElement</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="sourceElement" multiplicityRange="[1]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="sourceElement" multiplicityRange="[1]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>DiagramElement</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="targetElement" multiplicityRange="[1]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="targetElement" multiplicityRange="[1]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>DiagramElement</featureSpecialization>
       </body>
@@ -96,12 +96,12 @@
       <body xsi:type="EnumerationUsage" declaredName="initiating"/>
       <body xsi:type="EnumerationUsage" declaredName="non_initiating"/>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="BPMNDiagram">
-      <body xsi:type="ItemUsage" declaredName="plane" multiplicityRange="[1]">
+    <body xsi:type="PartDefinition" declaredName="BPMNDiagram">
+      <body xsi:type="PartUsage" declaredName="plane" multiplicityRange="[1]">
         <featureNote>:</featureNote>
         <featureSpecialization>BPMNPlane</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="labelStyle" multiplicityRange="[*]">
+      <body xsi:type="PartUsage" declaredName="labelStyle" multiplicityRange="[*]">
         <featureNote>:</featureNote>
         <featureSpecialization>BPMNLabelStyle</featureSpecialization>
       </body>

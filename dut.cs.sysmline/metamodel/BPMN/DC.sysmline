@@ -2,7 +2,7 @@
 <Namespace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="sysmline" xsi:schemaLocation="sysmline metamodel/sysmline/sysmline.ecore">
   <body xsi:type="Package" declaredName="dc">
     <body xsi:type="NamespaceImport" hasVisibility="true" declaredName="ecore"/>
-    <body xsi:type="ItemDefinition" declaredName="Font">
+    <body xsi:type="PartDefinition" declaredName="Font">
       <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
         <featureNote>:</featureNote>
         <featureSpecialization>EString</featureSpecialization>
@@ -28,7 +28,7 @@
         <featureSpecialization>EBoolean</featureSpecialization>
       </body>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="Point">
+    <body xsi:type="PartDefinition" declaredName="Point">
       <body xsi:type="AttributeUsage" declaredName="x" multiplicityRange="[1]">
         <featureNote>:</featureNote>
         <featureSpecialization>EFloat</featureSpecialization>
@@ -38,7 +38,7 @@
         <featureSpecialization>EFloat</featureSpecialization>
       </body>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="Bounds">
+    <body xsi:type="PartDefinition" declaredName="Bounds">
       <body xsi:type="AttributeUsage" declaredName="x" multiplicityRange="[1]">
         <featureNote>:</featureNote>
         <featureSpecialization>EFloat</featureSpecialization>

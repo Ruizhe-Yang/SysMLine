@@ -18,9 +18,9 @@ public class Ecore2SysML {
 //		testAADLEcore();
 //		run("metamodel\\petrinet\\petrinet");
 //		run("metamodel\\Modelica\\MO");
-		run("metamodel\\PlayGround\\psl");
+//		run("metamodel\\PlayGround\\psl");
 //		run("metamodel\\HSUV\\HSUV");
-//		testBPMNEcore();
+		testBPMNEcore();
 //		testRoboChartEcore();
     }
 	

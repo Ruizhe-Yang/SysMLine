@@ -1,361 +1,361 @@
 package bpmn2 {
 	private import ecore::*;
 	public import bpmndi::*;
-	item def Interface :> RootElement{
+	part def Interface :> RootElement{
 		attribute name : EString [1];
-		item operations : Operation [1..*];
-		ref item implementationRef : EObject [1];
+		part operations : Operation [1..*];
+		ref part implementationRef : EObject [1];
 	}
-	abstract item def RootElement :> BaseElement;
-	abstract item def BaseElement {
+	abstract part def RootElement :> BaseElement;
+	abstract part def BaseElement {
 		attribute id : EString [1];
-		ref item extensionDefinitions : ExtensionDefinition [*];
-		item extensionValues : ExtensionAttributeValue [*];
-		item documentation : Documentation [*];
+		ref part extensionDefinitions : ExtensionDefinition [*];
+		part extensionValues : ExtensionAttributeValue [*];
+		part documentation : Documentation [*];
 		attribute description : EString [1];
 	}
-	item def ExtensionDefinition {
+	part def ExtensionDefinition {
 		attribute name : EString [1];
-		item extensionAttributeDefinitions : ExtensionAttributeDefinition [*];
+		part extensionAttributeDefinitions : ExtensionAttributeDefinition [*];
 		attribute id : EString [1];
 	}
-	item def ExtensionAttributeDefinition {
+	part def ExtensionAttributeDefinition {
 		attribute name : EString [1];
 		attribute type : EString [1];
 		attribute isReference : EBoolean [1];
-		ref item extensionDefinition : ExtensionDefinition [1];
+		ref part extensionDefinition : ExtensionDefinition [1];
 		attribute id : EString [1];
 	}
-	item def ExtensionAttributeValue {
-		ref item valueRef : EObject [1];
-		item 'value' : EObject [1];
-		ref item extensionAttributeDefinition : ExtensionAttributeDefinition [1];
+	part def ExtensionAttributeValue {
+		ref part valueRef : EObject [1];
+		part 'value' : EObject [1];
+		ref part extensionAttributeDefinition : ExtensionAttributeDefinition [1];
 		attribute id : EString [1];
 	}
-	item def Documentation :> BaseElement{
+	part def Documentation :> BaseElement{
 		attribute text : EString [1];
 		attribute textFormat : EString [1];
 	}
-	item def Operation :> BaseElement{
+	part def Operation :> BaseElement{
 		attribute name : EString [1];
-		ref item inMessageRef : Message [1];
-		ref item outMessageRef : Message [1];
-		ref item errorRefs : Error [*];
-		ref item implementationRef : EObject [1];
+		ref part inMessageRef : Message [1];
+		ref part outMessageRef : Message [1];
+		ref part errorRefs : Error [*];
+		ref part implementationRef : EObject [1];
 	}
-	item def Message :> RootElement{
+	part def Message :> RootElement{
 		attribute name : EString [1];
-		ref item itemRef : ItemDefinition [1];
+		ref part itemRef : ItemDefinition [1];
 	}
-	item def ItemDefinition :> RootElement{
+	part def ItemDefinition :> RootElement{
 		attribute itemKind : ItemKind [1];
-		ref item structureRef : EObject [1];
+		ref part structureRef : EObject [1];
 		attribute isCollection : EBoolean [1];
-		ref item 'import' : Import [1];
+		ref part 'import' : Import [1];
 	}
 	enum def ItemKind {
 		enum Physical;
 		enum Information;
 	}
-	item def Import {
+	part def Import {
 		attribute importType : EString [1];
 		attribute location : EString [1];
 		attribute namespace : EString [1];
 		attribute id : EString [1];
 	}
-	item def Error :> RootElement{
-		ref item structureRef : ItemDefinition [1];
+	part def Error :> RootElement{
+		ref part structureRef : ItemDefinition [1];
 		attribute name : EString [1];
 		attribute errorCode : EString [1];
 	}
-	item def EndPoint :> RootElement;
-	item def Auditing :> BaseElement;
-	item def GlobalTask :> CallableElement{
-		item resources : ResourceRole [*];
+	part def EndPoint :> RootElement;
+	part def Auditing :> BaseElement;
+	part def GlobalTask :> CallableElement{
+		part resources : ResourceRole [*];
 	}
-	abstract item def CallableElement :> RootElement{
+	abstract part def CallableElement :> RootElement{
 		attribute name : EString [1];
-		item ioSpecification : InputOutputSpecification [1];
-		ref item supportedInterfaceRefs : Interface [*];
-		item ioBinding : InputOutputBinding [*];
+		part ioSpecification : InputOutputSpecification [1];
+		ref part supportedInterfaceRefs : Interface [*];
+		part ioBinding : InputOutputBinding [*];
 	}
-	item def InputOutputSpecification :> BaseElement{
-		item inputSets : InputSet [*];
-		item outputSets : OutputSet [*];
-		item dataInputs : DataInput [*];
-		item dataOutputs : DataOutput [*];
+	part def InputOutputSpecification :> BaseElement{
+		part inputSets : InputSet [*];
+		part outputSets : OutputSet [*];
+		part dataInputs : DataInput [*];
+		part dataOutputs : DataOutput [*];
 	}
-	item def InputSet :> BaseElement{
+	part def InputSet :> BaseElement{
 		attribute name : EString [1];
-		ref item dataInputRefs : DataInput [*];
-		ref item optionalInputRefs : DataInput [*];
-		ref item whileExecutingInputRefs : DataInput [*];
-		ref item outputSetRefs : OutputSet [*];
+		ref part dataInputRefs : DataInput [*];
+		ref part optionalInputRefs : DataInput [*];
+		ref part whileExecutingInputRefs : DataInput [*];
+		ref part outputSetRefs : OutputSet [*];
 	}
-	item def DataInput :> ItemAwareElement{
-		attribute name : EString [1];
-		attribute isCollection : EBoolean [1];
-		ref item inputSetWithOptional : InputSet [*];
-		ref item inputSetWithWhileExecuting : InputSet [*];
-		ref item inputSetRefs : InputSet [*];
-	}
-	item def ItemAwareElement :> BaseElement{
-		ref item itemSubjectRef : ItemDefinition [1];
-		item dataState : DataState [1];
-	}
-	item def DataState :> BaseElement{
-		attribute name : EString [1];
-	}
-	item def OutputSet :> BaseElement{
-		ref item dataOutputRefs : DataOutput [*];
-		ref item optionalOutputRefs : DataOutput [*];
-		ref item whileExecutingOutputRefs : DataOutput [*];
-		attribute name : EString [1];
-		ref item inputSetRefs : InputSet [*];
-	}
-	item def DataOutput :> ItemAwareElement{
+	part def DataInput :> ItemAwareElement{
 		attribute name : EString [1];
 		attribute isCollection : EBoolean [1];
-		ref item outputSetWithOptional : OutputSet [*];
-		ref item outputSetWithWhileExecuting : OutputSet [*];
-		ref item outputSetRefs : OutputSet [*];
+		ref part inputSetWithOptional : InputSet [*];
+		ref part inputSetWithWhileExecuting : InputSet [*];
+		ref part inputSetRefs : InputSet [*];
 	}
-	item def InputOutputBinding {
-		ref item inputDataRef : InputSet [1];
-		ref item outputDataRef : OutputSet [1];
-		ref item operationRef : Operation [1];
+	part def ItemAwareElement :> BaseElement{
+		ref part itemSubjectRef : ItemDefinition [1];
+		part dataState : DataState [1];
+	}
+	part def DataState :> BaseElement{
+		attribute name : EString [1];
+	}
+	part def OutputSet :> BaseElement{
+		ref part dataOutputRefs : DataOutput [*];
+		ref part optionalOutputRefs : DataOutput [*];
+		ref part whileExecutingOutputRefs : DataOutput [*];
+		attribute name : EString [1];
+		ref part inputSetRefs : InputSet [*];
+	}
+	part def DataOutput :> ItemAwareElement{
+		attribute name : EString [1];
+		attribute isCollection : EBoolean [1];
+		ref part outputSetWithOptional : OutputSet [*];
+		ref part outputSetWithWhileExecuting : OutputSet [*];
+		ref part outputSetRefs : OutputSet [*];
+	}
+	part def InputOutputBinding {
+		ref part inputDataRef : InputSet [1];
+		ref part outputDataRef : OutputSet [1];
+		ref part operationRef : Operation [1];
 		attribute id : EString [1];
 	}
-	item def ResourceRole :> BaseElement{
-		ref item resourceRef : Resource [1];
-		item resourceParameterBindings : ResourceParameterBinding [*];
-		item resourceAssignmentExpression : ResourceAssignmentExpression [1];
+	part def ResourceRole :> BaseElement{
+		ref part resourceRef : Resource [1];
+		part resourceParameterBindings : ResourceParameterBinding [*];
+		part resourceAssignmentExpression : ResourceAssignmentExpression [1];
 		attribute name : EString [1];
 	}
-	item def Resource :> RootElement{
+	part def Resource :> RootElement{
 		attribute name : EString [1];
-		item resourceParameters : ResourceParameter [*];
+		part resourceParameters : ResourceParameter [*];
 	}
-	item def ResourceParameter :> BaseElement{
+	part def ResourceParameter :> BaseElement{
 		attribute name : EString [1];
 		attribute isRequired : EBoolean [1];
-		ref item type : ItemDefinition [1];
+		ref part type : ItemDefinition [1];
 	}
-	item def ResourceParameterBinding {
-		item expression : Expression [1];
-		ref item parameterRef : ResourceParameter [1];
+	part def ResourceParameterBinding {
+		part expression : Expression [1];
+		ref part parameterRef : ResourceParameter [1];
 		attribute id : EString [1];
 	}
-	item def Expression :> BaseElement;
-	item def ResourceAssignmentExpression {
-		item expression : Expression [1];
+	part def Expression :> BaseElement;
+	part def ResourceAssignmentExpression {
+		part expression : Expression [1];
 		attribute id : EString [1];
 	}
-	item def Monitoring :> BaseElement;
-	item def Performer :> ResourceRole;
-	item def Process :> CallableElement, FlowElementsContainer{
+	part def Monitoring :> BaseElement;
+	part def Performer :> ResourceRole;
+	part def Process :> CallableElement, FlowElementsContainer{
 		attribute processType : ProcessType [1];
 		attribute isClosed : EBoolean [1];
-		item auditing : Auditing [1];
-		item monitoring : Monitoring [1];
-		item properties : Property [*];
-		ref item supports : Process [*];
-		ref item definitionalCollaborationRef : Collaboration [1];
+		part auditing : Auditing [1];
+		part monitoring : Monitoring [1];
+		part properties : Property [*];
+		ref part supports : Process [*];
+		ref part definitionalCollaborationRef : Collaboration [1];
 		attribute isExecutable : EBoolean [1];
-		item resources : ResourceRole [*];
-		item artifacts : Artifact [*];
-		item correlationSubscriptions : CorrelationSubscription [*];
-		item decomposedBy : Process [*];
-		ref item decomposes : Process [1];
+		part resources : ResourceRole [*];
+		part artifacts : Artifact [*];
+		part correlationSubscriptions : CorrelationSubscription [*];
+		part decomposedBy : Process [*];
+		ref part decomposes : Process [1];
 	}
-	abstract item def FlowElementsContainer :> BaseElement{
-		item flowElements : FlowElement [*];
-		item laneSets : LaneSet [*];
+	abstract part def FlowElementsContainer :> BaseElement{
+		part flowElements : FlowElement [*];
+		part laneSets : LaneSet [*];
 	}
-	abstract item def FlowElement :> BaseElement{
+	abstract part def FlowElement :> BaseElement{
 		attribute name : EString [1];
-		item auditing : Auditing [1];
-		item monitoring : Monitoring [1];
-		ref item categoryValueRef : CategoryValue [*];
+		part auditing : Auditing [1];
+		part monitoring : Monitoring [1];
+		ref part categoryValueRef : CategoryValue [*];
 	}
-	item def CategoryValue :> BaseElement{
+	part def CategoryValue :> BaseElement{
 		attribute 'value' : EString [1];
-		ref item categorizedFlowElements : FlowElement [*];
+		ref part categorizedFlowElements : FlowElement [*];
 	}
-	item def LaneSet :> BaseElement{
-		item lanes : Lane [*];
+	part def LaneSet :> BaseElement{
+		part lanes : Lane [*];
 		attribute name : EString [1];
 	}
-	item def Lane :> BaseElement{
+	part def Lane :> BaseElement{
 		attribute name : EString [1];
-		item childLaneSet : LaneSet [1];
-		ref item partitionElementRef : BaseElement [1];
-		ref item flowNodeRefs : FlowNode [*];
-		item partitionElement : BaseElement [1];
+		part childLaneSet : LaneSet [1];
+		ref part partitionElementRef : BaseElement [1];
+		ref part flowNodeRefs : FlowNode [*];
+		part partitionElement : BaseElement [1];
 	}
-	abstract item def FlowNode :> FlowElement{
-		ref item outgoing : SequenceFlow [*];
-		ref item incoming : SequenceFlow [*];
-		ref item lanes : Lane [*];
+	abstract part def FlowNode :> FlowElement{
+		ref part outgoing : SequenceFlow [*];
+		ref part incoming : SequenceFlow [*];
+		ref part lanes : Lane [*];
 	}
-	item def SequenceFlow :> FlowElement{
+	part def SequenceFlow :> FlowElement{
 		attribute isImmediate : EBoolean [1];
-		item conditionExpression : Expression [1];
-		ref item targetRef : FlowNode [1];
-		ref item sourceRef : FlowNode [1];
+		part conditionExpression : Expression [1];
+		ref part targetRef : FlowNode [1];
+		ref part sourceRef : FlowNode [1];
 	}
 	enum def ProcessType {
 		enum None;
 		enum Public;
 		enum Private;
 	}
-	item def Property :> ItemAwareElement{
+	part def Property :> ItemAwareElement{
 		attribute name : EString [1];
 	}
-	item def Collaboration :> RootElement{
+	part def Collaboration :> RootElement{
 		attribute name : EString [1];
 		attribute isClosed : EBoolean [1];
-		ref item choreographyRef : Choreography [*];
-		item artifacts : Artifact [*];
-		item participantAssociations : ParticipantAssociation [*];
-		item messageFlowAssociations : MessageFlowAssociation [*];
-		item conversationAssociations : ConversationAssociation [1];
-		item participants : Participant [*];
-		item messageFlows : MessageFlow [*];
-		item correlationKeys : CorrelationKey [*];
-		item conversations : ConversationNode [*];
-		item conversationLinks : ConversationLink [*];
+		ref part choreographyRef : Choreography [*];
+		part artifacts : Artifact [*];
+		part participantAssociations : ParticipantAssociation [*];
+		part messageFlowAssociations : MessageFlowAssociation [*];
+		part conversationAssociations : ConversationAssociation [1];
+		part participants : Participant [*];
+		part messageFlows : MessageFlow [*];
+		part correlationKeys : CorrelationKey [*];
+		part conversations : ConversationNode [*];
+		part conversationLinks : ConversationLink [*];
 	}
-	item def Choreography :> Collaboration, FlowElementsContainer;
-	abstract item def Artifact :> BaseElement;
-	item def ParticipantAssociation :> BaseElement{
-		ref item innerParticipantRef : Participant [1];
-		ref item outerParticipantRef : Participant [1];
+	part def Choreography :> Collaboration, FlowElementsContainer;
+	abstract part def Artifact :> BaseElement;
+	part def ParticipantAssociation :> BaseElement{
+		ref part innerParticipantRef : Participant [1];
+		ref part outerParticipantRef : Participant [1];
 	}
-	item def Participant :> BaseElement, InteractionNode{
+	part def Participant :> BaseElement, InteractionNode{
 		attribute name : EString [1];
-		ref item interfaceRefs : Interface [*];
-		item participantMultiplicity : ParticipantMultiplicity [1];
-		ref item endPointRefs : EndPoint [*];
-		ref item processRef : Process [1];
+		ref part interfaceRefs : Interface [*];
+		part participantMultiplicity : ParticipantMultiplicity [1];
+		ref part endPointRefs : EndPoint [*];
+		ref part processRef : Process [1];
 	}
-	abstract item def InteractionNode {
-		ref item incomingConversationLinks : ConversationLink [*];
-		ref item outgoingConversationLinks : ConversationLink [*];
+	abstract part def InteractionNode {
+		ref part incomingConversationLinks : ConversationLink [*];
+		ref part outgoingConversationLinks : ConversationLink [*];
 	}
-	item def ConversationLink :> BaseElement{
-		ref item sourceRef : InteractionNode [1];
+	part def ConversationLink :> BaseElement{
+		ref part sourceRef : InteractionNode [1];
 		attribute name : EString [1];
-		ref item targetRef : InteractionNode [1];
+		ref part targetRef : InteractionNode [1];
 	}
-	item def ParticipantMultiplicity {
+	part def ParticipantMultiplicity {
 		attribute minimum : EInt [1];
 		attribute maximum : EInt [1];
 		attribute id : EString [1];
 	}
-	item def MessageFlowAssociation :> BaseElement{
-		ref item innerMessageFlowRef : MessageFlow [1];
-		ref item outerMessageFlowRef : MessageFlow [1];
+	part def MessageFlowAssociation :> BaseElement{
+		ref part innerMessageFlowRef : MessageFlow [1];
+		ref part outerMessageFlowRef : MessageFlow [1];
 	}
-	item def MessageFlow :> BaseElement{
+	part def MessageFlow :> BaseElement{
 		attribute name : EString [1];
-		ref item sourceRef : InteractionNode [1];
-		ref item targetRef : InteractionNode [1];
-		ref item messageRef : Message [1];
+		ref part sourceRef : InteractionNode [1];
+		ref part targetRef : InteractionNode [1];
+		ref part messageRef : Message [1];
 	}
-	item def ConversationAssociation :> BaseElement{
-		ref item innerConversationNodeRef : ConversationNode [1];
-		ref item outerConversationNodeRef : ConversationNode [1];
+	part def ConversationAssociation :> BaseElement{
+		ref part innerConversationNodeRef : ConversationNode [1];
+		ref part outerConversationNodeRef : ConversationNode [1];
 	}
-	abstract item def ConversationNode :> BaseElement, InteractionNode{
+	abstract part def ConversationNode :> BaseElement, InteractionNode{
 		attribute name : EString [1];
-		ref item participantRefs : Participant [2..*];
-		ref item messageFlowRefs : MessageFlow [*];
-		item correlationKeys : CorrelationKey [*];
+		ref part participantRefs : Participant [2..*];
+		ref part messageFlowRefs : MessageFlow [*];
+		part correlationKeys : CorrelationKey [*];
 	}
-	item def CorrelationKey :> BaseElement{
-		ref item correlationPropertyRef : CorrelationProperty [*];
+	part def CorrelationKey :> BaseElement{
+		ref part correlationPropertyRef : CorrelationProperty [*];
 		attribute name : EString [1];
 	}
-	item def CorrelationProperty :> RootElement{
-		item correlationPropertyRetrievalExpression : CorrelationPropertyRetrievalExpression [1..*];
+	part def CorrelationProperty :> RootElement{
+		part correlationPropertyRetrievalExpression : CorrelationPropertyRetrievalExpression [1..*];
 		attribute name : EString [1];
-		ref item type : ItemDefinition [1];
+		ref part type : ItemDefinition [1];
 	}
-	item def CorrelationPropertyRetrievalExpression :> BaseElement{
-		item messagePath : FormalExpression [1];
-		ref item messageRef : Message [1];
+	part def CorrelationPropertyRetrievalExpression :> BaseElement{
+		part messagePath : FormalExpression [1];
+		ref part messageRef : Message [1];
 	}
-	item def FormalExpression :> Expression{
+	part def FormalExpression :> Expression{
 		attribute 'language' : EString [1];
-		ref item body : EObject [1];
-		ref item evaluatesToTypeRef : ItemDefinition [1];
+		ref part body : EObject [1];
+		ref part evaluatesToTypeRef : ItemDefinition [1];
 	}
-	item def CorrelationSubscription :> BaseElement{
-		ref item correlationKeyRef : CorrelationKey [1];
-		item correlationPropertyBinding : CorrelationPropertyBinding [*];
+	part def CorrelationSubscription :> BaseElement{
+		ref part correlationKeyRef : CorrelationKey [1];
+		part correlationPropertyBinding : CorrelationPropertyBinding [*];
 	}
-	item def CorrelationPropertyBinding :> BaseElement{
-		item dataPath : FormalExpression [1];
-		ref item correlationPropertyRef : CorrelationProperty [1];
+	part def CorrelationPropertyBinding :> BaseElement{
+		part dataPath : FormalExpression [1];
+		ref part correlationPropertyRef : CorrelationProperty [1];
 	}
-	item def GlobalManualTask :> GlobalTask;
-	item def ManualTask :> Task;
-	item def Task :> Activity;
-	abstract item def Activity :> FlowNode, InteractionNode{
+	part def GlobalManualTask :> GlobalTask;
+	part def ManualTask :> Task;
+	part def Task :> Activity;
+	abstract part def Activity :> FlowNode, InteractionNode{
 		attribute isForCompensation : EBoolean [1];
-		item loopCharacteristics : LoopCharacteristics [1];
-		item resources : ResourceRole [*];
-		ref item 'default' : SequenceFlow [1];
-		item properties : Property [*];
-		item ioSpecification : InputOutputSpecification [1];
-		ref item boundaryEventRefs : BoundaryEvent [*];
-		item dataInputAssociations : DataInputAssociation [*];
-		item dataOutputAssociations : DataOutputAssociation [*];
+		part loopCharacteristics : LoopCharacteristics [1];
+		part resources : ResourceRole [*];
+		ref part 'default' : SequenceFlow [1];
+		part properties : Property [*];
+		part ioSpecification : InputOutputSpecification [1];
+		ref part boundaryEventRefs : BoundaryEvent [*];
+		part dataInputAssociations : DataInputAssociation [*];
+		part dataOutputAssociations : DataOutputAssociation [*];
 		attribute startQuantity : EInt [1];
 		attribute completionQuantity : EInt [1];
 	}
-	abstract item def LoopCharacteristics :> BaseElement;
-	item def BoundaryEvent :> CatchEvent{
+	abstract part def LoopCharacteristics :> BaseElement;
+	part def BoundaryEvent :> CatchEvent{
 		attribute cancelActivity : EBoolean [1];
-		ref item attachedToRef : Activity [1];
+		ref part attachedToRef : Activity [1];
 	}
-	abstract item def CatchEvent :> Event{
+	abstract part def CatchEvent :> Event{
 		attribute parallelMultiple : EBoolean [1];
-		item outputSet : OutputSet [1];
-		ref item eventDefinitionRefs : EventDefinition [*];
-		item dataOutputAssociation : DataOutputAssociation [*];
-		item dataOutputs : DataOutput [*];
-		item eventDefinitions : EventDefinition [*];
+		part outputSet : OutputSet [1];
+		ref part eventDefinitionRefs : EventDefinition [*];
+		part dataOutputAssociation : DataOutputAssociation [*];
+		part dataOutputs : DataOutput [*];
+		part eventDefinitions : EventDefinition [*];
 	}
-	abstract item def Event :> FlowNode, InteractionNode{
-		item properties : Property [*];
+	abstract part def Event :> FlowNode, InteractionNode{
+		part properties : Property [*];
 	}
-	abstract item def EventDefinition :> RootElement;
-	item def DataOutputAssociation :> DataAssociation;
-	item def DataAssociation :> BaseElement{
-		item transformation : FormalExpression [1];
-		item assignment : Assignment [*];
-		ref item targetRef : ItemAwareElement [1];
-		ref item sourceRef : ItemAwareElement [*];
+	abstract part def EventDefinition :> RootElement;
+	part def DataOutputAssociation :> DataAssociation;
+	part def DataAssociation :> BaseElement{
+		part transformation : FormalExpression [1];
+		part assignment : Assignment [*];
+		ref part targetRef : ItemAwareElement [1];
+		ref part sourceRef : ItemAwareElement [*];
 	}
-	item def Assignment :> BaseElement{
-		item 'from' : Expression [1];
-		item 'to' : Expression [1];
+	part def Assignment :> BaseElement{
+		part 'from' : Expression [1];
+		part 'to' : Expression [1];
 	}
-	item def DataInputAssociation :> DataAssociation;
-	item def UserTask :> Task{
-		item renderings : Rendering [*];
+	part def DataInputAssociation :> DataAssociation;
+	part def UserTask :> Task{
+		part renderings : Rendering [*];
 		attribute implementation : EString [1];
 	}
-	item def Rendering :> BaseElement;
-	item def HumanPerformer :> Performer;
-	item def PotentialOwner :> HumanPerformer;
-	item def GlobalUserTask :> GlobalTask{
+	part def Rendering :> BaseElement;
+	part def HumanPerformer :> Performer;
+	part def PotentialOwner :> HumanPerformer;
+	part def GlobalUserTask :> GlobalTask{
 		attribute implementation : EString [1];
-		item renderings : Rendering [*];
+		part renderings : Rendering [*];
 	}
-	abstract item def Gateway :> FlowNode{
+	abstract part def Gateway :> FlowNode{
 		attribute gatewayDirection : GatewayDirection [1];
 	}
 	enum def GatewayDirection {
@@ -364,7 +364,7 @@ package bpmn2 {
 		enum Diverging;
 		enum Mixed;
 	}
-	item def EventBasedGateway :> Gateway{
+	part def EventBasedGateway :> Gateway{
 		attribute instantiate : EBoolean [1];
 		attribute eventGatewayType : EventBasedGatewayType [1];
 	}
@@ -372,22 +372,22 @@ package bpmn2 {
 		enum Parallel;
 		enum Exclusive;
 	}
-	item def ComplexGateway :> Gateway{
-		item activationCondition : Expression [1];
-		ref item 'default' : SequenceFlow [1];
+	part def ComplexGateway :> Gateway{
+		part activationCondition : Expression [1];
+		ref part 'default' : SequenceFlow [1];
 	}
-	item def ExclusiveGateway :> Gateway{
-		ref item 'default' : SequenceFlow [1];
+	part def ExclusiveGateway :> Gateway{
+		ref part 'default' : SequenceFlow [1];
 	}
-	item def InclusiveGateway :> Gateway{
-		ref item 'default' : SequenceFlow [1];
+	part def InclusiveGateway :> Gateway{
+		ref part 'default' : SequenceFlow [1];
 	}
-	item def ParallelGateway :> Gateway;
-	item def Relationship :> BaseElement{
+	part def ParallelGateway :> Gateway;
+	part def Relationship :> BaseElement{
 		attribute type : EString [1];
 		attribute direction : RelationshipDirection [1];
-		ref item sources : EObject [1..*];
-		ref item targets : EObject [1..*];
+		ref part sources : EObject [1..*];
+		ref part targets : EObject [1..*];
 	}
 	enum def RelationshipDirection {
 		enum None;
@@ -395,102 +395,102 @@ package bpmn2 {
 		enum Backward;
 		enum Both;
 	}
-	item def Extension {
+	part def Extension {
 		attribute mustUnderstand : EBoolean [1];
-		item definition : ExtensionDefinition [1];
+		part definition : ExtensionDefinition [1];
 		attribute id : EString [1];
 	}
-	item def IntermediateCatchEvent :> CatchEvent;
-	item def IntermediateThrowEvent :> ThrowEvent;
-	abstract item def ThrowEvent :> Event{
-		item inputSet : InputSet [1];
-		ref item eventDefinitionRefs : EventDefinition [*];
-		item dataInputAssociation : DataInputAssociation [*];
-		item dataInputs : DataInput [*];
-		item eventDefinitions : EventDefinition [*];
+	part def IntermediateCatchEvent :> CatchEvent;
+	part def IntermediateThrowEvent :> ThrowEvent;
+	abstract part def ThrowEvent :> Event{
+		part inputSet : InputSet [1];
+		ref part eventDefinitionRefs : EventDefinition [*];
+		part dataInputAssociation : DataInputAssociation [*];
+		part dataInputs : DataInput [*];
+		part eventDefinitions : EventDefinition [*];
 	}
-	item def EndEvent :> ThrowEvent;
-	item def StartEvent :> CatchEvent{
+	part def EndEvent :> ThrowEvent;
+	part def StartEvent :> CatchEvent{
 		attribute isInterrupting : EBoolean [1];
 	}
-	item def CancelEventDefinition :> EventDefinition;
-	item def ErrorEventDefinition :> EventDefinition{
-		ref item errorRef : Error [1];
+	part def CancelEventDefinition :> EventDefinition;
+	part def ErrorEventDefinition :> EventDefinition{
+		ref part errorRef : Error [1];
 	}
-	item def TerminateEventDefinition :> EventDefinition;
-	item def EscalationEventDefinition :> EventDefinition{
-		ref item escalationRef : Escalation [1];
+	part def TerminateEventDefinition :> EventDefinition;
+	part def EscalationEventDefinition :> EventDefinition{
+		ref part escalationRef : Escalation [1];
 	}
-	item def Escalation {
-		ref item structureRef : ItemDefinition [1];
+	part def Escalation {
+		ref part structureRef : ItemDefinition [1];
 		attribute name : EString [1];
 		attribute escalationCode : EString [1];
 		attribute id : EString [1];
 	}
-	item def CompensateEventDefinition :> EventDefinition{
+	part def CompensateEventDefinition :> EventDefinition{
 		attribute waitForCompletion : EBoolean [1];
-		ref item activityRef : Activity [1];
+		ref part activityRef : Activity [1];
 	}
-	item def TimerEventDefinition :> EventDefinition{
-		item timeDate : Expression [1];
-		item timeCycle : Expression [1];
-		item timeDuration : Expression [1];
+	part def TimerEventDefinition :> EventDefinition{
+		part timeDate : Expression [1];
+		part timeCycle : Expression [1];
+		part timeDuration : Expression [1];
 	}
-	item def LinkEventDefinition :> EventDefinition{
+	part def LinkEventDefinition :> EventDefinition{
 		attribute name : EString [1];
-		ref item target : LinkEventDefinition [1];
-		ref item source : LinkEventDefinition [*];
+		ref part target : LinkEventDefinition [1];
+		ref part source : LinkEventDefinition [*];
 	}
-	item def MessageEventDefinition :> EventDefinition{
-		ref item messageRef : Message [1];
-		ref item operationRef : Operation [1];
+	part def MessageEventDefinition :> EventDefinition{
+		ref part messageRef : Message [1];
+		ref part operationRef : Operation [1];
 	}
-	item def ConditionalEventDefinition :> EventDefinition{
-		item condition : Expression [1];
+	part def ConditionalEventDefinition :> EventDefinition{
+		part condition : Expression [1];
 	}
-	item def SignalEventDefinition :> EventDefinition{
-		ref item signalRef : Signal [1];
+	part def SignalEventDefinition :> EventDefinition{
+		ref part signalRef : Signal [1];
 	}
-	item def Signal :> RootElement{
-		ref item structureRef : ItemDefinition [1];
+	part def Signal :> RootElement{
+		ref part structureRef : ItemDefinition [1];
 		attribute name : EString [1];
 	}
-	item def ImplicitThrowEvent :> ThrowEvent;
-	item def DataObject :> FlowElement, ItemAwareElement{
+	part def ImplicitThrowEvent :> ThrowEvent;
+	part def DataObject :> FlowElement, ItemAwareElement{
 		attribute isCollection : EBoolean [1];
 	}
-	item def DataStore :> ItemAwareElement, RootElement{
+	part def DataStore :> ItemAwareElement, RootElement{
 		attribute name : EString [1];
 		attribute capacity : EInt [1];
 		attribute isUnlimited : EBoolean [1];
 	}
-	item def DataStoreReference :> FlowElement, ItemAwareElement{
-		ref item dataStoreRef : DataStore [1];
+	part def DataStoreReference :> FlowElement, ItemAwareElement{
+		ref part dataStoreRef : DataStore [1];
 	}
-	item def DataObjectReference :> FlowElement, ItemAwareElement{
-		ref item dataObjectRef : DataObject [1];
+	part def DataObjectReference :> FlowElement, ItemAwareElement{
+		ref part dataObjectRef : DataObject [1];
 	}
-	item def CallConversation :> ConversationNode{
-		ref item calledCollaborationRef : Collaboration [1];
-		item participantAssociations : ParticipantAssociation [*];
+	part def CallConversation :> ConversationNode{
+		ref part calledCollaborationRef : Collaboration [1];
+		part participantAssociations : ParticipantAssociation [*];
 	}
-	item def Conversation :> ConversationNode;
-	item def SubConversation :> ConversationNode{
-		item conversationNodes : ConversationNode [*];
+	part def Conversation :> ConversationNode;
+	part def SubConversation :> ConversationNode{
+		part conversationNodes : ConversationNode [*];
 	}
-	item def GlobalConversation :> Collaboration;
-	item def PartnerEntity :> RootElement{
+	part def GlobalConversation :> Collaboration;
+	part def PartnerEntity :> RootElement{
 		attribute name : EString [1];
-		ref item participantRef : Participant [*];
+		ref part participantRef : Participant [*];
 	}
-	item def PartnerRole :> RootElement{
+	part def PartnerRole :> RootElement{
 		attribute name : EString [1];
-		ref item participantRef : Participant [*];
+		ref part participantRef : Participant [*];
 	}
-	abstract item def ChoreographyActivity :> FlowNode{
-		ref item participantRefs : Participant [*];
-		ref item initiatingParticipantRef : Participant [1];
-		item correlationKeys : CorrelationKey [*];
+	abstract part def ChoreographyActivity :> FlowNode{
+		ref part participantRefs : Participant [*];
+		ref part initiatingParticipantRef : Participant [1];
+		part correlationKeys : CorrelationKey [*];
 		attribute loopType : ChoreographyLoopType [1];
 	}
 	enum def ChoreographyLoopType {
@@ -499,47 +499,47 @@ package bpmn2 {
 		enum MultiInstanceSequential;
 		enum MultiInstanceParallel;
 	}
-	item def CallChoreography :> ChoreographyActivity{
-		ref item calledChoreographyRef : Choreography [1];
-		item participantAssociations : ParticipantAssociation [*];
+	part def CallChoreography :> ChoreographyActivity{
+		ref part calledChoreographyRef : Choreography [1];
+		part participantAssociations : ParticipantAssociation [*];
 	}
-	item def SubChoreography :> ChoreographyActivity, FlowElementsContainer{
-		item artifacts : Artifact [*];
+	part def SubChoreography :> ChoreographyActivity, FlowElementsContainer{
+		part artifacts : Artifact [*];
 	}
-	item def ChoreographyTask :> ChoreographyActivity{
-		ref item messageFlowRef : MessageFlow [0..2];
+	part def ChoreographyTask :> ChoreographyActivity{
+		ref part messageFlowRef : MessageFlow [0..2];
 	}
-	item def GlobalChoreographyTask :> Choreography{
-		ref item initiatingParticipantRef : Participant [1];
+	part def GlobalChoreographyTask :> Choreography{
+		ref part initiatingParticipantRef : Participant [1];
 	}
-	item def TextAnnotation :> Artifact{
+	part def TextAnnotation :> Artifact{
 		attribute text : EString [1];
 		attribute textFormat : EString [1];
 	}
-	item def Group :> Artifact{
-		ref item categoryValueRef : CategoryValue [1];
+	part def Group :> Artifact{
+		ref part categoryValueRef : CategoryValue [1];
 	}
-	item def Association :> Artifact{
+	part def Association :> Artifact{
 		attribute associationDirection : AssociationDirection [1];
-		ref item sourceRef : BaseElement [1];
-		ref item targetRef : BaseElement [1];
+		ref part sourceRef : BaseElement [1];
+		ref part targetRef : BaseElement [1];
 	}
 	enum def AssociationDirection {
 		enum None;
 		enum One;
 		enum Both;
 	}
-	item def Category :> RootElement{
-		item categoryValue : CategoryValue [*];
+	part def Category :> RootElement{
+		part categoryValue : CategoryValue [*];
 		attribute name : EString [1];
 	}
-	item def ServiceTask :> Task{
+	part def ServiceTask :> Task{
 		attribute implementation : EString [1];
-		ref item operationRef : Operation [1];
+		ref part operationRef : Operation [1];
 	}
-	item def SubProcess :> Activity, FlowElementsContainer{
+	part def SubProcess :> Activity, FlowElementsContainer{
 		attribute triggeredByEvent : EBoolean [1];
-		item artifacts : Artifact [*];
+		part artifacts : Artifact [*];
 	}
 	enum def MultiInstanceBehavior {
 		enum None;
@@ -547,51 +547,51 @@ package bpmn2 {
 		enum All;
 		enum Complex;
 	}
-	item def MultiInstanceLoopCharacteristics :> LoopCharacteristics{
+	part def MultiInstanceLoopCharacteristics :> LoopCharacteristics{
 		attribute isSequential : EBoolean [1];
 		attribute behavior : MultiInstanceBehavior [1];
-		item loopCardinality : Expression [1];
-		ref item loopDataInputRef : ItemAwareElement [1];
-		ref item loopDataOutputRef : ItemAwareElement [1];
-		item inputDataItem : DataInput [1];
-		item outputDataItem : DataOutput [1];
-		item completionCondition : Expression [1];
-		item complexBehaviorDefinition : ComplexBehaviorDefinition [*];
-		ref item oneBehaviorEventRef : EventDefinition [1];
-		ref item noneBehaviorEventRef : EventDefinition [1];
+		part loopCardinality : Expression [1];
+		ref part loopDataInputRef : ItemAwareElement [1];
+		ref part loopDataOutputRef : ItemAwareElement [1];
+		part inputDataItem : DataInput [1];
+		part outputDataItem : DataOutput [1];
+		part completionCondition : Expression [1];
+		part complexBehaviorDefinition : ComplexBehaviorDefinition [*];
+		ref part oneBehaviorEventRef : EventDefinition [1];
+		ref part noneBehaviorEventRef : EventDefinition [1];
 	}
-	item def ComplexBehaviorDefinition :> BaseElement{
-		item condition : FormalExpression [1];
-		item 'event' : ImplicitThrowEvent [1];
+	part def ComplexBehaviorDefinition :> BaseElement{
+		part condition : FormalExpression [1];
+		part 'event' : ImplicitThrowEvent [1];
 	}
-	item def StandardLoopCharacteristics :> LoopCharacteristics{
+	part def StandardLoopCharacteristics :> LoopCharacteristics{
 		attribute testBefore : EBoolean [1];
-		item loopCondition : Expression [1];
-		item loopMaximum : Expression [1];
+		part loopCondition : Expression [1];
+		part loopMaximum : Expression [1];
 	}
-	item def CallActivity :> Activity{
-		ref item calledElementRef : CallableElement [1];
+	part def CallActivity :> Activity{
+		ref part calledElementRef : CallableElement [1];
 	}
-	item def SendTask :> Task{
+	part def SendTask :> Task{
 		attribute implementation : EString [1];
-		ref item operationRef : Operation [1];
-		ref item messageRef : Message [1];
+		ref part operationRef : Operation [1];
+		ref part messageRef : Message [1];
 	}
-	item def ReceiveTask :> Task{
+	part def ReceiveTask :> Task{
 		attribute implementation : EString [1];
 		attribute instantiate : EBoolean [1];
-		ref item operationRef : Operation [1];
-		ref item messageRef : Message [1];
+		ref part operationRef : Operation [1];
+		ref part messageRef : Message [1];
 	}
-	item def ScriptTask :> Task{
+	part def ScriptTask :> Task{
 		attribute scriptFormat : EString [1];
 		attribute script : EString [1];
 	}
-	item def BusinessRuleTask :> Task{
+	part def BusinessRuleTask :> Task{
 		attribute implementation : EString [1];
 	}
-	item def AdHocSubProcess :> SubProcess{
-		item completionCondition : Expression [1];
+	part def AdHocSubProcess :> SubProcess{
+		part completionCondition : Expression [1];
 		attribute ordering : AdHocOrdering [1];
 		attribute cancelRemainingInstances : EBoolean [1];
 	}
@@ -599,27 +599,27 @@ package bpmn2 {
 		enum Parallel;
 		enum Sequential;
 	}
-	item def Transaction :> SubProcess{
+	part def Transaction :> SubProcess{
 		attribute protocol : EString [1];
 		attribute method : EString [1];
 	}
-	item def GlobalScriptTask :> GlobalTask{
+	part def GlobalScriptTask :> GlobalTask{
 		attribute scriptLanguage : EString [1];
 		attribute script : EString [1];
 	}
-	item def GlobalBusinessRuleTask :> GlobalTask{
+	part def GlobalBusinessRuleTask :> GlobalTask{
 		attribute implementation : EString [1];
 	}
-	item def Definitions :> BaseElement{
+	part def Definitions :> BaseElement{
 		attribute name : EString [1];
 		attribute targetNamespace : EString [1];
 		attribute expressionLanguage : EString [1];
 		attribute typeLanguage : EString [1];
-		item imports : Import [*];
-		item extensions : Extension [*];
-		item relationships : Relationship [*];
-		item rootElements : RootElement [*];
-		item diagrams : BPMNDiagram [*];
+		part imports : Import [*];
+		part extensions : Extension [*];
+		part relationships : Relationship [*];
+		part rootElements : RootElement [*];
+		part diagrams : BPMNDiagram [*];
 		attribute exporter : EString [1];
 		attribute exporterVersion : EString [1];
 	}

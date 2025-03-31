@@ -3,29 +3,29 @@
   <body xsi:type="Package" declaredName="di">
     <body xsi:type="NamespaceImport" hasVisibility="true" declaredName="ecore"/>
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="dc"/>
-    <body xsi:type="ItemDefinition" declaredName="DiagramElement" isAbstract="true">
-      <body xsi:type="ItemUsage" declaredName="owningDiagram" multiplicityRange="[1]" isReference="true">
+    <body xsi:type="PartDefinition" declaredName="DiagramElement" isAbstract="true">
+      <body xsi:type="PartUsage" declaredName="owningDiagram" multiplicityRange="[1]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>Diagram</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="owningElement" multiplicityRange="[1]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="owningElement" multiplicityRange="[1]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>DiagramElement</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="ownedElement" multiplicityRange="[*]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="ownedElement" multiplicityRange="[*]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>DiagramElement</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="modelElement" multiplicityRange="[1]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="modelElement" multiplicityRange="[1]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>EObject</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="style" multiplicityRange="[1]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="style" multiplicityRange="[1]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>Style</featureSpecialization>
       </body>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="Diagram" isAbstract="true">
+    <body xsi:type="PartDefinition" declaredName="Diagram" isAbstract="true">
       <body xsi:type="AttributeUsage" declaredName="name" multiplicityRange="[1]">
         <featureNote>:</featureNote>
         <featureSpecialization>EString</featureSpecialization>
@@ -38,64 +38,64 @@
         <featureNote>:</featureNote>
         <featureSpecialization>EFloat</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="ownedStyle" multiplicityRange="[*]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="ownedStyle" multiplicityRange="[*]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>Style</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="rootElement" multiplicityRange="[1]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="rootElement" multiplicityRange="[1]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>DiagramElement</featureSpecialization>
       </body>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="Style" isAbstract="true"/>
-    <body xsi:type="ItemDefinition" declaredName="Node" isAbstract="true">
+    <body xsi:type="PartDefinition" declaredName="Style" isAbstract="true"/>
+    <body xsi:type="PartDefinition" declaredName="Node" isAbstract="true">
       <SubclassificationPart>DiagramElement</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="Edge" isAbstract="true">
-      <body xsi:type="ItemUsage" declaredName="source" multiplicityRange="[1]" isReference="true">
+    <body xsi:type="PartDefinition" declaredName="Edge" isAbstract="true">
+      <body xsi:type="PartUsage" declaredName="source" multiplicityRange="[1]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>DiagramElement</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="target" multiplicityRange="[1]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="target" multiplicityRange="[1]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>DiagramElement</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="waypoint" multiplicityRange="[2..*]">
+      <body xsi:type="PartUsage" declaredName="waypoint" multiplicityRange="[2..*]">
         <featureNote>:</featureNote>
         <featureSpecialization>Point</featureSpecialization>
       </body>
       <SubclassificationPart>DiagramElement</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="Shape" isAbstract="true">
-      <body xsi:type="ItemUsage" declaredName="bounds" multiplicityRange="[1]">
+    <body xsi:type="PartDefinition" declaredName="Shape" isAbstract="true">
+      <body xsi:type="PartUsage" declaredName="bounds" multiplicityRange="[1]">
         <featureNote>:</featureNote>
         <featureSpecialization>Bounds</featureSpecialization>
       </body>
       <SubclassificationPart>Node</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="LabeledEdge" isAbstract="true">
-      <body xsi:type="ItemUsage" declaredName="ownedLabel" multiplicityRange="[*]" isReference="true">
+    <body xsi:type="PartDefinition" declaredName="LabeledEdge" isAbstract="true">
+      <body xsi:type="PartUsage" declaredName="ownedLabel" multiplicityRange="[*]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>Label</featureSpecialization>
       </body>
       <SubclassificationPart>Edge</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="Label" isAbstract="true">
-      <body xsi:type="ItemUsage" declaredName="bounds" multiplicityRange="[1]">
+    <body xsi:type="PartDefinition" declaredName="Label" isAbstract="true">
+      <body xsi:type="PartUsage" declaredName="bounds" multiplicityRange="[1]">
         <featureNote>:</featureNote>
         <featureSpecialization>Bounds</featureSpecialization>
       </body>
       <SubclassificationPart>Node</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="LabeledShape" isAbstract="true">
-      <body xsi:type="ItemUsage" declaredName="ownedLabel" multiplicityRange="[*]" isReference="true">
+    <body xsi:type="PartDefinition" declaredName="LabeledShape" isAbstract="true">
+      <body xsi:type="PartUsage" declaredName="ownedLabel" multiplicityRange="[*]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>Label</featureSpecialization>
       </body>
       <SubclassificationPart>Shape</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="Plane" isAbstract="true">
-      <body xsi:type="ItemUsage" declaredName="planeElement" multiplicityRange="[*]">
+    <body xsi:type="PartDefinition" declaredName="Plane" isAbstract="true">
+      <body xsi:type="PartUsage" declaredName="planeElement" multiplicityRange="[*]">
         <featureNote>:</featureNote>
         <featureSpecialization>DiagramElement</featureSpecialization>
       </body>

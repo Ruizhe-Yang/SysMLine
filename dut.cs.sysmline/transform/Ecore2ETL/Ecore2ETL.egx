@@ -1,5 +1,7 @@
 pre{
 	var ePackages = Ecore!EPackage.all;
+	ePackages.addExtendedPackages(di!EPackage);
+	ePackages.addExtendedPackages(dc!EPackage);
 //	ePackages.addExtendedPackages(instance!EPackage);
 //	ePackages.addExtendedPackages(emv!EPackage);
 //	ePackages.addExtendedPackages(ft!EPackage);
