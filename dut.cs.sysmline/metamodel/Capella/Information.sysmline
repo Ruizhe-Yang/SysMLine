@@ -18,8 +18,8 @@
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="activity"/>
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="ctx"/>
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="pa"/>
-    <body xsi:type="ItemDefinition" declaredName="AbstractInstance" isAbstract="true">
-      <body xsi:type="ItemUsage" declaredName="representingInstanceRoles" multiplicityRange="[*]" isReference="true">
+    <body xsi:type="PartDefinition" declaredName="AbstractInstance" isAbstract="true">
+      <body xsi:type="PartUsage" declaredName="representingInstanceRoles" multiplicityRange="[*]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>InstanceRole</featureSpecialization>
       </body>
@@ -31,60 +31,60 @@
       <body xsi:type="EnumerationUsage" declaredName="AGGREGATION"/>
       <body xsi:type="EnumerationUsage" declaredName="COMPOSITION"/>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="AssociationPkg" isAbstract="true">
+    <body xsi:type="PartDefinition" declaredName="AssociationPkg" isAbstract="true">
       <body xsi:type="AttributeUsage" declaredName="visibility" multiplicityRange="[1]">
         <featureNote>:</featureNote>
         <featureSpecialization>VisibilityKind</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="ownedAssociations" multiplicityRange="[*]">
+      <body xsi:type="PartUsage" declaredName="ownedAssociations" multiplicityRange="[*]">
         <featureNote>:</featureNote>
         <featureSpecialization>Association</featureSpecialization>
       </body>
       <SubclassificationPart>Structure</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="Association">
-      <body xsi:type="ItemUsage" declaredName="ownedMembers" multiplicityRange="[0..2]">
+    <body xsi:type="PartDefinition" declaredName="Association">
+      <body xsi:type="PartUsage" declaredName="ownedMembers" multiplicityRange="[0..2]">
         <featureNote>:</featureNote>
         <featureSpecialization>Property</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="navigableMembers" multiplicityRange="[0..2]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="navigableMembers" multiplicityRange="[0..2]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>Property</featureSpecialization>
       </body>
       <SubclassificationPart>NamedRelationship</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="Class">
+    <body xsi:type="PartDefinition" declaredName="Class">
       <body xsi:type="AttributeUsage" declaredName="isPrimitive" multiplicityRange="[1]">
         <featureNote>:</featureNote>
         <featureSpecialization>EBoolean</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="keyParts" multiplicityRange="[*]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="keyParts" multiplicityRange="[*]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>KeyPart</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="ownedStateMachines" multiplicityRange="[*]">
+      <body xsi:type="PartUsage" declaredName="ownedStateMachines" multiplicityRange="[*]">
         <featureNote>:</featureNote>
         <featureSpecialization>StateMachine</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="ownedDataValues" multiplicityRange="[*]">
+      <body xsi:type="PartUsage" declaredName="ownedDataValues" multiplicityRange="[*]">
         <featureNote>:</featureNote>
         <featureSpecialization>DataValue</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="ownedInformationRealizations" multiplicityRange="[*]">
+      <body xsi:type="PartUsage" declaredName="ownedInformationRealizations" multiplicityRange="[*]">
         <featureNote>:</featureNote>
         <featureSpecialization>InformationRealization</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="realizedClasses" multiplicityRange="[*]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="realizedClasses" multiplicityRange="[*]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>Class</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="realizingClasses" multiplicityRange="[*]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="realizingClasses" multiplicityRange="[*]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>Class</featureSpecialization>
       </body>
       <SubclassificationPart>GeneralClass</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="Collection">
+    <body xsi:type="PartDefinition" declaredName="Collection">
       <body xsi:type="AttributeUsage" declaredName="isPrimitive" multiplicityRange="[1]">
         <featureNote>:</featureNote>
         <featureSpecialization>EBoolean</featureSpecialization>
@@ -101,15 +101,15 @@
         <featureNote>:</featureNote>
         <featureSpecialization>AggregationKind</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="type" multiplicityRange="[1]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="type" multiplicityRange="[1]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>Type</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="index" multiplicityRange="[*]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="index" multiplicityRange="[*]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>DataType</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="containedOperations" multiplicityRange="[*]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="containedOperations" multiplicityRange="[*]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>Operation</featureSpecialization>
       </body>
@@ -118,69 +118,69 @@
       <SubclassificationPart>DataValueContainer</SubclassificationPart>
       <SubclassificationPart>FinalizableElement</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="AbstractCollectionValue" isAbstract="true">
+    <body xsi:type="PartDefinition" declaredName="AbstractCollectionValue" isAbstract="true">
       <SubclassificationPart>DataValue</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="CollectionValue">
-      <body xsi:type="ItemUsage" declaredName="ownedElements" multiplicityRange="[*]">
+    <body xsi:type="PartDefinition" declaredName="CollectionValue">
+      <body xsi:type="PartUsage" declaredName="ownedElements" multiplicityRange="[*]">
         <featureNote>:</featureNote>
         <featureSpecialization>DataValue</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="ownedDefaultElement" multiplicityRange="[1]">
+      <body xsi:type="PartUsage" declaredName="ownedDefaultElement" multiplicityRange="[1]">
         <featureNote>:</featureNote>
         <featureSpecialization>DataValue</featureSpecialization>
       </body>
       <SubclassificationPart>AbstractCollectionValue</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="CollectionValueReference">
-      <body xsi:type="ItemUsage" declaredName="referencedValue" multiplicityRange="[1]" isReference="true">
+    <body xsi:type="PartDefinition" declaredName="CollectionValueReference">
+      <body xsi:type="PartUsage" declaredName="referencedValue" multiplicityRange="[1]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>AbstractCollectionValue</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="referencedProperty" multiplicityRange="[1]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="referencedProperty" multiplicityRange="[1]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>Property</featureSpecialization>
       </body>
       <SubclassificationPart>AbstractCollectionValue</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="DataPkg">
-      <body xsi:type="ItemUsage" declaredName="ownedDataPkgs" multiplicityRange="[*]">
+    <body xsi:type="PartDefinition" declaredName="DataPkg">
+      <body xsi:type="PartUsage" declaredName="ownedDataPkgs" multiplicityRange="[*]">
         <featureNote>:</featureNote>
         <featureSpecialization>DataPkg</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="ownedClasses" multiplicityRange="[*]">
+      <body xsi:type="PartUsage" declaredName="ownedClasses" multiplicityRange="[*]">
         <featureNote>:</featureNote>
         <featureSpecialization>Class</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="ownedKeyParts" multiplicityRange="[*]">
+      <body xsi:type="PartUsage" declaredName="ownedKeyParts" multiplicityRange="[*]">
         <featureNote>:</featureNote>
         <featureSpecialization>KeyPart</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="ownedCollections" multiplicityRange="[*]">
+      <body xsi:type="PartUsage" declaredName="ownedCollections" multiplicityRange="[*]">
         <featureNote>:</featureNote>
         <featureSpecialization>Collection</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="ownedUnits" multiplicityRange="[*]">
+      <body xsi:type="PartUsage" declaredName="ownedUnits" multiplicityRange="[*]">
         <featureNote>:</featureNote>
         <featureSpecialization>Unit</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="ownedDataTypes" multiplicityRange="[*]">
+      <body xsi:type="PartUsage" declaredName="ownedDataTypes" multiplicityRange="[*]">
         <featureNote>:</featureNote>
         <featureSpecialization>DataType</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="ownedSignals" multiplicityRange="[*]">
+      <body xsi:type="PartUsage" declaredName="ownedSignals" multiplicityRange="[*]">
         <featureNote>:</featureNote>
         <featureSpecialization>Signal</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="ownedMessages" multiplicityRange="[*]">
+      <body xsi:type="PartUsage" declaredName="ownedMessages" multiplicityRange="[*]">
         <featureNote>:</featureNote>
         <featureSpecialization>Message</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="ownedExceptions" multiplicityRange="[*]">
+      <body xsi:type="PartUsage" declaredName="ownedExceptions" multiplicityRange="[*]">
         <featureNote>:</featureNote>
         <featureSpecialization>Exception</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="ownedStateEvents" multiplicityRange="[*]">
+      <body xsi:type="PartUsage" declaredName="ownedStateEvents" multiplicityRange="[*]">
         <featureNote>:</featureNote>
         <featureSpecialization>StateEvent</featureSpecialization>
       </body>
@@ -190,17 +190,17 @@
       <SubclassificationPart>DataValueContainer</SubclassificationPart>
       <SubclassificationPart>MessageReferencePkg</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="DomainElement">
+    <body xsi:type="PartDefinition" declaredName="DomainElement">
       <SubclassificationPart>Class</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="KeyPart">
-      <body xsi:type="ItemUsage" declaredName="property" multiplicityRange="[1]" isReference="true">
+    <body xsi:type="PartDefinition" declaredName="KeyPart">
+      <body xsi:type="PartUsage" declaredName="property" multiplicityRange="[1]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>Property</featureSpecialization>
       </body>
       <SubclassificationPart>Relationship</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="MultiplicityElement" isAbstract="true">
+    <body xsi:type="PartDefinition" declaredName="MultiplicityElement" isAbstract="true">
       <body xsi:type="AttributeUsage" declaredName="'ordered'" multiplicityRange="[1]">
         <featureNote>:</featureNote>
         <featureSpecialization>EBoolean</featureSpecialization>
@@ -217,62 +217,62 @@
         <featureNote>:</featureNote>
         <featureSpecialization>EBoolean</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="ownedDefaultValue" multiplicityRange="[1]">
+      <body xsi:type="PartUsage" declaredName="ownedDefaultValue" multiplicityRange="[1]">
         <featureNote>:</featureNote>
         <featureSpecialization>DataValue</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="ownedMinValue" multiplicityRange="[1]">
+      <body xsi:type="PartUsage" declaredName="ownedMinValue" multiplicityRange="[1]">
         <featureNote>:</featureNote>
         <featureSpecialization>DataValue</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="ownedMaxValue" multiplicityRange="[1]">
+      <body xsi:type="PartUsage" declaredName="ownedMaxValue" multiplicityRange="[1]">
         <featureNote>:</featureNote>
         <featureSpecialization>DataValue</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="ownedNullValue" multiplicityRange="[1]">
+      <body xsi:type="PartUsage" declaredName="ownedNullValue" multiplicityRange="[1]">
         <featureNote>:</featureNote>
         <featureSpecialization>DataValue</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="ownedMinCard" multiplicityRange="[1]">
+      <body xsi:type="PartUsage" declaredName="ownedMinCard" multiplicityRange="[1]">
         <featureNote>:</featureNote>
         <featureSpecialization>NumericValue</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="ownedMinLength" multiplicityRange="[1]">
+      <body xsi:type="PartUsage" declaredName="ownedMinLength" multiplicityRange="[1]">
         <featureNote>:</featureNote>
         <featureSpecialization>NumericValue</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="ownedMaxCard" multiplicityRange="[1]">
+      <body xsi:type="PartUsage" declaredName="ownedMaxCard" multiplicityRange="[1]">
         <featureNote>:</featureNote>
         <featureSpecialization>NumericValue</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="ownedMaxLength" multiplicityRange="[1]">
+      <body xsi:type="PartUsage" declaredName="ownedMaxLength" multiplicityRange="[1]">
         <featureNote>:</featureNote>
         <featureSpecialization>NumericValue</featureSpecialization>
       </body>
       <SubclassificationPart>CapellaElement</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="Operation" isAbstract="true">
-      <body xsi:type="ItemUsage" declaredName="ownedParameters" multiplicityRange="[*]">
+    <body xsi:type="PartDefinition" declaredName="Operation" isAbstract="true">
+      <body xsi:type="PartUsage" declaredName="ownedParameters" multiplicityRange="[*]">
         <featureNote>:</featureNote>
         <featureSpecialization>Parameter</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="allocatingOperations" multiplicityRange="[*]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="allocatingOperations" multiplicityRange="[*]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>Operation</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="allocatedOperations" multiplicityRange="[*]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="allocatedOperations" multiplicityRange="[*]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>Operation</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="ownedOperationAllocation" multiplicityRange="[*]">
+      <body xsi:type="PartUsage" declaredName="ownedOperationAllocation" multiplicityRange="[*]">
         <featureNote>:</featureNote>
         <featureSpecialization>OperationAllocation</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="ownedExchangeItemRealizations" multiplicityRange="[*]">
+      <body xsi:type="PartUsage" declaredName="ownedExchangeItemRealizations" multiplicityRange="[*]">
         <featureNote>:</featureNote>
         <featureSpecialization>ExchangeItemRealization</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="realizedExchangeItems" multiplicityRange="[*]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="realizedExchangeItems" multiplicityRange="[*]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>ExchangeItem</featureSpecialization>
       </body>
@@ -280,18 +280,18 @@
       <SubclassificationPart>AbstractEvent</SubclassificationPart>
       <SubclassificationPart>AbstractEventOperation</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="OperationAllocation">
-      <body xsi:type="ItemUsage" declaredName="allocatedOperation" multiplicityRange="[1]" isReference="true">
+    <body xsi:type="PartDefinition" declaredName="OperationAllocation">
+      <body xsi:type="PartUsage" declaredName="allocatedOperation" multiplicityRange="[1]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>Operation</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="allocatingOperation" multiplicityRange="[1]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="allocatingOperation" multiplicityRange="[1]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>Operation</featureSpecialization>
       </body>
       <SubclassificationPart>Allocation</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="Parameter">
+    <body xsi:type="PartDefinition" declaredName="Parameter">
       <body xsi:type="AttributeUsage" declaredName="direction" multiplicityRange="[1]">
         <featureNote>:</featureNote>
         <featureSpecialization>ParameterDirection</featureSpecialization>
@@ -317,7 +317,7 @@
       <body xsi:type="EnumerationUsage" declaredName="BY_REF"/>
       <body xsi:type="EnumerationUsage" declaredName="BY_VALUE"/>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="Property">
+    <body xsi:type="PartDefinition" declaredName="Property">
       <body xsi:type="AttributeUsage" declaredName="aggregationKind" multiplicityRange="[1]">
         <featureNote>:</featureNote>
         <featureSpecialization>AggregationKind</featureSpecialization>
@@ -334,7 +334,7 @@
         <featureNote>:</featureNote>
         <featureSpecialization>EBoolean</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="association" multiplicityRange="[1]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="association" multiplicityRange="[1]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>Association</featureSpecialization>
       </body>
@@ -348,39 +348,39 @@
       <body xsi:type="EnumerationUsage" declaredName="SYNCHRONOUS"/>
       <body xsi:type="EnumerationUsage" declaredName="ASYNCHRONOUS"/>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="Service">
+    <body xsi:type="PartDefinition" declaredName="Service">
       <body xsi:type="AttributeUsage" declaredName="synchronismKind" multiplicityRange="[1]">
         <featureNote>:</featureNote>
         <featureSpecialization>SynchronismKind</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="thrownExceptions" multiplicityRange="[*]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="thrownExceptions" multiplicityRange="[*]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>Exception</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="messages" multiplicityRange="[*]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="messages" multiplicityRange="[*]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>Message</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="messageReferences" multiplicityRange="[*]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="messageReferences" multiplicityRange="[*]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>MessageReference</featureSpecialization>
       </body>
       <SubclassificationPart>Operation</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="Union">
+    <body xsi:type="PartDefinition" declaredName="Union">
       <body xsi:type="AttributeUsage" declaredName="kind" multiplicityRange="[1]">
         <featureNote>:</featureNote>
         <featureSpecialization>UnionKind</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="discriminant" multiplicityRange="[1]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="discriminant" multiplicityRange="[1]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>UnionProperty</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="defaultProperty" multiplicityRange="[1]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="defaultProperty" multiplicityRange="[1]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>UnionProperty</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="containedUnionProperties" multiplicityRange="[*]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="containedUnionProperties" multiplicityRange="[*]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>UnionProperty</featureSpecialization>
       </body>
@@ -390,107 +390,107 @@
       <body xsi:type="EnumerationUsage" declaredName="UNION"/>
       <body xsi:type="EnumerationUsage" declaredName="VARIANT"/>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="UnionProperty">
-      <body xsi:type="ItemUsage" declaredName="qualifier" multiplicityRange="[*]" isReference="true">
+    <body xsi:type="PartDefinition" declaredName="UnionProperty">
+      <body xsi:type="PartUsage" declaredName="qualifier" multiplicityRange="[*]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>DataValue</featureSpecialization>
       </body>
       <SubclassificationPart>Property</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="Unit">
+    <body xsi:type="PartDefinition" declaredName="Unit">
       <SubclassificationPart>NamedElement</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="Port" isAbstract="true">
-      <body xsi:type="ItemUsage" declaredName="incomingPortRealizations" multiplicityRange="[*]" isReference="true">
+    <body xsi:type="PartDefinition" declaredName="Port" isAbstract="true">
+      <body xsi:type="PartUsage" declaredName="incomingPortRealizations" multiplicityRange="[*]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>PortRealization</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="outgoingPortRealizations" multiplicityRange="[*]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="outgoingPortRealizations" multiplicityRange="[*]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>PortRealization</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="ownedProtocols" multiplicityRange="[*]">
+      <body xsi:type="PartUsage" declaredName="ownedProtocols" multiplicityRange="[*]">
         <featureNote>:</featureNote>
         <featureSpecialization>StateMachine</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="incomingPortAllocations" multiplicityRange="[*]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="incomingPortAllocations" multiplicityRange="[*]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>PortAllocation</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="outgoingPortAllocations" multiplicityRange="[*]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="outgoingPortAllocations" multiplicityRange="[*]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>PortAllocation</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="providedInterfaces" multiplicityRange="[*]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="providedInterfaces" multiplicityRange="[*]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>Interface</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="requiredInterfaces" multiplicityRange="[*]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="requiredInterfaces" multiplicityRange="[*]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>Interface</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="ownedPortRealizations" multiplicityRange="[*]">
+      <body xsi:type="PartUsage" declaredName="ownedPortRealizations" multiplicityRange="[*]">
         <featureNote>:</featureNote>
         <featureSpecialization>PortRealization</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="ownedPortAllocations" multiplicityRange="[*]">
+      <body xsi:type="PartUsage" declaredName="ownedPortAllocations" multiplicityRange="[*]">
         <featureNote>:</featureNote>
         <featureSpecialization>PortAllocation</featureSpecialization>
       </body>
       <SubclassificationPart>NamedElement</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="PortRealization">
-      <body xsi:type="ItemUsage" declaredName="realizedPort" multiplicityRange="[1]" isReference="true">
+    <body xsi:type="PartDefinition" declaredName="PortRealization">
+      <body xsi:type="PartUsage" declaredName="realizedPort" multiplicityRange="[1]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>Port</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="realizingPort" multiplicityRange="[1]" isReference="true">
-        <featureNote>:</featureNote>
-        <featureSpecialization>Port</featureSpecialization>
-      </body>
-      <SubclassificationPart>Allocation</SubclassificationPart>
-    </body>
-    <body xsi:type="ItemDefinition" declaredName="PortAllocation">
-      <body xsi:type="ItemUsage" declaredName="allocatedPort" multiplicityRange="[1]" isReference="true">
-        <featureNote>:</featureNote>
-        <featureSpecialization>Port</featureSpecialization>
-      </body>
-      <body xsi:type="ItemUsage" declaredName="allocatingPort" multiplicityRange="[1]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="realizingPort" multiplicityRange="[1]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>Port</featureSpecialization>
       </body>
       <SubclassificationPart>Allocation</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="ExchangeItem">
+    <body xsi:type="PartDefinition" declaredName="PortAllocation">
+      <body xsi:type="PartUsage" declaredName="allocatedPort" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Port</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="allocatingPort" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Port</featureSpecialization>
+      </body>
+      <SubclassificationPart>Allocation</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="ExchangeItem">
       <body xsi:type="AttributeUsage" declaredName="exchangeMechanism" multiplicityRange="[1]">
         <featureNote>:</featureNote>
         <featureSpecialization>ExchangeMechanism</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="ownedElements" multiplicityRange="[*]">
+      <body xsi:type="PartUsage" declaredName="ownedElements" multiplicityRange="[*]">
         <featureNote>:</featureNote>
         <featureSpecialization>ExchangeItemElement</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="ownedInformationRealizations" multiplicityRange="[*]">
+      <body xsi:type="PartUsage" declaredName="ownedInformationRealizations" multiplicityRange="[*]">
         <featureNote>:</featureNote>
         <featureSpecialization>InformationRealization</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="ownedExchangeItemInstances" multiplicityRange="[*]">
+      <body xsi:type="PartUsage" declaredName="ownedExchangeItemInstances" multiplicityRange="[*]">
         <featureNote>:</featureNote>
         <featureSpecialization>ExchangeItemInstance</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="allocatorInterfaces" multiplicityRange="[*]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="allocatorInterfaces" multiplicityRange="[*]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>Interface</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="realizedExchangeItems" multiplicityRange="[*]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="realizedExchangeItems" multiplicityRange="[*]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>ExchangeItem</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="realizingExchangeItems" multiplicityRange="[*]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="realizingExchangeItems" multiplicityRange="[*]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>ExchangeItem</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="realizingOperations" multiplicityRange="[*]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="realizingOperations" multiplicityRange="[*]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>Operation</featureSpecialization>
       </body>
@@ -500,7 +500,7 @@
       <SubclassificationPart>FinalizableElement</SubclassificationPart>
       <SubclassificationPart>GeneralizableElement</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="ExchangeItemElement">
+    <body xsi:type="PartDefinition" declaredName="ExchangeItemElement">
       <body xsi:type="AttributeUsage" declaredName="kind" multiplicityRange="[1]">
         <featureNote>:</featureNote>
         <featureSpecialization>ElementKind</featureSpecialization>
@@ -513,7 +513,7 @@
         <featureNote>:</featureNote>
         <featureSpecialization>EBoolean</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="referencedProperties" multiplicityRange="[*]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="referencedProperties" multiplicityRange="[*]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>Property</featureSpecialization>
       </body>
@@ -521,10 +521,10 @@
       <SubclassificationPart>MultiplicityElement</SubclassificationPart>
       <SubclassificationPart>TypedElement</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="ExchangeItemInstance">
+    <body xsi:type="PartDefinition" declaredName="ExchangeItemInstance">
       <SubclassificationPart>AbstractInstance</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="InformationRealization">
+    <body xsi:type="PartDefinition" declaredName="InformationRealization">
       <SubclassificationPart>Allocation</SubclassificationPart>
     </body>
     <body xsi:type="EnumerationDefinition" declaredName="ExchangeMechanism">
@@ -542,70 +542,70 @@
       <body xsi:type="EnumerationUsage" declaredName="ARRAY"/>
       <body xsi:type="EnumerationUsage" declaredName="SEQUENCE"/>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="ExchangeItemRealization">
-      <body xsi:type="ItemUsage" declaredName="realizedItem" multiplicityRange="[1]" isReference="true">
+    <body xsi:type="PartDefinition" declaredName="ExchangeItemRealization">
+      <body xsi:type="PartUsage" declaredName="realizedItem" multiplicityRange="[1]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>AbstractExchangeItem</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="realizingOperation" multiplicityRange="[1]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="realizingOperation" multiplicityRange="[1]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>Operation</featureSpecialization>
       </body>
       <SubclassificationPart>Allocation</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="AbstractEventOperation" isAbstract="true">
-      <body xsi:type="ItemUsage" declaredName="invokingSequenceMessages" multiplicityRange="[*]" isReference="true">
+    <body xsi:type="PartDefinition" declaredName="AbstractEventOperation" isAbstract="true">
+      <body xsi:type="PartUsage" declaredName="invokingSequenceMessages" multiplicityRange="[*]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>SequenceMessage</featureSpecialization>
       </body>
       <SubclassificationPart>NamedElement</SubclassificationPart>
     </body>
     <body xsi:type="Package" declaredName="communication">
-      <body xsi:type="ItemDefinition" declaredName="CommunicationItem" isAbstract="true">
+      <body xsi:type="PartDefinition" declaredName="CommunicationItem" isAbstract="true">
         <body xsi:type="AttributeUsage" declaredName="visibility" multiplicityRange="[1]">
           <featureNote>:</featureNote>
           <featureSpecialization>VisibilityKind</featureSpecialization>
         </body>
-        <body xsi:type="ItemUsage" declaredName="ownedStateMachines" multiplicityRange="[*]">
+        <body xsi:type="PartUsage" declaredName="ownedStateMachines" multiplicityRange="[*]">
           <featureNote>:</featureNote>
           <featureSpecialization>StateMachine</featureSpecialization>
         </body>
-        <body xsi:type="ItemUsage" declaredName="properties" multiplicityRange="[*]" isReference="true">
+        <body xsi:type="PartUsage" declaredName="properties" multiplicityRange="[*]" isReference="true">
           <featureNote>:</featureNote>
           <featureSpecialization>Property</featureSpecialization>
         </body>
         <SubclassificationPart>Classifier</SubclassificationPart>
         <SubclassificationPart>DataValueContainer</SubclassificationPart>
       </body>
-      <body xsi:type="ItemDefinition" declaredName="Exception">
+      <body xsi:type="PartDefinition" declaredName="Exception">
         <SubclassificationPart>CommunicationItem</SubclassificationPart>
       </body>
-      <body xsi:type="ItemDefinition" declaredName="Message">
+      <body xsi:type="PartDefinition" declaredName="Message">
         <SubclassificationPart>CommunicationItem</SubclassificationPart>
       </body>
-      <body xsi:type="ItemDefinition" declaredName="MessageReference">
-        <body xsi:type="ItemUsage" declaredName="'message'" multiplicityRange="[1]" isReference="true">
+      <body xsi:type="PartDefinition" declaredName="MessageReference">
+        <body xsi:type="PartUsage" declaredName="'message'" multiplicityRange="[1]" isReference="true">
           <featureNote>:</featureNote>
           <featureSpecialization>Message</featureSpecialization>
         </body>
         <SubclassificationPart>Relationship</SubclassificationPart>
       </body>
-      <body xsi:type="ItemDefinition" declaredName="MessageReferencePkg" isAbstract="true">
-        <body xsi:type="ItemUsage" declaredName="ownedMessageReferences" multiplicityRange="[*]">
+      <body xsi:type="PartDefinition" declaredName="MessageReferencePkg" isAbstract="true">
+        <body xsi:type="PartUsage" declaredName="ownedMessageReferences" multiplicityRange="[*]">
           <featureNote>:</featureNote>
           <featureSpecialization>MessageReference</featureSpecialization>
         </body>
         <SubclassificationPart>Structure</SubclassificationPart>
       </body>
-      <body xsi:type="ItemDefinition" declaredName="Signal">
-        <body xsi:type="ItemUsage" declaredName="signalInstances" multiplicityRange="[*]">
+      <body xsi:type="PartDefinition" declaredName="Signal">
+        <body xsi:type="PartUsage" declaredName="signalInstances" multiplicityRange="[*]">
           <featureNote>:</featureNote>
           <featureSpecialization>SignalInstance</featureSpecialization>
         </body>
         <SubclassificationPart>CommunicationItem</SubclassificationPart>
         <SubclassificationPart>AbstractSignal</SubclassificationPart>
       </body>
-      <body xsi:type="ItemDefinition" declaredName="SignalInstance">
+      <body xsi:type="PartDefinition" declaredName="SignalInstance">
         <SubclassificationPart>AbstractInstance</SubclassificationPart>
       </body>
       <body xsi:type="EnumerationDefinition" declaredName="CommunicationLinkKind">
@@ -631,7 +631,7 @@
         <body xsi:type="EnumerationUsage" declaredName="READ"/>
         <body xsi:type="EnumerationUsage" declaredName="ACCEPT"/>
       </body>
-      <body xsi:type="ItemDefinition" declaredName="CommunicationLink">
+      <body xsi:type="PartDefinition" declaredName="CommunicationLink">
         <body xsi:type="AttributeUsage" declaredName="kind" multiplicityRange="[1]">
           <featureNote>:</featureNote>
           <featureSpecialization>CommunicationLinkKind</featureSpecialization>
@@ -640,61 +640,61 @@
           <featureNote>:</featureNote>
           <featureSpecialization>CommunicationLinkProtocol</featureSpecialization>
         </body>
-        <body xsi:type="ItemUsage" declaredName="exchangeItem" multiplicityRange="[1]" isReference="true">
+        <body xsi:type="PartUsage" declaredName="exchangeItem" multiplicityRange="[1]" isReference="true">
           <featureNote>:</featureNote>
           <featureSpecialization>ExchangeItem</featureSpecialization>
         </body>
         <SubclassificationPart>CapellaElement</SubclassificationPart>
       </body>
-      <body xsi:type="ItemDefinition" declaredName="CommunicationLinkExchanger" isAbstract="true">
-        <body xsi:type="ItemUsage" declaredName="ownedCommunicationLinks" multiplicityRange="[*]">
+      <body xsi:type="PartDefinition" declaredName="CommunicationLinkExchanger" isAbstract="true">
+        <body xsi:type="PartUsage" declaredName="ownedCommunicationLinks" multiplicityRange="[*]">
           <featureNote>:</featureNote>
           <featureSpecialization>CommunicationLink</featureSpecialization>
         </body>
-        <body xsi:type="ItemUsage" declaredName="produce" multiplicityRange="[*]" isReference="true">
+        <body xsi:type="PartUsage" declaredName="produce" multiplicityRange="[*]" isReference="true">
           <featureNote>:</featureNote>
           <featureSpecialization>CommunicationLink</featureSpecialization>
         </body>
-        <body xsi:type="ItemUsage" declaredName="consume" multiplicityRange="[*]" isReference="true">
+        <body xsi:type="PartUsage" declaredName="consume" multiplicityRange="[*]" isReference="true">
           <featureNote>:</featureNote>
           <featureSpecialization>CommunicationLink</featureSpecialization>
         </body>
-        <body xsi:type="ItemUsage" declaredName="'send'" multiplicityRange="[*]" isReference="true">
+        <body xsi:type="PartUsage" declaredName="'send'" multiplicityRange="[*]" isReference="true">
           <featureNote>:</featureNote>
           <featureSpecialization>CommunicationLink</featureSpecialization>
         </body>
-        <body xsi:type="ItemUsage" declaredName="receive" multiplicityRange="[*]" isReference="true">
+        <body xsi:type="PartUsage" declaredName="receive" multiplicityRange="[*]" isReference="true">
           <featureNote>:</featureNote>
           <featureSpecialization>CommunicationLink</featureSpecialization>
         </body>
-        <body xsi:type="ItemUsage" declaredName="call" multiplicityRange="[*]" isReference="true">
+        <body xsi:type="PartUsage" declaredName="call" multiplicityRange="[*]" isReference="true">
           <featureNote>:</featureNote>
           <featureSpecialization>CommunicationLink</featureSpecialization>
         </body>
-        <body xsi:type="ItemUsage" declaredName="execute" multiplicityRange="[*]" isReference="true">
+        <body xsi:type="PartUsage" declaredName="execute" multiplicityRange="[*]" isReference="true">
           <featureNote>:</featureNote>
           <featureSpecialization>CommunicationLink</featureSpecialization>
         </body>
-        <body xsi:type="ItemUsage" declaredName="write" multiplicityRange="[*]" isReference="true">
+        <body xsi:type="PartUsage" declaredName="write" multiplicityRange="[*]" isReference="true">
           <featureNote>:</featureNote>
           <featureSpecialization>CommunicationLink</featureSpecialization>
         </body>
-        <body xsi:type="ItemUsage" declaredName="access" multiplicityRange="[*]" isReference="true">
+        <body xsi:type="PartUsage" declaredName="access" multiplicityRange="[*]" isReference="true">
           <featureNote>:</featureNote>
           <featureSpecialization>CommunicationLink</featureSpecialization>
         </body>
-        <body xsi:type="ItemUsage" declaredName="acquire" multiplicityRange="[*]" isReference="true">
+        <body xsi:type="PartUsage" declaredName="acquire" multiplicityRange="[*]" isReference="true">
           <featureNote>:</featureNote>
           <featureSpecialization>CommunicationLink</featureSpecialization>
         </body>
-        <body xsi:type="ItemUsage" declaredName="transmit" multiplicityRange="[*]" isReference="true">
+        <body xsi:type="PartUsage" declaredName="transmit" multiplicityRange="[*]" isReference="true">
           <featureNote>:</featureNote>
           <featureSpecialization>CommunicationLink</featureSpecialization>
         </body>
       </body>
     </body>
     <body xsi:type="Package" declaredName="datatype">
-      <body xsi:type="ItemDefinition" declaredName="DataType" isAbstract="true">
+      <body xsi:type="PartDefinition" declaredName="DataType" isAbstract="true">
         <body xsi:type="AttributeUsage" declaredName="discrete" multiplicityRange="[1]">
           <featureNote>:</featureNote>
           <featureSpecialization>EBoolean</featureSpecialization>
@@ -715,23 +715,23 @@
           <featureNote>:</featureNote>
           <featureSpecialization>VisibilityKind</featureSpecialization>
         </body>
-        <body xsi:type="ItemUsage" declaredName="defaultValue" multiplicityRange="[1]" isReference="true">
+        <body xsi:type="PartUsage" declaredName="defaultValue" multiplicityRange="[1]" isReference="true">
           <featureNote>:</featureNote>
           <featureSpecialization>DataValue</featureSpecialization>
         </body>
-        <body xsi:type="ItemUsage" declaredName="nullValue" multiplicityRange="[1]" isReference="true">
+        <body xsi:type="PartUsage" declaredName="nullValue" multiplicityRange="[1]" isReference="true">
           <featureNote>:</featureNote>
           <featureSpecialization>DataValue</featureSpecialization>
         </body>
-        <body xsi:type="ItemUsage" declaredName="ownedInformationRealizations" multiplicityRange="[*]">
+        <body xsi:type="PartUsage" declaredName="ownedInformationRealizations" multiplicityRange="[*]">
           <featureNote>:</featureNote>
           <featureSpecialization>InformationRealization</featureSpecialization>
         </body>
-        <body xsi:type="ItemUsage" declaredName="realizedDataTypes" multiplicityRange="[*]" isReference="true">
+        <body xsi:type="PartUsage" declaredName="realizedDataTypes" multiplicityRange="[*]" isReference="true">
           <featureNote>:</featureNote>
           <featureSpecialization>DataType</featureSpecialization>
         </body>
-        <body xsi:type="ItemUsage" declaredName="realizingDataTypes" multiplicityRange="[*]" isReference="true">
+        <body xsi:type="PartUsage" declaredName="realizingDataTypes" multiplicityRange="[*]" isReference="true">
           <featureNote>:</featureNote>
           <featureSpecialization>DataType</featureSpecialization>
         </body>
@@ -739,88 +739,88 @@
         <SubclassificationPart>DataValueContainer</SubclassificationPart>
         <SubclassificationPart>FinalizableElement</SubclassificationPart>
       </body>
-      <body xsi:type="ItemDefinition" declaredName="BooleanType">
-        <body xsi:type="ItemUsage" declaredName="ownedLiterals" multiplicityRange="[0..2]">
+      <body xsi:type="PartDefinition" declaredName="BooleanType">
+        <body xsi:type="PartUsage" declaredName="ownedLiterals" multiplicityRange="[0..2]">
           <featureNote>:</featureNote>
           <featureSpecialization>LiteralBooleanValue</featureSpecialization>
         </body>
-        <body xsi:type="ItemUsage" declaredName="ownedDefaultValue" multiplicityRange="[1]">
+        <body xsi:type="PartUsage" declaredName="ownedDefaultValue" multiplicityRange="[1]">
           <featureNote>:</featureNote>
           <featureSpecialization>AbstractBooleanValue</featureSpecialization>
         </body>
         <SubclassificationPart>DataType</SubclassificationPart>
       </body>
-      <body xsi:type="ItemDefinition" declaredName="Enumeration">
-        <body xsi:type="ItemUsage" declaredName="ownedLiterals" multiplicityRange="[*]">
+      <body xsi:type="PartDefinition" declaredName="Enumeration">
+        <body xsi:type="PartUsage" declaredName="ownedLiterals" multiplicityRange="[*]">
           <featureNote>:</featureNote>
           <featureSpecialization>EnumerationLiteral</featureSpecialization>
         </body>
-        <body xsi:type="ItemUsage" declaredName="ownedDefaultValue" multiplicityRange="[1]">
+        <body xsi:type="PartUsage" declaredName="ownedDefaultValue" multiplicityRange="[1]">
           <featureNote>:</featureNote>
           <featureSpecialization>AbstractEnumerationValue</featureSpecialization>
         </body>
-        <body xsi:type="ItemUsage" declaredName="ownedNullValue" multiplicityRange="[1]">
+        <body xsi:type="PartUsage" declaredName="ownedNullValue" multiplicityRange="[1]">
           <featureNote>:</featureNote>
           <featureSpecialization>AbstractEnumerationValue</featureSpecialization>
         </body>
-        <body xsi:type="ItemUsage" declaredName="ownedMinValue" multiplicityRange="[1]">
+        <body xsi:type="PartUsage" declaredName="ownedMinValue" multiplicityRange="[1]">
           <featureNote>:</featureNote>
           <featureSpecialization>AbstractEnumerationValue</featureSpecialization>
         </body>
-        <body xsi:type="ItemUsage" declaredName="ownedMaxValue" multiplicityRange="[1]">
+        <body xsi:type="PartUsage" declaredName="ownedMaxValue" multiplicityRange="[1]">
           <featureNote>:</featureNote>
           <featureSpecialization>AbstractEnumerationValue</featureSpecialization>
         </body>
-        <body xsi:type="ItemUsage" declaredName="domainType" multiplicityRange="[1]" isReference="true">
+        <body xsi:type="PartUsage" declaredName="domainType" multiplicityRange="[1]" isReference="true">
           <featureNote>:</featureNote>
           <featureSpecialization>DataType</featureSpecialization>
         </body>
         <SubclassificationPart>DataType</SubclassificationPart>
       </body>
-      <body xsi:type="ItemDefinition" declaredName="StringType">
-        <body xsi:type="ItemUsage" declaredName="ownedDefaultValue" multiplicityRange="[1]">
+      <body xsi:type="PartDefinition" declaredName="StringType">
+        <body xsi:type="PartUsage" declaredName="ownedDefaultValue" multiplicityRange="[1]">
           <featureNote>:</featureNote>
           <featureSpecialization>AbstractStringValue</featureSpecialization>
         </body>
-        <body xsi:type="ItemUsage" declaredName="ownedNullValue" multiplicityRange="[1]">
+        <body xsi:type="PartUsage" declaredName="ownedNullValue" multiplicityRange="[1]">
           <featureNote>:</featureNote>
           <featureSpecialization>AbstractStringValue</featureSpecialization>
         </body>
-        <body xsi:type="ItemUsage" declaredName="ownedMinLength" multiplicityRange="[1]">
+        <body xsi:type="PartUsage" declaredName="ownedMinLength" multiplicityRange="[1]">
           <featureNote>:</featureNote>
           <featureSpecialization>NumericValue</featureSpecialization>
         </body>
-        <body xsi:type="ItemUsage" declaredName="ownedMaxLength" multiplicityRange="[1]">
+        <body xsi:type="PartUsage" declaredName="ownedMaxLength" multiplicityRange="[1]">
           <featureNote>:</featureNote>
           <featureSpecialization>NumericValue</featureSpecialization>
         </body>
         <SubclassificationPart>DataType</SubclassificationPart>
       </body>
-      <body xsi:type="ItemDefinition" declaredName="NumericType">
+      <body xsi:type="PartDefinition" declaredName="NumericType">
         <body xsi:type="AttributeUsage" declaredName="kind" multiplicityRange="[1]">
           <featureNote>:</featureNote>
           <featureSpecialization>NumericTypeKind</featureSpecialization>
         </body>
-        <body xsi:type="ItemUsage" declaredName="ownedDefaultValue" multiplicityRange="[1]">
+        <body xsi:type="PartUsage" declaredName="ownedDefaultValue" multiplicityRange="[1]">
           <featureNote>:</featureNote>
           <featureSpecialization>NumericValue</featureSpecialization>
         </body>
-        <body xsi:type="ItemUsage" declaredName="ownedNullValue" multiplicityRange="[1]">
+        <body xsi:type="PartUsage" declaredName="ownedNullValue" multiplicityRange="[1]">
           <featureNote>:</featureNote>
           <featureSpecialization>NumericValue</featureSpecialization>
         </body>
-        <body xsi:type="ItemUsage" declaredName="ownedMinValue" multiplicityRange="[1]">
+        <body xsi:type="PartUsage" declaredName="ownedMinValue" multiplicityRange="[1]">
           <featureNote>:</featureNote>
           <featureSpecialization>NumericValue</featureSpecialization>
         </body>
-        <body xsi:type="ItemUsage" declaredName="ownedMaxValue" multiplicityRange="[1]">
+        <body xsi:type="PartUsage" declaredName="ownedMaxValue" multiplicityRange="[1]">
           <featureNote>:</featureNote>
           <featureSpecialization>NumericValue</featureSpecialization>
         </body>
         <SubclassificationPart>DataType</SubclassificationPart>
       </body>
-      <body xsi:type="ItemDefinition" declaredName="PhysicalQuantity">
-        <body xsi:type="ItemUsage" declaredName="unit" multiplicityRange="[1]" isReference="true">
+      <body xsi:type="PartDefinition" declaredName="PhysicalQuantity">
+        <body xsi:type="PartUsage" declaredName="unit" multiplicityRange="[1]" isReference="true">
           <featureNote>:</featureNote>
           <featureSpecialization>Unit</featureSpecialization>
         </body>
@@ -832,166 +832,166 @@
       </body>
     </body>
     <body xsi:type="Package" declaredName="datavalue">
-      <body xsi:type="ItemDefinition" declaredName="DataValue" isAbstract="true">
+      <body xsi:type="PartDefinition" declaredName="DataValue" isAbstract="true">
         <body xsi:type="AttributeUsage" declaredName="'abstract'" multiplicityRange="[1]">
           <featureNote>:</featureNote>
           <featureSpecialization>EBoolean</featureSpecialization>
         </body>
-        <body xsi:type="ItemUsage" declaredName="type" multiplicityRange="[1]" isReference="true">
+        <body xsi:type="PartUsage" declaredName="type" multiplicityRange="[1]" isReference="true">
           <featureNote>:</featureNote>
           <featureSpecialization>Type</featureSpecialization>
         </body>
         <SubclassificationPart>NamedElement</SubclassificationPart>
         <SubclassificationPart>ValueSpecification</SubclassificationPart>
       </body>
-      <body xsi:type="ItemDefinition" declaredName="DataValueContainer" isAbstract="true">
-        <body xsi:type="ItemUsage" declaredName="ownedDataValues" multiplicityRange="[*]">
+      <body xsi:type="PartDefinition" declaredName="DataValueContainer" isAbstract="true">
+        <body xsi:type="PartUsage" declaredName="ownedDataValues" multiplicityRange="[*]">
           <featureNote>:</featureNote>
           <featureSpecialization>DataValue</featureSpecialization>
         </body>
         <SubclassificationPart>Structure</SubclassificationPart>
       </body>
-      <body xsi:type="ItemDefinition" declaredName="AbstractBooleanValue" isAbstract="true">
-        <body xsi:type="ItemUsage" declaredName="booleanType" multiplicityRange="[1]" isReference="true">
+      <body xsi:type="PartDefinition" declaredName="AbstractBooleanValue" isAbstract="true">
+        <body xsi:type="PartUsage" declaredName="booleanType" multiplicityRange="[1]" isReference="true">
           <featureNote>:</featureNote>
           <featureSpecialization>BooleanType</featureSpecialization>
         </body>
         <SubclassificationPart>DataValue</SubclassificationPart>
       </body>
-      <body xsi:type="ItemDefinition" declaredName="LiteralBooleanValue">
+      <body xsi:type="PartDefinition" declaredName="LiteralBooleanValue">
         <body xsi:type="AttributeUsage" declaredName="'value'" multiplicityRange="[1]">
           <featureNote>:</featureNote>
           <featureSpecialization>EBoolean</featureSpecialization>
         </body>
         <SubclassificationPart>AbstractBooleanValue</SubclassificationPart>
       </body>
-      <body xsi:type="ItemDefinition" declaredName="BooleanReference">
-        <body xsi:type="ItemUsage" declaredName="referencedValue" multiplicityRange="[1]" isReference="true">
+      <body xsi:type="PartDefinition" declaredName="BooleanReference">
+        <body xsi:type="PartUsage" declaredName="referencedValue" multiplicityRange="[1]" isReference="true">
           <featureNote>:</featureNote>
           <featureSpecialization>AbstractBooleanValue</featureSpecialization>
         </body>
-        <body xsi:type="ItemUsage" declaredName="referencedProperty" multiplicityRange="[1]" isReference="true">
+        <body xsi:type="PartUsage" declaredName="referencedProperty" multiplicityRange="[1]" isReference="true">
           <featureNote>:</featureNote>
           <featureSpecialization>Property</featureSpecialization>
         </body>
         <SubclassificationPart>AbstractBooleanValue</SubclassificationPart>
       </body>
-      <body xsi:type="ItemDefinition" declaredName="AbstractEnumerationValue" isAbstract="true">
-        <body xsi:type="ItemUsage" declaredName="enumerationType" multiplicityRange="[1]" isReference="true">
+      <body xsi:type="PartDefinition" declaredName="AbstractEnumerationValue" isAbstract="true">
+        <body xsi:type="PartUsage" declaredName="enumerationType" multiplicityRange="[1]" isReference="true">
           <featureNote>:</featureNote>
           <featureSpecialization>Enumeration</featureSpecialization>
         </body>
         <SubclassificationPart>DataValue</SubclassificationPart>
       </body>
-      <body xsi:type="ItemDefinition" declaredName="EnumerationLiteral">
-        <body xsi:type="ItemUsage" declaredName="domainValue" multiplicityRange="[1]">
+      <body xsi:type="PartDefinition" declaredName="EnumerationLiteral">
+        <body xsi:type="PartUsage" declaredName="domainValue" multiplicityRange="[1]">
           <featureNote>:</featureNote>
           <featureSpecialization>DataValue</featureSpecialization>
         </body>
         <SubclassificationPart>AbstractEnumerationValue</SubclassificationPart>
       </body>
-      <body xsi:type="ItemDefinition" declaredName="EnumerationReference">
-        <body xsi:type="ItemUsage" declaredName="referencedValue" multiplicityRange="[1]" isReference="true">
+      <body xsi:type="PartDefinition" declaredName="EnumerationReference">
+        <body xsi:type="PartUsage" declaredName="referencedValue" multiplicityRange="[1]" isReference="true">
           <featureNote>:</featureNote>
           <featureSpecialization>AbstractEnumerationValue</featureSpecialization>
         </body>
-        <body xsi:type="ItemUsage" declaredName="referencedProperty" multiplicityRange="[1]" isReference="true">
+        <body xsi:type="PartUsage" declaredName="referencedProperty" multiplicityRange="[1]" isReference="true">
           <featureNote>:</featureNote>
           <featureSpecialization>Property</featureSpecialization>
         </body>
         <SubclassificationPart>AbstractEnumerationValue</SubclassificationPart>
       </body>
-      <body xsi:type="ItemDefinition" declaredName="AbstractStringValue" isAbstract="true">
-        <body xsi:type="ItemUsage" declaredName="stringType" multiplicityRange="[1]" isReference="true">
+      <body xsi:type="PartDefinition" declaredName="AbstractStringValue" isAbstract="true">
+        <body xsi:type="PartUsage" declaredName="stringType" multiplicityRange="[1]" isReference="true">
           <featureNote>:</featureNote>
           <featureSpecialization>StringType</featureSpecialization>
         </body>
         <SubclassificationPart>DataValue</SubclassificationPart>
       </body>
-      <body xsi:type="ItemDefinition" declaredName="LiteralStringValue">
+      <body xsi:type="PartDefinition" declaredName="LiteralStringValue">
         <body xsi:type="AttributeUsage" declaredName="'value'" multiplicityRange="[1]">
           <featureNote>:</featureNote>
           <featureSpecialization>EString</featureSpecialization>
         </body>
         <SubclassificationPart>AbstractStringValue</SubclassificationPart>
       </body>
-      <body xsi:type="ItemDefinition" declaredName="StringReference">
-        <body xsi:type="ItemUsage" declaredName="referencedValue" multiplicityRange="[1]" isReference="true">
+      <body xsi:type="PartDefinition" declaredName="StringReference">
+        <body xsi:type="PartUsage" declaredName="referencedValue" multiplicityRange="[1]" isReference="true">
           <featureNote>:</featureNote>
           <featureSpecialization>AbstractStringValue</featureSpecialization>
         </body>
-        <body xsi:type="ItemUsage" declaredName="referencedProperty" multiplicityRange="[1]" isReference="true">
+        <body xsi:type="PartUsage" declaredName="referencedProperty" multiplicityRange="[1]" isReference="true">
           <featureNote>:</featureNote>
           <featureSpecialization>Property</featureSpecialization>
         </body>
         <SubclassificationPart>AbstractStringValue</SubclassificationPart>
       </body>
-      <body xsi:type="ItemDefinition" declaredName="NumericValue" isAbstract="true">
-        <body xsi:type="ItemUsage" declaredName="unit" multiplicityRange="[1]" isReference="true">
+      <body xsi:type="PartDefinition" declaredName="NumericValue" isAbstract="true">
+        <body xsi:type="PartUsage" declaredName="unit" multiplicityRange="[1]" isReference="true">
           <featureNote>:</featureNote>
           <featureSpecialization>Unit</featureSpecialization>
         </body>
-        <body xsi:type="ItemUsage" declaredName="numericType" multiplicityRange="[1]" isReference="true">
+        <body xsi:type="PartUsage" declaredName="numericType" multiplicityRange="[1]" isReference="true">
           <featureNote>:</featureNote>
           <featureSpecialization>NumericType</featureSpecialization>
         </body>
         <SubclassificationPart>DataValue</SubclassificationPart>
       </body>
-      <body xsi:type="ItemDefinition" declaredName="LiteralNumericValue">
+      <body xsi:type="PartDefinition" declaredName="LiteralNumericValue">
         <body xsi:type="AttributeUsage" declaredName="'value'" multiplicityRange="[1]">
           <featureNote>:</featureNote>
           <featureSpecialization>EString</featureSpecialization>
         </body>
         <SubclassificationPart>NumericValue</SubclassificationPart>
       </body>
-      <body xsi:type="ItemDefinition" declaredName="NumericReference">
-        <body xsi:type="ItemUsage" declaredName="referencedValue" multiplicityRange="[1]" isReference="true">
+      <body xsi:type="PartDefinition" declaredName="NumericReference">
+        <body xsi:type="PartUsage" declaredName="referencedValue" multiplicityRange="[1]" isReference="true">
           <featureNote>:</featureNote>
           <featureSpecialization>NumericValue</featureSpecialization>
         </body>
-        <body xsi:type="ItemUsage" declaredName="referencedProperty" multiplicityRange="[1]" isReference="true">
+        <body xsi:type="PartUsage" declaredName="referencedProperty" multiplicityRange="[1]" isReference="true">
           <featureNote>:</featureNote>
           <featureSpecialization>Property</featureSpecialization>
         </body>
         <SubclassificationPart>NumericValue</SubclassificationPart>
       </body>
-      <body xsi:type="ItemDefinition" declaredName="AbstractComplexValue" isAbstract="true">
-        <body xsi:type="ItemUsage" declaredName="complexType" multiplicityRange="[1]" isReference="true">
+      <body xsi:type="PartDefinition" declaredName="AbstractComplexValue" isAbstract="true">
+        <body xsi:type="PartUsage" declaredName="complexType" multiplicityRange="[1]" isReference="true">
           <featureNote>:</featureNote>
           <featureSpecialization>Classifier</featureSpecialization>
         </body>
         <SubclassificationPart>DataValue</SubclassificationPart>
       </body>
-      <body xsi:type="ItemDefinition" declaredName="ComplexValue">
-        <body xsi:type="ItemUsage" declaredName="ownedParts" multiplicityRange="[*]">
+      <body xsi:type="PartDefinition" declaredName="ComplexValue">
+        <body xsi:type="PartUsage" declaredName="ownedParts" multiplicityRange="[*]">
           <featureNote>:</featureNote>
           <featureSpecialization>ValuePart</featureSpecialization>
         </body>
         <SubclassificationPart>AbstractComplexValue</SubclassificationPart>
       </body>
-      <body xsi:type="ItemDefinition" declaredName="ComplexValueReference">
-        <body xsi:type="ItemUsage" declaredName="referencedValue" multiplicityRange="[1]" isReference="true">
+      <body xsi:type="PartDefinition" declaredName="ComplexValueReference">
+        <body xsi:type="PartUsage" declaredName="referencedValue" multiplicityRange="[1]" isReference="true">
           <featureNote>:</featureNote>
           <featureSpecialization>AbstractComplexValue</featureSpecialization>
         </body>
-        <body xsi:type="ItemUsage" declaredName="referencedProperty" multiplicityRange="[1]" isReference="true">
+        <body xsi:type="PartUsage" declaredName="referencedProperty" multiplicityRange="[1]" isReference="true">
           <featureNote>:</featureNote>
           <featureSpecialization>Property</featureSpecialization>
         </body>
         <SubclassificationPart>AbstractComplexValue</SubclassificationPart>
       </body>
-      <body xsi:type="ItemDefinition" declaredName="ValuePart">
-        <body xsi:type="ItemUsage" declaredName="referencedProperty" multiplicityRange="[1]" isReference="true">
+      <body xsi:type="PartDefinition" declaredName="ValuePart">
+        <body xsi:type="PartUsage" declaredName="referencedProperty" multiplicityRange="[1]" isReference="true">
           <featureNote>:</featureNote>
           <featureSpecialization>Property</featureSpecialization>
         </body>
-        <body xsi:type="ItemUsage" declaredName="ownedValue" multiplicityRange="[1]">
+        <body xsi:type="PartUsage" declaredName="ownedValue" multiplicityRange="[1]">
           <featureNote>:</featureNote>
           <featureSpecialization>DataValue</featureSpecialization>
         </body>
         <SubclassificationPart>CapellaElement</SubclassificationPart>
       </body>
-      <body xsi:type="ItemDefinition" declaredName="AbstractExpressionValue" isAbstract="true">
+      <body xsi:type="PartDefinition" declaredName="AbstractExpressionValue" isAbstract="true">
         <body xsi:type="AttributeUsage" declaredName="expression" multiplicityRange="[1]">
           <featureNote>:</featureNote>
           <featureSpecialization>EString</featureSpecialization>
@@ -1000,7 +1000,7 @@
           <featureNote>:</featureNote>
           <featureSpecialization>EString</featureSpecialization>
         </body>
-        <body xsi:type="ItemUsage" declaredName="expressionType" multiplicityRange="[1]" isReference="true">
+        <body xsi:type="PartUsage" declaredName="expressionType" multiplicityRange="[1]" isReference="true">
           <featureNote>:</featureNote>
           <featureSpecialization>DataType</featureSpecialization>
         </body>
@@ -1010,27 +1010,27 @@
         <SubclassificationPart>NumericValue</SubclassificationPart>
         <SubclassificationPart>AbstractStringValue</SubclassificationPart>
       </body>
-      <body xsi:type="ItemDefinition" declaredName="BinaryExpression">
+      <body xsi:type="PartDefinition" declaredName="BinaryExpression">
         <body xsi:type="AttributeUsage" declaredName="operator" multiplicityRange="[1]">
           <featureNote>:</featureNote>
           <featureSpecialization>BinaryOperator</featureSpecialization>
         </body>
-        <body xsi:type="ItemUsage" declaredName="ownedLeftOperand" multiplicityRange="[1]">
+        <body xsi:type="PartUsage" declaredName="ownedLeftOperand" multiplicityRange="[1]">
           <featureNote>:</featureNote>
           <featureSpecialization>DataValue</featureSpecialization>
         </body>
-        <body xsi:type="ItemUsage" declaredName="ownedRightOperand" multiplicityRange="[1]">
+        <body xsi:type="PartUsage" declaredName="ownedRightOperand" multiplicityRange="[1]">
           <featureNote>:</featureNote>
           <featureSpecialization>DataValue</featureSpecialization>
         </body>
         <SubclassificationPart>AbstractExpressionValue</SubclassificationPart>
       </body>
-      <body xsi:type="ItemDefinition" declaredName="UnaryExpression">
+      <body xsi:type="PartDefinition" declaredName="UnaryExpression">
         <body xsi:type="AttributeUsage" declaredName="operator" multiplicityRange="[1]">
           <featureNote>:</featureNote>
           <featureSpecialization>UnaryOperator</featureSpecialization>
         </body>
-        <body xsi:type="ItemUsage" declaredName="ownedOperand" multiplicityRange="[1]">
+        <body xsi:type="PartUsage" declaredName="ownedOperand" multiplicityRange="[1]">
           <featureNote>:</featureNote>
           <featureSpecialization>DataValue</featureSpecialization>
         </body>
@@ -1058,7 +1058,7 @@
         <body xsi:type="EnumerationUsage" declaredName="SUC"/>
         <body xsi:type="EnumerationUsage" declaredName="PRE"/>
       </body>
-      <body xsi:type="ItemDefinition" declaredName="OpaqueExpression">
+      <body xsi:type="PartDefinition" declaredName="OpaqueExpression">
         <body xsi:type="AttributeUsage" declaredName="bodies" multiplicityRange="[*]">
           <featureNote>:</featureNote>
           <featureSpecialization>EString</featureSpecialization>

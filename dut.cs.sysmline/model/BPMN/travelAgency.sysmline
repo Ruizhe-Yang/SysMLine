@@ -3,8 +3,6 @@
   <body xsi:type="Package" declaredName="bpmn2_model">
     <body xsi:type="NamespaceImport" visibility="public" declaredName="bpmn2"/>
     <body xsi:type="NamespaceImport" visibility="public" declaredName="bpmdi"/>
-    <body xsi:type="NamespaceImport" visibility="public" declaredName="di"/>
-    <body xsi:type="NamespaceImport" visibility="public" declaredName="dc"/>
     <body xsi:type="PartUsage" declaredName="Definitions_1">
       <body xsi:type="AttributeUsage" valuePart="&quot;_VgLhQajBEeK_xvwrSf5u4w&quot;">
         <featureNote>:>></featureNote>

@@ -1,9 +1,9 @@
 package emde {
 	private import ecore::*;
-	abstract item def Element;
-	abstract item def ExtensibleElement :> Element{
-		item ownedExtensions : ElementExtension [*];
+	abstract part def Element;
+	abstract part def ExtensibleElement :> Element{
+		part ownedExtensions : ElementExtension [*];
 	}
-	abstract item def ElementExtension :> ExtensibleElement;
+	abstract part def ElementExtension :> ExtensibleElement;
 }
 

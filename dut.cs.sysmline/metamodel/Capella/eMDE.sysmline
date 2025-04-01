@@ -2,15 +2,15 @@
 <Namespace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="sysmline" xsi:schemaLocation="sysmline metamodel/sysmline/sysmline.ecore">
   <body xsi:type="Package" declaredName="emde">
     <body xsi:type="NamespaceImport" hasVisibility="true" declaredName="ecore"/>
-    <body xsi:type="ItemDefinition" declaredName="Element" isAbstract="true"/>
-    <body xsi:type="ItemDefinition" declaredName="ExtensibleElement" isAbstract="true">
-      <body xsi:type="ItemUsage" declaredName="ownedExtensions" multiplicityRange="[*]">
+    <body xsi:type="PartDefinition" declaredName="Element" isAbstract="true"/>
+    <body xsi:type="PartDefinition" declaredName="ExtensibleElement" isAbstract="true">
+      <body xsi:type="PartUsage" declaredName="ownedExtensions" multiplicityRange="[*]">
         <featureNote>:</featureNote>
         <featureSpecialization>ElementExtension</featureSpecialization>
       </body>
       <SubclassificationPart>Element</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="ElementExtension" isAbstract="true">
+    <body xsi:type="PartDefinition" declaredName="ElementExtension" isAbstract="true">
       <SubclassificationPart>ExtensibleElement</SubclassificationPart>
     </body>
   </body>

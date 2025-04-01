@@ -20,219 +20,219 @@
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="activity"/>
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="behavior"/>
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="deployment"/>
-    <body xsi:type="ItemDefinition" declaredName="SystemAnalysis">
-      <body xsi:type="ItemUsage" declaredName="ownedSystemComponentPkg" multiplicityRange="[1]">
+    <body xsi:type="PartDefinition" declaredName="SystemAnalysis">
+      <body xsi:type="PartUsage" declaredName="ownedSystemComponentPkg" multiplicityRange="[1]">
         <featureNote>:</featureNote>
         <featureSpecialization>SystemComponentPkg</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="ownedMissionPkg" multiplicityRange="[1]">
+      <body xsi:type="PartUsage" declaredName="ownedMissionPkg" multiplicityRange="[1]">
         <featureNote>:</featureNote>
         <featureSpecialization>MissionPkg</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="containedCapabilityPkg" multiplicityRange="[1]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="containedCapabilityPkg" multiplicityRange="[1]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>CapabilityPkg</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="containedSystemFunctionPkg" multiplicityRange="[1]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="containedSystemFunctionPkg" multiplicityRange="[1]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>SystemFunctionPkg</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="ownedOperationalAnalysisRealizations" multiplicityRange="[*]">
+      <body xsi:type="PartUsage" declaredName="ownedOperationalAnalysisRealizations" multiplicityRange="[*]">
         <featureNote>:</featureNote>
         <featureSpecialization>OperationalAnalysisRealization</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="allocatedOperationalAnalysisRealizations" multiplicityRange="[*]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="allocatedOperationalAnalysisRealizations" multiplicityRange="[*]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>OperationalAnalysisRealization</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="allocatedOperationalAnalyses" multiplicityRange="[*]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="allocatedOperationalAnalyses" multiplicityRange="[*]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>OperationalAnalysis</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="allocatingLogicalArchitectures" multiplicityRange="[*]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="allocatingLogicalArchitectures" multiplicityRange="[*]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>LogicalArchitecture</featureSpecialization>
       </body>
       <SubclassificationPart>ComponentArchitecture</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="SystemFunction">
-      <body xsi:type="ItemUsage" declaredName="ownedSystemFunctionPkgs" multiplicityRange="[*]">
+    <body xsi:type="PartDefinition" declaredName="SystemFunction">
+      <body xsi:type="PartUsage" declaredName="ownedSystemFunctionPkgs" multiplicityRange="[*]">
         <featureNote>:</featureNote>
         <featureSpecialization>SystemFunctionPkg</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="allocatingSystemComponents" multiplicityRange="[*]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="allocatingSystemComponents" multiplicityRange="[*]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>SystemComponent</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="realizedOperationalActivities" multiplicityRange="[*]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="realizedOperationalActivities" multiplicityRange="[*]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>OperationalActivity</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="realizingLogicalFunctions" multiplicityRange="[*]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="realizingLogicalFunctions" multiplicityRange="[*]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>LogicalFunction</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="containedSystemFunctions" multiplicityRange="[*]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="containedSystemFunctions" multiplicityRange="[*]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>SystemFunction</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="childrenSystemFunctions" multiplicityRange="[*]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="childrenSystemFunctions" multiplicityRange="[*]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>SystemFunction</featureSpecialization>
       </body>
       <SubclassificationPart>AbstractFunction</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="SystemFunctionPkg">
-      <body xsi:type="ItemUsage" declaredName="ownedSystemFunctions" multiplicityRange="[*]">
+    <body xsi:type="PartDefinition" declaredName="SystemFunctionPkg">
+      <body xsi:type="PartUsage" declaredName="ownedSystemFunctions" multiplicityRange="[*]">
         <featureNote>:</featureNote>
         <featureSpecialization>SystemFunction</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="ownedSystemFunctionPkgs" multiplicityRange="[*]">
+      <body xsi:type="PartUsage" declaredName="ownedSystemFunctionPkgs" multiplicityRange="[*]">
         <featureNote>:</featureNote>
         <featureSpecialization>SystemFunctionPkg</featureSpecialization>
       </body>
       <SubclassificationPart>FunctionPkg</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="SystemCommunicationHook">
-      <body xsi:type="ItemUsage" declaredName="communication" multiplicityRange="[1]" isReference="true">
+    <body xsi:type="PartDefinition" declaredName="SystemCommunicationHook">
+      <body xsi:type="PartUsage" declaredName="communication" multiplicityRange="[1]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>SystemCommunication</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="type" multiplicityRange="[1]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="type" multiplicityRange="[1]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>Component</featureSpecialization>
       </body>
       <SubclassificationPart>NamedElement</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="SystemCommunication">
-      <body xsi:type="ItemUsage" declaredName="ends" multiplicityRange="[2]">
+    <body xsi:type="PartDefinition" declaredName="SystemCommunication">
+      <body xsi:type="PartUsage" declaredName="ends" multiplicityRange="[2]">
         <featureNote>:</featureNote>
         <featureSpecialization>SystemCommunicationHook</featureSpecialization>
       </body>
       <SubclassificationPart>Relationship</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="CapabilityInvolvement">
-      <body xsi:type="ItemUsage" declaredName="systemComponent" multiplicityRange="[1]" isReference="true">
+    <body xsi:type="PartDefinition" declaredName="CapabilityInvolvement">
+      <body xsi:type="PartUsage" declaredName="systemComponent" multiplicityRange="[1]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>SystemComponent</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="capability" multiplicityRange="[1]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="capability" multiplicityRange="[1]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>Capability</featureSpecialization>
       </body>
       <SubclassificationPart>Involvement</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="MissionInvolvement">
-      <body xsi:type="ItemUsage" declaredName="systemComponent" multiplicityRange="[1]" isReference="true">
+    <body xsi:type="PartDefinition" declaredName="MissionInvolvement">
+      <body xsi:type="PartUsage" declaredName="systemComponent" multiplicityRange="[1]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>SystemComponent</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="mission" multiplicityRange="[1]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="mission" multiplicityRange="[1]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>Mission</featureSpecialization>
       </body>
       <SubclassificationPart>Involvement</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="Mission">
-      <body xsi:type="ItemUsage" declaredName="ownedMissionInvolvements" multiplicityRange="[*]">
+    <body xsi:type="PartDefinition" declaredName="Mission">
+      <body xsi:type="PartUsage" declaredName="ownedMissionInvolvements" multiplicityRange="[*]">
         <featureNote>:</featureNote>
         <featureSpecialization>MissionInvolvement</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="involvedSystemComponents" multiplicityRange="[*]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="involvedSystemComponents" multiplicityRange="[*]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>SystemComponent</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="ownedCapabilityExploitations" multiplicityRange="[*]">
+      <body xsi:type="PartUsage" declaredName="ownedCapabilityExploitations" multiplicityRange="[*]">
         <featureNote>:</featureNote>
         <featureSpecialization>CapabilityExploitation</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="exploitedCapabilities" multiplicityRange="[*]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="exploitedCapabilities" multiplicityRange="[*]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>Capability</featureSpecialization>
       </body>
       <SubclassificationPart>NamedElement</SubclassificationPart>
       <SubclassificationPart>InvolverElement</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="MissionPkg">
-      <body xsi:type="ItemUsage" declaredName="ownedMissionPkgs" multiplicityRange="[*]">
+    <body xsi:type="PartDefinition" declaredName="MissionPkg">
+      <body xsi:type="PartUsage" declaredName="ownedMissionPkgs" multiplicityRange="[*]">
         <featureNote>:</featureNote>
         <featureSpecialization>MissionPkg</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="ownedMissions" multiplicityRange="[*]">
+      <body xsi:type="PartUsage" declaredName="ownedMissions" multiplicityRange="[*]">
         <featureNote>:</featureNote>
         <featureSpecialization>Mission</featureSpecialization>
       </body>
       <SubclassificationPart>Structure</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="Capability">
-      <body xsi:type="ItemUsage" declaredName="ownedCapabilityInvolvements" multiplicityRange="[*]">
+    <body xsi:type="PartDefinition" declaredName="Capability">
+      <body xsi:type="PartUsage" declaredName="ownedCapabilityInvolvements" multiplicityRange="[*]">
         <featureNote>:</featureNote>
         <featureSpecialization>CapabilityInvolvement</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="involvedSystemComponents" multiplicityRange="[*]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="involvedSystemComponents" multiplicityRange="[*]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>SystemComponent</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="purposes" multiplicityRange="[*]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="purposes" multiplicityRange="[*]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>CapabilityExploitation</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="purposeMissions" multiplicityRange="[*]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="purposeMissions" multiplicityRange="[*]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>Mission</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="realizedOperationalCapabilities" multiplicityRange="[*]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="realizedOperationalCapabilities" multiplicityRange="[*]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>OperationalCapability</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="realizingCapabilityRealizations" multiplicityRange="[*]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="realizingCapabilityRealizations" multiplicityRange="[*]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>CapabilityRealization</featureSpecialization>
       </body>
       <SubclassificationPart>AbstractCapability</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="CapabilityExploitation">
-      <body xsi:type="ItemUsage" declaredName="mission" multiplicityRange="[1]" isReference="true">
+    <body xsi:type="PartDefinition" declaredName="CapabilityExploitation">
+      <body xsi:type="PartUsage" declaredName="mission" multiplicityRange="[1]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>Mission</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="capability" multiplicityRange="[1]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="capability" multiplicityRange="[1]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>Capability</featureSpecialization>
       </body>
       <SubclassificationPart>Relationship</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="CapabilityPkg">
-      <body xsi:type="ItemUsage" declaredName="ownedCapabilities" multiplicityRange="[*]">
+    <body xsi:type="PartDefinition" declaredName="CapabilityPkg">
+      <body xsi:type="PartUsage" declaredName="ownedCapabilities" multiplicityRange="[*]">
         <featureNote>:</featureNote>
         <featureSpecialization>Capability</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="ownedCapabilityPkgs" multiplicityRange="[*]">
+      <body xsi:type="PartUsage" declaredName="ownedCapabilityPkgs" multiplicityRange="[*]">
         <featureNote>:</featureNote>
         <featureSpecialization>CapabilityPkg</featureSpecialization>
       </body>
       <SubclassificationPart>AbstractCapabilityPkg</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="OperationalAnalysisRealization">
+    <body xsi:type="PartDefinition" declaredName="OperationalAnalysisRealization">
       <SubclassificationPart>ArchitectureAllocation</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="SystemComponentPkg">
-      <body xsi:type="ItemUsage" declaredName="ownedSystemComponents" multiplicityRange="[*]">
+    <body xsi:type="PartDefinition" declaredName="SystemComponentPkg">
+      <body xsi:type="PartUsage" declaredName="ownedSystemComponents" multiplicityRange="[*]">
         <featureNote>:</featureNote>
         <featureSpecialization>SystemComponent</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="ownedSystemComponentPkgs" multiplicityRange="[*]">
+      <body xsi:type="PartUsage" declaredName="ownedSystemComponentPkgs" multiplicityRange="[*]">
         <featureNote>:</featureNote>
         <featureSpecialization>SystemComponentPkg</featureSpecialization>
       </body>
       <SubclassificationPart>ComponentPkg</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="SystemComponent">
-      <body xsi:type="ItemUsage" declaredName="ownedSystemComponents" multiplicityRange="[*]">
+    <body xsi:type="PartDefinition" declaredName="SystemComponent">
+      <body xsi:type="PartUsage" declaredName="ownedSystemComponents" multiplicityRange="[*]">
         <featureNote>:</featureNote>
         <featureSpecialization>SystemComponent</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="ownedSystemComponentPkgs" multiplicityRange="[*]">
+      <body xsi:type="PartUsage" declaredName="ownedSystemComponentPkgs" multiplicityRange="[*]">
         <featureNote>:</featureNote>
         <featureSpecialization>SystemComponentPkg</featureSpecialization>
       </body>
@@ -240,35 +240,35 @@
         <featureNote>:</featureNote>
         <featureSpecialization>EBoolean</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="dataType" multiplicityRange="[*]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="dataType" multiplicityRange="[*]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>Classifier</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="involvingCapabilities" multiplicityRange="[*]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="involvingCapabilities" multiplicityRange="[*]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>Capability</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="capabilityInvolvements" multiplicityRange="[*]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="capabilityInvolvements" multiplicityRange="[*]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>CapabilityInvolvement</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="involvingMissions" multiplicityRange="[*]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="involvingMissions" multiplicityRange="[*]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>Mission</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="missionInvolvements" multiplicityRange="[*]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="missionInvolvements" multiplicityRange="[*]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>MissionInvolvement</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="realizedEntities" multiplicityRange="[*]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="realizedEntities" multiplicityRange="[*]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>Entity</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="realizingLogicalComponents" multiplicityRange="[*]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="realizingLogicalComponents" multiplicityRange="[*]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>LogicalComponent</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="allocatedSystemFunctions" multiplicityRange="[*]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="allocatedSystemFunctions" multiplicityRange="[*]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>SystemFunction</featureSpecialization>
       </body>

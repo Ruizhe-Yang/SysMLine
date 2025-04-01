@@ -20,87 +20,87 @@
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="activity"/>
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="behavior"/>
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="oa"/>
-    <body xsi:type="ItemDefinition" declaredName="PhysicalArchitecturePkg">
-      <body xsi:type="ItemUsage" declaredName="ownedPhysicalArchitecturePkgs" multiplicityRange="[*]">
+    <body xsi:type="PartDefinition" declaredName="PhysicalArchitecturePkg">
+      <body xsi:type="PartUsage" declaredName="ownedPhysicalArchitecturePkgs" multiplicityRange="[*]">
         <featureNote>:</featureNote>
         <featureSpecialization>PhysicalArchitecturePkg</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="ownedPhysicalArchitectures" multiplicityRange="[*]">
+      <body xsi:type="PartUsage" declaredName="ownedPhysicalArchitectures" multiplicityRange="[*]">
         <featureNote>:</featureNote>
         <featureSpecialization>PhysicalArchitecture</featureSpecialization>
       </body>
       <SubclassificationPart>BlockArchitecturePkg</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="PhysicalArchitecture">
-      <body xsi:type="ItemUsage" declaredName="ownedPhysicalComponentPkg" multiplicityRange="[1]">
+    <body xsi:type="PartDefinition" declaredName="PhysicalArchitecture">
+      <body xsi:type="PartUsage" declaredName="ownedPhysicalComponentPkg" multiplicityRange="[1]">
         <featureNote>:</featureNote>
         <featureSpecialization>PhysicalComponentPkg</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="containedCapabilityRealizationPkg" multiplicityRange="[1]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="containedCapabilityRealizationPkg" multiplicityRange="[1]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>CapabilityRealizationPkg</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="containedPhysicalFunctionPkg" multiplicityRange="[1]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="containedPhysicalFunctionPkg" multiplicityRange="[1]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>PhysicalFunctionPkg</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="ownedDeployments" multiplicityRange="[*]">
+      <body xsi:type="PartUsage" declaredName="ownedDeployments" multiplicityRange="[*]">
         <featureNote>:</featureNote>
         <featureSpecialization>AbstractDeploymentLink</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="ownedLogicalArchitectureRealizations" multiplicityRange="[*]">
+      <body xsi:type="PartUsage" declaredName="ownedLogicalArchitectureRealizations" multiplicityRange="[*]">
         <featureNote>:</featureNote>
         <featureSpecialization>LogicalArchitectureRealization</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="allocatedLogicalArchitectureRealizations" multiplicityRange="[*]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="allocatedLogicalArchitectureRealizations" multiplicityRange="[*]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>LogicalArchitectureRealization</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="allocatedLogicalArchitectures" multiplicityRange="[*]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="allocatedLogicalArchitectures" multiplicityRange="[*]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>LogicalArchitecture</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="allocatingEpbsArchitectures" multiplicityRange="[*]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="allocatingEpbsArchitectures" multiplicityRange="[*]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>EPBSArchitecture</featureSpecialization>
       </body>
       <SubclassificationPart>ComponentArchitecture</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="PhysicalFunction">
-      <body xsi:type="ItemUsage" declaredName="ownedPhysicalFunctionPkgs" multiplicityRange="[*]">
+    <body xsi:type="PartDefinition" declaredName="PhysicalFunction">
+      <body xsi:type="PartUsage" declaredName="ownedPhysicalFunctionPkgs" multiplicityRange="[*]">
         <featureNote>:</featureNote>
         <featureSpecialization>PhysicalFunctionPkg</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="allocatingPhysicalComponents" multiplicityRange="[*]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="allocatingPhysicalComponents" multiplicityRange="[*]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>PhysicalComponent</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="realizedLogicalFunctions" multiplicityRange="[*]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="realizedLogicalFunctions" multiplicityRange="[*]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>LogicalFunction</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="containedPhysicalFunctions" multiplicityRange="[*]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="containedPhysicalFunctions" multiplicityRange="[*]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>PhysicalFunction</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="childrenPhysicalFunctions" multiplicityRange="[*]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="childrenPhysicalFunctions" multiplicityRange="[*]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>PhysicalFunction</featureSpecialization>
       </body>
       <SubclassificationPart>AbstractFunction</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="PhysicalFunctionPkg">
-      <body xsi:type="ItemUsage" declaredName="ownedPhysicalFunctions" multiplicityRange="[*]">
+    <body xsi:type="PartDefinition" declaredName="PhysicalFunctionPkg">
+      <body xsi:type="PartUsage" declaredName="ownedPhysicalFunctions" multiplicityRange="[*]">
         <featureNote>:</featureNote>
         <featureSpecialization>PhysicalFunction</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="ownedPhysicalFunctionPkgs" multiplicityRange="[*]">
+      <body xsi:type="PartUsage" declaredName="ownedPhysicalFunctionPkgs" multiplicityRange="[*]">
         <featureNote>:</featureNote>
         <featureSpecialization>PhysicalFunctionPkg</featureSpecialization>
       </body>
       <SubclassificationPart>FunctionPkg</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="PhysicalComponent">
+    <body xsi:type="PartDefinition" declaredName="PhysicalComponent">
       <body xsi:type="AttributeUsage" declaredName="kind" multiplicityRange="[1]">
         <featureNote>:</featureNote>
         <featureSpecialization>PhysicalComponentKind</featureSpecialization>
@@ -109,39 +109,39 @@
         <featureNote>:</featureNote>
         <featureSpecialization>PhysicalComponentNature</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="ownedDeploymentLinks" multiplicityRange="[*]">
+      <body xsi:type="PartUsage" declaredName="ownedDeploymentLinks" multiplicityRange="[*]">
         <featureNote>:</featureNote>
         <featureSpecialization>AbstractDeploymentLink</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="ownedPhysicalComponents" multiplicityRange="[*]">
+      <body xsi:type="PartUsage" declaredName="ownedPhysicalComponents" multiplicityRange="[*]">
         <featureNote>:</featureNote>
         <featureSpecialization>PhysicalComponent</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="ownedPhysicalComponentPkgs" multiplicityRange="[*]">
+      <body xsi:type="PartUsage" declaredName="ownedPhysicalComponentPkgs" multiplicityRange="[*]">
         <featureNote>:</featureNote>
         <featureSpecialization>PhysicalComponentPkg</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="logicalInterfaceRealizations" multiplicityRange="[*]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="logicalInterfaceRealizations" multiplicityRange="[*]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>LogicalInterfaceRealization</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="subPhysicalComponents" multiplicityRange="[*]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="subPhysicalComponents" multiplicityRange="[*]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>PhysicalComponent</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="realizedLogicalComponents" multiplicityRange="[*]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="realizedLogicalComponents" multiplicityRange="[*]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>LogicalComponent</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="allocatedPhysicalFunctions" multiplicityRange="[*]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="allocatedPhysicalFunctions" multiplicityRange="[*]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>PhysicalFunction</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="deployedPhysicalComponents" multiplicityRange="[*]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="deployedPhysicalComponents" multiplicityRange="[*]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>PhysicalComponent</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="deployingPhysicalComponents" multiplicityRange="[*]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="deployingPhysicalComponents" multiplicityRange="[*]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>PhysicalComponent</featureSpecialization>
       </body>
@@ -151,28 +151,28 @@
       <SubclassificationPart>DeployableElement</SubclassificationPart>
       <SubclassificationPart>DeploymentTarget</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="PhysicalComponentPkg">
-      <body xsi:type="ItemUsage" declaredName="ownedPhysicalComponents" multiplicityRange="[*]">
+    <body xsi:type="PartDefinition" declaredName="PhysicalComponentPkg">
+      <body xsi:type="PartUsage" declaredName="ownedPhysicalComponents" multiplicityRange="[*]">
         <featureNote>:</featureNote>
         <featureSpecialization>PhysicalComponent</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="ownedPhysicalComponentPkgs" multiplicityRange="[*]">
+      <body xsi:type="PartUsage" declaredName="ownedPhysicalComponentPkgs" multiplicityRange="[*]">
         <featureNote>:</featureNote>
         <featureSpecialization>PhysicalComponentPkg</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="ownedKeyParts" multiplicityRange="[*]">
+      <body xsi:type="PartUsage" declaredName="ownedKeyParts" multiplicityRange="[*]">
         <featureNote>:</featureNote>
         <featureSpecialization>KeyPart</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="ownedDeployments" multiplicityRange="[*]">
+      <body xsi:type="PartUsage" declaredName="ownedDeployments" multiplicityRange="[*]">
         <featureNote>:</featureNote>
         <featureSpecialization>AbstractDeploymentLink</featureSpecialization>
       </body>
       <SubclassificationPart>ComponentPkg</SubclassificationPart>
       <SubclassificationPart>AssociationPkg</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="PhysicalNode">
-      <body xsi:type="ItemUsage" declaredName="subPhysicalNodes" multiplicityRange="[*]" isReference="true">
+    <body xsi:type="PartDefinition" declaredName="PhysicalNode">
+      <body xsi:type="PartUsage" declaredName="subPhysicalNodes" multiplicityRange="[*]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>PhysicalNode</featureSpecialization>
       </body>
@@ -194,10 +194,10 @@
       <body xsi:type="EnumerationUsage" declaredName="SERVICES"/>
       <body xsi:type="EnumerationUsage" declaredName="PROCESSES"/>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="LogicalArchitectureRealization">
+    <body xsi:type="PartDefinition" declaredName="LogicalArchitectureRealization">
       <SubclassificationPart>ArchitectureAllocation</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="LogicalInterfaceRealization">
+    <body xsi:type="PartDefinition" declaredName="LogicalInterfaceRealization">
       <SubclassificationPart>InterfaceAllocation</SubclassificationPart>
     </body>
     <body xsi:type="EnumerationDefinition" declaredName="PhysicalComponentNature">
@@ -206,20 +206,20 @@
       <body xsi:type="EnumerationUsage" declaredName="NODE"/>
     </body>
     <body xsi:type="Package" declaredName="deployment">
-      <body xsi:type="ItemDefinition" declaredName="ComponentInstance">
-        <body xsi:type="ItemUsage" declaredName="portInstances" multiplicityRange="[*]" isReference="true">
+      <body xsi:type="PartDefinition" declaredName="ComponentInstance">
+        <body xsi:type="PartUsage" declaredName="portInstances" multiplicityRange="[*]" isReference="true">
           <featureNote>:</featureNote>
           <featureSpecialization>PortInstance</featureSpecialization>
         </body>
-        <body xsi:type="ItemUsage" declaredName="ownedAbstractPhysicalInstances" multiplicityRange="[*]">
+        <body xsi:type="PartUsage" declaredName="ownedAbstractPhysicalInstances" multiplicityRange="[*]">
           <featureNote>:</featureNote>
           <featureSpecialization>AbstractPhysicalInstance</featureSpecialization>
         </body>
-        <body xsi:type="ItemUsage" declaredName="ownedInstanceDeploymentLinks" multiplicityRange="[*]">
+        <body xsi:type="PartUsage" declaredName="ownedInstanceDeploymentLinks" multiplicityRange="[*]">
           <featureNote>:</featureNote>
           <featureSpecialization>InstanceDeploymentLink</featureSpecialization>
         </body>
-        <body xsi:type="ItemUsage" declaredName="type" multiplicityRange="[1]" isReference="true">
+        <body xsi:type="PartUsage" declaredName="type" multiplicityRange="[1]" isReference="true">
           <featureNote>:</featureNote>
           <featureSpecialization>PhysicalComponent</featureSpecialization>
         </body>
@@ -227,64 +227,64 @@
         <SubclassificationPart>DeployableElement</SubclassificationPart>
         <SubclassificationPart>DeploymentTarget</SubclassificationPart>
       </body>
-      <body xsi:type="ItemDefinition" declaredName="ConnectionInstance">
-        <body xsi:type="ItemUsage" declaredName="connectionEnds" multiplicityRange="[*]" isReference="true">
+      <body xsi:type="PartDefinition" declaredName="ConnectionInstance">
+        <body xsi:type="PartUsage" declaredName="connectionEnds" multiplicityRange="[*]" isReference="true">
           <featureNote>:</featureNote>
           <featureSpecialization>PortInstance</featureSpecialization>
         </body>
-        <body xsi:type="ItemUsage" declaredName="type" multiplicityRange="[1]" isReference="true">
+        <body xsi:type="PartUsage" declaredName="type" multiplicityRange="[1]" isReference="true">
           <featureNote>:</featureNote>
           <featureSpecialization>ComponentExchange</featureSpecialization>
         </body>
         <SubclassificationPart>AbstractPhysicalInstance</SubclassificationPart>
       </body>
-      <body xsi:type="ItemDefinition" declaredName="DeploymentAspect">
-        <body xsi:type="ItemUsage" declaredName="ownedConfigurations" multiplicityRange="[*]">
+      <body xsi:type="PartDefinition" declaredName="DeploymentAspect">
+        <body xsi:type="PartUsage" declaredName="ownedConfigurations" multiplicityRange="[*]">
           <featureNote>:</featureNote>
           <featureSpecialization>DeploymentConfiguration</featureSpecialization>
         </body>
-        <body xsi:type="ItemUsage" declaredName="ownedDeploymentAspects" multiplicityRange="[*]">
+        <body xsi:type="PartUsage" declaredName="ownedDeploymentAspects" multiplicityRange="[*]">
           <featureNote>:</featureNote>
           <featureSpecialization>DeploymentAspect</featureSpecialization>
         </body>
         <SubclassificationPart>Structure</SubclassificationPart>
       </body>
-      <body xsi:type="ItemDefinition" declaredName="DeploymentConfiguration">
-        <body xsi:type="ItemUsage" declaredName="ownedDeploymentLinks" multiplicityRange="[*]">
+      <body xsi:type="PartDefinition" declaredName="DeploymentConfiguration">
+        <body xsi:type="PartUsage" declaredName="ownedDeploymentLinks" multiplicityRange="[*]">
           <featureNote>:</featureNote>
           <featureSpecialization>AbstractDeploymentLink</featureSpecialization>
         </body>
-        <body xsi:type="ItemUsage" declaredName="ownedPhysicalInstances" multiplicityRange="[*]">
+        <body xsi:type="PartUsage" declaredName="ownedPhysicalInstances" multiplicityRange="[*]">
           <featureNote>:</featureNote>
           <featureSpecialization>AbstractPhysicalInstance</featureSpecialization>
         </body>
         <SubclassificationPart>NamedElement</SubclassificationPart>
       </body>
-      <body xsi:type="ItemDefinition" declaredName="InstanceDeploymentLink">
+      <body xsi:type="PartDefinition" declaredName="InstanceDeploymentLink">
         <SubclassificationPart>AbstractDeploymentLink</SubclassificationPart>
       </body>
-      <body xsi:type="ItemDefinition" declaredName="PartDeploymentLink">
+      <body xsi:type="PartDefinition" declaredName="PartDeploymentLink">
         <SubclassificationPart>AbstractDeploymentLink</SubclassificationPart>
       </body>
-      <body xsi:type="ItemDefinition" declaredName="AbstractPhysicalInstance" isAbstract="true">
+      <body xsi:type="PartDefinition" declaredName="AbstractPhysicalInstance" isAbstract="true">
         <SubclassificationPart>CapellaElement</SubclassificationPart>
       </body>
-      <body xsi:type="ItemDefinition" declaredName="PortInstance">
-        <body xsi:type="ItemUsage" declaredName="connections" multiplicityRange="[*]" isReference="true">
+      <body xsi:type="PartDefinition" declaredName="PortInstance">
+        <body xsi:type="PartUsage" declaredName="connections" multiplicityRange="[*]" isReference="true">
           <featureNote>:</featureNote>
           <featureSpecialization>ConnectionInstance</featureSpecialization>
         </body>
-        <body xsi:type="ItemUsage" declaredName="component" multiplicityRange="[1]" isReference="true">
+        <body xsi:type="PartUsage" declaredName="component" multiplicityRange="[1]" isReference="true">
           <featureNote>:</featureNote>
           <featureSpecialization>ComponentInstance</featureSpecialization>
         </body>
-        <body xsi:type="ItemUsage" declaredName="type" multiplicityRange="[1]" isReference="true">
+        <body xsi:type="PartUsage" declaredName="type" multiplicityRange="[1]" isReference="true">
           <featureNote>:</featureNote>
           <featureSpecialization>ComponentPort</featureSpecialization>
         </body>
         <SubclassificationPart>AbstractPhysicalInstance</SubclassificationPart>
       </body>
-      <body xsi:type="ItemDefinition" declaredName="TypeDeploymentLink">
+      <body xsi:type="PartDefinition" declaredName="TypeDeploymentLink">
         <SubclassificationPart>AbstractDeploymentLink</SubclassificationPart>
       </body>
     </body>

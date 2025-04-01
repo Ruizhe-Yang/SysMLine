@@ -1,60 +1,60 @@
 package modellingcore {
 	private import ecore::*;
 	public import emde::*;
-	abstract item def ModelElement :> ExtensibleElement{
+	abstract part def ModelElement :> ExtensibleElement{
 		attribute id : EString [1];
 		attribute sid : EString [1];
-		ref item constraints : AbstractConstraint [*];
-		item ownedConstraints : AbstractConstraint [*];
-		item ownedMigratedElements : ModelElement [*];
+		ref part constraints : AbstractConstraint [*];
+		part ownedConstraints : AbstractConstraint [*];
+		part ownedMigratedElements : ModelElement [*];
 	}
-	abstract item def AbstractRelationship :> ModelElement{
-		ref item realizedFlow : AbstractInformationFlow [1];
+	abstract part def AbstractRelationship :> ModelElement{
+		ref part realizedFlow : AbstractInformationFlow [1];
 	}
-	abstract item def AbstractNamedElement :> ModelElement{
+	abstract part def AbstractNamedElement :> ModelElement{
 		attribute name : EString [1];
 	}
-	abstract item def InformationsExchanger :> ModelElement{
-		ref item incomingInformationFlows : AbstractInformationFlow [*];
-		ref item outgoingInformationFlows : AbstractInformationFlow [*];
-		ref item informationFlows : AbstractInformationFlow [*];
+	abstract part def InformationsExchanger :> ModelElement{
+		ref part incomingInformationFlows : AbstractInformationFlow [*];
+		ref part outgoingInformationFlows : AbstractInformationFlow [*];
+		ref part informationFlows : AbstractInformationFlow [*];
 	}
-	abstract item def TraceableElement :> ModelElement{
-		ref item incomingTraces : AbstractTrace [*];
-		ref item outgoingTraces : AbstractTrace [*];
+	abstract part def TraceableElement :> ModelElement{
+		ref part incomingTraces : AbstractTrace [*];
+		ref part outgoingTraces : AbstractTrace [*];
 	}
-	abstract item def FinalizableElement :> ModelElement{
+	abstract part def FinalizableElement :> ModelElement{
 		attribute final : EBoolean [1];
 	}
-	abstract item def PublishableElement :> ModelElement{
+	abstract part def PublishableElement :> ModelElement{
 		attribute visibleInDoc : EBoolean [1];
 		attribute visibleInLM : EBoolean [1];
 	}
-	abstract item def AbstractType :> AbstractNamedElement{
-		ref item abstractTypedElements : AbstractTypedElement [*];
+	abstract part def AbstractType :> AbstractNamedElement{
+		ref part abstractTypedElements : AbstractTypedElement [*];
 	}
-	abstract item def AbstractTypedElement :> AbstractNamedElement{
-		ref item abstractType : AbstractType [1];
+	abstract part def AbstractTypedElement :> AbstractNamedElement{
+		ref part abstractType : AbstractType [1];
 	}
-	abstract item def AbstractTrace :> TraceableElement{
-		ref item targetElement : TraceableElement [1];
-		ref item sourceElement : TraceableElement [1];
+	abstract part def AbstractTrace :> TraceableElement{
+		ref part targetElement : TraceableElement [1];
+		ref part sourceElement : TraceableElement [1];
 	}
-	abstract item def AbstractConstraint :> ModelElement{
-		ref item constrainedElements : ModelElement [*];
-		item ownedSpecification : ValueSpecification [1];
-		ref item context : ModelElement [1];
+	abstract part def AbstractConstraint :> ModelElement{
+		ref part constrainedElements : ModelElement [*];
+		part ownedSpecification : ValueSpecification [1];
+		ref part context : ModelElement [1];
 	}
-	abstract item def ValueSpecification :> AbstractTypedElement;
-	abstract item def AbstractParameter :> AbstractTypedElement{
+	abstract part def ValueSpecification :> AbstractTypedElement;
+	abstract part def AbstractParameter :> AbstractTypedElement{
 		attribute isException : EBoolean [1];
 		attribute isStream : EBoolean [1];
 		attribute isOptional : EBoolean [1];
 		attribute kindOfRate : RateKind [1];
 		attribute effect : ParameterEffectKind [1];
-		item rate : ValueSpecification [1];
-		item probability : ValueSpecification [1];
-		ref item parameterSet : AbstractParameterSet [*];
+		part rate : ValueSpecification [1];
+		part probability : ValueSpecification [1];
+		ref part parameterSet : AbstractParameterSet [*];
 	}
 	enum def ParameterEffectKind {
 		enum create;
@@ -62,26 +62,26 @@ package modellingcore {
 		enum update;
 		enum delete;
 	}
-	abstract item def AbstractParameterSet :> AbstractNamedElement{
-		item ownedConditions : AbstractConstraint [*];
-		item probability : ValueSpecification [1];
-		ref item parameters : AbstractParameter [1..*];
+	abstract part def AbstractParameterSet :> AbstractNamedElement{
+		part ownedConditions : AbstractConstraint [*];
+		part probability : ValueSpecification [1];
+		ref part parameters : AbstractParameter [1..*];
 	}
 	enum def RateKind {
 		enum Unspecified;
 		enum Continuous;
 		enum Discrete;
 	}
-	abstract item def AbstractInformationFlow :> AbstractNamedElement, AbstractRelationship{
-		ref item realizations : AbstractRelationship [*];
-		ref item convoyedInformations : AbstractExchangeItem [*];
-		ref item source : InformationsExchanger [1];
-		ref item target : InformationsExchanger [1];
+	abstract part def AbstractInformationFlow :> AbstractNamedElement, AbstractRelationship{
+		ref part realizations : AbstractRelationship [*];
+		ref part convoyedInformations : AbstractExchangeItem [*];
+		ref part source : InformationsExchanger [1];
+		ref part target : InformationsExchanger [1];
 	}
-	abstract item def AbstractExchangeItem :> AbstractType;
-	abstract item def IState :> AbstractNamedElement{
-		ref item referencedStates : IState [*];
-		ref item exploitedStates : IState [*];
+	abstract part def AbstractExchangeItem :> AbstractType;
+	abstract part def IState :> AbstractNamedElement{
+		ref part referencedStates : IState [*];
+		ref part exploitedStates : IState [*];
 	}
 }
 

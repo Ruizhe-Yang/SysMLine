@@ -1,33 +1,33 @@
 package terminology {
 	private import ecore::*;
 	public import base::*;
-	abstract item def TerminologyElement :> ArtifactElement;
-	item def TerminologyGroup :> TerminologyElement{
-		ref item terminologyElement : TerminologyElement [*];
+	abstract part def TerminologyElement :> ArtifactElement;
+	part def TerminologyGroup :> TerminologyElement{
+		ref part terminologyElement : TerminologyElement [*];
 	}
-	item def TerminologyPackage :> TerminologyElement{
-		item terminologyElement : TerminologyElement [*];
+	part def TerminologyPackage :> TerminologyElement{
+		part terminologyElement : TerminologyElement [*];
 	}
-	item def TerminologyPackageBinding :> TerminologyPackage{
-		ref item participantPackage : TerminologyPackage [2..*];
+	part def TerminologyPackageBinding :> TerminologyPackage{
+		ref part participantPackage : TerminologyPackage [2..*];
 	}
-	item def TerminologyPackageInterface :> TerminologyPackage{
-		ref item implements : TerminologyPackage [1];
+	part def TerminologyPackageInterface :> TerminologyPackage{
+		ref part implements : TerminologyPackage [1];
 	}
-	abstract item def TerminologyAsset :> TerminologyElement;
-	item def Category :> TerminologyAsset{
-		ref item category : Category [*];
+	abstract part def TerminologyAsset :> TerminologyElement;
+	part def Category :> TerminologyAsset{
+		ref part category : Category [*];
 	}
-	abstract item def ExpressionElement :> TerminologyAsset{
+	abstract part def ExpressionElement :> TerminologyAsset{
 		attribute 'value' : EString [1];
-		ref item category : Category [*];
+		ref part category : Category [*];
 	}
-	item def Expression :> ExpressionElement{
-		ref item element : ExpressionElement [*];
+	part def Expression :> ExpressionElement{
+		ref part element : ExpressionElement [*];
 	}
-	item def Term :> ExpressionElement{
+	part def Term :> ExpressionElement{
 		attribute externalReference : EString [1];
-		ref item origin : ModelElement [1];
+		ref part origin : ModelElement [1];
 	}
 }
 

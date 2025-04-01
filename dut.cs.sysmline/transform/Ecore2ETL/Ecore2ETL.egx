@@ -1,22 +1,28 @@
 pre{
 	var ePackages = Ecore!EPackage.all;
-	ePackages.addExtendedPackages(di!EPackage);
-	ePackages.addExtendedPackages(dc!EPackage);
+// BPMN
+//	ePackages.addExtendedPackages(di!EPackage);
+//	ePackages.addExtendedPackages(dc!EPackage);
+
+// SACM	
+//	ePackages.addExtendedPackages(gsn!EPackage);
+
 //	ePackages.addExtendedPackages(instance!EPackage);
 //	ePackages.addExtendedPackages(emv!EPackage);
 //	ePackages.addExtendedPackages(ft!EPackage);
 //	ePackages.addExtendedPackages(pg!EPackage);
-	
-//	ePackages.addExtendedPackages(activity!EPackage);
-//	ePackages.addExtendedPackages(behavior!EPackage);
-//	ePackages.addExtendedPackages(capellacommmon!EPackage);
-//	ePackages.addExtendedPackages(cs!EPackage);
-//	ePackages.addExtendedPackages(fa!EPackage);
-//	ePackages.addExtendedPackages(information!EPackage);
-//	ePackages.addExtendedPackages(interaction!EPackage);
-//	ePackages.addExtendedPackages(libraries!EPackage);
-//	ePackages.addExtendedPackages(re!EPackage);
-//	ePackages.addExtendedPackages(capellacore!EPackage);
+
+// Capella
+	ePackages.addExtendedPackages(activity!EPackage);
+	ePackages.addExtendedPackages(behavior!EPackage);
+	ePackages.addExtendedPackages(capellacommmon!EPackage);
+	ePackages.addExtendedPackages(cs!EPackage);
+	ePackages.addExtendedPackages(fa!EPackage);
+	ePackages.addExtendedPackages(information!EPackage);
+	ePackages.addExtendedPackages(interaction!EPackage);
+	ePackages.addExtendedPackages(libraries!EPackage);
+	ePackages.addExtendedPackages(re!EPackage);
+	ePackages.addExtendedPackages(capellacore!EPackage);
 }
 
 rule gen_sysmlv2

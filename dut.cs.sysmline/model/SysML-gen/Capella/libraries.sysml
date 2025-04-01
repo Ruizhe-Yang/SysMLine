@@ -1,16 +1,16 @@
 package libraries {
 	private import ecore::*;
 	public import emde::*;
-	item def ModelInformation :> LibraryAbstractElement, ElementExtension{
-		item ownedReferences : LibraryReference [*];
-		ref item version : ModelVersion [1];
+	part def ModelInformation :> LibraryAbstractElement, ElementExtension{
+		part ownedReferences : LibraryReference [*];
+		ref part version : ModelVersion [1];
 	}
-	item def LibraryReference :> LibraryAbstractElement{
-		ref item 'library' : ModelInformation [1];
+	part def LibraryReference :> LibraryAbstractElement{
+		ref part 'library' : ModelInformation [1];
 		attribute accessPolicy : AccessPolicy [1];
-		ref item version : ModelVersion [1];
+		ref part version : ModelVersion [1];
 	}
-	item def ModelVersion :> LibraryAbstractElement{
+	part def ModelVersion :> LibraryAbstractElement{
 		attribute majorVersionNumber : EInt [1];
 		attribute minorVersionNumber : EInt [1];
 		attribute lastModifiedFileStamp : ELong [1];
@@ -19,7 +19,7 @@ package libraries {
 		enum readOnly;
 		enum readAndWrite;
 	}
-	abstract item def LibraryAbstractElement :> ExtensibleElement{
+	abstract part def LibraryAbstractElement :> ExtensibleElement{
 		attribute id : EString [1];
 	}
 }

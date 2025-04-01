@@ -1,6 +1,0 @@
-"aaaaa".println();
-for (e in M!EObject.all){
-	e.println();
-//	e.type.println(" >> ");
-}
- 

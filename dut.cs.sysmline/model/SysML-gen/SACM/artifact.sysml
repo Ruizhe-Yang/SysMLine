@@ -1,39 +1,39 @@
 package artifact {
 	private import ecore::*;
 	public import base::*;
-	item def ArtifactGroup :> ArtifactElement{
-		ref item artifactElement : ArtifactElement [*];
+	part def ArtifactGroup :> ArtifactElement{
+		ref part artifactElement : ArtifactElement [*];
 	}
-	item def ArtifactPackage :> ArtifactElement{
-		item artifactElement : ArtifactElement [*];
+	part def ArtifactPackage :> ArtifactElement{
+		part artifactElement : ArtifactElement [*];
 	}
-	item def ArtifactPackageBinding :> ArtifactPackage{
-		ref item participantPackage : ArtifactPackage [2..*];
+	part def ArtifactPackageBinding :> ArtifactPackage{
+		ref part participantPackage : ArtifactPackage [2..*];
 	}
-	item def ArtifactPackageInterface :> ArtifactPackage{
-		ref item implements : ArtifactPackage [1];
+	part def ArtifactPackageInterface :> ArtifactPackage{
+		ref part implements : ArtifactPackage [1];
 	}
-	abstract item def ArtifactAsset :> ArtifactElement{
-		item artifactProperty : Property [*];
+	abstract part def ArtifactAsset :> ArtifactElement{
+		part artifactProperty : Property [*];
 	}
-	item def Property :> ArtifactAsset;
-	item def Technique :> ArtifactAsset;
-	item def Participant :> ArtifactAsset;
-	item def Activity :> ArtifactAsset{
+	part def Property :> ArtifactAsset;
+	part def Technique :> ArtifactAsset;
+	part def Participant :> ArtifactAsset;
+	part def Activity :> ArtifactAsset{
 		attribute startTime : EDate [1];
 		attribute endTime : EDate [1];
 	}
-	item def Event :> ArtifactAsset{
+	part def Event :> ArtifactAsset{
 		attribute occurence : EDate [1];
 	}
-	item def Resource :> ArtifactAsset;
-	item def Artifact :> ArtifactAsset{
+	part def Resource :> ArtifactAsset;
+	part def Artifact :> ArtifactAsset{
 		attribute version : EString [1];
 		attribute date : EDate [1];
 	}
-	item def ArtifactAssetRelationship :> ArtifactAsset{
-		ref item source : ArtifactAsset [1..*];
-		ref item target : ArtifactAsset [1..*];
+	part def ArtifactAssetRelationship :> ArtifactAsset{
+		ref part source : ArtifactAsset [1..*];
+		ref part target : ArtifactAsset [1..*];
 	}
 }
 

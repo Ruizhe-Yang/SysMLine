@@ -18,52 +18,52 @@ package pa {
 	public import activity::*;
 	public import behavior::*;
 	public import oa::*;
-	item def PhysicalArchitecturePkg :> BlockArchitecturePkg{
-		item ownedPhysicalArchitecturePkgs : PhysicalArchitecturePkg [*];
-		item ownedPhysicalArchitectures : PhysicalArchitecture [*];
+	part def PhysicalArchitecturePkg :> BlockArchitecturePkg{
+		part ownedPhysicalArchitecturePkgs : PhysicalArchitecturePkg [*];
+		part ownedPhysicalArchitectures : PhysicalArchitecture [*];
 	}
-	item def PhysicalArchitecture :> ComponentArchitecture{
-		item ownedPhysicalComponentPkg : PhysicalComponentPkg [1];
-		ref item containedCapabilityRealizationPkg : CapabilityRealizationPkg [1];
-		ref item containedPhysicalFunctionPkg : PhysicalFunctionPkg [1];
-		item ownedDeployments : AbstractDeploymentLink [*];
-		item ownedLogicalArchitectureRealizations : LogicalArchitectureRealization [*];
-		ref item allocatedLogicalArchitectureRealizations : LogicalArchitectureRealization [*];
-		ref item allocatedLogicalArchitectures : LogicalArchitecture [*];
-		ref item allocatingEpbsArchitectures : EPBSArchitecture [*];
+	part def PhysicalArchitecture :> ComponentArchitecture{
+		part ownedPhysicalComponentPkg : PhysicalComponentPkg [1];
+		ref part containedCapabilityRealizationPkg : CapabilityRealizationPkg [1];
+		ref part containedPhysicalFunctionPkg : PhysicalFunctionPkg [1];
+		part ownedDeployments : AbstractDeploymentLink [*];
+		part ownedLogicalArchitectureRealizations : LogicalArchitectureRealization [*];
+		ref part allocatedLogicalArchitectureRealizations : LogicalArchitectureRealization [*];
+		ref part allocatedLogicalArchitectures : LogicalArchitecture [*];
+		ref part allocatingEpbsArchitectures : EPBSArchitecture [*];
 	}
-	item def PhysicalFunction :> AbstractFunction{
-		item ownedPhysicalFunctionPkgs : PhysicalFunctionPkg [*];
-		ref item allocatingPhysicalComponents : PhysicalComponent [*];
-		ref item realizedLogicalFunctions : LogicalFunction [*];
-		ref item containedPhysicalFunctions : PhysicalFunction [*];
-		ref item childrenPhysicalFunctions : PhysicalFunction [*];
+	part def PhysicalFunction :> AbstractFunction{
+		part ownedPhysicalFunctionPkgs : PhysicalFunctionPkg [*];
+		ref part allocatingPhysicalComponents : PhysicalComponent [*];
+		ref part realizedLogicalFunctions : LogicalFunction [*];
+		ref part containedPhysicalFunctions : PhysicalFunction [*];
+		ref part childrenPhysicalFunctions : PhysicalFunction [*];
 	}
-	item def PhysicalFunctionPkg :> FunctionPkg{
-		item ownedPhysicalFunctions : PhysicalFunction [*];
-		item ownedPhysicalFunctionPkgs : PhysicalFunctionPkg [*];
+	part def PhysicalFunctionPkg :> FunctionPkg{
+		part ownedPhysicalFunctions : PhysicalFunction [*];
+		part ownedPhysicalFunctionPkgs : PhysicalFunctionPkg [*];
 	}
-	item def PhysicalComponent :> AbstractPhysicalArtifact, Component, CapabilityRealizationInvolvedElement, DeployableElement, DeploymentTarget{
+	part def PhysicalComponent :> AbstractPhysicalArtifact, Component, CapabilityRealizationInvolvedElement, DeployableElement, DeploymentTarget{
 		attribute kind : PhysicalComponentKind [1];
 		attribute nature : PhysicalComponentNature [1];
-		item ownedDeploymentLinks : AbstractDeploymentLink [*];
-		item ownedPhysicalComponents : PhysicalComponent [*];
-		item ownedPhysicalComponentPkgs : PhysicalComponentPkg [*];
-		ref item logicalInterfaceRealizations : LogicalInterfaceRealization [*];
-		ref item subPhysicalComponents : PhysicalComponent [*];
-		ref item realizedLogicalComponents : LogicalComponent [*];
-		ref item allocatedPhysicalFunctions : PhysicalFunction [*];
-		ref item deployedPhysicalComponents : PhysicalComponent [*];
-		ref item deployingPhysicalComponents : PhysicalComponent [*];
+		part ownedDeploymentLinks : AbstractDeploymentLink [*];
+		part ownedPhysicalComponents : PhysicalComponent [*];
+		part ownedPhysicalComponentPkgs : PhysicalComponentPkg [*];
+		ref part logicalInterfaceRealizations : LogicalInterfaceRealization [*];
+		ref part subPhysicalComponents : PhysicalComponent [*];
+		ref part realizedLogicalComponents : LogicalComponent [*];
+		ref part allocatedPhysicalFunctions : PhysicalFunction [*];
+		ref part deployedPhysicalComponents : PhysicalComponent [*];
+		ref part deployingPhysicalComponents : PhysicalComponent [*];
 	}
-	item def PhysicalComponentPkg :> ComponentPkg, AssociationPkg{
-		item ownedPhysicalComponents : PhysicalComponent [*];
-		item ownedPhysicalComponentPkgs : PhysicalComponentPkg [*];
-		item ownedKeyParts : KeyPart [*];
-		item ownedDeployments : AbstractDeploymentLink [*];
+	part def PhysicalComponentPkg :> ComponentPkg, AssociationPkg{
+		part ownedPhysicalComponents : PhysicalComponent [*];
+		part ownedPhysicalComponentPkgs : PhysicalComponentPkg [*];
+		part ownedKeyParts : KeyPart [*];
+		part ownedDeployments : AbstractDeploymentLink [*];
 	}
-	item def PhysicalNode :> PhysicalComponent{
-		ref item subPhysicalNodes : PhysicalNode [*];
+	part def PhysicalNode :> PhysicalComponent{
+		ref part subPhysicalNodes : PhysicalNode [*];
 	}
 	enum def PhysicalComponentKind {
 		enum UNSET;
@@ -81,41 +81,41 @@ package pa {
 		enum SERVICES;
 		enum PROCESSES;
 	}
-	item def LogicalArchitectureRealization :> ArchitectureAllocation;
-	item def LogicalInterfaceRealization :> InterfaceAllocation;
+	part def LogicalArchitectureRealization :> ArchitectureAllocation;
+	part def LogicalInterfaceRealization :> InterfaceAllocation;
 	enum def PhysicalComponentNature {
 		enum UNSET;
 		enum BEHAVIOR;
 		enum NODE;
 	}
 	package deployment {
-		item def ComponentInstance :> AbstractPhysicalInstance, DeployableElement, DeploymentTarget{
-			ref item portInstances : PortInstance [*];
-			item ownedAbstractPhysicalInstances : AbstractPhysicalInstance [*];
-			item ownedInstanceDeploymentLinks : InstanceDeploymentLink [*];
-			ref item type : PhysicalComponent [1];
+		part def ComponentInstance :> AbstractPhysicalInstance, DeployableElement, DeploymentTarget{
+			ref part portInstances : PortInstance [*];
+			part ownedAbstractPhysicalInstances : AbstractPhysicalInstance [*];
+			part ownedInstanceDeploymentLinks : InstanceDeploymentLink [*];
+			ref part type : PhysicalComponent [1];
 		}
-		item def ConnectionInstance :> AbstractPhysicalInstance{
-			ref item connectionEnds : PortInstance [*];
-			ref item type : ComponentExchange [1];
+		part def ConnectionInstance :> AbstractPhysicalInstance{
+			ref part connectionEnds : PortInstance [*];
+			ref part type : ComponentExchange [1];
 		}
-		item def DeploymentAspect :> Structure{
-			item ownedConfigurations : DeploymentConfiguration [*];
-			item ownedDeploymentAspects : DeploymentAspect [*];
+		part def DeploymentAspect :> Structure{
+			part ownedConfigurations : DeploymentConfiguration [*];
+			part ownedDeploymentAspects : DeploymentAspect [*];
 		}
-		item def DeploymentConfiguration :> NamedElement{
-			item ownedDeploymentLinks : AbstractDeploymentLink [*];
-			item ownedPhysicalInstances : AbstractPhysicalInstance [*];
+		part def DeploymentConfiguration :> NamedElement{
+			part ownedDeploymentLinks : AbstractDeploymentLink [*];
+			part ownedPhysicalInstances : AbstractPhysicalInstance [*];
 		}
-		item def InstanceDeploymentLink :> AbstractDeploymentLink;
-		item def PartDeploymentLink :> AbstractDeploymentLink;
-		abstract item def AbstractPhysicalInstance :> CapellaElement;
-		item def PortInstance :> AbstractPhysicalInstance{
-			ref item connections : ConnectionInstance [*];
-			ref item component : ComponentInstance [1];
-			ref item type : ComponentPort [1];
+		part def InstanceDeploymentLink :> AbstractDeploymentLink;
+		part def PartDeploymentLink :> AbstractDeploymentLink;
+		abstract part def AbstractPhysicalInstance :> CapellaElement;
+		part def PortInstance :> AbstractPhysicalInstance{
+			ref part connections : ConnectionInstance [*];
+			ref part component : ComponentInstance [1];
+			ref part type : ComponentPort [1];
 		}
-		item def TypeDeploymentLink :> AbstractDeploymentLink;
+		part def TypeDeploymentLink :> AbstractDeploymentLink;
 	}
 }
 

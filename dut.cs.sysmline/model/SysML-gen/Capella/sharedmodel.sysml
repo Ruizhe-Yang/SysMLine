@@ -20,13 +20,13 @@ package sharedmodel {
 	public import fa::*;
 	public import activity::*;
 	public import deployment::*;
-	item def SharedPkg :> ReuseableStructure, ModelRoot{
-		item ownedDataPkg : DataPkg [1];
-		item ownedGenericPkg : GenericPkg [1];
+	part def SharedPkg :> ReuseableStructure, ModelRoot{
+		part ownedDataPkg : DataPkg [1];
+		part ownedGenericPkg : GenericPkg [1];
 	}
-	item def GenericPkg :> Structure{
-		item subGenericPkgs : GenericPkg [*];
-		item capellaElements : CapellaElement [*];
+	part def GenericPkg :> Structure{
+		part subGenericPkgs : GenericPkg [*];
+		part capellaElements : CapellaElement [*];
 	}
 }
 

@@ -3,51 +3,51 @@
   <body xsi:type="Package" declaredName="artifact">
     <body xsi:type="NamespaceImport" hasVisibility="true" declaredName="ecore"/>
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="base"/>
-    <body xsi:type="ItemDefinition" declaredName="ArtifactGroup">
-      <body xsi:type="ItemUsage" declaredName="artifactElement" multiplicityRange="[*]" isReference="true">
+    <body xsi:type="PartDefinition" declaredName="ArtifactGroup">
+      <body xsi:type="PartUsage" declaredName="artifactElement" multiplicityRange="[*]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>ArtifactElement</featureSpecialization>
       </body>
       <SubclassificationPart>ArtifactElement</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="ArtifactPackage">
-      <body xsi:type="ItemUsage" declaredName="artifactElement" multiplicityRange="[*]">
+    <body xsi:type="PartDefinition" declaredName="ArtifactPackage">
+      <body xsi:type="PartUsage" declaredName="artifactElement" multiplicityRange="[*]">
         <featureNote>:</featureNote>
         <featureSpecialization>ArtifactElement</featureSpecialization>
       </body>
       <SubclassificationPart>ArtifactElement</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="ArtifactPackageBinding">
-      <body xsi:type="ItemUsage" declaredName="participantPackage" multiplicityRange="[2..*]" isReference="true">
+    <body xsi:type="PartDefinition" declaredName="ArtifactPackageBinding">
+      <body xsi:type="PartUsage" declaredName="participantPackage" multiplicityRange="[2..*]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>ArtifactPackage</featureSpecialization>
       </body>
       <SubclassificationPart>ArtifactPackage</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="ArtifactPackageInterface">
-      <body xsi:type="ItemUsage" declaredName="implements" multiplicityRange="[1]" isReference="true">
+    <body xsi:type="PartDefinition" declaredName="ArtifactPackageInterface">
+      <body xsi:type="PartUsage" declaredName="implements" multiplicityRange="[1]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>ArtifactPackage</featureSpecialization>
       </body>
       <SubclassificationPart>ArtifactPackage</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="ArtifactAsset" isAbstract="true">
-      <body xsi:type="ItemUsage" declaredName="artifactProperty" multiplicityRange="[*]">
+    <body xsi:type="PartDefinition" declaredName="ArtifactAsset" isAbstract="true">
+      <body xsi:type="PartUsage" declaredName="artifactProperty" multiplicityRange="[*]">
         <featureNote>:</featureNote>
         <featureSpecialization>Property</featureSpecialization>
       </body>
       <SubclassificationPart>ArtifactElement</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="Property">
+    <body xsi:type="PartDefinition" declaredName="Property">
       <SubclassificationPart>ArtifactAsset</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="Technique">
+    <body xsi:type="PartDefinition" declaredName="Technique">
       <SubclassificationPart>ArtifactAsset</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="Participant">
+    <body xsi:type="PartDefinition" declaredName="Participant">
       <SubclassificationPart>ArtifactAsset</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="Activity">
+    <body xsi:type="PartDefinition" declaredName="Activity">
       <body xsi:type="AttributeUsage" declaredName="startTime" multiplicityRange="[1]">
         <featureNote>:</featureNote>
         <featureSpecialization>EDate</featureSpecialization>
@@ -58,17 +58,17 @@
       </body>
       <SubclassificationPart>ArtifactAsset</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="Event">
+    <body xsi:type="PartDefinition" declaredName="Event">
       <body xsi:type="AttributeUsage" declaredName="occurence" multiplicityRange="[1]">
         <featureNote>:</featureNote>
         <featureSpecialization>EDate</featureSpecialization>
       </body>
       <SubclassificationPart>ArtifactAsset</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="Resource">
+    <body xsi:type="PartDefinition" declaredName="Resource">
       <SubclassificationPart>ArtifactAsset</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="Artifact">
+    <body xsi:type="PartDefinition" declaredName="Artifact">
       <body xsi:type="AttributeUsage" declaredName="version" multiplicityRange="[1]">
         <featureNote>:</featureNote>
         <featureSpecialization>EString</featureSpecialization>
@@ -79,12 +79,12 @@
       </body>
       <SubclassificationPart>ArtifactAsset</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="ArtifactAssetRelationship">
-      <body xsi:type="ItemUsage" declaredName="source" multiplicityRange="[1..*]" isReference="true">
+    <body xsi:type="PartDefinition" declaredName="ArtifactAssetRelationship">
+      <body xsi:type="PartUsage" declaredName="source" multiplicityRange="[1..*]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>ArtifactAsset</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="target" multiplicityRange="[1..*]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="target" multiplicityRange="[1..*]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>ArtifactAsset</featureSpecialization>
       </body>

@@ -18,98 +18,98 @@ package capellacommon {
 	public import oa::*;
 	public import epbs::*;
 	public import deployment::*;
-	abstract item def AbstractCapabilityPkg :> Structure;
-	item def GenericTrace :> Trace{
-		item keyValuePairs : KeyValue [*];
-		ref item source : TraceableElement [1];
-		ref item target : TraceableElement [1];
+	abstract part def AbstractCapabilityPkg :> Structure;
+	part def GenericTrace :> Trace{
+		part keyValuePairs : KeyValue [*];
+		ref part source : TraceableElement [1];
+		ref part target : TraceableElement [1];
 	}
-	item def TransfoLink :> GenericTrace;
-	item def JustificationLink :> GenericTrace;
-	item def CapabilityRealizationInvolvement :> Involvement{
-		ref item involvedCapabilityRealizationInvolvedElement : CapabilityRealizationInvolvedElement [1];
+	part def TransfoLink :> GenericTrace;
+	part def JustificationLink :> GenericTrace;
+	part def CapabilityRealizationInvolvement :> Involvement{
+		ref part involvedCapabilityRealizationInvolvedElement : CapabilityRealizationInvolvedElement [1];
 	}
-	abstract item def CapabilityRealizationInvolvedElement :> InvolvedElement{
-		ref item capabilityRealizationInvolvements : CapabilityRealizationInvolvement [*];
-		ref item involvingCapabilityRealizations : CapabilityRealization [*];
+	abstract part def CapabilityRealizationInvolvedElement :> InvolvedElement{
+		ref part capabilityRealizationInvolvements : CapabilityRealizationInvolvement [*];
+		ref part involvingCapabilityRealizations : CapabilityRealization [*];
 	}
-	item def StateMachine :> CapellaElement, AbstractBehavior{
-		item ownedRegions : Region [*];
-		item ownedConnectionPoints : Pseudostate [*];
+	part def StateMachine :> CapellaElement, AbstractBehavior{
+		part ownedRegions : Region [*];
+		part ownedConnectionPoints : Pseudostate [*];
 	}
-	item def Region :> NamedElement{
-		item ownedStates : AbstractState [*];
-		item ownedTransitions : StateTransition [*];
-		ref item involvedStates : AbstractState [*];
+	part def Region :> NamedElement{
+		part ownedStates : AbstractState [*];
+		part ownedTransitions : StateTransition [*];
+		ref part involvedStates : AbstractState [*];
 	}
-	item def State :> AbstractState{
-		item ownedRegions : Region [*];
-		item ownedConnectionPoints : Pseudostate [*];
-		ref item availableAbstractFunctions : AbstractFunction [*];
-		ref item availableFunctionalChains : FunctionalChain [*];
-		ref item availableAbstractCapabilities : AbstractCapability [*];
-		ref item 'entry' : AbstractEvent [*];
-		ref item doActivity : AbstractEvent [*];
-		ref item 'exit' : AbstractEvent [*];
-		item stateInvariant : AbstractConstraint [1];
+	part def State :> AbstractState{
+		part ownedRegions : Region [*];
+		part ownedConnectionPoints : Pseudostate [*];
+		ref part availableAbstractFunctions : AbstractFunction [*];
+		ref part availableFunctionalChains : FunctionalChain [*];
+		ref part availableAbstractCapabilities : AbstractCapability [*];
+		ref part 'entry' : AbstractEvent [*];
+		ref part doActivity : AbstractEvent [*];
+		ref part 'exit' : AbstractEvent [*];
+		part stateInvariant : AbstractConstraint [1];
 	}
-	item def Mode :> State;
-	item def FinalState :> State;
-	abstract item def AbstractState :> NamedElement, IState{
-		item ownedAbstractStateRealizations : AbstractStateRealization [*];
-		ref item realizedAbstractStates : AbstractState [*];
-		ref item realizingAbstractStates : AbstractState [*];
-		ref item outgoing : StateTransition [*];
-		ref item incoming : StateTransition [*];
-		ref item involverRegions : Region [*];
+	part def Mode :> State;
+	part def FinalState :> State;
+	abstract part def AbstractState :> NamedElement, IState{
+		part ownedAbstractStateRealizations : AbstractStateRealization [*];
+		ref part realizedAbstractStates : AbstractState [*];
+		ref part realizingAbstractStates : AbstractState [*];
+		ref part outgoing : StateTransition [*];
+		ref part incoming : StateTransition [*];
+		ref part involverRegions : Region [*];
 	}
-	item def StateTransition :> NamedElement, Relationship{
+	part def StateTransition :> NamedElement, Relationship{
 		attribute kind : TransitionKind [1];
 		attribute triggerDescription : EString [1];
-		ref item guard : Constraint [1];
-		ref item source : AbstractState [1];
-		ref item target : AbstractState [1];
-		ref item effect : AbstractEvent [*];
-		ref item triggers : AbstractEvent [*];
-		item ownedStateTransitionRealizations : StateTransitionRealization [*];
-		ref item realizedStateTransitions : StateTransition [*];
-		ref item realizingStateTransitions : StateTransition [*];
+		ref part guard : Constraint [1];
+		ref part source : AbstractState [1];
+		ref part target : AbstractState [1];
+		ref part effect : AbstractEvent [*];
+		ref part triggers : AbstractEvent [*];
+		part ownedStateTransitionRealizations : StateTransitionRealization [*];
+		ref part realizedStateTransitions : StateTransition [*];
+		ref part realizingStateTransitions : StateTransition [*];
 	}
-	abstract item def Pseudostate :> AbstractState;
-	item def InitialPseudoState :> Pseudostate;
-	item def JoinPseudoState :> Pseudostate;
-	item def ForkPseudoState :> Pseudostate;
-	item def ChoicePseudoState :> Pseudostate;
-	item def TerminatePseudoState :> Pseudostate;
-	item def AbstractStateRealization :> Allocation{
-		ref item realizedAbstractState : AbstractState [1];
-		ref item realizingAbstractState : AbstractState [1];
+	abstract part def Pseudostate :> AbstractState;
+	part def InitialPseudoState :> Pseudostate;
+	part def JoinPseudoState :> Pseudostate;
+	part def ForkPseudoState :> Pseudostate;
+	part def ChoicePseudoState :> Pseudostate;
+	part def TerminatePseudoState :> Pseudostate;
+	part def AbstractStateRealization :> Allocation{
+		ref part realizedAbstractState : AbstractState [1];
+		ref part realizingAbstractState : AbstractState [1];
 	}
-	item def StateTransitionRealization :> Allocation{
-		ref item realizedStateTransition : StateTransition [1];
-		ref item realizingStateTransition : StateTransition [1];
+	part def StateTransitionRealization :> Allocation{
+		ref part realizedStateTransition : StateTransition [1];
+		ref part realizingStateTransition : StateTransition [1];
 	}
 	enum def TransitionKind {
 		enum internal;
 		enum local;
 		enum external;
 	}
-	item def ShallowHistoryPseudoState :> Pseudostate;
-	item def DeepHistoryPseudoState :> Pseudostate;
-	item def EntryPointPseudoState :> Pseudostate;
-	item def ExitPointPseudoState :> Pseudostate;
-	item def StateEventRealization :> Allocation{
-		ref item realizedEvent : StateEvent [1];
-		ref item realizingEvent : StateEvent [1];
+	part def ShallowHistoryPseudoState :> Pseudostate;
+	part def DeepHistoryPseudoState :> Pseudostate;
+	part def EntryPointPseudoState :> Pseudostate;
+	part def ExitPointPseudoState :> Pseudostate;
+	part def StateEventRealization :> Allocation{
+		ref part realizedEvent : StateEvent [1];
+		ref part realizingEvent : StateEvent [1];
 	}
-	abstract item def StateEvent :> NamedElement, AbstractEvent{
-		ref item expression : Constraint [1];
-		item ownedStateEventRealizations : StateEventRealization [*];
+	abstract part def StateEvent :> NamedElement, AbstractEvent{
+		ref part expression : Constraint [1];
+		part ownedStateEventRealizations : StateEventRealization [*];
 	}
-	item def ChangeEvent :> StateEvent{
+	part def ChangeEvent :> StateEvent{
 		attribute kind : ChangeEventKind [1];
 	}
-	item def TimeEvent :> StateEvent{
+	part def TimeEvent :> StateEvent{
 		attribute kind : TimeEventKind [1];
 	}
 	enum def TimeEventKind {

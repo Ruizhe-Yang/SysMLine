@@ -9,46 +9,46 @@ package argumentation {
 		enum defeated;
 		enum asCited;
 	}
-	abstract item def ArgumentationElement :> ArtifactElement{
+	abstract part def ArgumentationElement :> ArtifactElement{
 		attribute uninstantiated : EBoolean [1];
 	}
-	item def ArgumentGroup :> ArgumentationElement{
-		ref item argumentationElement : ArgumentationElement [*];
+	part def ArgumentGroup :> ArgumentationElement{
+		ref part argumentationElement : ArgumentationElement [*];
 	}
-	item def ArgumentPackage :> ArgumentationElement{
-		item argumentationElement : ArgumentationElement [*];
+	part def ArgumentPackage :> ArgumentationElement{
+		part argumentationElement : ArgumentationElement [*];
 	}
-	item def ArgumentPackageInterface :> ArgumentPackage{
-		ref item implements : ArgumentPackage [1];
+	part def ArgumentPackageInterface :> ArgumentPackage{
+		ref part implements : ArgumentPackage [1];
 	}
-	item def ArgumentPackageBinding :> ArgumentPackage{
-		ref item participantPackage : ArgumentPackage [2..*];
+	part def ArgumentPackageBinding :> ArgumentPackage{
+		ref part participantPackage : ArgumentPackage [2..*];
 	}
-	abstract item def ArgumentAsset :> ArgumentationElement{
-		item content : MultiLangString [1];
+	abstract part def ArgumentAsset :> ArgumentationElement{
+		part content : MultiLangString [1];
 	}
-	abstract item def Assertion :> ArgumentAsset{
+	abstract part def Assertion :> ArgumentAsset{
 		attribute assertionDeclaration : AssertionDeclaration [1];
-		ref item metaClaim : Claim [*];
+		ref part metaClaim : Claim [*];
 	}
-	item def ArgumentReasoning :> ArgumentAsset{
-		ref item structure : ArgumentPackage [1];
+	part def ArgumentReasoning :> ArgumentAsset{
+		ref part structure : ArgumentPackage [1];
 	}
-	item def Claim :> Assertion;
-	abstract item def AssertedRelationship :> Assertion{
+	part def Claim :> Assertion;
+	abstract part def AssertedRelationship :> Assertion{
 		attribute isCounter : EBoolean [1];
-		ref item source : ArgumentAsset [1..*];
-		ref item target : ArgumentAsset [1..*];
-		ref item reasoning : ArgumentReasoning [1];
+		ref part source : ArgumentAsset [1..*];
+		ref part target : ArgumentAsset [1..*];
+		ref part reasoning : ArgumentReasoning [1];
 		attribute requies : EInt [1];
 	}
-	item def ArtifactReference :> ArgumentAsset{
-		ref item referencedArtifactElement : ArtifactElement [*];
+	part def ArtifactReference :> ArgumentAsset{
+		ref part referencedArtifactElement : ArtifactElement [*];
 	}
-	item def AssertedArtifactSupport :> AssertedRelationship;
-	item def AssertedInference :> AssertedRelationship;
-	item def AssertedEvidence :> AssertedRelationship;
-	item def AssertedContext :> AssertedRelationship;
-	item def AssertedArtifactContext :> AssertedRelationship;
+	part def AssertedArtifactSupport :> AssertedRelationship;
+	part def AssertedInference :> AssertedRelationship;
+	part def AssertedEvidence :> AssertedRelationship;
+	part def AssertedContext :> AssertedRelationship;
+	part def AssertedArtifactContext :> AssertedRelationship;
 }
 

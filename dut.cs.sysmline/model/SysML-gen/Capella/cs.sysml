@@ -18,189 +18,189 @@ package cs {
 	public import activity::*;
 	public import oa::*;
 	public import deployment::*;
-	abstract item def BlockArchitecturePkg :> ModellingArchitecturePkg;
-	abstract item def BlockArchitecture :> AbstractFunctionalArchitecture{
-		item ownedAbstractCapabilityPkg : AbstractCapabilityPkg [1];
-		item ownedInterfacePkg : InterfacePkg [1];
-		item ownedDataPkg : DataPkg [1];
-		ref item provisionedArchitectureAllocations : ArchitectureAllocation [*];
-		ref item provisioningArchitectureAllocations : ArchitectureAllocation [*];
-		ref item allocatedArchitectures : BlockArchitecture [*];
-		ref item allocatingArchitectures : BlockArchitecture [*];
-		ref item system : Component [1];
+	abstract part def BlockArchitecturePkg :> ModellingArchitecturePkg;
+	abstract part def BlockArchitecture :> AbstractFunctionalArchitecture{
+		part ownedAbstractCapabilityPkg : AbstractCapabilityPkg [1];
+		part ownedInterfacePkg : InterfacePkg [1];
+		part ownedDataPkg : DataPkg [1];
+		ref part provisionedArchitectureAllocations : ArchitectureAllocation [*];
+		ref part provisioningArchitectureAllocations : ArchitectureAllocation [*];
+		ref part allocatedArchitectures : BlockArchitecture [*];
+		ref part allocatingArchitectures : BlockArchitecture [*];
+		ref part system : Component [1];
 	}
-	abstract item def Block :> ModellingBlock, AbstractFunctionalBlock{
-		item ownedAbstractCapabilityPkg : AbstractCapabilityPkg [1];
-		item ownedInterfacePkg : InterfacePkg [1];
-		item ownedDataPkg : DataPkg [1];
-		item ownedStateMachines : StateMachine [*];
+	abstract part def Block :> ModellingBlock, AbstractFunctionalBlock{
+		part ownedAbstractCapabilityPkg : AbstractCapabilityPkg [1];
+		part ownedInterfacePkg : InterfacePkg [1];
+		part ownedDataPkg : DataPkg [1];
+		part ownedStateMachines : StateMachine [*];
 	}
-	abstract item def ComponentArchitecture :> BlockArchitecture;
-	abstract item def Component :> Block, Classifier, InterfaceAllocator, CommunicationLinkExchanger{
+	abstract part def ComponentArchitecture :> BlockArchitecture;
+	abstract part def Component :> Block, Classifier, InterfaceAllocator, CommunicationLinkExchanger{
 		attribute 'actor' : EBoolean [1];
 		attribute human : EBoolean [1];
-		item ownedInterfaceUses : InterfaceUse [*];
-		ref item usedInterfaceLinks : InterfaceUse [*];
-		ref item usedInterfaces : Interface [*];
-		item ownedInterfaceImplementations : InterfaceImplementation [*];
-		ref item implementedInterfaceLinks : InterfaceImplementation [*];
-		ref item implementedInterfaces : Interface [*];
-		item ownedComponentRealizations : ComponentRealization [*];
-		ref item realizedComponents : Component [*];
-		ref item realizingComponents : Component [*];
-		ref item providedInterfaces : Interface [*];
-		ref item requiredInterfaces : Interface [*];
-		ref item containedComponentPorts : ComponentPort [*];
-		ref item containedParts : Part [*];
-		ref item containedPhysicalPorts : PhysicalPort [*];
-		item ownedPhysicalPath : PhysicalPath [*];
-		item ownedPhysicalLinks : PhysicalLink [*];
-		item ownedPhysicalLinkCategories : PhysicalLinkCategory [*];
-		ref item representingParts : Part [*];
+		part ownedInterfaceUses : InterfaceUse [*];
+		ref part usedInterfaceLinks : InterfaceUse [*];
+		ref part usedInterfaces : Interface [*];
+		part ownedInterfaceImplementations : InterfaceImplementation [*];
+		ref part implementedInterfaceLinks : InterfaceImplementation [*];
+		ref part implementedInterfaces : Interface [*];
+		part ownedComponentRealizations : ComponentRealization [*];
+		ref part realizedComponents : Component [*];
+		ref part realizingComponents : Component [*];
+		ref part providedInterfaces : Interface [*];
+		ref part requiredInterfaces : Interface [*];
+		ref part containedComponentPorts : ComponentPort [*];
+		ref part containedParts : Part [*];
+		ref part containedPhysicalPorts : PhysicalPort [*];
+		part ownedPhysicalPath : PhysicalPath [*];
+		part ownedPhysicalLinks : PhysicalLink [*];
+		part ownedPhysicalLinkCategories : PhysicalLinkCategory [*];
+		ref part representingParts : Part [*];
 	}
-	item def Part :> AbstractInstance, InformationsExchanger, DeployableElement, DeploymentTarget, AbstractPathInvolvedElement{
-		ref item providedInterfaces : Interface [*];
-		ref item requiredInterfaces : Interface [*];
-		item ownedDeploymentLinks : AbstractDeploymentLink [*];
-		ref item deployedParts : Part [*];
-		ref item deployingParts : Part [*];
-		item ownedAbstractType : AbstractType [1];
+	part def Part :> AbstractInstance, InformationsExchanger, DeployableElement, DeploymentTarget, AbstractPathInvolvedElement{
+		ref part providedInterfaces : Interface [*];
+		ref part requiredInterfaces : Interface [*];
+		part ownedDeploymentLinks : AbstractDeploymentLink [*];
+		ref part deployedParts : Part [*];
+		ref part deployingParts : Part [*];
+		part ownedAbstractType : AbstractType [1];
 	}
-	abstract item def ArchitectureAllocation :> Allocation{
-		ref item allocatedArchitecture : BlockArchitecture [1];
-		ref item allocatingArchitecture : BlockArchitecture [1];
+	abstract part def ArchitectureAllocation :> Allocation{
+		ref part allocatedArchitecture : BlockArchitecture [1];
+		ref part allocatingArchitecture : BlockArchitecture [1];
 	}
-	item def ComponentRealization :> Allocation{
-		ref item realizedComponent : Component [1];
-		ref item realizingComponent : Component [1];
+	part def ComponentRealization :> Allocation{
+		ref part realizedComponent : Component [1];
+		ref part realizingComponent : Component [1];
 	}
-	item def InterfacePkg :> MessageReferencePkg, AbstractDependenciesPkg, AbstractExchangeItemPkg{
-		item ownedInterfaces : Interface [*];
-		item ownedInterfacePkgs : InterfacePkg [*];
+	part def InterfacePkg :> MessageReferencePkg, AbstractDependenciesPkg, AbstractExchangeItemPkg{
+		part ownedInterfaces : Interface [*];
+		part ownedInterfacePkgs : InterfacePkg [*];
 	}
-	item def Interface :> GeneralClass, InterfaceAllocator{
+	part def Interface :> GeneralClass, InterfaceAllocator{
 		attribute mechanism : EString [1];
 		attribute structural : EBoolean [1];
-		ref item implementorComponents : Component [*];
-		ref item userComponents : Component [*];
-		ref item interfaceImplementations : InterfaceImplementation [*];
-		ref item interfaceUses : InterfaceUse [*];
-		ref item provisioningInterfaceAllocations : InterfaceAllocation [*];
-		ref item allocatingInterfaces : Interface [*];
-		ref item allocatingComponents : Component [*];
-		ref item exchangeItems : ExchangeItem [*];
-		item ownedExchangeItemAllocations : ExchangeItemAllocation [*];
-		ref item requiringComponents : Component [*];
-		ref item requiringComponentPorts : ComponentPort [*];
-		ref item providingComponents : Component [*];
-		ref item providingComponentPorts : ComponentPort [*];
-		ref item realizingLogicalInterfaces : Interface [*];
-		ref item realizedContextInterfaces : Interface [*];
-		ref item realizingPhysicalInterfaces : Interface [*];
-		ref item realizedLogicalInterfaces : Interface [*];
+		ref part implementorComponents : Component [*];
+		ref part userComponents : Component [*];
+		ref part interfaceImplementations : InterfaceImplementation [*];
+		ref part interfaceUses : InterfaceUse [*];
+		ref part provisioningInterfaceAllocations : InterfaceAllocation [*];
+		ref part allocatingInterfaces : Interface [*];
+		ref part allocatingComponents : Component [*];
+		ref part exchangeItems : ExchangeItem [*];
+		part ownedExchangeItemAllocations : ExchangeItemAllocation [*];
+		ref part requiringComponents : Component [*];
+		ref part requiringComponentPorts : ComponentPort [*];
+		ref part providingComponents : Component [*];
+		ref part providingComponentPorts : ComponentPort [*];
+		ref part realizingLogicalInterfaces : Interface [*];
+		ref part realizedContextInterfaces : Interface [*];
+		ref part realizingPhysicalInterfaces : Interface [*];
+		ref part realizedLogicalInterfaces : Interface [*];
 	}
-	item def InterfaceImplementation :> Relationship{
-		ref item interfaceImplementor : Component [1];
-		ref item implementedInterface : Interface [1];
+	part def InterfaceImplementation :> Relationship{
+		ref part interfaceImplementor : Component [1];
+		ref part implementedInterface : Interface [1];
 	}
-	item def InterfaceUse :> Relationship{
-		ref item interfaceUser : Component [1];
-		ref item usedInterface : Interface [1];
+	part def InterfaceUse :> Relationship{
+		ref part interfaceUser : Component [1];
+		ref part usedInterface : Interface [1];
 	}
-	abstract item def ProvidedInterfaceLink :> Relationship{
-		ref item 'interface' : Interface [1];
+	abstract part def ProvidedInterfaceLink :> Relationship{
+		ref part 'interface' : Interface [1];
 	}
-	abstract item def RequiredInterfaceLink :> Relationship{
-		ref item 'interface' : Interface [1];
+	abstract part def RequiredInterfaceLink :> Relationship{
+		ref part 'interface' : Interface [1];
 	}
-	abstract item def InterfaceAllocation :> Allocation{
-		ref item allocatedInterface : Interface [1];
-		ref item allocatingInterfaceAllocator : InterfaceAllocator [1];
+	abstract part def InterfaceAllocation :> Allocation{
+		ref part allocatedInterface : Interface [1];
+		ref part allocatingInterfaceAllocator : InterfaceAllocator [1];
 	}
-	abstract item def InterfaceAllocator :> CapellaElement{
-		item ownedInterfaceAllocations : InterfaceAllocation [*];
-		ref item provisionedInterfaceAllocations : InterfaceAllocation [*];
-		ref item allocatedInterfaces : Interface [*];
+	abstract part def InterfaceAllocator :> CapellaElement{
+		part ownedInterfaceAllocations : InterfaceAllocation [*];
+		ref part provisionedInterfaceAllocations : InterfaceAllocation [*];
+		ref part allocatedInterfaces : Interface [*];
 	}
-	item def ExchangeItemAllocation :> Relationship, AbstractEventOperation, FinalizableElement{
+	part def ExchangeItemAllocation :> Relationship, AbstractEventOperation, FinalizableElement{
 		attribute sendProtocol : CommunicationLinkProtocol [1];
 		attribute receiveProtocol : CommunicationLinkProtocol [1];
-		ref item allocatedItem : ExchangeItem [1];
-		ref item allocatingInterface : Interface [1];
+		ref part allocatedItem : ExchangeItem [1];
+		ref part allocatingInterface : Interface [1];
 	}
-	abstract item def DeployableElement :> NamedElement{
-		ref item deployingLinks : AbstractDeploymentLink [*];
+	abstract part def DeployableElement :> NamedElement{
+		ref part deployingLinks : AbstractDeploymentLink [*];
 	}
-	abstract item def DeploymentTarget :> NamedElement{
-		ref item deploymentLinks : AbstractDeploymentLink [*];
+	abstract part def DeploymentTarget :> NamedElement{
+		ref part deploymentLinks : AbstractDeploymentLink [*];
 	}
-	abstract item def AbstractDeploymentLink :> Relationship{
-		ref item deployedElement : DeployableElement [1];
-		ref item location : DeploymentTarget [1];
+	abstract part def AbstractDeploymentLink :> Relationship{
+		ref part deployedElement : DeployableElement [1];
+		ref part location : DeploymentTarget [1];
 	}
-	abstract item def AbstractPathInvolvedElement :> InvolvedElement;
-	abstract item def AbstractPhysicalArtifact :> CapellaElement{
-		ref item allocatorConfigurationItems : ConfigurationItem [*];
+	abstract part def AbstractPathInvolvedElement :> InvolvedElement;
+	abstract part def AbstractPhysicalArtifact :> CapellaElement{
+		ref part allocatorConfigurationItems : ConfigurationItem [*];
 	}
-	abstract item def AbstractPhysicalLinkEnd :> CapellaElement{
-		ref item involvedLinks : PhysicalLink [*];
+	abstract part def AbstractPhysicalLinkEnd :> CapellaElement{
+		ref part involvedLinks : PhysicalLink [*];
 	}
-	abstract item def AbstractPhysicalPathLink :> ComponentExchangeAllocator;
-	item def PhysicalLink :> AbstractPhysicalPathLink, AbstractPhysicalArtifact, AbstractPathInvolvedElement{
-		ref item linkEnds : AbstractPhysicalLinkEnd [2];
-		item ownedComponentExchangeFunctionalExchangeAllocations : ComponentExchangeFunctionalExchangeAllocation [*];
-		item ownedPhysicalLinkEnds : PhysicalLinkEnd [*];
-		item ownedPhysicalLinkRealizations : PhysicalLinkRealization [*];
-		ref item categories : PhysicalLinkCategory [*];
-		ref item sourcePhysicalPort : PhysicalPort [1];
-		ref item targetPhysicalPort : PhysicalPort [1];
-		ref item realizedPhysicalLinks : PhysicalLink [*];
-		ref item realizingPhysicalLinks : PhysicalLink [*];
+	abstract part def AbstractPhysicalPathLink :> ComponentExchangeAllocator;
+	part def PhysicalLink :> AbstractPhysicalPathLink, AbstractPhysicalArtifact, AbstractPathInvolvedElement{
+		ref part linkEnds : AbstractPhysicalLinkEnd [2];
+		part ownedComponentExchangeFunctionalExchangeAllocations : ComponentExchangeFunctionalExchangeAllocation [*];
+		part ownedPhysicalLinkEnds : PhysicalLinkEnd [*];
+		part ownedPhysicalLinkRealizations : PhysicalLinkRealization [*];
+		ref part categories : PhysicalLinkCategory [*];
+		ref part sourcePhysicalPort : PhysicalPort [1];
+		ref part targetPhysicalPort : PhysicalPort [1];
+		ref part realizedPhysicalLinks : PhysicalLink [*];
+		ref part realizingPhysicalLinks : PhysicalLink [*];
 	}
-	item def PhysicalLinkCategory :> NamedElement{
-		ref item links : PhysicalLink [*];
+	part def PhysicalLinkCategory :> NamedElement{
+		ref part links : PhysicalLink [*];
 	}
-	item def PhysicalLinkEnd :> AbstractPhysicalLinkEnd{
-		ref item 'port' : PhysicalPort [1];
-		ref item 'part' : Part [1];
+	part def PhysicalLinkEnd :> AbstractPhysicalLinkEnd{
+		ref part 'port' : PhysicalPort [1];
+		ref part 'part' : Part [1];
 	}
-	item def PhysicalLinkRealization :> Allocation;
-	item def PhysicalPath :> NamedElement, ComponentExchangeAllocator, AbstractPathInvolvedElement, InvolverElement{
-		ref item involvedLinks : AbstractPhysicalPathLink [*];
-		item ownedPhysicalPathInvolvements : PhysicalPathInvolvement [*];
-		ref item firstPhysicalPathInvolvements : PhysicalPathInvolvement [*];
-		item ownedPhysicalPathRealizations : PhysicalPathRealization [*];
-		ref item realizedPhysicalPaths : PhysicalPath [*];
-		ref item realizingPhysicalPaths : PhysicalPath [*];
+	part def PhysicalLinkRealization :> Allocation;
+	part def PhysicalPath :> NamedElement, ComponentExchangeAllocator, AbstractPathInvolvedElement, InvolverElement{
+		ref part involvedLinks : AbstractPhysicalPathLink [*];
+		part ownedPhysicalPathInvolvements : PhysicalPathInvolvement [*];
+		ref part firstPhysicalPathInvolvements : PhysicalPathInvolvement [*];
+		part ownedPhysicalPathRealizations : PhysicalPathRealization [*];
+		ref part realizedPhysicalPaths : PhysicalPath [*];
+		ref part realizingPhysicalPaths : PhysicalPath [*];
 	}
-	item def PhysicalPathInvolvement :> Involvement{
-		ref item nextInvolvements : PhysicalPathInvolvement [*];
-		ref item previousInvolvements : PhysicalPathInvolvement [*];
-		ref item involvedElement : AbstractPathInvolvedElement [1];
-		ref item involvedComponent : Component [1];
+	part def PhysicalPathInvolvement :> Involvement{
+		ref part nextInvolvements : PhysicalPathInvolvement [*];
+		ref part previousInvolvements : PhysicalPathInvolvement [*];
+		ref part involvedElement : AbstractPathInvolvedElement [1];
+		ref part involvedComponent : Component [1];
 	}
-	item def PhysicalPathReference :> PhysicalPathInvolvement{
-		ref item referencedPhysicalPath : PhysicalPath [1];
+	part def PhysicalPathReference :> PhysicalPathInvolvement{
+		ref part referencedPhysicalPath : PhysicalPath [1];
 	}
-	item def PhysicalPathRealization :> Allocation;
-	item def PhysicalPort :> Port, AbstractPhysicalArtifact, InformationsExchanger, AbstractPhysicalLinkEnd, Property{
-		item ownedComponentPortAllocations : ComponentPortAllocation [*];
-		item ownedPhysicalPortRealizations : PhysicalPortRealization [*];
-		ref item allocatedComponentPorts : ComponentPort [*];
-		ref item realizedPhysicalPorts : PhysicalPort [*];
-		ref item realizingPhysicalPorts : PhysicalPort [*];
+	part def PhysicalPathRealization :> Allocation;
+	part def PhysicalPort :> Port, AbstractPhysicalArtifact, InformationsExchanger, AbstractPhysicalLinkEnd, Property{
+		part ownedComponentPortAllocations : ComponentPortAllocation [*];
+		part ownedPhysicalPortRealizations : PhysicalPortRealization [*];
+		ref part allocatedComponentPorts : ComponentPort [*];
+		ref part realizedPhysicalPorts : PhysicalPort [*];
+		ref part realizingPhysicalPorts : PhysicalPort [*];
 	}
-	item def PhysicalPortRealization :> Allocation;
-	abstract item def ComponentPkg :> Structure{
-		item ownedParts : Part [*];
-		item ownedComponentExchanges : ComponentExchange [*];
-		item ownedComponentExchangeCategories : ComponentExchangeCategory [*];
-		item ownedFunctionalLinks : ExchangeLink [*];
-		item ownedFunctionalAllocations : ComponentFunctionalAllocation [*];
-		item ownedComponentExchangeRealizations : ComponentExchangeRealization [*];
-		item ownedPhysicalLinks : PhysicalLink [*];
-		item ownedPhysicalLinkCategories : PhysicalLinkCategory [*];
-		item ownedStateMachines : StateMachine [*];
+	part def PhysicalPortRealization :> Allocation;
+	abstract part def ComponentPkg :> Structure{
+		part ownedParts : Part [*];
+		part ownedComponentExchanges : ComponentExchange [*];
+		part ownedComponentExchangeCategories : ComponentExchangeCategory [*];
+		part ownedFunctionalLinks : ExchangeLink [*];
+		part ownedFunctionalAllocations : ComponentFunctionalAllocation [*];
+		part ownedComponentExchangeRealizations : ComponentExchangeRealization [*];
+		part ownedPhysicalLinks : PhysicalLink [*];
+		part ownedPhysicalLinkCategories : PhysicalLinkCategory [*];
+		part ownedStateMachines : StateMachine [*];
 	}
 }
 

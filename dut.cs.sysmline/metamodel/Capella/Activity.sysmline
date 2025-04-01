@@ -5,7 +5,7 @@
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="modellingcore"/>
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="behavior"/>
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="emde"/>
-    <body xsi:type="ItemDefinition" declaredName="AbstractActivity" isAbstract="true">
+    <body xsi:type="PartDefinition" declaredName="AbstractActivity" isAbstract="true">
       <body xsi:type="AttributeUsage" declaredName="isReadOnly" multiplicityRange="[1]">
         <featureNote>:</featureNote>
         <featureSpecialization>EBoolean</featureSpecialization>
@@ -14,65 +14,65 @@
         <featureNote>:</featureNote>
         <featureSpecialization>EBoolean</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="ownedNodes" multiplicityRange="[*]">
+      <body xsi:type="PartUsage" declaredName="ownedNodes" multiplicityRange="[*]">
         <featureNote>:</featureNote>
         <featureSpecialization>ActivityNode</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="ownedEdges" multiplicityRange="[*]">
+      <body xsi:type="PartUsage" declaredName="ownedEdges" multiplicityRange="[*]">
         <featureNote>:</featureNote>
         <featureSpecialization>ActivityEdge</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="ownedGroups" multiplicityRange="[*]">
+      <body xsi:type="PartUsage" declaredName="ownedGroups" multiplicityRange="[*]">
         <featureNote>:</featureNote>
         <featureSpecialization>ActivityGroup</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="ownedStructuredNodes" multiplicityRange="[*]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="ownedStructuredNodes" multiplicityRange="[*]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>StructuredActivityNode</featureSpecialization>
       </body>
       <SubclassificationPart>AbstractBehavior</SubclassificationPart>
       <SubclassificationPart>TraceableElement</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="ExceptionHandler" isAbstract="true">
-      <body xsi:type="ItemUsage" declaredName="protectedNode" multiplicityRange="[1]" isReference="true">
+    <body xsi:type="PartDefinition" declaredName="ExceptionHandler" isAbstract="true">
+      <body xsi:type="PartUsage" declaredName="protectedNode" multiplicityRange="[1]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>ExecutableNode</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="handlerBody" multiplicityRange="[1]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="handlerBody" multiplicityRange="[1]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>ExecutableNode</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="exceptionInput" multiplicityRange="[1]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="exceptionInput" multiplicityRange="[1]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>ObjectNode</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="exceptionTypes" multiplicityRange="[1..*]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="exceptionTypes" multiplicityRange="[1..*]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>AbstractType</featureSpecialization>
       </body>
       <SubclassificationPart>ModelElement</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="ActivityGroup" isAbstract="true">
-      <body xsi:type="ItemUsage" declaredName="superGroup" multiplicityRange="[1]" isReference="true">
+    <body xsi:type="PartDefinition" declaredName="ActivityGroup" isAbstract="true">
+      <body xsi:type="PartUsage" declaredName="superGroup" multiplicityRange="[1]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>ActivityGroup</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="subGroups" multiplicityRange="[*]">
+      <body xsi:type="PartUsage" declaredName="subGroups" multiplicityRange="[*]">
         <featureNote>:</featureNote>
         <featureSpecialization>ActivityGroup</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="ownedNodes" multiplicityRange="[*]">
+      <body xsi:type="PartUsage" declaredName="ownedNodes" multiplicityRange="[*]">
         <featureNote>:</featureNote>
         <featureSpecialization>ActivityNode</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="ownedEdges" multiplicityRange="[*]">
+      <body xsi:type="PartUsage" declaredName="ownedEdges" multiplicityRange="[*]">
         <featureNote>:</featureNote>
         <featureSpecialization>ActivityEdge</featureSpecialization>
       </body>
       <SubclassificationPart>ModelElement</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="InterruptibleActivityRegion" isAbstract="true">
-      <body xsi:type="ItemUsage" declaredName="interruptingEdges" multiplicityRange="[*]" isReference="true">
+    <body xsi:type="PartDefinition" declaredName="InterruptibleActivityRegion" isAbstract="true">
+      <body xsi:type="PartUsage" declaredName="interruptingEdges" multiplicityRange="[*]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>ActivityEdge</featureSpecialization>
       </body>
@@ -89,57 +89,57 @@
       <body xsi:type="EnumerationUsage" declaredName="NoBuffer"/>
       <body xsi:type="EnumerationUsage" declaredName="Overwrite"/>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="ActivityEdge" isAbstract="true">
+    <body xsi:type="PartDefinition" declaredName="ActivityEdge" isAbstract="true">
       <body xsi:type="AttributeUsage" declaredName="kindOfRate" multiplicityRange="[1]">
         <featureNote>:</featureNote>
         <featureSpecialization>RateKind</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="inActivityPartition" multiplicityRange="[1]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="inActivityPartition" multiplicityRange="[1]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>ActivityPartition</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="inInterruptibleRegion" multiplicityRange="[1]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="inInterruptibleRegion" multiplicityRange="[1]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>InterruptibleActivityRegion</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="inStructuredNode" multiplicityRange="[1]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="inStructuredNode" multiplicityRange="[1]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>StructuredActivityNode</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="rate" multiplicityRange="[1]">
+      <body xsi:type="PartUsage" declaredName="rate" multiplicityRange="[1]">
         <featureNote>:</featureNote>
         <featureSpecialization>ValueSpecification</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="probability" multiplicityRange="[1]">
+      <body xsi:type="PartUsage" declaredName="probability" multiplicityRange="[1]">
         <featureNote>:</featureNote>
         <featureSpecialization>ValueSpecification</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="target" multiplicityRange="[1]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="target" multiplicityRange="[1]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>ActivityNode</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="source" multiplicityRange="[1]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="source" multiplicityRange="[1]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>ActivityNode</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="guard" multiplicityRange="[1]">
+      <body xsi:type="PartUsage" declaredName="guard" multiplicityRange="[1]">
         <featureNote>:</featureNote>
         <featureSpecialization>ValueSpecification</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="weight" multiplicityRange="[1]">
+      <body xsi:type="PartUsage" declaredName="weight" multiplicityRange="[1]">
         <featureNote>:</featureNote>
         <featureSpecialization>ValueSpecification</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="interrupts" multiplicityRange="[1]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="interrupts" multiplicityRange="[1]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>InterruptibleActivityRegion</featureSpecialization>
       </body>
       <SubclassificationPart>AbstractRelationship</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="ControlFlow" isAbstract="true">
+    <body xsi:type="PartDefinition" declaredName="ControlFlow" isAbstract="true">
       <SubclassificationPart>ActivityEdge</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="ObjectFlow" isAbstract="true">
+    <body xsi:type="PartDefinition" declaredName="ObjectFlow" isAbstract="true">
       <body xsi:type="AttributeUsage" declaredName="isMulticast" multiplicityRange="[1]">
         <featureNote>:</featureNote>
         <featureSpecialization>EBoolean</featureSpecialization>
@@ -148,17 +148,17 @@
         <featureNote>:</featureNote>
         <featureSpecialization>EBoolean</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="transformation" multiplicityRange="[1]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="transformation" multiplicityRange="[1]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>AbstractBehavior</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="selection" multiplicityRange="[1]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="selection" multiplicityRange="[1]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>AbstractBehavior</featureSpecialization>
       </body>
       <SubclassificationPart>ActivityEdge</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="ActivityPartition" isAbstract="true">
+    <body xsi:type="PartDefinition" declaredName="ActivityPartition" isAbstract="true">
       <body xsi:type="AttributeUsage" declaredName="isDimension" multiplicityRange="[1]">
         <featureNote>:</featureNote>
         <featureSpecialization>EBoolean</featureSpecialization>
@@ -167,130 +167,130 @@
         <featureNote>:</featureNote>
         <featureSpecialization>EBoolean</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="representedElement" multiplicityRange="[1]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="representedElement" multiplicityRange="[1]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>AbstractType</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="superPartition" multiplicityRange="[1]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="superPartition" multiplicityRange="[1]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>ActivityPartition</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="subPartitions" multiplicityRange="[*]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="subPartitions" multiplicityRange="[*]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>ActivityPartition</featureSpecialization>
       </body>
       <SubclassificationPart>ActivityGroup</SubclassificationPart>
       <SubclassificationPart>AbstractNamedElement</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="ActivityExchange" isAbstract="true">
-      <body xsi:type="ItemUsage" declaredName="realizingActivityFlows" multiplicityRange="[*]" isReference="true">
+    <body xsi:type="PartDefinition" declaredName="ActivityExchange" isAbstract="true">
+      <body xsi:type="PartUsage" declaredName="realizingActivityFlows" multiplicityRange="[*]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>ActivityEdge</featureSpecialization>
       </body>
       <SubclassificationPart>AbstractInformationFlow</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="ActivityNode" isAbstract="true">
-      <body xsi:type="ItemUsage" declaredName="inActivityPartition" multiplicityRange="[1]" isReference="true">
+    <body xsi:type="PartDefinition" declaredName="ActivityNode" isAbstract="true">
+      <body xsi:type="PartUsage" declaredName="inActivityPartition" multiplicityRange="[1]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>ActivityPartition</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="inInterruptibleRegion" multiplicityRange="[1]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="inInterruptibleRegion" multiplicityRange="[1]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>InterruptibleActivityRegion</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="inStructuredNode" multiplicityRange="[1]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="inStructuredNode" multiplicityRange="[1]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>InterruptibleActivityRegion</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="outgoing" multiplicityRange="[*]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="outgoing" multiplicityRange="[*]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>ActivityEdge</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="incoming" multiplicityRange="[*]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="incoming" multiplicityRange="[*]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>ActivityEdge</featureSpecialization>
       </body>
       <SubclassificationPart>AbstractNamedElement</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="ExecutableNode" isAbstract="true">
-      <body xsi:type="ItemUsage" declaredName="ownedHandlers" multiplicityRange="[*]">
+    <body xsi:type="PartDefinition" declaredName="ExecutableNode" isAbstract="true">
+      <body xsi:type="PartUsage" declaredName="ownedHandlers" multiplicityRange="[*]">
         <featureNote>:</featureNote>
         <featureSpecialization>ExceptionHandler</featureSpecialization>
       </body>
       <SubclassificationPart>ActivityNode</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="StructuredActivityNode" isAbstract="true">
+    <body xsi:type="PartDefinition" declaredName="StructuredActivityNode" isAbstract="true">
       <SubclassificationPart>ActivityGroup</SubclassificationPart>
       <SubclassificationPart>AbstractAction</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="AbstractAction" isAbstract="true">
-      <body xsi:type="ItemUsage" declaredName="localPrecondition" multiplicityRange="[1]">
+    <body xsi:type="PartDefinition" declaredName="AbstractAction" isAbstract="true">
+      <body xsi:type="PartUsage" declaredName="localPrecondition" multiplicityRange="[1]">
         <featureNote>:</featureNote>
         <featureSpecialization>AbstractConstraint</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="localPostcondition" multiplicityRange="[1]">
+      <body xsi:type="PartUsage" declaredName="localPostcondition" multiplicityRange="[1]">
         <featureNote>:</featureNote>
         <featureSpecialization>AbstractConstraint</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="context" multiplicityRange="[1]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="context" multiplicityRange="[1]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>AbstractType</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="inputs" multiplicityRange="[*]">
+      <body xsi:type="PartUsage" declaredName="inputs" multiplicityRange="[*]">
         <featureNote>:</featureNote>
         <featureSpecialization>InputPin</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="outputs" multiplicityRange="[*]">
+      <body xsi:type="PartUsage" declaredName="outputs" multiplicityRange="[*]">
         <featureNote>:</featureNote>
         <featureSpecialization>OutputPin</featureSpecialization>
       </body>
       <SubclassificationPart>ExecutableNode</SubclassificationPart>
       <SubclassificationPart>AbstractNamedElement</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="AcceptEventAction" isAbstract="true">
+    <body xsi:type="PartDefinition" declaredName="AcceptEventAction" isAbstract="true">
       <body xsi:type="AttributeUsage" declaredName="isUnmarshall" multiplicityRange="[1]">
         <featureNote>:</featureNote>
         <featureSpecialization>EBoolean</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="result" multiplicityRange="[*]">
+      <body xsi:type="PartUsage" declaredName="result" multiplicityRange="[*]">
         <featureNote>:</featureNote>
         <featureSpecialization>OutputPin</featureSpecialization>
       </body>
       <SubclassificationPart>AbstractAction</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="InvocationAction" isAbstract="true">
-      <body xsi:type="ItemUsage" declaredName="arguments" multiplicityRange="[*]">
+    <body xsi:type="PartDefinition" declaredName="InvocationAction" isAbstract="true">
+      <body xsi:type="PartUsage" declaredName="arguments" multiplicityRange="[*]">
         <featureNote>:</featureNote>
         <featureSpecialization>InputPin</featureSpecialization>
       </body>
       <SubclassificationPart>AbstractAction</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="SendSignalAction" isAbstract="true">
-      <body xsi:type="ItemUsage" declaredName="target" multiplicityRange="[1]">
+    <body xsi:type="PartDefinition" declaredName="SendSignalAction" isAbstract="true">
+      <body xsi:type="PartUsage" declaredName="target" multiplicityRange="[1]">
         <featureNote>:</featureNote>
         <featureSpecialization>InputPin</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="signal" multiplicityRange="[1]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="signal" multiplicityRange="[1]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>AbstractSignal</featureSpecialization>
       </body>
       <SubclassificationPart>InvocationAction</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="CallAction" isAbstract="true">
-      <body xsi:type="ItemUsage" declaredName="results" multiplicityRange="[*]">
+    <body xsi:type="PartDefinition" declaredName="CallAction" isAbstract="true">
+      <body xsi:type="PartUsage" declaredName="results" multiplicityRange="[*]">
         <featureNote>:</featureNote>
         <featureSpecialization>OutputPin</featureSpecialization>
       </body>
       <SubclassificationPart>InvocationAction</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="CallBehaviorAction" isAbstract="true">
-      <body xsi:type="ItemUsage" declaredName="behavior" multiplicityRange="[1]" isReference="true">
+    <body xsi:type="PartDefinition" declaredName="CallBehaviorAction" isAbstract="true">
+      <body xsi:type="PartUsage" declaredName="behavior" multiplicityRange="[1]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>AbstractBehavior</featureSpecialization>
       </body>
       <SubclassificationPart>CallAction</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="ObjectNode" isAbstract="true">
+    <body xsi:type="PartDefinition" declaredName="ObjectNode" isAbstract="true">
       <body xsi:type="AttributeUsage" declaredName="isControlType" multiplicityRange="[1]">
         <featureNote>:</featureNote>
         <featureSpecialization>EBoolean</featureSpecialization>
@@ -303,43 +303,43 @@
         <featureNote>:</featureNote>
         <featureSpecialization>ObjectNodeOrderingKind</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="upperBound" multiplicityRange="[1]">
+      <body xsi:type="PartUsage" declaredName="upperBound" multiplicityRange="[1]">
         <featureNote>:</featureNote>
         <featureSpecialization>ValueSpecification</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="inState" multiplicityRange="[*]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="inState" multiplicityRange="[*]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>IState</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="selection" multiplicityRange="[1]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="selection" multiplicityRange="[1]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>AbstractBehavior</featureSpecialization>
       </body>
       <SubclassificationPart>ActivityNode</SubclassificationPart>
       <SubclassificationPart>AbstractTypedElement</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="Pin" isAbstract="true">
+    <body xsi:type="PartDefinition" declaredName="Pin" isAbstract="true">
       <body xsi:type="AttributeUsage" declaredName="isControl" multiplicityRange="[1]">
         <featureNote>:</featureNote>
         <featureSpecialization>EBoolean</featureSpecialization>
       </body>
       <SubclassificationPart>ObjectNode</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="InputPin" isAbstract="true">
-      <body xsi:type="ItemUsage" declaredName="inputEvaluationAction" multiplicityRange="[1]" isReference="true">
+    <body xsi:type="PartDefinition" declaredName="InputPin" isAbstract="true">
+      <body xsi:type="PartUsage" declaredName="inputEvaluationAction" multiplicityRange="[1]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>AbstractAction</featureSpecialization>
       </body>
       <SubclassificationPart>Pin</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="ValuePin" isAbstract="true">
-      <body xsi:type="ItemUsage" declaredName="'value'" multiplicityRange="[1]">
+    <body xsi:type="PartDefinition" declaredName="ValuePin" isAbstract="true">
+      <body xsi:type="PartUsage" declaredName="'value'" multiplicityRange="[1]">
         <featureNote>:</featureNote>
         <featureSpecialization>ValueSpecification</featureSpecialization>
       </body>
       <SubclassificationPart>InputPin</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="OutputPin" isAbstract="true">
+    <body xsi:type="PartDefinition" declaredName="OutputPin" isAbstract="true">
       <SubclassificationPart>Pin</SubclassificationPart>
     </body>
   </body>

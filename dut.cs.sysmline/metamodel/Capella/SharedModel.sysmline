@@ -22,24 +22,24 @@
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="fa"/>
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="activity"/>
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="deployment"/>
-    <body xsi:type="ItemDefinition" declaredName="SharedPkg">
-      <body xsi:type="ItemUsage" declaredName="ownedDataPkg" multiplicityRange="[1]">
+    <body xsi:type="PartDefinition" declaredName="SharedPkg">
+      <body xsi:type="PartUsage" declaredName="ownedDataPkg" multiplicityRange="[1]">
         <featureNote>:</featureNote>
         <featureSpecialization>DataPkg</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="ownedGenericPkg" multiplicityRange="[1]">
+      <body xsi:type="PartUsage" declaredName="ownedGenericPkg" multiplicityRange="[1]">
         <featureNote>:</featureNote>
         <featureSpecialization>GenericPkg</featureSpecialization>
       </body>
       <SubclassificationPart>ReuseableStructure</SubclassificationPart>
       <SubclassificationPart>ModelRoot</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="GenericPkg">
-      <body xsi:type="ItemUsage" declaredName="subGenericPkgs" multiplicityRange="[*]">
+    <body xsi:type="PartDefinition" declaredName="GenericPkg">
+      <body xsi:type="PartUsage" declaredName="subGenericPkgs" multiplicityRange="[*]">
         <featureNote>:</featureNote>
         <featureSpecialization>GenericPkg</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="capellaElements" multiplicityRange="[*]">
+      <body xsi:type="PartUsage" declaredName="capellaElements" multiplicityRange="[*]">
         <featureNote>:</featureNote>
         <featureSpecialization>CapellaElement</featureSpecialization>
       </body>

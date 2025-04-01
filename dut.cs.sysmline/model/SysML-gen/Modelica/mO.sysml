@@ -1,302 +1,302 @@
 package mO {
 	private import ecore::*;
-	item def StoredDefinition {
+	part def StoredDefinition {
 		attribute within : EString [1];
-		item classes : ClassDefinition [*];
+		part classes : ClassDefinition [*];
 	}
-	item def ClassDefinition :> ClassSpecifier, Element{
+	part def ClassDefinition :> ClassSpecifier, Element{
 		attribute final : EBoolean [1];
 		attribute encapsulated : EBoolean [1];
-		item constraining : ConstrainingClause [1];
+		part constraining : ConstrainingClause [1];
 	}
-	item def ClassSpecifier {
+	part def ClassSpecifier {
 		attribute name : EString [1];
 		attribute str_comment : EString [1];
-		item composition : Composition [1];
+		part composition : Composition [1];
 		attribute name_end : EString [1];
 		attribute prefix : EString [1];
 		attribute name2 : EString [1];
-		item subs : ArraySubscripts [1];
-		item mod : ClassModification [1];
-		item 'comment' : Comment [1];
-		item list : EnumList [1];
-		ref item type : ClassDefinition [1];
+		part subs : ArraySubscripts [1];
+		part mod : ClassModification [1];
+		part 'comment' : Comment [1];
+		part list : EnumList [1];
+		ref part type : ClassDefinition [1];
 		attribute baseType : EString [1];
 	}
-	item def EnumList {
-		item enums : EnumerationLiteral [*];
+	part def EnumList {
+		part enums : EnumerationLiteral [*];
 	}
-	item def EnumerationLiteral {
+	part def EnumerationLiteral {
 		attribute id : EString [1];
-		item 'comment' : Comment [1];
+		part 'comment' : Comment [1];
 	}
-	item def Composition {
-		item priv_elist : ElementList [1];
-		item pub_elist : ElementList [*];
-		item protected_elist : ElementList [*];
-		item eq_secs : EquationSection [*];
-		item alg_secs : AlgorithmSection [*];
+	part def Composition {
+		part priv_elist : ElementList [1];
+		part pub_elist : ElementList [*];
+		part protected_elist : ElementList [*];
+		part eq_secs : EquationSection [*];
+		part alg_secs : AlgorithmSection [*];
 		attribute ext_lang_spec : EString [1];
-		item ext_func_call : ExternalFunctionCall [1];
-		item ext_anno : Annotation [1];
-		item anno : Annotation [1];
+		part ext_func_call : ExternalFunctionCall [1];
+		part ext_anno : Annotation [1];
+		part anno : Annotation [1];
 	}
-	item def ExternalFunctionCall {
-		item lhs : ComponentReference [1];
+	part def ExternalFunctionCall {
+		part lhs : ComponentReference [1];
 		attribute name : EString [1];
-		item args : ExpressionList [1];
+		part args : ExpressionList [1];
 	}
-	item def ElementList {
-		item elem : Element [*];
+	part def ElementList {
+		part elem : Element [*];
 	}
-	item def Element;
-	item def ImportClause :> Element{
+	part def Element;
+	part def ImportClause :> Element{
 		attribute id : EString [1];
 		attribute name : EString [1];
-		item list : ImportList [1];
-		item 'comment' : Comment [1];
+		part list : ImportList [1];
+		part 'comment' : Comment [1];
 	}
-	item def ImportList {
+	part def ImportList {
 		attribute id : EString [1];
-		item list : ImportList [1];
+		part list : ImportList [1];
 	}
-	item def ExtendsClause :> Element{
+	part def ExtendsClause :> Element{
 		attribute name : EString [1];
-		item mod : ClassModification [1];
-		item anno : Annotation [1];
+		part mod : ClassModification [1];
+		part anno : Annotation [1];
 	}
-	item def typeClause :> Element{
+	part def typeClause :> Element{
 		attribute name : EString [1];
 		attribute baseType : EString [1];
-		item mod : ClassModification [1];
-		item anno : Annotation [1];
+		part mod : ClassModification [1];
+		part anno : Annotation [1];
 	}
-	item def ConstrainingClause {
+	part def ConstrainingClause {
 		attribute name : EString [1];
-		item mod : ClassModification [1];
+		part mod : ClassModification [1];
 	}
-	item def ComponentClause :> Element{
-		item constraining : ConstrainingClause [1];
-		item 'comment' : Comment [1];
+	part def ComponentClause :> Element{
+		part constraining : ConstrainingClause [1];
+		part 'comment' : Comment [1];
 		attribute prefix : EString [1];
-		item type : TypeSpecifier [1];
-		item subs : ArraySubscripts [1];
-		item comps : ComponentList [1];
+		part type : TypeSpecifier [1];
+		part subs : ArraySubscripts [1];
+		part comps : ComponentList [1];
 	}
-	item def TypeSpecifier {
+	part def TypeSpecifier {
 		attribute name : EString [1];
-		ref item name1 : ClassDefinition [1];
+		ref part name1 : ClassDefinition [1];
 	}
-	item def ComponentList {
-		item comps : ComponentDeclaration [*];
+	part def ComponentList {
+		part comps : ComponentDeclaration [*];
 	}
-	item def ComponentDeclaration {
-		item decl : Declaration [1];
-		item cond : ConditionAttribute [1];
-		item 'comment' : Comment [1];
+	part def ComponentDeclaration {
+		part decl : Declaration [1];
+		part cond : ConditionAttribute [1];
+		part 'comment' : Comment [1];
 	}
-	item def ConditionAttribute;
-	item def Declaration :> ComponentDeclaration1{
+	part def ConditionAttribute;
+	part def Declaration :> ComponentDeclaration1{
 		attribute name : EString [1];
-		item type : TypeSpecifier [1];
-		item subscripts : ArraySubscripts [1];
-		item mod : Modification [1];
-		item 'comment' : Comment [1];
+		part type : TypeSpecifier [1];
+		part subscripts : ArraySubscripts [1];
+		part mod : Modification [1];
+		part 'comment' : Comment [1];
 	}
-	item def Modification {
-		item mod : ClassModification [1];
-		item expr : Expression [1];
+	part def Modification {
+		part mod : ClassModification [1];
+		part expr : Expression [1];
 	}
-	item def ClassModification :> Annotation{
-		item args : ArgumentList [*];
+	part def ClassModification :> Annotation{
+		part args : ArgumentList [*];
 	}
-	item def ArgumentList {
-		item args : Argument [*];
+	part def ArgumentList {
+		part args : Argument [*];
 	}
-	item def Argument;
-	item def ElementModicationOrReplaceable :> Argument;
-	item def ElementModification :> ElementModicationOrReplaceable{
+	part def Argument;
+	part def ElementModicationOrReplaceable :> Argument;
+	part def ElementModification :> ElementModicationOrReplaceable{
 		attribute name : EString [1];
-		item mod : Modification [1];
+		part mod : Modification [1];
 		attribute 'comment' : EString [1];
 	}
-	item def ElementRedeclaration :> Argument;
-	item def ElementReplaceable :> ElementModicationOrReplaceable, ElementRedeclaration{
-		item const : ConstrainingClause [1];
+	part def ElementRedeclaration :> Argument;
+	part def ElementReplaceable :> ElementModicationOrReplaceable, ElementRedeclaration{
+		part const : ConstrainingClause [1];
 	}
-	item def ComponentClause1 :> ElementRedeclaration, ElementReplaceable{
+	part def ComponentClause1 :> ElementRedeclaration, ElementReplaceable{
 		attribute prefix : EString [1];
-		item type : TypeSpecifier [1];
-		item subs : ArraySubscripts [1];
-		item comp : ComponentDeclaration1 [1];
+		part type : TypeSpecifier [1];
+		part subs : ArraySubscripts [1];
+		part comp : ComponentDeclaration1 [1];
 	}
-	item def ComponentDeclaration1;
-	item def ShortClassDefinition :> ElementRedeclaration, ElementReplaceable{
-		item mode : ClassModification [1];
-		item 'comment' : Comment [1];
-		item list : EnumList [1];
+	part def ComponentDeclaration1;
+	part def ShortClassDefinition :> ElementRedeclaration, ElementReplaceable{
+		part mode : ClassModification [1];
+		part 'comment' : Comment [1];
+		part list : EnumList [1];
 	}
-	item def EquationSection {
+	part def EquationSection {
 		attribute initial : EBoolean [1];
-		item equations : Equation [*];
+		part equations : Equation [*];
 	}
-	item def AlgorithmSection {
+	part def AlgorithmSection {
 		attribute initial : EBoolean [1];
-		item statements : Statement [*];
+		part statements : Statement [*];
 	}
-	item def Equation {
-		item left : SimpleExpression [1];
-		item right : Expression [1];
-		item commment : Comment [1];
+	part def Equation {
+		part left : SimpleExpression [1];
+		part right : Expression [1];
+		part commment : Comment [1];
 	}
-	item def Statement {
-		item left : Primary [1];
-		item right : EObject [1];
-		item 'ref' : ComponentReference [1];
-		item ref_call : FunctionCallArgs [1];
-		item 'comment' : Comment [1];
+	part def Statement {
+		part left : Primary [1];
+		part right : EObject [1];
+		part 'ref' : ComponentReference [1];
+		part ref_call : FunctionCallArgs [1];
+		part 'comment' : Comment [1];
 	}
-	item def IfEquation :> Equation{
-		item if_expr : Expression [1];
-		item if_eqs : Equation [*];
-		item elsif_exprs : Expression [*];
-		item elseif_eqs : Equation [*];
-		item else_eqs : Equation [*];
+	part def IfEquation :> Equation{
+		part if_expr : Expression [1];
+		part if_eqs : Equation [*];
+		part elsif_exprs : Expression [*];
+		part elseif_eqs : Equation [*];
+		part else_eqs : Equation [*];
 	}
-	item def IfStatement :> Statement{
-		item if_expr : Expression [1];
-		item if_stmts : Statement [*];
-		item elseif_exprs : Expression [*];
-		item elseif_stmts : Statement [*];
-		item else_stmts : Statement [*];
+	part def IfStatement :> Statement{
+		part if_expr : Expression [1];
+		part if_stmts : Statement [*];
+		part elseif_exprs : Expression [*];
+		part elseif_stmts : Statement [*];
+		part else_stmts : Statement [*];
 	}
-	item def ForEquation :> Equation{
-		item indices : ForIndices [1];
-		item eqs : Equation [*];
+	part def ForEquation :> Equation{
+		part indices : ForIndices [1];
+		part eqs : Equation [*];
 	}
-	item def ForStatement :> Statement{
-		item indices : ForIndices [1];
-		item stmts : Statement [*];
+	part def ForStatement :> Statement{
+		part indices : ForIndices [1];
+		part stmts : Statement [*];
 	}
-	item def ForIndices {
-		item indices : ForIndex [*];
+	part def ForIndices {
+		part indices : ForIndex [*];
 	}
-	item def ForIndex {
+	part def ForIndex {
 		attribute id : EString [1];
-		item expr : Expression [1];
+		part expr : Expression [1];
 	}
-	item def WhileStatement :> Statement{
-		item cond : Expression [1];
-		item stmts : Statement [*];
+	part def WhileStatement :> Statement{
+		part cond : Expression [1];
+		part stmts : Statement [*];
 	}
-	item def WhenEquation :> Equation{
-		item 'when' : Expression [1];
-		item when_eqs : Equation [*];
-		item elsehwhen : Expression [*];
-		item elsewhen_eqs : Equation [*];
+	part def WhenEquation :> Equation{
+		part 'when' : Expression [1];
+		part when_eqs : Equation [*];
+		part elsehwhen : Expression [*];
+		part elsewhen_eqs : Equation [*];
 	}
-	item def WhenStatement :> Statement{
-		item 'when' : Expression [1];
-		item when_stmts : Statement [*];
-		item elsehwhen : Expression [*];
-		item elsewhen_stmts : Statement [*];
+	part def WhenStatement :> Statement{
+		part 'when' : Expression [1];
+		part when_stmts : Statement [*];
+		part elsehwhen : Expression [*];
+		part elsewhen_stmts : Statement [*];
 	}
-	item def ConnectClause :> Equation;
-	item def Expression :> ConditionAttribute, FunctionArgument, Subscript{
-		item 'if' : Expression [1];
-		item 'then' : Expression [1];
-		item elseif : Expression [*];
-		item elseifthen : Expression [*];
-		item 'else' : Expression [*];
+	part def ConnectClause :> Equation;
+	part def Expression :> ConditionAttribute, FunctionArgument, Subscript{
+		part 'if' : Expression [1];
+		part 'then' : Expression [1];
+		part elseif : Expression [*];
+		part elseifthen : Expression [*];
+		part 'else' : Expression [*];
 	}
-	item def SimpleExpression :> Expression{
-		item exprs : Expression [*];
+	part def SimpleExpression :> Expression{
+		part exprs : Expression [*];
 	}
-	item def LogicalExpression :> SimpleExpression{
-		item terms : LogicalExpression [*];
+	part def LogicalExpression :> SimpleExpression{
+		part terms : LogicalExpression [*];
 	}
-	item def LogicalTerm :> LogicalExpression;
-	item def LogicalFactor :> LogicalTerm{
-		item factors : LogicalFactor [*];
+	part def LogicalTerm :> LogicalExpression;
+	part def LogicalFactor :> LogicalTerm{
+		part factors : LogicalFactor [*];
 		attribute 'not' : EBoolean [1];
-		item rel : Relation [1];
+		part rel : Relation [1];
 	}
-	item def Relation :> LogicalFactor{
-		item left : ArithmeticExpression [1];
+	part def Relation :> LogicalFactor{
+		part left : ArithmeticExpression [1];
 		attribute rel_op : EString [1];
-		item right : ArithmeticExpression [1];
+		part right : ArithmeticExpression [1];
 	}
-	item def ArithmeticExpression :> Relation{
+	part def ArithmeticExpression :> Relation{
 		attribute add_op : EString [*];
 	}
-	item def Negation :> ArithmeticExpression{
+	part def Negation :> ArithmeticExpression{
 		attribute neg_op : EString [1];
-		item term : Term [1];
+		part term : Term [1];
 	}
-	item def Term :> Negation{
+	part def Term :> Negation{
 		attribute mul_op : EString [*];
 	}
-	item def Factor :> Term{
-		item base : Primary [1];
-		item exp : Primary [1];
+	part def Factor :> Term{
+		part base : Primary [1];
+		part exp : Primary [1];
 	}
-	item def FloatPrimary :> Primary{
+	part def FloatPrimary :> Primary{
 		attribute val : EFloat [1];
 	}
-	item def StringPrimary :> Primary{
+	part def StringPrimary :> Primary{
 		attribute val : EString [1];
 	}
-	item def LogicalPrimary :> Primary{
+	part def LogicalPrimary :> Primary{
 		attribute val : EBoolean [1];
 	}
-	item def End :> Primary{
+	part def End :> Primary{
 		attribute val : EString [1];
 	}
-	item def Primary :> Factor{
-		item res : ExpressionList [*];
+	part def Primary :> Factor{
+		part res : ExpressionList [*];
 	}
-	item def FunctionCall :> Primary{
-		ref item comp_ref : ClassDefinition [1];
-		item args : FunctionCallArgs [1];
+	part def FunctionCall :> Primary{
+		ref part comp_ref : ClassDefinition [1];
+		part args : FunctionCallArgs [1];
 	}
-	item def ComponentReference :> Primary{
+	part def ComponentReference :> Primary{
 		attribute idents : EString [*];
-		item subscripts : ArraySubscripts [*];
+		part subscripts : ArraySubscripts [*];
 	}
-	item def FunctionCallArgs :> Equation{
-		item res : FunctionArguments [1];
+	part def FunctionCallArgs :> Equation{
+		part res : FunctionArguments [1];
 	}
-	item def FunctionArguments :> Primary{
-		item args : FunctionArgument [*];
-		item indices : ForIndices [1];
+	part def FunctionArguments :> Primary{
+		part args : FunctionArgument [*];
+		part indices : ForIndices [1];
 	}
-	item def NamedArguments {
-		item args : EObject [*];
+	part def NamedArguments {
+		part args : EObject [*];
 	}
-	item def NamedArgument :> FunctionArguments{
+	part def NamedArgument :> FunctionArguments{
 		attribute id : EString [1];
-		item func : FunctionArgument [1];
+		part func : FunctionArgument [1];
 	}
-	item def FunctionArgument;
-	item def FunctionDefinition :> FunctionArgument{
+	part def FunctionArgument;
+	part def FunctionDefinition :> FunctionArgument{
 		attribute name : EString [1];
-		item args : NamedArguments [1];
+		part args : NamedArguments [1];
 	}
-	item def OutputExpressionList :> Primary;
-	item def ExpressionList {
-		item exprs : Expression [*];
+	part def OutputExpressionList :> Primary;
+	part def ExpressionList {
+		part exprs : Expression [*];
 	}
-	item def ArraySubscripts :> ShortClassDefinition{
-		item subscripts : Subscript [*];
+	part def ArraySubscripts :> ShortClassDefinition{
+		part subscripts : Subscript [*];
 	}
-	item def Subscript {
+	part def Subscript {
 		attribute 'all' : EBoolean [1];
 	}
-	item def Comment {
+	part def Comment {
 		attribute 'comment' : EString [1];
-		item annotation : Annotation [1];
+		part annotation : Annotation [1];
 	}
-	item def Annotation;
-	item def OuputExpressionList :> OutputExpressionList;
+	part def Annotation;
+	part def OuputExpressionList :> OutputExpressionList;
 }
 

@@ -6,38 +6,38 @@
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="argumentation"/>
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="terminology"/>
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="base"/>
-    <body xsi:type="ItemDefinition" declaredName="AssuranceCasePackage">
-      <body xsi:type="ItemUsage" declaredName="assuranceCasePackage" multiplicityRange="[*]">
+    <body xsi:type="PartDefinition" declaredName="AssuranceCasePackage">
+      <body xsi:type="PartUsage" declaredName="assuranceCasePackage" multiplicityRange="[*]">
         <featureNote>:</featureNote>
         <featureSpecialization>AssuranceCasePackage</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="'interface'" multiplicityRange="[*]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="'interface'" multiplicityRange="[*]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>AssuranceCasePackageInterface</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="artifactPackage" multiplicityRange="[*]">
+      <body xsi:type="PartUsage" declaredName="artifactPackage" multiplicityRange="[*]">
         <featureNote>:</featureNote>
         <featureSpecialization>ArtifactPackage</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="argumentPackage" multiplicityRange="[*]">
+      <body xsi:type="PartUsage" declaredName="argumentPackage" multiplicityRange="[*]">
         <featureNote>:</featureNote>
         <featureSpecialization>ArgumentPackage</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="terminologyPackage" multiplicityRange="[*]">
+      <body xsi:type="PartUsage" declaredName="terminologyPackage" multiplicityRange="[*]">
         <featureNote>:</featureNote>
         <featureSpecialization>TerminologyPackage</featureSpecialization>
       </body>
       <SubclassificationPart>ArtifactElement</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="AssuranceCasePackageBinding">
-      <body xsi:type="ItemUsage" declaredName="participantPackage" multiplicityRange="[2..*]" isReference="true">
+    <body xsi:type="PartDefinition" declaredName="AssuranceCasePackageBinding">
+      <body xsi:type="PartUsage" declaredName="participantPackage" multiplicityRange="[2..*]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>AssuranceCasePackage</featureSpecialization>
       </body>
       <SubclassificationPart>AssuranceCasePackage</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="AssuranceCasePackageInterface">
-      <body xsi:type="ItemUsage" declaredName="implements" multiplicityRange="[1]" isReference="true">
+    <body xsi:type="PartDefinition" declaredName="AssuranceCasePackageInterface">
+      <body xsi:type="PartUsage" declaredName="implements" multiplicityRange="[1]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>AssuranceCasePackage</featureSpecialization>
       </body>

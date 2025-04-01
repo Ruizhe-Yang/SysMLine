@@ -4,54 +4,54 @@
     <body xsi:type="NamespaceImport" hasVisibility="true" declaredName="ecore"/>
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="modellingcore"/>
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="emde"/>
-    <body xsi:type="ItemDefinition" declaredName="AbstractBehavior" isAbstract="true">
+    <body xsi:type="PartDefinition" declaredName="AbstractBehavior" isAbstract="true">
       <body xsi:type="AttributeUsage" declaredName="isControlOperator" multiplicityRange="[1]">
         <featureNote>:</featureNote>
         <featureSpecialization>EBoolean</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="ownedParameterSet" multiplicityRange="[*]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="ownedParameterSet" multiplicityRange="[*]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>AbstractParameterSet</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="ownedParameter" multiplicityRange="[*]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="ownedParameter" multiplicityRange="[*]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>AbstractParameter</featureSpecialization>
       </body>
       <SubclassificationPart>AbstractNamedElement</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="AbstractSignal" isAbstract="true">
+    <body xsi:type="PartDefinition" declaredName="AbstractSignal" isAbstract="true">
       <SubclassificationPart>AbstractType</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="AbstractEvent" isAbstract="true">
+    <body xsi:type="PartDefinition" declaredName="AbstractEvent" isAbstract="true">
       <SubclassificationPart>AbstractType</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="AbstractTimeEvent" isAbstract="true">
+    <body xsi:type="PartDefinition" declaredName="AbstractTimeEvent" isAbstract="true">
       <body xsi:type="AttributeUsage" declaredName="isRelative" multiplicityRange="[1]">
         <featureNote>:</featureNote>
         <featureSpecialization>EBoolean</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="'when'" multiplicityRange="[1]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="'when'" multiplicityRange="[1]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>TimeExpression</featureSpecialization>
       </body>
       <SubclassificationPart>AbstractEvent</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="AbstractMessageEvent" isAbstract="true">
+    <body xsi:type="PartDefinition" declaredName="AbstractMessageEvent" isAbstract="true">
       <SubclassificationPart>AbstractEvent</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="AbstractSignalEvent" isAbstract="true">
-      <body xsi:type="ItemUsage" declaredName="signal" multiplicityRange="[1]" isReference="true">
+    <body xsi:type="PartDefinition" declaredName="AbstractSignalEvent" isAbstract="true">
+      <body xsi:type="PartUsage" declaredName="signal" multiplicityRange="[1]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>AbstractSignal</featureSpecialization>
       </body>
       <SubclassificationPart>AbstractMessageEvent</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="TimeExpression" isAbstract="true">
-      <body xsi:type="ItemUsage" declaredName="observations" multiplicityRange="[1]" isReference="true">
+    <body xsi:type="PartDefinition" declaredName="TimeExpression" isAbstract="true">
+      <body xsi:type="PartUsage" declaredName="observations" multiplicityRange="[1]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>AbstractNamedElement</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="expression" multiplicityRange="[1]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="expression" multiplicityRange="[1]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>ValueSpecification</featureSpecialization>
       </body>

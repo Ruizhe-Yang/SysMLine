@@ -18,55 +18,55 @@ package la {
 	public import communication::*;
 	public import activity::*;
 	public import behavior::*;
-	item def LogicalArchitecturePkg :> BlockArchitecturePkg{
-		item ownedLogicalArchitectures : LogicalArchitecture [*];
+	part def LogicalArchitecturePkg :> BlockArchitecturePkg{
+		part ownedLogicalArchitectures : LogicalArchitecture [*];
 	}
-	item def LogicalArchitecture :> ComponentArchitecture{
-		item ownedLogicalComponentPkg : LogicalComponentPkg [1];
-		ref item containedCapabilityRealizationPkg : CapabilityRealizationPkg [1];
-		ref item containedLogicalFunctionPkg : LogicalFunctionPkg [1];
-		item ownedSystemAnalysisRealizations : SystemAnalysisRealization [*];
-		ref item allocatedSystemAnalysisRealizations : SystemAnalysisRealization [*];
-		ref item allocatedSystemAnalyses : SystemAnalysis [*];
-		ref item allocatingPhysicalArchitectures : PhysicalArchitecture [*];
+	part def LogicalArchitecture :> ComponentArchitecture{
+		part ownedLogicalComponentPkg : LogicalComponentPkg [1];
+		ref part containedCapabilityRealizationPkg : CapabilityRealizationPkg [1];
+		ref part containedLogicalFunctionPkg : LogicalFunctionPkg [1];
+		part ownedSystemAnalysisRealizations : SystemAnalysisRealization [*];
+		ref part allocatedSystemAnalysisRealizations : SystemAnalysisRealization [*];
+		ref part allocatedSystemAnalyses : SystemAnalysis [*];
+		ref part allocatingPhysicalArchitectures : PhysicalArchitecture [*];
 	}
-	item def LogicalFunction :> AbstractFunction{
-		item ownedLogicalFunctionPkgs : LogicalFunctionPkg [*];
-		ref item allocatingLogicalComponents : LogicalComponent [*];
-		ref item realizedSystemFunctions : SystemFunction [*];
-		ref item realizingPhysicalFunctions : PhysicalFunction [*];
-		ref item containedLogicalFunctions : LogicalFunction [*];
-		ref item childrenLogicalFunctions : LogicalFunction [*];
+	part def LogicalFunction :> AbstractFunction{
+		part ownedLogicalFunctionPkgs : LogicalFunctionPkg [*];
+		ref part allocatingLogicalComponents : LogicalComponent [*];
+		ref part realizedSystemFunctions : SystemFunction [*];
+		ref part realizingPhysicalFunctions : PhysicalFunction [*];
+		ref part containedLogicalFunctions : LogicalFunction [*];
+		ref part childrenLogicalFunctions : LogicalFunction [*];
 	}
-	item def LogicalFunctionPkg :> FunctionPkg{
-		item ownedLogicalFunctions : LogicalFunction [*];
-		item ownedLogicalFunctionPkgs : LogicalFunctionPkg [*];
+	part def LogicalFunctionPkg :> FunctionPkg{
+		part ownedLogicalFunctions : LogicalFunction [*];
+		part ownedLogicalFunctionPkgs : LogicalFunctionPkg [*];
 	}
-	item def LogicalComponent :> Component, CapabilityRealizationInvolvedElement{
-		item ownedLogicalComponents : LogicalComponent [*];
-		item ownedLogicalArchitectures : LogicalArchitecture [*];
-		item ownedLogicalComponentPkgs : LogicalComponentPkg [*];
-		ref item subLogicalComponents : LogicalComponent [*];
-		ref item allocatedLogicalFunctions : LogicalFunction [*];
-		ref item realizedSystemComponents : SystemComponent [*];
-		ref item realizingPhysicalComponents : PhysicalComponent [*];
+	part def LogicalComponent :> Component, CapabilityRealizationInvolvedElement{
+		part ownedLogicalComponents : LogicalComponent [*];
+		part ownedLogicalArchitectures : LogicalArchitecture [*];
+		part ownedLogicalComponentPkgs : LogicalComponentPkg [*];
+		ref part subLogicalComponents : LogicalComponent [*];
+		ref part allocatedLogicalFunctions : LogicalFunction [*];
+		ref part realizedSystemComponents : SystemComponent [*];
+		ref part realizingPhysicalComponents : PhysicalComponent [*];
 	}
-	item def LogicalComponentPkg :> ComponentPkg{
-		item ownedLogicalComponents : LogicalComponent [*];
-		item ownedLogicalComponentPkgs : LogicalComponentPkg [*];
+	part def LogicalComponentPkg :> ComponentPkg{
+		part ownedLogicalComponents : LogicalComponent [*];
+		part ownedLogicalComponentPkgs : LogicalComponentPkg [*];
 	}
-	item def CapabilityRealization :> AbstractCapability{
-		item ownedCapabilityRealizationInvolvements : CapabilityRealizationInvolvement [*];
-		ref item involvedComponents : CapabilityRealizationInvolvedElement [*];
-		ref item realizedCapabilities : Capability [*];
-		ref item realizedCapabilityRealizations : CapabilityRealization [*];
-		ref item realizingCapabilityRealizations : CapabilityRealization [*];
+	part def CapabilityRealization :> AbstractCapability{
+		part ownedCapabilityRealizationInvolvements : CapabilityRealizationInvolvement [*];
+		ref part involvedComponents : CapabilityRealizationInvolvedElement [*];
+		ref part realizedCapabilities : Capability [*];
+		ref part realizedCapabilityRealizations : CapabilityRealization [*];
+		ref part realizingCapabilityRealizations : CapabilityRealization [*];
 	}
-	item def CapabilityRealizationPkg :> AbstractCapabilityPkg{
-		item ownedCapabilityRealizations : CapabilityRealization [*];
-		item ownedCapabilityRealizationPkgs : CapabilityRealizationPkg [*];
+	part def CapabilityRealizationPkg :> AbstractCapabilityPkg{
+		part ownedCapabilityRealizations : CapabilityRealization [*];
+		part ownedCapabilityRealizationPkgs : CapabilityRealizationPkg [*];
 	}
-	item def SystemAnalysisRealization :> ArchitectureAllocation;
-	item def ContextInterfaceRealization :> InterfaceAllocation;
+	part def SystemAnalysisRealization :> ArchitectureAllocation;
+	part def ContextInterfaceRealization :> InterfaceAllocation;
 }
 

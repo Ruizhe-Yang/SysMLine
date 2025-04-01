@@ -3,71 +3,71 @@
   <body xsi:type="Package" declaredName="terminology">
     <body xsi:type="NamespaceImport" hasVisibility="true" declaredName="ecore"/>
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="base"/>
-    <body xsi:type="ItemDefinition" declaredName="TerminologyElement" isAbstract="true">
+    <body xsi:type="PartDefinition" declaredName="TerminologyElement" isAbstract="true">
       <SubclassificationPart>ArtifactElement</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="TerminologyGroup">
-      <body xsi:type="ItemUsage" declaredName="terminologyElement" multiplicityRange="[*]" isReference="true">
+    <body xsi:type="PartDefinition" declaredName="TerminologyGroup">
+      <body xsi:type="PartUsage" declaredName="terminologyElement" multiplicityRange="[*]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>TerminologyElement</featureSpecialization>
       </body>
       <SubclassificationPart>TerminologyElement</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="TerminologyPackage">
-      <body xsi:type="ItemUsage" declaredName="terminologyElement" multiplicityRange="[*]">
+    <body xsi:type="PartDefinition" declaredName="TerminologyPackage">
+      <body xsi:type="PartUsage" declaredName="terminologyElement" multiplicityRange="[*]">
         <featureNote>:</featureNote>
         <featureSpecialization>TerminologyElement</featureSpecialization>
       </body>
       <SubclassificationPart>TerminologyElement</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="TerminologyPackageBinding">
-      <body xsi:type="ItemUsage" declaredName="participantPackage" multiplicityRange="[2..*]" isReference="true">
+    <body xsi:type="PartDefinition" declaredName="TerminologyPackageBinding">
+      <body xsi:type="PartUsage" declaredName="participantPackage" multiplicityRange="[2..*]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>TerminologyPackage</featureSpecialization>
       </body>
       <SubclassificationPart>TerminologyPackage</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="TerminologyPackageInterface">
-      <body xsi:type="ItemUsage" declaredName="implements" multiplicityRange="[1]" isReference="true">
+    <body xsi:type="PartDefinition" declaredName="TerminologyPackageInterface">
+      <body xsi:type="PartUsage" declaredName="implements" multiplicityRange="[1]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>TerminologyPackage</featureSpecialization>
       </body>
       <SubclassificationPart>TerminologyPackage</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="TerminologyAsset" isAbstract="true">
+    <body xsi:type="PartDefinition" declaredName="TerminologyAsset" isAbstract="true">
       <SubclassificationPart>TerminologyElement</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="Category">
-      <body xsi:type="ItemUsage" declaredName="category" multiplicityRange="[*]" isReference="true">
+    <body xsi:type="PartDefinition" declaredName="Category">
+      <body xsi:type="PartUsage" declaredName="category" multiplicityRange="[*]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>Category</featureSpecialization>
       </body>
       <SubclassificationPart>TerminologyAsset</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="ExpressionElement" isAbstract="true">
+    <body xsi:type="PartDefinition" declaredName="ExpressionElement" isAbstract="true">
       <body xsi:type="AttributeUsage" declaredName="'value'" multiplicityRange="[1]">
         <featureNote>:</featureNote>
         <featureSpecialization>EString</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="category" multiplicityRange="[*]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="category" multiplicityRange="[*]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>Category</featureSpecialization>
       </body>
       <SubclassificationPart>TerminologyAsset</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="Expression">
-      <body xsi:type="ItemUsage" declaredName="element" multiplicityRange="[*]" isReference="true">
+    <body xsi:type="PartDefinition" declaredName="Expression">
+      <body xsi:type="PartUsage" declaredName="element" multiplicityRange="[*]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>ExpressionElement</featureSpecialization>
       </body>
       <SubclassificationPart>ExpressionElement</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="Term">
+    <body xsi:type="PartDefinition" declaredName="Term">
       <body xsi:type="AttributeUsage" declaredName="externalReference" multiplicityRange="[1]">
         <featureNote>:</featureNote>
         <featureSpecialization>EString</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="origin" multiplicityRange="[1]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="origin" multiplicityRange="[1]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>ModelElement</featureSpecialization>
       </body>

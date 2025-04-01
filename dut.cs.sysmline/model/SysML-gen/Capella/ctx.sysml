@@ -18,86 +18,86 @@ package ctx {
 	public import activity::*;
 	public import behavior::*;
 	public import deployment::*;
-	item def SystemAnalysis :> ComponentArchitecture{
-		item ownedSystemComponentPkg : SystemComponentPkg [1];
-		item ownedMissionPkg : MissionPkg [1];
-		ref item containedCapabilityPkg : CapabilityPkg [1];
-		ref item containedSystemFunctionPkg : SystemFunctionPkg [1];
-		item ownedOperationalAnalysisRealizations : OperationalAnalysisRealization [*];
-		ref item allocatedOperationalAnalysisRealizations : OperationalAnalysisRealization [*];
-		ref item allocatedOperationalAnalyses : OperationalAnalysis [*];
-		ref item allocatingLogicalArchitectures : LogicalArchitecture [*];
+	part def SystemAnalysis :> ComponentArchitecture{
+		part ownedSystemComponentPkg : SystemComponentPkg [1];
+		part ownedMissionPkg : MissionPkg [1];
+		ref part containedCapabilityPkg : CapabilityPkg [1];
+		ref part containedSystemFunctionPkg : SystemFunctionPkg [1];
+		part ownedOperationalAnalysisRealizations : OperationalAnalysisRealization [*];
+		ref part allocatedOperationalAnalysisRealizations : OperationalAnalysisRealization [*];
+		ref part allocatedOperationalAnalyses : OperationalAnalysis [*];
+		ref part allocatingLogicalArchitectures : LogicalArchitecture [*];
 	}
-	item def SystemFunction :> AbstractFunction{
-		item ownedSystemFunctionPkgs : SystemFunctionPkg [*];
-		ref item allocatingSystemComponents : SystemComponent [*];
-		ref item realizedOperationalActivities : OperationalActivity [*];
-		ref item realizingLogicalFunctions : LogicalFunction [*];
-		ref item containedSystemFunctions : SystemFunction [*];
-		ref item childrenSystemFunctions : SystemFunction [*];
+	part def SystemFunction :> AbstractFunction{
+		part ownedSystemFunctionPkgs : SystemFunctionPkg [*];
+		ref part allocatingSystemComponents : SystemComponent [*];
+		ref part realizedOperationalActivities : OperationalActivity [*];
+		ref part realizingLogicalFunctions : LogicalFunction [*];
+		ref part containedSystemFunctions : SystemFunction [*];
+		ref part childrenSystemFunctions : SystemFunction [*];
 	}
-	item def SystemFunctionPkg :> FunctionPkg{
-		item ownedSystemFunctions : SystemFunction [*];
-		item ownedSystemFunctionPkgs : SystemFunctionPkg [*];
+	part def SystemFunctionPkg :> FunctionPkg{
+		part ownedSystemFunctions : SystemFunction [*];
+		part ownedSystemFunctionPkgs : SystemFunctionPkg [*];
 	}
-	item def SystemCommunicationHook :> NamedElement{
-		ref item communication : SystemCommunication [1];
-		ref item type : Component [1];
+	part def SystemCommunicationHook :> NamedElement{
+		ref part communication : SystemCommunication [1];
+		ref part type : Component [1];
 	}
-	item def SystemCommunication :> Relationship{
-		item ends : SystemCommunicationHook [2];
+	part def SystemCommunication :> Relationship{
+		part ends : SystemCommunicationHook [2];
 	}
-	item def CapabilityInvolvement :> Involvement{
-		ref item systemComponent : SystemComponent [1];
-		ref item capability : Capability [1];
+	part def CapabilityInvolvement :> Involvement{
+		ref part systemComponent : SystemComponent [1];
+		ref part capability : Capability [1];
 	}
-	item def MissionInvolvement :> Involvement{
-		ref item systemComponent : SystemComponent [1];
-		ref item mission : Mission [1];
+	part def MissionInvolvement :> Involvement{
+		ref part systemComponent : SystemComponent [1];
+		ref part mission : Mission [1];
 	}
-	item def Mission :> NamedElement, InvolverElement{
-		item ownedMissionInvolvements : MissionInvolvement [*];
-		ref item involvedSystemComponents : SystemComponent [*];
-		item ownedCapabilityExploitations : CapabilityExploitation [*];
-		ref item exploitedCapabilities : Capability [*];
+	part def Mission :> NamedElement, InvolverElement{
+		part ownedMissionInvolvements : MissionInvolvement [*];
+		ref part involvedSystemComponents : SystemComponent [*];
+		part ownedCapabilityExploitations : CapabilityExploitation [*];
+		ref part exploitedCapabilities : Capability [*];
 	}
-	item def MissionPkg :> Structure{
-		item ownedMissionPkgs : MissionPkg [*];
-		item ownedMissions : Mission [*];
+	part def MissionPkg :> Structure{
+		part ownedMissionPkgs : MissionPkg [*];
+		part ownedMissions : Mission [*];
 	}
-	item def Capability :> AbstractCapability{
-		item ownedCapabilityInvolvements : CapabilityInvolvement [*];
-		ref item involvedSystemComponents : SystemComponent [*];
-		ref item purposes : CapabilityExploitation [*];
-		ref item purposeMissions : Mission [*];
-		ref item realizedOperationalCapabilities : OperationalCapability [*];
-		ref item realizingCapabilityRealizations : CapabilityRealization [*];
+	part def Capability :> AbstractCapability{
+		part ownedCapabilityInvolvements : CapabilityInvolvement [*];
+		ref part involvedSystemComponents : SystemComponent [*];
+		ref part purposes : CapabilityExploitation [*];
+		ref part purposeMissions : Mission [*];
+		ref part realizedOperationalCapabilities : OperationalCapability [*];
+		ref part realizingCapabilityRealizations : CapabilityRealization [*];
 	}
-	item def CapabilityExploitation :> Relationship{
-		ref item mission : Mission [1];
-		ref item capability : Capability [1];
+	part def CapabilityExploitation :> Relationship{
+		ref part mission : Mission [1];
+		ref part capability : Capability [1];
 	}
-	item def CapabilityPkg :> AbstractCapabilityPkg{
-		item ownedCapabilities : Capability [*];
-		item ownedCapabilityPkgs : CapabilityPkg [*];
+	part def CapabilityPkg :> AbstractCapabilityPkg{
+		part ownedCapabilities : Capability [*];
+		part ownedCapabilityPkgs : CapabilityPkg [*];
 	}
-	item def OperationalAnalysisRealization :> ArchitectureAllocation;
-	item def SystemComponentPkg :> ComponentPkg{
-		item ownedSystemComponents : SystemComponent [*];
-		item ownedSystemComponentPkgs : SystemComponentPkg [*];
+	part def OperationalAnalysisRealization :> ArchitectureAllocation;
+	part def SystemComponentPkg :> ComponentPkg{
+		part ownedSystemComponents : SystemComponent [*];
+		part ownedSystemComponentPkgs : SystemComponentPkg [*];
 	}
-	item def SystemComponent :> Component, InvolvedElement{
-		item ownedSystemComponents : SystemComponent [*];
-		item ownedSystemComponentPkgs : SystemComponentPkg [*];
+	part def SystemComponent :> Component, InvolvedElement{
+		part ownedSystemComponents : SystemComponent [*];
+		part ownedSystemComponentPkgs : SystemComponentPkg [*];
 		attribute dataComponent : EBoolean [1];
-		ref item dataType : Classifier [*];
-		ref item involvingCapabilities : Capability [*];
-		ref item capabilityInvolvements : CapabilityInvolvement [*];
-		ref item involvingMissions : Mission [*];
-		ref item missionInvolvements : MissionInvolvement [*];
-		ref item realizedEntities : Entity [*];
-		ref item realizingLogicalComponents : LogicalComponent [*];
-		ref item allocatedSystemFunctions : SystemFunction [*];
+		ref part dataType : Classifier [*];
+		ref part involvingCapabilities : Capability [*];
+		ref part capabilityInvolvements : CapabilityInvolvement [*];
+		ref part involvingMissions : Mission [*];
+		ref part missionInvolvements : MissionInvolvement [*];
+		ref part realizedEntities : Entity [*];
+		ref part realizingLogicalComponents : LogicalComponent [*];
+		ref part allocatedSystemFunctions : SystemFunction [*];
 	}
 }
 

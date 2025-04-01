@@ -17,57 +17,57 @@ package interaction {
 	public import activity::*;
 	public import pa::*;
 	public import oa::*;
-	item def SequenceMessage :> NamedElement{
+	part def SequenceMessage :> NamedElement{
 		attribute kind : MessageKind [1];
-		ref item exchangeContext : Constraint [1];
-		ref item sendingEnd : MessageEnd [1];
-		ref item receivingEnd : MessageEnd [1];
-		ref item invokedOperation : AbstractEventOperation [1];
-		ref item exchangedItems : ExchangeItem [*];
-		ref item sendingPart : Part [1];
-		ref item receivingPart : Part [1];
-		ref item sendingFunction : AbstractFunction [1];
-		ref item receivingFunction : AbstractFunction [1];
-		item ownedSequenceMessageValuations : SequenceMessageValuation [*];
+		ref part exchangeContext : Constraint [1];
+		ref part sendingEnd : MessageEnd [1];
+		ref part receivingEnd : MessageEnd [1];
+		ref part invokedOperation : AbstractEventOperation [1];
+		ref part exchangedItems : ExchangeItem [*];
+		ref part sendingPart : Part [1];
+		ref part receivingPart : Part [1];
+		ref part sendingFunction : AbstractFunction [1];
+		ref part receivingFunction : AbstractFunction [1];
+		part ownedSequenceMessageValuations : SequenceMessageValuation [*];
 	}
-	item def Scenario :> Namespace, AbstractBehavior{
+	part def Scenario :> Namespace, AbstractBehavior{
 		attribute kind : ScenarioKind [1];
 		attribute merged : EBoolean [1];
-		ref item preCondition : Constraint [1];
-		ref item postCondition : Constraint [1];
-		item ownedInstanceRoles : InstanceRole [*];
-		item ownedMessages : SequenceMessage [*];
-		item ownedInteractionFragments : InteractionFragment [*];
-		item ownedTimeLapses : TimeLapse [*];
-		item ownedEvents : Event [*];
-		item ownedFormalGates : Gate [*];
-		item ownedScenarioRealization : ScenarioRealization [*];
-		item ownedConstraintDurations : ConstraintDuration [*];
-		ref item containedFunctions : AbstractFunction [*];
-		ref item containedParts : Part [*];
-		ref item referencedScenarios : Scenario [*];
-		ref item realizedScenarios : Scenario [*];
-		ref item realizingScenarios : Scenario [*];
+		ref part preCondition : Constraint [1];
+		ref part postCondition : Constraint [1];
+		part ownedInstanceRoles : InstanceRole [*];
+		part ownedMessages : SequenceMessage [*];
+		part ownedInteractionFragments : InteractionFragment [*];
+		part ownedTimeLapses : TimeLapse [*];
+		part ownedEvents : Event [*];
+		part ownedFormalGates : Gate [*];
+		part ownedScenarioRealization : ScenarioRealization [*];
+		part ownedConstraintDurations : ConstraintDuration [*];
+		ref part containedFunctions : AbstractFunction [*];
+		ref part containedParts : Part [*];
+		ref part referencedScenarios : Scenario [*];
+		ref part realizedScenarios : Scenario [*];
+		ref part realizingScenarios : Scenario [*];
 	}
-	item def MessageEnd :> AbstractEnd{
-		ref item 'message' : SequenceMessage [1];
+	part def MessageEnd :> AbstractEnd{
+		ref part 'message' : SequenceMessage [1];
 	}
-	item def Execution :> TimeLapse{
-		ref item covered : InstanceRole [1];
+	part def Execution :> TimeLapse{
+		ref part covered : InstanceRole [1];
 	}
-	item def ExecutionEnd :> AbstractEnd{
-		ref item execution : Execution [1];
+	part def ExecutionEnd :> AbstractEnd{
+		ref part execution : Execution [1];
 	}
-	item def CreationEvent :> Event;
-	item def DestructionEvent :> Event;
-	item def ExecutionEvent :> Event;
-	item def InstanceRole :> NamedElement{
-		ref item abstractEnds : AbstractEnd [*];
-		ref item representedInstance : AbstractInstance [1];
+	part def CreationEvent :> Event;
+	part def DestructionEvent :> Event;
+	part def ExecutionEvent :> Event;
+	part def InstanceRole :> NamedElement{
+		ref part abstractEnds : AbstractEnd [*];
+		ref part representedInstance : AbstractInstance [1];
 	}
-	abstract item def AbstractEnd :> InteractionFragment{
-		ref item 'event' : Event [1];
-		ref item covered : InstanceRole [1];
+	abstract part def AbstractEnd :> InteractionFragment{
+		ref part 'event' : Event [1];
+		ref part covered : InstanceRole [1];
 	}
 	enum def MessageKind {
 		enum UNSET;
@@ -78,61 +78,61 @@ package interaction {
 		enum CREATE;
 		enum TIMER;
 	}
-	abstract item def Event :> NamedElement, AbstractEvent;
-	item def EventReceiptOperation :> Event{
-		ref item operation : AbstractEventOperation [1];
+	abstract part def Event :> NamedElement, AbstractEvent;
+	part def EventReceiptOperation :> Event{
+		ref part operation : AbstractEventOperation [1];
 	}
-	item def EventSentOperation :> Event{
-		ref item operation : AbstractEventOperation [1];
+	part def EventSentOperation :> Event{
+		ref part operation : AbstractEventOperation [1];
 	}
-	item def MergeLink :> Trace;
-	item def RefinementLink :> Trace;
-	item def AbstractCapabilityRealization :> Allocation{
-		ref item realizedCapability : AbstractCapability [1];
-		ref item realizingCapability : AbstractCapability [1];
+	part def MergeLink :> Trace;
+	part def RefinementLink :> Trace;
+	part def AbstractCapabilityRealization :> Allocation{
+		ref part realizedCapability : AbstractCapability [1];
+		ref part realizingCapability : AbstractCapability [1];
 	}
-	abstract item def AbstractCapability :> Structure, InvolverElement, AbstractFunctionalChainContainer{
-		ref item preCondition : Constraint [1];
-		ref item postCondition : Constraint [1];
-		item ownedScenarios : Scenario [*];
-		ref item incomingCapabilityAllocation : AbstractCapabilityRealization [*];
-		ref item outgoingCapabilityAllocation : AbstractCapabilityRealization [*];
-		item extends : AbstractCapabilityExtend [*];
-		ref item extending : AbstractCapabilityExtend [*];
-		item abstractCapabilityExtensionPoints : AbstractCapabilityExtensionPoint [*];
-		item superGeneralizations : AbstractCapabilityGeneralization [*];
-		ref item subGeneralizations : AbstractCapabilityGeneralization [*];
-		item includes : AbstractCapabilityInclude [*];
-		ref item including : AbstractCapabilityInclude [*];
-		ref item super : AbstractCapability [*];
-		ref item sub : AbstractCapability [*];
-		ref item includedAbstractCapabilities : AbstractCapability [*];
-		ref item includingAbstractCapabilities : AbstractCapability [*];
-		ref item extendedAbstractCapabilities : AbstractCapability [*];
-		ref item extendingAbstractCapabilities : AbstractCapability [*];
-		item ownedFunctionalChainAbstractCapabilityInvolvements : FunctionalChainAbstractCapabilityInvolvement [*];
-		item ownedAbstractFunctionAbstractCapabilityInvolvements : AbstractFunctionAbstractCapabilityInvolvement [*];
-		ref item availableInStates : State [*];
-		item ownedAbstractCapabilityRealizations : AbstractCapabilityRealization [*];
-		ref item involvedAbstractFunctions : AbstractFunction [*];
-		ref item involvedFunctionalChains : FunctionalChain [*];
+	abstract part def AbstractCapability :> Structure, InvolverElement, AbstractFunctionalChainContainer{
+		ref part preCondition : Constraint [1];
+		ref part postCondition : Constraint [1];
+		part ownedScenarios : Scenario [*];
+		ref part incomingCapabilityAllocation : AbstractCapabilityRealization [*];
+		ref part outgoingCapabilityAllocation : AbstractCapabilityRealization [*];
+		part extends : AbstractCapabilityExtend [*];
+		ref part extending : AbstractCapabilityExtend [*];
+		part abstractCapabilityExtensionPoints : AbstractCapabilityExtensionPoint [*];
+		part superGeneralizations : AbstractCapabilityGeneralization [*];
+		ref part subGeneralizations : AbstractCapabilityGeneralization [*];
+		part includes : AbstractCapabilityInclude [*];
+		ref part including : AbstractCapabilityInclude [*];
+		ref part super : AbstractCapability [*];
+		ref part sub : AbstractCapability [*];
+		ref part includedAbstractCapabilities : AbstractCapability [*];
+		ref part includingAbstractCapabilities : AbstractCapability [*];
+		ref part extendedAbstractCapabilities : AbstractCapability [*];
+		ref part extendingAbstractCapabilities : AbstractCapability [*];
+		part ownedFunctionalChainAbstractCapabilityInvolvements : FunctionalChainAbstractCapabilityInvolvement [*];
+		part ownedAbstractFunctionAbstractCapabilityInvolvements : AbstractFunctionAbstractCapabilityInvolvement [*];
+		ref part availableInStates : State [*];
+		part ownedAbstractCapabilityRealizations : AbstractCapabilityRealization [*];
+		ref part involvedAbstractFunctions : AbstractFunction [*];
+		ref part involvedFunctionalChains : FunctionalChain [*];
 	}
-	item def AbstractCapabilityExtend :> Relationship{
-		ref item extended : AbstractCapability [1];
-		ref item extension : AbstractCapability [1];
-		ref item extensionLocation : AbstractCapabilityExtensionPoint [1];
+	part def AbstractCapabilityExtend :> Relationship{
+		ref part extended : AbstractCapability [1];
+		ref part extension : AbstractCapability [1];
+		ref part extensionLocation : AbstractCapabilityExtensionPoint [1];
 	}
-	item def AbstractCapabilityExtensionPoint :> NamedRelationship{
-		ref item abstractCapability : AbstractCapability [1];
-		ref item extendLinks : AbstractCapabilityExtend [*];
+	part def AbstractCapabilityExtensionPoint :> NamedRelationship{
+		ref part abstractCapability : AbstractCapability [1];
+		ref part extendLinks : AbstractCapabilityExtend [*];
 	}
-	item def AbstractCapabilityGeneralization :> Relationship{
-		ref item super : AbstractCapability [1];
-		ref item sub : AbstractCapability [1];
+	part def AbstractCapabilityGeneralization :> Relationship{
+		ref part super : AbstractCapability [1];
+		ref part sub : AbstractCapability [1];
 	}
-	item def AbstractCapabilityInclude :> Relationship{
-		ref item included : AbstractCapability [1];
-		ref item inclusion : AbstractCapability [1];
+	part def AbstractCapabilityInclude :> Relationship{
+		ref part included : AbstractCapability [1];
+		ref part inclusion : AbstractCapability [1];
 	}
 	enum def ScenarioKind {
 		enum UNSET;
@@ -141,27 +141,27 @@ package interaction {
 		enum INTERACTION;
 		enum FUNCTIONAL;
 	}
-	abstract item def InteractionFragment :> NamedElement{
-		ref item coveredInstanceRoles : InstanceRole [1..*];
+	abstract part def InteractionFragment :> NamedElement{
+		ref part coveredInstanceRoles : InstanceRole [1..*];
 	}
-	item def InteractionState :> InteractionFragment{
-		ref item relatedAbstractState : AbstractState [1];
-		ref item relatedAbstractFunction : AbstractFunction [1];
-		ref item covered : InstanceRole [1];
+	part def InteractionState :> InteractionFragment{
+		ref part relatedAbstractState : AbstractState [1];
+		ref part relatedAbstractFunction : AbstractFunction [1];
+		ref part covered : InstanceRole [1];
 	}
-	item def InteractionUse :> AbstractFragment{
-		ref item referencedScenario : Scenario [1];
-		ref item actualGates : Gate [*];
+	part def InteractionUse :> AbstractFragment{
+		ref part referencedScenario : Scenario [1];
+		ref part actualGates : Gate [*];
 	}
-	item def CombinedFragment :> AbstractFragment{
+	part def CombinedFragment :> AbstractFragment{
 		attribute operator : InteractionOperatorKind [1];
-		ref item referencedOperands : InteractionOperand [*];
-		ref item expressionGates : Gate [*];
+		ref part referencedOperands : InteractionOperand [*];
+		ref part expressionGates : Gate [*];
 	}
-	item def Gate :> MessageEnd;
-	item def InteractionOperand :> InteractionFragment{
-		ref item referencedInteractionFragments : InteractionFragment [*];
-		ref item guard : Constraint [1];
+	part def Gate :> MessageEnd;
+	part def InteractionOperand :> InteractionFragment{
+		ref part referencedInteractionFragments : InteractionFragment [*];
+		ref part guard : Constraint [1];
 	}
 	enum def InteractionOperatorKind {
 		enum UNSET;
@@ -177,42 +177,42 @@ package interaction {
 		enum IGNORE;
 		enum CONSIDER;
 	}
-	abstract item def TimeLapse :> NamedElement{
-		ref item start : InteractionFragment [1];
-		ref item finish : InteractionFragment [1];
+	abstract part def TimeLapse :> NamedElement{
+		ref part start : InteractionFragment [1];
+		ref part finish : InteractionFragment [1];
 	}
-	abstract item def AbstractFragment :> TimeLapse{
-		item ownedGates : Gate [*];
+	abstract part def AbstractFragment :> TimeLapse{
+		part ownedGates : Gate [*];
 	}
-	item def FragmentEnd :> InteractionFragment{
-		ref item abstractFragment : AbstractFragment [1];
+	part def FragmentEnd :> InteractionFragment{
+		ref part abstractFragment : AbstractFragment [1];
 	}
-	item def FunctionalChainAbstractCapabilityInvolvement :> Involvement{
-		ref item capability : AbstractCapability [1];
-		ref item functionalChain : FunctionalChain [1];
+	part def FunctionalChainAbstractCapabilityInvolvement :> Involvement{
+		ref part capability : AbstractCapability [1];
+		ref part functionalChain : FunctionalChain [1];
 	}
-	item def AbstractFunctionAbstractCapabilityInvolvement :> Involvement{
-		ref item capability : AbstractCapability [1];
-		ref item function : AbstractFunction [1];
+	part def AbstractFunctionAbstractCapabilityInvolvement :> Involvement{
+		ref part capability : AbstractCapability [1];
+		ref part function : AbstractFunction [1];
 	}
-	item def ScenarioRealization :> Allocation{
-		ref item realizedScenario : Scenario [1];
-		ref item realizingScenario : Scenario [1];
+	part def ScenarioRealization :> Allocation{
+		ref part realizedScenario : Scenario [1];
+		ref part realizingScenario : Scenario [1];
 	}
-	item def StateFragment :> TimeLapse{
-		ref item relatedAbstractState : AbstractState [1];
-		ref item relatedAbstractFunction : AbstractFunction [1];
+	part def StateFragment :> TimeLapse{
+		ref part relatedAbstractState : AbstractState [1];
+		ref part relatedAbstractFunction : AbstractFunction [1];
 	}
-	item def ArmTimerEvent :> Event;
-	item def CancelTimerEvent :> Event;
-	item def ConstraintDuration :> NamedElement{
+	part def ArmTimerEvent :> Event;
+	part def CancelTimerEvent :> Event;
+	part def ConstraintDuration :> NamedElement{
 		attribute duration : EString [1];
-		ref item start : InteractionFragment [1];
-		ref item finish : InteractionFragment [1];
+		ref part start : InteractionFragment [1];
+		ref part finish : InteractionFragment [1];
 	}
-	item def SequenceMessageValuation :> CapellaElement{
-		ref item exchangeItemElement : ExchangeItemElement [1];
-		ref item 'value' : ValueSpecification [1];
+	part def SequenceMessageValuation :> CapellaElement{
+		ref part exchangeItemElement : ExchangeItemElement [1];
+		ref part 'value' : ValueSpecification [1];
 	}
 }
 

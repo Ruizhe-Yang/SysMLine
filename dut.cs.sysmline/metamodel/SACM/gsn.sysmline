@@ -4,20 +4,20 @@
     <body xsi:type="NamespaceImport" hasVisibility="true" declaredName="ecore"/>
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="argumentation"/>
     <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="base"/>
-    <body xsi:type="ItemDefinition" declaredName="Module">
+    <body xsi:type="PartDefinition" declaredName="Module">
       <SubclassificationPart>ArgumentPackage</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="ContractModule">
+    <body xsi:type="PartDefinition" declaredName="ContractModule">
       <SubclassificationPart>ArgumentPackageBinding</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="ChoiceNode">
+    <body xsi:type="PartDefinition" declaredName="ChoiceNode">
       <body xsi:type="AttributeUsage" declaredName="choice" multiplicityRange="[1]">
         <featureNote>:</featureNote>
         <featureSpecialization>EString</featureSpecialization>
       </body>
       <SubclassificationPart>ArgumentAsset</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="Context">
+    <body xsi:type="PartDefinition" declaredName="Context">
       <body xsi:type="AttributeUsage" declaredName="isPublic" multiplicityRange="[1]">
         <featureNote>:</featureNote>
         <featureSpecialization>EBoolean</featureSpecialization>
@@ -28,14 +28,14 @@
       </body>
       <SubclassificationPart>ArgumentAsset</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="Strategy">
+    <body xsi:type="PartDefinition" declaredName="Strategy">
       <body xsi:type="AttributeUsage" declaredName="undeveloped" multiplicityRange="[1]">
         <featureNote>:</featureNote>
         <featureSpecialization>EBoolean</featureSpecialization>
       </body>
       <SubclassificationPart>ArgumentReasoning</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="Goal">
+    <body xsi:type="PartDefinition" declaredName="Goal">
       <body xsi:type="AttributeUsage" declaredName="isPublic" multiplicityRange="[1]">
         <featureNote>:</featureNote>
         <featureSpecialization>EBoolean</featureSpecialization>
@@ -50,43 +50,43 @@
       </body>
       <SubclassificationPart>Claim</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="Justification">
+    <body xsi:type="PartDefinition" declaredName="Justification">
       <SubclassificationPart>Claim</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="Assumption">
+    <body xsi:type="PartDefinition" declaredName="Assumption">
       <SubclassificationPart>Claim</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="AwayGoal">
+    <body xsi:type="PartDefinition" declaredName="AwayGoal">
       <SubclassificationPart>Claim</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="AwaySolution">
+    <body xsi:type="PartDefinition" declaredName="AwaySolution">
       <SubclassificationPart>ArtifactReference</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="AwayContext">
+    <body xsi:type="PartDefinition" declaredName="AwayContext">
       <SubclassificationPart>ArgumentAsset</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="ModuleReference">
-      <body xsi:type="ItemUsage" declaredName="module" multiplicityRange="[1]" isReference="true">
+    <body xsi:type="PartDefinition" declaredName="ModuleReference">
+      <body xsi:type="PartUsage" declaredName="module" multiplicityRange="[1]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>Module</featureSpecialization>
       </body>
       <SubclassificationPart>ArtifactReference</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="ContractModuleReference">
-      <body xsi:type="ItemUsage" declaredName="module" multiplicityRange="[1]" isReference="true">
+    <body xsi:type="PartDefinition" declaredName="ContractModuleReference">
+      <body xsi:type="PartUsage" declaredName="module" multiplicityRange="[1]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>ContractModule</featureSpecialization>
       </body>
       <SubclassificationPart>ArtifactReference</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="Solution">
+    <body xsi:type="PartDefinition" declaredName="Solution">
       <body xsi:type="AttributeUsage" declaredName="isPublic" multiplicityRange="[1]">
         <featureNote>:</featureNote>
         <featureSpecialization>EBoolean</featureSpecialization>
       </body>
       <SubclassificationPart>ArtifactReference</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="SupportedBy">
+    <body xsi:type="PartDefinition" declaredName="SupportedBy">
       <body xsi:type="AttributeUsage" declaredName="isMany" multiplicityRange="[1]">
         <featureNote>:</featureNote>
         <featureSpecialization>EBoolean</featureSpecialization>
@@ -101,7 +101,7 @@
       </body>
       <SubclassificationPart>AssertedInference</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="InContextOf">
+    <body xsi:type="PartDefinition" declaredName="InContextOf">
       <body xsi:type="AttributeUsage" declaredName="isMany" multiplicityRange="[1]">
         <featureNote>:</featureNote>
         <featureSpecialization>EBoolean</featureSpecialization>

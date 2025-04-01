@@ -2,43 +2,43 @@ package gsn {
 	private import ecore::*;
 	public import argumentation::*;
 	public import base::*;
-	item def Module :> ArgumentPackage;
-	item def ContractModule :> ArgumentPackageBinding;
-	item def ChoiceNode :> ArgumentAsset{
+	part def Module :> ArgumentPackage;
+	part def ContractModule :> ArgumentPackageBinding;
+	part def ChoiceNode :> ArgumentAsset{
 		attribute choice : EString [1];
 	}
-	item def Context :> ArgumentAsset{
+	part def Context :> ArgumentAsset{
 		attribute isPublic : EBoolean [1];
 		attribute refersToExternalMaterial : EBoolean [1];
 	}
-	item def Strategy :> ArgumentReasoning{
+	part def Strategy :> ArgumentReasoning{
 		attribute undeveloped : EBoolean [1];
 	}
-	item def Goal :> Claim{
+	part def Goal :> Claim{
 		attribute isPublic : EBoolean [1];
 		attribute undeveloped : EBoolean [1];
 		attribute toBeSupportedByContract : EBoolean [1];
 	}
-	item def Justification :> Claim;
-	item def Assumption :> Claim;
-	item def AwayGoal :> Claim;
-	item def AwaySolution :> ArtifactReference;
-	item def AwayContext :> ArgumentAsset;
-	item def ModuleReference :> ArtifactReference{
-		ref item module : Module [1];
+	part def Justification :> Claim;
+	part def Assumption :> Claim;
+	part def AwayGoal :> Claim;
+	part def AwaySolution :> ArtifactReference;
+	part def AwayContext :> ArgumentAsset;
+	part def ModuleReference :> ArtifactReference{
+		ref part module : Module [1];
 	}
-	item def ContractModuleReference :> ArtifactReference{
-		ref item module : ContractModule [1];
+	part def ContractModuleReference :> ArtifactReference{
+		ref part module : ContractModule [1];
 	}
-	item def Solution :> ArtifactReference{
+	part def Solution :> ArtifactReference{
 		attribute isPublic : EBoolean [1];
 	}
-	item def SupportedBy :> AssertedInference{
+	part def SupportedBy :> AssertedInference{
 		attribute isMany : EBoolean [1];
 		attribute isOptional : EBoolean [1];
 		attribute isChoice : EBoolean [1];
 	}
-	item def InContextOf :> AssertedContext{
+	part def InContextOf :> AssertedContext{
 		attribute isMany : EBoolean [1];
 		attribute isOptional : EBoolean [1];
 		attribute isChoice : EBoolean [1];

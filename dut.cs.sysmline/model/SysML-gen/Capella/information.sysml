@@ -16,8 +16,8 @@ package information {
 	public import activity::*;
 	public import ctx::*;
 	public import pa::*;
-	abstract item def AbstractInstance :> Property{
-		ref item representingInstanceRoles : InstanceRole [*];
+	abstract part def AbstractInstance :> Property{
+		ref part representingInstanceRoles : InstanceRole [*];
 	}
 	enum def AggregationKind {
 		enum UNSET;
@@ -25,84 +25,84 @@ package information {
 		enum AGGREGATION;
 		enum COMPOSITION;
 	}
-	abstract item def AssociationPkg :> Structure{
+	abstract part def AssociationPkg :> Structure{
 		attribute visibility : VisibilityKind [1];
-		item ownedAssociations : Association [*];
+		part ownedAssociations : Association [*];
 	}
-	item def Association :> NamedRelationship{
-		item ownedMembers : Property [0..2];
-		ref item navigableMembers : Property [0..2];
+	part def Association :> NamedRelationship{
+		part ownedMembers : Property [0..2];
+		ref part navigableMembers : Property [0..2];
 	}
-	item def Class :> GeneralClass{
+	part def Class :> GeneralClass{
 		attribute isPrimitive : EBoolean [1];
-		ref item keyParts : KeyPart [*];
-		item ownedStateMachines : StateMachine [*];
-		item ownedDataValues : DataValue [*];
-		item ownedInformationRealizations : InformationRealization [*];
-		ref item realizedClasses : Class [*];
-		ref item realizingClasses : Class [*];
+		ref part keyParts : KeyPart [*];
+		part ownedStateMachines : StateMachine [*];
+		part ownedDataValues : DataValue [*];
+		part ownedInformationRealizations : InformationRealization [*];
+		ref part realizedClasses : Class [*];
+		ref part realizingClasses : Class [*];
 	}
-	item def Collection :> Classifier, MultiplicityElement, DataValueContainer, FinalizableElement{
+	part def Collection :> Classifier, MultiplicityElement, DataValueContainer, FinalizableElement{
 		attribute isPrimitive : EBoolean [1];
 		attribute visibility : VisibilityKind [1];
 		attribute kind : CollectionKind [1];
 		attribute aggregationKind : AggregationKind [1];
-		ref item type : Type [1];
-		ref item index : DataType [*];
-		ref item containedOperations : Operation [*];
+		ref part type : Type [1];
+		ref part index : DataType [*];
+		ref part containedOperations : Operation [*];
 	}
-	abstract item def AbstractCollectionValue :> DataValue;
-	item def CollectionValue :> AbstractCollectionValue{
-		item ownedElements : DataValue [*];
-		item ownedDefaultElement : DataValue [1];
+	abstract part def AbstractCollectionValue :> DataValue;
+	part def CollectionValue :> AbstractCollectionValue{
+		part ownedElements : DataValue [*];
+		part ownedDefaultElement : DataValue [1];
 	}
-	item def CollectionValueReference :> AbstractCollectionValue{
-		ref item referencedValue : AbstractCollectionValue [1];
-		ref item referencedProperty : Property [1];
+	part def CollectionValueReference :> AbstractCollectionValue{
+		ref part referencedValue : AbstractCollectionValue [1];
+		ref part referencedProperty : Property [1];
 	}
-	item def DataPkg :> AbstractDependenciesPkg, AbstractExchangeItemPkg, AssociationPkg, DataValueContainer, MessageReferencePkg{
-		item ownedDataPkgs : DataPkg [*];
-		item ownedClasses : Class [*];
-		item ownedKeyParts : KeyPart [*];
-		item ownedCollections : Collection [*];
-		item ownedUnits : Unit [*];
-		item ownedDataTypes : DataType [*];
-		item ownedSignals : Signal [*];
-		item ownedMessages : Message [*];
-		item ownedExceptions : Exception [*];
-		item ownedStateEvents : StateEvent [*];
+	part def DataPkg :> AbstractDependenciesPkg, AbstractExchangeItemPkg, AssociationPkg, DataValueContainer, MessageReferencePkg{
+		part ownedDataPkgs : DataPkg [*];
+		part ownedClasses : Class [*];
+		part ownedKeyParts : KeyPart [*];
+		part ownedCollections : Collection [*];
+		part ownedUnits : Unit [*];
+		part ownedDataTypes : DataType [*];
+		part ownedSignals : Signal [*];
+		part ownedMessages : Message [*];
+		part ownedExceptions : Exception [*];
+		part ownedStateEvents : StateEvent [*];
 	}
-	item def DomainElement :> Class;
-	item def KeyPart :> Relationship{
-		ref item property : Property [1];
+	part def DomainElement :> Class;
+	part def KeyPart :> Relationship{
+		ref part property : Property [1];
 	}
-	abstract item def MultiplicityElement :> CapellaElement{
+	abstract part def MultiplicityElement :> CapellaElement{
 		attribute 'ordered' : EBoolean [1];
 		attribute unique : EBoolean [1];
 		attribute minInclusive : EBoolean [1];
 		attribute maxInclusive : EBoolean [1];
-		item ownedDefaultValue : DataValue [1];
-		item ownedMinValue : DataValue [1];
-		item ownedMaxValue : DataValue [1];
-		item ownedNullValue : DataValue [1];
-		item ownedMinCard : NumericValue [1];
-		item ownedMinLength : NumericValue [1];
-		item ownedMaxCard : NumericValue [1];
-		item ownedMaxLength : NumericValue [1];
+		part ownedDefaultValue : DataValue [1];
+		part ownedMinValue : DataValue [1];
+		part ownedMaxValue : DataValue [1];
+		part ownedNullValue : DataValue [1];
+		part ownedMinCard : NumericValue [1];
+		part ownedMinLength : NumericValue [1];
+		part ownedMaxCard : NumericValue [1];
+		part ownedMaxLength : NumericValue [1];
 	}
-	abstract item def Operation :> Feature, AbstractEvent, AbstractEventOperation{
-		item ownedParameters : Parameter [*];
-		ref item allocatingOperations : Operation [*];
-		ref item allocatedOperations : Operation [*];
-		item ownedOperationAllocation : OperationAllocation [*];
-		item ownedExchangeItemRealizations : ExchangeItemRealization [*];
-		ref item realizedExchangeItems : ExchangeItem [*];
+	abstract part def Operation :> Feature, AbstractEvent, AbstractEventOperation{
+		part ownedParameters : Parameter [*];
+		ref part allocatingOperations : Operation [*];
+		ref part allocatedOperations : Operation [*];
+		part ownedOperationAllocation : OperationAllocation [*];
+		part ownedExchangeItemRealizations : ExchangeItemRealization [*];
+		ref part realizedExchangeItems : ExchangeItem [*];
 	}
-	item def OperationAllocation :> Allocation{
-		ref item allocatedOperation : Operation [1];
-		ref item allocatingOperation : Operation [1];
+	part def OperationAllocation :> Allocation{
+		ref part allocatedOperation : Operation [1];
+		ref part allocatingOperation : Operation [1];
 	}
-	item def Parameter :> TypedElement, MultiplicityElement, AbstractParameter{
+	part def Parameter :> TypedElement, MultiplicityElement, AbstractParameter{
 		attribute direction : ParameterDirection [1];
 		attribute passingMode : PassingMode [1];
 	}
@@ -119,75 +119,75 @@ package information {
 		enum BY_REF;
 		enum BY_VALUE;
 	}
-	item def Property :> Feature, TypedElement, MultiplicityElement, FinalizableElement{
+	part def Property :> Feature, TypedElement, MultiplicityElement, FinalizableElement{
 		attribute aggregationKind : AggregationKind [1];
 		attribute isDerived : EBoolean [1];
 		attribute isReadOnly : EBoolean [1];
 		attribute isPartOfKey : EBoolean [1];
-		ref item association : Association [1];
+		ref part association : Association [1];
 	}
 	enum def SynchronismKind {
 		enum UNSET;
 		enum SYNCHRONOUS;
 		enum ASYNCHRONOUS;
 	}
-	item def Service :> Operation{
+	part def Service :> Operation{
 		attribute synchronismKind : SynchronismKind [1];
-		ref item thrownExceptions : Exception [*];
-		ref item messages : Message [*];
-		ref item messageReferences : MessageReference [*];
+		ref part thrownExceptions : Exception [*];
+		ref part messages : Message [*];
+		ref part messageReferences : MessageReference [*];
 	}
-	item def Union :> Class{
+	part def Union :> Class{
 		attribute kind : UnionKind [1];
-		ref item discriminant : UnionProperty [1];
-		ref item defaultProperty : UnionProperty [1];
-		ref item containedUnionProperties : UnionProperty [*];
+		ref part discriminant : UnionProperty [1];
+		ref part defaultProperty : UnionProperty [1];
+		ref part containedUnionProperties : UnionProperty [*];
 	}
 	enum def UnionKind {
 		enum UNION;
 		enum VARIANT;
 	}
-	item def UnionProperty :> Property{
-		ref item qualifier : DataValue [*];
+	part def UnionProperty :> Property{
+		ref part qualifier : DataValue [*];
 	}
-	item def Unit :> NamedElement;
-	abstract item def Port :> NamedElement{
-		ref item incomingPortRealizations : PortRealization [*];
-		ref item outgoingPortRealizations : PortRealization [*];
-		item ownedProtocols : StateMachine [*];
-		ref item incomingPortAllocations : PortAllocation [*];
-		ref item outgoingPortAllocations : PortAllocation [*];
-		ref item providedInterfaces : Interface [*];
-		ref item requiredInterfaces : Interface [*];
-		item ownedPortRealizations : PortRealization [*];
-		item ownedPortAllocations : PortAllocation [*];
+	part def Unit :> NamedElement;
+	abstract part def Port :> NamedElement{
+		ref part incomingPortRealizations : PortRealization [*];
+		ref part outgoingPortRealizations : PortRealization [*];
+		part ownedProtocols : StateMachine [*];
+		ref part incomingPortAllocations : PortAllocation [*];
+		ref part outgoingPortAllocations : PortAllocation [*];
+		ref part providedInterfaces : Interface [*];
+		ref part requiredInterfaces : Interface [*];
+		part ownedPortRealizations : PortRealization [*];
+		part ownedPortAllocations : PortAllocation [*];
 	}
-	item def PortRealization :> Allocation{
-		ref item realizedPort : Port [1];
-		ref item realizingPort : Port [1];
+	part def PortRealization :> Allocation{
+		ref part realizedPort : Port [1];
+		ref part realizingPort : Port [1];
 	}
-	item def PortAllocation :> Allocation{
-		ref item allocatedPort : Port [1];
-		ref item allocatingPort : Port [1];
+	part def PortAllocation :> Allocation{
+		ref part allocatedPort : Port [1];
+		ref part allocatingPort : Port [1];
 	}
-	item def ExchangeItem :> AbstractExchangeItem, AbstractEvent, AbstractSignal, FinalizableElement, GeneralizableElement{
+	part def ExchangeItem :> AbstractExchangeItem, AbstractEvent, AbstractSignal, FinalizableElement, GeneralizableElement{
 		attribute exchangeMechanism : ExchangeMechanism [1];
-		item ownedElements : ExchangeItemElement [*];
-		item ownedInformationRealizations : InformationRealization [*];
-		item ownedExchangeItemInstances : ExchangeItemInstance [*];
-		ref item allocatorInterfaces : Interface [*];
-		ref item realizedExchangeItems : ExchangeItem [*];
-		ref item realizingExchangeItems : ExchangeItem [*];
-		ref item realizingOperations : Operation [*];
+		part ownedElements : ExchangeItemElement [*];
+		part ownedInformationRealizations : InformationRealization [*];
+		part ownedExchangeItemInstances : ExchangeItemInstance [*];
+		ref part allocatorInterfaces : Interface [*];
+		ref part realizedExchangeItems : ExchangeItem [*];
+		ref part realizingExchangeItems : ExchangeItem [*];
+		ref part realizingOperations : Operation [*];
 	}
-	item def ExchangeItemElement :> NamedElement, MultiplicityElement, TypedElement{
+	part def ExchangeItemElement :> NamedElement, MultiplicityElement, TypedElement{
 		attribute kind : ElementKind [1];
 		attribute direction : ParameterDirection [1];
 		attribute composite : EBoolean [1];
-		ref item referencedProperties : Property [*];
+		ref part referencedProperties : Property [*];
 	}
-	item def ExchangeItemInstance :> AbstractInstance;
-	item def InformationRealization :> Allocation;
+	part def ExchangeItemInstance :> AbstractInstance;
+	part def InformationRealization :> Allocation;
 	enum def ExchangeMechanism {
 		enum UNSET;
 		enum FLOW;
@@ -203,31 +203,31 @@ package information {
 		enum ARRAY;
 		enum SEQUENCE;
 	}
-	item def ExchangeItemRealization :> Allocation{
-		ref item realizedItem : AbstractExchangeItem [1];
-		ref item realizingOperation : Operation [1];
+	part def ExchangeItemRealization :> Allocation{
+		ref part realizedItem : AbstractExchangeItem [1];
+		ref part realizingOperation : Operation [1];
 	}
-	abstract item def AbstractEventOperation :> NamedElement{
-		ref item invokingSequenceMessages : SequenceMessage [*];
+	abstract part def AbstractEventOperation :> NamedElement{
+		ref part invokingSequenceMessages : SequenceMessage [*];
 	}
 	package communication {
-		abstract item def CommunicationItem :> Classifier, DataValueContainer{
+		abstract part def CommunicationItem :> Classifier, DataValueContainer{
 			attribute visibility : VisibilityKind [1];
-			item ownedStateMachines : StateMachine [*];
-			ref item properties : Property [*];
+			part ownedStateMachines : StateMachine [*];
+			ref part properties : Property [*];
 		}
-		item def Exception :> CommunicationItem;
-		item def Message :> CommunicationItem;
-		item def MessageReference :> Relationship{
-			ref item 'message' : Message [1];
+		part def Exception :> CommunicationItem;
+		part def Message :> CommunicationItem;
+		part def MessageReference :> Relationship{
+			ref part 'message' : Message [1];
 		}
-		abstract item def MessageReferencePkg :> Structure{
-			item ownedMessageReferences : MessageReference [*];
+		abstract part def MessageReferencePkg :> Structure{
+			part ownedMessageReferences : MessageReference [*];
 		}
-		item def Signal :> CommunicationItem, AbstractSignal{
-			item signalInstances : SignalInstance [*];
+		part def Signal :> CommunicationItem, AbstractSignal{
+			part signalInstances : SignalInstance [*];
 		}
-		item def SignalInstance :> AbstractInstance;
+		part def SignalInstance :> AbstractInstance;
 		enum def CommunicationLinkKind {
 			enum UNSET;
 			enum PRODUCE;
@@ -251,65 +251,65 @@ package information {
 			enum READ;
 			enum ACCEPT;
 		}
-		item def CommunicationLink :> CapellaElement{
+		part def CommunicationLink :> CapellaElement{
 			attribute kind : CommunicationLinkKind [1];
 			attribute protocol : CommunicationLinkProtocol [1];
-			ref item exchangeItem : ExchangeItem [1];
+			ref part exchangeItem : ExchangeItem [1];
 		}
-		abstract item def CommunicationLinkExchanger {
-			item ownedCommunicationLinks : CommunicationLink [*];
-			ref item produce : CommunicationLink [*];
-			ref item consume : CommunicationLink [*];
-			ref item 'send' : CommunicationLink [*];
-			ref item receive : CommunicationLink [*];
-			ref item call : CommunicationLink [*];
-			ref item execute : CommunicationLink [*];
-			ref item write : CommunicationLink [*];
-			ref item access : CommunicationLink [*];
-			ref item acquire : CommunicationLink [*];
-			ref item transmit : CommunicationLink [*];
+		abstract part def CommunicationLinkExchanger {
+			part ownedCommunicationLinks : CommunicationLink [*];
+			ref part produce : CommunicationLink [*];
+			ref part consume : CommunicationLink [*];
+			ref part 'send' : CommunicationLink [*];
+			ref part receive : CommunicationLink [*];
+			ref part call : CommunicationLink [*];
+			ref part execute : CommunicationLink [*];
+			ref part write : CommunicationLink [*];
+			ref part access : CommunicationLink [*];
+			ref part acquire : CommunicationLink [*];
+			ref part transmit : CommunicationLink [*];
 		}
 	}
 	package datatype {
-		abstract item def DataType :> GeneralizableElement, DataValueContainer, FinalizableElement{
+		abstract part def DataType :> GeneralizableElement, DataValueContainer, FinalizableElement{
 			attribute discrete : EBoolean [1];
 			attribute minInclusive : EBoolean [1];
 			attribute maxInclusive : EBoolean [1];
 			attribute pattern : EString [1];
 			attribute visibility : VisibilityKind [1];
-			ref item defaultValue : DataValue [1];
-			ref item nullValue : DataValue [1];
-			item ownedInformationRealizations : InformationRealization [*];
-			ref item realizedDataTypes : DataType [*];
-			ref item realizingDataTypes : DataType [*];
+			ref part defaultValue : DataValue [1];
+			ref part nullValue : DataValue [1];
+			part ownedInformationRealizations : InformationRealization [*];
+			ref part realizedDataTypes : DataType [*];
+			ref part realizingDataTypes : DataType [*];
 		}
-		item def BooleanType :> DataType{
-			item ownedLiterals : LiteralBooleanValue [0..2];
-			item ownedDefaultValue : AbstractBooleanValue [1];
+		part def BooleanType :> DataType{
+			part ownedLiterals : LiteralBooleanValue [0..2];
+			part ownedDefaultValue : AbstractBooleanValue [1];
 		}
-		item def Enumeration :> DataType{
-			item ownedLiterals : EnumerationLiteral [*];
-			item ownedDefaultValue : AbstractEnumerationValue [1];
-			item ownedNullValue : AbstractEnumerationValue [1];
-			item ownedMinValue : AbstractEnumerationValue [1];
-			item ownedMaxValue : AbstractEnumerationValue [1];
-			ref item domainType : DataType [1];
+		part def Enumeration :> DataType{
+			part ownedLiterals : EnumerationLiteral [*];
+			part ownedDefaultValue : AbstractEnumerationValue [1];
+			part ownedNullValue : AbstractEnumerationValue [1];
+			part ownedMinValue : AbstractEnumerationValue [1];
+			part ownedMaxValue : AbstractEnumerationValue [1];
+			ref part domainType : DataType [1];
 		}
-		item def StringType :> DataType{
-			item ownedDefaultValue : AbstractStringValue [1];
-			item ownedNullValue : AbstractStringValue [1];
-			item ownedMinLength : NumericValue [1];
-			item ownedMaxLength : NumericValue [1];
+		part def StringType :> DataType{
+			part ownedDefaultValue : AbstractStringValue [1];
+			part ownedNullValue : AbstractStringValue [1];
+			part ownedMinLength : NumericValue [1];
+			part ownedMaxLength : NumericValue [1];
 		}
-		item def NumericType :> DataType{
+		part def NumericType :> DataType{
 			attribute kind : NumericTypeKind [1];
-			item ownedDefaultValue : NumericValue [1];
-			item ownedNullValue : NumericValue [1];
-			item ownedMinValue : NumericValue [1];
-			item ownedMaxValue : NumericValue [1];
+			part ownedDefaultValue : NumericValue [1];
+			part ownedNullValue : NumericValue [1];
+			part ownedMinValue : NumericValue [1];
+			part ownedMaxValue : NumericValue [1];
 		}
-		item def PhysicalQuantity :> NumericType{
-			ref item unit : Unit [1];
+		part def PhysicalQuantity :> NumericType{
+			ref part unit : Unit [1];
 		}
 		enum def NumericTypeKind {
 			enum INTEGER;
@@ -317,81 +317,81 @@ package information {
 		}
 	}
 	package datavalue {
-		abstract item def DataValue :> NamedElement, ValueSpecification{
+		abstract part def DataValue :> NamedElement, ValueSpecification{
 			attribute 'abstract' : EBoolean [1];
-			ref item type : Type [1];
+			ref part type : Type [1];
 		}
-		abstract item def DataValueContainer :> Structure{
-			item ownedDataValues : DataValue [*];
+		abstract part def DataValueContainer :> Structure{
+			part ownedDataValues : DataValue [*];
 		}
-		abstract item def AbstractBooleanValue :> DataValue{
-			ref item booleanType : BooleanType [1];
+		abstract part def AbstractBooleanValue :> DataValue{
+			ref part booleanType : BooleanType [1];
 		}
-		item def LiteralBooleanValue :> AbstractBooleanValue{
+		part def LiteralBooleanValue :> AbstractBooleanValue{
 			attribute 'value' : EBoolean [1];
 		}
-		item def BooleanReference :> AbstractBooleanValue{
-			ref item referencedValue : AbstractBooleanValue [1];
-			ref item referencedProperty : Property [1];
+		part def BooleanReference :> AbstractBooleanValue{
+			ref part referencedValue : AbstractBooleanValue [1];
+			ref part referencedProperty : Property [1];
 		}
-		abstract item def AbstractEnumerationValue :> DataValue{
-			ref item enumerationType : Enumeration [1];
+		abstract part def AbstractEnumerationValue :> DataValue{
+			ref part enumerationType : Enumeration [1];
 		}
-		item def EnumerationLiteral :> AbstractEnumerationValue{
-			item domainValue : DataValue [1];
+		part def EnumerationLiteral :> AbstractEnumerationValue{
+			part domainValue : DataValue [1];
 		}
-		item def EnumerationReference :> AbstractEnumerationValue{
-			ref item referencedValue : AbstractEnumerationValue [1];
-			ref item referencedProperty : Property [1];
+		part def EnumerationReference :> AbstractEnumerationValue{
+			ref part referencedValue : AbstractEnumerationValue [1];
+			ref part referencedProperty : Property [1];
 		}
-		abstract item def AbstractStringValue :> DataValue{
-			ref item stringType : StringType [1];
+		abstract part def AbstractStringValue :> DataValue{
+			ref part stringType : StringType [1];
 		}
-		item def LiteralStringValue :> AbstractStringValue{
+		part def LiteralStringValue :> AbstractStringValue{
 			attribute 'value' : EString [1];
 		}
-		item def StringReference :> AbstractStringValue{
-			ref item referencedValue : AbstractStringValue [1];
-			ref item referencedProperty : Property [1];
+		part def StringReference :> AbstractStringValue{
+			ref part referencedValue : AbstractStringValue [1];
+			ref part referencedProperty : Property [1];
 		}
-		abstract item def NumericValue :> DataValue{
-			ref item unit : Unit [1];
-			ref item numericType : NumericType [1];
+		abstract part def NumericValue :> DataValue{
+			ref part unit : Unit [1];
+			ref part numericType : NumericType [1];
 		}
-		item def LiteralNumericValue :> NumericValue{
+		part def LiteralNumericValue :> NumericValue{
 			attribute 'value' : EString [1];
 		}
-		item def NumericReference :> NumericValue{
-			ref item referencedValue : NumericValue [1];
-			ref item referencedProperty : Property [1];
+		part def NumericReference :> NumericValue{
+			ref part referencedValue : NumericValue [1];
+			ref part referencedProperty : Property [1];
 		}
-		abstract item def AbstractComplexValue :> DataValue{
-			ref item complexType : Classifier [1];
+		abstract part def AbstractComplexValue :> DataValue{
+			ref part complexType : Classifier [1];
 		}
-		item def ComplexValue :> AbstractComplexValue{
-			item ownedParts : ValuePart [*];
+		part def ComplexValue :> AbstractComplexValue{
+			part ownedParts : ValuePart [*];
 		}
-		item def ComplexValueReference :> AbstractComplexValue{
-			ref item referencedValue : AbstractComplexValue [1];
-			ref item referencedProperty : Property [1];
+		part def ComplexValueReference :> AbstractComplexValue{
+			ref part referencedValue : AbstractComplexValue [1];
+			ref part referencedProperty : Property [1];
 		}
-		item def ValuePart :> CapellaElement{
-			ref item referencedProperty : Property [1];
-			item ownedValue : DataValue [1];
+		part def ValuePart :> CapellaElement{
+			ref part referencedProperty : Property [1];
+			part ownedValue : DataValue [1];
 		}
-		abstract item def AbstractExpressionValue :> AbstractBooleanValue, AbstractComplexValue, AbstractEnumerationValue, NumericValue, AbstractStringValue{
+		abstract part def AbstractExpressionValue :> AbstractBooleanValue, AbstractComplexValue, AbstractEnumerationValue, NumericValue, AbstractStringValue{
 			attribute expression : EString [1];
 			attribute unparsedExpression : EString [1];
-			ref item expressionType : DataType [1];
+			ref part expressionType : DataType [1];
 		}
-		item def BinaryExpression :> AbstractExpressionValue{
+		part def BinaryExpression :> AbstractExpressionValue{
 			attribute operator : BinaryOperator [1];
-			item ownedLeftOperand : DataValue [1];
-			item ownedRightOperand : DataValue [1];
+			part ownedLeftOperand : DataValue [1];
+			part ownedRightOperand : DataValue [1];
 		}
-		item def UnaryExpression :> AbstractExpressionValue{
+		part def UnaryExpression :> AbstractExpressionValue{
 			attribute operator : UnaryOperator [1];
-			item ownedOperand : DataValue [1];
+			part ownedOperand : DataValue [1];
 		}
 		enum def BinaryOperator {
 			enum UNSET;
@@ -415,7 +415,7 @@ package information {
 			enum SUC;
 			enum PRE;
 		}
-		item def OpaqueExpression :> CapellaElement, ValueSpecification{
+		part def OpaqueExpression :> CapellaElement, ValueSpecification{
 			attribute bodies : EString [*];
 			attribute languages : EString [*];
 		}

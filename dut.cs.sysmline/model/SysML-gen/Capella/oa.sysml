@@ -17,142 +17,142 @@ package oa {
 	public import activity::*;
 	public import behavior::*;
 	public import pa::*;
-	item def OperationalAnalysis :> BlockArchitecture{
-		item ownedRolePkg : RolePkg [1];
-		item ownedEntityPkg : EntityPkg [1];
-		item ownedConceptPkg : ConceptPkg [1];
-		ref item containedOperationalCapabilityPkg : OperationalCapabilityPkg [1];
-		ref item containedOperationalActivityPkg : OperationalActivityPkg [1];
-		ref item allocatingSystemAnalyses : SystemAnalysis [*];
+	part def OperationalAnalysis :> BlockArchitecture{
+		part ownedRolePkg : RolePkg [1];
+		part ownedEntityPkg : EntityPkg [1];
+		part ownedConceptPkg : ConceptPkg [1];
+		ref part containedOperationalCapabilityPkg : OperationalCapabilityPkg [1];
+		ref part containedOperationalActivityPkg : OperationalActivityPkg [1];
+		ref part allocatingSystemAnalyses : SystemAnalysis [*];
 	}
-	abstract item def OperationalScenario :> NamedElement{
+	abstract part def OperationalScenario :> NamedElement{
 		attribute context : EString [1];
 		attribute 'objective' : EString [1];
 	}
-	item def OperationalActivityPkg :> FunctionPkg{
-		item ownedOperationalActivities : OperationalActivity [*];
-		item ownedOperationalActivityPkgs : OperationalActivityPkg [*];
+	part def OperationalActivityPkg :> FunctionPkg{
+		part ownedOperationalActivities : OperationalActivity [*];
+		part ownedOperationalActivityPkgs : OperationalActivityPkg [*];
 	}
-	item def OperationalActivity :> AbstractFunction{
-		item ownedOperationalActivityPkgs : OperationalActivityPkg [*];
-		ref item activityAllocations : ActivityAllocation [*];
-		ref item ownedSwimlanes : Swimlane [*];
-		ref item ownedProcess : OperationalProcess [*];
-		ref item allocatorEntities : Entity [*];
-		ref item realizingSystemFunctions : SystemFunction [*];
-		ref item allocatingRoles : Role [*];
-		ref item containedOperationalActivities : OperationalActivity [*];
-		ref item childrenOperationalActivities : OperationalActivity [*];
+	part def OperationalActivity :> AbstractFunction{
+		part ownedOperationalActivityPkgs : OperationalActivityPkg [*];
+		ref part activityAllocations : ActivityAllocation [*];
+		ref part ownedSwimlanes : Swimlane [*];
+		ref part ownedProcess : OperationalProcess [*];
+		ref part allocatorEntities : Entity [*];
+		ref part realizingSystemFunctions : SystemFunction [*];
+		ref part allocatingRoles : Role [*];
+		ref part containedOperationalActivities : OperationalActivity [*];
+		ref part childrenOperationalActivities : OperationalActivity [*];
 	}
-	item def OperationalProcess :> FunctionalChain{
-		ref item involvingOperationalCapabilities : OperationalCapability [*];
+	part def OperationalProcess :> FunctionalChain{
+		ref part involvingOperationalCapabilities : OperationalCapability [*];
 	}
-	item def Swimlane :> NamedElement, ActivityPartition{
-		ref item representedEntity : Entity [1];
+	part def Swimlane :> NamedElement, ActivityPartition{
+		ref part representedEntity : Entity [1];
 	}
-	item def OperationalCapabilityPkg :> AbstractCapabilityPkg{
-		item ownedOperationalCapabilities : OperationalCapability [*];
-		item ownedOperationalCapabilityPkgs : OperationalCapabilityPkg [*];
-		item ownedCapabilityConfigurations : CapabilityConfiguration [*];
-		item ownedConceptCompliances : ConceptCompliance [*];
+	part def OperationalCapabilityPkg :> AbstractCapabilityPkg{
+		part ownedOperationalCapabilities : OperationalCapability [*];
+		part ownedOperationalCapabilityPkgs : OperationalCapabilityPkg [*];
+		part ownedCapabilityConfigurations : CapabilityConfiguration [*];
+		part ownedConceptCompliances : ConceptCompliance [*];
 	}
-	item def OperationalCapability :> AbstractCapability, Namespace{
-		ref item compliances : ConceptCompliance [*];
-		ref item configurations : CapabilityConfiguration [*];
-		item ownedEntityOperationalCapabilityInvolvements : EntityOperationalCapabilityInvolvement [*];
-		ref item realizingCapabilities : Capability [*];
-		ref item involvedEntities : Entity [*];
+	part def OperationalCapability :> AbstractCapability, Namespace{
+		ref part compliances : ConceptCompliance [*];
+		ref part configurations : CapabilityConfiguration [*];
+		part ownedEntityOperationalCapabilityInvolvements : EntityOperationalCapabilityInvolvement [*];
+		ref part realizingCapabilities : Capability [*];
+		ref part involvedEntities : Entity [*];
 	}
-	item def ActivityAllocation :> Allocation{
-		ref item role : Role [1];
-		ref item activity : OperationalActivity [1];
+	part def ActivityAllocation :> Allocation{
+		ref part role : Role [1];
+		ref part activity : OperationalActivity [1];
 	}
-	item def RolePkg :> Structure{
-		item ownedRolePkgs : RolePkg [*];
-		item ownedRoles : Role [*];
+	part def RolePkg :> Structure{
+		part ownedRolePkgs : RolePkg [*];
+		part ownedRoles : Role [*];
 	}
-	item def Role :> AbstractInstance{
-		item ownedRoleAssemblyUsages : RoleAssemblyUsage [*];
-		item ownedActivityAllocations : ActivityAllocation [*];
-		ref item roleAllocations : RoleAllocation [*];
-		ref item activityAllocations : ActivityAllocation [*];
-		ref item allocatingEntities : Entity [*];
-		ref item allocatedOperationalActivities : OperationalActivity [*];
+	part def Role :> AbstractInstance{
+		part ownedRoleAssemblyUsages : RoleAssemblyUsage [*];
+		part ownedActivityAllocations : ActivityAllocation [*];
+		ref part roleAllocations : RoleAllocation [*];
+		ref part activityAllocations : ActivityAllocation [*];
+		ref part allocatingEntities : Entity [*];
+		ref part allocatedOperationalActivities : OperationalActivity [*];
 	}
-	item def RoleAssemblyUsage :> NamedElement{
-		ref item child : Role [1];
+	part def RoleAssemblyUsage :> NamedElement{
+		ref part child : Role [1];
 	}
-	item def RoleAllocation :> Allocation{
-		ref item role : Role [1];
-		ref item entity : Entity [1];
+	part def RoleAllocation :> Allocation{
+		ref part role : Role [1];
+		ref part entity : Entity [1];
 	}
-	item def EntityPkg :> ComponentPkg{
-		item ownedEntities : Entity [*];
-		item ownedEntityPkgs : EntityPkg [*];
-		item ownedLocations : Location [*];
-		item ownedCommunicationMeans : CommunicationMean [*];
+	part def EntityPkg :> ComponentPkg{
+		part ownedEntities : Entity [*];
+		part ownedEntityPkgs : EntityPkg [*];
+		part ownedLocations : Location [*];
+		part ownedCommunicationMeans : CommunicationMean [*];
 	}
-	item def Entity :> AbstractConceptItem, InformationsExchanger, InvolvedElement{
-		ref item roleAllocations : RoleAllocation [*];
-		ref item organisationalUnitMemberships : OrganisationalUnitComposition [*];
-		ref item actualLocation : Location [1];
-		ref item subEntities : Entity [*];
-		item ownedEntities : Entity [*];
-		item ownedCommunicationMeans : CommunicationMean [*];
-		item ownedRoleAllocations : RoleAllocation [*];
-		ref item allocatedOperationalActivities : OperationalActivity [*];
-		ref item allocatedRoles : Role [*];
-		ref item involvingOperationalCapabilities : OperationalCapability [*];
-		ref item realizingSystemComponents : SystemComponent [*];
+	part def Entity :> AbstractConceptItem, InformationsExchanger, InvolvedElement{
+		ref part roleAllocations : RoleAllocation [*];
+		ref part organisationalUnitMemberships : OrganisationalUnitComposition [*];
+		ref part actualLocation : Location [1];
+		ref part subEntities : Entity [*];
+		part ownedEntities : Entity [*];
+		part ownedCommunicationMeans : CommunicationMean [*];
+		part ownedRoleAllocations : RoleAllocation [*];
+		ref part allocatedOperationalActivities : OperationalActivity [*];
+		ref part allocatedRoles : Role [*];
+		ref part involvingOperationalCapabilities : OperationalCapability [*];
+		ref part realizingSystemComponents : SystemComponent [*];
 	}
-	item def ConceptPkg :> Structure{
-		item ownedConceptPkgs : ConceptPkg [*];
-		item ownedConcepts : Concept [*];
+	part def ConceptPkg :> Structure{
+		part ownedConceptPkgs : ConceptPkg [*];
+		part ownedConcepts : Concept [*];
 	}
-	item def Concept :> NamedElement{
-		ref item compliances : ConceptCompliance [*];
-		item compositeLinks : ItemInConcept [*];
+	part def Concept :> NamedElement{
+		ref part compliances : ConceptCompliance [*];
+		part compositeLinks : ItemInConcept [*];
 	}
-	item def ConceptCompliance :> Relationship{
-		ref item complyWithConcept : Concept [1];
-		ref item compliantCapability : OperationalCapability [1];
+	part def ConceptCompliance :> Relationship{
+		ref part complyWithConcept : Concept [1];
+		ref part compliantCapability : OperationalCapability [1];
 	}
-	item def ItemInConcept :> NamedElement{
-		ref item concept : Concept [1];
-		ref item 'item' : AbstractConceptItem [1];
+	part def ItemInConcept :> NamedElement{
+		ref part concept : Concept [1];
+		ref part 'item' : AbstractConceptItem [1];
 	}
-	abstract item def AbstractConceptItem :> Component{
-		ref item composingLinks : ItemInConcept [*];
+	abstract part def AbstractConceptItem :> Component{
+		ref part composingLinks : ItemInConcept [*];
 	}
-	item def CommunityOfInterest :> NamedElement{
-		item communityOfInterestCompositions : CommunityOfInterestComposition [*];
+	part def CommunityOfInterest :> NamedElement{
+		part communityOfInterestCompositions : CommunityOfInterestComposition [*];
 	}
-	item def CommunityOfInterestComposition :> NamedElement{
-		ref item communityOfInterest : CommunityOfInterest [1];
-		ref item interestedOrganisationUnit : OrganisationalUnit [1];
+	part def CommunityOfInterestComposition :> NamedElement{
+		ref part communityOfInterest : CommunityOfInterest [1];
+		ref part interestedOrganisationUnit : OrganisationalUnit [1];
 	}
-	item def OrganisationalUnit :> NamedElement{
-		item organisationalUnitCompositions : OrganisationalUnitComposition [*];
-		ref item communityOfInterestMemberships : CommunityOfInterestComposition [*];
+	part def OrganisationalUnit :> NamedElement{
+		part organisationalUnitCompositions : OrganisationalUnitComposition [*];
+		ref part communityOfInterestMemberships : CommunityOfInterestComposition [*];
 	}
-	item def OrganisationalUnitComposition :> NamedElement{
-		ref item organisationalUnit : OrganisationalUnit [1];
-		ref item participatingEntity : Entity [1];
+	part def OrganisationalUnitComposition :> NamedElement{
+		ref part organisationalUnit : OrganisationalUnit [1];
+		ref part participatingEntity : Entity [1];
 	}
-	item def Location :> AbstractConceptItem{
+	part def Location :> AbstractConceptItem{
 		attribute locationDescription : EString [1];
-		ref item locatedEntities : Entity [*];
+		ref part locatedEntities : Entity [*];
 	}
-	item def CapabilityConfiguration :> AbstractConceptItem{
-		ref item configuredCapability : OperationalCapability [1];
+	part def CapabilityConfiguration :> AbstractConceptItem{
+		ref part configuredCapability : OperationalCapability [1];
 	}
-	item def CommunicationMean :> NamedRelationship, ComponentExchange{
-		ref item sourceEntity : Entity [1];
-		ref item targetEntity : Entity [1];
+	part def CommunicationMean :> NamedRelationship, ComponentExchange{
+		ref part sourceEntity : Entity [1];
+		ref part targetEntity : Entity [1];
 	}
-	item def EntityOperationalCapabilityInvolvement :> Involvement{
-		ref item entity : Entity [1];
-		ref item capability : OperationalCapability [1];
+	part def EntityOperationalCapabilityInvolvement :> Involvement{
+		ref part entity : Entity [1];
+		ref part capability : OperationalCapability [1];
 	}
 }
 

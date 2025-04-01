@@ -16,136 +16,136 @@ package capellacore {
 	public import pa::*;
 	public import activity::*;
 	public import epbs::*;
-	abstract item def CapellaElement :> TraceableElement, PublishableElement{
+	abstract part def CapellaElement :> TraceableElement, PublishableElement{
 		attribute summary : EString [1];
 		attribute description : EString [1];
 		attribute review : EString [1];
-		item ownedPropertyValues : AbstractPropertyValue [*];
-		item ownedEnumerationPropertyTypes : EnumerationPropertyType [*];
-		ref item appliedPropertyValues : AbstractPropertyValue [*];
-		item ownedPropertyValueGroups : PropertyValueGroup [*];
-		ref item appliedPropertyValueGroups : PropertyValueGroup [*];
-		ref item status : EnumerationPropertyLiteral [1];
-		ref item features : EnumerationPropertyLiteral [*];
+		part ownedPropertyValues : AbstractPropertyValue [*];
+		part ownedEnumerationPropertyTypes : EnumerationPropertyType [*];
+		ref part appliedPropertyValues : AbstractPropertyValue [*];
+		part ownedPropertyValueGroups : PropertyValueGroup [*];
+		ref part appliedPropertyValueGroups : PropertyValueGroup [*];
+		ref part status : EnumerationPropertyLiteral [1];
+		ref part features : EnumerationPropertyLiteral [*];
 	}
-	abstract item def NamedElement :> AbstractNamedElement, CapellaElement;
-	abstract item def Relationship :> AbstractRelationship, CapellaElement;
-	abstract item def Namespace :> NamedElement{
-		item ownedTraces : Trace [*];
-		ref item containedGenericTraces : GenericTrace [*];
-		item namingRules : NamingRule [*];
+	abstract part def NamedElement :> AbstractNamedElement, CapellaElement;
+	abstract part def Relationship :> AbstractRelationship, CapellaElement;
+	abstract part def Namespace :> NamedElement{
+		part ownedTraces : Trace [*];
+		ref part containedGenericTraces : GenericTrace [*];
+		part namingRules : NamingRule [*];
 	}
-	abstract item def NamedRelationship :> Relationship, NamedElement{
-		item namingRules : NamingRule [*];
+	abstract part def NamedRelationship :> Relationship, NamedElement{
+		part namingRules : NamingRule [*];
 	}
-	abstract item def Structure :> Namespace{
-		item ownedPropertyValuePkgs : PropertyValuePkg [*];
+	abstract part def Structure :> Namespace{
+		part ownedPropertyValuePkgs : PropertyValuePkg [*];
 	}
-	abstract item def AbstractModellingStructure :> ReuserStructure{
-		item ownedArchitectures : ModellingArchitecture [*];
-		item ownedArchitecturePkgs : ModellingArchitecturePkg [*];
+	abstract part def AbstractModellingStructure :> ReuserStructure{
+		part ownedArchitectures : ModellingArchitecture [*];
+		part ownedArchitecturePkgs : ModellingArchitecturePkg [*];
 	}
-	abstract item def ModellingBlock :> Type;
-	abstract item def ModellingArchitecture :> Structure;
-	abstract item def ModellingArchitecturePkg :> Structure;
-	abstract item def Type :> AbstractType, Namespace{
-		ref item typedElements : TypedElement [*];
+	abstract part def ModellingBlock :> Type;
+	abstract part def ModellingArchitecture :> Structure;
+	abstract part def ModellingArchitecturePkg :> Structure;
+	abstract part def Type :> AbstractType, Namespace{
+		ref part typedElements : TypedElement [*];
 	}
-	abstract item def TypedElement :> AbstractTypedElement, NamedElement{
-		ref item type : Type [1];
+	abstract part def TypedElement :> AbstractTypedElement, NamedElement{
+		ref part type : Type [1];
 	}
-	abstract item def Trace :> Relationship, AbstractTrace;
-	abstract item def AbstractAnnotation :> CapellaElement{
+	abstract part def Trace :> Relationship, AbstractTrace;
+	abstract part def AbstractAnnotation :> CapellaElement{
 		attribute content : EString [1];
 	}
-	item def NamingRule :> AbstractAnnotation{
+	part def NamingRule :> AbstractAnnotation{
 		attribute targetType : EString [1];
 	}
-	item def Constraint :> NamedElement, AbstractConstraint;
-	item def KeyValue :> CapellaElement{
+	part def Constraint :> NamedElement, AbstractConstraint;
+	part def KeyValue :> CapellaElement{
 		attribute key : EString [1];
 		attribute 'value' : EString [1];
 	}
-	item def ReuseLink :> Relationship{
-		ref item reused : ReuseableStructure [1];
-		ref item reuser : ReuserStructure [1];
+	part def ReuseLink :> Relationship{
+		ref part reused : ReuseableStructure [1];
+		ref part reuser : ReuserStructure [1];
 	}
-	abstract item def ReuseableStructure :> Structure{
-		ref item reuseLinks : ReuseLink [*];
+	abstract part def ReuseableStructure :> Structure{
+		ref part reuseLinks : ReuseLink [*];
 	}
-	abstract item def ReuserStructure :> Structure{
-		ref item reuseLinks : ReuseLink [*];
-		item ownedReuseLinks : ReuseLink [*];
+	abstract part def ReuserStructure :> Structure{
+		ref part reuseLinks : ReuseLink [*];
+		part ownedReuseLinks : ReuseLink [*];
 	}
-	abstract item def GeneralizableElement :> Type{
+	abstract part def GeneralizableElement :> Type{
 		attribute 'abstract' : EBoolean [1];
-		item ownedGeneralizations : Generalization [*];
-		ref item superGeneralizations : Generalization [*];
-		ref item subGeneralizations : Generalization [*];
-		ref item super : GeneralizableElement [*];
-		ref item sub : GeneralizableElement [*];
+		part ownedGeneralizations : Generalization [*];
+		ref part superGeneralizations : Generalization [*];
+		ref part subGeneralizations : Generalization [*];
+		ref part super : GeneralizableElement [*];
+		ref part sub : GeneralizableElement [*];
 	}
-	abstract item def Classifier :> GeneralizableElement{
-		item ownedFeatures : Feature [*];
-		ref item containedProperties : Property [*];
+	abstract part def Classifier :> GeneralizableElement{
+		part ownedFeatures : Feature [*];
+		ref part containedProperties : Property [*];
 	}
-	abstract item def GeneralClass :> Classifier, FinalizableElement{
+	abstract part def GeneralClass :> Classifier, FinalizableElement{
 		attribute visibility : VisibilityKind [1];
-		ref item containedOperations : Operation [*];
-		item nestedGeneralClasses : GeneralClass [*];
+		ref part containedOperations : Operation [*];
+		part nestedGeneralClasses : GeneralClass [*];
 	}
-	item def Generalization :> Relationship{
-		ref item super : GeneralizableElement [1];
-		ref item sub : GeneralizableElement [1];
+	part def Generalization :> Relationship{
+		ref part super : GeneralizableElement [1];
+		ref part sub : GeneralizableElement [1];
 	}
-	abstract item def Feature :> NamedElement{
+	abstract part def Feature :> NamedElement{
 		attribute isAbstract : EBoolean [1];
 		attribute isStatic : EBoolean [1];
 		attribute visibility : VisibilityKind [1];
 	}
-	abstract item def AbstractExchangeItemPkg :> Structure{
-		item ownedExchangeItems : ExchangeItem [*];
+	abstract part def AbstractExchangeItemPkg :> Structure{
+		part ownedExchangeItems : ExchangeItem [*];
 	}
-	abstract item def Allocation :> Relationship, AbstractTrace;
-	abstract item def Involvement :> Relationship{
-		ref item involver : InvolverElement [1];
-		ref item involved : InvolvedElement [1];
+	abstract part def Allocation :> Relationship, AbstractTrace;
+	abstract part def Involvement :> Relationship{
+		ref part involver : InvolverElement [1];
+		ref part involved : InvolvedElement [1];
 	}
-	abstract item def InvolverElement :> CapellaElement{
-		ref item involvedInvolvements : Involvement [*];
+	abstract part def InvolverElement :> CapellaElement{
+		ref part involvedInvolvements : Involvement [*];
 	}
-	abstract item def InvolvedElement :> CapellaElement{
-		ref item involvingInvolvements : Involvement [*];
+	abstract part def InvolvedElement :> CapellaElement{
+		ref part involvingInvolvements : Involvement [*];
 	}
-	abstract item def AbstractPropertyValue :> NamedElement{
-		ref item involvedElements : CapellaElement [*];
-		ref item valuedElements : CapellaElement [*];
+	abstract part def AbstractPropertyValue :> NamedElement{
+		ref part involvedElements : CapellaElement [*];
+		ref part valuedElements : CapellaElement [*];
 	}
-	item def StringPropertyValue :> AbstractPropertyValue{
+	part def StringPropertyValue :> AbstractPropertyValue{
 		attribute 'value' : EString [1];
 	}
-	item def IntegerPropertyValue :> AbstractPropertyValue{
+	part def IntegerPropertyValue :> AbstractPropertyValue{
 		attribute 'value' : EInt [1];
 	}
-	item def BooleanPropertyValue :> AbstractPropertyValue{
+	part def BooleanPropertyValue :> AbstractPropertyValue{
 		attribute 'value' : EBoolean [1];
 	}
-	item def FloatPropertyValue :> AbstractPropertyValue{
+	part def FloatPropertyValue :> AbstractPropertyValue{
 		attribute 'value' : EFloat [1];
 	}
-	item def EnumerationPropertyValue :> AbstractPropertyValue{
-		ref item type : EnumerationPropertyType [1];
-		ref item 'value' : EnumerationPropertyLiteral [1];
+	part def EnumerationPropertyValue :> AbstractPropertyValue{
+		ref part type : EnumerationPropertyType [1];
+		ref part 'value' : EnumerationPropertyLiteral [1];
 	}
-	item def EnumerationPropertyType :> NamedElement{
-		item ownedLiterals : EnumerationPropertyLiteral [*];
+	part def EnumerationPropertyType :> NamedElement{
+		part ownedLiterals : EnumerationPropertyLiteral [*];
 	}
-	item def EnumerationPropertyLiteral :> NamedElement;
-	item def PropertyValueGroup :> Namespace{
-		ref item valuedElements : CapellaElement [*];
+	part def EnumerationPropertyLiteral :> NamedElement;
+	part def PropertyValueGroup :> Namespace{
+		ref part valuedElements : CapellaElement [*];
 	}
-	item def PropertyValuePkg :> Structure;
-	abstract item def AbstractDependenciesPkg :> Structure;
+	part def PropertyValuePkg :> Structure;
+	abstract part def AbstractDependenciesPkg :> Structure;
 	enum def VisibilityKind {
 		enum UNSET;
 		enum PUBLIC;

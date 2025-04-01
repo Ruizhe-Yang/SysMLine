@@ -4,18 +4,18 @@ package assuranceCase {
 	public import argumentation::*;
 	public import terminology::*;
 	public import base::*;
-	item def AssuranceCasePackage :> ArtifactElement{
-		item assuranceCasePackage : AssuranceCasePackage [*];
-		ref item 'interface' : AssuranceCasePackageInterface [*];
-		item artifactPackage : ArtifactPackage [*];
-		item argumentPackage : ArgumentPackage [*];
-		item terminologyPackage : TerminologyPackage [*];
+	part def AssuranceCasePackage :> ArtifactElement{
+		part assuranceCasePackage : AssuranceCasePackage [*];
+		ref part 'interface' : AssuranceCasePackageInterface [*];
+		part artifactPackage : ArtifactPackage [*];
+		part argumentPackage : ArgumentPackage [*];
+		part terminologyPackage : TerminologyPackage [*];
 	}
-	item def AssuranceCasePackageBinding :> AssuranceCasePackage{
-		ref item participantPackage : AssuranceCasePackage [2..*];
+	part def AssuranceCasePackageBinding :> AssuranceCasePackage{
+		ref part participantPackage : AssuranceCasePackage [2..*];
 	}
-	item def AssuranceCasePackageInterface :> AssuranceCasePackage{
-		ref item implements : AssuranceCasePackage [1];
+	part def AssuranceCasePackageInterface :> AssuranceCasePackage{
+		ref part implements : AssuranceCasePackage [1];
 	}
 }
 

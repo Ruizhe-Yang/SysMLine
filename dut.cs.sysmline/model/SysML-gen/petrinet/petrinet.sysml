@@ -1,33 +1,33 @@
 package petrinet {
 	private import ecore::*;
-	item def System {
-		item petrinets : PetriNet [*];
-		item petrinetrelationships : PetriNetRelationship [*];
+	part def System {
+		part petrinets : PetriNet [*];
+		part petrinetrelationships : PetriNetRelationship [*];
 	}
-	item def PetriNet {
-		item elements : Element [*];
+	part def PetriNet {
+		part elements : Element [*];
 		attribute name : EString [1];
 	}
-	item def PetriNetRelationship {
-		ref item 'from' : PetriNet [1];
-		ref item 'to' : PetriNet [1];
+	part def PetriNetRelationship {
+		ref part 'from' : PetriNet [1];
+		ref part 'to' : PetriNet [1];
 	}
-	abstract item def Node :> Element{
+	abstract part def Node :> Element{
 		attribute minDelay : EDouble [1];
 		attribute maxDelay : EDouble [1];
 		attribute name : EString [1];
 	}
-	abstract item def Element;
-	abstract item def Arc :> Element;
-	item def Place :> Node;
-	item def Transition :> Node;
-	item def OutputArc :> Arc{
-		ref item 'to' : Place [1];
-		ref item 'from' : Transition [1];
+	abstract part def Element;
+	abstract part def Arc :> Element;
+	part def Place :> Node;
+	part def Transition :> Node;
+	part def OutputArc :> Arc{
+		ref part 'to' : Place [1];
+		ref part 'from' : Transition [1];
 	}
-	item def InputArc :> Arc{
-		ref item 'to' : Transition [1];
-		ref item 'from' : Place [1];
+	part def InputArc :> Arc{
+		ref part 'to' : Transition [1];
+		ref part 'from' : Place [1];
 	}
 }
 

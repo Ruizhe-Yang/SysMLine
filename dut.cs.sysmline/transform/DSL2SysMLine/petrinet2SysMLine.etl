@@ -88,7 +88,7 @@ operation Sequence init_petrinet(){
 @abstract
 rule Base
 	transform s : DSL!EObject
-	to t : SysMLine!ItemUsage{
+	to t : SysMLine!PartUsage{
 	t.declaredName = s.getDeclaredName();
 	t.featureNote.add(":");
 	t.featureSpecialization.add(s.getfeatureSpecialization());
@@ -102,7 +102,7 @@ rule Base
 @lazy
 rule System
 	transform s : DSL!System //petrinet.System
-	to t : SysMLine!ItemUsage
+	to t : SysMLine!PartUsage
 	extends Base{
 	//System.petrinets -> EReference : petrinets
 	if (s.petrinets.getEReference() != null) t.addNewReference("petrinets".clearKeyWord(), s.petrinets.getEReference());
@@ -113,7 +113,7 @@ rule System
 @lazy
 rule PetriNet
 	transform s : DSL!PetriNet //petrinet.PetriNet
-	to t : SysMLine!ItemUsage
+	to t : SysMLine!PartUsage
 	extends Base{
 	//PetriNet.name -> EAttribute : name
 	if (s.name.getEAttribute() != null) t.addNewAttribute("name".clearKeyWord(), s.name.getEAttribute());
@@ -124,7 +124,7 @@ rule PetriNet
 @lazy
 rule PetriNetRelationship
 	transform s : DSL!PetriNetRelationship //petrinet.PetriNetRelationship
-	to t : SysMLine!ItemUsage
+	to t : SysMLine!PartUsage
 	extends Base{
 	//PetriNetRelationship.from -> EReference : from_
 	if (s.`from`.getEReference() != null) t.addNewReference("from".clearKeyWord(), s.`from`.getEReference());
@@ -135,7 +135,7 @@ rule PetriNetRelationship
 @lazy
 rule Node
 	transform s : DSL!Node //petrinet.Node
-	to t : SysMLine!ItemUsage
+	to t : SysMLine!PartUsage
 	extends Base{
 	//Node.minDelay -> EAttribute : minDelay
 	if (s.minDelay.getEAttribute() != null) t.addNewAttribute("minDelay".clearKeyWord(), s.minDelay.getEAttribute());
@@ -148,21 +148,21 @@ rule Node
 @lazy
 rule Element
 	transform s : DSL!Element //petrinet.Element
-	to t : SysMLine!ItemUsage
+	to t : SysMLine!PartUsage
 	extends Base{
 }
 
 @lazy
 rule Arc
 	transform s : DSL!Arc //petrinet.Arc
-	to t : SysMLine!ItemUsage
+	to t : SysMLine!PartUsage
 	extends Base{
 }
 
 @lazy
 rule Place
 	transform s : DSL!Place //petrinet.Place
-	to t : SysMLine!ItemUsage
+	to t : SysMLine!PartUsage
 	extends Base{
 	//Place.minDelay -> EAttribute : minDelay
 	if (s.minDelay.getEAttribute() != null) t.addNewAttribute("minDelay".clearKeyWord(), s.minDelay.getEAttribute());
@@ -175,7 +175,7 @@ rule Place
 @lazy
 rule Transition
 	transform s : DSL!Transition //petrinet.Transition
-	to t : SysMLine!ItemUsage
+	to t : SysMLine!PartUsage
 	extends Base{
 	//Transition.minDelay -> EAttribute : minDelay
 	if (s.minDelay.getEAttribute() != null) t.addNewAttribute("minDelay".clearKeyWord(), s.minDelay.getEAttribute());
@@ -188,7 +188,7 @@ rule Transition
 @lazy
 rule OutputArc
 	transform s : DSL!OutputArc //petrinet.OutputArc
-	to t : SysMLine!ItemUsage
+	to t : SysMLine!PartUsage
 	extends Base{
 	//OutputArc.to -> EReference : to_
 	if (s.`to`.getEReference() != null) t.addNewReference("to".clearKeyWord(), s.`to`.getEReference());
@@ -199,7 +199,7 @@ rule OutputArc
 @lazy
 rule InputArc
 	transform s : DSL!InputArc //petrinet.InputArc
-	to t : SysMLine!ItemUsage
+	to t : SysMLine!PartUsage
 	extends Base{
 	//InputArc.to -> EReference : to_
 	if (s.`to`.getEReference() != null) t.addNewReference("to".clearKeyWord(), s.`to`.getEReference());

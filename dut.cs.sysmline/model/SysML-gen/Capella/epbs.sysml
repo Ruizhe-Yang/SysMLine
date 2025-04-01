@@ -18,27 +18,27 @@ package epbs {
 	public import communication::*;
 	public import activity::*;
 	public import oa::*;
-	item def EPBSArchitecturePkg :> BlockArchitecturePkg{
-		item ownedEPBSArchitectures : EPBSArchitecture [*];
+	part def EPBSArchitecturePkg :> BlockArchitecturePkg{
+		part ownedEPBSArchitectures : EPBSArchitecture [*];
 	}
-	item def EPBSArchitecture :> ComponentArchitecture{
-		item ownedConfigurationItemPkg : ConfigurationItemPkg [1];
-		ref item containedCapabilityRealizationPkg : CapabilityRealizationPkg [1];
-		item ownedPhysicalArchitectureRealizations : PhysicalArchitectureRealization [*];
-		ref item allocatedPhysicalArchitectureRealizations : PhysicalArchitectureRealization [*];
-		ref item allocatedPhysicalArchitectures : PhysicalArchitecture [*];
+	part def EPBSArchitecture :> ComponentArchitecture{
+		part ownedConfigurationItemPkg : ConfigurationItemPkg [1];
+		ref part containedCapabilityRealizationPkg : CapabilityRealizationPkg [1];
+		part ownedPhysicalArchitectureRealizations : PhysicalArchitectureRealization [*];
+		ref part allocatedPhysicalArchitectureRealizations : PhysicalArchitectureRealization [*];
+		ref part allocatedPhysicalArchitectures : PhysicalArchitecture [*];
 	}
-	item def ConfigurationItemPkg :> ComponentPkg{
-		item ownedConfigurationItems : ConfigurationItem [*];
-		item ownedConfigurationItemPkgs : ConfigurationItemPkg [*];
+	part def ConfigurationItemPkg :> ComponentPkg{
+		part ownedConfigurationItems : ConfigurationItem [*];
+		part ownedConfigurationItemPkgs : ConfigurationItemPkg [*];
 	}
-	item def ConfigurationItem :> CapabilityRealizationInvolvedElement, Component{
+	part def ConfigurationItem :> CapabilityRealizationInvolvedElement, Component{
 		attribute itemIdentifier : EString [1];
 		attribute kind : ConfigurationItemKind [1];
-		item ownedConfigurationItems : ConfigurationItem [*];
-		item ownedConfigurationItemPkgs : ConfigurationItemPkg [*];
-		item ownedPhysicalArtifactRealizations : PhysicalArtifactRealization [*];
-		ref item allocatedPhysicalArtifacts : AbstractPhysicalArtifact [*];
+		part ownedConfigurationItems : ConfigurationItem [*];
+		part ownedConfigurationItemPkgs : ConfigurationItemPkg [*];
+		part ownedPhysicalArtifactRealizations : PhysicalArtifactRealization [*];
+		ref part allocatedPhysicalArtifacts : AbstractPhysicalArtifact [*];
 	}
 	enum def ConfigurationItemKind {
 		enum Unset;
@@ -50,10 +50,10 @@ package epbs {
 		enum PrimeItemCI;
 		enum SystemCI;
 	}
-	item def PhysicalArchitectureRealization :> ArchitectureAllocation;
-	item def PhysicalArtifactRealization :> Allocation{
-		ref item realizedPhysicalArtifact : AbstractPhysicalArtifact [1];
-		ref item realizingConfigurationItem : ConfigurationItem [1];
+	part def PhysicalArchitectureRealization :> ArchitectureAllocation;
+	part def PhysicalArtifactRealization :> Allocation{
+		ref part realizedPhysicalArtifact : AbstractPhysicalArtifact [1];
+		ref part realizingConfigurationItem : ConfigurationItem [1];
 	}
 }
 

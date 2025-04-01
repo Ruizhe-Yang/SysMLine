@@ -1,0 +1,13 @@
+var i = 0;
+for (e in M!EObject.all){
+	e.println();
+	i += 1;
+}
+i.println("EObject : ");
+
+//var i = 0;
+//for (e in M!EClass.all){
+//	e.println();
+//	i += 1;
+//}
+//i.println("EClass : ");

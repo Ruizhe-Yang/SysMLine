@@ -2,18 +2,18 @@
 <Namespace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="sysmline" xsi:schemaLocation="sysmline metamodel/sysmline/sysmline.ecore">
   <body xsi:type="Package" declaredName="petrinet">
     <body xsi:type="NamespaceImport" hasVisibility="true" declaredName="ecore"/>
-    <body xsi:type="ItemDefinition" declaredName="System">
-      <body xsi:type="ItemUsage" declaredName="petrinets" multiplicityRange="[*]">
+    <body xsi:type="PartDefinition" declaredName="System">
+      <body xsi:type="PartUsage" declaredName="petrinets" multiplicityRange="[*]">
         <featureNote>:</featureNote>
         <featureSpecialization>PetriNet</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="petrinetrelationships" multiplicityRange="[*]">
+      <body xsi:type="PartUsage" declaredName="petrinetrelationships" multiplicityRange="[*]">
         <featureNote>:</featureNote>
         <featureSpecialization>PetriNetRelationship</featureSpecialization>
       </body>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="PetriNet">
-      <body xsi:type="ItemUsage" declaredName="elements" multiplicityRange="[*]">
+    <body xsi:type="PartDefinition" declaredName="PetriNet">
+      <body xsi:type="PartUsage" declaredName="elements" multiplicityRange="[*]">
         <featureNote>:</featureNote>
         <featureSpecialization>Element</featureSpecialization>
       </body>
@@ -22,17 +22,17 @@
         <featureSpecialization>EString</featureSpecialization>
       </body>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="PetriNetRelationship">
-      <body xsi:type="ItemUsage" declaredName="'from'" multiplicityRange="[1]" isReference="true">
+    <body xsi:type="PartDefinition" declaredName="PetriNetRelationship">
+      <body xsi:type="PartUsage" declaredName="'from'" multiplicityRange="[1]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>PetriNet</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="'to'" multiplicityRange="[1]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="'to'" multiplicityRange="[1]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>PetriNet</featureSpecialization>
       </body>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="Node" isAbstract="true">
+    <body xsi:type="PartDefinition" declaredName="Node" isAbstract="true">
       <body xsi:type="AttributeUsage" declaredName="minDelay" multiplicityRange="[1]">
         <featureNote>:</featureNote>
         <featureSpecialization>EDouble</featureSpecialization>
@@ -47,33 +47,33 @@
       </body>
       <SubclassificationPart>Element</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="Element" isAbstract="true"/>
-    <body xsi:type="ItemDefinition" declaredName="Arc" isAbstract="true">
+    <body xsi:type="PartDefinition" declaredName="Element" isAbstract="true"/>
+    <body xsi:type="PartDefinition" declaredName="Arc" isAbstract="true">
       <SubclassificationPart>Element</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="Place">
+    <body xsi:type="PartDefinition" declaredName="Place">
       <SubclassificationPart>Node</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="Transition">
+    <body xsi:type="PartDefinition" declaredName="Transition">
       <SubclassificationPart>Node</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="OutputArc">
-      <body xsi:type="ItemUsage" declaredName="'to'" multiplicityRange="[1]" isReference="true">
+    <body xsi:type="PartDefinition" declaredName="OutputArc">
+      <body xsi:type="PartUsage" declaredName="'to'" multiplicityRange="[1]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>Place</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="'from'" multiplicityRange="[1]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="'from'" multiplicityRange="[1]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>Transition</featureSpecialization>
       </body>
       <SubclassificationPart>Arc</SubclassificationPart>
     </body>
-    <body xsi:type="ItemDefinition" declaredName="InputArc">
-      <body xsi:type="ItemUsage" declaredName="'to'" multiplicityRange="[1]" isReference="true">
+    <body xsi:type="PartDefinition" declaredName="InputArc">
+      <body xsi:type="PartUsage" declaredName="'to'" multiplicityRange="[1]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>Transition</featureSpecialization>
       </body>
-      <body xsi:type="ItemUsage" declaredName="'from'" multiplicityRange="[1]" isReference="true">
+      <body xsi:type="PartUsage" declaredName="'from'" multiplicityRange="[1]" isReference="true">
         <featureNote>:</featureNote>
         <featureSpecialization>Place</featureSpecialization>
       </body>

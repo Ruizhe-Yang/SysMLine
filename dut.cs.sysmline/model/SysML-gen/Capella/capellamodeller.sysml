@@ -20,27 +20,27 @@ package capellamodeller {
 	public import datavalue::*;
 	public import datatype::*;
 	public import communication::*;
-	item def Project :> Structure{
-		item keyValuePairs : KeyValue [*];
-		item ownedFolders : Folder [*];
-		item ownedModelRoots : ModelRoot [*];
+	part def Project :> Structure{
+		part keyValuePairs : KeyValue [*];
+		part ownedFolders : Folder [*];
+		part ownedModelRoots : ModelRoot [*];
 	}
-	item def Folder :> Structure{
-		item ownedFolders : Folder [*];
-		item ownedModelRoots : ModelRoot [*];
+	part def Folder :> Structure{
+		part ownedFolders : Folder [*];
+		part ownedModelRoots : ModelRoot [*];
 	}
-	abstract item def ModelRoot :> CapellaElement;
-	item def SystemEngineering :> AbstractModellingStructure, ModelRoot{
-		ref item containedOperationalAnalysis : OperationalAnalysis [*];
-		ref item containedSystemAnalysis : SystemAnalysis [*];
-		ref item containedLogicalArchitectures : LogicalArchitecture [*];
-		ref item containedPhysicalArchitectures : PhysicalArchitecture [*];
-		ref item containedEPBSArchitectures : EPBSArchitecture [*];
-		ref item containedSharedPkgs : SharedPkg [*];
+	abstract part def ModelRoot :> CapellaElement;
+	part def SystemEngineering :> AbstractModellingStructure, ModelRoot{
+		ref part containedOperationalAnalysis : OperationalAnalysis [*];
+		ref part containedSystemAnalysis : SystemAnalysis [*];
+		ref part containedLogicalArchitectures : LogicalArchitecture [*];
+		ref part containedPhysicalArchitectures : PhysicalArchitecture [*];
+		ref part containedEPBSArchitectures : EPBSArchitecture [*];
+		ref part containedSharedPkgs : SharedPkg [*];
 	}
-	item def SystemEngineeringPkg :> Structure, ModelRoot{
-		item ownedSystemEngineerings : SystemEngineering [*];
+	part def SystemEngineeringPkg :> Structure, ModelRoot{
+		part ownedSystemEngineerings : SystemEngineering [*];
 	}
-	item def Library :> Project;
+	part def Library :> Project;
 }
 
