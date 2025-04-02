@@ -1,0 +1,9 @@
+var vc = new SysMLine!PartDefinition;
+vc.declaredName = "VehicleComponent";
+SysMLine!Package.all.first().body.add(vc);
+
+for (p in SysMLine!Element.all.select(e|e.isTypeOf(SysMLine!PartDefinition))){
+	if (p.SubclassificationPart.size() == 0){
+		p.SubclassificationPart.add("VehicleComponent");
+	}
+}

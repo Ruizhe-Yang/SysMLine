@@ -1,4 +1,4 @@
-package VehicleIndividuals {
+.package VehicleIndividuals {
 	private import VehicleUsages::*;
 	private import Time::*;
 	private import SI::*;

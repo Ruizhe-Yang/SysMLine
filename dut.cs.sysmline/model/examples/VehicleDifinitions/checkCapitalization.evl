@@ -1,0 +1,6 @@
+context PartDefinition{
+	constraint PartValidName{
+		check: self.declaredName = self.declaredName.firstToUpperCase()
+		message: self.declaredName + " should start with an upper-case letter"
+	}
+}
