@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="ASCII"?>
+<Namespace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="sysmline" xsi:schemaLocation="sysmline metamodel/sysmline/sysmline.ecore">
+  <body xsi:type="Package" declaredName="VehicleIndividuals">
+    <body xsi:type="NamespaceImport" hasVisibility="true" declaredName="VehicleUsages"/>
+    <body xsi:type="MembershipImport" hasVisibility="true" declaredName="Time"/>
+    <body xsi:type="MembershipImport" hasVisibility="true" declaredName="SI"/>
+    <body xsi:type="Package" declaredName="IndividualDefinitions">
+      <body xsi:type="PartDefinition" declaredName="Vehicle1" isIndividual="true">
+        <body xsi:type="Documentation" text="This is an individual Vehicle with a mass of 1800 kg."/>
+        <body xsi:type="AttributeUsage" valuePart="1800[SI::kilogram]">
+          <featureNote>:>></featureNote>
+          <featureSpecialization>mass</featureSpecialization>
+        </body>
+        <SubclassificationPart>Vehicle</SubclassificationPart>
+      </body>
+      <body xsi:type="PartDefinition" declaredName="Vehicle2" isIndividual="true">
+        <body xsi:type="Documentation" text="This is an individual Vehicle with a mass of 1700 kg."/>
+        <body xsi:type="AttributeUsage" valuePart="1700[SI::kilogram]">
+          <featureNote>:>></featureNote>
+          <featureSpecialization>mass</featureSpecialization>
+        </body>
+        <SubclassificationPart>Vehicle</SubclassificationPart>
+      </body>
+      <body xsi:type="PartDefinition" declaredName="AxleAssembly1" isIndividual="true">
+        <SubclassificationPart>AxleAssembly</SubclassificationPart>
+      </body>
+      <body xsi:type="PartDefinition" declaredName="Wheel1" isIndividual="true">
+        <SubclassificationPart>Wheel</SubclassificationPart>
+      </body>
+      <body xsi:type="PartDefinition" declaredName="Wheel2" isIndividual="true">
+        <SubclassificationPart>Wheel</SubclassificationPart>
+      </body>
+    </body>
+    <body xsi:type="Package" declaredName="IndividualSnapshots">
+      <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="IndividualDefinitions"/>
+      <body xsi:type="AttributeUsage" declaredName="t0">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Time::DateTime</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="t1">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Time::DateTime</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="vehicle1_t0" portionKind="snapshot">
+        <body xsi:type="Documentation" text="This is a snapshot of Vehicle1 at time t0;"/>
+        <body xsi:type="AttributeUsage" declaredName="t" valuePart="t0">
+          <featureSpecialization></featureSpecialization>
+        </body>
+        <featureNote>:</featureNote>
+        <featureSpecialization>Vehicle1</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="vehicle1_t0_t1">
+        <body xsi:type="Documentation" text="This is a time slice of Vehicle1 starting at snapshot vehicle1_t0 &#xA;(time t0) and ending at time t1."/>
+        <body xsi:type="OccurrenceUsage" valuePart="vehicle1_t0" portionKind="snapshot">
+          <featureNote>:>></featureNote>
+          <featureSpecialization>start</featureSpecialization>
+        </body>
+        <body xsi:type="OccurrenceUsage" portionKind="snapshot">
+          <body xsi:type="AttributeUsage" declaredName="t" valuePart="t1">
+            <featureSpecialization></featureSpecialization>
+          </body>
+          <featureNote>:>></featureNote>
+          <featureSpecialization>done</featureSpecialization>
+        </body>
+        <featureNote>:</featureNote>
+        <featureSpecialization>Vehicle1</featureSpecialization>
+      </body>
+    </body>
+    <body xsi:type="Package" declaredName="IndividualConfigurations">
+      <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="IndividualSnapshots"/>
+      <body xsi:type="PartUsage" declaredName="vehicle1_C2" isIndividual="true">
+        <body xsi:type="Documentation" text="This asserts that for some portion of its lifetime, Vehicle1 conforms&#xA;to the configuration vehicle_C2;"/>
+        <featureNote>:</featureNote>
+        <featureSpecialization>Vehicle1</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="vehicle1_C2_t0" portionKind="snapshot">
+        <body xsi:type="Documentation" text="This is a snapshot of Vehicle1 in configuration vehicle1_C2 at time t0."/>
+        <body xsi:type="OccurrenceUsage" declaredName="axleAssembly1_t0" portionKind="snapshot">
+          <body xsi:type="Documentation" text="frontAxleAssembly is a feature of vehicle1_C2."/>
+          <body xsi:type="OccurrenceUsage" declaredName="leftFrontWheel_t0" portionKind="snapshot">
+            <body xsi:type="Documentation" text="This asserts that Wheel1 is the leftFrontWheel of vehicle_C2_t0&#xA;(leftFrontWheel is a feature of vehicle_C2::frontAxleAssembly)."/>
+            <featureNote>:</featureNote>
+            <featureSpecialization>Wheel1</featureSpecialization>
+          </body>
+          <featureNote>:</featureNote>
+          <featureSpecialization>AxleAssembly1</featureSpecialization>
+        </body>
+        <featureNote>:</featureNote>
+        <featureSpecialization>Vehicle1</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="vehicle1_C2_t1" portionKind="snapshot">
+        <body xsi:type="Documentation" text="This is a snapshot of Vehicle1 in configuration vehicle_C2 at time t1."/>
+        <body xsi:type="OccurrenceUsage" declaredName="axleAssembly1_t1" portionKind="snapshot">
+          <body xsi:type="OccurrenceUsage" declaredName="rightFrontWheel_t1" portionKind="snapshot">
+            <body xsi:type="Documentation" text="This asserts that Wheel1 is the rightFrontWheel of vehicle_C2_t1."/>
+            <featureNote>:</featureNote>
+            <featureSpecialization>Wheel1</featureSpecialization>
+          </body>
+          <featureNote>:</featureNote>
+          <featureSpecialization>AxleAssembly1</featureSpecialization>
+        </body>
+        <featureNote>:</featureNote>
+        <featureSpecialization>Vehicle1</featureSpecialization>
+      </body>
+    </body>
+  </body>
+</Namespace>

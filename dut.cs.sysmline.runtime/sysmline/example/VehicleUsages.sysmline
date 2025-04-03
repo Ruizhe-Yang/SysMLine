@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="ASCII"?>
+<Namespace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="sysmline" xsi:schemaLocation="sysmline metamodel/sysmline/sysmline.ecore">
+  <body xsi:type="Package" declaredName="VehicleUsages">
+    <body xsi:type="Documentation" text="Example usages of elements from the vehicle definitions model."/>
+    <body xsi:type="MembershipImport" hasVisibility="true" declaredName="SI"/>
+    <body xsi:type="MembershipImport" hasVisibility="true" declaredName="SI"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" declaredName="ScalarFunctions"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="VehicleDefinitions"/>
+    <body xsi:type="Comment" text="VALUES "/>
+    <body xsi:type="ReferenceUsage" declaredName="T1" valuePart="10.0[SI::newton*SI::metre]" ReferenceUsageType="DefaultReferenceUsage">
+      <featureSpecialization></featureSpecialization>
+    </body>
+    <body xsi:type="ReferenceUsage" declaredName="T2" valuePart="20.0[SI::newton*SI::metre]" ReferenceUsageType="DefaultReferenceUsage">
+      <featureSpecialization></featureSpecialization>
+    </body>
+    <body xsi:type="Comment" text="PARTS "/>
+    <body xsi:type="PartUsage" declaredName="narrowRimWheel">
+      <body xsi:type="Documentation" text="Narrow-rim wheel configuration with 4 to 5 lugbolts. "/>
+      <body xsi:type="PartUsage" declaredName="lugbolt" multiplicityRange="[4..5]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Lugbolt</featureSpecialization>
+      </body>
+      <featureNote>:</featureNote>
+      <featureSpecialization>Wheel</featureSpecialization>
+    </body>
+    <body xsi:type="PartUsage" declaredName="wideRimWheel">
+      <body xsi:type="Documentation" text="Wide-rim wheel configuration with 4 to 6 lugbolts. "/>
+      <body xsi:type="PartUsage" declaredName="lugbolt" multiplicityRange="[4..6]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Lugbolt</featureSpecialization>
+      </body>
+      <featureNote>:</featureNote>
+      <featureSpecialization>Wheel</featureSpecialization>
+    </body>
+    <body xsi:type="PartUsage" declaredName="vehicle_C1">
+      <body xsi:type="Documentation" text="Basic Vehicle configuration showing a part hierarchy. "/>
+      <body xsi:type="PartUsage" declaredName="frontAxleAssembly">
+        <body xsi:type="PartUsage" declaredName="frontWheel" multiplicityRange="[2]">
+          <body xsi:type="PartUsage" multiplicityRange="[4]">
+            <body xsi:type="AttributeUsage" valuePart="T1">
+              <featureNote>:>></featureNote>
+              <featureSpecialization>tighteningTorque</featureSpecialization>
+            </body>
+            <featureNote>:>></featureNote>
+            <featureSpecialization>lugbolt</featureSpecialization>
+          </body>
+          <featureNote>:></featureNote>
+          <featureSpecialization>narrowRimWheel</featureSpecialization>
+        </body>
+        <body xsi:type="PartUsage" declaredName="frontAxle">
+          <featureNote>:</featureNote>
+          <featureSpecialization>Axle</featureSpecialization>
+        </body>
+        <featureNote>:</featureNote>
+        <featureSpecialization>AxleAssembly</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="rearAxleAssembly">
+        <body xsi:type="PartUsage" declaredName="rearWheel" multiplicityRange="[2]">
+          <body xsi:type="PartUsage" multiplicityRange="[6]">
+            <body xsi:type="AttributeUsage" valuePart="T2">
+              <featureNote>:>></featureNote>
+              <featureSpecialization>tighteningTorque</featureSpecialization>
+            </body>
+            <featureNote>:>></featureNote>
+            <featureSpecialization>lugbolt</featureSpecialization>
+          </body>
+          <featureNote>:></featureNote>
+          <featureSpecialization>wideRimWheel</featureSpecialization>
+        </body>
+        <body xsi:type="PartUsage" declaredName="rearAxle">
+          <featureNote>:</featureNote>
+          <featureSpecialization>Axle</featureSpecialization>
+        </body>
+        <featureNote>:</featureNote>
+        <featureSpecialization>AxleAssembly</featureSpecialization>
+      </body>
+      <featureNote>:</featureNote>
+      <featureSpecialization>Vehicle</featureSpecialization>
+    </body>
+    <body xsi:type="PartUsage" declaredName="vehicle_C2">
+      <body xsi:type="Documentation" text="Specialized configuration with part-specific ports. "/>
+      <body xsi:type="PartUsage">
+        <body xsi:type="PartUsage" declaredName="leftFrontWheel" valuePart="frontWheel#(1)">
+          <featureNote>:></featureNote>
+          <featureSpecialization>frontWheel</featureSpecialization>
+        </body>
+        <body xsi:type="PartUsage" declaredName="rightFrontWheel" valuePart="frontWheel#(2)">
+          <featureNote>:></featureNote>
+          <featureSpecialization>frontWheel</featureSpecialization>
+        </body>
+        <body xsi:type="InterfaceUsage" declaredName="leftFrontMount">
+          <featureNote>:</featureNote>
+          <featureSpecialization>Mounting</featureSpecialization>
+          <interfacePart>frontAxle.leftMountingPoint</interfacePart>
+          <interfacePart>leftFrontWheel.hub</interfacePart>
+        </body>
+        <body xsi:type="InterfaceUsage" declaredName="rightFrontMount">
+          <featureNote>:</featureNote>
+          <featureSpecialization>Mounting</featureSpecialization>
+          <interfacePart>frontAxle.rightMountingPoint</interfacePart>
+          <interfacePart>rightFrontWheel.hub</interfacePart>
+        </body>
+        <featureNote>:>></featureNote>
+        <featureSpecialization>frontAxleAssembly</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="rearAxleAssembly">
+        <body xsi:type="PartUsage" declaredName="leftRearWheel" valuePart="rearWheel#(1)">
+          <featureNote>:></featureNote>
+          <featureSpecialization>rearWheel</featureSpecialization>
+        </body>
+        <body xsi:type="PartUsage" declaredName="rightRearWheel" valuePart="rearWheel#(2)">
+          <featureNote>:></featureNote>
+          <featureSpecialization>rearWheel</featureSpecialization>
+        </body>
+        <body xsi:type="InterfaceUsage" declaredName="leftRearMount">
+          <featureNote>:</featureNote>
+          <featureSpecialization>Mounting</featureSpecialization>
+          <interfacePart>rearAxle.leftMountingPoint</interfacePart>
+          <interfacePart>leftRearWheel.hub</interfacePart>
+        </body>
+        <body xsi:type="InterfaceUsage" declaredName="rightRearMount">
+          <featureNote>:</featureNote>
+          <featureSpecialization>Mounting</featureSpecialization>
+          <interfacePart>rearAxle.rightMountingPoint</interfacePart>
+          <interfacePart>rightRearWheel.hub</interfacePart>
+        </body>
+        <featureNote>:>></featureNote>
+        <featureSpecialization>rearAxleAssembly</featureSpecialization>
+      </body>
+      <featureNote>:></featureNote>
+      <featureSpecialization>vehicle_C1</featureSpecialization>
+    </body>
+    <body xsi:type="PartUsage" declaredName="vehicle_C3">
+      <body xsi:type="Documentation" text="Further specialized configuration with a connection to a deeply-nested port. "/>
+      <body xsi:type="PartUsage" declaredName="transmission">
+        <body xsi:type="PortUsage" declaredName="drive" valuePart="'[extra conjugated port]'"/>
+        <featureNote>:</featureNote>
+        <featureSpecialization>Transmission</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage">
+        <body xsi:type="PartUsage">
+          <body xsi:type="PortUsage" declaredName="drive">
+            <featureNote>:</featureNote>
+            <featureSpecialization>DriveIF</featureSpecialization>
+          </body>
+          <featureNote>:>></featureNote>
+          <featureSpecialization>rearAxle</featureSpecialization>
+        </body>
+        <featureNote>:>></featureNote>
+        <featureSpecialization>rearAxleAssembly</featureSpecialization>
+      </body>
+      <body xsi:type="InterfaceUsage" declaredName="driveShaft">
+        <body xsi:type="FlowConnectionUsage" note="FlowConnectionUsage" source="transDrive.driveTorque" target="axleDrive.driveTorque"/>
+        <interfacePart>transDrive ::> transmission.drive</interfacePart>
+        <interfacePart>axleDrive ::> rearAxleAssembly.rearAxle.drive</interfacePart>
+      </body>
+      <featureNote>:></featureNote>
+      <featureSpecialization>vehicle_C2</featureSpecialization>
+    </body>
+  </body>
+</Namespace>
