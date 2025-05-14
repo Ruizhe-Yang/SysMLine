@@ -39,7 +39,7 @@ operation Sequence init_[%=fileName%](){
 	[%for (eClass in epackage.eClassifiers.select(s|s.type().name == "EClass")){%]
 	//[%=epackage.name%].[%=eClass.name%] -> Instantiation
 	var id[%=eClass.name%] = 0;
-	for ([%=eClass.name%]_ in DSL!EObject.all.select(s|s.isTypeOf(DSL![%=eClass.name.clearKeyWord(2)%]))){
+	for ([%=eClass.name%]_ in DSL!EObject.all.select(s|s.type().name == "[%=eClass.name.clearKeyWord(2)%]")){
 		var [%=eClass.name%]_Tuple = Tuple{"key"="[%=eClass.name%]_"+(id[%=eClass.name%]++).asString(),"value"= [%=eClass.name%]_};
 		self.add([%=eClass.name%]_Tuple);
 	}

@@ -1,1182 +1,2081 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<requirement_:RequirementPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:requirement_="http://www.sawg.org/requirement">
-  <name content="AUV Requirement Package"/>
-  <description>
-    <content>
-      <value content=""/>
-    </content>
-  </description>
-  <requirementAsset xsi:type="requirement_:RequirementPackage" gid="RP1">
-    <name content="AUV Overall Requirement Package"/>
-    <description>
-      <content>
-        <value content="The AUV (Autonomous Underwater Vehicle) is a portable untethered remotely operated vehicle, equipped with a visual mapping system and verified on-board autonomy.&#xD;&#xA;The AUV is capable of conducting light intervention tasks, such as cathodic protection surveys (oil and gas) and simple coring (offshore), with potential to move to more complex interventions in a later phase, such as valve turning.&#xD;&#xA;"/>
-      </content>
-    </description>
-    <externalReference>
-      <location content="location"/>
-      <type content="type"/>
-      <metadata content="metadata"/>
-      <version content="version"/>
-      <implementationConstraint>
-        <content>
-          <value content="Constraint"/>
-        </content>
-      </implementationConstraint>
-    </externalReference>
-    <requirementAsset xsi:type="requirement_:NonFunctionalRequirement" gid="SD1" priority="6">
-      <name content="SD1"/>
-      <description>
-        <content>
-          <value content="The AUV system is developed as a Module named &quot;AUV_Module&quot;."/>
-        </content>
-      </description>
-      <externalReference>
-        <location content="location"/>
-        <type content="type"/>
-        <metadata content="metadata"/>
-        <version content="version"/>
-        <implementationConstraint>
-          <content>
-            <value content="Constraint"/>
-          </content>
-        </implementationConstraint>
-      </externalReference>
-      <type architecture="true"/>
-    </requirementAsset>
-    <requirementAsset xsi:type="requirement_:NonFunctionalRequirement" gid="SD2" priority="6">
-      <name content="SD2"/>
-      <description>
-        <content>
-          <value content="&quot;AUV_Module&quot; should contain a Robotic Platform named &quot;AUV_Platform&quot;, it should use the Interfaces &quot;Sensors&quot; and &quot;Actuators&quot;."/>
-        </content>
-      </description>
-      <externalReference>
-        <location content="location"/>
-        <type content="type"/>
-        <metadata content="metadata"/>
-        <version content="version"/>
-        <implementationConstraint>
-          <content>
-            <value content="Constraint"/>
-          </content>
-        </implementationConstraint>
-      </externalReference>
-      <type architecture="true"/>
-    </requirementAsset>
-    <requirementAsset xsi:type="requirement_:NonFunctionalRequirement" gid="SD3" priority="6">
-      <name content="SD3"/>
-      <description>
-        <content>
-          <value content="&quot;AUV_Module&quot; should contain a Controller named &quot;AUV_Operator&quot;, it should use the Interface &quot;Inputs&quot;."/>
-        </content>
-      </description>
-      <externalReference>
-        <location content="location"/>
-        <type content="type"/>
-        <metadata content="metadata"/>
-        <version content="version"/>
-        <implementationConstraint>
-          <content>
-            <value content="Constraint"/>
-          </content>
-        </implementationConstraint>
-      </externalReference>
-      <type architecture="true"/>
-    </requirementAsset>
-    <requirementAsset xsi:type="requirement_:NonFunctionalRequirement" gid="SD4" priority="6">
-      <name content="SD4"/>
-      <description>
-        <content>
-          <value content="&quot;AUV_Module&quot; should contain a Controller named &quot;LRE_Ctrl&quot; (for Last Response Engine), it should use the Interfaces &quot;Inputs&quot; and &quot;Outputs&quot;."/>
-        </content>
-      </description>
-      <externalReference>
-        <location content="location"/>
-        <type content="type"/>
-        <metadata content="metadata"/>
-        <version content="version"/>
-        <implementationConstraint>
-          <content>
-            <value content="Constraint"/>
-          </content>
-        </implementationConstraint>
-      </externalReference>
-      <type architecture="true"/>
-    </requirementAsset>
-    <requirementAsset xsi:type="requirement_:NonFunctionalRequirement" gid="SD5" priority="6">
-      <name content="SD5"/>
-      <description>
-        <content>
-          <value content="&quot;AUV_Module&quot; should contain a Controller named &quot;AUV_Autopilot&quot;, it should use the Interface &quot;Outputs&quot;."/>
-        </content>
-      </description>
-      <externalReference>
-        <location content="location"/>
-        <type content="type"/>
-        <metadata content="metadata"/>
-        <version content="version"/>
-        <implementationConstraint>
-          <content>
-            <value content="Constraint"/>
-          </content>
-        </implementationConstraint>
-      </externalReference>
-      <type architecture="true"/>
-    </requirementAsset>
-    <requirementAsset xsi:type="requirement_:NonFunctionalRequirement" gid="PT1" priority="6">
-      <name content="PT1"/>
-      <description>
-        <content>
-          <value content="The &quot;AUV_Platform&quot; should define a Primitive Type named &quot;nat&quot; (for natural numbers)."/>
-        </content>
-      </description>
-      <externalReference>
-        <location content="location"/>
-        <type content="type"/>
-        <metadata content="metadata"/>
-        <version content="version"/>
-        <implementationConstraint>
-          <content>
-            <value content="Constraint"/>
-          </content>
-        </implementationConstraint>
-      </externalReference>
-      <type architecture="true"/>
-    </requirementAsset>
-    <requirementAsset xsi:type="requirement_:NonFunctionalRequirement" gid="PT2" priority="6">
-      <name content="PT2"/>
-      <description>
-        <content>
-          <value content="The &quot;AUV_Platform&quot; should define a Primitive Type named &quot;int&quot; (for integers)."/>
-        </content>
-      </description>
-      <externalReference>
-        <location content="location"/>
-        <type content="type"/>
-        <metadata content="metadata"/>
-        <version content="version"/>
-        <implementationConstraint>
-          <content>
-            <value content="Constraint"/>
-          </content>
-        </implementationConstraint>
-      </externalReference>
-      <type architecture="true"/>
-    </requirementAsset>
-    <requirementAsset xsi:type="requirement_:NonFunctionalRequirement" gid="PT3" priority="6">
-      <name content="PT3"/>
-      <description>
-        <content>
-          <value content="The &quot;AUV_Platform&quot; should define a Primitive Type named &quot;string&quot; (for string values)."/>
-        </content>
-      </description>
-      <externalReference>
-        <location content="location"/>
-        <type content="type"/>
-        <metadata content="metadata"/>
-        <version content="version"/>
-        <implementationConstraint>
-          <content>
-            <value content="Constraint"/>
-          </content>
-        </implementationConstraint>
-      </externalReference>
-      <type architecture="true"/>
-    </requirementAsset>
-    <requirementAsset xsi:type="requirement_:NonFunctionalRequirement" gid="PT4" priority="6">
-      <name content="PT4"/>
-      <description>
-        <content>
-          <value content="The &quot;AUV_Platform&quot; should define a Primitive Type named &quot;boolean&quot; (for boolean values)."/>
-        </content>
-      </description>
-      <externalReference>
-        <location content="location"/>
-        <type content="type"/>
-        <metadata content="metadata"/>
-        <version content="version"/>
-        <implementationConstraint>
-          <content>
-            <value content="Constraint"/>
-          </content>
-        </implementationConstraint>
-      </externalReference>
-      <type architecture="true"/>
-    </requirementAsset>
-    <requirementAsset xsi:type="requirement_:NonFunctionalRequirement" gid="PT5" priority="6">
-      <name content="PT5"/>
-      <description>
-        <content>
-          <value content="The &quot;AUV_Platform&quot; should define a Primitive Type named &quot;real&quot; (for real numbers)."/>
-        </content>
-      </description>
-      <externalReference>
-        <location content="location"/>
-        <type content="type"/>
-        <metadata content="metadata"/>
-        <version content="version"/>
-        <implementationConstraint>
-          <content>
-            <value content="Constraint"/>
-          </content>
-        </implementationConstraint>
-      </externalReference>
-      <type architecture="true"/>
-    </requirementAsset>
-    <requirementAsset xsi:type="requirement_:NonFunctionalRequirement" gid="CT1" priority="6">
-      <name content="CT1"/>
-      <description>
-        <content>
-          <value content="The &quot;AUV_Platform&quot; should define a Composite Type named &quot;SVec&quot; (Spherical Vector), to record values such as &quot;radial&quot; (of type &quot;real&quot;), &quot;polar&quot; (of type &quot;real&quot;), and &quot;azimuth&quot; (of type &quot;real&quot;)."/>
-        </content>
-      </description>
-      <externalReference>
-        <location content="location"/>
-        <type content="type"/>
-        <metadata content="metadata"/>
-        <version content="version"/>
-        <implementationConstraint>
-          <content>
-            <value content="Constraint"/>
-          </content>
-        </implementationConstraint>
-      </externalReference>
-      <type architecture="true"/>
-    </requirementAsset>
-    <requirementAsset xsi:type="requirement_:NonFunctionalRequirement" gid="CT2" priority="6">
-      <name content="CT2"/>
-      <description>
-        <content>
-          <value content="The &quot;AUV_Platform&quot; should define a Composite Type named &quot;Obstacle&quot;, to record the following values: &quot;ns_rel_dist&quot; (of type &quot;real&quot;), &quot;ew_rel_dist&quot; (of type real), &quot;depth&quot; (of type &quot;real&quot;), &quot;id&quot; (of type &quot;real&quot;), &quot;obs_hdng&quot; (of type &quot;SVec&quot;)."/>
-        </content>
-      </description>
-      <externalReference>
-        <location content="location"/>
-        <type content="type"/>
-        <metadata content="metadata"/>
-        <version content="version"/>
-        <implementationConstraint>
-          <content>
-            <value content="Constraint"/>
-          </content>
-        </implementationConstraint>
-      </externalReference>
-      <type architecture="true"/>
-    </requirementAsset>
-    <requirementAsset xsi:type="requirement_:NonFunctionalRequirement" gid="Interface1" priority="6">
-      <name content="Interface1"/>
-      <description>
-        <content>
-          <value content="The &quot;AUV_Module&quot; shall define an Interface named &quot;Sensors&quot;, which contains  the following Values: &quot;depth&quot; (of type &quot;real&quot;), &quot;hdng&quot; (of type &quot;SVec&quot;) and &quot;obs&quot; (of type &quot;Obstacle&quot;)."/>
-        </content>
-      </description>
-      <externalReference>
-        <location content="location"/>
-        <type content="type"/>
-        <metadata content="metadata"/>
-        <version content="version"/>
-        <implementationConstraint>
-          <content>
-            <value content="Constraint"/>
-          </content>
-        </implementationConstraint>
-      </externalReference>
-      <type architecture="true"/>
-    </requirementAsset>
-    <requirementAsset xsi:type="requirement_:NonFunctionalRequirement" gid="Interface2" priority="6">
-      <name content="Interface2"/>
-      <description>
-        <content>
-          <value content="The &quot;AUV_Module&quot; shall define an Interface named &quot;Intpus&quot;, which defines the following Events: &quot;endTask&quot;, &quot;reqOCM&quot; (with no Parameters and no Return Value), &quot;reqMOM&quot; (with no Parameters and no Return Value), &quot;reqHCM&quot; (with no Parameters and no Return Value), &quot;reqVel&quot; (with no Parameters, but with a Return Value of type &quot;real&quot;), and &quot;reqHdng&quot; (with no Parameters, but with a Return Value of type &quot;real&quot;)."/>
-        </content>
-      </description>
-      <externalReference>
-        <location content="location"/>
-        <type content="type"/>
-        <metadata content="metadata"/>
-        <version content="version"/>
-        <implementationConstraint>
-          <content>
-            <value content="Constraint"/>
-          </content>
-        </implementationConstraint>
-      </externalReference>
-      <type architecture="true"/>
-    </requirementAsset>
-    <requirementAsset xsi:type="requirement_:NonFunctionalRequirement" gid="Interface3" priority="6">
-      <name content="Interface3"/>
-      <description>
-        <content>
-          <value content="An Interface named &quot;Outputs&quot; should be defined for &quot;AUV_Module&quot;, which outputs the following Events: &quot;advVel&quot; (which takes one Parameters of type &quot;real&quot;, and no Return Value) and &quot;advHdng&quot; (which takes one Parameter of type &quot;real&quot;, and no Return Value)."/>
-        </content>
-      </description>
-      <externalReference>
-        <location content="location"/>
-        <type content="type"/>
-        <metadata content="metadata"/>
-        <version content="version"/>
-        <implementationConstraint>
-          <content>
-            <value content="Constraint"/>
-          </content>
-        </implementationConstraint>
-      </externalReference>
-      <type architecture="true"/>
-    </requirementAsset>
-    <requirementAsset xsi:type="requirement_:NonFunctionalRequirement" gid="Interface4" priority="6">
-      <name content="Interface4"/>
-      <description>
-        <content>
-          <value content="The &quot;AUV_Module&quot; shall define an Interface named &quot;Actuators&quot;, which should remain empty at this point."/>
-        </content>
-      </description>
-      <externalReference>
-        <location content="location"/>
-        <type content="type"/>
-        <metadata content="metadata"/>
-        <version content="version"/>
-        <implementationConstraint>
-          <content>
-            <value content="Constraint"/>
-          </content>
-        </implementationConstraint>
-      </externalReference>
-      <type architecture="true"/>
-    </requirementAsset>
-    <requirementAsset xsi:type="requirement_:NonFunctionalRequirement" gid="CF3" priority="6">
-      <name content="CT3"/>
-      <description>
-        <content>
-          <value content="The &quot;AUV_Platform&quot; should define a Composite Type named &quot;Close&quot;, to record the following values: &quot;horiz_cda&quot; (of type &quot;real&quot;), &quot;vert_cda&quot; (of type &quot;real&quot;), and &quot;id&quot; (of type &quot;nat&quot;)."/>
-        </content>
-      </description>
-      <externalReference>
-        <location content="location"/>
-        <type content="type"/>
-        <metadata content="metadata"/>
-        <version content="version"/>
-        <implementationConstraint>
-          <content>
-            <value content="Constraint"/>
-          </content>
-        </implementationConstraint>
-      </externalReference>
-      <type architecture="true"/>
-    </requirementAsset>
-    <requirementAsset xsi:type="requirement_:RequirementPackage" gid="LRE_RP">
-      <name content="LRE_Behaviour Requirement Package"/>
-      <description>
-        <content>
-          <value content="This package captures the requirements for the behaviour of the Last Response Engine (LRE)."/>
-        </content>
-      </description>
-      <externalReference>
-        <location content="location"/>
-        <type content="type"/>
-        <metadata content="metadata"/>
-        <version content="version"/>
-        <implementationConstraint>
-          <content>
-            <value content="Constraint"/>
-          </content>
-        </implementationConstraint>
-      </externalReference>
-      <requirementAsset xsi:type="requirement_:NonFunctionalRequirement" gid="LRE-NF1" priority="6">
-        <name content="LRE_Beh"/>
-        <description>
-          <content>
-            <value content="A State Machine named &quot;LRE_Beh&quot; shall be created to model the behaviour of the LRE."/>
-          </content>
-        </description>
-        <externalReference>
-          <location content="location"/>
-          <type content="type"/>
-          <metadata content="metadata"/>
-          <version content="version"/>
-          <implementationConstraint>
-            <content>
-              <value content="Constraint"/>
-            </content>
-          </implementationConstraint>
-        </externalReference>
-        <type architecture="true"/>
-      </requirementAsset>
-      <requirementAsset xsi:type="requirement_:NonFunctionalRequirement" gid="LRE-Var1" priority="6">
-        <name content="Variable1"/>
-        <description>
-          <content>
-            <value content="LRE_Beh shall define a Variable &quot;cobs&quot; of type Close (defined by the &quot;AUV platform&quot;), to denote the closest obstacle."/>
-          </content>
-        </description>
-        <externalReference>
-          <location content="location"/>
-          <type content="type"/>
-          <metadata content="metadata"/>
-          <version content="version"/>
-          <implementationConstraint>
-            <content>
-              <value content="Constraint"/>
-            </content>
-          </implementationConstraint>
-        </externalReference>
-        <type architecture="true"/>
-      </requirementAsset>
-      <requirementAsset xsi:type="requirement_:NonFunctionalRequirement" gid="LRE-Var2" priority="6">
-        <name content="Variable2"/>
-        <description>
-          <content>
-            <value content="LRE_Beh shall define a Variable &quot;inOPEZ&quot; of type boolean (defined by the AUV platform), to denote if the AUV is in an Object Proximity Exclusion Zone (OPEZ). "/>
-          </content>
-        </description>
-        <externalReference>
-          <location content="location"/>
-          <type content="type"/>
-          <metadata content="metadata"/>
-          <version content="version"/>
-          <implementationConstraint>
-            <content>
-              <value content="Constraint"/>
-            </content>
-          </implementationConstraint>
-        </externalReference>
-        <type/>
-      </requirementAsset>
-      <requirementAsset xsi:type="requirement_:NonFunctionalRequirement" gid="LRE-Var3" priority="6">
-        <name content="Variable3"/>
-        <description>
-          <content>
-            <value content="LRE_Beh shall define a Variable &quot;hvel&quot; of type real (defined by the AUV platform), to denote the AVU's horizontal velocity."/>
-          </content>
-        </description>
-        <externalReference>
-          <location content="location"/>
-          <type content="type"/>
-          <metadata content="metadata"/>
-          <version content="version"/>
-          <implementationConstraint>
-            <content>
-              <value content="Constraint"/>
-            </content>
-          </implementationConstraint>
-        </externalReference>
-        <type architecture="true"/>
-      </requirementAsset>
-      <requirementAsset xsi:type="requirement_:NonFunctionalRequirement" gid="LRE-Var4" priority="6">
-        <name content="Variable4"/>
-        <description>
-          <content>
-            <value content="LRE_Beh shall define a Variable &quot;vvel&quot; of type real (defined by the AUV platform), to denote the AVU's vertical velocity."/>
-          </content>
-        </description>
-        <externalReference>
-          <location content="location"/>
-          <type content="type"/>
-          <metadata content="metadata"/>
-          <version content="version"/>
-          <implementationConstraint>
-            <content>
-              <value content="Constraint"/>
-            </content>
-          </implementationConstraint>
-        </externalReference>
-        <type architecture="true"/>
-      </requirementAsset>
-      <requirementAsset xsi:type="requirement_:NonFunctionalRequirement" gid="LRE-Var5" priority="6">
-        <name content="Variable5"/>
-        <description>
-          <content>
-            <value content="LRE_Beh shall define a Variable &quot;cstc&quot; of type Obstacle (defined by the AUV platform), to denote the closest static obstacle."/>
-          </content>
-        </description>
-        <externalReference>
-          <location content="location"/>
-          <type content="type"/>
-          <metadata content="metadata"/>
-          <version content="version"/>
-          <implementationConstraint>
-            <content>
-              <value content="Constraint"/>
-            </content>
-          </implementationConstraint>
-        </externalReference>
-        <type architecture="true"/>
-      </requirementAsset>
-      <requirementAsset xsi:type="requirement_:NonFunctionalRequirement" gid="LRE-Var6" priority="6">
-        <name content="Variable6"/>
-        <description>
-          <content>
-            <value content="LRE_Beh shall define a Variable &quot;cdyn&quot; of type Obstacle (defined by the AUV platform), to denote the closest dynamic obstacle."/>
-          </content>
-        </description>
-        <externalReference>
-          <location content="location"/>
-          <type content="type"/>
-          <metadata content="metadata"/>
-          <version content="version"/>
-          <implementationConstraint>
-            <content>
-              <value content="Constraint"/>
-            </content>
-          </implementationConstraint>
-        </externalReference>
-        <type architecture="true"/>
-      </requirementAsset>
-      <requirementAsset xsi:type="requirement_:NonFunctionalRequirement" gid="LRE-Var7" priority="6">
-        <name content="Variable7"/>
-        <description>
-          <content>
-            <value content="LRE_Beh shall define a Variable &quot;depth&quot; of type real (defined by the AUV platform), to denote the depth of the AUV."/>
-          </content>
-        </description>
-        <externalReference>
-          <location content="location"/>
-          <type content="type"/>
-          <metadata content="metadata"/>
-          <version content="version"/>
-          <implementationConstraint>
-            <content>
-              <value content="Constraint"/>
-            </content>
-          </implementationConstraint>
-        </externalReference>
-        <type architecture="true"/>
-      </requirementAsset>
-      <requirementAsset xsi:type="requirement_:NonFunctionalRequirement" gid="LRE-Var8" priority="6">
-        <name content="Variable8"/>
-        <description>
-          <content>
-            <value content="LRE_Beh shall define a Variable &quot;CDA&quot; of type real (defined by the AUV platform), to denote the Closest Distance of Approach to an obstacle."/>
-          </content>
-        </description>
-        <externalReference>
-          <location content="location"/>
-          <type content="type"/>
-          <metadata content="metadata"/>
-          <version content="version"/>
-          <implementationConstraint>
-            <content>
-              <value content="Constraint"/>
-            </content>
-          </implementationConstraint>
-        </externalReference>
-        <type architecture="true"/>
-      </requirementAsset>
-      <requirementAsset xsi:type="requirement_:NonFunctionalRequirement" gid="LRE-Const1" priority="6">
-        <name content="Constant1"/>
-        <description>
-          <content>
-            <value content="LRE_Beh shall define a Constant &quot;AvoidanceMargin&quot; of type real (defined by the AUV platform), to denote the avoidance margin to obstacles."/>
-          </content>
-        </description>
-        <externalReference>
-          <location content="location"/>
-          <type content="type"/>
-          <metadata content="metadata"/>
-          <version content="version"/>
-          <implementationConstraint>
-            <content>
-              <value content="Constraint"/>
-            </content>
-          </implementationConstraint>
-        </externalReference>
-        <type architecture="true"/>
-      </requirementAsset>
-      <requirementAsset xsi:type="requirement_:NonFunctionalRequirement" gid="LRE-Const2" priority="6">
-        <name content="Constant2"/>
-        <description>
-          <content>
-            <value content="LRE_Beh shall define a Constant &quot;StaticObsHorizDist&quot; of type real (defined by the AUV platform), to denote the shortest distance allowed horizontally to an obstacle."/>
-          </content>
-        </description>
-        <externalReference>
-          <location content="location"/>
-          <type content="type"/>
-          <metadata content="metadata"/>
-          <version content="version"/>
-          <implementationConstraint>
-            <content>
-              <value content="Constraint"/>
-            </content>
-          </implementationConstraint>
-        </externalReference>
-        <type architecture="true"/>
-      </requirementAsset>
-      <requirementAsset xsi:type="requirement_:NonFunctionalRequirement" gid="LRE-Const3" priority="6">
-        <name content="Constant3"/>
-        <description>
-          <content>
-            <value content="LRE_Beh shall define a Constant &quot;StaticObsVertDist&quot; of type real (defined by the AUV platform), to denote the shortest distance allowed vertically to an obstacle."/>
-          </content>
-        </description>
-        <externalReference>
-          <location content="location"/>
-          <type content="type"/>
-          <metadata content="metadata"/>
-          <version content="version"/>
-          <implementationConstraint>
-            <content>
-              <value content="Constraint"/>
-            </content>
-          </implementationConstraint>
-        </externalReference>
-        <type architecture="true"/>
-      </requirementAsset>
-      <requirementAsset xsi:type="requirement_:NonFunctionalRequirement" gid="LRE-Const5" priority="6">
-        <name content="Constant5"/>
-        <description>
-          <content>
-            <value content="LRE_Beh shall define a Constant &quot;MinSafeDist&quot; of type real (defined by the AUV platform), to denote the minimal overall safe distance allowed to an obstacle."/>
-          </content>
-        </description>
-        <externalReference>
-          <location content="location"/>
-          <type content="type"/>
-          <metadata content="metadata"/>
-          <version content="version"/>
-          <implementationConstraint>
-            <content>
-              <value content="Constraint"/>
-            </content>
-          </implementationConstraint>
-        </externalReference>
-        <type architecture="true"/>
-      </requirementAsset>
-      <requirementAsset xsi:type="requirement_:FunctionalRequirement" gid="LRE-FR1" priority="5">
-        <name content="State1"/>
-        <description>
-          <content>
-            <value content="The LRE shall define a State named &quot;OCM&quot; (Operation Control Mode)."/>
-          </content>
-        </description>
-        <externalReference>
-          <location content="location"/>
-          <type content="type"/>
-          <metadata content="metadata"/>
-          <version content="version"/>
-          <implementationConstraint>
-            <content>
-              <value content="Constraint"/>
-            </content>
-          </implementationConstraint>
-        </externalReference>
-      </requirementAsset>
-      <requirementAsset xsi:type="requirement_:FunctionalRequirement" gid="LRE-FR2" priority="5">
-        <name content="State2"/>
-        <description>
-          <content>
-            <value content="The LRE shall define a State named &quot;MOM&quot; (Main Operating Mode). On entrying MOM, the Event (from the Interface &quot;Output&quot;) &quot;advVel&quot; should be tiggered to advice the velocity of AUV to 1."/>
-          </content>
-        </description>
-        <externalReference>
-          <location content="location"/>
-          <type content="type"/>
-          <metadata content="metadata"/>
-          <version content="version"/>
-          <implementationConstraint>
-            <content>
-              <value content="Constraint"/>
-            </content>
-          </implementationConstraint>
-        </externalReference>
-      </requirementAsset>
-      <requirementAsset xsi:type="requirement_:FunctionalRequirement" gid="LRE-FR3" priority="5">
-        <name content="State3"/>
-        <description>
-          <content>
-            <value content="The LRE shall define a State named &quot;CAM&quot; (Collision Avoidance Mode)."/>
-          </content>
-        </description>
-        <externalReference>
-          <location content="location"/>
-          <type content="type"/>
-          <metadata content="metadata"/>
-          <version content="version"/>
-          <implementationConstraint>
-            <content>
-              <value content="Constraint"/>
-            </content>
-          </implementationConstraint>
-        </externalReference>
-      </requirementAsset>
-      <requirementAsset xsi:type="requirement_:FunctionalRequirement" gid="LRE-FR4" priority="5">
-        <name content="State4"/>
-        <description>
-          <content>
-            <value content="The LRE shall define a State named &quot;HCM&quot; (High Caution Mode). On entrying HCM, the Event (from the Interface &quot;Output&quot;) &quot;advVel&quot; should be tiggered to advice the velocity of AUV to 1."/>
-          </content>
-        </description>
-        <externalReference>
-          <location content="location"/>
-          <type content="type"/>
-          <metadata content="metadata"/>
-          <version content="version"/>
-          <implementationConstraint>
-            <content>
-              <value content="Constraint"/>
-            </content>
-          </implementationConstraint>
-        </externalReference>
-      </requirementAsset>
-      <requirementAsset xsi:type="requirement_:NonFunctionalRequirement" gid="LRE-Var9" priority="6">
-        <name content="Variable9"/>
-        <description>
-          <content>
-            <value content="LRE_Beh shall define a variable &quot;TCPA&quot; of type real (defined by the AUV platform), to denote the Time at Closest Point of Approach to an obstacle."/>
-          </content>
-        </description>
-        <externalReference>
-          <location content="location"/>
-          <type content="type"/>
-          <metadata content="metadata"/>
-          <version content="version"/>
-          <implementationConstraint>
-            <content>
-              <value content="Constraint"/>
-            </content>
-          </implementationConstraint>
-        </externalReference>
-        <type architecture="true"/>
-      </requirementAsset>
-      <requirementAsset xsi:type="requirement_:NonFunctionalRequirement" gid="LRE-Var10" priority="6">
-        <name content="Variable10"/>
-        <description>
-          <content>
-            <value content="LRE_Beh shall define a variable &quot;x&quot; of type real (defined by the AUV platform), to denote the parameter to be passed to other components of the AUV."/>
-          </content>
-        </description>
-        <externalReference>
-          <location content="location"/>
-          <type content="type"/>
-          <metadata content="metadata"/>
-          <version content="version"/>
-          <implementationConstraint>
-            <content>
-              <value content="Constraint"/>
-            </content>
-          </implementationConstraint>
-        </externalReference>
-        <type architecture="true"/>
-      </requirementAsset>
-      <requirementAsset xsi:type="requirement_:NonFunctionalRequirement" gid="LRE-Const4" priority="6">
-        <name content="Constant4"/>
-        <description>
-          <content>
-            <value content="LRE_Beh shall define a Constant &quot;StaticObsDfltVertDist&quot; of type real (defined by the AUV platform), to denote the default vertical distance limit to a static obstacle."/>
-          </content>
-        </description>
-        <externalReference>
-          <location content="location"/>
-          <type content="type"/>
-          <metadata content="metadata"/>
-          <version content="version"/>
-          <implementationConstraint>
-            <content>
-              <value content="Constraint"/>
-            </content>
-          </implementationConstraint>
-        </externalReference>
-        <type architecture="true"/>
-      </requirementAsset>
-      <requirementAsset xsi:type="requirement_:FunctionalRequirement" gid="LRE-Beh1" priority="5">
-        <name content="Beh1"/>
-        <description>
-          <content>
-            <value content="On start up, the LRE shall be in the the OCM mode. "/>
-          </content>
-        </description>
-        <externalReference>
-          <location content="location"/>
-          <type content="type"/>
-          <metadata content="metadata"/>
-          <version content="version"/>
-          <implementationConstraint>
-            <content>
-              <value content="Constraint"/>
-            </content>
-          </implementationConstraint>
-        </externalReference>
-      </requirementAsset>
-      <requirementAsset xsi:type="requirement_:FunctionalRequirement" gid="LRE-Beh2" priority="5">
-        <name content="Beh2"/>
-        <description>
-          <content>
-            <value content="The LRE shall transition from OCM to OCM if the Event &quot;reqVel&quot; (from the Interface &quot;Input&quot;) is triggered, the returned value of the Event shall be stored in variable &quot;x&quot;. Then the event &quot;advVel&quot; (from the Interface &quot;Output&quot;) shall be triggered, to pass the value of &quot;x&quot;. "/>
-          </content>
-        </description>
-        <externalReference>
-          <location content="location"/>
-          <type content="type"/>
-          <metadata content="metadata"/>
-          <version content="version"/>
-          <implementationConstraint>
-            <content>
-              <value content="Constraint"/>
-            </content>
-          </implementationConstraint>
-        </externalReference>
-      </requirementAsset>
-      <requirementAsset xsi:type="requirement_:FunctionalRequirement" gid="LRE-Beh3" priority="5">
-        <name content="Beh3"/>
-        <description>
-          <content>
-            <value content="The LRE shall transition from OCM to OCM if the Event &quot;reqHdng&quot; (from the Interface &quot;Input&quot;) is triggered, the returned value of the Event shall be stored in variable &quot;x&quot;. Then the Event &quot;advHdng&quot; (from the Interface &quot;Output&quot;) shall be triggered, to pass the value of &quot;x&quot;. "/>
-          </content>
-        </description>
-        <externalReference>
-          <location content="location"/>
-          <type content="type"/>
-          <metadata content="metadata"/>
-          <version content="version"/>
-          <implementationConstraint>
-            <content>
-              <value content="Constraint"/>
-            </content>
-          </implementationConstraint>
-        </externalReference>
-      </requirementAsset>
-      <requirementAsset xsi:type="requirement_:FunctionalRequirement" gid="LRE-Beh4" priority="5">
-        <name content="Beh4"/>
-        <description>
-          <content>
-            <value content="The LRE shall transition from OCM to MOM, with a trigger Event &quot;reqMOM&quot; (from the Interface &quot;Input&quot;), with the condition that: the velocity (&quot;vel&quot;) of the AUV is less than 0.1, the distance from the AUV to the closest dynamic obstacle is greater than 7.5, the the distance from the AUV to the closest static obstacle is greater than 0.3, and that the AUV is not in an OPEZ."/>
-          </content>
-        </description>
-        <externalReference>
-          <location content="location"/>
-          <type content="type"/>
-          <metadata content="metadata"/>
-          <version content="version"/>
-          <implementationConstraint>
-            <content>
-              <value content="Constraint"/>
-            </content>
-          </implementationConstraint>
-        </externalReference>
-      </requirementAsset>
-      <requirementAsset xsi:type="requirement_:FunctionalRequirement" gid="LRE-Beh5" priority="5">
-        <name content="Beh5"/>
-        <description>
-          <content>
-            <value content="The LRE shall transition from MOM to OCM, if it determines that it is in an OPEZ (&quot;inOPEZ&quot;)."/>
-          </content>
-        </description>
-        <externalReference>
-          <location content="location"/>
-          <type content="type"/>
-          <metadata content="metadata"/>
-          <version content="version"/>
-          <implementationConstraint>
-            <content>
-              <value content="Constraint"/>
-            </content>
-          </implementationConstraint>
-        </externalReference>
-      </requirementAsset>
-      <requirementAsset xsi:type="requirement_:FunctionalRequirement" gid="LRE-Beh6" priority="5">
-        <name content="Beh6"/>
-        <description>
-          <content>
-            <value content="The LRE shall transition from MOM to OCM, if the Event &quot;reqOCM&quot; is triggered."/>
-          </content>
-        </description>
-        <externalReference>
-          <location content="location"/>
-          <type content="type"/>
-          <metadata content="metadata"/>
-          <version content="version"/>
-          <implementationConstraint>
-            <content>
-              <value content="Constraint"/>
-            </content>
-          </implementationConstraint>
-        </externalReference>
-      </requirementAsset>
-      <requirementAsset xsi:type="requirement_:FunctionalRequirement" gid="LRE-Beh8" priority="5">
-        <name content="Beh8"/>
-        <description>
-          <content>
-            <value content="The LRE shall transition from MOM to CAM, if it determines that the Closest Distance of Approach (&quot;CDA&quot;) to an obstacle is less than the defined minimal overall safe distance allowed to an obstacle (&quot;MinSafeDist&quot;), and that the Time at Closest Point of Approach to an obstacle (&quot;TCPA&quot;) is greater than or equal to 0."/>
-          </content>
-        </description>
-        <externalReference>
-          <location content="location"/>
-          <type content="type"/>
-          <metadata content="metadata"/>
-          <version content="version"/>
-          <implementationConstraint>
-            <content>
-              <value content="Constraint"/>
-            </content>
-          </implementationConstraint>
-        </externalReference>
-      </requirementAsset>
-      <requirementAsset xsi:type="requirement_:FunctionalRequirement" gid="LRE-Beh7" priority="5">
-        <name content="Beh7"/>
-        <description>
-          <content>
-            <value content="The LRE shall transition from MOM to OCM, if the Event &quot;endTask&quot; is triggered, then the LRE triggers the Event &quot;advVel&quot;, to set the velocity of the AUV to 0."/>
-          </content>
-        </description>
-        <externalReference>
-          <location content="location"/>
-          <type content="type"/>
-          <metadata content="metadata"/>
-          <version content="version"/>
-          <implementationConstraint>
-            <content>
-              <value content="Constraint"/>
-            </content>
-          </implementationConstraint>
-        </externalReference>
-      </requirementAsset>
-      <requirementAsset xsi:type="requirement_:FunctionalRequirement" gid="LRE-Beh9" priority="5">
-        <name content="Beh9"/>
-        <description>
-          <content>
-            <value content="The LRE shall transition from MOM to HCM, if the horizontal velocity (&quot;hvel&quot;) is greater than or equal to 0.1, the horizontal distance (&quot;hdist&quot;) to the closest static obstacle (&quot;cstc&quot;) is less than the defined allowed horizontal distance to static osbstacle (&quot;StaticObsHorizDist&quot;)."/>
-          </content>
-        </description>
-        <externalReference>
-          <location content="location"/>
-          <type content="type"/>
-          <metadata content="metadata"/>
-          <version content="version"/>
-          <implementationConstraint>
-            <content>
-              <value content="Constraint"/>
-            </content>
-          </implementationConstraint>
-        </externalReference>
-      </requirementAsset>
-      <requirementAsset xsi:type="requirement_:FunctionalRequirement" gid="LRE-Beh10" priority="5">
-        <name content="Beh10"/>
-        <description>
-          <content>
-            <value content="The LRE shall transition from MOM to HCM, if the vertical distance (call to &quot;vdist&quot;) to the closest static obstacle (&quot;cstc&quot;) is less than or equal to the defined allowed default vertical distance to a static obstacle (&quot;StaticObsDfltVertDist&quot;)."/>
-          </content>
-        </description>
-        <externalReference>
-          <location content="location"/>
-          <type content="type"/>
-          <metadata content="metadata"/>
-          <version content="version"/>
-          <implementationConstraint>
-            <content>
-              <value content="Constraint"/>
-            </content>
-          </implementationConstraint>
-        </externalReference>
-      </requirementAsset>
-      <requirementAsset xsi:type="requirement_:FunctionalRequirement" gid="LRE-Beh11" priority="5">
-        <name content="Beh11"/>
-        <description>
-          <content>
-            <value content="The LRE shall transition from MOM to HCM, if the vertical velocity (call to &quot;hvel&quot;) is greater than or equal to 0.1, the vertical distance (call to &quot;hdist&quot;) to the closest static obstacle (&quot;cstc&quot;) is less than the defined allowed vertical distance to static osbstacle (&quot;StaticObsVertDist&quot;)."/>
-          </content>
-        </description>
-        <externalReference>
-          <location content="location"/>
-          <type content="type"/>
-          <metadata content="metadata"/>
-          <version content="version"/>
-          <implementationConstraint>
-            <content>
-              <value content="Constraint"/>
-            </content>
-          </implementationConstraint>
-        </externalReference>
-      </requirementAsset>
-      <requirementAsset xsi:type="requirement_:FunctionalRequirement" gid="LRE-Beh12" priority="5">
-        <name content="Beh12"/>
-        <description>
-          <content>
-            <value content="The LRE shall transition from MOM to HCM, if the Event &quot;reqHCM&quot; is triggered."/>
-          </content>
-        </description>
-        <externalReference>
-          <location content="location"/>
-          <type content="type"/>
-          <metadata content="metadata"/>
-          <version content="version"/>
-          <implementationConstraint>
-            <content>
-              <value content="Constraint"/>
-            </content>
-          </implementationConstraint>
-        </externalReference>
-      </requirementAsset>
-      <requirementAsset xsi:type="requirement_:FunctionalRequirement" gid="LRE-Beh13" priority="5">
-        <name content="Beh13"/>
-        <description>
-          <content>
-            <value content="The LRE shall transition from HCM to MOM, if the horizontal distance (call to &quot;hdist&quot;) to the closest static obstacle (&quot;cstc&quot;) is greater than the allowed horizondal distance to a static obstacle (&quot;StaticObsHorzDist&quot;), and the vertical distance (call to &quot;vdist&quot;) to the closest static obstacle (&quot;cstc&quot;) is greater than the allowed vertical distance to a static obstacle (&quot;StaticObsVertDist&quot;)."/>
-          </content>
-        </description>
-        <externalReference>
-          <location content="location"/>
-          <type content="type"/>
-          <metadata content="metadata"/>
-          <version content="version"/>
-          <implementationConstraint>
-            <content>
-              <value content="Constraint"/>
-            </content>
-          </implementationConstraint>
-        </externalReference>
-      </requirementAsset>
-      <requirementAsset xsi:type="requirement_:FunctionalRequirement" gid="LRE-Beh14" priority="5">
-        <name content="Beh14"/>
-        <description>
-          <content>
-            <value content="The LRE shall transition from HCM to CAM, if the the Closest Distance of Approach (&quot;CDA&quot;) to an obstacle is less than the defined minimal safe distance allowed to an obstacle (&quot;MinSafeDist&quot;), and that the Time at Closest Point of Approach to an obstacle (&quot;TCPA&quot;) is greater than or equal to 0."/>
-          </content>
-        </description>
-        <externalReference>
-          <location content="location"/>
-          <type content="type"/>
-          <metadata content="metadata"/>
-          <version content="version"/>
-          <implementationConstraint>
-            <content>
-              <value content="Constraint"/>
-            </content>
-          </implementationConstraint>
-        </externalReference>
-      </requirementAsset>
-      <requirementAsset xsi:type="requirement_:FunctionalRequirement" gid="LRE-Beh15" priority="5">
-        <name content="Beh15"/>
-        <description>
-          <content>
-            <value content="The LRE shall transition from HCM to OCM, if the Event &quot;reqOCM&quot; is triggered."/>
-          </content>
-        </description>
-        <externalReference>
-          <location content="location"/>
-          <type content="type"/>
-          <metadata content="metadata"/>
-          <version content="version"/>
-          <implementationConstraint>
-            <content>
-              <value content="Constraint"/>
-            </content>
-          </implementationConstraint>
-        </externalReference>
-      </requirementAsset>
-      <requirementAsset xsi:type="requirement_:FunctionalRequirement" gid="LRE-Beh16" priority="5">
-        <name content="Beh16"/>
-        <description>
-          <content>
-            <value content="The LRE shall transition from HCM to OCM, if it determines that it is in an OPEZ (&quot;inOPEZ&quot;)."/>
-          </content>
-        </description>
-        <externalReference>
-          <location content="location"/>
-          <type content="type"/>
-          <metadata content="metadata"/>
-          <version content="version"/>
-          <implementationConstraint>
-            <content>
-              <value content="Constraint"/>
-            </content>
-          </implementationConstraint>
-        </externalReference>
-      </requirementAsset>
-      <requirementAsset xsi:type="requirement_:FunctionalRequirement" gid="LRE-Beh17" priority="5">
-        <name content="Beh17"/>
-        <description>
-          <content>
-            <value content="The LRE shall transition from CAM to OCM, if the Event &quot;reqOCM&quot; is triggered."/>
-          </content>
-        </description>
-        <externalReference>
-          <location content="location"/>
-          <type content="type"/>
-          <metadata content="metadata"/>
-          <version content="version"/>
-          <implementationConstraint>
-            <content>
-              <value content="Constraint"/>
-            </content>
-          </implementationConstraint>
-        </externalReference>
-      </requirementAsset>
-      <requirementAsset xsi:type="requirement_:FunctionalRequirement" gid="LRE-Beh18" priority="5">
-        <name content="Beh18"/>
-        <description>
-          <content>
-            <value content="The LRE shall transition from CAM to OCM, if the the Closest Distance of Approach (&quot;CDA&quot;) to an obstacle is greater than or equal to the defined minimal safe distance allowed to an obstacle (&quot;MinSafeDist&quot;)."/>
-          </content>
-        </description>
-        <externalReference>
-          <location content="location"/>
-          <type content="type"/>
-          <metadata content="metadata"/>
-          <version content="version"/>
-          <implementationConstraint>
-            <content>
-              <value content="Constraint"/>
-            </content>
-          </implementationConstraint>
-        </externalReference>
-      </requirementAsset>
-    </requirementAsset>
-    <requirementAsset xsi:type="requirement_:FunctionalRequirement" gid="Platform-F1" priority="5" function="odist" inputs="Obstacle obstacle" outputs="real distance" source="AUV_Platform" destination="Navigation module, Obstacle avoidance module, or any component requiring proximity awareness" action="Computes the Euclidean distance from the AUV’s current position to the given Obstacle" requires="The Obstacle must have a defined position; the AUV’s current position must be available" pre_condition="Both the AUV and the Obstacle are located in the same coordinate reference frame" post_condition="A non-negative real value representing the distance is returned" side_effects="None – this function is read-only and does not alter system state">
-      <name content="Function1"/>
-      <description>
-        <content>
-          <value content="The &quot;AUV_Platform&quot; shall provide a Function named &quot;odist&quot;, which takes an &quot;Obstacle&quot; as input, that returns the distance from the AUV to the Obstacle (as &quot;real&quot;)."/>
-        </content>
-      </description>
-      <externalReference>
-        <location content="location"/>
-        <type content="type"/>
-        <metadata content="metadata"/>
-        <version content="version"/>
-        <implementationConstraint>
-          <content>
-            <value content="Constraint"/>
-          </content>
-        </implementationConstraint>
-      </externalReference>
-    </requirementAsset>
-    <requirementAsset xsi:type="requirement_:FunctionalRequirement" gid="Platform-F2" priority="5">
-      <name content="Function2"/>
-      <description>
-        <content>
-          <value content="The &quot;AUV_Platform&quot; shall provide a Function named &quot;hdist&quot;, which takes an &quot;Obstacle&quot; as input, that returns the horizontal distance from the AUV to the Obstacle (as &quot;real&quot;)."/>
-        </content>
-      </description>
-      <externalReference>
-        <location content="location"/>
-        <type content="type"/>
-        <metadata content="metadata"/>
-        <version content="version"/>
-        <implementationConstraint>
-          <content>
-            <value content="Constraint"/>
-          </content>
-        </implementationConstraint>
-      </externalReference>
-    </requirementAsset>
-    <requirementAsset xsi:type="requirement_:FunctionalRequirement" gid="Platform-F3" priority="5">
-      <name content="Function3"/>
-      <description>
-        <content>
-          <value content="The &quot;AUV_Platform&quot; shall provide a Function named &quot;vdist&quot;, which takes an &quot;Obstacle&quot; as input, that returns the vertical distance from the AUV to the Obstacle (as &quot;real&quot;)."/>
-        </content>
-      </description>
-      <externalReference>
-        <location content="location"/>
-        <type content="type"/>
-        <metadata content="metadata"/>
-        <version content="version"/>
-        <implementationConstraint>
-          <content>
-            <value content="Constraint"/>
-          </content>
-        </implementationConstraint>
-      </externalReference>
-    </requirementAsset>
-  </requirementAsset>
-</requirement_:RequirementPackage>
+<?xml version="1.0" encoding="ASCII"?>
+<Namespace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="sysmline">
+  <body xsi:type="Package" declaredName="requirement_model">
+    <body xsi:type="NamespaceImport" visibility="public" declaredName="requirement"/>
+    <body xsi:type="NamespaceImport" visibility="public" declaredName="base"/>
+    <body xsi:type="PartUsage" declaredName="RequirementPackage_1">
+      <body xsi:type="PartUsage" valuePart="LangString_1" isReference="true">
+        <featureNote>:></featureNote>
+        <featureSpecialization>name</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" valuePart="Description_1" isReference="true">
+        <featureNote>:></featureNote>
+        <featureSpecialization>description</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" valuePart="RequirementPackage_2" isReference="true">
+        <featureNote>:></featureNote>
+        <featureSpecialization>requirementAsset</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="RequirementPackage_2">
+        <body xsi:type="AttributeUsage" valuePart="&quot;RP1&quot;">
+          <featureNote>:>></featureNote>
+          <featureSpecialization>gid</featureSpecialization>
+        </body>
+        <body xsi:type="PartUsage" valuePart="RequirementPackage_2.LangString_3" isReference="true">
+          <featureNote>:></featureNote>
+          <featureSpecialization>name</featureSpecialization>
+        </body>
+        <body xsi:type="PartUsage" valuePart="RequirementPackage_2.Description_2" isReference="true">
+          <featureNote>:></featureNote>
+          <featureSpecialization>description</featureSpecialization>
+        </body>
+        <body xsi:type="PartUsage" valuePart="RequirementPackage_2.ExternalReference_1" isReference="true">
+          <featureNote>:></featureNote>
+          <featureSpecialization>externalReference</featureSpecialization>
+        </body>
+        <body xsi:type="PartUsage" valuePart="(RequirementPackage_2.NonFunctionalRequirement_1, RequirementPackage_2.NonFunctionalRequirement_2, RequirementPackage_2.NonFunctionalRequirement_3, RequirementPackage_2.NonFunctionalRequirement_4, RequirementPackage_2.NonFunctionalRequirement_5, RequirementPackage_2.NonFunctionalRequirement_6, RequirementPackage_2.NonFunctionalRequirement_7, RequirementPackage_2.NonFunctionalRequirement_8, RequirementPackage_2.NonFunctionalRequirement_9, RequirementPackage_2.NonFunctionalRequirement_10, RequirementPackage_2.NonFunctionalRequirement_11, RequirementPackage_2.NonFunctionalRequirement_12, RequirementPackage_2.NonFunctionalRequirement_13, RequirementPackage_2.NonFunctionalRequirement_14, RequirementPackage_2.NonFunctionalRequirement_15, RequirementPackage_2.NonFunctionalRequirement_16, RequirementPackage_2.NonFunctionalRequirement_17, RequirementPackage_2.RequirementPackage_3, RequirementPackage_2.FunctionalRequirement_23, RequirementPackage_2.FunctionalRequirement_24, RequirementPackage_2.FunctionalRequirement_25)" isReference="true">
+          <featureNote>:></featureNote>
+          <featureSpecialization>requirementAsset</featureSpecialization>
+        </body>
+        <body xsi:type="PartUsage" declaredName="NonFunctionalRequirement_1">
+          <body xsi:type="AttributeUsage" valuePart="&quot;SD1&quot;">
+            <featureNote>:>></featureNote>
+            <featureSpecialization>gid</featureSpecialization>
+          </body>
+          <body xsi:type="AttributeUsage" valuePart="6">
+            <featureNote>:>></featureNote>
+            <featureSpecialization>priority</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" valuePart="RequirementPackage_2.NonFunctionalRequirement_1.LangString_10" isReference="true">
+            <featureNote>:></featureNote>
+            <featureSpecialization>name</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" valuePart="RequirementPackage_2.NonFunctionalRequirement_1.Description_3" isReference="true">
+            <featureNote>:></featureNote>
+            <featureSpecialization>description</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" valuePart="RequirementPackage_2.NonFunctionalRequirement_1.ExternalReference_2" isReference="true">
+            <featureNote>:></featureNote>
+            <featureSpecialization>externalReference</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" valuePart="RequirementPackage_2.NonFunctionalRequirement_1.SecondaryRequirementType_1" isReference="true">
+            <featureNote>:></featureNote>
+            <featureSpecialization>type</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" declaredName="SecondaryRequirementType_1">
+            <body xsi:type="AttributeUsage" valuePart="true">
+              <featureNote>:>></featureNote>
+              <featureSpecialization>architecture</featureSpecialization>
+            </body>
+            <featureNote>:</featureNote>
+            <featureNote>:></featureNote>
+            <featureSpecialization>SecondaryRequirementType</featureSpecialization>
+            <featureSpecialization>type</featureSpecialization>
+          </body>
+          <featureNote>:</featureNote>
+          <featureNote>:></featureNote>
+          <featureSpecialization>NonFunctionalRequirement</featureSpecialization>
+          <featureSpecialization>requirementAsset</featureSpecialization>
+        </body>
+        <body xsi:type="PartUsage" declaredName="NonFunctionalRequirement_2">
+          <body xsi:type="AttributeUsage" valuePart="&quot;SD2&quot;">
+            <featureNote>:>></featureNote>
+            <featureSpecialization>gid</featureSpecialization>
+          </body>
+          <body xsi:type="AttributeUsage" valuePart="6">
+            <featureNote>:>></featureNote>
+            <featureSpecialization>priority</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" valuePart="RequirementPackage_2.NonFunctionalRequirement_2.LangString_17" isReference="true">
+            <featureNote>:></featureNote>
+            <featureSpecialization>name</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" valuePart="RequirementPackage_2.NonFunctionalRequirement_2.Description_4" isReference="true">
+            <featureNote>:></featureNote>
+            <featureSpecialization>description</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" valuePart="RequirementPackage_2.NonFunctionalRequirement_2.ExternalReference_3" isReference="true">
+            <featureNote>:></featureNote>
+            <featureSpecialization>externalReference</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" valuePart="RequirementPackage_2.NonFunctionalRequirement_2.SecondaryRequirementType_2" isReference="true">
+            <featureNote>:></featureNote>
+            <featureSpecialization>type</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" declaredName="SecondaryRequirementType_2">
+            <body xsi:type="AttributeUsage" valuePart="true">
+              <featureNote>:>></featureNote>
+              <featureSpecialization>architecture</featureSpecialization>
+            </body>
+            <featureNote>:</featureNote>
+            <featureNote>:></featureNote>
+            <featureSpecialization>SecondaryRequirementType</featureSpecialization>
+            <featureSpecialization>type</featureSpecialization>
+          </body>
+          <featureNote>:</featureNote>
+          <featureNote>:></featureNote>
+          <featureSpecialization>NonFunctionalRequirement</featureSpecialization>
+          <featureSpecialization>requirementAsset</featureSpecialization>
+        </body>
+        <body xsi:type="PartUsage" declaredName="NonFunctionalRequirement_3">
+          <body xsi:type="AttributeUsage" valuePart="&quot;SD3&quot;">
+            <featureNote>:>></featureNote>
+            <featureSpecialization>gid</featureSpecialization>
+          </body>
+          <body xsi:type="AttributeUsage" valuePart="6">
+            <featureNote>:>></featureNote>
+            <featureSpecialization>priority</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" valuePart="RequirementPackage_2.NonFunctionalRequirement_3.LangString_24" isReference="true">
+            <featureNote>:></featureNote>
+            <featureSpecialization>name</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" valuePart="RequirementPackage_2.NonFunctionalRequirement_3.Description_5" isReference="true">
+            <featureNote>:></featureNote>
+            <featureSpecialization>description</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" valuePart="RequirementPackage_2.NonFunctionalRequirement_3.ExternalReference_4" isReference="true">
+            <featureNote>:></featureNote>
+            <featureSpecialization>externalReference</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" valuePart="RequirementPackage_2.NonFunctionalRequirement_3.SecondaryRequirementType_3" isReference="true">
+            <featureNote>:></featureNote>
+            <featureSpecialization>type</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" declaredName="SecondaryRequirementType_3">
+            <body xsi:type="AttributeUsage" valuePart="true">
+              <featureNote>:>></featureNote>
+              <featureSpecialization>architecture</featureSpecialization>
+            </body>
+            <featureNote>:</featureNote>
+            <featureNote>:></featureNote>
+            <featureSpecialization>SecondaryRequirementType</featureSpecialization>
+            <featureSpecialization>type</featureSpecialization>
+          </body>
+          <featureNote>:</featureNote>
+          <featureNote>:></featureNote>
+          <featureSpecialization>NonFunctionalRequirement</featureSpecialization>
+          <featureSpecialization>requirementAsset</featureSpecialization>
+        </body>
+        <body xsi:type="PartUsage" declaredName="NonFunctionalRequirement_4">
+          <body xsi:type="AttributeUsage" valuePart="&quot;SD4&quot;">
+            <featureNote>:>></featureNote>
+            <featureSpecialization>gid</featureSpecialization>
+          </body>
+          <body xsi:type="AttributeUsage" valuePart="6">
+            <featureNote>:>></featureNote>
+            <featureSpecialization>priority</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" valuePart="RequirementPackage_2.NonFunctionalRequirement_4.LangString_31" isReference="true">
+            <featureNote>:></featureNote>
+            <featureSpecialization>name</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" valuePart="RequirementPackage_2.NonFunctionalRequirement_4.Description_6" isReference="true">
+            <featureNote>:></featureNote>
+            <featureSpecialization>description</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" valuePart="RequirementPackage_2.NonFunctionalRequirement_4.ExternalReference_5" isReference="true">
+            <featureNote>:></featureNote>
+            <featureSpecialization>externalReference</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" valuePart="RequirementPackage_2.NonFunctionalRequirement_4.SecondaryRequirementType_4" isReference="true">
+            <featureNote>:></featureNote>
+            <featureSpecialization>type</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" declaredName="SecondaryRequirementType_4">
+            <body xsi:type="AttributeUsage" valuePart="true">
+              <featureNote>:>></featureNote>
+              <featureSpecialization>architecture</featureSpecialization>
+            </body>
+            <featureNote>:</featureNote>
+            <featureNote>:></featureNote>
+            <featureSpecialization>SecondaryRequirementType</featureSpecialization>
+            <featureSpecialization>type</featureSpecialization>
+          </body>
+          <featureNote>:</featureNote>
+          <featureNote>:></featureNote>
+          <featureSpecialization>NonFunctionalRequirement</featureSpecialization>
+          <featureSpecialization>requirementAsset</featureSpecialization>
+        </body>
+        <body xsi:type="PartUsage" declaredName="NonFunctionalRequirement_5">
+          <body xsi:type="AttributeUsage" valuePart="&quot;SD5&quot;">
+            <featureNote>:>></featureNote>
+            <featureSpecialization>gid</featureSpecialization>
+          </body>
+          <body xsi:type="AttributeUsage" valuePart="6">
+            <featureNote>:>></featureNote>
+            <featureSpecialization>priority</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" valuePart="RequirementPackage_2.NonFunctionalRequirement_5.LangString_38" isReference="true">
+            <featureNote>:></featureNote>
+            <featureSpecialization>name</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" valuePart="RequirementPackage_2.NonFunctionalRequirement_5.Description_7" isReference="true">
+            <featureNote>:></featureNote>
+            <featureSpecialization>description</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" valuePart="RequirementPackage_2.NonFunctionalRequirement_5.ExternalReference_6" isReference="true">
+            <featureNote>:></featureNote>
+            <featureSpecialization>externalReference</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" valuePart="RequirementPackage_2.NonFunctionalRequirement_5.SecondaryRequirementType_5" isReference="true">
+            <featureNote>:></featureNote>
+            <featureSpecialization>type</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" declaredName="SecondaryRequirementType_5">
+            <body xsi:type="AttributeUsage" valuePart="true">
+              <featureNote>:>></featureNote>
+              <featureSpecialization>architecture</featureSpecialization>
+            </body>
+            <featureNote>:</featureNote>
+            <featureNote>:></featureNote>
+            <featureSpecialization>SecondaryRequirementType</featureSpecialization>
+            <featureSpecialization>type</featureSpecialization>
+          </body>
+          <featureNote>:</featureNote>
+          <featureNote>:></featureNote>
+          <featureSpecialization>NonFunctionalRequirement</featureSpecialization>
+          <featureSpecialization>requirementAsset</featureSpecialization>
+        </body>
+        <body xsi:type="PartUsage" declaredName="NonFunctionalRequirement_6">
+          <body xsi:type="AttributeUsage" valuePart="&quot;PT1&quot;">
+            <featureNote>:>></featureNote>
+            <featureSpecialization>gid</featureSpecialization>
+          </body>
+          <body xsi:type="AttributeUsage" valuePart="6">
+            <featureNote>:>></featureNote>
+            <featureSpecialization>priority</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" valuePart="RequirementPackage_2.NonFunctionalRequirement_6.LangString_45" isReference="true">
+            <featureNote>:></featureNote>
+            <featureSpecialization>name</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" valuePart="RequirementPackage_2.NonFunctionalRequirement_6.Description_8" isReference="true">
+            <featureNote>:></featureNote>
+            <featureSpecialization>description</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" valuePart="RequirementPackage_2.NonFunctionalRequirement_6.ExternalReference_7" isReference="true">
+            <featureNote>:></featureNote>
+            <featureSpecialization>externalReference</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" valuePart="RequirementPackage_2.NonFunctionalRequirement_6.SecondaryRequirementType_6" isReference="true">
+            <featureNote>:></featureNote>
+            <featureSpecialization>type</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" declaredName="SecondaryRequirementType_6">
+            <body xsi:type="AttributeUsage" valuePart="true">
+              <featureNote>:>></featureNote>
+              <featureSpecialization>architecture</featureSpecialization>
+            </body>
+            <featureNote>:</featureNote>
+            <featureNote>:></featureNote>
+            <featureSpecialization>SecondaryRequirementType</featureSpecialization>
+            <featureSpecialization>type</featureSpecialization>
+          </body>
+          <featureNote>:</featureNote>
+          <featureNote>:></featureNote>
+          <featureSpecialization>NonFunctionalRequirement</featureSpecialization>
+          <featureSpecialization>requirementAsset</featureSpecialization>
+        </body>
+        <body xsi:type="PartUsage" declaredName="NonFunctionalRequirement_7">
+          <body xsi:type="AttributeUsage" valuePart="&quot;PT2&quot;">
+            <featureNote>:>></featureNote>
+            <featureSpecialization>gid</featureSpecialization>
+          </body>
+          <body xsi:type="AttributeUsage" valuePart="6">
+            <featureNote>:>></featureNote>
+            <featureSpecialization>priority</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" valuePart="RequirementPackage_2.NonFunctionalRequirement_7.LangString_52" isReference="true">
+            <featureNote>:></featureNote>
+            <featureSpecialization>name</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" valuePart="RequirementPackage_2.NonFunctionalRequirement_7.Description_9" isReference="true">
+            <featureNote>:></featureNote>
+            <featureSpecialization>description</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" valuePart="RequirementPackage_2.NonFunctionalRequirement_7.ExternalReference_8" isReference="true">
+            <featureNote>:></featureNote>
+            <featureSpecialization>externalReference</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" valuePart="RequirementPackage_2.NonFunctionalRequirement_7.SecondaryRequirementType_7" isReference="true">
+            <featureNote>:></featureNote>
+            <featureSpecialization>type</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" declaredName="SecondaryRequirementType_7">
+            <body xsi:type="AttributeUsage" valuePart="true">
+              <featureNote>:>></featureNote>
+              <featureSpecialization>architecture</featureSpecialization>
+            </body>
+            <featureNote>:</featureNote>
+            <featureNote>:></featureNote>
+            <featureSpecialization>SecondaryRequirementType</featureSpecialization>
+            <featureSpecialization>type</featureSpecialization>
+          </body>
+          <featureNote>:</featureNote>
+          <featureNote>:></featureNote>
+          <featureSpecialization>NonFunctionalRequirement</featureSpecialization>
+          <featureSpecialization>requirementAsset</featureSpecialization>
+        </body>
+        <body xsi:type="PartUsage" declaredName="NonFunctionalRequirement_8">
+          <body xsi:type="AttributeUsage" valuePart="&quot;PT3&quot;">
+            <featureNote>:>></featureNote>
+            <featureSpecialization>gid</featureSpecialization>
+          </body>
+          <body xsi:type="AttributeUsage" valuePart="6">
+            <featureNote>:>></featureNote>
+            <featureSpecialization>priority</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" valuePart="RequirementPackage_2.NonFunctionalRequirement_8.LangString_59" isReference="true">
+            <featureNote>:></featureNote>
+            <featureSpecialization>name</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" valuePart="RequirementPackage_2.NonFunctionalRequirement_8.Description_10" isReference="true">
+            <featureNote>:></featureNote>
+            <featureSpecialization>description</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" valuePart="RequirementPackage_2.NonFunctionalRequirement_8.ExternalReference_9" isReference="true">
+            <featureNote>:></featureNote>
+            <featureSpecialization>externalReference</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" valuePart="RequirementPackage_2.NonFunctionalRequirement_8.SecondaryRequirementType_8" isReference="true">
+            <featureNote>:></featureNote>
+            <featureSpecialization>type</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" declaredName="SecondaryRequirementType_8">
+            <body xsi:type="AttributeUsage" valuePart="true">
+              <featureNote>:>></featureNote>
+              <featureSpecialization>architecture</featureSpecialization>
+            </body>
+            <featureNote>:</featureNote>
+            <featureNote>:></featureNote>
+            <featureSpecialization>SecondaryRequirementType</featureSpecialization>
+            <featureSpecialization>type</featureSpecialization>
+          </body>
+          <featureNote>:</featureNote>
+          <featureNote>:></featureNote>
+          <featureSpecialization>NonFunctionalRequirement</featureSpecialization>
+          <featureSpecialization>requirementAsset</featureSpecialization>
+        </body>
+        <body xsi:type="PartUsage" declaredName="NonFunctionalRequirement_9">
+          <body xsi:type="AttributeUsage" valuePart="&quot;PT4&quot;">
+            <featureNote>:>></featureNote>
+            <featureSpecialization>gid</featureSpecialization>
+          </body>
+          <body xsi:type="AttributeUsage" valuePart="6">
+            <featureNote>:>></featureNote>
+            <featureSpecialization>priority</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" valuePart="RequirementPackage_2.NonFunctionalRequirement_9.LangString_66" isReference="true">
+            <featureNote>:></featureNote>
+            <featureSpecialization>name</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" valuePart="RequirementPackage_2.NonFunctionalRequirement_9.Description_11" isReference="true">
+            <featureNote>:></featureNote>
+            <featureSpecialization>description</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" valuePart="RequirementPackage_2.NonFunctionalRequirement_9.ExternalReference_10" isReference="true">
+            <featureNote>:></featureNote>
+            <featureSpecialization>externalReference</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" valuePart="RequirementPackage_2.NonFunctionalRequirement_9.SecondaryRequirementType_9" isReference="true">
+            <featureNote>:></featureNote>
+            <featureSpecialization>type</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" declaredName="SecondaryRequirementType_9">
+            <body xsi:type="AttributeUsage" valuePart="true">
+              <featureNote>:>></featureNote>
+              <featureSpecialization>architecture</featureSpecialization>
+            </body>
+            <featureNote>:</featureNote>
+            <featureNote>:></featureNote>
+            <featureSpecialization>SecondaryRequirementType</featureSpecialization>
+            <featureSpecialization>type</featureSpecialization>
+          </body>
+          <featureNote>:</featureNote>
+          <featureNote>:></featureNote>
+          <featureSpecialization>NonFunctionalRequirement</featureSpecialization>
+          <featureSpecialization>requirementAsset</featureSpecialization>
+        </body>
+        <body xsi:type="PartUsage" declaredName="NonFunctionalRequirement_10">
+          <body xsi:type="AttributeUsage" valuePart="&quot;PT5&quot;">
+            <featureNote>:>></featureNote>
+            <featureSpecialization>gid</featureSpecialization>
+          </body>
+          <body xsi:type="AttributeUsage" valuePart="6">
+            <featureNote>:>></featureNote>
+            <featureSpecialization>priority</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" valuePart="RequirementPackage_2.NonFunctionalRequirement_10.LangString_73" isReference="true">
+            <featureNote>:></featureNote>
+            <featureSpecialization>name</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" valuePart="RequirementPackage_2.NonFunctionalRequirement_10.Description_12" isReference="true">
+            <featureNote>:></featureNote>
+            <featureSpecialization>description</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" valuePart="RequirementPackage_2.NonFunctionalRequirement_10.ExternalReference_11" isReference="true">
+            <featureNote>:></featureNote>
+            <featureSpecialization>externalReference</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" valuePart="RequirementPackage_2.NonFunctionalRequirement_10.SecondaryRequirementType_10" isReference="true">
+            <featureNote>:></featureNote>
+            <featureSpecialization>type</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" declaredName="SecondaryRequirementType_10">
+            <body xsi:type="AttributeUsage" valuePart="true">
+              <featureNote>:>></featureNote>
+              <featureSpecialization>architecture</featureSpecialization>
+            </body>
+            <featureNote>:</featureNote>
+            <featureNote>:></featureNote>
+            <featureSpecialization>SecondaryRequirementType</featureSpecialization>
+            <featureSpecialization>type</featureSpecialization>
+          </body>
+          <featureNote>:</featureNote>
+          <featureNote>:></featureNote>
+          <featureSpecialization>NonFunctionalRequirement</featureSpecialization>
+          <featureSpecialization>requirementAsset</featureSpecialization>
+        </body>
+        <body xsi:type="PartUsage" declaredName="NonFunctionalRequirement_11">
+          <body xsi:type="AttributeUsage" valuePart="&quot;CT1&quot;">
+            <featureNote>:>></featureNote>
+            <featureSpecialization>gid</featureSpecialization>
+          </body>
+          <body xsi:type="AttributeUsage" valuePart="6">
+            <featureNote>:>></featureNote>
+            <featureSpecialization>priority</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" valuePart="RequirementPackage_2.NonFunctionalRequirement_11.LangString_80" isReference="true">
+            <featureNote>:></featureNote>
+            <featureSpecialization>name</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" valuePart="RequirementPackage_2.NonFunctionalRequirement_11.Description_13" isReference="true">
+            <featureNote>:></featureNote>
+            <featureSpecialization>description</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" valuePart="RequirementPackage_2.NonFunctionalRequirement_11.ExternalReference_12" isReference="true">
+            <featureNote>:></featureNote>
+            <featureSpecialization>externalReference</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" valuePart="RequirementPackage_2.NonFunctionalRequirement_11.SecondaryRequirementType_11" isReference="true">
+            <featureNote>:></featureNote>
+            <featureSpecialization>type</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" declaredName="SecondaryRequirementType_11">
+            <body xsi:type="AttributeUsage" valuePart="true">
+              <featureNote>:>></featureNote>
+              <featureSpecialization>architecture</featureSpecialization>
+            </body>
+            <featureNote>:</featureNote>
+            <featureNote>:></featureNote>
+            <featureSpecialization>SecondaryRequirementType</featureSpecialization>
+            <featureSpecialization>type</featureSpecialization>
+          </body>
+          <featureNote>:</featureNote>
+          <featureNote>:></featureNote>
+          <featureSpecialization>NonFunctionalRequirement</featureSpecialization>
+          <featureSpecialization>requirementAsset</featureSpecialization>
+        </body>
+        <body xsi:type="PartUsage" declaredName="NonFunctionalRequirement_12">
+          <body xsi:type="AttributeUsage" valuePart="&quot;CT2&quot;">
+            <featureNote>:>></featureNote>
+            <featureSpecialization>gid</featureSpecialization>
+          </body>
+          <body xsi:type="AttributeUsage" valuePart="6">
+            <featureNote>:>></featureNote>
+            <featureSpecialization>priority</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" valuePart="RequirementPackage_2.NonFunctionalRequirement_12.LangString_87" isReference="true">
+            <featureNote>:></featureNote>
+            <featureSpecialization>name</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" valuePart="RequirementPackage_2.NonFunctionalRequirement_12.Description_14" isReference="true">
+            <featureNote>:></featureNote>
+            <featureSpecialization>description</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" valuePart="RequirementPackage_2.NonFunctionalRequirement_12.ExternalReference_13" isReference="true">
+            <featureNote>:></featureNote>
+            <featureSpecialization>externalReference</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" valuePart="RequirementPackage_2.NonFunctionalRequirement_12.SecondaryRequirementType_12" isReference="true">
+            <featureNote>:></featureNote>
+            <featureSpecialization>type</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" declaredName="SecondaryRequirementType_12">
+            <body xsi:type="AttributeUsage" valuePart="true">
+              <featureNote>:>></featureNote>
+              <featureSpecialization>architecture</featureSpecialization>
+            </body>
+            <featureNote>:</featureNote>
+            <featureNote>:></featureNote>
+            <featureSpecialization>SecondaryRequirementType</featureSpecialization>
+            <featureSpecialization>type</featureSpecialization>
+          </body>
+          <featureNote>:</featureNote>
+          <featureNote>:></featureNote>
+          <featureSpecialization>NonFunctionalRequirement</featureSpecialization>
+          <featureSpecialization>requirementAsset</featureSpecialization>
+        </body>
+        <body xsi:type="PartUsage" declaredName="NonFunctionalRequirement_13">
+          <body xsi:type="AttributeUsage" valuePart="&quot;Interface1&quot;">
+            <featureNote>:>></featureNote>
+            <featureSpecialization>gid</featureSpecialization>
+          </body>
+          <body xsi:type="AttributeUsage" valuePart="6">
+            <featureNote>:>></featureNote>
+            <featureSpecialization>priority</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" valuePart="RequirementPackage_2.NonFunctionalRequirement_13.LangString_94" isReference="true">
+            <featureNote>:></featureNote>
+            <featureSpecialization>name</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" valuePart="RequirementPackage_2.NonFunctionalRequirement_13.Description_15" isReference="true">
+            <featureNote>:></featureNote>
+            <featureSpecialization>description</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" valuePart="RequirementPackage_2.NonFunctionalRequirement_13.ExternalReference_14" isReference="true">
+            <featureNote>:></featureNote>
+            <featureSpecialization>externalReference</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" valuePart="RequirementPackage_2.NonFunctionalRequirement_13.SecondaryRequirementType_13" isReference="true">
+            <featureNote>:></featureNote>
+            <featureSpecialization>type</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" declaredName="SecondaryRequirementType_13">
+            <body xsi:type="AttributeUsage" valuePart="true">
+              <featureNote>:>></featureNote>
+              <featureSpecialization>architecture</featureSpecialization>
+            </body>
+            <featureNote>:</featureNote>
+            <featureNote>:></featureNote>
+            <featureSpecialization>SecondaryRequirementType</featureSpecialization>
+            <featureSpecialization>type</featureSpecialization>
+          </body>
+          <featureNote>:</featureNote>
+          <featureNote>:></featureNote>
+          <featureSpecialization>NonFunctionalRequirement</featureSpecialization>
+          <featureSpecialization>requirementAsset</featureSpecialization>
+        </body>
+        <body xsi:type="PartUsage" declaredName="NonFunctionalRequirement_14">
+          <body xsi:type="AttributeUsage" valuePart="&quot;Interface2&quot;">
+            <featureNote>:>></featureNote>
+            <featureSpecialization>gid</featureSpecialization>
+          </body>
+          <body xsi:type="AttributeUsage" valuePart="6">
+            <featureNote>:>></featureNote>
+            <featureSpecialization>priority</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" valuePart="RequirementPackage_2.NonFunctionalRequirement_14.LangString_101" isReference="true">
+            <featureNote>:></featureNote>
+            <featureSpecialization>name</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" valuePart="RequirementPackage_2.NonFunctionalRequirement_14.Description_16" isReference="true">
+            <featureNote>:></featureNote>
+            <featureSpecialization>description</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" valuePart="RequirementPackage_2.NonFunctionalRequirement_14.ExternalReference_15" isReference="true">
+            <featureNote>:></featureNote>
+            <featureSpecialization>externalReference</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" valuePart="RequirementPackage_2.NonFunctionalRequirement_14.SecondaryRequirementType_14" isReference="true">
+            <featureNote>:></featureNote>
+            <featureSpecialization>type</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" declaredName="SecondaryRequirementType_14">
+            <body xsi:type="AttributeUsage" valuePart="true">
+              <featureNote>:>></featureNote>
+              <featureSpecialization>architecture</featureSpecialization>
+            </body>
+            <featureNote>:</featureNote>
+            <featureNote>:></featureNote>
+            <featureSpecialization>SecondaryRequirementType</featureSpecialization>
+            <featureSpecialization>type</featureSpecialization>
+          </body>
+          <featureNote>:</featureNote>
+          <featureNote>:></featureNote>
+          <featureSpecialization>NonFunctionalRequirement</featureSpecialization>
+          <featureSpecialization>requirementAsset</featureSpecialization>
+        </body>
+        <body xsi:type="PartUsage" declaredName="NonFunctionalRequirement_15">
+          <body xsi:type="AttributeUsage" valuePart="&quot;Interface3&quot;">
+            <featureNote>:>></featureNote>
+            <featureSpecialization>gid</featureSpecialization>
+          </body>
+          <body xsi:type="AttributeUsage" valuePart="6">
+            <featureNote>:>></featureNote>
+            <featureSpecialization>priority</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" valuePart="RequirementPackage_2.NonFunctionalRequirement_15.LangString_108" isReference="true">
+            <featureNote>:></featureNote>
+            <featureSpecialization>name</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" valuePart="RequirementPackage_2.NonFunctionalRequirement_15.Description_17" isReference="true">
+            <featureNote>:></featureNote>
+            <featureSpecialization>description</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" valuePart="RequirementPackage_2.NonFunctionalRequirement_15.ExternalReference_16" isReference="true">
+            <featureNote>:></featureNote>
+            <featureSpecialization>externalReference</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" valuePart="RequirementPackage_2.NonFunctionalRequirement_15.SecondaryRequirementType_15" isReference="true">
+            <featureNote>:></featureNote>
+            <featureSpecialization>type</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" declaredName="SecondaryRequirementType_15">
+            <body xsi:type="AttributeUsage" valuePart="true">
+              <featureNote>:>></featureNote>
+              <featureSpecialization>architecture</featureSpecialization>
+            </body>
+            <featureNote>:</featureNote>
+            <featureNote>:></featureNote>
+            <featureSpecialization>SecondaryRequirementType</featureSpecialization>
+            <featureSpecialization>type</featureSpecialization>
+          </body>
+          <featureNote>:</featureNote>
+          <featureNote>:></featureNote>
+          <featureSpecialization>NonFunctionalRequirement</featureSpecialization>
+          <featureSpecialization>requirementAsset</featureSpecialization>
+        </body>
+        <body xsi:type="PartUsage" declaredName="NonFunctionalRequirement_16">
+          <body xsi:type="AttributeUsage" valuePart="&quot;Interface4&quot;">
+            <featureNote>:>></featureNote>
+            <featureSpecialization>gid</featureSpecialization>
+          </body>
+          <body xsi:type="AttributeUsage" valuePart="6">
+            <featureNote>:>></featureNote>
+            <featureSpecialization>priority</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" valuePart="RequirementPackage_2.NonFunctionalRequirement_16.LangString_115" isReference="true">
+            <featureNote>:></featureNote>
+            <featureSpecialization>name</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" valuePart="RequirementPackage_2.NonFunctionalRequirement_16.Description_18" isReference="true">
+            <featureNote>:></featureNote>
+            <featureSpecialization>description</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" valuePart="RequirementPackage_2.NonFunctionalRequirement_16.ExternalReference_17" isReference="true">
+            <featureNote>:></featureNote>
+            <featureSpecialization>externalReference</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" valuePart="RequirementPackage_2.NonFunctionalRequirement_16.SecondaryRequirementType_16" isReference="true">
+            <featureNote>:></featureNote>
+            <featureSpecialization>type</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" declaredName="SecondaryRequirementType_16">
+            <body xsi:type="AttributeUsage" valuePart="true">
+              <featureNote>:>></featureNote>
+              <featureSpecialization>architecture</featureSpecialization>
+            </body>
+            <featureNote>:</featureNote>
+            <featureNote>:></featureNote>
+            <featureSpecialization>SecondaryRequirementType</featureSpecialization>
+            <featureSpecialization>type</featureSpecialization>
+          </body>
+          <featureNote>:</featureNote>
+          <featureNote>:></featureNote>
+          <featureSpecialization>NonFunctionalRequirement</featureSpecialization>
+          <featureSpecialization>requirementAsset</featureSpecialization>
+        </body>
+        <body xsi:type="PartUsage" declaredName="NonFunctionalRequirement_17">
+          <body xsi:type="AttributeUsage" valuePart="&quot;CF3&quot;">
+            <featureNote>:>></featureNote>
+            <featureSpecialization>gid</featureSpecialization>
+          </body>
+          <body xsi:type="AttributeUsage" valuePart="6">
+            <featureNote>:>></featureNote>
+            <featureSpecialization>priority</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" valuePart="RequirementPackage_2.NonFunctionalRequirement_17.LangString_122" isReference="true">
+            <featureNote>:></featureNote>
+            <featureSpecialization>name</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" valuePart="RequirementPackage_2.NonFunctionalRequirement_17.Description_19" isReference="true">
+            <featureNote>:></featureNote>
+            <featureSpecialization>description</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" valuePart="RequirementPackage_2.NonFunctionalRequirement_17.ExternalReference_18" isReference="true">
+            <featureNote>:></featureNote>
+            <featureSpecialization>externalReference</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" valuePart="RequirementPackage_2.NonFunctionalRequirement_17.SecondaryRequirementType_17" isReference="true">
+            <featureNote>:></featureNote>
+            <featureSpecialization>type</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" declaredName="SecondaryRequirementType_17">
+            <body xsi:type="AttributeUsage" valuePart="true">
+              <featureNote>:>></featureNote>
+              <featureSpecialization>architecture</featureSpecialization>
+            </body>
+            <featureNote>:</featureNote>
+            <featureNote>:></featureNote>
+            <featureSpecialization>SecondaryRequirementType</featureSpecialization>
+            <featureSpecialization>type</featureSpecialization>
+          </body>
+          <featureNote>:</featureNote>
+          <featureNote>:></featureNote>
+          <featureSpecialization>NonFunctionalRequirement</featureSpecialization>
+          <featureSpecialization>requirementAsset</featureSpecialization>
+        </body>
+        <body xsi:type="PartUsage" declaredName="RequirementPackage_3">
+          <body xsi:type="AttributeUsage" valuePart="&quot;LRE_RP&quot;">
+            <featureNote>:>></featureNote>
+            <featureSpecialization>gid</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.LangString_129" isReference="true">
+            <featureNote>:></featureNote>
+            <featureSpecialization>name</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.Description_20" isReference="true">
+            <featureNote>:></featureNote>
+            <featureSpecialization>description</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.ExternalReference_19" isReference="true">
+            <featureNote>:></featureNote>
+            <featureSpecialization>externalReference</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" valuePart="(RequirementPackage_2.RequirementPackage_3.NonFunctionalRequirement_18, RequirementPackage_2.RequirementPackage_3.NonFunctionalRequirement_19, RequirementPackage_2.RequirementPackage_3.NonFunctionalRequirement_20, RequirementPackage_2.RequirementPackage_3.NonFunctionalRequirement_21, RequirementPackage_2.RequirementPackage_3.NonFunctionalRequirement_22, RequirementPackage_2.RequirementPackage_3.NonFunctionalRequirement_23, RequirementPackage_2.RequirementPackage_3.NonFunctionalRequirement_24, RequirementPackage_2.RequirementPackage_3.NonFunctionalRequirement_25, RequirementPackage_2.RequirementPackage_3.NonFunctionalRequirement_26, RequirementPackage_2.RequirementPackage_3.NonFunctionalRequirement_27, RequirementPackage_2.RequirementPackage_3.NonFunctionalRequirement_28, RequirementPackage_2.RequirementPackage_3.NonFunctionalRequirement_29, RequirementPackage_2.RequirementPackage_3.NonFunctionalRequirement_30, RequirementPackage_2.RequirementPackage_3.FunctionalRequirement_1, RequirementPackage_2.RequirementPackage_3.FunctionalRequirement_2, RequirementPackage_2.RequirementPackage_3.FunctionalRequirement_3, RequirementPackage_2.RequirementPackage_3.FunctionalRequirement_4, RequirementPackage_2.RequirementPackage_3.NonFunctionalRequirement_31, RequirementPackage_2.RequirementPackage_3.NonFunctionalRequirement_32, RequirementPackage_2.RequirementPackage_3.NonFunctionalRequirement_33, RequirementPackage_2.RequirementPackage_3.FunctionalRequirement_5, RequirementPackage_2.RequirementPackage_3.FunctionalRequirement_6, RequirementPackage_2.RequirementPackage_3.FunctionalRequirement_7, RequirementPackage_2.RequirementPackage_3.FunctionalRequirement_8, RequirementPackage_2.RequirementPackage_3.FunctionalRequirement_9, RequirementPackage_2.RequirementPackage_3.FunctionalRequirement_10, RequirementPackage_2.RequirementPackage_3.FunctionalRequirement_11, RequirementPackage_2.RequirementPackage_3.FunctionalRequirement_12, RequirementPackage_2.RequirementPackage_3.FunctionalRequirement_13, RequirementPackage_2.RequirementPackage_3.FunctionalRequirement_14, RequirementPackage_2.RequirementPackage_3.FunctionalRequirement_15, RequirementPackage_2.RequirementPackage_3.FunctionalRequirement_16, RequirementPackage_2.RequirementPackage_3.FunctionalRequirement_17, RequirementPackage_2.RequirementPackage_3.FunctionalRequirement_18, RequirementPackage_2.RequirementPackage_3.FunctionalRequirement_19, RequirementPackage_2.RequirementPackage_3.FunctionalRequirement_20, RequirementPackage_2.RequirementPackage_3.FunctionalRequirement_21, RequirementPackage_2.RequirementPackage_3.FunctionalRequirement_22)" isReference="true">
+            <featureNote>:></featureNote>
+            <featureSpecialization>requirementAsset</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" declaredName="NonFunctionalRequirement_18">
+            <body xsi:type="AttributeUsage" valuePart="&quot;LRE-NF1&quot;">
+              <featureNote>:>></featureNote>
+              <featureSpecialization>gid</featureSpecialization>
+            </body>
+            <body xsi:type="AttributeUsage" valuePart="6">
+              <featureNote>:>></featureNote>
+              <featureSpecialization>priority</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.NonFunctionalRequirement_18.LangString_136" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>name</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.NonFunctionalRequirement_18.Description_21" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>description</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.NonFunctionalRequirement_18.ExternalReference_20" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>externalReference</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.NonFunctionalRequirement_18.SecondaryRequirementType_18" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>type</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" declaredName="SecondaryRequirementType_18">
+              <body xsi:type="AttributeUsage" valuePart="true">
+                <featureNote>:>></featureNote>
+                <featureSpecialization>architecture</featureSpecialization>
+              </body>
+              <featureNote>:</featureNote>
+              <featureNote>:></featureNote>
+              <featureSpecialization>SecondaryRequirementType</featureSpecialization>
+              <featureSpecialization>type</featureSpecialization>
+            </body>
+            <featureNote>:</featureNote>
+            <featureNote>:></featureNote>
+            <featureSpecialization>NonFunctionalRequirement</featureSpecialization>
+            <featureSpecialization>requirementAsset</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" declaredName="NonFunctionalRequirement_19">
+            <body xsi:type="AttributeUsage" valuePart="&quot;LRE-Var1&quot;">
+              <featureNote>:>></featureNote>
+              <featureSpecialization>gid</featureSpecialization>
+            </body>
+            <body xsi:type="AttributeUsage" valuePart="6">
+              <featureNote>:>></featureNote>
+              <featureSpecialization>priority</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.NonFunctionalRequirement_19.LangString_143" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>name</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.NonFunctionalRequirement_19.Description_22" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>description</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.NonFunctionalRequirement_19.ExternalReference_21" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>externalReference</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.NonFunctionalRequirement_19.SecondaryRequirementType_19" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>type</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" declaredName="SecondaryRequirementType_19">
+              <body xsi:type="AttributeUsage" valuePart="true">
+                <featureNote>:>></featureNote>
+                <featureSpecialization>architecture</featureSpecialization>
+              </body>
+              <featureNote>:</featureNote>
+              <featureNote>:></featureNote>
+              <featureSpecialization>SecondaryRequirementType</featureSpecialization>
+              <featureSpecialization>type</featureSpecialization>
+            </body>
+            <featureNote>:</featureNote>
+            <featureNote>:></featureNote>
+            <featureSpecialization>NonFunctionalRequirement</featureSpecialization>
+            <featureSpecialization>requirementAsset</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" declaredName="NonFunctionalRequirement_20">
+            <body xsi:type="AttributeUsage" valuePart="&quot;LRE-Var2&quot;">
+              <featureNote>:>></featureNote>
+              <featureSpecialization>gid</featureSpecialization>
+            </body>
+            <body xsi:type="AttributeUsage" valuePart="6">
+              <featureNote>:>></featureNote>
+              <featureSpecialization>priority</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.NonFunctionalRequirement_20.LangString_150" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>name</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.NonFunctionalRequirement_20.Description_23" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>description</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.NonFunctionalRequirement_20.ExternalReference_22" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>externalReference</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.NonFunctionalRequirement_20.SecondaryRequirementType_20" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>type</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" declaredName="SecondaryRequirementType_20">
+              <featureNote>:</featureNote>
+              <featureNote>:></featureNote>
+              <featureSpecialization>SecondaryRequirementType</featureSpecialization>
+              <featureSpecialization>type</featureSpecialization>
+            </body>
+            <featureNote>:</featureNote>
+            <featureNote>:></featureNote>
+            <featureSpecialization>NonFunctionalRequirement</featureSpecialization>
+            <featureSpecialization>requirementAsset</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" declaredName="NonFunctionalRequirement_21">
+            <body xsi:type="AttributeUsage" valuePart="&quot;LRE-Var3&quot;">
+              <featureNote>:>></featureNote>
+              <featureSpecialization>gid</featureSpecialization>
+            </body>
+            <body xsi:type="AttributeUsage" valuePart="6">
+              <featureNote>:>></featureNote>
+              <featureSpecialization>priority</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.NonFunctionalRequirement_21.LangString_157" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>name</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.NonFunctionalRequirement_21.Description_24" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>description</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.NonFunctionalRequirement_21.ExternalReference_23" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>externalReference</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.NonFunctionalRequirement_21.SecondaryRequirementType_21" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>type</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" declaredName="SecondaryRequirementType_21">
+              <body xsi:type="AttributeUsage" valuePart="true">
+                <featureNote>:>></featureNote>
+                <featureSpecialization>architecture</featureSpecialization>
+              </body>
+              <featureNote>:</featureNote>
+              <featureNote>:></featureNote>
+              <featureSpecialization>SecondaryRequirementType</featureSpecialization>
+              <featureSpecialization>type</featureSpecialization>
+            </body>
+            <featureNote>:</featureNote>
+            <featureNote>:></featureNote>
+            <featureSpecialization>NonFunctionalRequirement</featureSpecialization>
+            <featureSpecialization>requirementAsset</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" declaredName="NonFunctionalRequirement_22">
+            <body xsi:type="AttributeUsage" valuePart="&quot;LRE-Var4&quot;">
+              <featureNote>:>></featureNote>
+              <featureSpecialization>gid</featureSpecialization>
+            </body>
+            <body xsi:type="AttributeUsage" valuePart="6">
+              <featureNote>:>></featureNote>
+              <featureSpecialization>priority</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.NonFunctionalRequirement_22.LangString_164" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>name</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.NonFunctionalRequirement_22.Description_25" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>description</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.NonFunctionalRequirement_22.ExternalReference_24" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>externalReference</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.NonFunctionalRequirement_22.SecondaryRequirementType_22" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>type</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" declaredName="SecondaryRequirementType_22">
+              <body xsi:type="AttributeUsage" valuePart="true">
+                <featureNote>:>></featureNote>
+                <featureSpecialization>architecture</featureSpecialization>
+              </body>
+              <featureNote>:</featureNote>
+              <featureNote>:></featureNote>
+              <featureSpecialization>SecondaryRequirementType</featureSpecialization>
+              <featureSpecialization>type</featureSpecialization>
+            </body>
+            <featureNote>:</featureNote>
+            <featureNote>:></featureNote>
+            <featureSpecialization>NonFunctionalRequirement</featureSpecialization>
+            <featureSpecialization>requirementAsset</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" declaredName="NonFunctionalRequirement_23">
+            <body xsi:type="AttributeUsage" valuePart="&quot;LRE-Var5&quot;">
+              <featureNote>:>></featureNote>
+              <featureSpecialization>gid</featureSpecialization>
+            </body>
+            <body xsi:type="AttributeUsage" valuePart="6">
+              <featureNote>:>></featureNote>
+              <featureSpecialization>priority</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.NonFunctionalRequirement_23.LangString_171" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>name</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.NonFunctionalRequirement_23.Description_26" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>description</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.NonFunctionalRequirement_23.ExternalReference_25" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>externalReference</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.NonFunctionalRequirement_23.SecondaryRequirementType_23" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>type</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" declaredName="SecondaryRequirementType_23">
+              <body xsi:type="AttributeUsage" valuePart="true">
+                <featureNote>:>></featureNote>
+                <featureSpecialization>architecture</featureSpecialization>
+              </body>
+              <featureNote>:</featureNote>
+              <featureNote>:></featureNote>
+              <featureSpecialization>SecondaryRequirementType</featureSpecialization>
+              <featureSpecialization>type</featureSpecialization>
+            </body>
+            <featureNote>:</featureNote>
+            <featureNote>:></featureNote>
+            <featureSpecialization>NonFunctionalRequirement</featureSpecialization>
+            <featureSpecialization>requirementAsset</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" declaredName="NonFunctionalRequirement_24">
+            <body xsi:type="AttributeUsage" valuePart="&quot;LRE-Var6&quot;">
+              <featureNote>:>></featureNote>
+              <featureSpecialization>gid</featureSpecialization>
+            </body>
+            <body xsi:type="AttributeUsage" valuePart="6">
+              <featureNote>:>></featureNote>
+              <featureSpecialization>priority</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.NonFunctionalRequirement_24.LangString_178" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>name</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.NonFunctionalRequirement_24.Description_27" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>description</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.NonFunctionalRequirement_24.ExternalReference_26" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>externalReference</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.NonFunctionalRequirement_24.SecondaryRequirementType_24" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>type</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" declaredName="SecondaryRequirementType_24">
+              <body xsi:type="AttributeUsage" valuePart="true">
+                <featureNote>:>></featureNote>
+                <featureSpecialization>architecture</featureSpecialization>
+              </body>
+              <featureNote>:</featureNote>
+              <featureNote>:></featureNote>
+              <featureSpecialization>SecondaryRequirementType</featureSpecialization>
+              <featureSpecialization>type</featureSpecialization>
+            </body>
+            <featureNote>:</featureNote>
+            <featureNote>:></featureNote>
+            <featureSpecialization>NonFunctionalRequirement</featureSpecialization>
+            <featureSpecialization>requirementAsset</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" declaredName="NonFunctionalRequirement_25">
+            <body xsi:type="AttributeUsage" valuePart="&quot;LRE-Var7&quot;">
+              <featureNote>:>></featureNote>
+              <featureSpecialization>gid</featureSpecialization>
+            </body>
+            <body xsi:type="AttributeUsage" valuePart="6">
+              <featureNote>:>></featureNote>
+              <featureSpecialization>priority</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.NonFunctionalRequirement_25.LangString_185" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>name</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.NonFunctionalRequirement_25.Description_28" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>description</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.NonFunctionalRequirement_25.ExternalReference_27" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>externalReference</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.NonFunctionalRequirement_25.SecondaryRequirementType_25" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>type</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" declaredName="SecondaryRequirementType_25">
+              <body xsi:type="AttributeUsage" valuePart="true">
+                <featureNote>:>></featureNote>
+                <featureSpecialization>architecture</featureSpecialization>
+              </body>
+              <featureNote>:</featureNote>
+              <featureNote>:></featureNote>
+              <featureSpecialization>SecondaryRequirementType</featureSpecialization>
+              <featureSpecialization>type</featureSpecialization>
+            </body>
+            <featureNote>:</featureNote>
+            <featureNote>:></featureNote>
+            <featureSpecialization>NonFunctionalRequirement</featureSpecialization>
+            <featureSpecialization>requirementAsset</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" declaredName="NonFunctionalRequirement_26">
+            <body xsi:type="AttributeUsage" valuePart="&quot;LRE-Var8&quot;">
+              <featureNote>:>></featureNote>
+              <featureSpecialization>gid</featureSpecialization>
+            </body>
+            <body xsi:type="AttributeUsage" valuePart="6">
+              <featureNote>:>></featureNote>
+              <featureSpecialization>priority</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.NonFunctionalRequirement_26.LangString_192" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>name</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.NonFunctionalRequirement_26.Description_29" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>description</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.NonFunctionalRequirement_26.ExternalReference_28" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>externalReference</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.NonFunctionalRequirement_26.SecondaryRequirementType_26" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>type</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" declaredName="SecondaryRequirementType_26">
+              <body xsi:type="AttributeUsage" valuePart="true">
+                <featureNote>:>></featureNote>
+                <featureSpecialization>architecture</featureSpecialization>
+              </body>
+              <featureNote>:</featureNote>
+              <featureNote>:></featureNote>
+              <featureSpecialization>SecondaryRequirementType</featureSpecialization>
+              <featureSpecialization>type</featureSpecialization>
+            </body>
+            <featureNote>:</featureNote>
+            <featureNote>:></featureNote>
+            <featureSpecialization>NonFunctionalRequirement</featureSpecialization>
+            <featureSpecialization>requirementAsset</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" declaredName="NonFunctionalRequirement_27">
+            <body xsi:type="AttributeUsage" valuePart="&quot;LRE-Const1&quot;">
+              <featureNote>:>></featureNote>
+              <featureSpecialization>gid</featureSpecialization>
+            </body>
+            <body xsi:type="AttributeUsage" valuePart="6">
+              <featureNote>:>></featureNote>
+              <featureSpecialization>priority</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.NonFunctionalRequirement_27.LangString_199" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>name</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.NonFunctionalRequirement_27.Description_30" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>description</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.NonFunctionalRequirement_27.ExternalReference_29" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>externalReference</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.NonFunctionalRequirement_27.SecondaryRequirementType_27" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>type</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" declaredName="SecondaryRequirementType_27">
+              <body xsi:type="AttributeUsage" valuePart="true">
+                <featureNote>:>></featureNote>
+                <featureSpecialization>architecture</featureSpecialization>
+              </body>
+              <featureNote>:</featureNote>
+              <featureNote>:></featureNote>
+              <featureSpecialization>SecondaryRequirementType</featureSpecialization>
+              <featureSpecialization>type</featureSpecialization>
+            </body>
+            <featureNote>:</featureNote>
+            <featureNote>:></featureNote>
+            <featureSpecialization>NonFunctionalRequirement</featureSpecialization>
+            <featureSpecialization>requirementAsset</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" declaredName="NonFunctionalRequirement_28">
+            <body xsi:type="AttributeUsage" valuePart="&quot;LRE-Const2&quot;">
+              <featureNote>:>></featureNote>
+              <featureSpecialization>gid</featureSpecialization>
+            </body>
+            <body xsi:type="AttributeUsage" valuePart="6">
+              <featureNote>:>></featureNote>
+              <featureSpecialization>priority</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.NonFunctionalRequirement_28.LangString_206" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>name</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.NonFunctionalRequirement_28.Description_31" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>description</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.NonFunctionalRequirement_28.ExternalReference_30" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>externalReference</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.NonFunctionalRequirement_28.SecondaryRequirementType_28" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>type</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" declaredName="SecondaryRequirementType_28">
+              <body xsi:type="AttributeUsage" valuePart="true">
+                <featureNote>:>></featureNote>
+                <featureSpecialization>architecture</featureSpecialization>
+              </body>
+              <featureNote>:</featureNote>
+              <featureNote>:></featureNote>
+              <featureSpecialization>SecondaryRequirementType</featureSpecialization>
+              <featureSpecialization>type</featureSpecialization>
+            </body>
+            <featureNote>:</featureNote>
+            <featureNote>:></featureNote>
+            <featureSpecialization>NonFunctionalRequirement</featureSpecialization>
+            <featureSpecialization>requirementAsset</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" declaredName="NonFunctionalRequirement_29">
+            <body xsi:type="AttributeUsage" valuePart="&quot;LRE-Const3&quot;">
+              <featureNote>:>></featureNote>
+              <featureSpecialization>gid</featureSpecialization>
+            </body>
+            <body xsi:type="AttributeUsage" valuePart="6">
+              <featureNote>:>></featureNote>
+              <featureSpecialization>priority</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.NonFunctionalRequirement_29.LangString_213" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>name</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.NonFunctionalRequirement_29.Description_32" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>description</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.NonFunctionalRequirement_29.ExternalReference_31" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>externalReference</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.NonFunctionalRequirement_29.SecondaryRequirementType_29" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>type</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" declaredName="SecondaryRequirementType_29">
+              <body xsi:type="AttributeUsage" valuePart="true">
+                <featureNote>:>></featureNote>
+                <featureSpecialization>architecture</featureSpecialization>
+              </body>
+              <featureNote>:</featureNote>
+              <featureNote>:></featureNote>
+              <featureSpecialization>SecondaryRequirementType</featureSpecialization>
+              <featureSpecialization>type</featureSpecialization>
+            </body>
+            <featureNote>:</featureNote>
+            <featureNote>:></featureNote>
+            <featureSpecialization>NonFunctionalRequirement</featureSpecialization>
+            <featureSpecialization>requirementAsset</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" declaredName="NonFunctionalRequirement_30">
+            <body xsi:type="AttributeUsage" valuePart="&quot;LRE-Const5&quot;">
+              <featureNote>:>></featureNote>
+              <featureSpecialization>gid</featureSpecialization>
+            </body>
+            <body xsi:type="AttributeUsage" valuePart="6">
+              <featureNote>:>></featureNote>
+              <featureSpecialization>priority</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.NonFunctionalRequirement_30.LangString_220" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>name</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.NonFunctionalRequirement_30.Description_33" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>description</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.NonFunctionalRequirement_30.ExternalReference_32" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>externalReference</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.NonFunctionalRequirement_30.SecondaryRequirementType_30" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>type</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" declaredName="SecondaryRequirementType_30">
+              <body xsi:type="AttributeUsage" valuePart="true">
+                <featureNote>:>></featureNote>
+                <featureSpecialization>architecture</featureSpecialization>
+              </body>
+              <featureNote>:</featureNote>
+              <featureNote>:></featureNote>
+              <featureSpecialization>SecondaryRequirementType</featureSpecialization>
+              <featureSpecialization>type</featureSpecialization>
+            </body>
+            <featureNote>:</featureNote>
+            <featureNote>:></featureNote>
+            <featureSpecialization>NonFunctionalRequirement</featureSpecialization>
+            <featureSpecialization>requirementAsset</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" declaredName="FunctionalRequirement_1">
+            <body xsi:type="AttributeUsage" valuePart="&quot;LRE-FR1&quot;">
+              <featureNote>:>></featureNote>
+              <featureSpecialization>gid</featureSpecialization>
+            </body>
+            <body xsi:type="AttributeUsage" valuePart="5">
+              <featureNote>:>></featureNote>
+              <featureSpecialization>priority</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.FunctionalRequirement_1.LangString_227" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>name</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.FunctionalRequirement_1.Description_34" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>description</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.FunctionalRequirement_1.ExternalReference_33" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>externalReference</featureSpecialization>
+            </body>
+            <featureNote>:</featureNote>
+            <featureNote>:></featureNote>
+            <featureSpecialization>FunctionalRequirement</featureSpecialization>
+            <featureSpecialization>requirementAsset</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" declaredName="FunctionalRequirement_2">
+            <body xsi:type="AttributeUsage" valuePart="&quot;LRE-FR2&quot;">
+              <featureNote>:>></featureNote>
+              <featureSpecialization>gid</featureSpecialization>
+            </body>
+            <body xsi:type="AttributeUsage" valuePart="5">
+              <featureNote>:>></featureNote>
+              <featureSpecialization>priority</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.FunctionalRequirement_2.LangString_234" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>name</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.FunctionalRequirement_2.Description_35" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>description</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.FunctionalRequirement_2.ExternalReference_34" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>externalReference</featureSpecialization>
+            </body>
+            <featureNote>:</featureNote>
+            <featureNote>:></featureNote>
+            <featureSpecialization>FunctionalRequirement</featureSpecialization>
+            <featureSpecialization>requirementAsset</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" declaredName="FunctionalRequirement_3">
+            <body xsi:type="AttributeUsage" valuePart="&quot;LRE-FR3&quot;">
+              <featureNote>:>></featureNote>
+              <featureSpecialization>gid</featureSpecialization>
+            </body>
+            <body xsi:type="AttributeUsage" valuePart="5">
+              <featureNote>:>></featureNote>
+              <featureSpecialization>priority</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.FunctionalRequirement_3.LangString_241" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>name</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.FunctionalRequirement_3.Description_36" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>description</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.FunctionalRequirement_3.ExternalReference_35" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>externalReference</featureSpecialization>
+            </body>
+            <featureNote>:</featureNote>
+            <featureNote>:></featureNote>
+            <featureSpecialization>FunctionalRequirement</featureSpecialization>
+            <featureSpecialization>requirementAsset</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" declaredName="FunctionalRequirement_4">
+            <body xsi:type="AttributeUsage" valuePart="&quot;LRE-FR4&quot;">
+              <featureNote>:>></featureNote>
+              <featureSpecialization>gid</featureSpecialization>
+            </body>
+            <body xsi:type="AttributeUsage" valuePart="5">
+              <featureNote>:>></featureNote>
+              <featureSpecialization>priority</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.FunctionalRequirement_4.LangString_248" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>name</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.FunctionalRequirement_4.Description_37" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>description</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.FunctionalRequirement_4.ExternalReference_36" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>externalReference</featureSpecialization>
+            </body>
+            <featureNote>:</featureNote>
+            <featureNote>:></featureNote>
+            <featureSpecialization>FunctionalRequirement</featureSpecialization>
+            <featureSpecialization>requirementAsset</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" declaredName="NonFunctionalRequirement_31">
+            <body xsi:type="AttributeUsage" valuePart="&quot;LRE-Var9&quot;">
+              <featureNote>:>></featureNote>
+              <featureSpecialization>gid</featureSpecialization>
+            </body>
+            <body xsi:type="AttributeUsage" valuePart="6">
+              <featureNote>:>></featureNote>
+              <featureSpecialization>priority</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.NonFunctionalRequirement_31.LangString_255" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>name</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.NonFunctionalRequirement_31.Description_38" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>description</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.NonFunctionalRequirement_31.ExternalReference_37" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>externalReference</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.NonFunctionalRequirement_31.SecondaryRequirementType_31" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>type</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" declaredName="SecondaryRequirementType_31">
+              <body xsi:type="AttributeUsage" valuePart="true">
+                <featureNote>:>></featureNote>
+                <featureSpecialization>architecture</featureSpecialization>
+              </body>
+              <featureNote>:</featureNote>
+              <featureNote>:></featureNote>
+              <featureSpecialization>SecondaryRequirementType</featureSpecialization>
+              <featureSpecialization>type</featureSpecialization>
+            </body>
+            <featureNote>:</featureNote>
+            <featureNote>:></featureNote>
+            <featureSpecialization>NonFunctionalRequirement</featureSpecialization>
+            <featureSpecialization>requirementAsset</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" declaredName="NonFunctionalRequirement_32">
+            <body xsi:type="AttributeUsage" valuePart="&quot;LRE-Var10&quot;">
+              <featureNote>:>></featureNote>
+              <featureSpecialization>gid</featureSpecialization>
+            </body>
+            <body xsi:type="AttributeUsage" valuePart="6">
+              <featureNote>:>></featureNote>
+              <featureSpecialization>priority</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.NonFunctionalRequirement_32.LangString_262" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>name</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.NonFunctionalRequirement_32.Description_39" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>description</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.NonFunctionalRequirement_32.ExternalReference_38" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>externalReference</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.NonFunctionalRequirement_32.SecondaryRequirementType_32" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>type</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" declaredName="SecondaryRequirementType_32">
+              <body xsi:type="AttributeUsage" valuePart="true">
+                <featureNote>:>></featureNote>
+                <featureSpecialization>architecture</featureSpecialization>
+              </body>
+              <featureNote>:</featureNote>
+              <featureNote>:></featureNote>
+              <featureSpecialization>SecondaryRequirementType</featureSpecialization>
+              <featureSpecialization>type</featureSpecialization>
+            </body>
+            <featureNote>:</featureNote>
+            <featureNote>:></featureNote>
+            <featureSpecialization>NonFunctionalRequirement</featureSpecialization>
+            <featureSpecialization>requirementAsset</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" declaredName="NonFunctionalRequirement_33">
+            <body xsi:type="AttributeUsage" valuePart="&quot;LRE-Const4&quot;">
+              <featureNote>:>></featureNote>
+              <featureSpecialization>gid</featureSpecialization>
+            </body>
+            <body xsi:type="AttributeUsage" valuePart="6">
+              <featureNote>:>></featureNote>
+              <featureSpecialization>priority</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.NonFunctionalRequirement_33.LangString_269" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>name</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.NonFunctionalRequirement_33.Description_40" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>description</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.NonFunctionalRequirement_33.ExternalReference_39" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>externalReference</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.NonFunctionalRequirement_33.SecondaryRequirementType_33" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>type</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" declaredName="SecondaryRequirementType_33">
+              <body xsi:type="AttributeUsage" valuePart="true">
+                <featureNote>:>></featureNote>
+                <featureSpecialization>architecture</featureSpecialization>
+              </body>
+              <featureNote>:</featureNote>
+              <featureNote>:></featureNote>
+              <featureSpecialization>SecondaryRequirementType</featureSpecialization>
+              <featureSpecialization>type</featureSpecialization>
+            </body>
+            <featureNote>:</featureNote>
+            <featureNote>:></featureNote>
+            <featureSpecialization>NonFunctionalRequirement</featureSpecialization>
+            <featureSpecialization>requirementAsset</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" declaredName="FunctionalRequirement_5">
+            <body xsi:type="AttributeUsage" valuePart="&quot;LRE-Beh1&quot;">
+              <featureNote>:>></featureNote>
+              <featureSpecialization>gid</featureSpecialization>
+            </body>
+            <body xsi:type="AttributeUsage" valuePart="5">
+              <featureNote>:>></featureNote>
+              <featureSpecialization>priority</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.FunctionalRequirement_5.LangString_276" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>name</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.FunctionalRequirement_5.Description_41" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>description</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.FunctionalRequirement_5.ExternalReference_40" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>externalReference</featureSpecialization>
+            </body>
+            <featureNote>:</featureNote>
+            <featureNote>:></featureNote>
+            <featureSpecialization>FunctionalRequirement</featureSpecialization>
+            <featureSpecialization>requirementAsset</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" declaredName="FunctionalRequirement_6">
+            <body xsi:type="AttributeUsage" valuePart="&quot;LRE-Beh2&quot;">
+              <featureNote>:>></featureNote>
+              <featureSpecialization>gid</featureSpecialization>
+            </body>
+            <body xsi:type="AttributeUsage" valuePart="5">
+              <featureNote>:>></featureNote>
+              <featureSpecialization>priority</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.FunctionalRequirement_6.LangString_283" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>name</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.FunctionalRequirement_6.Description_42" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>description</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.FunctionalRequirement_6.ExternalReference_41" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>externalReference</featureSpecialization>
+            </body>
+            <featureNote>:</featureNote>
+            <featureNote>:></featureNote>
+            <featureSpecialization>FunctionalRequirement</featureSpecialization>
+            <featureSpecialization>requirementAsset</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" declaredName="FunctionalRequirement_7">
+            <body xsi:type="AttributeUsage" valuePart="&quot;LRE-Beh3&quot;">
+              <featureNote>:>></featureNote>
+              <featureSpecialization>gid</featureSpecialization>
+            </body>
+            <body xsi:type="AttributeUsage" valuePart="5">
+              <featureNote>:>></featureNote>
+              <featureSpecialization>priority</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.FunctionalRequirement_7.LangString_290" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>name</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.FunctionalRequirement_7.Description_43" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>description</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.FunctionalRequirement_7.ExternalReference_42" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>externalReference</featureSpecialization>
+            </body>
+            <featureNote>:</featureNote>
+            <featureNote>:></featureNote>
+            <featureSpecialization>FunctionalRequirement</featureSpecialization>
+            <featureSpecialization>requirementAsset</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" declaredName="FunctionalRequirement_8">
+            <body xsi:type="AttributeUsage" valuePart="&quot;LRE-Beh4&quot;">
+              <featureNote>:>></featureNote>
+              <featureSpecialization>gid</featureSpecialization>
+            </body>
+            <body xsi:type="AttributeUsage" valuePart="5">
+              <featureNote>:>></featureNote>
+              <featureSpecialization>priority</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.FunctionalRequirement_8.LangString_297" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>name</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.FunctionalRequirement_8.Description_44" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>description</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.FunctionalRequirement_8.ExternalReference_43" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>externalReference</featureSpecialization>
+            </body>
+            <featureNote>:</featureNote>
+            <featureNote>:></featureNote>
+            <featureSpecialization>FunctionalRequirement</featureSpecialization>
+            <featureSpecialization>requirementAsset</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" declaredName="FunctionalRequirement_9">
+            <body xsi:type="AttributeUsage" valuePart="&quot;LRE-Beh5&quot;">
+              <featureNote>:>></featureNote>
+              <featureSpecialization>gid</featureSpecialization>
+            </body>
+            <body xsi:type="AttributeUsage" valuePart="5">
+              <featureNote>:>></featureNote>
+              <featureSpecialization>priority</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.FunctionalRequirement_9.LangString_304" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>name</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.FunctionalRequirement_9.Description_45" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>description</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.FunctionalRequirement_9.ExternalReference_44" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>externalReference</featureSpecialization>
+            </body>
+            <featureNote>:</featureNote>
+            <featureNote>:></featureNote>
+            <featureSpecialization>FunctionalRequirement</featureSpecialization>
+            <featureSpecialization>requirementAsset</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" declaredName="FunctionalRequirement_10">
+            <body xsi:type="AttributeUsage" valuePart="&quot;LRE-Beh6&quot;">
+              <featureNote>:>></featureNote>
+              <featureSpecialization>gid</featureSpecialization>
+            </body>
+            <body xsi:type="AttributeUsage" valuePart="5">
+              <featureNote>:>></featureNote>
+              <featureSpecialization>priority</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.FunctionalRequirement_10.LangString_311" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>name</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.FunctionalRequirement_10.Description_46" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>description</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.FunctionalRequirement_10.ExternalReference_45" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>externalReference</featureSpecialization>
+            </body>
+            <featureNote>:</featureNote>
+            <featureNote>:></featureNote>
+            <featureSpecialization>FunctionalRequirement</featureSpecialization>
+            <featureSpecialization>requirementAsset</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" declaredName="FunctionalRequirement_11">
+            <body xsi:type="AttributeUsage" valuePart="&quot;LRE-Beh8&quot;">
+              <featureNote>:>></featureNote>
+              <featureSpecialization>gid</featureSpecialization>
+            </body>
+            <body xsi:type="AttributeUsage" valuePart="5">
+              <featureNote>:>></featureNote>
+              <featureSpecialization>priority</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.FunctionalRequirement_11.LangString_318" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>name</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.FunctionalRequirement_11.Description_47" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>description</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.FunctionalRequirement_11.ExternalReference_46" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>externalReference</featureSpecialization>
+            </body>
+            <featureNote>:</featureNote>
+            <featureNote>:></featureNote>
+            <featureSpecialization>FunctionalRequirement</featureSpecialization>
+            <featureSpecialization>requirementAsset</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" declaredName="FunctionalRequirement_12">
+            <body xsi:type="AttributeUsage" valuePart="&quot;LRE-Beh7&quot;">
+              <featureNote>:>></featureNote>
+              <featureSpecialization>gid</featureSpecialization>
+            </body>
+            <body xsi:type="AttributeUsage" valuePart="5">
+              <featureNote>:>></featureNote>
+              <featureSpecialization>priority</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.FunctionalRequirement_12.LangString_325" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>name</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.FunctionalRequirement_12.Description_48" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>description</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.FunctionalRequirement_12.ExternalReference_47" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>externalReference</featureSpecialization>
+            </body>
+            <featureNote>:</featureNote>
+            <featureNote>:></featureNote>
+            <featureSpecialization>FunctionalRequirement</featureSpecialization>
+            <featureSpecialization>requirementAsset</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" declaredName="FunctionalRequirement_13">
+            <body xsi:type="AttributeUsage" valuePart="&quot;LRE-Beh9&quot;">
+              <featureNote>:>></featureNote>
+              <featureSpecialization>gid</featureSpecialization>
+            </body>
+            <body xsi:type="AttributeUsage" valuePart="5">
+              <featureNote>:>></featureNote>
+              <featureSpecialization>priority</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.FunctionalRequirement_13.LangString_332" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>name</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.FunctionalRequirement_13.Description_49" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>description</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.FunctionalRequirement_13.ExternalReference_48" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>externalReference</featureSpecialization>
+            </body>
+            <featureNote>:</featureNote>
+            <featureNote>:></featureNote>
+            <featureSpecialization>FunctionalRequirement</featureSpecialization>
+            <featureSpecialization>requirementAsset</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" declaredName="FunctionalRequirement_14">
+            <body xsi:type="AttributeUsage" valuePart="&quot;LRE-Beh10&quot;">
+              <featureNote>:>></featureNote>
+              <featureSpecialization>gid</featureSpecialization>
+            </body>
+            <body xsi:type="AttributeUsage" valuePart="5">
+              <featureNote>:>></featureNote>
+              <featureSpecialization>priority</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.FunctionalRequirement_14.LangString_339" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>name</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.FunctionalRequirement_14.Description_50" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>description</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.FunctionalRequirement_14.ExternalReference_49" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>externalReference</featureSpecialization>
+            </body>
+            <featureNote>:</featureNote>
+            <featureNote>:></featureNote>
+            <featureSpecialization>FunctionalRequirement</featureSpecialization>
+            <featureSpecialization>requirementAsset</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" declaredName="FunctionalRequirement_15">
+            <body xsi:type="AttributeUsage" valuePart="&quot;LRE-Beh11&quot;">
+              <featureNote>:>></featureNote>
+              <featureSpecialization>gid</featureSpecialization>
+            </body>
+            <body xsi:type="AttributeUsage" valuePart="5">
+              <featureNote>:>></featureNote>
+              <featureSpecialization>priority</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.FunctionalRequirement_15.LangString_346" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>name</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.FunctionalRequirement_15.Description_51" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>description</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.FunctionalRequirement_15.ExternalReference_50" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>externalReference</featureSpecialization>
+            </body>
+            <featureNote>:</featureNote>
+            <featureNote>:></featureNote>
+            <featureSpecialization>FunctionalRequirement</featureSpecialization>
+            <featureSpecialization>requirementAsset</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" declaredName="FunctionalRequirement_16">
+            <body xsi:type="AttributeUsage" valuePart="&quot;LRE-Beh12&quot;">
+              <featureNote>:>></featureNote>
+              <featureSpecialization>gid</featureSpecialization>
+            </body>
+            <body xsi:type="AttributeUsage" valuePart="5">
+              <featureNote>:>></featureNote>
+              <featureSpecialization>priority</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.FunctionalRequirement_16.LangString_353" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>name</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.FunctionalRequirement_16.Description_52" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>description</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.FunctionalRequirement_16.ExternalReference_51" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>externalReference</featureSpecialization>
+            </body>
+            <featureNote>:</featureNote>
+            <featureNote>:></featureNote>
+            <featureSpecialization>FunctionalRequirement</featureSpecialization>
+            <featureSpecialization>requirementAsset</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" declaredName="FunctionalRequirement_17">
+            <body xsi:type="AttributeUsage" valuePart="&quot;LRE-Beh13&quot;">
+              <featureNote>:>></featureNote>
+              <featureSpecialization>gid</featureSpecialization>
+            </body>
+            <body xsi:type="AttributeUsage" valuePart="5">
+              <featureNote>:>></featureNote>
+              <featureSpecialization>priority</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.FunctionalRequirement_17.LangString_360" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>name</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.FunctionalRequirement_17.Description_53" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>description</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.FunctionalRequirement_17.ExternalReference_52" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>externalReference</featureSpecialization>
+            </body>
+            <featureNote>:</featureNote>
+            <featureNote>:></featureNote>
+            <featureSpecialization>FunctionalRequirement</featureSpecialization>
+            <featureSpecialization>requirementAsset</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" declaredName="FunctionalRequirement_18">
+            <body xsi:type="AttributeUsage" valuePart="&quot;LRE-Beh14&quot;">
+              <featureNote>:>></featureNote>
+              <featureSpecialization>gid</featureSpecialization>
+            </body>
+            <body xsi:type="AttributeUsage" valuePart="5">
+              <featureNote>:>></featureNote>
+              <featureSpecialization>priority</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.FunctionalRequirement_18.LangString_367" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>name</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.FunctionalRequirement_18.Description_54" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>description</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.FunctionalRequirement_18.ExternalReference_53" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>externalReference</featureSpecialization>
+            </body>
+            <featureNote>:</featureNote>
+            <featureNote>:></featureNote>
+            <featureSpecialization>FunctionalRequirement</featureSpecialization>
+            <featureSpecialization>requirementAsset</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" declaredName="FunctionalRequirement_19">
+            <body xsi:type="AttributeUsage" valuePart="&quot;LRE-Beh15&quot;">
+              <featureNote>:>></featureNote>
+              <featureSpecialization>gid</featureSpecialization>
+            </body>
+            <body xsi:type="AttributeUsage" valuePart="5">
+              <featureNote>:>></featureNote>
+              <featureSpecialization>priority</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.FunctionalRequirement_19.LangString_374" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>name</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.FunctionalRequirement_19.Description_55" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>description</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.FunctionalRequirement_19.ExternalReference_54" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>externalReference</featureSpecialization>
+            </body>
+            <featureNote>:</featureNote>
+            <featureNote>:></featureNote>
+            <featureSpecialization>FunctionalRequirement</featureSpecialization>
+            <featureSpecialization>requirementAsset</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" declaredName="FunctionalRequirement_20">
+            <body xsi:type="AttributeUsage" valuePart="&quot;LRE-Beh16&quot;">
+              <featureNote>:>></featureNote>
+              <featureSpecialization>gid</featureSpecialization>
+            </body>
+            <body xsi:type="AttributeUsage" valuePart="5">
+              <featureNote>:>></featureNote>
+              <featureSpecialization>priority</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.FunctionalRequirement_20.LangString_381" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>name</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.FunctionalRequirement_20.Description_56" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>description</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.FunctionalRequirement_20.ExternalReference_55" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>externalReference</featureSpecialization>
+            </body>
+            <featureNote>:</featureNote>
+            <featureNote>:></featureNote>
+            <featureSpecialization>FunctionalRequirement</featureSpecialization>
+            <featureSpecialization>requirementAsset</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" declaredName="FunctionalRequirement_21">
+            <body xsi:type="AttributeUsage" valuePart="&quot;LRE-Beh17&quot;">
+              <featureNote>:>></featureNote>
+              <featureSpecialization>gid</featureSpecialization>
+            </body>
+            <body xsi:type="AttributeUsage" valuePart="5">
+              <featureNote>:>></featureNote>
+              <featureSpecialization>priority</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.FunctionalRequirement_21.LangString_388" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>name</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.FunctionalRequirement_21.Description_57" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>description</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.FunctionalRequirement_21.ExternalReference_56" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>externalReference</featureSpecialization>
+            </body>
+            <featureNote>:</featureNote>
+            <featureNote>:></featureNote>
+            <featureSpecialization>FunctionalRequirement</featureSpecialization>
+            <featureSpecialization>requirementAsset</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" declaredName="FunctionalRequirement_22">
+            <body xsi:type="AttributeUsage" valuePart="&quot;LRE-Beh18&quot;">
+              <featureNote>:>></featureNote>
+              <featureSpecialization>gid</featureSpecialization>
+            </body>
+            <body xsi:type="AttributeUsage" valuePart="5">
+              <featureNote>:>></featureNote>
+              <featureSpecialization>priority</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.FunctionalRequirement_22.LangString_395" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>name</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.FunctionalRequirement_22.Description_58" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>description</featureSpecialization>
+            </body>
+            <body xsi:type="PartUsage" valuePart="RequirementPackage_2.RequirementPackage_3.FunctionalRequirement_22.ExternalReference_57" isReference="true">
+              <featureNote>:></featureNote>
+              <featureSpecialization>externalReference</featureSpecialization>
+            </body>
+            <featureNote>:</featureNote>
+            <featureNote>:></featureNote>
+            <featureSpecialization>FunctionalRequirement</featureSpecialization>
+            <featureSpecialization>requirementAsset</featureSpecialization>
+          </body>
+          <featureNote>:</featureNote>
+          <featureNote>:></featureNote>
+          <featureSpecialization>RequirementPackage</featureSpecialization>
+          <featureSpecialization>requirementAsset</featureSpecialization>
+        </body>
+        <body xsi:type="PartUsage" declaredName="FunctionalRequirement_23">
+          <body xsi:type="AttributeUsage" valuePart="&quot;Platform-F1&quot;">
+            <featureNote>:>></featureNote>
+            <featureSpecialization>gid</featureSpecialization>
+          </body>
+          <body xsi:type="AttributeUsage" valuePart="5">
+            <featureNote>:>></featureNote>
+            <featureSpecialization>priority</featureSpecialization>
+          </body>
+          <body xsi:type="AttributeUsage" valuePart="&quot;odist&quot;">
+            <featureNote>:>></featureNote>
+            <featureSpecialization>function</featureSpecialization>
+          </body>
+          <body xsi:type="AttributeUsage" valuePart="&quot;Obstacle obstacle&quot;">
+            <featureNote>:>></featureNote>
+            <featureSpecialization>inputs</featureSpecialization>
+          </body>
+          <body xsi:type="AttributeUsage" valuePart="&quot;real distance&quot;">
+            <featureNote>:>></featureNote>
+            <featureSpecialization>outputs</featureSpecialization>
+          </body>
+          <body xsi:type="AttributeUsage" valuePart="&quot;AUV_Platform&quot;">
+            <featureNote>:>></featureNote>
+            <featureSpecialization>source</featureSpecialization>
+          </body>
+          <body xsi:type="AttributeUsage" valuePart="&quot;Navigation module, Obstacle avoidance module, or any component requiring proximity awareness&quot;">
+            <featureNote>:>></featureNote>
+            <featureSpecialization>destination</featureSpecialization>
+          </body>
+          <body xsi:type="AttributeUsage" valuePart="&quot;Computes the Euclidean distance from the AUV&#x2019;s current position to the given Obstacle&quot;">
+            <featureNote>:>></featureNote>
+            <featureSpecialization>'action'</featureSpecialization>
+          </body>
+          <body xsi:type="AttributeUsage" valuePart="&quot;The Obstacle must have a defined position; the AUV&#x2019;s current position must be available&quot;">
+            <featureNote>:>></featureNote>
+            <featureSpecialization>requires</featureSpecialization>
+          </body>
+          <body xsi:type="AttributeUsage" valuePart="&quot;Both the AUV and the Obstacle are located in the same coordinate reference frame&quot;">
+            <featureNote>:>></featureNote>
+            <featureSpecialization>pre_condition</featureSpecialization>
+          </body>
+          <body xsi:type="AttributeUsage" valuePart="&quot;A non-negative real value representing the distance is returned&quot;">
+            <featureNote>:>></featureNote>
+            <featureSpecialization>post_condition</featureSpecialization>
+          </body>
+          <body xsi:type="AttributeUsage" valuePart="&quot;None &#x2013; this function is read-only and does not alter system state&quot;">
+            <featureNote>:>></featureNote>
+            <featureSpecialization>side_effects</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" valuePart="RequirementPackage_2.FunctionalRequirement_23.LangString_402" isReference="true">
+            <featureNote>:></featureNote>
+            <featureSpecialization>name</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" valuePart="RequirementPackage_2.FunctionalRequirement_23.Description_59" isReference="true">
+            <featureNote>:></featureNote>
+            <featureSpecialization>description</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" valuePart="RequirementPackage_2.FunctionalRequirement_23.ExternalReference_58" isReference="true">
+            <featureNote>:></featureNote>
+            <featureSpecialization>externalReference</featureSpecialization>
+          </body>
+          <featureNote>:</featureNote>
+          <featureNote>:></featureNote>
+          <featureSpecialization>FunctionalRequirement</featureSpecialization>
+          <featureSpecialization>requirementAsset</featureSpecialization>
+        </body>
+        <body xsi:type="PartUsage" declaredName="FunctionalRequirement_24">
+          <body xsi:type="AttributeUsage" valuePart="&quot;Platform-F2&quot;">
+            <featureNote>:>></featureNote>
+            <featureSpecialization>gid</featureSpecialization>
+          </body>
+          <body xsi:type="AttributeUsage" valuePart="5">
+            <featureNote>:>></featureNote>
+            <featureSpecialization>priority</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" valuePart="RequirementPackage_2.FunctionalRequirement_24.LangString_409" isReference="true">
+            <featureNote>:></featureNote>
+            <featureSpecialization>name</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" valuePart="RequirementPackage_2.FunctionalRequirement_24.Description_60" isReference="true">
+            <featureNote>:></featureNote>
+            <featureSpecialization>description</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" valuePart="RequirementPackage_2.FunctionalRequirement_24.ExternalReference_59" isReference="true">
+            <featureNote>:></featureNote>
+            <featureSpecialization>externalReference</featureSpecialization>
+          </body>
+          <featureNote>:</featureNote>
+          <featureNote>:></featureNote>
+          <featureSpecialization>FunctionalRequirement</featureSpecialization>
+          <featureSpecialization>requirementAsset</featureSpecialization>
+        </body>
+        <body xsi:type="PartUsage" declaredName="FunctionalRequirement_25">
+          <body xsi:type="AttributeUsage" valuePart="&quot;Platform-F3&quot;">
+            <featureNote>:>></featureNote>
+            <featureSpecialization>gid</featureSpecialization>
+          </body>
+          <body xsi:type="AttributeUsage" valuePart="5">
+            <featureNote>:>></featureNote>
+            <featureSpecialization>priority</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" valuePart="RequirementPackage_2.FunctionalRequirement_25.LangString_416" isReference="true">
+            <featureNote>:></featureNote>
+            <featureSpecialization>name</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" valuePart="RequirementPackage_2.FunctionalRequirement_25.Description_61" isReference="true">
+            <featureNote>:></featureNote>
+            <featureSpecialization>description</featureSpecialization>
+          </body>
+          <body xsi:type="PartUsage" valuePart="RequirementPackage_2.FunctionalRequirement_25.ExternalReference_60" isReference="true">
+            <featureNote>:></featureNote>
+            <featureSpecialization>externalReference</featureSpecialization>
+          </body>
+          <featureNote>:</featureNote>
+          <featureNote>:></featureNote>
+          <featureSpecialization>FunctionalRequirement</featureSpecialization>
+          <featureSpecialization>requirementAsset</featureSpecialization>
+        </body>
+        <featureNote>:</featureNote>
+        <featureNote>:></featureNote>
+        <featureSpecialization>RequirementPackage</featureSpecialization>
+        <featureSpecialization>requirementAsset</featureSpecialization>
+      </body>
+      <featureNote>:</featureNote>
+      <featureSpecialization>RequirementPackage</featureSpecialization>
+    </body>
+  </body>
+</Namespace>

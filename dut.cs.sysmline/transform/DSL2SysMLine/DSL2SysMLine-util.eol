@@ -38,11 +38,24 @@ operation SysMLine!Package addNamespaceImport(name: String){
 operation DSL!EObject addNodeTo(rootNode : SysMLine!Element){
 	if (self.isEntity()){
 		var node = self.equivalent();
+		self.println("41: ");
+		node.println("42: ");
+		(self.isTypeOf(DSL!LangString)).println("43: ");
+		
 		rootNode.body.add(node);
 		node.declaredName.println("("+(i++).asString()+"/"+eObjectSequence.size().asString()+")"+" >> ");
 		for (child in self.eContents()){
 			child.addNodeTo(node);
 		}
+		
+//		if (node!=null){
+//			rootNode.body.add(node);
+//			node.declaredName.println("("+(i++).asString()+"/"+eObjectSequence.size().asString()+")"+" >> ");
+//			for (child in self.eContents()){
+//				child.addNodeTo(node);
+//			}
+//		}
+		
 	}
 }
 
@@ -192,7 +205,6 @@ operation DSL!EObject getExtendedDeclaredName(){
 	var eObjectTuple = eObjectSequence.select(s|s.value == self).first();
 	if (eObjectTuple == null){
 		self.println("Failed to retrieve the EOject >>");
-		return "";
 	}
 	var str = eObjectTuple.value.extendEContainer("");
 	if (str.length()>1){
