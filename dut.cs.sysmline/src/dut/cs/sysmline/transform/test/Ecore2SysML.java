@@ -13,7 +13,9 @@ public class Ecore2SysML {
 //		run("metamodel\\Modelica\\MO");
 //		testBPMNEcore();
 //		testSACM();
-		testCapellaEcore();
+//		testCapellaEcore();
+		run("metamodel\\Requirement\\base");
+		run("metamodel\\Requirement\\requirement");
 		
 //		run("metamodel\\PlayGround\\psl");
 //		run("metamodel\\test\\fmeda");

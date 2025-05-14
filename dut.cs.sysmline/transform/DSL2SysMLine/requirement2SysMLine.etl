@@ -1,0 +1,990 @@
+import "DSL2SysMLine-util.eol";
+
+pre{
+	var eObjectSequence = new Sequence;
+	var KeyWords = baseKeyWords();
+	var i = 0;
+	eObjectSequence.init_requirement();
+	main_requirement();
+}
+
+post{
+	("[ETL] requirement2SysMLine >> " + SysMLine!Package.all.first().declaredName + ".sysmline").println();
+}
+
+operation main_requirement(){
+	var rootEcore = DSL!EObject.all.first();
+	var rootSysMLine = new SysMLine!Namespace;
+	var rootPackage = new SysMLine!Package;
+	rootPackage.declaredName = "requirement_model";
+	rootSysMLine.body.add(rootPackage);
+	rootPackage.addNamespaceImport("requirement");
+	rootPackage.addNamespaceImport("base");
+	rootEcore.addNodeTo(rootPackage);
+}
+
+operation Sequence init_requirement(){
+	//requirement.RequirementAsset -> Instantiation
+	var idRequirementAsset = 0;
+	for (RequirementAsset_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!RequirementAsset))){
+		var RequirementAsset_Tuple = Tuple{"key"="RequirementAsset_"+(idRequirementAsset++).asString(),"value"= RequirementAsset_};
+		self.add(RequirementAsset_Tuple);
+	}
+	//requirement.RequirementPackage -> Instantiation
+	var idRequirementPackage = 0;
+	for (RequirementPackage_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!RequirementPackage))){
+		var RequirementPackage_Tuple = Tuple{"key"="RequirementPackage_"+(idRequirementPackage++).asString(),"value"= RequirementPackage_};
+		self.add(RequirementPackage_Tuple);
+	}
+	//requirement.RequirementPackageInterface -> Instantiation
+	var idRequirementPackageInterface = 0;
+	for (RequirementPackageInterface_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!RequirementPackageInterface))){
+		var RequirementPackageInterface_Tuple = Tuple{"key"="RequirementPackageInterface_"+(idRequirementPackageInterface++).asString(),"value"= RequirementPackageInterface_};
+		self.add(RequirementPackageInterface_Tuple);
+	}
+	//requirement.RequirementUtilityAsset -> Instantiation
+	var idRequirementUtilityAsset = 0;
+	for (RequirementUtilityAsset_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!RequirementUtilityAsset))){
+		var RequirementUtilityAsset_Tuple = Tuple{"key"="RequirementUtilityAsset_"+(idRequirementUtilityAsset++).asString(),"value"= RequirementUtilityAsset_};
+		self.add(RequirementUtilityAsset_Tuple);
+	}
+	//requirement.Category -> Instantiation
+	var idCategory = 0;
+	for (Category_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!Category))){
+		var Category_Tuple = Tuple{"key"="Category_"+(idCategory++).asString(),"value"= Category_};
+		self.add(Category_Tuple);
+	}
+	//requirement.Stakeholder -> Instantiation
+	var idStakeholder = 0;
+	for (Stakeholder_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!Stakeholder))){
+		var Stakeholder_Tuple = Tuple{"key"="Stakeholder_"+(idStakeholder++).asString(),"value"= Stakeholder_};
+		self.add(Stakeholder_Tuple);
+	}
+	//requirement.Glossary -> Instantiation
+	var idGlossary = 0;
+	for (Glossary_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!Glossary))){
+		var Glossary_Tuple = Tuple{"key"="Glossary_"+(idGlossary++).asString(),"value"= Glossary_};
+		self.add(Glossary_Tuple);
+	}
+	//requirement.GlossaryEntry -> Instantiation
+	var idGlossaryEntry = 0;
+	for (GlossaryEntry_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!GlossaryEntry))){
+		var GlossaryEntry_Tuple = Tuple{"key"="GlossaryEntry_"+(idGlossaryEntry++).asString(),"value"= GlossaryEntry_};
+		self.add(GlossaryEntry_Tuple);
+	}
+	//requirement.Requirement -> Instantiation
+	var idRequirement = 0;
+	for (Requirement_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!Requirement))){
+		var Requirement_Tuple = Tuple{"key"="Requirement_"+(idRequirement++).asString(),"value"= Requirement_};
+		self.add(Requirement_Tuple);
+	}
+	//requirement.UserRequirement -> Instantiation
+	var idUserRequirement = 0;
+	for (UserRequirement_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!UserRequirement))){
+		var UserRequirement_Tuple = Tuple{"key"="UserRequirement_"+(idUserRequirement++).asString(),"value"= UserRequirement_};
+		self.add(UserRequirement_Tuple);
+	}
+	//requirement.SystemRequirement -> Instantiation
+	var idSystemRequirement = 0;
+	for (SystemRequirement_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!SystemRequirement))){
+		var SystemRequirement_Tuple = Tuple{"key"="SystemRequirement_"+(idSystemRequirement++).asString(),"value"= SystemRequirement_};
+		self.add(SystemRequirement_Tuple);
+	}
+	//requirement.FunctionalRequirement -> Instantiation
+	var idFunctionalRequirement = 0;
+	for (FunctionalRequirement_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!FunctionalRequirement))){
+		var FunctionalRequirement_Tuple = Tuple{"key"="FunctionalRequirement_"+(idFunctionalRequirement++).asString(),"value"= FunctionalRequirement_};
+		self.add(FunctionalRequirement_Tuple);
+	}
+	//requirement.NonFunctionalRequirement -> Instantiation
+	var idNonFunctionalRequirement = 0;
+	for (NonFunctionalRequirement_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!NonFunctionalRequirement))){
+		var NonFunctionalRequirement_Tuple = Tuple{"key"="NonFunctionalRequirement_"+(idNonFunctionalRequirement++).asString(),"value"= NonFunctionalRequirement_};
+		self.add(NonFunctionalRequirement_Tuple);
+	}
+	//requirement.SecondaryRequirementType -> Instantiation
+	var idSecondaryRequirementType = 0;
+	for (SecondaryRequirementType_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!SecondaryRequirementType))){
+		var SecondaryRequirementType_Tuple = Tuple{"key"="SecondaryRequirementType_"+(idSecondaryRequirementType++).asString(),"value"= SecondaryRequirementType_};
+		self.add(SecondaryRequirementType_Tuple);
+	}
+	//base.Element -> Instantiation
+	var idElement = 0;
+	for (Element_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!Element))){
+		var Element_Tuple = Tuple{"key"="Element_"+(idElement++).asString(),"value"= Element_};
+		self.add(Element_Tuple);
+	}
+	//base.ModelElement -> Instantiation
+	var idModelElement = 0;
+	for (ModelElement_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!ModelElement))){
+		var ModelElement_Tuple = Tuple{"key"="ModelElement_"+(idModelElement++).asString(),"value"= ModelElement_};
+		self.add(ModelElement_Tuple);
+	}
+	//base.LangString -> Instantiation
+	var idLangString = 0;
+	for (LangString_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!LangString))){
+		var LangString_Tuple = Tuple{"key"="LangString_"+(idLangString++).asString(),"value"= LangString_};
+		self.add(LangString_Tuple);
+	}
+	//base.MultiLangString -> Instantiation
+	var idMultiLangString = 0;
+	for (MultiLangString_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!MultiLangString))){
+		var MultiLangString_Tuple = Tuple{"key"="MultiLangString_"+(idMultiLangString++).asString(),"value"= MultiLangString_};
+		self.add(MultiLangString_Tuple);
+	}
+	//base.UtilityElement -> Instantiation
+	var idUtilityElement = 0;
+	for (UtilityElement_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!UtilityElement))){
+		var UtilityElement_Tuple = Tuple{"key"="UtilityElement_"+(idUtilityElement++).asString(),"value"= UtilityElement_};
+		self.add(UtilityElement_Tuple);
+	}
+	//base.ExternalReference -> Instantiation
+	var idExternalReference = 0;
+	for (ExternalReference_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!ExternalReference))){
+		var ExternalReference_Tuple = Tuple{"key"="ExternalReference_"+(idExternalReference++).asString(),"value"= ExternalReference_};
+		self.add(ExternalReference_Tuple);
+	}
+	//base.Description -> Instantiation
+	var idDescription = 0;
+	for (Description_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!Description))){
+		var Description_Tuple = Tuple{"key"="Description_"+(idDescription++).asString(),"value"= Description_};
+		self.add(Description_Tuple);
+	}
+	//base.ImplementationConstraint -> Instantiation
+	var idImplementationConstraint = 0;
+	for (ImplementationConstraint_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!ImplementationConstraint))){
+		var ImplementationConstraint_Tuple = Tuple{"key"="ImplementationConstraint_"+(idImplementationConstraint++).asString(),"value"= ImplementationConstraint_};
+		self.add(ImplementationConstraint_Tuple);
+	}
+	//base.Note -> Instantiation
+	var idNote = 0;
+	for (Note_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!Note))){
+		var Note_Tuple = Tuple{"key"="Note_"+(idNote++).asString(),"value"= Note_};
+		self.add(Note_Tuple);
+	}
+	//base.TaggedValue -> Instantiation
+	var idTaggedValue = 0;
+	for (TaggedValue_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!TaggedValue))){
+		var TaggedValue_Tuple = Tuple{"key"="TaggedValue_"+(idTaggedValue++).asString(),"value"= TaggedValue_};
+		self.add(TaggedValue_Tuple);
+	}
+	//base.ArtifactElement -> Instantiation
+	var idArtifactElement = 0;
+	for (ArtifactElement_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!ArtifactElement))){
+		var ArtifactElement_Tuple = Tuple{"key"="ArtifactElement_"+(idArtifactElement++).asString(),"value"= ArtifactElement_};
+		self.add(ArtifactElement_Tuple);
+	}
+}
+
+@abstract
+rule Base
+	transform s : DSL!EObject
+	to t : SysMLine!PartUsage{
+	t.declaredName = s.getDeclaredName();
+	t.featureNote.add(":");
+	t.featureSpecialization.add(s.getfeatureSpecialization());
+	if (s.eContainingFeature != null and s.eContainingFeature.name != null){
+		t.featureNote.add(":>");
+		t.featureSpecialization.add(s.eContainingFeature().name);
+	}
+}
+
+// requirement.ecore
+@lazy
+rule RequirementAsset
+	transform s : DSL!RequirementAsset //requirement.RequirementAsset
+	to t : SysMLine!PartUsage
+	extends Base{
+	//RequirementAsset.gid -> EAttribute : gid
+	if (s.gid.getEAttribute() != null) t.addNewAttribute("gid".clearKeyWord(), s.gid.getEAttribute());
+	//RequirementAsset.isCitation -> EAttribute : isCitation
+	if (s.isCitation.getEAttribute() != null) t.addNewAttribute("isCitation".clearKeyWord(), s.isCitation.getEAttribute());
+	//RequirementAsset.isAbstract -> EAttribute : isAbstract
+	if (s.isAbstract.getEAttribute() != null) t.addNewAttribute("isAbstract".clearKeyWord(), s.isAbstract.getEAttribute());
+	//RequirementAsset.citedElement -> EReference : citedElement
+	if (s.citedElement.getEReference() != null) t.addNewReference("citedElement".clearKeyWord(), s.citedElement.getEReference());
+	//RequirementAsset.name -> EReference : name
+	if (s.name.getEReference() != null) t.addNewReference("name".clearKeyWord(), s.name.getEReference());
+	//RequirementAsset.description -> EReference : description
+	if (s.description.getEReference() != null) t.addNewReference("description".clearKeyWord(), s.description.getEReference());
+	//RequirementAsset.constraint -> EReference : constraint
+	if (s.constraint.getEReference() != null) t.addNewReference("constraint".clearKeyWord(), s.constraint.getEReference());
+	//RequirementAsset.note -> EReference : note
+	if (s.note.getEReference() != null) t.addNewReference("note".clearKeyWord(), s.note.getEReference());
+	//RequirementAsset.taggedValue -> EReference : taggedValue
+	if (s.taggedValue.getEReference() != null) t.addNewReference("taggedValue".clearKeyWord(), s.taggedValue.getEReference());
+	//RequirementAsset.externalReference -> EReference : externalReference
+	if (s.externalReference.getEReference() != null) t.addNewReference("externalReference".clearKeyWord(), s.externalReference.getEReference());
+}
+
+@lazy
+rule RequirementPackage
+	transform s : DSL!RequirementPackage //requirement.RequirementPackage
+	to t : SysMLine!PartUsage
+	extends Base{
+	//RequirementPackage.gid -> EAttribute : gid
+	if (s.gid.getEAttribute() != null) t.addNewAttribute("gid".clearKeyWord(), s.gid.getEAttribute());
+	//RequirementPackage.isCitation -> EAttribute : isCitation
+	if (s.isCitation.getEAttribute() != null) t.addNewAttribute("isCitation".clearKeyWord(), s.isCitation.getEAttribute());
+	//RequirementPackage.isAbstract -> EAttribute : isAbstract
+	if (s.isAbstract.getEAttribute() != null) t.addNewAttribute("isAbstract".clearKeyWord(), s.isAbstract.getEAttribute());
+	//RequirementPackage.citedElement -> EReference : citedElement
+	if (s.citedElement.getEReference() != null) t.addNewReference("citedElement".clearKeyWord(), s.citedElement.getEReference());
+	//RequirementPackage.name -> EReference : name
+	if (s.name.getEReference() != null) t.addNewReference("name".clearKeyWord(), s.name.getEReference());
+	//RequirementPackage.description -> EReference : description
+	if (s.description.getEReference() != null) t.addNewReference("description".clearKeyWord(), s.description.getEReference());
+	//RequirementPackage.constraint -> EReference : constraint
+	if (s.constraint.getEReference() != null) t.addNewReference("constraint".clearKeyWord(), s.constraint.getEReference());
+	//RequirementPackage.note -> EReference : note
+	if (s.note.getEReference() != null) t.addNewReference("note".clearKeyWord(), s.note.getEReference());
+	//RequirementPackage.taggedValue -> EReference : taggedValue
+	if (s.taggedValue.getEReference() != null) t.addNewReference("taggedValue".clearKeyWord(), s.taggedValue.getEReference());
+	//RequirementPackage.externalReference -> EReference : externalReference
+	if (s.externalReference.getEReference() != null) t.addNewReference("externalReference".clearKeyWord(), s.externalReference.getEReference());
+	//RequirementPackage.requirementAsset -> EReference : requirementAsset
+	if (s.requirementAsset.getEReference() != null) t.addNewReference("requirementAsset".clearKeyWord(), s.requirementAsset.getEReference());
+	//RequirementPackage.interfaces -> EReference : interfaces
+	if (s.interfaces.getEReference() != null) t.addNewReference("interfaces".clearKeyWord(), s.interfaces.getEReference());
+}
+
+@lazy
+rule RequirementPackageInterface
+	transform s : DSL!RequirementPackageInterface //requirement.RequirementPackageInterface
+	to t : SysMLine!PartUsage
+	extends Base{
+	//RequirementPackageInterface.gid -> EAttribute : gid
+	if (s.gid.getEAttribute() != null) t.addNewAttribute("gid".clearKeyWord(), s.gid.getEAttribute());
+	//RequirementPackageInterface.isCitation -> EAttribute : isCitation
+	if (s.isCitation.getEAttribute() != null) t.addNewAttribute("isCitation".clearKeyWord(), s.isCitation.getEAttribute());
+	//RequirementPackageInterface.isAbstract -> EAttribute : isAbstract
+	if (s.isAbstract.getEAttribute() != null) t.addNewAttribute("isAbstract".clearKeyWord(), s.isAbstract.getEAttribute());
+	//RequirementPackageInterface.citedElement -> EReference : citedElement
+	if (s.citedElement.getEReference() != null) t.addNewReference("citedElement".clearKeyWord(), s.citedElement.getEReference());
+	//RequirementPackageInterface.name -> EReference : name
+	if (s.name.getEReference() != null) t.addNewReference("name".clearKeyWord(), s.name.getEReference());
+	//RequirementPackageInterface.description -> EReference : description
+	if (s.description.getEReference() != null) t.addNewReference("description".clearKeyWord(), s.description.getEReference());
+	//RequirementPackageInterface.constraint -> EReference : constraint
+	if (s.constraint.getEReference() != null) t.addNewReference("constraint".clearKeyWord(), s.constraint.getEReference());
+	//RequirementPackageInterface.note -> EReference : note
+	if (s.note.getEReference() != null) t.addNewReference("note".clearKeyWord(), s.note.getEReference());
+	//RequirementPackageInterface.taggedValue -> EReference : taggedValue
+	if (s.taggedValue.getEReference() != null) t.addNewReference("taggedValue".clearKeyWord(), s.taggedValue.getEReference());
+	//RequirementPackageInterface.externalReference -> EReference : externalReference
+	if (s.externalReference.getEReference() != null) t.addNewReference("externalReference".clearKeyWord(), s.externalReference.getEReference());
+	//RequirementPackageInterface.requirementAsset -> EReference : requirementAsset
+	if (s.requirementAsset.getEReference() != null) t.addNewReference("requirementAsset".clearKeyWord(), s.requirementAsset.getEReference());
+	//RequirementPackageInterface.interfaces -> EReference : interfaces
+	if (s.interfaces.getEReference() != null) t.addNewReference("interfaces".clearKeyWord(), s.interfaces.getEReference());
+	//RequirementPackageInterface.interfaceOf -> EReference : interfaceOf
+	if (s.interfaceOf.getEReference() != null) t.addNewReference("interfaceOf".clearKeyWord(), s.interfaceOf.getEReference());
+}
+
+@lazy
+rule RequirementUtilityAsset
+	transform s : DSL!RequirementUtilityAsset //requirement.RequirementUtilityAsset
+	to t : SysMLine!PartUsage
+	extends Base{
+	//RequirementUtilityAsset.gid -> EAttribute : gid
+	if (s.gid.getEAttribute() != null) t.addNewAttribute("gid".clearKeyWord(), s.gid.getEAttribute());
+	//RequirementUtilityAsset.isCitation -> EAttribute : isCitation
+	if (s.isCitation.getEAttribute() != null) t.addNewAttribute("isCitation".clearKeyWord(), s.isCitation.getEAttribute());
+	//RequirementUtilityAsset.isAbstract -> EAttribute : isAbstract
+	if (s.isAbstract.getEAttribute() != null) t.addNewAttribute("isAbstract".clearKeyWord(), s.isAbstract.getEAttribute());
+	//RequirementUtilityAsset.citedElement -> EReference : citedElement
+	if (s.citedElement.getEReference() != null) t.addNewReference("citedElement".clearKeyWord(), s.citedElement.getEReference());
+	//RequirementUtilityAsset.name -> EReference : name
+	if (s.name.getEReference() != null) t.addNewReference("name".clearKeyWord(), s.name.getEReference());
+	//RequirementUtilityAsset.description -> EReference : description
+	if (s.description.getEReference() != null) t.addNewReference("description".clearKeyWord(), s.description.getEReference());
+	//RequirementUtilityAsset.constraint -> EReference : constraint
+	if (s.constraint.getEReference() != null) t.addNewReference("constraint".clearKeyWord(), s.constraint.getEReference());
+	//RequirementUtilityAsset.note -> EReference : note
+	if (s.note.getEReference() != null) t.addNewReference("note".clearKeyWord(), s.note.getEReference());
+	//RequirementUtilityAsset.taggedValue -> EReference : taggedValue
+	if (s.taggedValue.getEReference() != null) t.addNewReference("taggedValue".clearKeyWord(), s.taggedValue.getEReference());
+	//RequirementUtilityAsset.externalReference -> EReference : externalReference
+	if (s.externalReference.getEReference() != null) t.addNewReference("externalReference".clearKeyWord(), s.externalReference.getEReference());
+}
+
+@lazy
+rule Category
+	transform s : DSL!Category //requirement.Category
+	to t : SysMLine!PartUsage
+	extends Base{
+	//Category.gid -> EAttribute : gid
+	if (s.gid.getEAttribute() != null) t.addNewAttribute("gid".clearKeyWord(), s.gid.getEAttribute());
+	//Category.isCitation -> EAttribute : isCitation
+	if (s.isCitation.getEAttribute() != null) t.addNewAttribute("isCitation".clearKeyWord(), s.isCitation.getEAttribute());
+	//Category.isAbstract -> EAttribute : isAbstract
+	if (s.isAbstract.getEAttribute() != null) t.addNewAttribute("isAbstract".clearKeyWord(), s.isAbstract.getEAttribute());
+	//Category.citedElement -> EReference : citedElement
+	if (s.citedElement.getEReference() != null) t.addNewReference("citedElement".clearKeyWord(), s.citedElement.getEReference());
+	//Category.name -> EReference : name
+	if (s.name.getEReference() != null) t.addNewReference("name".clearKeyWord(), s.name.getEReference());
+	//Category.description -> EReference : description
+	if (s.description.getEReference() != null) t.addNewReference("description".clearKeyWord(), s.description.getEReference());
+	//Category.constraint -> EReference : constraint
+	if (s.constraint.getEReference() != null) t.addNewReference("constraint".clearKeyWord(), s.constraint.getEReference());
+	//Category.note -> EReference : note
+	if (s.note.getEReference() != null) t.addNewReference("note".clearKeyWord(), s.note.getEReference());
+	//Category.taggedValue -> EReference : taggedValue
+	if (s.taggedValue.getEReference() != null) t.addNewReference("taggedValue".clearKeyWord(), s.taggedValue.getEReference());
+	//Category.externalReference -> EReference : externalReference
+	if (s.externalReference.getEReference() != null) t.addNewReference("externalReference".clearKeyWord(), s.externalReference.getEReference());
+	//Category.sub_category -> EReference : sub_category
+	if (s.sub_category.getEReference() != null) t.addNewReference("sub_category".clearKeyWord(), s.sub_category.getEReference());
+}
+
+@lazy
+rule Stakeholder
+	transform s : DSL!Stakeholder //requirement.Stakeholder
+	to t : SysMLine!PartUsage
+	extends Base{
+	//Stakeholder.gid -> EAttribute : gid
+	if (s.gid.getEAttribute() != null) t.addNewAttribute("gid".clearKeyWord(), s.gid.getEAttribute());
+	//Stakeholder.isCitation -> EAttribute : isCitation
+	if (s.isCitation.getEAttribute() != null) t.addNewAttribute("isCitation".clearKeyWord(), s.isCitation.getEAttribute());
+	//Stakeholder.isAbstract -> EAttribute : isAbstract
+	if (s.isAbstract.getEAttribute() != null) t.addNewAttribute("isAbstract".clearKeyWord(), s.isAbstract.getEAttribute());
+	//Stakeholder.citedElement -> EReference : citedElement
+	if (s.citedElement.getEReference() != null) t.addNewReference("citedElement".clearKeyWord(), s.citedElement.getEReference());
+	//Stakeholder.name -> EReference : name
+	if (s.name.getEReference() != null) t.addNewReference("name".clearKeyWord(), s.name.getEReference());
+	//Stakeholder.description -> EReference : description
+	if (s.description.getEReference() != null) t.addNewReference("description".clearKeyWord(), s.description.getEReference());
+	//Stakeholder.constraint -> EReference : constraint
+	if (s.constraint.getEReference() != null) t.addNewReference("constraint".clearKeyWord(), s.constraint.getEReference());
+	//Stakeholder.note -> EReference : note
+	if (s.note.getEReference() != null) t.addNewReference("note".clearKeyWord(), s.note.getEReference());
+	//Stakeholder.taggedValue -> EReference : taggedValue
+	if (s.taggedValue.getEReference() != null) t.addNewReference("taggedValue".clearKeyWord(), s.taggedValue.getEReference());
+	//Stakeholder.externalReference -> EReference : externalReference
+	if (s.externalReference.getEReference() != null) t.addNewReference("externalReference".clearKeyWord(), s.externalReference.getEReference());
+}
+
+@lazy
+rule Glossary
+	transform s : DSL!Glossary //requirement.Glossary
+	to t : SysMLine!PartUsage
+	extends Base{
+	//Glossary.gid -> EAttribute : gid
+	if (s.gid.getEAttribute() != null) t.addNewAttribute("gid".clearKeyWord(), s.gid.getEAttribute());
+	//Glossary.isCitation -> EAttribute : isCitation
+	if (s.isCitation.getEAttribute() != null) t.addNewAttribute("isCitation".clearKeyWord(), s.isCitation.getEAttribute());
+	//Glossary.isAbstract -> EAttribute : isAbstract
+	if (s.isAbstract.getEAttribute() != null) t.addNewAttribute("isAbstract".clearKeyWord(), s.isAbstract.getEAttribute());
+	//Glossary.citedElement -> EReference : citedElement
+	if (s.citedElement.getEReference() != null) t.addNewReference("citedElement".clearKeyWord(), s.citedElement.getEReference());
+	//Glossary.name -> EReference : name
+	if (s.name.getEReference() != null) t.addNewReference("name".clearKeyWord(), s.name.getEReference());
+	//Glossary.description -> EReference : description
+	if (s.description.getEReference() != null) t.addNewReference("description".clearKeyWord(), s.description.getEReference());
+	//Glossary.constraint -> EReference : constraint
+	if (s.constraint.getEReference() != null) t.addNewReference("constraint".clearKeyWord(), s.constraint.getEReference());
+	//Glossary.note -> EReference : note
+	if (s.note.getEReference() != null) t.addNewReference("note".clearKeyWord(), s.note.getEReference());
+	//Glossary.taggedValue -> EReference : taggedValue
+	if (s.taggedValue.getEReference() != null) t.addNewReference("taggedValue".clearKeyWord(), s.taggedValue.getEReference());
+	//Glossary.externalReference -> EReference : externalReference
+	if (s.externalReference.getEReference() != null) t.addNewReference("externalReference".clearKeyWord(), s.externalReference.getEReference());
+	//Glossary.entries -> EReference : entries
+	if (s.entries.getEReference() != null) t.addNewReference("entries".clearKeyWord(), s.entries.getEReference());
+}
+
+@lazy
+rule GlossaryEntry
+	transform s : DSL!GlossaryEntry //requirement.GlossaryEntry
+	to t : SysMLine!PartUsage
+	extends Base{
+	//GlossaryEntry.gid -> EAttribute : gid
+	if (s.gid.getEAttribute() != null) t.addNewAttribute("gid".clearKeyWord(), s.gid.getEAttribute());
+	//GlossaryEntry.isCitation -> EAttribute : isCitation
+	if (s.isCitation.getEAttribute() != null) t.addNewAttribute("isCitation".clearKeyWord(), s.isCitation.getEAttribute());
+	//GlossaryEntry.isAbstract -> EAttribute : isAbstract
+	if (s.isAbstract.getEAttribute() != null) t.addNewAttribute("isAbstract".clearKeyWord(), s.isAbstract.getEAttribute());
+	//GlossaryEntry.term -> EAttribute : term
+	if (s.term.getEAttribute() != null) t.addNewAttribute("term".clearKeyWord(), s.term.getEAttribute());
+	//GlossaryEntry.pitch -> EAttribute : pitch
+	if (s.pitch.getEAttribute() != null) t.addNewAttribute("pitch".clearKeyWord(), s.pitch.getEAttribute());
+	//GlossaryEntry.citedElement -> EReference : citedElement
+	if (s.citedElement.getEReference() != null) t.addNewReference("citedElement".clearKeyWord(), s.citedElement.getEReference());
+	//GlossaryEntry.name -> EReference : name
+	if (s.name.getEReference() != null) t.addNewReference("name".clearKeyWord(), s.name.getEReference());
+	//GlossaryEntry.description -> EReference : description
+	if (s.description.getEReference() != null) t.addNewReference("description".clearKeyWord(), s.description.getEReference());
+	//GlossaryEntry.constraint -> EReference : constraint
+	if (s.constraint.getEReference() != null) t.addNewReference("constraint".clearKeyWord(), s.constraint.getEReference());
+	//GlossaryEntry.note -> EReference : note
+	if (s.note.getEReference() != null) t.addNewReference("note".clearKeyWord(), s.note.getEReference());
+	//GlossaryEntry.taggedValue -> EReference : taggedValue
+	if (s.taggedValue.getEReference() != null) t.addNewReference("taggedValue".clearKeyWord(), s.taggedValue.getEReference());
+	//GlossaryEntry.externalReference -> EReference : externalReference
+	if (s.externalReference.getEReference() != null) t.addNewReference("externalReference".clearKeyWord(), s.externalReference.getEReference());
+}
+
+@lazy
+rule Requirement
+	transform s : DSL!Requirement //requirement.Requirement
+	to t : SysMLine!PartUsage
+	extends Base{
+	//Requirement.gid -> EAttribute : gid
+	if (s.gid.getEAttribute() != null) t.addNewAttribute("gid".clearKeyWord(), s.gid.getEAttribute());
+	//Requirement.isCitation -> EAttribute : isCitation
+	if (s.isCitation.getEAttribute() != null) t.addNewAttribute("isCitation".clearKeyWord(), s.isCitation.getEAttribute());
+	//Requirement.isAbstract -> EAttribute : isAbstract
+	if (s.isAbstract.getEAttribute() != null) t.addNewAttribute("isAbstract".clearKeyWord(), s.isAbstract.getEAttribute());
+	//Requirement.satisfied -> EAttribute : satisfied
+	if (s.satisfied.getEAttribute() != null) t.addNewAttribute("satisfied".clearKeyWord(), s.satisfied.getEAttribute());
+	//Requirement.priority -> EAttribute : priority
+	if (s.priority.getEAttribute() != null) t.addNewAttribute("priority".clearKeyWord(), s.priority.getEAttribute());
+	//Requirement.citedElement -> EReference : citedElement
+	if (s.citedElement.getEReference() != null) t.addNewReference("citedElement".clearKeyWord(), s.citedElement.getEReference());
+	//Requirement.name -> EReference : name
+	if (s.name.getEReference() != null) t.addNewReference("name".clearKeyWord(), s.name.getEReference());
+	//Requirement.description -> EReference : description
+	if (s.description.getEReference() != null) t.addNewReference("description".clearKeyWord(), s.description.getEReference());
+	//Requirement.constraint -> EReference : constraint
+	if (s.constraint.getEReference() != null) t.addNewReference("constraint".clearKeyWord(), s.constraint.getEReference());
+	//Requirement.note -> EReference : note
+	if (s.note.getEReference() != null) t.addNewReference("note".clearKeyWord(), s.note.getEReference());
+	//Requirement.taggedValue -> EReference : taggedValue
+	if (s.taggedValue.getEReference() != null) t.addNewReference("taggedValue".clearKeyWord(), s.taggedValue.getEReference());
+	//Requirement.externalReference -> EReference : externalReference
+	if (s.externalReference.getEReference() != null) t.addNewReference("externalReference".clearKeyWord(), s.externalReference.getEReference());
+	//Requirement.category -> EReference : category
+	if (s.category.getEReference() != null) t.addNewReference("category".clearKeyWord(), s.category.getEReference());
+	//Requirement.stakeholders -> EReference : stakeholders
+	if (s.stakeholders.getEReference() != null) t.addNewReference("stakeholders".clearKeyWord(), s.stakeholders.getEReference());
+	//Requirement.sub_requirement -> EReference : sub_requirement
+	if (s.sub_requirement.getEReference() != null) t.addNewReference("sub_requirement".clearKeyWord(), s.sub_requirement.getEReference());
+	//Requirement.dependent_requirement -> EReference : dependent_requirement
+	if (s.dependent_requirement.getEReference() != null) t.addNewReference("dependent_requirement".clearKeyWord(), s.dependent_requirement.getEReference());
+}
+
+@lazy
+rule UserRequirement
+	transform s : DSL!UserRequirement //requirement.UserRequirement
+	to t : SysMLine!PartUsage
+	extends Base{
+	//UserRequirement.gid -> EAttribute : gid
+	if (s.gid.getEAttribute() != null) t.addNewAttribute("gid".clearKeyWord(), s.gid.getEAttribute());
+	//UserRequirement.isCitation -> EAttribute : isCitation
+	if (s.isCitation.getEAttribute() != null) t.addNewAttribute("isCitation".clearKeyWord(), s.isCitation.getEAttribute());
+	//UserRequirement.isAbstract -> EAttribute : isAbstract
+	if (s.isAbstract.getEAttribute() != null) t.addNewAttribute("isAbstract".clearKeyWord(), s.isAbstract.getEAttribute());
+	//UserRequirement.satisfied -> EAttribute : satisfied
+	if (s.satisfied.getEAttribute() != null) t.addNewAttribute("satisfied".clearKeyWord(), s.satisfied.getEAttribute());
+	//UserRequirement.priority -> EAttribute : priority
+	if (s.priority.getEAttribute() != null) t.addNewAttribute("priority".clearKeyWord(), s.priority.getEAttribute());
+	//UserRequirement.citedElement -> EReference : citedElement
+	if (s.citedElement.getEReference() != null) t.addNewReference("citedElement".clearKeyWord(), s.citedElement.getEReference());
+	//UserRequirement.name -> EReference : name
+	if (s.name.getEReference() != null) t.addNewReference("name".clearKeyWord(), s.name.getEReference());
+	//UserRequirement.description -> EReference : description
+	if (s.description.getEReference() != null) t.addNewReference("description".clearKeyWord(), s.description.getEReference());
+	//UserRequirement.constraint -> EReference : constraint
+	if (s.constraint.getEReference() != null) t.addNewReference("constraint".clearKeyWord(), s.constraint.getEReference());
+	//UserRequirement.note -> EReference : note
+	if (s.note.getEReference() != null) t.addNewReference("note".clearKeyWord(), s.note.getEReference());
+	//UserRequirement.taggedValue -> EReference : taggedValue
+	if (s.taggedValue.getEReference() != null) t.addNewReference("taggedValue".clearKeyWord(), s.taggedValue.getEReference());
+	//UserRequirement.externalReference -> EReference : externalReference
+	if (s.externalReference.getEReference() != null) t.addNewReference("externalReference".clearKeyWord(), s.externalReference.getEReference());
+	//UserRequirement.category -> EReference : category
+	if (s.category.getEReference() != null) t.addNewReference("category".clearKeyWord(), s.category.getEReference());
+	//UserRequirement.stakeholders -> EReference : stakeholders
+	if (s.stakeholders.getEReference() != null) t.addNewReference("stakeholders".clearKeyWord(), s.stakeholders.getEReference());
+	//UserRequirement.sub_requirement -> EReference : sub_requirement
+	if (s.sub_requirement.getEReference() != null) t.addNewReference("sub_requirement".clearKeyWord(), s.sub_requirement.getEReference());
+	//UserRequirement.dependent_requirement -> EReference : dependent_requirement
+	if (s.dependent_requirement.getEReference() != null) t.addNewReference("dependent_requirement".clearKeyWord(), s.dependent_requirement.getEReference());
+}
+
+@lazy
+rule SystemRequirement
+	transform s : DSL!SystemRequirement //requirement.SystemRequirement
+	to t : SysMLine!PartUsage
+	extends Base{
+	//SystemRequirement.gid -> EAttribute : gid
+	if (s.gid.getEAttribute() != null) t.addNewAttribute("gid".clearKeyWord(), s.gid.getEAttribute());
+	//SystemRequirement.isCitation -> EAttribute : isCitation
+	if (s.isCitation.getEAttribute() != null) t.addNewAttribute("isCitation".clearKeyWord(), s.isCitation.getEAttribute());
+	//SystemRequirement.isAbstract -> EAttribute : isAbstract
+	if (s.isAbstract.getEAttribute() != null) t.addNewAttribute("isAbstract".clearKeyWord(), s.isAbstract.getEAttribute());
+	//SystemRequirement.satisfied -> EAttribute : satisfied
+	if (s.satisfied.getEAttribute() != null) t.addNewAttribute("satisfied".clearKeyWord(), s.satisfied.getEAttribute());
+	//SystemRequirement.priority -> EAttribute : priority
+	if (s.priority.getEAttribute() != null) t.addNewAttribute("priority".clearKeyWord(), s.priority.getEAttribute());
+	//SystemRequirement.citedElement -> EReference : citedElement
+	if (s.citedElement.getEReference() != null) t.addNewReference("citedElement".clearKeyWord(), s.citedElement.getEReference());
+	//SystemRequirement.name -> EReference : name
+	if (s.name.getEReference() != null) t.addNewReference("name".clearKeyWord(), s.name.getEReference());
+	//SystemRequirement.description -> EReference : description
+	if (s.description.getEReference() != null) t.addNewReference("description".clearKeyWord(), s.description.getEReference());
+	//SystemRequirement.constraint -> EReference : constraint
+	if (s.constraint.getEReference() != null) t.addNewReference("constraint".clearKeyWord(), s.constraint.getEReference());
+	//SystemRequirement.note -> EReference : note
+	if (s.note.getEReference() != null) t.addNewReference("note".clearKeyWord(), s.note.getEReference());
+	//SystemRequirement.taggedValue -> EReference : taggedValue
+	if (s.taggedValue.getEReference() != null) t.addNewReference("taggedValue".clearKeyWord(), s.taggedValue.getEReference());
+	//SystemRequirement.externalReference -> EReference : externalReference
+	if (s.externalReference.getEReference() != null) t.addNewReference("externalReference".clearKeyWord(), s.externalReference.getEReference());
+	//SystemRequirement.category -> EReference : category
+	if (s.category.getEReference() != null) t.addNewReference("category".clearKeyWord(), s.category.getEReference());
+	//SystemRequirement.stakeholders -> EReference : stakeholders
+	if (s.stakeholders.getEReference() != null) t.addNewReference("stakeholders".clearKeyWord(), s.stakeholders.getEReference());
+	//SystemRequirement.sub_requirement -> EReference : sub_requirement
+	if (s.sub_requirement.getEReference() != null) t.addNewReference("sub_requirement".clearKeyWord(), s.sub_requirement.getEReference());
+	//SystemRequirement.dependent_requirement -> EReference : dependent_requirement
+	if (s.dependent_requirement.getEReference() != null) t.addNewReference("dependent_requirement".clearKeyWord(), s.dependent_requirement.getEReference());
+}
+
+@lazy
+rule FunctionalRequirement
+	transform s : DSL!FunctionalRequirement //requirement.FunctionalRequirement
+	to t : SysMLine!PartUsage
+	extends Base{
+	//FunctionalRequirement.gid -> EAttribute : gid
+	if (s.gid.getEAttribute() != null) t.addNewAttribute("gid".clearKeyWord(), s.gid.getEAttribute());
+	//FunctionalRequirement.isCitation -> EAttribute : isCitation
+	if (s.isCitation.getEAttribute() != null) t.addNewAttribute("isCitation".clearKeyWord(), s.isCitation.getEAttribute());
+	//FunctionalRequirement.isAbstract -> EAttribute : isAbstract
+	if (s.isAbstract.getEAttribute() != null) t.addNewAttribute("isAbstract".clearKeyWord(), s.isAbstract.getEAttribute());
+	//FunctionalRequirement.satisfied -> EAttribute : satisfied
+	if (s.satisfied.getEAttribute() != null) t.addNewAttribute("satisfied".clearKeyWord(), s.satisfied.getEAttribute());
+	//FunctionalRequirement.priority -> EAttribute : priority
+	if (s.priority.getEAttribute() != null) t.addNewAttribute("priority".clearKeyWord(), s.priority.getEAttribute());
+	//FunctionalRequirement.function -> EAttribute : function_
+	if (s.`function`.getEAttribute() != null) t.addNewAttribute("function".clearKeyWord(), s.`function`.getEAttribute());
+	//FunctionalRequirement.inputs -> EAttribute : inputs
+	if (s.inputs.getEAttribute() != null) t.addNewAttribute("inputs".clearKeyWord(), s.inputs.getEAttribute());
+	//FunctionalRequirement.outputs -> EAttribute : outputs
+	if (s.outputs.getEAttribute() != null) t.addNewAttribute("outputs".clearKeyWord(), s.outputs.getEAttribute());
+	//FunctionalRequirement.source -> EAttribute : source
+	if (s.source.getEAttribute() != null) t.addNewAttribute("source".clearKeyWord(), s.source.getEAttribute());
+	//FunctionalRequirement.destination -> EAttribute : destination
+	if (s.destination.getEAttribute() != null) t.addNewAttribute("destination".clearKeyWord(), s.destination.getEAttribute());
+	//FunctionalRequirement.action -> EAttribute : action
+	if (s.action.getEAttribute() != null) t.addNewAttribute("action".clearKeyWord(), s.action.getEAttribute());
+	//FunctionalRequirement.requires -> EAttribute : requires
+	if (s.requires.getEAttribute() != null) t.addNewAttribute("requires".clearKeyWord(), s.requires.getEAttribute());
+	//FunctionalRequirement.pre_condition -> EAttribute : pre_condition
+	if (s.pre_condition.getEAttribute() != null) t.addNewAttribute("pre_condition".clearKeyWord(), s.pre_condition.getEAttribute());
+	//FunctionalRequirement.post_condition -> EAttribute : post_condition
+	if (s.post_condition.getEAttribute() != null) t.addNewAttribute("post_condition".clearKeyWord(), s.post_condition.getEAttribute());
+	//FunctionalRequirement.side_effects -> EAttribute : side_effects
+	if (s.side_effects.getEAttribute() != null) t.addNewAttribute("side_effects".clearKeyWord(), s.side_effects.getEAttribute());
+	//FunctionalRequirement.citedElement -> EReference : citedElement
+	if (s.citedElement.getEReference() != null) t.addNewReference("citedElement".clearKeyWord(), s.citedElement.getEReference());
+	//FunctionalRequirement.name -> EReference : name
+	if (s.name.getEReference() != null) t.addNewReference("name".clearKeyWord(), s.name.getEReference());
+	//FunctionalRequirement.description -> EReference : description
+	if (s.description.getEReference() != null) t.addNewReference("description".clearKeyWord(), s.description.getEReference());
+	//FunctionalRequirement.constraint -> EReference : constraint
+	if (s.constraint.getEReference() != null) t.addNewReference("constraint".clearKeyWord(), s.constraint.getEReference());
+	//FunctionalRequirement.note -> EReference : note
+	if (s.note.getEReference() != null) t.addNewReference("note".clearKeyWord(), s.note.getEReference());
+	//FunctionalRequirement.taggedValue -> EReference : taggedValue
+	if (s.taggedValue.getEReference() != null) t.addNewReference("taggedValue".clearKeyWord(), s.taggedValue.getEReference());
+	//FunctionalRequirement.externalReference -> EReference : externalReference
+	if (s.externalReference.getEReference() != null) t.addNewReference("externalReference".clearKeyWord(), s.externalReference.getEReference());
+	//FunctionalRequirement.category -> EReference : category
+	if (s.category.getEReference() != null) t.addNewReference("category".clearKeyWord(), s.category.getEReference());
+	//FunctionalRequirement.stakeholders -> EReference : stakeholders
+	if (s.stakeholders.getEReference() != null) t.addNewReference("stakeholders".clearKeyWord(), s.stakeholders.getEReference());
+	//FunctionalRequirement.sub_requirement -> EReference : sub_requirement
+	if (s.sub_requirement.getEReference() != null) t.addNewReference("sub_requirement".clearKeyWord(), s.sub_requirement.getEReference());
+	//FunctionalRequirement.dependent_requirement -> EReference : dependent_requirement
+	if (s.dependent_requirement.getEReference() != null) t.addNewReference("dependent_requirement".clearKeyWord(), s.dependent_requirement.getEReference());
+}
+
+@lazy
+rule NonFunctionalRequirement
+	transform s : DSL!NonFunctionalRequirement //requirement.NonFunctionalRequirement
+	to t : SysMLine!PartUsage
+	extends Base{
+	//NonFunctionalRequirement.gid -> EAttribute : gid
+	if (s.gid.getEAttribute() != null) t.addNewAttribute("gid".clearKeyWord(), s.gid.getEAttribute());
+	//NonFunctionalRequirement.isCitation -> EAttribute : isCitation
+	if (s.isCitation.getEAttribute() != null) t.addNewAttribute("isCitation".clearKeyWord(), s.isCitation.getEAttribute());
+	//NonFunctionalRequirement.isAbstract -> EAttribute : isAbstract
+	if (s.isAbstract.getEAttribute() != null) t.addNewAttribute("isAbstract".clearKeyWord(), s.isAbstract.getEAttribute());
+	//NonFunctionalRequirement.satisfied -> EAttribute : satisfied
+	if (s.satisfied.getEAttribute() != null) t.addNewAttribute("satisfied".clearKeyWord(), s.satisfied.getEAttribute());
+	//NonFunctionalRequirement.priority -> EAttribute : priority
+	if (s.priority.getEAttribute() != null) t.addNewAttribute("priority".clearKeyWord(), s.priority.getEAttribute());
+	//NonFunctionalRequirement.citedElement -> EReference : citedElement
+	if (s.citedElement.getEReference() != null) t.addNewReference("citedElement".clearKeyWord(), s.citedElement.getEReference());
+	//NonFunctionalRequirement.name -> EReference : name
+	if (s.name.getEReference() != null) t.addNewReference("name".clearKeyWord(), s.name.getEReference());
+	//NonFunctionalRequirement.description -> EReference : description
+	if (s.description.getEReference() != null) t.addNewReference("description".clearKeyWord(), s.description.getEReference());
+	//NonFunctionalRequirement.constraint -> EReference : constraint
+	if (s.constraint.getEReference() != null) t.addNewReference("constraint".clearKeyWord(), s.constraint.getEReference());
+	//NonFunctionalRequirement.note -> EReference : note
+	if (s.note.getEReference() != null) t.addNewReference("note".clearKeyWord(), s.note.getEReference());
+	//NonFunctionalRequirement.taggedValue -> EReference : taggedValue
+	if (s.taggedValue.getEReference() != null) t.addNewReference("taggedValue".clearKeyWord(), s.taggedValue.getEReference());
+	//NonFunctionalRequirement.externalReference -> EReference : externalReference
+	if (s.externalReference.getEReference() != null) t.addNewReference("externalReference".clearKeyWord(), s.externalReference.getEReference());
+	//NonFunctionalRequirement.category -> EReference : category
+	if (s.category.getEReference() != null) t.addNewReference("category".clearKeyWord(), s.category.getEReference());
+	//NonFunctionalRequirement.stakeholders -> EReference : stakeholders
+	if (s.stakeholders.getEReference() != null) t.addNewReference("stakeholders".clearKeyWord(), s.stakeholders.getEReference());
+	//NonFunctionalRequirement.sub_requirement -> EReference : sub_requirement
+	if (s.sub_requirement.getEReference() != null) t.addNewReference("sub_requirement".clearKeyWord(), s.sub_requirement.getEReference());
+	//NonFunctionalRequirement.dependent_requirement -> EReference : dependent_requirement
+	if (s.dependent_requirement.getEReference() != null) t.addNewReference("dependent_requirement".clearKeyWord(), s.dependent_requirement.getEReference());
+	//NonFunctionalRequirement.type -> EReference : type
+	if (s.type.getEReference() != null) t.addNewReference("type".clearKeyWord(), s.type.getEReference());
+}
+
+@lazy
+rule SecondaryRequirementType
+	transform s : DSL!SecondaryRequirementType //requirement.SecondaryRequirementType
+	to t : SysMLine!PartUsage
+	extends Base{
+	//SecondaryRequirementType.gid -> EAttribute : gid
+	if (s.gid.getEAttribute() != null) t.addNewAttribute("gid".clearKeyWord(), s.gid.getEAttribute());
+	//SecondaryRequirementType.isCitation -> EAttribute : isCitation
+	if (s.isCitation.getEAttribute() != null) t.addNewAttribute("isCitation".clearKeyWord(), s.isCitation.getEAttribute());
+	//SecondaryRequirementType.isAbstract -> EAttribute : isAbstract
+	if (s.isAbstract.getEAttribute() != null) t.addNewAttribute("isAbstract".clearKeyWord(), s.isAbstract.getEAttribute());
+	//SecondaryRequirementType.architecture -> EAttribute : architecture
+	if (s.architecture.getEAttribute() != null) t.addNewAttribute("architecture".clearKeyWord(), s.architecture.getEAttribute());
+	//SecondaryRequirementType.usability -> EAttribute : usability
+	if (s.usability.getEAttribute() != null) t.addNewAttribute("usability".clearKeyWord(), s.usability.getEAttribute());
+	//SecondaryRequirementType.performance -> EAttribute : performance
+	if (s.performance.getEAttribute() != null) t.addNewAttribute("performance".clearKeyWord(), s.performance.getEAttribute());
+	//SecondaryRequirementType.space -> EAttribute : space
+	if (s.space.getEAttribute() != null) t.addNewAttribute("space".clearKeyWord(), s.space.getEAttribute());
+	//SecondaryRequirementType.dependability -> EAttribute : dependability
+	if (s.dependability.getEAttribute() != null) t.addNewAttribute("dependability".clearKeyWord(), s.dependability.getEAttribute());
+	//SecondaryRequirementType.security -> EAttribute : security
+	if (s.security.getEAttribute() != null) t.addNewAttribute("security".clearKeyWord(), s.security.getEAttribute());
+	//SecondaryRequirementType.environmental -> EAttribute : environmental
+	if (s.environmental.getEAttribute() != null) t.addNewAttribute("environmental".clearKeyWord(), s.environmental.getEAttribute());
+	//SecondaryRequirementType.operational -> EAttribute : operational
+	if (s.operational.getEAttribute() != null) t.addNewAttribute("operational".clearKeyWord(), s.operational.getEAttribute());
+	//SecondaryRequirementType.development -> EAttribute : development
+	if (s.development.getEAttribute() != null) t.addNewAttribute("development".clearKeyWord(), s.development.getEAttribute());
+	//SecondaryRequirementType.regulatory -> EAttribute : regulatory
+	if (s.regulatory.getEAttribute() != null) t.addNewAttribute("regulatory".clearKeyWord(), s.regulatory.getEAttribute());
+	//SecondaryRequirementType.ethical -> EAttribute : ethical
+	if (s.ethical.getEAttribute() != null) t.addNewAttribute("ethical".clearKeyWord(), s.ethical.getEAttribute());
+	//SecondaryRequirementType.safety -> EAttribute : safety
+	if (s.safety.getEAttribute() != null) t.addNewAttribute("safety".clearKeyWord(), s.safety.getEAttribute());
+	//SecondaryRequirementType.accounting -> EAttribute : accounting
+	if (s.accounting.getEAttribute() != null) t.addNewAttribute("accounting".clearKeyWord(), s.accounting.getEAttribute());
+	//SecondaryRequirementType.citedElement -> EReference : citedElement
+	if (s.citedElement.getEReference() != null) t.addNewReference("citedElement".clearKeyWord(), s.citedElement.getEReference());
+	//SecondaryRequirementType.name -> EReference : name
+	if (s.name.getEReference() != null) t.addNewReference("name".clearKeyWord(), s.name.getEReference());
+	//SecondaryRequirementType.description -> EReference : description
+	if (s.description.getEReference() != null) t.addNewReference("description".clearKeyWord(), s.description.getEReference());
+	//SecondaryRequirementType.constraint -> EReference : constraint
+	if (s.constraint.getEReference() != null) t.addNewReference("constraint".clearKeyWord(), s.constraint.getEReference());
+	//SecondaryRequirementType.note -> EReference : note
+	if (s.note.getEReference() != null) t.addNewReference("note".clearKeyWord(), s.note.getEReference());
+	//SecondaryRequirementType.taggedValue -> EReference : taggedValue
+	if (s.taggedValue.getEReference() != null) t.addNewReference("taggedValue".clearKeyWord(), s.taggedValue.getEReference());
+	//SecondaryRequirementType.externalReference -> EReference : externalReference
+	if (s.externalReference.getEReference() != null) t.addNewReference("externalReference".clearKeyWord(), s.externalReference.getEReference());
+}
+
+
+// base.ecore
+@lazy
+rule Element
+	transform s : DSL!Element //base.Element
+	to t : SysMLine!PartUsage
+	extends Base{
+	//Element.gid -> EAttribute : gid
+	if (s.gid.getEAttribute() != null) t.addNewAttribute("gid".clearKeyWord(), s.gid.getEAttribute());
+	//Element.isCitation -> EAttribute : isCitation
+	if (s.isCitation.getEAttribute() != null) t.addNewAttribute("isCitation".clearKeyWord(), s.isCitation.getEAttribute());
+	//Element.isAbstract -> EAttribute : isAbstract
+	if (s.isAbstract.getEAttribute() != null) t.addNewAttribute("isAbstract".clearKeyWord(), s.isAbstract.getEAttribute());
+	//Element.citedElement -> EReference : citedElement
+	if (s.citedElement.getEReference() != null) t.addNewReference("citedElement".clearKeyWord(), s.citedElement.getEReference());
+}
+
+@lazy
+rule ModelElement
+	transform s : DSL!ModelElement //base.ModelElement
+	to t : SysMLine!PartUsage
+	extends Base{
+	//ModelElement.gid -> EAttribute : gid
+	if (s.gid.getEAttribute() != null) t.addNewAttribute("gid".clearKeyWord(), s.gid.getEAttribute());
+	//ModelElement.isCitation -> EAttribute : isCitation
+	if (s.isCitation.getEAttribute() != null) t.addNewAttribute("isCitation".clearKeyWord(), s.isCitation.getEAttribute());
+	//ModelElement.isAbstract -> EAttribute : isAbstract
+	if (s.isAbstract.getEAttribute() != null) t.addNewAttribute("isAbstract".clearKeyWord(), s.isAbstract.getEAttribute());
+	//ModelElement.citedElement -> EReference : citedElement
+	if (s.citedElement.getEReference() != null) t.addNewReference("citedElement".clearKeyWord(), s.citedElement.getEReference());
+	//ModelElement.name -> EReference : name
+	if (s.name.getEReference() != null) t.addNewReference("name".clearKeyWord(), s.name.getEReference());
+	//ModelElement.description -> EReference : description
+	if (s.description.getEReference() != null) t.addNewReference("description".clearKeyWord(), s.description.getEReference());
+	//ModelElement.constraint -> EReference : constraint
+	if (s.constraint.getEReference() != null) t.addNewReference("constraint".clearKeyWord(), s.constraint.getEReference());
+	//ModelElement.note -> EReference : note
+	if (s.note.getEReference() != null) t.addNewReference("note".clearKeyWord(), s.note.getEReference());
+	//ModelElement.taggedValue -> EReference : taggedValue
+	if (s.taggedValue.getEReference() != null) t.addNewReference("taggedValue".clearKeyWord(), s.taggedValue.getEReference());
+	//ModelElement.externalReference -> EReference : externalReference
+	if (s.externalReference.getEReference() != null) t.addNewReference("externalReference".clearKeyWord(), s.externalReference.getEReference());
+}
+
+@lazy
+rule LangString
+	transform s : DSL!LangString //base.LangString
+	to t : SysMLine!PartUsage
+	extends Base{
+	//LangString.gid -> EAttribute : gid
+	if (s.gid.getEAttribute() != null) t.addNewAttribute("gid".clearKeyWord(), s.gid.getEAttribute());
+	//LangString.isCitation -> EAttribute : isCitation
+	if (s.isCitation.getEAttribute() != null) t.addNewAttribute("isCitation".clearKeyWord(), s.isCitation.getEAttribute());
+	//LangString.isAbstract -> EAttribute : isAbstract
+	if (s.isAbstract.getEAttribute() != null) t.addNewAttribute("isAbstract".clearKeyWord(), s.isAbstract.getEAttribute());
+	//LangString.lang -> EAttribute : lang
+	if (s.lang.getEAttribute() != null) t.addNewAttribute("lang".clearKeyWord(), s.lang.getEAttribute());
+	//LangString.content -> EAttribute : content
+	if (s.content.getEAttribute() != null) t.addNewAttribute("content".clearKeyWord(), s.content.getEAttribute());
+	//LangString.citedElement -> EReference : citedElement
+	if (s.citedElement.getEReference() != null) t.addNewReference("citedElement".clearKeyWord(), s.citedElement.getEReference());
+}
+
+@lazy
+rule MultiLangString
+	transform s : DSL!MultiLangString //base.MultiLangString
+	to t : SysMLine!PartUsage
+	extends Base{
+	//MultiLangString.gid -> EAttribute : gid
+	if (s.gid.getEAttribute() != null) t.addNewAttribute("gid".clearKeyWord(), s.gid.getEAttribute());
+	//MultiLangString.isCitation -> EAttribute : isCitation
+	if (s.isCitation.getEAttribute() != null) t.addNewAttribute("isCitation".clearKeyWord(), s.isCitation.getEAttribute());
+	//MultiLangString.isAbstract -> EAttribute : isAbstract
+	if (s.isAbstract.getEAttribute() != null) t.addNewAttribute("isAbstract".clearKeyWord(), s.isAbstract.getEAttribute());
+	//MultiLangString.citedElement -> EReference : citedElement
+	if (s.citedElement.getEReference() != null) t.addNewReference("citedElement".clearKeyWord(), s.citedElement.getEReference());
+	//MultiLangString.value -> EReference : value
+	if (s.value.getEReference() != null) t.addNewReference("value".clearKeyWord(), s.value.getEReference());
+}
+
+@lazy
+rule UtilityElement
+	transform s : DSL!UtilityElement //base.UtilityElement
+	to t : SysMLine!PartUsage
+	extends Base{
+	//UtilityElement.gid -> EAttribute : gid
+	if (s.gid.getEAttribute() != null) t.addNewAttribute("gid".clearKeyWord(), s.gid.getEAttribute());
+	//UtilityElement.isCitation -> EAttribute : isCitation
+	if (s.isCitation.getEAttribute() != null) t.addNewAttribute("isCitation".clearKeyWord(), s.isCitation.getEAttribute());
+	//UtilityElement.isAbstract -> EAttribute : isAbstract
+	if (s.isAbstract.getEAttribute() != null) t.addNewAttribute("isAbstract".clearKeyWord(), s.isAbstract.getEAttribute());
+	//UtilityElement.citedElement -> EReference : citedElement
+	if (s.citedElement.getEReference() != null) t.addNewReference("citedElement".clearKeyWord(), s.citedElement.getEReference());
+	//UtilityElement.name -> EReference : name
+	if (s.name.getEReference() != null) t.addNewReference("name".clearKeyWord(), s.name.getEReference());
+	//UtilityElement.description -> EReference : description
+	if (s.description.getEReference() != null) t.addNewReference("description".clearKeyWord(), s.description.getEReference());
+	//UtilityElement.constraint -> EReference : constraint
+	if (s.constraint.getEReference() != null) t.addNewReference("constraint".clearKeyWord(), s.constraint.getEReference());
+	//UtilityElement.note -> EReference : note
+	if (s.note.getEReference() != null) t.addNewReference("note".clearKeyWord(), s.note.getEReference());
+	//UtilityElement.taggedValue -> EReference : taggedValue
+	if (s.taggedValue.getEReference() != null) t.addNewReference("taggedValue".clearKeyWord(), s.taggedValue.getEReference());
+	//UtilityElement.externalReference -> EReference : externalReference
+	if (s.externalReference.getEReference() != null) t.addNewReference("externalReference".clearKeyWord(), s.externalReference.getEReference());
+	//UtilityElement.content -> EReference : content
+	if (s.content.getEReference() != null) t.addNewReference("content".clearKeyWord(), s.content.getEReference());
+}
+
+@lazy
+rule ExternalReference
+	transform s : DSL!ExternalReference //base.ExternalReference
+	to t : SysMLine!PartUsage
+	extends Base{
+	//ExternalReference.gid -> EAttribute : gid
+	if (s.gid.getEAttribute() != null) t.addNewAttribute("gid".clearKeyWord(), s.gid.getEAttribute());
+	//ExternalReference.isCitation -> EAttribute : isCitation
+	if (s.isCitation.getEAttribute() != null) t.addNewAttribute("isCitation".clearKeyWord(), s.isCitation.getEAttribute());
+	//ExternalReference.isAbstract -> EAttribute : isAbstract
+	if (s.isAbstract.getEAttribute() != null) t.addNewAttribute("isAbstract".clearKeyWord(), s.isAbstract.getEAttribute());
+	//ExternalReference.citedElement -> EReference : citedElement
+	if (s.citedElement.getEReference() != null) t.addNewReference("citedElement".clearKeyWord(), s.citedElement.getEReference());
+	//ExternalReference.name -> EReference : name
+	if (s.name.getEReference() != null) t.addNewReference("name".clearKeyWord(), s.name.getEReference());
+	//ExternalReference.description -> EReference : description
+	if (s.description.getEReference() != null) t.addNewReference("description".clearKeyWord(), s.description.getEReference());
+	//ExternalReference.constraint -> EReference : constraint
+	if (s.constraint.getEReference() != null) t.addNewReference("constraint".clearKeyWord(), s.constraint.getEReference());
+	//ExternalReference.note -> EReference : note
+	if (s.note.getEReference() != null) t.addNewReference("note".clearKeyWord(), s.note.getEReference());
+	//ExternalReference.taggedValue -> EReference : taggedValue
+	if (s.taggedValue.getEReference() != null) t.addNewReference("taggedValue".clearKeyWord(), s.taggedValue.getEReference());
+	//ExternalReference.externalReference -> EReference : externalReference
+	if (s.externalReference.getEReference() != null) t.addNewReference("externalReference".clearKeyWord(), s.externalReference.getEReference());
+	//ExternalReference.content -> EReference : content
+	if (s.content.getEReference() != null) t.addNewReference("content".clearKeyWord(), s.content.getEReference());
+	//ExternalReference.location -> EReference : location
+	if (s.location.getEReference() != null) t.addNewReference("location".clearKeyWord(), s.location.getEReference());
+	//ExternalReference.type -> EReference : type
+	if (s.type.getEReference() != null) t.addNewReference("type".clearKeyWord(), s.type.getEReference());
+	//ExternalReference.metadata -> EReference : metadata
+	if (s.metadata.getEReference() != null) t.addNewReference("metadata".clearKeyWord(), s.metadata.getEReference());
+	//ExternalReference.version -> EReference : version
+	if (s.version.getEReference() != null) t.addNewReference("version".clearKeyWord(), s.version.getEReference());
+	//ExternalReference.implementationConstraint -> EReference : implementationConstraint
+	if (s.implementationConstraint.getEReference() != null) t.addNewReference("implementationConstraint".clearKeyWord(), s.implementationConstraint.getEReference());
+}
+
+@lazy
+rule Description
+	transform s : DSL!Description //base.Description
+	to t : SysMLine!PartUsage
+	extends Base{
+	//Description.gid -> EAttribute : gid
+	if (s.gid.getEAttribute() != null) t.addNewAttribute("gid".clearKeyWord(), s.gid.getEAttribute());
+	//Description.isCitation -> EAttribute : isCitation
+	if (s.isCitation.getEAttribute() != null) t.addNewAttribute("isCitation".clearKeyWord(), s.isCitation.getEAttribute());
+	//Description.isAbstract -> EAttribute : isAbstract
+	if (s.isAbstract.getEAttribute() != null) t.addNewAttribute("isAbstract".clearKeyWord(), s.isAbstract.getEAttribute());
+	//Description.citedElement -> EReference : citedElement
+	if (s.citedElement.getEReference() != null) t.addNewReference("citedElement".clearKeyWord(), s.citedElement.getEReference());
+	//Description.name -> EReference : name
+	if (s.name.getEReference() != null) t.addNewReference("name".clearKeyWord(), s.name.getEReference());
+	//Description.description -> EReference : description
+	if (s.description.getEReference() != null) t.addNewReference("description".clearKeyWord(), s.description.getEReference());
+	//Description.constraint -> EReference : constraint
+	if (s.constraint.getEReference() != null) t.addNewReference("constraint".clearKeyWord(), s.constraint.getEReference());
+	//Description.note -> EReference : note
+	if (s.note.getEReference() != null) t.addNewReference("note".clearKeyWord(), s.note.getEReference());
+	//Description.taggedValue -> EReference : taggedValue
+	if (s.taggedValue.getEReference() != null) t.addNewReference("taggedValue".clearKeyWord(), s.taggedValue.getEReference());
+	//Description.externalReference -> EReference : externalReference
+	if (s.externalReference.getEReference() != null) t.addNewReference("externalReference".clearKeyWord(), s.externalReference.getEReference());
+	//Description.content -> EReference : content
+	if (s.content.getEReference() != null) t.addNewReference("content".clearKeyWord(), s.content.getEReference());
+}
+
+@lazy
+rule ImplementationConstraint
+	transform s : DSL!ImplementationConstraint //base.ImplementationConstraint
+	to t : SysMLine!PartUsage
+	extends Base{
+	//ImplementationConstraint.gid -> EAttribute : gid
+	if (s.gid.getEAttribute() != null) t.addNewAttribute("gid".clearKeyWord(), s.gid.getEAttribute());
+	//ImplementationConstraint.isCitation -> EAttribute : isCitation
+	if (s.isCitation.getEAttribute() != null) t.addNewAttribute("isCitation".clearKeyWord(), s.isCitation.getEAttribute());
+	//ImplementationConstraint.isAbstract -> EAttribute : isAbstract
+	if (s.isAbstract.getEAttribute() != null) t.addNewAttribute("isAbstract".clearKeyWord(), s.isAbstract.getEAttribute());
+	//ImplementationConstraint.citedElement -> EReference : citedElement
+	if (s.citedElement.getEReference() != null) t.addNewReference("citedElement".clearKeyWord(), s.citedElement.getEReference());
+	//ImplementationConstraint.name -> EReference : name
+	if (s.name.getEReference() != null) t.addNewReference("name".clearKeyWord(), s.name.getEReference());
+	//ImplementationConstraint.description -> EReference : description
+	if (s.description.getEReference() != null) t.addNewReference("description".clearKeyWord(), s.description.getEReference());
+	//ImplementationConstraint.constraint -> EReference : constraint
+	if (s.constraint.getEReference() != null) t.addNewReference("constraint".clearKeyWord(), s.constraint.getEReference());
+	//ImplementationConstraint.note -> EReference : note
+	if (s.note.getEReference() != null) t.addNewReference("note".clearKeyWord(), s.note.getEReference());
+	//ImplementationConstraint.taggedValue -> EReference : taggedValue
+	if (s.taggedValue.getEReference() != null) t.addNewReference("taggedValue".clearKeyWord(), s.taggedValue.getEReference());
+	//ImplementationConstraint.externalReference -> EReference : externalReference
+	if (s.externalReference.getEReference() != null) t.addNewReference("externalReference".clearKeyWord(), s.externalReference.getEReference());
+	//ImplementationConstraint.content -> EReference : content
+	if (s.content.getEReference() != null) t.addNewReference("content".clearKeyWord(), s.content.getEReference());
+}
+
+@lazy
+rule Note
+	transform s : DSL!Note //base.Note
+	to t : SysMLine!PartUsage
+	extends Base{
+	//Note.gid -> EAttribute : gid
+	if (s.gid.getEAttribute() != null) t.addNewAttribute("gid".clearKeyWord(), s.gid.getEAttribute());
+	//Note.isCitation -> EAttribute : isCitation
+	if (s.isCitation.getEAttribute() != null) t.addNewAttribute("isCitation".clearKeyWord(), s.isCitation.getEAttribute());
+	//Note.isAbstract -> EAttribute : isAbstract
+	if (s.isAbstract.getEAttribute() != null) t.addNewAttribute("isAbstract".clearKeyWord(), s.isAbstract.getEAttribute());
+	//Note.citedElement -> EReference : citedElement
+	if (s.citedElement.getEReference() != null) t.addNewReference("citedElement".clearKeyWord(), s.citedElement.getEReference());
+	//Note.name -> EReference : name
+	if (s.name.getEReference() != null) t.addNewReference("name".clearKeyWord(), s.name.getEReference());
+	//Note.description -> EReference : description
+	if (s.description.getEReference() != null) t.addNewReference("description".clearKeyWord(), s.description.getEReference());
+	//Note.constraint -> EReference : constraint
+	if (s.constraint.getEReference() != null) t.addNewReference("constraint".clearKeyWord(), s.constraint.getEReference());
+	//Note.note -> EReference : note
+	if (s.note.getEReference() != null) t.addNewReference("note".clearKeyWord(), s.note.getEReference());
+	//Note.taggedValue -> EReference : taggedValue
+	if (s.taggedValue.getEReference() != null) t.addNewReference("taggedValue".clearKeyWord(), s.taggedValue.getEReference());
+	//Note.externalReference -> EReference : externalReference
+	if (s.externalReference.getEReference() != null) t.addNewReference("externalReference".clearKeyWord(), s.externalReference.getEReference());
+	//Note.content -> EReference : content
+	if (s.content.getEReference() != null) t.addNewReference("content".clearKeyWord(), s.content.getEReference());
+}
+
+@lazy
+rule TaggedValue
+	transform s : DSL!TaggedValue //base.TaggedValue
+	to t : SysMLine!PartUsage
+	extends Base{
+	//TaggedValue.gid -> EAttribute : gid
+	if (s.gid.getEAttribute() != null) t.addNewAttribute("gid".clearKeyWord(), s.gid.getEAttribute());
+	//TaggedValue.isCitation -> EAttribute : isCitation
+	if (s.isCitation.getEAttribute() != null) t.addNewAttribute("isCitation".clearKeyWord(), s.isCitation.getEAttribute());
+	//TaggedValue.isAbstract -> EAttribute : isAbstract
+	if (s.isAbstract.getEAttribute() != null) t.addNewAttribute("isAbstract".clearKeyWord(), s.isAbstract.getEAttribute());
+	//TaggedValue.citedElement -> EReference : citedElement
+	if (s.citedElement.getEReference() != null) t.addNewReference("citedElement".clearKeyWord(), s.citedElement.getEReference());
+	//TaggedValue.name -> EReference : name
+	if (s.name.getEReference() != null) t.addNewReference("name".clearKeyWord(), s.name.getEReference());
+	//TaggedValue.description -> EReference : description
+	if (s.description.getEReference() != null) t.addNewReference("description".clearKeyWord(), s.description.getEReference());
+	//TaggedValue.constraint -> EReference : constraint
+	if (s.constraint.getEReference() != null) t.addNewReference("constraint".clearKeyWord(), s.constraint.getEReference());
+	//TaggedValue.note -> EReference : note
+	if (s.note.getEReference() != null) t.addNewReference("note".clearKeyWord(), s.note.getEReference());
+	//TaggedValue.taggedValue -> EReference : taggedValue
+	if (s.taggedValue.getEReference() != null) t.addNewReference("taggedValue".clearKeyWord(), s.taggedValue.getEReference());
+	//TaggedValue.externalReference -> EReference : externalReference
+	if (s.externalReference.getEReference() != null) t.addNewReference("externalReference".clearKeyWord(), s.externalReference.getEReference());
+	//TaggedValue.content -> EReference : content
+	if (s.content.getEReference() != null) t.addNewReference("content".clearKeyWord(), s.content.getEReference());
+	//TaggedValue.key -> EReference : key
+	if (s.key.getEReference() != null) t.addNewReference("key".clearKeyWord(), s.key.getEReference());
+}
+
+@lazy
+rule ArtifactElement
+	transform s : DSL!ArtifactElement //base.ArtifactElement
+	to t : SysMLine!PartUsage
+	extends Base{
+	//ArtifactElement.gid -> EAttribute : gid
+	if (s.gid.getEAttribute() != null) t.addNewAttribute("gid".clearKeyWord(), s.gid.getEAttribute());
+	//ArtifactElement.isCitation -> EAttribute : isCitation
+	if (s.isCitation.getEAttribute() != null) t.addNewAttribute("isCitation".clearKeyWord(), s.isCitation.getEAttribute());
+	//ArtifactElement.isAbstract -> EAttribute : isAbstract
+	if (s.isAbstract.getEAttribute() != null) t.addNewAttribute("isAbstract".clearKeyWord(), s.isAbstract.getEAttribute());
+	//ArtifactElement.citedElement -> EReference : citedElement
+	if (s.citedElement.getEReference() != null) t.addNewReference("citedElement".clearKeyWord(), s.citedElement.getEReference());
+	//ArtifactElement.name -> EReference : name
+	if (s.name.getEReference() != null) t.addNewReference("name".clearKeyWord(), s.name.getEReference());
+	//ArtifactElement.description -> EReference : description
+	if (s.description.getEReference() != null) t.addNewReference("description".clearKeyWord(), s.description.getEReference());
+	//ArtifactElement.constraint -> EReference : constraint
+	if (s.constraint.getEReference() != null) t.addNewReference("constraint".clearKeyWord(), s.constraint.getEReference());
+	//ArtifactElement.note -> EReference : note
+	if (s.note.getEReference() != null) t.addNewReference("note".clearKeyWord(), s.note.getEReference());
+	//ArtifactElement.taggedValue -> EReference : taggedValue
+	if (s.taggedValue.getEReference() != null) t.addNewReference("taggedValue".clearKeyWord(), s.taggedValue.getEReference());
+	//ArtifactElement.externalReference -> EReference : externalReference
+	if (s.externalReference.getEReference() != null) t.addNewReference("externalReference".clearKeyWord(), s.externalReference.getEReference());
+}
+
+

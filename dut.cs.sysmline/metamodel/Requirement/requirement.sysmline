@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="ASCII"?>
+<Namespace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="sysmline" xsi:schemaLocation="sysmline metamodel/sysmline/sysmline.ecore">
+  <body xsi:type="Package" declaredName="'requirement'">
+    <body xsi:type="NamespaceImport" hasVisibility="true" declaredName="ecore"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="requirement"/>
+    <body xsi:type="NamespaceImport" hasVisibility="true" visibility="public" declaredName="base"/>
+    <body xsi:type="PartDefinition" declaredName="RequirementAsset" isAbstract="true">
+      <SubclassificationPart xsi:nil="true"/>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="RequirementPackage">
+      <body xsi:type="PartUsage" declaredName="requirementAsset" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>RequirementAsset</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="interfaces" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>RequirementPackageInterface</featureSpecialization>
+      </body>
+      <SubclassificationPart>RequirementAsset</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="RequirementPackageInterface">
+      <body xsi:type="PartUsage" declaredName="interfaceOf" multiplicityRange="[1]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>RequirementPackage</featureSpecialization>
+      </body>
+      <SubclassificationPart>RequirementPackage</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="RequirementUtilityAsset" isAbstract="true">
+      <SubclassificationPart>RequirementAsset</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="Category">
+      <body xsi:type="PartUsage" declaredName="sub_category" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Category</featureSpecialization>
+      </body>
+      <SubclassificationPart>RequirementUtilityAsset</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="Stakeholder">
+      <SubclassificationPart>RequirementUtilityAsset</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="Glossary">
+      <body xsi:type="PartUsage" declaredName="entries" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>GlossaryEntry</featureSpecialization>
+      </body>
+      <SubclassificationPart>RequirementUtilityAsset</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="GlossaryEntry">
+      <body xsi:type="AttributeUsage" declaredName="term" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="pitch" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <SubclassificationPart>RequirementUtilityAsset</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="Requirement" isAbstract="true">
+      <body xsi:type="AttributeUsage" declaredName="satisfied" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="priority" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EInt</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="category" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Category</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="stakeholders" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Stakeholder</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="sub_requirement" multiplicityRange="[*]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Requirement</featureSpecialization>
+      </body>
+      <body xsi:type="PartUsage" declaredName="dependent_requirement" multiplicityRange="[*]" isReference="true">
+        <featureNote>:</featureNote>
+        <featureSpecialization>Requirement</featureSpecialization>
+      </body>
+      <SubclassificationPart>RequirementAsset</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="UserRequirement">
+      <SubclassificationPart>Requirement</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="SystemRequirement" isAbstract="true">
+      <SubclassificationPart>Requirement</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="FunctionalRequirement">
+      <body xsi:type="AttributeUsage" declaredName="function" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="inputs" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="outputs" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="source" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="destination" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="'action'" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="requires" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="pre_condition" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="post_condition" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="side_effects" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EString</featureSpecialization>
+      </body>
+      <SubclassificationPart>SystemRequirement</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="NonFunctionalRequirement">
+      <body xsi:type="PartUsage" declaredName="type" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>SecondaryRequirementType</featureSpecialization>
+      </body>
+      <SubclassificationPart>SystemRequirement</SubclassificationPart>
+    </body>
+    <body xsi:type="PartDefinition" declaredName="SecondaryRequirementType">
+      <body xsi:type="AttributeUsage" declaredName="architecture" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="usability" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="performance" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="space" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="dependability" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="security" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="environmental" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="operational" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="development" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="regulatory" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="ethical" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="safety" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <body xsi:type="AttributeUsage" declaredName="accounting" multiplicityRange="[1]">
+        <featureNote>:</featureNote>
+        <featureSpecialization>EBoolean</featureSpecialization>
+      </body>
+      <SubclassificationPart>RequirementAsset</SubclassificationPart>
+    </body>
+  </body>
+</Namespace>

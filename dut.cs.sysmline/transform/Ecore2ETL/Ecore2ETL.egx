@@ -13,16 +13,17 @@ pre{
 //	ePackages.addExtendedPackages(pg!EPackage);
 
 // Capella
-	ePackages.addExtendedPackages(activity!EPackage);
-	ePackages.addExtendedPackages(behavior!EPackage);
-	ePackages.addExtendedPackages(capellacommmon!EPackage);
-	ePackages.addExtendedPackages(cs!EPackage);
-	ePackages.addExtendedPackages(fa!EPackage);
-	ePackages.addExtendedPackages(information!EPackage);
-	ePackages.addExtendedPackages(interaction!EPackage);
-	ePackages.addExtendedPackages(libraries!EPackage);
-	ePackages.addExtendedPackages(re!EPackage);
-	ePackages.addExtendedPackages(capellacore!EPackage);
+//	ePackages.addExtendedPackages(activity!EPackage);
+	ePackages.addExtendedPackages(base!EPackage);
+//	ePackages.addExtendedPackages(behavior!EPackage);
+//	ePackages.addExtendedPackages(capellacommmon!EPackage);
+//	ePackages.addExtendedPackages(cs!EPackage);
+//	ePackages.addExtendedPackages(fa!EPackage);
+//	ePackages.addExtendedPackages(information!EPackage);
+//	ePackages.addExtendedPackages(interaction!EPackage);
+//	ePackages.addExtendedPackages(libraries!EPackage);
+//	ePackages.addExtendedPackages(re!EPackage);
+//	ePackages.addExtendedPackages(capellacore!EPackage);
 }
 
 rule gen_sysmlv2
