@@ -1,0 +1,50 @@
+//for (LangString_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!RequirementPackage))){
+//	LangString_.println("2: ");
+//}
+//
+//for (LangString_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!LangString))){
+//	LangString_.println("6: ");
+//}
+//
+//for (LangString_ in DSL!EObject.all){
+//	LangString_.println("10: ");
+//}
+
+//for (LangString_ in SACM!EObject.all.select(s|s.isTypeOf(SACM!LangString))){
+//	LangString_.println("14: ");
+//}
+
+//for (LangString_ in SACM!EObject.all){
+//	LangString_.println("18: ");
+//}
+
+//for (Description in SACM!EObject.all.select(s|s.isTypeOf(SACM!AssuranceCasePackage))){
+//	Description.println("22: ");
+//}
+
+//for (e in EObject.all){
+////	e.type().name.println();
+//	e.println();
+//	if (e.isTypeOf(SACM!Goal)){
+//		e.println("SACM!Goal : ");
+//	}
+//	else if (e.isTypeOf(SACM!LangString)){
+//		e.println("SACM!LangString : ");
+//	}
+//}
+
+var root = SACM!AssuranceCasePackage.all.first();
+root.nextNode();
+
+operation SACM!EObject nextNode(){
+//	self.println("self : ");
+	if (self.isTypeOf(SACM!Goal)){
+		self.println("SACM!Goal : ");
+	}
+	else if (self.isTypeOf(SACM!LangString)){
+		self.println("SACM!LangString : ");
+	}
+	for (child in self.eContents){
+		child.nextNode();
+	}
+}

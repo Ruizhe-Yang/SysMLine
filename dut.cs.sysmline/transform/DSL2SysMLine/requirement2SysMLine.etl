@@ -5,9 +5,6 @@ pre{
 	var KeyWords = baseKeyWords();
 	var i = 0;
 	eObjectSequence.init_requirement();
-//	for (ee in eObjectSequence){
-//		ee.println();
-//	}
 	main_requirement();
 }
 
@@ -29,151 +26,151 @@ operation main_requirement(){
 operation Sequence init_requirement(){
 	//requirement.RequirementAsset -> Instantiation
 	var idRequirementAsset = 0;
-	for (RequirementAsset_ in DSL!EObject.all.select(s|s.type().name == "RequirementAsset")){
+	for (RequirementAsset_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!RequirementAsset))){
 		var RequirementAsset_Tuple = Tuple{"key"="RequirementAsset_"+(idRequirementAsset++).asString(),"value"= RequirementAsset_};
 		self.add(RequirementAsset_Tuple);
 	}
 	//requirement.RequirementPackage -> Instantiation
 	var idRequirementPackage = 0;
-	for (RequirementPackage_ in DSL!EObject.all.select(s|s.type().name == "RequirementPackage")){
+	for (RequirementPackage_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!RequirementPackage))){
 		var RequirementPackage_Tuple = Tuple{"key"="RequirementPackage_"+(idRequirementPackage++).asString(),"value"= RequirementPackage_};
 		self.add(RequirementPackage_Tuple);
 	}
 	//requirement.RequirementPackageInterface -> Instantiation
 	var idRequirementPackageInterface = 0;
-	for (RequirementPackageInterface_ in DSL!EObject.all.select(s|s.type().name == "RequirementPackageInterface")){
+	for (RequirementPackageInterface_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!RequirementPackageInterface))){
 		var RequirementPackageInterface_Tuple = Tuple{"key"="RequirementPackageInterface_"+(idRequirementPackageInterface++).asString(),"value"= RequirementPackageInterface_};
 		self.add(RequirementPackageInterface_Tuple);
 	}
 	//requirement.RequirementUtilityAsset -> Instantiation
 	var idRequirementUtilityAsset = 0;
-	for (RequirementUtilityAsset_ in DSL!EObject.all.select(s|s.type().name == "RequirementUtilityAsset")){
+	for (RequirementUtilityAsset_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!RequirementUtilityAsset))){
 		var RequirementUtilityAsset_Tuple = Tuple{"key"="RequirementUtilityAsset_"+(idRequirementUtilityAsset++).asString(),"value"= RequirementUtilityAsset_};
 		self.add(RequirementUtilityAsset_Tuple);
 	}
 	//requirement.Category -> Instantiation
 	var idCategory = 0;
-	for (Category_ in DSL!EObject.all.select(s|s.type().name == "Category")){
+	for (Category_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!Category))){
 		var Category_Tuple = Tuple{"key"="Category_"+(idCategory++).asString(),"value"= Category_};
 		self.add(Category_Tuple);
 	}
 	//requirement.Stakeholder -> Instantiation
 	var idStakeholder = 0;
-	for (Stakeholder_ in DSL!EObject.all.select(s|s.type().name == "Stakeholder")){
+	for (Stakeholder_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!Stakeholder))){
 		var Stakeholder_Tuple = Tuple{"key"="Stakeholder_"+(idStakeholder++).asString(),"value"= Stakeholder_};
 		self.add(Stakeholder_Tuple);
 	}
 	//requirement.Glossary -> Instantiation
 	var idGlossary = 0;
-	for (Glossary_ in DSL!EObject.all.select(s|s.type().name == "Glossary")){
+	for (Glossary_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!Glossary))){
 		var Glossary_Tuple = Tuple{"key"="Glossary_"+(idGlossary++).asString(),"value"= Glossary_};
 		self.add(Glossary_Tuple);
 	}
 	//requirement.GlossaryEntry -> Instantiation
 	var idGlossaryEntry = 0;
-	for (GlossaryEntry_ in DSL!EObject.all.select(s|s.type().name == "GlossaryEntry")){
+	for (GlossaryEntry_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!GlossaryEntry))){
 		var GlossaryEntry_Tuple = Tuple{"key"="GlossaryEntry_"+(idGlossaryEntry++).asString(),"value"= GlossaryEntry_};
 		self.add(GlossaryEntry_Tuple);
 	}
 	//requirement.Requirement -> Instantiation
 	var idRequirement = 0;
-	for (Requirement_ in DSL!EObject.all.select(s|s.type().name == "Requirement")){
+	for (Requirement_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!Requirement))){
 		var Requirement_Tuple = Tuple{"key"="Requirement_"+(idRequirement++).asString(),"value"= Requirement_};
 		self.add(Requirement_Tuple);
 	}
 	//requirement.UserRequirement -> Instantiation
 	var idUserRequirement = 0;
-	for (UserRequirement_ in DSL!EObject.all.select(s|s.type().name == "UserRequirement")){
+	for (UserRequirement_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!UserRequirement))){
 		var UserRequirement_Tuple = Tuple{"key"="UserRequirement_"+(idUserRequirement++).asString(),"value"= UserRequirement_};
 		self.add(UserRequirement_Tuple);
 	}
 	//requirement.SystemRequirement -> Instantiation
 	var idSystemRequirement = 0;
-	for (SystemRequirement_ in DSL!EObject.all.select(s|s.type().name == "SystemRequirement")){
+	for (SystemRequirement_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!SystemRequirement))){
 		var SystemRequirement_Tuple = Tuple{"key"="SystemRequirement_"+(idSystemRequirement++).asString(),"value"= SystemRequirement_};
 		self.add(SystemRequirement_Tuple);
 	}
 	//requirement.FunctionalRequirement -> Instantiation
 	var idFunctionalRequirement = 0;
-	for (FunctionalRequirement_ in DSL!EObject.all.select(s|s.type().name == "FunctionalRequirement")){
+	for (FunctionalRequirement_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!FunctionalRequirement))){
 		var FunctionalRequirement_Tuple = Tuple{"key"="FunctionalRequirement_"+(idFunctionalRequirement++).asString(),"value"= FunctionalRequirement_};
 		self.add(FunctionalRequirement_Tuple);
 	}
 	//requirement.NonFunctionalRequirement -> Instantiation
 	var idNonFunctionalRequirement = 0;
-	for (NonFunctionalRequirement_ in DSL!EObject.all.select(s|s.type().name == "NonFunctionalRequirement")){
+	for (NonFunctionalRequirement_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!NonFunctionalRequirement))){
 		var NonFunctionalRequirement_Tuple = Tuple{"key"="NonFunctionalRequirement_"+(idNonFunctionalRequirement++).asString(),"value"= NonFunctionalRequirement_};
 		self.add(NonFunctionalRequirement_Tuple);
 	}
 	//requirement.SecondaryRequirementType -> Instantiation
 	var idSecondaryRequirementType = 0;
-	for (SecondaryRequirementType_ in DSL!EObject.all.select(s|s.type().name == "SecondaryRequirementType")){
+	for (SecondaryRequirementType_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!SecondaryRequirementType))){
 		var SecondaryRequirementType_Tuple = Tuple{"key"="SecondaryRequirementType_"+(idSecondaryRequirementType++).asString(),"value"= SecondaryRequirementType_};
 		self.add(SecondaryRequirementType_Tuple);
 	}
 	//base.Element -> Instantiation
 	var idElement = 0;
-	for (Element_ in DSL!EObject.all.select(s|s.type().name == "Element")){
+	for (Element_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!Element))){
 		var Element_Tuple = Tuple{"key"="Element_"+(idElement++).asString(),"value"= Element_};
 		self.add(Element_Tuple);
 	}
 	//base.ModelElement -> Instantiation
 	var idModelElement = 0;
-	for (ModelElement_ in DSL!EObject.all.select(s|s.type().name == "ModelElement")){
+	for (ModelElement_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!ModelElement))){
 		var ModelElement_Tuple = Tuple{"key"="ModelElement_"+(idModelElement++).asString(),"value"= ModelElement_};
 		self.add(ModelElement_Tuple);
 	}
 	//base.LangString -> Instantiation
 	var idLangString = 0;
-	for (LangString_ in DSL!EObject.all.select(s|s.type().name == "LangString")){
+	for (LangString_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!LangString))){
 		var LangString_Tuple = Tuple{"key"="LangString_"+(idLangString++).asString(),"value"= LangString_};
 		self.add(LangString_Tuple);
 	}
 	//base.MultiLangString -> Instantiation
 	var idMultiLangString = 0;
-	for (MultiLangString_ in DSL!EObject.all.select(s|s.type().name == "MultiLangString")){
+	for (MultiLangString_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!MultiLangString))){
 		var MultiLangString_Tuple = Tuple{"key"="MultiLangString_"+(idMultiLangString++).asString(),"value"= MultiLangString_};
 		self.add(MultiLangString_Tuple);
 	}
 	//base.UtilityElement -> Instantiation
 	var idUtilityElement = 0;
-	for (UtilityElement_ in DSL!EObject.all.select(s|s.type().name == "UtilityElement")){
+	for (UtilityElement_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!UtilityElement))){
 		var UtilityElement_Tuple = Tuple{"key"="UtilityElement_"+(idUtilityElement++).asString(),"value"= UtilityElement_};
 		self.add(UtilityElement_Tuple);
 	}
 	//base.ExternalReference -> Instantiation
 	var idExternalReference = 0;
-	for (ExternalReference_ in DSL!EObject.all.select(s|s.type().name == "ExternalReference")){
+	for (ExternalReference_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!ExternalReference))){
 		var ExternalReference_Tuple = Tuple{"key"="ExternalReference_"+(idExternalReference++).asString(),"value"= ExternalReference_};
 		self.add(ExternalReference_Tuple);
 	}
 	//base.Description -> Instantiation
 	var idDescription = 0;
-	for (Description_ in DSL!EObject.all.select(s|s.type().name == "Description")){
+	for (Description_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!Description))){
 		var Description_Tuple = Tuple{"key"="Description_"+(idDescription++).asString(),"value"= Description_};
 		self.add(Description_Tuple);
 	}
 	//base.ImplementationConstraint -> Instantiation
 	var idImplementationConstraint = 0;
-	for (ImplementationConstraint_ in DSL!EObject.all.select(s|s.type().name == "ImplementationConstraint")){
+	for (ImplementationConstraint_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!ImplementationConstraint))){
 		var ImplementationConstraint_Tuple = Tuple{"key"="ImplementationConstraint_"+(idImplementationConstraint++).asString(),"value"= ImplementationConstraint_};
 		self.add(ImplementationConstraint_Tuple);
 	}
 	//base.Note -> Instantiation
 	var idNote = 0;
-	for (Note_ in DSL!EObject.all.select(s|s.type().name == "Note")){
+	for (Note_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!Note))){
 		var Note_Tuple = Tuple{"key"="Note_"+(idNote++).asString(),"value"= Note_};
 		self.add(Note_Tuple);
 	}
 	//base.TaggedValue -> Instantiation
 	var idTaggedValue = 0;
-	for (TaggedValue_ in DSL!EObject.all.select(s|s.type().name == "TaggedValue")){
+	for (TaggedValue_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!TaggedValue))){
 		var TaggedValue_Tuple = Tuple{"key"="TaggedValue_"+(idTaggedValue++).asString(),"value"= TaggedValue_};
 		self.add(TaggedValue_Tuple);
 	}
 	//base.ArtifactElement -> Instantiation
 	var idArtifactElement = 0;
-	for (ArtifactElement_ in DSL!EObject.all.select(s|s.type().name == "ArtifactElement")){
+	for (ArtifactElement_ in DSL!EObject.all.select(s|s.isTypeOf(DSL!ArtifactElement))){
 		var ArtifactElement_Tuple = Tuple{"key"="ArtifactElement_"+(idArtifactElement++).asString(),"value"= ArtifactElement_};
 		self.add(ArtifactElement_Tuple);
 	}
